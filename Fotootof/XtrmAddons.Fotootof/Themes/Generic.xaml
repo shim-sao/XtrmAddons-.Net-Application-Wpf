@@ -1,0 +1,43 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Numbers -->
+    <system:Int32 x:Key="N1">1</system:Int32>
+    <system:Int32 x:Key="N2">2</system:Int32>
+    <system:Int32 x:Key="N3">3</system:Int32>
+    <system:Int32 x:Key="N4">4</system:Int32>
+    <system:Int32 x:Key="N5">5</system:Int32>
+    <system:Int32 x:Key="N6">6</system:Int32>
+    <system:Int32 x:Key="N7">7</system:Int32>
+    <system:Int32 x:Key="N8">8</system:Int32>
+    <system:Int32 x:Key="N9">9</system:Int32>
+    <system:Int32 x:Key="N10">10</system:Int32>
+    <system:Int32 x:Key="N11">11</system:Int32>
+    
+    <!-- Font Size -->
+    <system:Double x:Key="Text-Small">11</system:Double>
+    <system:Double x:Key="Text-Normal">12</system:Double>
+    <system:Double x:Key="Text-Big">14</system:Double>
+    <system:Double x:Key="Text-H1">24</system:Double>
+    <system:Double x:Key="Text-H2">20</system:Double>
+    <system:Double x:Key="Text-H3">18</system:Double>
+    <system:Double x:Key="Text-H4">16</system:Double>
+    
+    <!-- Image Size -->
+    <system:Int32 x:Key="Icon16">32</system:Int32>
+    <system:Int32 x:Key="Icon24">24</system:Int32>
+    <system:Int32 x:Key="Icon60">64</system:Int32>
+    <system:Int32 x:Key="Icon128">128</system:Int32>
+    <system:Int32 x:Key="Icon256">256</system:Int32>
+    <system:Int32 x:Key="Icon512">512</system:Int32>
+
+    <system:Int32 x:Key="Icon16String">32</system:Int32>
+    <system:Int32 x:Key="Icon24String">24</system:Int32>
+    <system:Int32 x:Key="Icon60String">64</system:Int32>
+    <system:Int32 x:Key="Icon128String">128</system:Int32>
+    <system:Int32 x:Key="Icon256String">256</system:Int32>
+    <system:Int32 x:Key="Icon512String">512</system:Int32>
+
+</ResourceDictionary>

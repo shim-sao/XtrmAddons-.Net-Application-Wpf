@@ -1,0 +1,90 @@
+﻿using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
+
+namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
+{
+    /// <summary>
+    /// Class XtrmAddons Fotootof Server Common Controls Files List View.
+    /// </summary>
+    public abstract class ListViewFiles : ListViewBase<ObservableCollection<ListViewFilesItemModel>, ListViewFilesItemModel>
+    {
+        #region Properties
+
+        /// <summary>
+        /// Property Using a DependencyProperty as the backing store for Entities.
+        /// </summary>
+        public new static readonly DependencyProperty PropertyItems =
+            DependencyProperty.Register
+            (
+                "Items",
+                typeof(ObservableCollection<ListViewFilesItemModel>),
+                typeof(ListViewFiles),
+                new PropertyMetadata(new ObservableCollection<ListViewFilesItemModel>())
+            );
+
+        #endregion
+
+
+
+        #region Methods
+
+        /// <summary>
+        /// Method called on click event to add a new Album.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        public override void OnAdd_Click(object sender, RoutedEventArgs e) { }
+
+        /// <summary>
+        /// Method called on edit click to navigate to a Album edit window.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        public override void OnEdit_Click(object sender, RoutedEventArgs e) { }
+
+        /// <summary>
+        /// Method called on delete click to delete a Album.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        public override void OnDelete_Click(object sender, RoutedEventArgs e) { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e) { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void Item_MouseEnter(object sender, MouseEventArgs e) { }
+
+        /// <summary>
+        /// Method called clear items selection click event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        protected void ClearItemsSelection_Click(object sender, RoutedEventArgs e)
+        {
+            ItemsCollection.SelectedItems.Clear();
+        }
+
+        /// <summary>
+        /// Method called on select all click event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        protected void SelectAllItems_Click(object sender, RoutedEventArgs e)
+        {
+            ItemsCollection.SelectAll();
+        }
+
+        #endregion
+    }
+}

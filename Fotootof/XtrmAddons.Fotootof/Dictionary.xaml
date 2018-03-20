@@ -1,0 +1,18 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cvDate="clr-namespace:XtrmAddons.Net.Windows.Converter.Date;assembly=XtrmAddons.Net.Windows"
+    xmlns:cvPicture="clr-namespace:XtrmAddons.Net.Windows.Converter.Picture;assembly=XtrmAddons.Net.Windows"
+    xmlns:cvSize="clr-namespace:XtrmAddons.Net.Windows.Converter.Size;assembly=XtrmAddons.Net.Windows"
+    xmlns:cvString="clr-namespace:XtrmAddons.Net.Windows.Converter.String;assembly=XtrmAddons.Net.Windows">
+    
+
+    <!-- XtrmAddons.Net.UI.Converter -->
+    <cvDate:ConverterDate x:Key="CvDate" />
+    <cvPicture:ConverterExtractLargeIconFromFile x:Key="CvExtractLargeIconFromFile" />
+    <cvPicture:ConverterPictureBase x:Key="CvPictureBase" />
+    <cvSize:ConverterResponsiveFontSize x:Key="CvResponsiveFontSize" />
+    <cvSize:ConverterResponsiveListViewItem x:Key="CvResponsiveListViewItem" />
+    <cvString:ConverterUCFirst x:Key="CvUCFirst" />
+
+</ResourceDictionary>

@@ -1,0 +1,94 @@
+﻿<UserControl 
+    x:Class="XtrmAddons.Fotootof.Libraries.Common.Controls.Tooltips.UCToolTipPicture"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Properties"
+    mc:Ignorable="d" 
+    MaxWidth="512"
+    MaxHeight="512">
+
+    <Grid 
+        MaxWidth="512"
+        MaxHeight="512"
+        Background="Black">
+
+        <Image 
+            Source="{Binding PicturePath,
+            Converter={StaticResource CvPictureBase},
+            ConverterParameter={StaticResource CvPreviewParameter},
+            Mode=OneWay}"
+            Stretch="Uniform"
+            Panel.ZIndex="0"/>
+
+        <Grid
+            x:Name="GridTooltipDesc"
+            Margin="10"
+            Height="auto"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel 
+                Grid.Row="0"
+                Orientation="Horizontal">
+
+                <TextBlock  
+                    Text="{Binding Description}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="left"
+                    Foreground="White"
+                    TextAlignment="Center"
+                    FontSize="14"
+                    Panel.ZIndex="1"
+                    TextWrapping="Wrap"/>
+
+            </StackPanel>
+
+            <StackPanel
+                Grid.Row="1"
+                Orientation="Horizontal">
+
+                <TextBlock
+                    Text="{Binding DateStart,
+                    Converter={StaticResource CvDate},
+                    ConverterParameter={StaticResource CvDateTimeLongParameter}}"
+                    VerticalAlignment="center"
+                    Foreground="White"
+                    TextAlignment="Center"
+                    FontSize="12"
+                    FontStyle="Oblique"/>
+
+                <TextBlock
+                    Text="-"
+                    Margin="3,0"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    TextAlignment="Center"
+                    FontSize="12"
+                    FontStyle="Oblique"/>
+
+                <TextBlock 
+                    Text="{Binding DateEnd,
+                    Converter={StaticResource CvDate},
+                    ConverterParameter={StaticResource CvDateTimeLongParameter}}"
+                    VerticalAlignment="center"
+                    Foreground="White"
+                    TextAlignment="Center"
+                    FontSize="12"
+                    FontStyle="Oblique"/>
+
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</UserControl>

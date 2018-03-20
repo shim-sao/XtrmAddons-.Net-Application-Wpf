@@ -1,0 +1,91 @@
+﻿<base:PageBase
+    x:Class="XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser.PageBrowser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
+    xmlns:ucbrowser="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.TreeViews"
+    xmlns:uclistviews="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews"
+    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Menu"
+    mc:Ignorable="d"
+    ShowsNavigationUI="False"
+    Title="{x:Static p:Resources.Browser}"
+    Style="{StaticResource ResourceKey=PageContent}"
+    Background="{StaticResource ResourceKey=LightGrey}">
+
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel
+            Orientation="Vertical"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+
+            <!-- #region Main navigation -->
+            <Border>
+                <ucmenu:MenuServerMain
+                    x:Name="ApplicationMainMenu"/>
+            </Border>
+            <!-- #endegion Main navigation -->
+
+            
+            <!-- #region Breadcrumbs -->
+            <Border>
+                <TextBlock
+                    x:Name="Breadcrumbs"
+                    Margin="10,5"
+                    FontSize="{StaticResource ResourceKey=FontSizeNormal}" />
+            </Border>
+            <!-- #endregion Breadcrumbs -->
+            
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" MinWidth="240"/>
+                    <ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+
+
+                <ucbrowser:UCDirectoryTreeView
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        x:Name="TreeViewDirectories"
+                        IsHeaderVisible="Visible"/>
+
+                <GridSplitter
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch" />
+
+                <Grid
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    x:Name="GridFiles"
+                    Margin="5,2">
+
+                    <uclistviews:ListViewStoragesServer
+                        x:Name="UcListViewStoragesServer"/>
+
+                    <!--
+                    <uclistviews:ListViewFilesServer
+                        x:Name="UCBrowserPicture" />
+                    -->
+                </Grid>
+            </Grid>
+
+        </StackPanel>
+
+    </Grid>
+</base:PageBase>

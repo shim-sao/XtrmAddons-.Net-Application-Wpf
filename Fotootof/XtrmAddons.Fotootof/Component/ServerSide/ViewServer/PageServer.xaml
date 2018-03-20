@@ -1,0 +1,70 @@
+﻿<base:PageBase
+    x:Class="XtrmAddons.Fotootof.Component.ServerSide.ViewServer.PageServer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
+    xmlns:ucclient="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids"
+    xmlns:ucserver="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.Servers"
+    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Menu"
+    mc:Ignorable="d"
+    ShowsNavigationUI="False"
+    MinWidth="800"
+    MinHeight="985"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
+    Title="{x:Static p:Resources.Server}">
+
+    <Grid Background="{StaticResource ResourceKey=LightBlack}">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <!-- #region Main navigation -->
+        <ucmenu:MenuServerMain
+            Grid.Row="0"
+            x:Name="UCMenuMainNavigation"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top">
+        </ucmenu:MenuServerMain>
+        <!-- #endegion Main navigation -->
+
+        
+        <!-- #region Main Content -->
+        <Grid
+            Grid.Row="1"
+            VerticalAlignment="Stretch"
+            Background="White">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+
+                <Grid>
+                    <ucserver:ServerInfos x:Name="UCServer" />
+                </Grid>
+
+                <Grid>
+                    <ucclient:DatagridHttpClient />
+                </Grid>
+
+            </StackPanel>
+
+        </Grid>
+        <!-- #endregion Main Content -->
+        
+    </Grid>
+</base:PageBase>

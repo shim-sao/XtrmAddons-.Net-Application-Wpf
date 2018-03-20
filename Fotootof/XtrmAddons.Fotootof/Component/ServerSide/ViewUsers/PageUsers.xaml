@@ -1,0 +1,76 @@
+﻿<base:PageBase
+    x:Class="XtrmAddons.Fotootof.Component.ServerSide.ViewUsers.PageUsers"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
+    xmlns:dg="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids"
+    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.UI.Control.Menu"
+    mc:Ignorable="d"
+    ShowsNavigationUI="False"
+    MinWidth="800"
+    MinHeight="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
+    Title="{x:Static p:Resources.Users}"
+    Background="{StaticResource ResourceKey=LightGrey}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <!-- #region Main navigation -->
+        <ucmenu:UCMainNavigation
+            Grid.Row="0"
+            x:Name="UCMenuMainNavigation"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"/>
+        <!-- #endegion Main navigation -->
+
+        <!-- #region List -->
+        <Grid
+            Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="345" />
+                <ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            
+            <dg:UCAclGroupDataGrid
+                x:Name="AclGroupsDataGrid"
+                Grid.Row="0"
+                Grid.Column="0"
+                DataContext="{Binding}"
+                HorizontalAlignment="Left"/>
+
+            <GridSplitter
+                Grid.Row="0"
+                Grid.Column="1"
+                IsEnabled="False"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="{StaticResource ResourceKey=DarkGrey}"/>
+            
+            <dg:UCUsersDataGrid
+                x:Name="UsersListView"
+                Grid.Row="0"
+                Grid.Column="2"
+                DataContext="{Binding}"
+                HorizontalAlignment="Left"/>
+
+        </Grid>
+        <!-- #endregion List -->
+        
+    </Grid>
+</base:PageBase>

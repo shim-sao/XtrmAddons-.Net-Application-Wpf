@@ -1,0 +1,31 @@
+﻿<Application 
+    x:Class="XtrmAddons.Fotootof.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionary.xaml"/>
+
+                <ResourceDictionary Source="Themes\Generic.xaml"/>
+                <ResourceDictionary Source="Themes\Template\Color\Default.xaml"/>
+                <ResourceDictionary Source="Themes\Template\Controls\Button\Dark.xaml"/>
+                <ResourceDictionary Source="Themes\Template\Controls\Button\RoundedCorner.xaml"/>
+                <ResourceDictionary Source="Themes\Template\Controls\ListView\Default.xaml"/>
+                <ResourceDictionary Source="Themes\Template\Controls\StackPanel\Dark.xaml"/>
+                <ResourceDictionary Source="Themes\Template\Controls\TextBox\Default.xaml"/>
+                <ResourceDictionary Source="Themes\Template\Images\Default.xaml"/>
+
+
+                <ResourceDictionary Source="Themes\Template\Controls\Page\Default.xaml"/>
+
+                <ResourceDictionary Source="Resources\Converter\Parameters.xaml"/>
+                <ResourceDictionary Source="Resources\Style\TreeView\Explorer.xaml"/>
+                <ResourceDictionary Source="Resources\Style\Text\Text.xaml"/>
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

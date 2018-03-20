@@ -1,0 +1,32 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Form -->
+    <Style x:Key="Form" TargetType="{x:Type StackPanel}">
+        <Setter Property="Orientation" Value="Vertical"/>
+        <Setter Property="Margin" Value="3"/>
+        <Setter Property="MinHeight" Value="30"/>
+    </Style>
+
+    <!-- Field -->
+    <Style x:Key="Field" TargetType="{x:Type StackPanel}">
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="MinHeight" Value="24"/>
+    </Style>
+
+    <!-- Fieldset Header -->
+    <Style x:Key="FieldsetHeader" TargetType="{x:Type StackPanel}">
+        <Setter Property="Background" Value="{StaticResource ResourceKey=DarkGrey}" />
+    </Style>
+    
+    <!-- Validator -->
+    <Style x:Key="Validator" TargetType="{x:Type StackPanel}">
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Height" Value="30" />
+    </Style>
+    
+</ResourceDictionary>

@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddPictures" xml:space="preserve">
+    <value>Add Pictures</value>
+  </data>
+  <data name="AddPicturesToAlbum" xml:space="preserve">
+    <value>Add to Album</value>
+  </data>
+  <data name="Album" xml:space="preserve">
+    <value>Album</value>
+  </data>
+  <data name="Albums" xml:space="preserve">
+    <value>Albums</value>
+  </data>
+  <data name="Alias" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>XtrmAddons Fotootof</value>
+  </data>
+  <data name="AssociatedAlbums" xml:space="preserve">
+    <value>Associated albums</value>
+  </data>
+  <data name="AssociatedCategories" xml:space="preserve">
+    <value>Associated categories</value>
+  </data>
+  <data name="AssociatedFolders" xml:space="preserve">
+    <value>Associated folders</value>
+  </data>
+  <data name="AssociatedPictures" xml:space="preserve">
+    <value>Associated pictures</value>
+  </data>
+  <data name="AssociatedUsers" xml:space="preserve">
+    <value>Associated users</value>
+  </data>
+  <data name="BaseDirectory" xml:space="preserve">
+    <value>Base Directory</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>Browser</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="ConfigurationFile" xml:space="preserve">
+    <value>Configuration file</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Cover</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Datas" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeletePictures" xml:space="preserve">
+    <value>Delete Pictures</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DialogBoxTitle_PictureFileSelector" xml:space="preserve">
+    <value>XtrmAddons Fotootof Image Selector</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Explore</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>Folders</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Informations" xml:space="preserve">
+    <value>Informations</value>
+  </data>
+  <data name="LastAdded" xml:space="preserve">
+    <value>Last Added</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Fotootof Server Administration</value>
+  </data>
+  <data name="MessageBox_Acceptation_DeleteGeneric" xml:space="preserve">
+    <value>Are you sure you want to delete the {0} : {1} ?</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Modified</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NewAclGroup" xml:space="preserve">
+    <value>New Group</value>
+  </data>
+  <data name="NewAlbum" xml:space="preserve">
+    <value>New Album</value>
+  </data>
+  <data name="NewCategory" xml:space="preserve">
+    <value>New Category</value>
+  </data>
+  <data name="NewFolder" xml:space="preserve">
+    <value>New Folder</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>New User</value>
+  </data>
+  <data name="NonAssociatedAlbums" xml:space="preserve">
+    <value>Non-associated albums</value>
+  </data>
+  <data name="NonAssociatedCategories" xml:space="preserve">
+    <value>Non-associated categories</value>
+  </data>
+  <data name="NonAssociatedFolders" xml:space="preserve">
+    <value>Non-associated folders</value>
+  </data>
+  <data name="NonAssociatedPictures" xml:space="preserve">
+    <value>Non-associated pictures</value>
+  </data>
+  <data name="NonAssociatedUsers" xml:space="preserve">
+    <value>Non-associated users</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="Parent" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Picture" xml:space="preserve">
+    <value>Picture</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
+  <data name="Quality" xml:space="preserve">
+    <value>Quality</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="Rights" xml:space="preserve">
+    <value>Rights</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Section" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="Sections" xml:space="preserve">
+    <value>Sections</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="Selector_SelectColor" xml:space="preserve">
+    <value>-- Select Color --</value>
+  </data>
+  <data name="Selector_SelectQuality" xml:space="preserve">
+    <value>-- Select Quality --</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="ServerInformations" xml:space="preserve">
+    <value>Server Informations</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsInputBinName" xml:space="preserve">
+    <value>Bin</value>
+  </data>
+  <data name="SettingsInputCacheName" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="SettingsInputConfigName" xml:space="preserve">
+    <value>Config</value>
+  </data>
+  <data name="SettingsInputDataName" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="SettingsInputThemeName" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="ToolTip_SelectAlbumColor" xml:space="preserve">
+    <value>Select the Color associated to the Album.</value>
+  </data>
+  <data name="ToolTip_SelectAlbumQuality" xml:space="preserve">
+    <value>Select the Quality associated to the Album.</value>
+  </data>
+  <data name="UnselectAll" xml:space="preserve">
+    <value>Unselect All</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="UserDirectory" xml:space="preserve">
+    <value>User directory</value>
+  </data>
+  <data name="UserInterface" xml:space="preserve">
+    <value>User Interface</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="UsersGroups" xml:space="preserve">
+    <value>Users groups</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="WindowAclGroupFormTitle" xml:space="preserve">
+    <value>FotootoF Administration : Users group</value>
+  </data>
+  <data name="WindowAlbumFormTitle" xml:space="preserve">
+    <value>FotootoF Administration : Album</value>
+  </data>
+  <data name="WindowClientFormTitle" xml:space="preserve">
+    <value>FotootoF Administration : Client</value>
+  </data>
+  <data name="WindowSectionFormTitle" xml:space="preserve">
+    <value>FotootoF Administration : Section</value>
+  </data>
+  <data name="WindowServerFormTitle" xml:space="preserve">
+    <value>FotootoF Administration : Server</value>
+  </data>
+  <data name="WindowSettingsTitle" xml:space="preserve">
+    <value>FotootoF Préférences</value>
+  </data>
+  <data name="WindowUserFormTitle" xml:space="preserve">
+    <value>FotootoF Administration : User</value>
+  </data>
+  <data name="_About" xml:space="preserve">
+    <value>_About XtrmAddons Fotootof Server</value>
+  </data>
+  <data name="_AddSection" xml:space="preserve">
+    <value>Add Section</value>
+  </data>
+  <data name="_AddToFirewall" xml:space="preserve">
+    <value>_Add to Firewall</value>
+  </data>
+  <data name="_Albums" xml:space="preserve">
+    <value>_Albums</value>
+  </data>
+  <data name="_AlbumsList" xml:space="preserve">
+    <value>_List of Albums</value>
+  </data>
+  <data name="_AlbumsNew" xml:space="preserve">
+    <value>_Add new Album</value>
+  </data>
+  <data name="_Cancel" xml:space="preserve">
+    <value>_Cancel</value>
+  </data>
+  <data name="_Categories" xml:space="preserve">
+    <value>_Categories</value>
+  </data>
+  <data name="_CategoriesList" xml:space="preserve">
+    <value>_List of Categories</value>
+  </data>
+  <data name="_CategoriesNew" xml:space="preserve">
+    <value>_Add new Categories</value>
+  </data>
+  <data name="_Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="_ClientNew" xml:space="preserve">
+    <value>New Client</value>
+  </data>
+  <data name="_Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="_Edit" xml:space="preserve">
+    <value>_Edit</value>
+  </data>
+  <data name="_Edition" xml:space="preserve">
+    <value>Edition</value>
+  </data>
+  <data name="_Exit" xml:space="preserve">
+    <value>_Exit</value>
+  </data>
+  <data name="_File" xml:space="preserve">
+    <value>_File</value>
+  </data>
+  <data name="_Folders" xml:space="preserve">
+    <value>_Folders</value>
+  </data>
+  <data name="_FoldersList" xml:space="preserve">
+    <value>_List of Folders</value>
+  </data>
+  <data name="_FoldersNew" xml:space="preserve">
+    <value>_Add new Folder</value>
+  </data>
+  <data name="_Help" xml:space="preserve">
+    <value>_Help</value>
+  </data>
+  <data name="_Language" xml:space="preserve">
+    <value>_Language</value>
+  </data>
+  <data name="_LogsWindow" xml:space="preserve">
+    <value>Logs Window</value>
+  </data>
+  <data name="_No" xml:space="preserve">
+    <value>_No</value>
+  </data>
+  <data name="_Ok" xml:space="preserve">
+    <value>_Ok</value>
+  </data>
+  <data name="_Preferences" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
+  <data name="_RemoveFromFirewall" xml:space="preserve">
+    <value>Remove From _Firewall</value>
+  </data>
+  <data name="_Restart" xml:space="preserve">
+    <value>_Restart</value>
+  </data>
+  <data name="_Sections" xml:space="preserve">
+    <value>Sections</value>
+  </data>
+  <data name="_Server" xml:space="preserve">
+    <value>_Server</value>
+  </data>
+  <data name="_Settings" xml:space="preserve">
+    <value>_Settings</value>
+  </data>
+  <data name="_Start" xml:space="preserve">
+    <value>_Start</value>
+  </data>
+  <data name="_Stop" xml:space="preserve">
+    <value>_Stop</value>
+  </data>
+  <data name="_User" xml:space="preserve">
+    <value>_User</value>
+  </data>
+  <data name="_Users" xml:space="preserve">
+    <value>_Users</value>
+  </data>
+  <data name="_UsersList" xml:space="preserve">
+    <value>_List of Users</value>
+  </data>
+  <data name="_UsersNew" xml:space="preserve">
+    <value>_Add new User</value>
+  </data>
+  <data name="_Windows" xml:space="preserve">
+    <value>Windows</value>
+  </data>
+  <data name="_Yes" xml:space="preserve">
+    <value>_Yes</value>
+  </data>
+</root>

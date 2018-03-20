@@ -1,0 +1,103 @@
+﻿<Window 
+    x:Class="XtrmAddons.Fotootof.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Properties"
+    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.Menu"
+    mc:Ignorable="d"
+    Title="{x:Static p:Resources.MainWindowTitle}"
+    MinWidth="800"
+    Width="1024"
+    Height="768"
+    MinHeight="600"
+    Closing="Window_Closing">
+
+    <Grid 
+        x:Name="GridMainWindow"
+        x:Uid="UIDGGridMainWindow"
+        Background="{StaticResource ResourceKey=LightBlack}"
+        Margin="2,0,2,2">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition x:Name="RowGridMain" Height="*" />
+            <RowDefinition x:Name="RowGridSplitter" Height="0"/>
+            <RowDefinition x:Name="RowGridLogs" Height="0"/>
+        </Grid.RowDefinitions>
+
+        <ucmenu:MenuMain
+            Grid.Row="0"
+            x:Name="UCMainMenuServer"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"/>
+
+        <Border 
+            Grid.Row="1"
+            Margin="5"
+            Background="{StaticResource ResourceKey=DarkGrey}"
+            BorderBrush="{StaticResource ResourceKey=MediumGrey}"
+            BorderThickness="2"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            x:Name="BorderFrameMain">
+
+            <ScrollViewer
+                x:Name="ScrollViewerMain">
+                <WrapPanel>
+                    <HeaderedItemsControl Header="Frame">
+                        <StackPanel>
+
+                            <Frame
+                                x:Name="FrameMain"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                NavigationUIVisibility="Hidden"/>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                </WrapPanel>
+            </ScrollViewer>
+        </Border>
+
+        <GridSplitter
+            x:Name="GridSplitter"
+            Grid.Row="2"
+            Height="5"
+            HorizontalAlignment="Stretch" />
+
+        <Border
+            Grid.Row="3"
+            Margin="5"
+            Background="{StaticResource ResourceKey=DarkGrey}"
+            BorderBrush="{StaticResource ResourceKey=MediumGrey}"
+            BorderThickness="2">
+
+            <ScrollViewer>
+                <WrapPanel>
+                    <HeaderedItemsControl Header="Frame">
+                        <StackPanel>
+                            <Frame
+                                Name="FrameLogs"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Margin="2" 
+                                NavigationUIVisibility="Hidden"/>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                </WrapPanel>
+            </ScrollViewer>
+        </Border>
+
+        <xctk:BusyIndicator
+            x:Name="XCTKBusyIndicator"
+            IsBusy="False"
+            Grid.Row="1"
+            Grid.RowSpan="4">
+        </xctk:BusyIndicator>
+    </Grid>
+</Window>

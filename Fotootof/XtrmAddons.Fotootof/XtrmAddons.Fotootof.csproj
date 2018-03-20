@@ -1,0 +1,921 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E6140D86-5100-4D92-B1FE-CECEA71589D0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>XtrmAddons.Fotootof</RootNamespace>
+    <AssemblyName>XtrmAddons Fotootof</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <ShouldCreateLogs>True</ShouldCreateLogs>
+    <AdvancedSettingsExpanded>False</AdvancedSettingsExpanded>
+    <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>True</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+    <AssemblyVersionSettings>None.None.DateStamp.TimeStamp</AssemblyVersionSettings>
+    <AssemblyFileVersionSettings>None.None.DateStamp.TimeStamp</AssemblyFileVersionSettings>
+    <AssemblyInfoVersionSettings>None.None.DateStamp.TimeStamp</AssemblyInfoVersionSettings>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.2.0" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.0.0" />
+    <PackageReference Include="Microsoft.NETCore.Platforms" Version="2.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="Remotion.Linq" Version="2.2.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
+    <PackageReference Include="SQLite.Net-PCL">
+      <Version>3.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="SQLite.Net.Async-PCL">
+      <Version>3.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.9" />
+    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.9" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.linux" Version="1.1.9" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.osx" Version="1.1.9" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.9" />
+    <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.9" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.4.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.107" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.107" />
+    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.107" />
+    <PackageReference Include="System.Data.SQLite.Linq" Version="1.0.107" />
+    <PackageReference Include="System.Diagnostics.Debug" Version="4.3.0" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.4.1" />
+    <PackageReference Include="System.Interactive.Async" Version="3.1.1" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.3" />
+    <PackageReference Include="System.ObjectModel" Version="4.3.0" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.Extensions" Version="4.3.0" />
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.4.0" />
+    <PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
+    <PackageReference Include="System.Security.Cryptography.Encoding" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.2" />
+    <PackageReference Include="System.Threading" Version="4.3.0" />
+    <PackageReference Include="WindowsAPICodePack-Core" Version="1.1.2" />
+    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="XtrmAddons.Net.Application, Version=1.0.18032.1543, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\XtrmAddons.Net.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Common, Version=1.0.18032.1520, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\XtrmAddons.Net.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.HttpWebServer, Version=1.0.18022.1713, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\XtrmAddons.Net.HttpWebServer.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Memory">
+      <HintPath>packages\XtrmAddons.Net.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Network">
+      <HintPath>packages\XtrmAddons.Net.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.NotifyIcons">
+      <HintPath>packages\XtrmAddons.Net.NotifyIcons.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Picture">
+      <HintPath>packages\XtrmAddons.Net.Picture.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.SQLiteBundle">
+      <HintPath>packages\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.SystemIO">
+      <HintPath>packages\XtrmAddons.Net.SystemIO.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Windows">
+      <HintPath>packages\XtrmAddons.Net.Windows.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Component\ClientSide\ViewCatalog\PageCatalogClientModel.cs" />
+    <Compile Include="Component\ClientSide\ViewCatalog\PageCatalogClient.xaml.cs">
+      <DependentUpon>PageCatalogClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Component\ServerSide\ViewBrowser\PageBrowserModel.cs" />
+    <Compile Include="Component\ServerSide\ViewCatalog\PageCatalog.xaml.cs">
+      <DependentUpon>PageCatalog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Component\ServerSide\ViewCatalog\PageCatalogModel.cs" />
+    <Compile Include="Component\ServerSide\ViewServer\PageServer.xaml.cs">
+      <DependentUpon>PageServer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Component\ServerSide\ViewServer\PageServerModel.cs" />
+    <Compile Include="Component\ServerSide\ViewUsers\PageUsers.xaml.cs">
+      <DependentUpon>PageUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Component\ServerSide\ViewUsers\PageUsersModel.cs" />
+    <Compile Include="Libraries\Common\Controls\ListViews\ListViewStorages.cs" />
+    <Compile Include="Libraries\Common\Controls\ListViews\ListViewFiles.cs" />
+    <Compile Include="Libraries\Common\Controls\TreeViews\UCDirectoryTreeView.xaml.cs">
+      <DependentUpon>UCDirectoryTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Tools\Logger.cs" />
+    <Compile Include="Libraries\Common\Tools\Overwork.cs" />
+    <Compile Include="Libraries\Common\Tools\Navigator.cs" />
+    <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
+      <DependentUpon>WindowFormClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridHttpClientModel.cs" />
+    <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml.cs">
+      <DependentUpon>ListViewStoragesServer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewFilesServer.xaml.cs">
+      <DependentUpon>ListViewFilesServer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\Menu\MenuServerMain.xaml.cs">
+      <DependentUpon>MenuServerMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\Servers\ServerInfos.xaml.cs">
+      <DependentUpon>ServerInfos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\HttpHelpers\HttpClient\ClientHttp.cs" />
+    <Compile Include="Libraries\Common\HttpHelpers\HttpClient\ClientHttpEventArgs.cs" />
+    <Compile Include="Libraries\Common\HttpHelpers\HttpClient\Responses\ServerResponseSections.cs" />
+    <Compile Include="Libraries\Common\HttpHelpers\HttpClient\Responses\ServerResponse.cs" />
+    <Compile Include="Libraries\Common\HttpHelpers\HttpClient\Responses\ServerResponseBase.cs" />
+    <Compile Include="Libraries\Common\Collections\StorageCollection.cs" />
+    <Compile Include="Component\ServerSide\ViewBrowser\PageBrowser.xaml.cs">
+      <DependentUpon>PageBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Component\ServerSide\ViewAlbum\PageAlbumModel.cs" />
+    <Compile Include="Component\ServerSide\ViewAlbum\PageAlbum.xaml.cs">
+      <DependentUpon>PageAlbum.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\HttpHelpers\HttpServer\HttpServerBase.cs" />
+    <Compile Include="Libraries\ClientSide\Controls\ListViews\ListViewAlbumsClient.xaml.cs">
+      <DependentUpon>ListViewAlbumsClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroup.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsers.cs" />
+    <Compile Include="Libraries\Common\Controls\ListViews\ListViewAlbums.cs" />
+    <Compile Include="Libraries\Common\Controls\ListViews\ListViewDirectories.cs" />
+    <Compile Include="Libraries\Common\Controls\Menu\MenuMain.xaml.cs">
+      <DependentUpon>MenuMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Interfaces\Windows\IWindowForm.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAlbumsModel.cs" />
+    <Compile Include="Libraries\Common\Controls\ListViews\ListViewAlbumsModel.cs" />
+    <Compile Include="Libraries\Common\Windows\Settings\WindowSettingsModel.cs" />
+    <Compile Include="Libraries\Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml.cs">
+      <DependentUpon>WindowDataGridAlbums.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Windows\Settings\WindowSettings.xaml.cs">
+      <DependentUpon>WindowSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\DataGrids\DatagridHttpClient.xaml.cs">
+      <DependentUpon>DatagridHttpClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridSectionsServer.xaml.cs">
+      <DependentUpon>DataGridSectionsServer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Collections\AlbumEntityCollection.cs" />
+    <Compile Include="Libraries\Common\Collections\PictureEntityCollection.cs" />
+    <Compile Include="Libraries\Common\Collections\InfoEntityCollection.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAlbums.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridSections.cs" />
+    <Compile Include="Libraries\Common\Controls\Tooltips\UCToolTipPicture.xaml.cs">
+      <DependentUpon>UCToolTipPicture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Converters\CheckBoxAlbumInSection.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\UCAclGroupDataGrid.xaml.cs">
+      <DependentUpon>UCAclGroupDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Controls\DataGrids\UCUsersDataGrid.xaml.cs">
+      <DependentUpon>UCUsersDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Controls\ListViews\UCPicturesListView.xaml.cs">
+      <DependentUpon>UCPicturesListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Controls\ListViews\UCAlbumsListView.xaml.cs">
+      <DependentUpon>UCAlbumsListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Converters\CheckBoxAclGroupInSection.cs" />
+    <Compile Include="Libraries\Common\Converters\CheckBoxUserInAclGroup.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridSectionsModel.cs" />
+    <Compile Include="Libraries\Common\Windows\Forms\AclGroupForm\WindowFormAclGroupModel.cs" />
+    <Compile Include="Libraries\Common\Windows\Forms\AlbumForm\WindowFormAlbumModel.cs" />
+    <Compile Include="Libraries\Common\Collections\UserEntityCollection.cs" />
+    <Compile Include="Libraries\Common\Collections\AclGroupEntityCollection.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Libraries\Common\Collections\SectionEntityCollection.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\UCAlbumsDataGrid.xaml.cs">
+      <DependentUpon>UCAlbumsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionModel.cs" />
+    <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowClientFormModel.cs" />
+    <Compile Include="Libraries\Common\Windows\Forms\UserForm\WindowFormUserModel.cs" />
+    <Compile Include="Libraries\Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbumsModel.cs" />
+    <Compile Include="Libraries\Common\Controls\ListViews\ListViewFilesItemModel.cs" />
+    <Compile Include="Libraries\Common\HttpHelpers\HttpServer\ServerInfosModel.cs" />
+    <Compile Include="Libraries\Common\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml.cs">
+      <DependentUpon>WindowFormAclGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Windows\Forms\AlbumForm\WindowFormAlbum.xaml.cs">
+      <DependentUpon>WindowFormAlbum.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSection.xaml.cs">
+      <DependentUpon>WindowFormSection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Windows\Forms\UserForm\WindowFormUser.xaml.cs">
+      <DependentUpon>WindowFormUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ClientSide\Controls\DataGrids\DataGridSectionsClient.xaml.cs">
+      <DependentUpon>DataGridSectionsClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewAlbumsServer.xaml.cs">
+      <DependentUpon>ListViewAlbumsServer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewDirectoriesServer.xaml.cs">
+      <DependentUpon>ListViewDirectoriesServer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\Servers\ServerInfosModel.cs" />
+    <Compile Include="Properties\Resources.en-GB.Designer.cs">
+      <DependentUpon>Resources.en-GB.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.fr-FR.Designer.cs">
+      <DependentUpon>Resources.fr-FR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Settings\SettingsOptions.cs" />
+    <Compile Include="Settings\SettingsPreferences.cs" />
+    <Compile Include="UI\Control\Menu\UCMainNavigation.xaml.cs">
+      <DependentUpon>UCMainNavigation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Forms\About\FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\About\FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Page Include="Component\ServerSide\ViewBrowser\PageBrowser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Component\ClientSide\ViewCatalog\PageCatalogClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Component\ServerSide\ViewAlbum\PageAlbum.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Component\ServerSide\ViewCatalog\PageCatalog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Component\ServerSide\ViewServer\PageServer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Component\ServerSide\ViewUsers\PageUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\ClientSide\Controls\ListViews\ListViewAlbumsClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\Common\Controls\Menu\MenuMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\Common\Controls\TreeViews\UCDirectoryTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewFilesServer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\ServerSide\Controls\Menu\MenuServerMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\ServerSide\Controls\Servers\ServerInfos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Libraries\Common\Windows\Settings\WindowSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\ServerSide\Controls\DataGrids\DatagridHttpClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridSectionsServer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\Common\Controls\DataGrids\UCAclGroupDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\Common\Controls\DataGrids\UCAlbumsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\Common\Controls\DataGrids\UCUsersDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Libraries\Common\Controls\ListViews\UCPicturesListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\Common\Controls\ListViews\UCAlbumsListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\Common\Controls\Tooltips\UCToolTipPicture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Libraries\Common\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\Common\Windows\Forms\AlbumForm\WindowFormAlbum.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\Common\Windows\Forms\UserForm\WindowFormUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\ClientSide\Controls\DataGrids\DataGridSectionsClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewAlbumsServer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewDirectoriesServer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainSettings.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Component\Logs\Pages\PageLogs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Converter\Parameters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Style\Button\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Style\Button\RoundedCorner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Style\Text\Text.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Style\TreeView\Explorer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Template\Color\Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Template\Controls\Button\Dark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Template\Controls\Button\RoundedCorner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Template\Controls\ListView\Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Template\Controls\Page\Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Template\Controls\StackPanel\Dark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Template\Controls\TextBox\Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Template\Images\Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Control\Menu\UCMainNavigation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Component\Logs\Pages\PageLogs.xaml.cs">
+      <DependentUpon>PageLogs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.en-GB.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en-GB.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.fr-FR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.fr-FR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\About\FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="autoexec.bat" />
+    <None Include="postbuild.bat" />
+    <None Include="prebuild.bat" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Assets\Images\Default\picture-default.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Default\thumbnail-default.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Uninstall.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Favicon.ico" />
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\aac.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\ai.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\aiff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\asp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\avi.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\bmp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\c.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\cpp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\css.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\dat.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\dmg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\doc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\docx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\dot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\dotx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\dwg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\dxf.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\eps.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\exe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\flv.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\gif.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\h.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\html.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\ics.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\iso.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\java.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\jpg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\key.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\m4v.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\mid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\mov.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\mp3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\mp4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\mpg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\odp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\ods.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\odt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\otp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\ots.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\ott.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\pdf.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\php.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\png.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\pps.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\ppt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\psd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\py.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\qt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\rar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\rb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\rtf.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\sql.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\tga.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\tgz.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\tiff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\txt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\wav.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\xls.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\xlsx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\xml.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\yml.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Roundicons\Files Types\zip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\exit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\info.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Database\Scheme\scheme.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Server\server-mapping.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Public\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Uninstall.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XtrmAddons.Fotootof.Culture\XtrmAddons.Fotootof.Culture.csproj">
+      <Project>{A0C828D6-9AFA-48E6-B279-713869EE07EF}</Project>
+      <Name>XtrmAddons.Fotootof.Culture</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.Api\XtrmAddons.Fotootof.Lib.Api.csproj">
+      <Project>{10851d07-11ea-4773-8b05-1228d9714fe1}</Project>
+      <Name>XtrmAddons.Fotootof.Lib.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.Base\XtrmAddons.Fotootof.Lib.Base.csproj">
+      <Project>{9f2c8951-005f-41a7-9232-9a55d9e82b55}</Project>
+      <Name>XtrmAddons.Fotootof.Lib.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.HttpClient\XtrmAddons.Fotootof.Lib.HttpClient.csproj">
+      <Project>{470d1482-f772-483e-a922-fa2ac4e517df}</Project>
+      <Name>XtrmAddons.Fotootof.Lib.HttpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.HttpServer\XtrmAddons.Fotootof.Lib.HttpServer.csproj">
+      <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
+      <Name>XtrmAddons.Fotootof.Lib.HttpServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.SQLite\XtrmAddons.Fotootof.Lib.SQLite.csproj">
+      <Project>{c2740c1d-4580-4216-9cac-18580c02a383}</Project>
+      <Name>XtrmAddons.Fotootof.Lib.SQLite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XtrmAddons.Fotootof.SQLiteService\XtrmAddons.Fotootof.SQLiteService.csproj">
+      <Project>{60688da2-55cf-4e8d-8619-9e230c03caeb}</Project>
+      <Name>XtrmAddons.Fotootof.SQLiteService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Component\ServerSide\ViewLogs\" />
+    <Folder Include="Themes\Template\Converter\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Shell32">
+      <Guid>{50A7E9B0-70EF-11D1-B75A-00A0C90564FE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>call "$(ProjectDir)autoexec.bat"</PostBuildEvent>
+  </PropertyGroup>
+</Project>
