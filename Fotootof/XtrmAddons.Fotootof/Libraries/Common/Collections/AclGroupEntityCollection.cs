@@ -55,7 +55,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         {
             try
             {
-                Logger.Info("Adding AclGroup(s). Please wait...");
+                AppLogger.Info("Adding AclGroup(s). Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -63,20 +63,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     {
                         MainWindow.Database.AclGroups.Add_Async(entity);
 
-                        Logger.Info(string.Format("AclGroup [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("AclGroup [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Adding AclGroup(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Adding AclGroup(s). Done !");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Adding AclGroup(s) failed !", e);
+                AppLogger.Fatal("Adding AclGroup(s) failed !", e);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 
@@ -89,7 +89,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Removing items.
             try
             {
-                Logger.Info("Deleting AclGroup(s). Please wait...");
+                AppLogger.Info("Deleting AclGroup(s). Please wait...");
 
                 if (oldItems != null && oldItems.Count > 0)
                 {
@@ -100,20 +100,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                             MainWindow.Database.AclGroups.Delete(entity.PrimaryKey);
                         }
 
-                        Logger.Info(string.Format("AclGroup [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("AclGroup [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Adding AclGroup(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Adding AclGroup(s). Done !");
             }
             catch (Exception ex)
             {
-                Logger.Fatal("Deleting AclGroup(s) list failed !", ex);
+                AppLogger.Fatal("Deleting AclGroup(s) list failed !", ex);
             }
             finally
             {
-                Logger.Clear();
+                AppLogger.Clear();
             }
         }
 
@@ -126,7 +126,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Replace | Edit items.
             try
             {
-                Logger.Info("Replacing AclGroup. Please wait...");
+                AppLogger.Info("Replacing AclGroup. Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -140,20 +140,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                             MainWindow.Database.AclGroups.SetDefault(entity.PrimaryKey);
                         }
 
-                        Logger.Info(string.Format("AclGroup [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("AclGroup [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Replacing AclGroup(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Replacing AclGroup(s). Done !");
             }
             catch (Exception ex)
             {
-                Logger.Fatal("Replacing AclGroup(s) failed !", ex);
+                AppLogger.Fatal("Replacing AclGroup(s) failed !", ex);
             }
             finally
             {
-                Logger.Clear();
+                AppLogger.Clear();
             }
         }
 
@@ -166,23 +166,23 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         {
             try
             {
-                Logger.Info("Setting default User Group. Please wait...");
+                AppLogger.Info("Setting default User Group. Please wait...");
 
                 if (newItem != null)
                 {
                     MainWindow.Database.AclGroups.SetDefault(newItem.PrimaryKey);
                 }
 
-                Navigator.Clear();
-                Logger.Info("Setting default User Group. Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Setting default User Group. Done !");
             }
             catch (Exception ex)
             {
-                Logger.Fatal("Setting default User Group failed !", ex);
+                AppLogger.Fatal("Setting default User Group failed !", ex);
             }
             finally
             {
-                Logger.Clear();
+                AppLogger.Clear();
             }
         }
 

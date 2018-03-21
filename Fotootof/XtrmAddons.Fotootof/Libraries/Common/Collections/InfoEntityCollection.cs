@@ -79,7 +79,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         {
             try
             {
-                Logger.Info("Adding Info(s). Please wait...");
+                AppLogger.Info("Adding Info(s). Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -94,16 +94,16 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Adding Info(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Adding Info(s). Done !");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Adding Info(s) failed !", e);
+                AppLogger.Fatal("Adding Info(s) failed !", e);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 
@@ -116,7 +116,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Removing items.
             try
             {
-                Logger.Info("Deleting Section(s). Please wait...");
+                AppLogger.Info("Deleting Section(s). Please wait...");
 
                 if (oldItems != null && oldItems.Count > 0)
                 {
@@ -130,16 +130,16 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Adding Section(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Adding Section(s). Done !");
             }
             catch (Exception ex)
             {
-                Logger.Fatal("Deleting Section(s) list failed !", ex);
+                AppLogger.Fatal("Deleting Section(s) list failed !", ex);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 
@@ -153,7 +153,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Replace | Edit items.
             try
             {
-                Logger.Info("Replacing Info. Please wait...");
+                AppLogger.Info("Replacing Info. Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -167,16 +167,16 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Replacing Info(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Replacing Info(s). Done !");
             }
             catch (Exception ex)
             {
-                Logger.Fatal("Replacing Info(s) failed !", ex);
+                AppLogger.Fatal("Replacing Info(s) failed !", ex);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 

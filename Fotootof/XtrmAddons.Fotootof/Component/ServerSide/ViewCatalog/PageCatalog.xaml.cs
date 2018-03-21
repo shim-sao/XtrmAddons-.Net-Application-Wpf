@@ -118,7 +118,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
                 Albums = new ListViewAlbumsModel<ListViewAlbums>(UCListViewAlbums)
             };
 
-            Overwork.IsBusy = true;
+            AppOverwork.IsBusy = true;
             
             LoadSections();
             LoadAlbums();
@@ -137,7 +137,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             UCListViewAlbums.OnCancel += AlbumsListView_OnCancel;
             UCListViewAlbums.OnDelete += AlbumsListView_OnDelete;
 
-            Overwork.IsBusy = false;
+            AppOverwork.IsBusy = false;
         }
 
         #endregion
@@ -154,13 +154,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             try
             {
 
-                Logger.Info("Loading Sections list. Please wait...");
+                AppLogger.Info("Loading Sections list. Please wait...");
                 model.Sections.Items = new SectionEntityCollection();
-                Logger.Info("Loading Sections list. Done.");
+                AppLogger.Info("Loading Sections list. Done.");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Loading Sections list failed : " + e.Message, e);
+                AppLogger.Fatal("Loading Sections list failed : " + e.Message, e);
             }
         }
 
@@ -171,10 +171,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_OnCancel(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Adding or editing Section operation canceled. Please wait...");
+            AppLogger.Info("Adding or editing Section operation canceled. Please wait...");
             LoadSections();
-            Logger.Info("Adding or editing Section operation canceled. Done.");
-            Logger.Close();
+            AppLogger.Info("Adding or editing Section operation canceled. Done.");
+            AppLogger.Close();
         }
 
         /// <summary>
@@ -184,11 +184,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e">Event arguments.</param>
         private void SectionsDataGrid_OnAdd(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Saving new Section informations. Please wait...");
+            AppLogger.Info("Saving new Section informations. Please wait...");
             SectionEntity item = (SectionEntity)e.NewEntity;
             model.Sections.Items.Add(item);
             SectionEntityCollection.DbInsert(new List<SectionEntity> { item });
-            Logger.Info("Saving new AclGroup informations. Done.");
+            AppLogger.Info("Saving new AclGroup informations. Done.");
         }
 
         /// <summary>
@@ -198,13 +198,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e">Event arguments.</param>
         private void SectionsDataGrid_OnChange(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Saving Section informations. Please wait...");
+            AppLogger.Info("Saving Section informations. Please wait...");
             SectionEntity newEntity = (SectionEntity)e.NewEntity;
             SectionEntity old = model.Sections.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
             int index = model.Sections.Items.IndexOf(old);
             model.Sections.Items[index] = newEntity;
             SectionEntityCollection.DbUpdateAsync(new List<SectionEntity> { newEntity }, new List<SectionEntity> { old });
-            Logger.Info("Saving AclGroup informations. Done.");
+            AppLogger.Info("Saving AclGroup informations. Done.");
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e">Event arguments.</param>
         private void SectionsDataGrid_OnDelete(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Deleting Section(s). Please wait...");
+            AppLogger.Info("Deleting Section(s). Please wait...");
             SectionEntity item = (SectionEntity)e.NewEntity;
 
             // Remove item from list.
@@ -222,7 +222,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
 
             // Delete item from database.
             SectionEntityCollection.DbDelete(new List<SectionEntity> { item });
-            Logger.Info("Deleting Section(s). Done.");
+            AppLogger.Info("Deleting Section(s). Done.");
         }
 
         /// <summary>
@@ -232,14 +232,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e">Event arguments.</param>
         private void SectionsDataGrid_OnDefaultChange(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Setting default Section. Please wait...");
+            AppLogger.Info("Setting default Section. Please wait...");
 
             SectionEntity newEntity = (SectionEntity)e.NewEntity;
 
             SectionEntityCollection.SetDefault(newEntity);
             LoadSections();
 
-            Logger.Info("Setting default Section. Done.");
+            AppLogger.Info("Setting default Section. Done.");
         }
 
         #endregion
@@ -255,13 +255,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         {
             try
             {
-                Logger.Info("Loading Albums list. Please wait...");
+                AppLogger.Info("Loading Albums list. Please wait...");
                 model.Albums.Items = new AlbumEntityCollection(AlbumOptionsListFilters, true);
-                Logger.Info("Loading Albums list. Done.");
+                AppLogger.Info("Loading Albums list. Done.");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Loading Albums list failed : " + e.Message, e);
+                AppLogger.Fatal("Loading Albums list failed : " + e.Message, e);
             }
         }
 
@@ -282,9 +282,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e">Entity changes event arguments.</param>
         private void AlbumsListView_OnCancel(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Adding or editing Album operation canceled. Please wait...");
+            AppLogger.Info("Adding or editing Album operation canceled. Please wait...");
             LoadAlbums();
-            Logger.Info("Adding or editing Album operation canceled. Done.");
+            AppLogger.Info("Adding or editing Album operation canceled. Done.");
         }
 
         /// <summary>
@@ -294,11 +294,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e">Event arguments.</param>
         private void AlbumsListView_OnAdd(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Saving new Album informations. Please wait...");
+            AppLogger.Info("Saving new Album informations. Please wait...");
             AlbumEntity item = (AlbumEntity)e.NewEntity;
             model.Albums.Items.Add(item);
             AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
-            Logger.Info("Saving new Album informations. Done.");
+            AppLogger.Info("Saving new Album informations. Done.");
         }
 
         /// <summary>
@@ -308,13 +308,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e">Event arguments.</param>
         private void AlbumsListView_OnChange(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Saving Album informations. Please wait...");
+            AppLogger.Info("Saving Album informations. Please wait...");
             AlbumEntity newEntity = (AlbumEntity)e.NewEntity;
             AlbumEntity old = model.Albums.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
             int index = model.Albums.Items.IndexOf(old);
             model.Albums.Items[index] = newEntity;
             AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
-            Logger.Info("Saving Album informations. Done.");
+            AppLogger.Info("Saving Album informations. Done.");
         }
 
         /// <summary>
@@ -324,7 +324,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e">Event arguments.</param>
         private void AlbumsListView_OnDelete(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Deleting Album(s). Please wait...");
+            AppLogger.Info("Deleting Album(s). Please wait...");
             AlbumEntity item = (AlbumEntity)e.NewEntity;
 
             // Remove item from list.
@@ -333,7 +333,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             // Delete item from database.
             AlbumEntityCollection.DbDelete(new List<AlbumEntity> { item });
 
-            Logger.Info("Deleting Album(s). Done.");
+            AppLogger.Info("Deleting Album(s). Done.");
         }
 
         #endregion

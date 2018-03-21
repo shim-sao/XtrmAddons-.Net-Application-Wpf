@@ -68,7 +68,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids
             Client client = ((FrameworkElement)sender).Tag as Client;
             ClientHttp clientHttp = new ClientHttp(client);
 
-            Navigator.NavigateToPageCatalogClient(clientHttp);
+            AppNavigator.NavigateToPageCatalogClient(clientHttp);
         }
     }
 }

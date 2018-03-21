@@ -90,7 +90,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         public override void InitializeContentAsync()
         {
-            Overwork.IsBusy = true;
+            AppOverwork.IsBusy = true;
             //await Task.Delay(1000);
 
             // Paste page to User list.
@@ -113,7 +113,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             UsersListView.OnCancel += UsersListView_UserCanceled;
             UsersListView.OnDelete += UsersListView_UserDeleled;
 
-            Overwork.IsBusy = false;
+            AppOverwork.IsBusy = false;
         }
 
         #endregion
@@ -139,13 +139,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             try
             {
 
-                Logger.Info("Loading Acl Groups list. Please wait...");
+                AppLogger.Info("Loading Acl Groups list. Please wait...");
                 model.AclGroups = new AclGroupEntityCollection(true);
-                Logger.Info("Loading Acl Groups list. Done.");
+                AppLogger.Info("Loading Acl Groups list. Done.");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Loading Acl Groups list failed : " + e.Message, e);
+                AppLogger.Fatal("Loading Acl Groups list failed : " + e.Message, e);
             }
         }
 
@@ -156,11 +156,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e">Entity changes event arguments.</param>
         private void AclGroupsDataGrid_AclGroupCanceled(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Adding or editing AclGroup operation canceled. Please wait...");
+            AppLogger.Info("Adding or editing AclGroup operation canceled. Please wait...");
 
             LoadAclGroups();
 
-            Logger.Info("Adding or editing AclGroup operation canceled. Done.");
+            AppLogger.Info("Adding or editing AclGroup operation canceled. Done.");
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e">Event arguments.</param>
         private void AclGroupsDataGrid_AclGroupAdded(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Saving new AclGroup informations. Please wait...");
+            AppLogger.Info("Saving new AclGroup informations. Please wait...");
 
             AclGroupEntity item = (AclGroupEntity)e.NewEntity;
             model.AclGroups.Add(item);
@@ -178,7 +178,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            Logger.Info("Saving new AclGroup informations. Done.");
+            AppLogger.Info("Saving new AclGroup informations. Done.");
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e">Event arguments.</param>
         private void AclGroupsDataGrid_AclGroupChanged(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Saving AclGroup informations. Please wait...");
+            AppLogger.Info("Saving AclGroup informations. Please wait...");
 
             AclGroupEntity newEntity = (AclGroupEntity)e.NewEntity;
             AclGroupEntity old = model.AclGroups.Single(x => x.AclGroupId == newEntity.AclGroupId);
@@ -198,7 +198,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            Logger.Info("Saving AclGroup informations. Done.");
+            AppLogger.Info("Saving AclGroup informations. Done.");
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e"></param>
         private void AclGroupsDataGrid_AclGroupDeleted(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Deleting AclGroup(s). Please wait...");
+            AppLogger.Info("Deleting AclGroup(s). Please wait...");
 
             AclGroupEntity item = (AclGroupEntity)e.NewEntity;
 
@@ -220,7 +220,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            Logger.Info("Deleting AclGroup(s). Done.");
+            AppLogger.Info("Deleting AclGroup(s). Done.");
         }
 
         /// <summary>
@@ -230,13 +230,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e">Event arguments.</param>
         private void AclGroupsDataGrid_DefaultChanged(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Setting default Section. Please wait...");
+            AppLogger.Info("Setting default Section. Please wait...");
 
             AclGroupEntity newEntity = (AclGroupEntity)e.NewEntity;
             AclGroupEntityCollection.SetDefault(newEntity);
             LoadAclGroups();
 
-            Logger.Info("Setting default Section. Done.");
+            AppLogger.Info("Setting default Section. Done.");
         }
 
         #endregion
@@ -252,16 +252,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         {
             try
             {
-                Logger.Info("Loading Users list. Please wait...");
+                AppLogger.Info("Loading Users list. Please wait...");
                 UserEntityCollection Users = new UserEntityCollection(UserOptionsList, false);
                 Users.Load();
 
                 model.Users = Users;
-                Logger.Info("Loading Users list. Done.");
+                AppLogger.Info("Loading Users list. Done.");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Loading Users list failed : " + e.Message, e, true);
+                AppLogger.Fatal("Loading Users list failed : " + e.Message, e, true);
             }
         }
 
@@ -272,11 +272,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e"></param>
         private void UsersListView_UserCanceled(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Adding or editing User operation canceled. Please wait...");
+            AppLogger.Info("Adding or editing User operation canceled. Please wait...");
 
             LoadUsers();
 
-            Logger.Info("Adding or editing AclGroup operation canceled. Done.");
+            AppLogger.Info("Adding or editing AclGroup operation canceled. Done.");
         }
 
         /// <summary>
@@ -286,7 +286,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e">Event arguments.</param>
         private void UsersListView_UserAdded(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Adding or editing User informations. Please wait...");
+            AppLogger.Info("Adding or editing User informations. Please wait...");
 
             UserEntity entity = (UserEntity)e.NewEntity;
 
@@ -295,7 +295,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            Logger.Info("Adding or editing User informations. Done");
+            AppLogger.Info("Adding or editing User informations. Done");
         }
 
         /// <summary>
@@ -314,7 +314,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            Logger.Warning("UsersListView_UserChanged", false);
+            AppLogger.Warning("UsersListView_UserChanged", false);
         }
 
         /// <summary>
@@ -324,7 +324,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e"></param>
         private void UsersListView_UserDeleled(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Deleting User(s). Please wait...");
+            AppLogger.Info("Deleting User(s). Please wait...");
 
             UserEntity item = (UserEntity)e.NewEntity;
 
@@ -336,7 +336,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            Logger.Info("Deleting User(s). Done.");
+            AppLogger.Info("Deleting User(s). Done.");
         }
 
         #endregion

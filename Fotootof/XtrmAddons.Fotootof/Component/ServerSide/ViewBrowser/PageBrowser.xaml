@@ -48,7 +48,7 @@
             
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" MinWidth="240"/>
+                    <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColStorages"/>
                     <ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
@@ -61,7 +61,9 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         x:Name="TreeViewDirectories"
-                        IsHeaderVisible="Visible"/>
+                        IsHeaderVisible="Visible"
+                    Width="{Binding MaxWidth, ElementName=ColStorages, IsAsync=True}"
+                    Background="Coral"/>
 
                 <GridSplitter
                     Grid.Row="0"
@@ -75,10 +77,11 @@
                     x:Name="GridFiles"
                     Margin="5,2">
 
+                    <!--
+
                     <uclistviews:ListViewStoragesServer
                         x:Name="UcListViewStoragesServer"/>
-
-                    <!--
+                    
                     <uclistviews:ListViewFilesServer
                         x:Name="UCBrowserPicture" />
                     -->

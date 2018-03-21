@@ -146,7 +146,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
             }
             else
             {
-                Logger.Warning(string.Format("{0} not found !", typeof(AlbumEntity).Name), true, true);
+                AppLogger.Warning(string.Format("{0} not found !", typeof(AlbumEntity).Name), true, true);
             }
         }
 
@@ -176,7 +176,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
             }
             else
             {
-                Logger.Warning(string.Format("{0} not found !", typeof(AlbumEntity).Name), true, true);
+                AppLogger.Warning(string.Format("{0} not found !", typeof(AlbumEntity).Name), true, true);
             }
         }
 
@@ -187,7 +187,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
         /// <param name="e"></param>
         private void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Navigator.NavigateToPageAlbum(SelectedItem.PrimaryKey);
+            AppNavigator.NavigateToPageAlbum(SelectedItem.PrimaryKey);
         }
 
         /// <summary>

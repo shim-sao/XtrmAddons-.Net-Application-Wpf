@@ -16,7 +16,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
     /// <para>Class XtrmAddons Fotootof Server UI Navigation.</para>
     /// <para>Provide some page navigation management.</para>
     /// </summary>
-    public static class Navigator
+    public static class AppNavigator
     {
         #region Properties
 

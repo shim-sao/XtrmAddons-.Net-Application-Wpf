@@ -90,7 +90,7 @@ namespace XtrmAddons.Fotootof
         /// </summary>
         private async void InitializeContentAsync()
         {
-            Overwork.IsBusy = true;
+            AppOverwork.IsBusy = true;
             await Task.Delay(10);
 
             // Initialize application settings.
@@ -106,7 +106,7 @@ namespace XtrmAddons.Fotootof
             // Adjust frame logs content on resize. 
             SizeChanged += pageLogs.Window_SizeChanged;
 
-            Overwork.IsBusy = false;
+            AppOverwork.IsBusy = false;
         }
 
         /// <summary>

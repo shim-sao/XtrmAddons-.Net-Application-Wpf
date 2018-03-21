@@ -1,4 +1,5 @@
 ﻿
+
 using System.Diagnostics;
 using XtrmAddons.Fotootof.Settings;
 using XtrmAddons.Net.Application;
@@ -11,13 +12,25 @@ namespace XtrmAddons.Fotootof
         /// <para>Property to define if the application must be reset on start.</para>
         /// <para>Used as tool for quick development.</para>
         /// </summary>
-        private bool Reset = true;
+        private bool Reset = false;
+
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion Variables
 
         /// <summary>
         /// Class XtrmAddons.Fotootof Application Constructor.
         /// </summary>
         public App()
         {
+            log4net.Config.XmlConfigurator.Configure();
+
             // Reset application : delete user my documents application folder.
             App_Reset();
 

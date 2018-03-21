@@ -75,7 +75,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         {
             try
             {
-                Logger.Info("Adding Picture(s). Please wait...");
+                AppLogger.Info("Adding Picture(s). Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -83,7 +83,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     {
                         MainWindow.Database.Pictures.Add(entity);
 
-                        Logger.Info(string.Format("Picture [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("Picture [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
 
                         /*foreach (Album a in albums)
                         {
@@ -104,17 +104,17 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Adding Picture(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Adding Picture(s). Done !");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Adding Picture(s) failed !", e);
+                AppLogger.Fatal("Adding Picture(s) failed !", e);
                 //throw new Exception("out", e);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 
@@ -127,7 +127,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Removing items.
             try
             {
-                Logger.Info("Deleting Album(s). Please wait...");
+                AppLogger.Info("Deleting Album(s). Please wait...");
 
                 if (oldItems != null && oldItems.Count > 0)
                 {
@@ -135,20 +135,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     {
                         MainWindow.Database.Albums.Delete(entity);
 
-                        Logger.Info(string.Format("Album [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("Album [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Adding Album(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Adding Album(s). Done !");
             }
             catch (Exception ex)
             {
-                Logger.Fatal("Deleting Album(s) list failed !", ex);
+                AppLogger.Fatal("Deleting Album(s) list failed !", ex);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 
@@ -161,7 +161,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Replace | Edit items.
             try
             {
-                Logger.Info("Replacing Album. Please wait...");
+                AppLogger.Info("Replacing Album. Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -170,20 +170,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                         await MainWindow.Database.Albums.UpdateAsync(entity);
                         //await MainWindow.Database.Album_CleanDependencies_Async("AlbumsInACLGroups", "AclGroupId", entity.PrimaryKey, entity.AclGroupsPK);
 
-                        Logger.Info(string.Format("Album [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("Album [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Replacing Album(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Replacing Album(s). Done !");
             }
             catch (Exception ex)
             {
-                Logger.Fatal("Replacing Album(s) failed !", ex);
+                AppLogger.Fatal("Replacing Album(s) failed !", ex);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 

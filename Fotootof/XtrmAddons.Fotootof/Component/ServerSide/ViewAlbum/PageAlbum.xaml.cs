@@ -75,8 +75,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
             model = new PageAlbumModel<PageAlbum>(this);
 
             // Set busy indicator
-            Overwork.IsBusy = true;
-            Overwork.BusyContent = "Initializing page content. Please wait...";
+            AppOverwork.IsBusy = true;
+            AppOverwork.BusyContent = "Initializing page content. Please wait...";
 
             AlbumEntity album = new AlbumEntity();
 
@@ -106,8 +106,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
             PicturesListView.TextBlockAlbumName.Text = model.Album.Name;
 
             // End of busy indicator.
-            Overwork.BusyContent = "Initializing page content. Done.";
-            Overwork.IsBusy = false;
+            AppOverwork.BusyContent = "Initializing page content. Done.";
+            AppOverwork.IsBusy = false;
         }
 
         #endregion

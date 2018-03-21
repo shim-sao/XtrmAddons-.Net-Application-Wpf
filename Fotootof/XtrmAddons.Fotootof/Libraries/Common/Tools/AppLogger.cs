@@ -11,7 +11,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
     /// Class XtrmAddons Fotootof Server UI Logs.
     /// Provide display page logs management.
     /// </summary>
-    public static class Logger
+    public static class AppLogger
     {
         #region Variables
 
@@ -51,7 +51,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
                 output += "\n> " + str;
             }
 
-            Navigator.LogsStack.Text = output;
+            AppNavigator.LogsStack.Text = output;
         }
 
         /// <summary>
@@ -61,17 +61,17 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// <param name="log4net">Add message to logs handler.</param>
         public static void Info(string s, bool log4net = false, int delay = 1000)
         {
+            if (log4net)
+            {
+                log.Info(s);
+            }
+
             Application.Current.Dispatcher.Invoke(new Action(async () =>
             {
-                Overwork.IsBusy = true;
-                Overwork.BusyContent = s;
+                AppOverwork.IsBusy = true;
+                AppOverwork.BusyContent = s;
                 await Task.Delay(delay);
                 LogsDisplay("INFO : " + s);
-
-                if (log4net)
-                {
-                    log.Info(s);
-                }
             }));
         }
 
@@ -171,7 +171,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// <summary>
         /// Method proxy to close busy indicator.
         /// </summary>
-        public static void Close() => Overwork.IsBusy = false;
+        public static void Close() => AppOverwork.IsBusy = false;
 
         /// <summary>
         /// Method proxy to close busy indicator.

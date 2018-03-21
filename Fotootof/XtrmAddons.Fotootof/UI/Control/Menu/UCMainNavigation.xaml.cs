@@ -8,7 +8,6 @@ namespace XtrmAddons.Fotootof.UI.Control.Menu
     /// <summary>
     /// Class XtrmAddons PhotoAlbum Client UI Control Main Menu Navigation.
     /// </summary>
-    [System.Obsolete("use Navigator class")]
     public partial class UCMainNavigation : UserControl
     {
         /// <summary>
@@ -31,7 +30,7 @@ namespace XtrmAddons.Fotootof.UI.Control.Menu
         /// <param name="e"></param>
         private void NavigateToPageBrowser(object sender, RoutedEventArgs e)
         {
-            Navigator.NavigateToPageBrowser();
+            AppNavigator.NavigateToPageBrowser();
         }
 
         /// <summary>
@@ -41,7 +40,7 @@ namespace XtrmAddons.Fotootof.UI.Control.Menu
         /// <param name="e"></param>
         private void NavigateToPageServer(object sender, RoutedEventArgs e)
         {
-            Navigator.NavigateToPageServer();
+            AppNavigator.NavigateToPageServer();
         }
 
         /// <summary>
@@ -51,7 +50,7 @@ namespace XtrmAddons.Fotootof.UI.Control.Menu
         /// <param name="e"></param>
         private void NavigateToPageCatalog(object sender, RoutedEventArgs e)
         {
-            Navigator.NavigateToPageCatalog();
+            AppNavigator.NavigateToPageCatalog();
         }
 
         /// <summary>
@@ -61,7 +60,7 @@ namespace XtrmAddons.Fotootof.UI.Control.Menu
         /// <param name="e"></param>
         private void NavigateToPageUsers(object sender, RoutedEventArgs e)
         {
-            Navigator.NavigateToPageUsers();
+            AppNavigator.NavigateToPageUsers();
         }
     }
 }

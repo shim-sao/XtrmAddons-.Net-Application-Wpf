@@ -112,13 +112,13 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         {
             try
             {
-                Logger.Info("Loading Albums list. Please wait...");
+                AppLogger.Info("Loading Albums list. Please wait...");
                 model.Albums = new AlbumEntityCollection(true);
-                Logger.Info("Loading Albums list. Done.");
+                AppLogger.Info("Loading Albums list. Done.");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Loading Albums list failed : " + e.Message, e);
+                AppLogger.Fatal("Loading Albums list failed : " + e.Message, e);
             }
         }
 
@@ -129,8 +129,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         /// <param name="e">Entity changes event arguments.</param>
         private void UCAlbumsContainer_OnCancel(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Adding or editing Album operation canceled. Please wait...");
-            Logger.Info("Adding or editing Album operation canceled. Done.");
+            AppLogger.Info("Adding or editing Album operation canceled. Please wait...");
+            AppLogger.Info("Adding or editing Album operation canceled. Done.");
         }
 
         /// <summary>
@@ -140,13 +140,13 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         /// <param name="e">Event arguments.</param>
         private void UCAlbumsContainer_OnAdd(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Saving new Album informations. Please wait...");
+            AppLogger.Info("Saving new Album informations. Please wait...");
 
             AlbumEntity item = (AlbumEntity)e.NewEntity;
             model.Albums.Add(item);
             AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
 
-            Logger.Info("Saving new Album informations. Done.");
+            AppLogger.Info("Saving new Album informations. Done.");
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         /// <param name="e">Event arguments.</param>
         private void UCAlbumsContainer_OnChange(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Saving Album informations. Please wait...");
+            AppLogger.Info("Saving Album informations. Please wait...");
 
             AlbumEntity newEntity = (AlbumEntity)e.NewEntity;
             AlbumEntity old = model.Albums.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
@@ -164,7 +164,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
             model.Albums[index] = newEntity;
             AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
 
-            Logger.Info("Saving Album informations. Done.");
+            AppLogger.Info("Saving Album informations. Done.");
 
         }
 
@@ -175,7 +175,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         /// <param name="e">Event arguments.</param>
         private void UCAlbumsContainer_OnDelete(object sender, EntityChangesEventArgs e)
         {
-            Logger.Info("Deleting Album(s). Please wait...");
+            AppLogger.Info("Deleting Album(s). Please wait...");
 
             AlbumEntity item = (AlbumEntity)e.NewEntity;
 
@@ -185,7 +185,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
             // Delete item from database.
             AlbumEntityCollection.DbDelete(new List<AlbumEntity> { item });
 
-            Logger.Info("Deleting Album(s). Done.");
+            AppLogger.Info("Deleting Album(s). Done.");
         }
 
         #endregion

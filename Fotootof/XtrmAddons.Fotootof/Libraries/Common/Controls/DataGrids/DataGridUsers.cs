@@ -80,7 +80,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                Logger.Warning(string.Format("{0} not found !", nameof(UserEntity)), true, true);
+                AppLogger.Warning(string.Format("{0} not found !", nameof(UserEntity)), true, true);
             }
         }
 
@@ -114,7 +114,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                Logger.Warning(string.Format("{0} not found !", nameof(UserEntity)), true, true);
+                AppLogger.Warning(string.Format("{0} not found !", nameof(UserEntity)), true, true);
             }
         }
 

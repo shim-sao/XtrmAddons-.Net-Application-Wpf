@@ -131,7 +131,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                Logger.Warning("User not found !", true);
+                AppLogger.Warning("User not found !", true);
 
             }
         }
@@ -162,7 +162,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                Logger.Warning("User not found !", true);
+                AppLogger.Warning("User not found !", true);
             }
         }
 

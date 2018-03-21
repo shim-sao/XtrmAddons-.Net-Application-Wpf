@@ -46,7 +46,7 @@ namespace XtrmAddons.Fotootof
         public static async void InitializeServerAsync()
         {
             // Get default server in preferences.
-            Logger.Info("Initializing HTTP server connection. Please wait...");
+            AppLogger.Info("Initializing HTTP server connection. Please wait...");
             Server server = null;
 
             // Try to start server.
@@ -67,19 +67,19 @@ namespace XtrmAddons.Fotootof
                 // Start the http server.
                 // HttpWebServerApplication.Start(server.Host, server.Port);
 
-                Logger.Info("Initializing server connection. Done !", true);
-                Logger.Info("Server started : [" + server.Host + ":" + server.Port + "]", true);
+                AppLogger.Info("Initializing server connection. Done !", true);
+                AppLogger.Info("Server started : [" + server.Host + ":" + server.Port + "]", true);
             }
 
             // Catch server start exception.
             catch (Exception e)
             {
-                Logger.Fatal("Server initialization failed : [" + server?.Host + ":" + server?.Port + "]", e, true);
+                AppLogger.Fatal("Server initialization failed : [" + server?.Host + ":" + server?.Port + "]", e, true);
                 MessageBox.Show("Starting server : [" + server?.Host + ":" + server?.Port + "] failed !", Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            Logger.Info("Initializing HTTP server connection. Done.");
-            Logger.Close();
+            AppLogger.Info("Initializing HTTP server connection. Done.");
+            AppLogger.Close();
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace XtrmAddons.Fotootof
         public static void InitializeDatabase()
         {
             // Get the default database in preferences if exists.
-            Logger.Info("Initializing database connection. Please wait...");
+            AppLogger.Info("Initializing database connection. Please wait...");
             Database database = ApplicationBase.Options.Data.Databases.FindDefault();
 
             // Create default database parameters if not exists.
@@ -117,7 +117,7 @@ namespace XtrmAddons.Fotootof
                     using (SQLiteConnection db = SQLiteManager.Instance(database.Source).Db)
                     {
                         log.Debug("Database connection ready.");
-                        Logger.Info("Database connection ready.");
+                        AppLogger.Info("Database connection ready.");
                     }
                 }
 
@@ -134,7 +134,7 @@ namespace XtrmAddons.Fotootof
                     )
                     {
                         log.Debug("New database connection ready.");
-                        Logger.Info("New database connection ready.");
+                        AppLogger.Info("New database connection ready.");
                     }
                 }
 
@@ -148,12 +148,12 @@ namespace XtrmAddons.Fotootof
             // Catch connection to the database exceptions.
             catch (Exception e)
             {
-                Logger.Fatal("Connecting to the database failed !", e, true);
+                AppLogger.Fatal("Connecting to the database failed !", e, true);
                 MessageBox.Show("Connecting to the database failed !", Translation.DWords.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             // End of database initilization.
-            Logger.Info("Initializing database connection. Done !");
+            AppLogger.Info("Initializing database connection. Done !");
         }
 
         #endregion Methods

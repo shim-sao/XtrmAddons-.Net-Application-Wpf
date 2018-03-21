@@ -55,14 +55,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
                 if (server != null)
                 {
                     HttpWebServerApplication.Start(server.Host, server.Port);
-                    Logger.InfoAndClose(Logger.Translate("ServerStarted"), true);
+                    AppLogger.InfoAndClose(AppLogger.Translate("ServerStarted"), true);
                 }
 
                 RaiseServerStart();
             }
             else
             {
-                Logger.Info("Server already started.");
+                AppLogger.Info("Server already started.");
             }
         }
 
@@ -72,7 +72,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
         public static void Stop()
         {
             HttpWebServerApplication.Stop();
-            Logger.InfoAndClose(Logger.Translate("ServerStarted"), true);
+            AppLogger.InfoAndClose(AppLogger.Translate("ServerStarted"), true);
 
             RaiseServerStop();
         }
@@ -84,7 +84,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
         /// <param name="e">The routed event arguments.</param>
         public static void AddNetworkAcl()
         {
-            Logger.Info("Enabling external server access. Please wait.");
+            AppLogger.Info("Enabling external server access. Please wait.");
 
             Task.Run(() =>
             {
@@ -97,7 +97,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
                 }
             });
 
-            Logger.InfoAndClose("Enabling external server access. Done.");
+            AppLogger.InfoAndClose("Enabling external server access. Done.");
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
         /// <param name="e">The routed event arguments.</param>
         public static void RemoveNetworkAcl()
         {
-            Logger.Info("Disabling external server access. Please wait.");
+            AppLogger.Info("Disabling external server access. Please wait.");
             
             Task.Run(() =>
             {
@@ -120,7 +120,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
                 }
             });
 
-            Logger.Info("Disabling external server access. Done.");
+            AppLogger.Info("Disabling external server access. Done.");
         }
 
 

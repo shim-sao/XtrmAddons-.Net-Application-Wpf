@@ -82,7 +82,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         {
             try
             {
-                Logger.Info("Adding User(s). Please wait...");
+                AppLogger.Info("Adding User(s). Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -91,20 +91,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                         entity.Initialize();
                         MainWindow.Database.Users.Add(entity);
 
-                        Logger.Info(string.Format("User [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("User [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Adding User(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Adding User(s). Done !");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Adding User(s) failed !", e, true);
+                AppLogger.Fatal("Adding User(s) failed !", e, true);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 
@@ -116,7 +116,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         {
             try
             {
-                Logger.Info("Deleting User(s). Please wait...");
+                AppLogger.Info("Deleting User(s). Please wait...");
 
                 if (oldItems != null && oldItems.Count > 0)
                 {
@@ -124,20 +124,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     {
                         MainWindow.Database.Users.Delete(entity);
 
-                        Logger.Info(string.Format("User [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("User [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Adding User(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Adding User(s). Done !");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Deleting User(s) list failed !", e, true);
+                AppLogger.Fatal("Deleting User(s) list failed !", e, true);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 
@@ -150,7 +150,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Replace | Edit items.
             try
             {
-                Logger.Info("Replacing User. Please wait...");
+                AppLogger.Info("Replacing User. Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -158,20 +158,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     {
                         await MainWindow.Database.Users.UpdateAsync(entity);
 
-                        Logger.Info(string.Format("User [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("User [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Replacing User(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Replacing User(s). Done !");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Replacing User(s) failed !", e, true);
+                AppLogger.Fatal("Replacing User(s) failed !", e, true);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 

@@ -112,7 +112,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// <param name="e">The routed event arguments.</param>
         private void OnFileExit_Click(object sender, RoutedEventArgs e)
         {
-            Navigator.MainWindow.Close();
+            AppNavigator.MainWindow.Close();
         }
 
         /// <summary>
@@ -142,10 +142,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// <param name="e">The routed event arguments.</param>
         private void OnServerRestart_Click(object sender, RoutedEventArgs e)
         {
-            Overwork.IsBusy = true;
+            AppOverwork.IsBusy = true;
             OnServerStop_Click(sender, e);
             OnServerStart_Click(sender, e);
-            Overwork.IsBusy = false;
+            AppOverwork.IsBusy = false;
         }
 
         /// <summary>
@@ -172,13 +172,13 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         private void OnDisplayLogsWindowClick(object sender, RoutedEventArgs e)
         {
             // Set the row grid splitter Height.
-            Navigator.MainWindow.RowGridSplitter.Height =
-                Navigator.MainWindow.RowGridSplitter.Height == new GridLength(0)
+            AppNavigator.MainWindow.RowGridSplitter.Height =
+                AppNavigator.MainWindow.RowGridSplitter.Height == new GridLength(0)
                 ? new GridLength(5) : new GridLength(0);
 
             // Set the grid row logs height.
-            Navigator.MainWindow.RowGridLogs.Height =
-                Navigator.MainWindow.RowGridLogs.Height == new GridLength(0)
+            AppNavigator.MainWindow.RowGridLogs.Height =
+                AppNavigator.MainWindow.RowGridLogs.Height == new GridLength(0)
                 ? new GridLength(160) : new GridLength(0);
 
             /*            
@@ -189,7 +189,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
 
             UINavigation.AppWindow.FrameMain.Height = UINavigation.AppWindow.RowGridMain.Height.Value;
             */
-            Navigator.MainWindow.UpdateLayout();
+            AppNavigator.MainWindow.UpdateLayout();
             Console.WriteLine("AppWindow.ActualHeight = " + AppWindow.ActualHeight);
 
             if (MenuItemDisplayLogsWindow.IsChecked == true)
@@ -201,7 +201,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
                 MenuItemDisplayLogsWindow.IsChecked = true;
             }
 
-            Navigator.MainWindow.UpdateLayout();
+            AppNavigator.MainWindow.UpdateLayout();
         }
 
         /// <summary>
@@ -245,7 +245,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// <param name="e">Routed event arguments</param>
         private void OnUsersListClick(object sender, RoutedEventArgs e)
         {
-            Navigator.LoadPage("PageUsers", new PageUsers());
+            AppNavigator.LoadPage("PageUsers", new PageUsers());
         }
 
         /// <summary>
@@ -268,13 +268,13 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             
             if (result == true)
             {
-                Overwork.IsBusy = true;
+                AppOverwork.IsBusy = true;
 
                 ApplicationBase.Options.Remote.Clients.ReplaceKeyUnique(dlg.NewForm);
                 ApplicationBase.Save();
                 RaiseClientAdded(this, e.RoutedEvent);
 
-                Overwork.IsBusy = false;
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -291,7 +291,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             // Process open file dialog box results 
             if (result == true)
             {
-                Logger.Info("Adding or editing User informations. Please wait...");
+                AppLogger.Info("Adding or editing User informations. Please wait...");
 
                 UserEntityCollection.DbInsert(new List<UserEntity> { dlg.NewEntity });
 
@@ -300,8 +300,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
                     ((PageUsers)MainFrame.Content).Model.Users.Add(dlg.NewEntity);
                 }
 
-                Logger.Info("Adding or editing User informations. Done");
-                Logger.Close();
+                AppLogger.Info("Adding or editing User informations. Done");
+                AppLogger.Close();
             }
         }
 
@@ -319,12 +319,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             // Process open file dialog box results 
             if (result == true)
             {
-                Logger.Info("Adding or editing Section informations. Please wait...");
+                AppLogger.Info("Adding or editing Section informations. Please wait...");
                 
                 SectionEntityCollection.DbInsert(new List<SectionEntity> { dlg.NewForm });
 
-                Logger.Info("Adding or editing Section informations. Done");
-                Logger.Close();
+                AppLogger.Info("Adding or editing Section informations. Done");
+                AppLogger.Close();
             }
         }
 

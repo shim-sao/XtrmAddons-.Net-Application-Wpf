@@ -68,20 +68,20 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         public override void InitializeContentAsync()
         {
             // Set busy indicator
-            Logger.Info("Initializing page content. Please wait...", true);
+            AppLogger.Info("Initializing page content. Please wait...", true);
 
             // Initialize associated view model of the page.
             Model = new PageBrowserModel<PageBrowser>(this);
 
             // Add action to the tree view item event handler.
-            TreeViewDirectories.UITreeViewDirectory.SelectedItemChanged += TreeViewDirectories_SelectedItemChanged;
+            TreeViewDirectories.DirectoriesTreeView.SelectedItemChanged += TreeViewDirectories_SelectedItemChanged;
 
             // Reinitialize datacontext.
             Model.FilesCollection = new ObservableCollection<ListViewFilesItemModel>();
             DataContext = Model;
 
             // End of busy indicator.
-            Logger.InfoAndClose("Initializing page content. Done.", true);
+            AppLogger.InfoAndClose("Initializing page content. Done.", true);
         }
 
         /// <summary>

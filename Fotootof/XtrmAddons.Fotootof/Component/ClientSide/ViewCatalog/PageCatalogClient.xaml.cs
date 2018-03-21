@@ -79,7 +79,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
         /// <param name="e"></param>
         private void Svr_OnListSectionsFailed(object sender, EventArgs e)
         {
-            Logger.Warning("Loading Sections from server failed !", true);
+            AppLogger.Warning("Loading Sections from server failed !", true);
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
         {
             try
             {
-                Logger.Info("Loading Sections list. Please wait...");
+                AppLogger.Info("Loading Sections list. Please wait...");
 
                 List<SectionEntity> l = new List<SectionEntity>();
                 foreach (SectionJson s in serverResponse.Response.Response)
@@ -135,11 +135,11 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
                     Model.Sections = new DataGridSectionsModel<DataGridSections>(UCDataGridSections);
                 }
                 Model.Sections.Items = new SectionEntityCollection(l);
-                Logger.Info("Loading Sections list. Done.");
+                AppLogger.Info("Loading Sections list. Done.");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Loading Sections list failed : " + e.Message, e);
+                AppLogger.Fatal("Loading Sections list failed : " + e.Message, e);
             }
         }
 

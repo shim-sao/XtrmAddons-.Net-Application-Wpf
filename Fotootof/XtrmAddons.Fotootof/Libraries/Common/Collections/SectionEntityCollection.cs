@@ -78,7 +78,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         {
             try
             {
-                Logger.Info("Adding Section(s). Please wait...");
+                AppLogger.Info("Adding Section(s). Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -87,20 +87,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                         entity.Initialize();
                         MainWindow.Database.Sections.Add(entity);
 
-                        Logger.Info(string.Format("Section [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("Section [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Adding Section(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Adding Section(s). Done !");
             }
             catch (Exception e)
             {
-                Logger.Fatal("Adding Section(s) failed !", e);
+                AppLogger.Fatal("Adding Section(s) failed !", e);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 
@@ -113,7 +113,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Removing items.
             try
             {
-                Logger.Info("Deleting Section(s). Please wait...");
+                AppLogger.Info("Deleting Section(s). Please wait...");
 
                 if (oldItems != null && oldItems.Count > 0)
                 {
@@ -121,20 +121,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     {
                         MainWindow.Database.Sections.Delete(entity.PrimaryKey);
 
-                        Logger.Info(string.Format("Section [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("Section [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Adding Section(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Adding Section(s). Done !");
             }
             catch (Exception ex)
             {
-                Logger.Fatal("Deleting Section(s) list failed !", ex);
+                AppLogger.Fatal("Deleting Section(s) list failed !", ex);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 
@@ -148,7 +148,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Replace | Edit items.
             try
             {
-                Logger.Info("Replacing Section. Please wait...");
+                AppLogger.Info("Replacing Section. Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -156,20 +156,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     {
                         await MainWindow.Database.Sections.UpdateAsync(entity);
 
-                        Logger.Info(string.Format("Section [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("Section [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
-                Navigator.Clear();
-                Logger.Info("Replacing Section(s). Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Replacing Section(s). Done !");
             }
             catch (Exception ex)
             {
-                Logger.Fatal("Replacing Section(s) failed !", ex);
+                AppLogger.Fatal("Replacing Section(s) failed !", ex);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 
@@ -182,23 +182,23 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         {
             try
             {
-                Logger.Info("Setting default Section. Please wait...");
+                AppLogger.Info("Setting default Section. Please wait...");
 
                 if (newItem != null)
                 {
                     MainWindow.Database.Sections.SetDefault(newItem.PrimaryKey);
                 }
 
-                Navigator.Clear();
-                Logger.Info("Setting default Section. Done !");
+                AppNavigator.Clear();
+                AppLogger.Info("Setting default Section. Done !");
             }
             catch (Exception ex)
             {
-                Logger.Fatal("Setting default Section failed !", ex);
+                AppLogger.Fatal("Setting default Section failed !", ex);
             }
             finally
             {
-                Logger.Close();
+                AppLogger.Close();
             }
         }
 

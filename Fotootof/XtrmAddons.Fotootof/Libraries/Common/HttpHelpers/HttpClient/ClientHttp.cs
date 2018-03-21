@@ -133,7 +133,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// <param name="ServerInfos"></param>
         public void InitializeWebClient()
         {
-            Logger.Info("Initializing server connection.", true);
+            AppLogger.Info("Initializing server connection.", true);
 
             try
             {
@@ -149,7 +149,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
             }
             catch (Exception e)
             {
-                Logger.Fatal("Initializing server connection failed.", e, true);
+                AppLogger.Fatal("Initializing server connection failed.", e, true);
             }
         }
 
@@ -159,7 +159,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// <param name="ServerInfos"></param>
         public async void Ping()
         {
-            Logger.Info(string.Format("Ping server {0}:{1}", Server.Host, Server.Port), true);
+            AppLogger.Info(string.Format("Ping server {0}:{1}", Server.Host, Server.Port), true);
 
             ServerResponse serverResponse = null;
 
@@ -176,14 +176,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
                 else
                 {
                     RaisePingFailed(Server, serverResponse);
-                    Logger.Error(string.Format("Ping server {0}:{1} failed !", Server.Host, Server.Port), true);
-                    Logger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
+                    AppLogger.Error(string.Format("Ping server {0}:{1} failed !", Server.Host, Server.Port), true);
+                    AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
                 }
             }
             catch (Exception e)
             {
                 RaisePingFailed(Server, serverResponse);
-                Logger.Fatal(string.Format("Ping server {0}:{1} failed !", Server.Host, Server.Port), e, true);
+                AppLogger.Fatal(string.Format("Ping server {0}:{1} failed !", Server.Host, Server.Port), e, true);
             }
         }
 
@@ -193,7 +193,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// </summary>
         public async void Authentication()
         {
-            Logger.Info("Initializing server authentication.", true);
+            AppLogger.Info("Initializing server authentication.", true);
 
             ServerResponse serverResponse = null;
 
@@ -215,14 +215,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
                 else
                 {
                     RaiseAuthenticationFailed(Server, serverResponse);
-                    Logger.Error(string.Format("Server authentication on server [{0}:{1}] failed !", Server.Host, Server.Port), true);
-                    Logger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
+                    AppLogger.Error(string.Format("Server authentication on server [{0}:{1}] failed !", Server.Host, Server.Port), true);
+                    AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
                 }
             }
             catch (Exception e)
             {
                 RaiseAuthenticationFailed(Server, serverResponse);
-                Logger.Fatal(string.Format("Server authentication on server[{0}:{1}] failed !", Server.Host, Server.Port), e, true);
+                AppLogger.Fatal(string.Format("Server authentication on server[{0}:{1}] failed !", Server.Host, Server.Port), e, true);
             }
 
         }
@@ -233,7 +233,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// </summary>
         public async void ListSections()
         {
-            Logger.Info("Initializing server list sections.", true);
+            AppLogger.Info("Initializing server list sections.", true);
 
             ServerResponseSections serverResponse = null;
 
@@ -255,14 +255,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
                 else
                 {
                     RaiseListSectionsFailed(Server, serverResponse);
-                    Logger.Error(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), true);
-                    Logger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
+                    AppLogger.Error(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), true);
+                    AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
                 }
             }
             catch (Exception e)
             {
                 RaiseListSectionsFailed(Server, serverResponse);
-                Logger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e, true);
+                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e, true);
             }
         }
 
@@ -272,7 +272,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// </summary>
         public async void ListAlbums()
         {
-            Logger.Info("Initializing server list albums.", true);
+            AppLogger.Info("Initializing server list albums.", true);
 
             ServerResponseSections serverResponse = null;
 
@@ -294,14 +294,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
                 else
                 {
                     RaiseListSectionsFailed(Server, serverResponse);
-                    Logger.Error(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), true);
-                    Logger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
+                    AppLogger.Error(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), true);
+                    AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
                 }
             }
             catch (Exception e)
             {
                 RaiseListSectionsFailed(Server, serverResponse);
-                Logger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e, true);
+                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e, true);
             }
         }
 
@@ -311,7 +311,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// </summary>
         public async void SingleSection(int pk)
         {
-            Logger.Info("Initializing server single section.", true);
+            AppLogger.Info("Initializing server single section.", true);
             ServerResponseSections serverResponse = null;
 
             try
@@ -331,14 +331,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
                 else
                 {
                     RaiseSingleSectionFailed(Server, serverResponse);
-                    Logger.Error(string.Format("Server list albums {0}:{1} failed !", Server.Host, Server.Port), true);
-                    Logger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
+                    AppLogger.Error(string.Format("Server list albums {0}:{1} failed !", Server.Host, Server.Port), true);
+                    AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
                 }
             }
             catch (Exception e)
             {
                 RaiseSingleSectionFailed(Server, serverResponse);
-                Logger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e, true);
+                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e, true);
             }
         }
     }

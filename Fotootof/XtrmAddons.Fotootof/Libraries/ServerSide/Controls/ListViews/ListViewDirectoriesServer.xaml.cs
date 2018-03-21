@@ -12,11 +12,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
     public partial class ListViewDirectoriesServer : ListViewDirectories
     {
         #region Properties
-        public override Control AddControl => throw new System.NotImplementedException();
+        public override Control AddControl => null;
 
-        public override Control EditControl => throw new System.NotImplementedException();
+        public override Control EditControl => null;
 
-        public override Control DeleteControl => throw new System.NotImplementedException();
+        public override Control DeleteControl => null;
 
         public override ListView ItemsCollection { get => ItemsCollectionDirectories; set => ItemsCollectionDirectories = value; }
         #endregion
