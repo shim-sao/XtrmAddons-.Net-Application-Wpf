@@ -21,7 +21,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
             (
                 "Items",
                 typeof(StorageCollection),
-                typeof(ListViewFiles),
+                typeof(ListViewStorages),
                 new PropertyMetadata(new StorageCollection())
             );
 

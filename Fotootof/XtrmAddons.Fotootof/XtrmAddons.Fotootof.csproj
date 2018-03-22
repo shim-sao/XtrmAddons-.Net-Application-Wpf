@@ -246,10 +246,6 @@
     </Compile>
     <Compile Include="Component\ServerSide\ViewUsers\PageUsersModel.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\ListViewStorages.cs" />
-    <Compile Include="Libraries\Common\Controls\ListViews\ListViewFiles.cs" />
-    <Compile Include="Libraries\Common\Controls\TreeViews\UCDirectoryTreeView.xaml.cs">
-      <DependentUpon>UCDirectoryTreeView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Libraries\Common\Tools\AppLogger.cs" />
     <Compile Include="Libraries\Common\Tools\AppOverwork.cs" />
     <Compile Include="Libraries\Common\Tools\AppNavigator.cs" />
@@ -259,9 +255,6 @@
     <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridHttpClientModel.cs" />
     <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml.cs">
       <DependentUpon>ListViewStoragesServer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewFilesServer.xaml.cs">
-      <DependentUpon>ListViewFilesServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\ServerSide\Controls\Menu\MenuServerMain.xaml.cs">
       <DependentUpon>MenuServerMain.xaml</DependentUpon>
@@ -289,7 +282,6 @@
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroup.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsers.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\ListViewAlbums.cs" />
-    <Compile Include="Libraries\Common\Controls\ListViews\ListViewDirectories.cs" />
     <Compile Include="Libraries\Common\Controls\Menu\MenuMain.xaml.cs">
       <DependentUpon>MenuMain.xaml</DependentUpon>
     </Compile>
@@ -346,7 +338,6 @@
     <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowClientFormModel.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\UserForm\WindowFormUserModel.cs" />
     <Compile Include="Libraries\Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbumsModel.cs" />
-    <Compile Include="Libraries\Common\Controls\ListViews\ListViewFilesItemModel.cs" />
     <Compile Include="Libraries\Common\HttpHelpers\HttpServer\ServerInfosModel.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml.cs">
       <DependentUpon>WindowFormAclGroup.xaml</DependentUpon>
@@ -366,10 +357,10 @@
     <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewAlbumsServer.xaml.cs">
       <DependentUpon>ListViewAlbumsServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewDirectoriesServer.xaml.cs">
-      <DependentUpon>ListViewDirectoriesServer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Libraries\ServerSide\Controls\Servers\ServerInfosModel.cs" />
+    <Compile Include="Libraries\ServerSide\Controls\TreeViews\TreeViewSystemStorage.xaml.cs">
+      <DependentUpon>TreeViewSystemStorage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.en-GB.Designer.cs">
       <DependentUpon>Resources.en-GB.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -427,19 +418,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Libraries\Common\Controls\TreeViews\UCDirectoryTreeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
-    </Page>
     <Page Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewFilesServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -515,7 +498,7 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewDirectoriesServer.xaml">
+    <Page Include="Libraries\ServerSide\Controls\TreeViews\TreeViewSystemStorage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -903,7 +886,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Component\ServerSide\ViewLogs\" />
-    <Folder Include="Libraries\ServerSide\Controls\TreeViews\" />
     <Folder Include="Themes\Template\Converter\" />
   </ItemGroup>
   <ItemGroup>

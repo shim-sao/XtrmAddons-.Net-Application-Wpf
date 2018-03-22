@@ -231,7 +231,7 @@
                     MinHeight="860">
 
                     <ListView.Resources>
-                        <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource Default}"/>
+                        <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource ListViewItemDefault}"/>
                     </ListView.Resources>
 
                     <ListView.ItemsPanel>

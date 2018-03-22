@@ -6,12 +6,12 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Controls;
 using XtrmAddons.Net.Picture.Classes;
 using XtrmAddons.Net.Picture.Extensions;
 
-namespace XtrmAddons.Fotootof.Libraries.Common.Controls.TreeViews
+namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.TreeViews
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server UI Control Browser Tree View Directory.
     /// </summary>
-    public partial class UCDirectoryTreeView : ControlBase
+    public partial class TreeViewSystemStorage : ControlBase
     {
         /// <summary>
         /// 
@@ -36,10 +36,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.TreeViews
         /// <summary>
         /// Class XtrmAddons Fotootof Server UI Control Browser Tree View Directory Constructor.
         /// </summary>
-        public UCDirectoryTreeView() : base ()
+        public TreeViewSystemStorage() : base ()
         {
             InitializeComponent();
             InitializeContent();
+            Loaded += (s, e) => TreeView_Loaded();
         }
         
         /// <summary>
@@ -195,15 +196,19 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.TreeViews
             return tv;
         }
 
-        private void Window_Resize(object sender, SizeChangedEventArgs e)
+        private void TreeView_Loaded()
         {
-            FrameworkElement fe = this.Parent as FrameworkElement;
-            Height = fe.ActualHeight - 25;
+            DirectoriesTreeView.Height = GridRoot.ActualHeight;
 
-            /*var b = ActualHeight;
-            var a = fe.ActualHeight;
-            var c = Height;
-            var d = 1;*/
+            if(SectionsDirectoriesHeader.IsVisible)
+            {
+                DirectoriesTreeView.Height -= SectionsDirectoriesHeader.ActualHeight;
+            }
+        }
+
+        private void TreeView_Resize(object sender, SizeChangedEventArgs e)
+        {
+            TreeView_Loaded();
         }
     }
 }

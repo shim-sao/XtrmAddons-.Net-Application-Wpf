@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
 
@@ -14,14 +15,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// 
         /// </summary>
-        private ObservableCollection<ListViewFilesItemModel> filesCollection;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private ObservableCollection<ListViewFilesItemModel> directoriesCollection;
+        private ObservableCollection<StorageInfoModel> storagesCollection;
 
         #endregion
+
 
 
         #region Properties
@@ -29,26 +26,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// 
         /// </summary>
-        public ObservableCollection<ListViewFilesItemModel> FilesCollection
+        public ObservableCollection<StorageInfoModel> StoragesCollection
         {
-            get => filesCollection;
+            get => storagesCollection;
             set
             {
-                filesCollection = value;
+                storagesCollection = value;
                 RaisePropertyChanged("FilesCollection");
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObservableCollection<ListViewFilesItemModel> DirectoriesCollection
-        {
-            get => directoriesCollection;
-            set
-            {
-                directoriesCollection = value;
-                RaisePropertyChanged("DirectoriesCollection");
             }
         }
 
@@ -64,5 +48,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         public PageBrowserModel(PageBrowser pageBase) : base(pageBase) { }
 
         #endregion
+
     }
 }

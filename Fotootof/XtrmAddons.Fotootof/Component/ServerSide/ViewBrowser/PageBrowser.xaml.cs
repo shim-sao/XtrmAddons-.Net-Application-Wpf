@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Drawing;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
-using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
-using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Memory;
 using XtrmAddons.Net.Picture;
-using XtrmAddons.Net.Picture.Extensions;
-using XtrmAddons.Net.Picture.ExtractLargeIconFromFile;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
@@ -46,6 +39,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         {
             InitializeComponent();
             AfterInitializedComponent();
+            Loaded += (s, e) => Page_Loaded();
         }
 
         #endregion
@@ -53,6 +47,23 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
 
         #region Methods
+
+        public void Page_Loaded()
+        {
+            MiddleContents.MinHeight = GridRoot.ActualHeight - TopControls.ActualHeight;
+            MiddleContents.Height = GridRoot.ActualHeight - TopControls.ActualHeight;
+
+            TreeViewDirectories.MinHeight = GridRoot.ActualHeight - TopControls.ActualHeight;
+            TreeViewDirectories.Height = GridRoot.ActualHeight - TopControls.ActualHeight;
+
+            Trace.WriteLine("GridRoot Width = " + GridRoot.ActualWidth.ToString());
+            Trace.WriteLine("GridRoot Height = " + GridRoot.ActualHeight.ToString());
+            Trace.WriteLine("MiddleContents Width = " + MiddleContents.ActualWidth.ToString());
+            Trace.WriteLine("MiddleContents Height = " + MiddleContents.ActualHeight.ToString());
+            Trace.WriteLine("DirectoriesTreeView Width = " + TreeViewDirectories.ActualWidth.ToString());
+            Trace.WriteLine("DirectoriesTreeView Height = " + TreeViewDirectories.ActualHeight.ToString());
+            Trace.WriteLine("ColStorages Width = " + ColStorages.ActualWidth.ToString());
+        }
 
         /// <summary>
         /// Method to initialize page content.
@@ -77,7 +88,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             TreeViewDirectories.DirectoriesTreeView.SelectedItemChanged += TreeViewDirectories_SelectedItemChanged;
 
             // Reinitialize datacontext.
-            Model.FilesCollection = new ObservableCollection<ListViewFilesItemModel>();
+            Model.StoragesCollection = new ObservableCollection<StorageInfoModel>();
             DataContext = Model;
 
             // End of busy indicator.
@@ -149,7 +160,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// </summary>
         private void ClearFilesCollection()
         {
-            Model.FilesCollection.Clear();
+            Model.StoragesCollection.Clear();
             //UCBrowserPicture.UpdateLayout();
             //UCBrowserPicture.Visibility = Visibility.Hidden;
 
@@ -222,7 +233,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
             foreach (FileInfo fileInfo in infoFiles)
             {
-                Model.FilesCollection.Add(new ListViewFilesItemModel(fileInfo));
+                Model.StoragesCollection.Add(new StorageInfoModel(fileInfo));
             }
 
             //UCBrowserPicture.Visibility = Visibility.Visible;
@@ -235,13 +246,15 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <param name="e"></param>
         private void Window_Resize(object sender, SizeChangedEventArgs e)
         {
-            FrameworkElement fe = this.Parent as FrameworkElement;
+            /* fe = this.Parent as FrameworkElement;
             if (fe != null)
             {
                 Height = fe.ActualHeight - 200;
 
                 Breadcrumbs.Text = Height.ToString() + "  (" + fe.GetType().ToString() +")";
-            }
+            }*/
+
+            Page_Loaded();
         }
 
         #endregion

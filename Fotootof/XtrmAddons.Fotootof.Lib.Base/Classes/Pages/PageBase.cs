@@ -23,12 +23,12 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <summary>
         /// Variable page width marging for content adjustement on size changed.
         /// </summary>
-        protected double MargingWidth = 55;
+        protected double MargingWidth = SystemParameters.VerticalScrollBarWidth + 20;
 
         /// <summary>
         /// Variable page height marging for content adjustement on size changed.
         /// </summary>
-        protected double MargingHeight = 240;
+        protected double MargingHeight = 230;
         
         /// <summary>
         /// 
@@ -36,6 +36,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         public static Window AppWindow = (Window)ApplicationSession.Properties.AppWindow;
 
         #endregion
+
 
 
         #region Methods
@@ -52,7 +53,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
             AppWindow.SizeChanged += Window_SizeChanged;
 
             // Merge main resources.
-            Resources.MergedDictionaries.Add(AppWindow.Resources);
             Resources.MergedDictionaries.Add(AppWindow.Resources);
         }
 
@@ -72,8 +72,8 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Size changed event arguments.</param>
         protected void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if(AppWindow.ActualWidth > MargingWidth)
+        {       
+            if (AppWindow.ActualWidth > MargingWidth)
             {
                 Width = AppWindow.ActualWidth - MargingWidth;
             }
