@@ -28,7 +28,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <summary>
         /// Variable page height marging for content adjustement on size changed.
         /// </summary>
-        protected double MargingHeight = 230;
+        protected double MargingHeight = 220;
         
         /// <summary>
         /// 

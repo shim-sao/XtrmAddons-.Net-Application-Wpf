@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
 {
@@ -16,6 +17,12 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
         public string ImageFullName { get; private set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public Size ImageSize { get; set; } = new Size { Height = 32, Width = 32 };
+
+
+        /// <summary>
         /// Property displays height of the image associated to the item.
         /// </summary>
         public int ImageHeight { get; set; } = 32;
@@ -24,6 +31,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
         /// Property displays width of the image associated to the item.
         /// </summary>
         public int ImageWidth { get; set; } = 32;
+
 
         /// <summary>
         /// Property creation date of the item.

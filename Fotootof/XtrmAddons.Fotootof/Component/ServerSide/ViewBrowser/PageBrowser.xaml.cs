@@ -25,6 +25,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// </summary>
         public PageBrowserModel<PageBrowser> Model { get; private set; }
 
+        public Size ImageSize { get; set; } = new Size { Height = 32, Width = 32 };
+
+
         #endregion
 
 
@@ -55,14 +58,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
             TreeViewDirectories.MinHeight = GridRoot.ActualHeight - TopControls.ActualHeight;
             TreeViewDirectories.Height = GridRoot.ActualHeight - TopControls.ActualHeight;
-
-            Trace.WriteLine("GridRoot Width = " + GridRoot.ActualWidth.ToString());
-            Trace.WriteLine("GridRoot Height = " + GridRoot.ActualHeight.ToString());
-            Trace.WriteLine("MiddleContents Width = " + MiddleContents.ActualWidth.ToString());
-            Trace.WriteLine("MiddleContents Height = " + MiddleContents.ActualHeight.ToString());
-            Trace.WriteLine("DirectoriesTreeView Width = " + TreeViewDirectories.ActualWidth.ToString());
-            Trace.WriteLine("DirectoriesTreeView Height = " + TreeViewDirectories.ActualHeight.ToString());
-            Trace.WriteLine("ColStorages Width = " + ColStorages.ActualWidth.ToString());
         }
 
         /// <summary>
@@ -195,7 +190,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
                 LoadDirectoriesInfosToListView(GetDirectoriesInfos(dirInfo));
                 LoadInfoFilesToListViewAsync(GetInfoFiles(dirInfo));
 
-                //UCBrowserPicture.Visibility = Visibility.Visible;
+                UcListViewStoragesServer.Visibility = Visibility.Visible;
             }
 
             UpdateLayout();
@@ -214,10 +209,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
             foreach (DirectoryInfo dirInfo in dirInfos)
             {
-                //Model.FilesCollection.Add(new ListViewFilesItemModel(dirInfo));
+                ImageSize = new Size(128, 128);
+                StorageInfoModel item = new StorageInfoModel(dirInfo) { ImageSize = ImageSize };
+                Model.StoragesCollection.Add(item);
             }
 
-            //UCBrowserPicture.Visibility = Visibility.Visible;
+            UcListViewStoragesServer.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -233,10 +230,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
             foreach (FileInfo fileInfo in infoFiles)
             {
-                Model.StoragesCollection.Add(new StorageInfoModel(fileInfo));
+                ImageSize = new Size(128, 128);
+                StorageInfoModel item = new StorageInfoModel(fileInfo) { ImageSize = ImageSize };
+                Model.StoragesCollection.Add(item);
             }
 
-            //UCBrowserPicture.Visibility = Visibility.Visible;
+            UcListViewStoragesServer.Visibility = Visibility.Visible;
         }
 
         /// <summary>

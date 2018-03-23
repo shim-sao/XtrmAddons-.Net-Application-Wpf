@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 
@@ -44,6 +45,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         {
             InitializeComponent();
             ItemsCollection.KeyDown += ItemsCollection.AddKeyDownSelectAllItems;
+            Loaded += (s, e) => Page_Loaded();
         }
 
         #endregion
@@ -51,6 +53,22 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 
 
         #region Methods
+
+        public void Page_Loaded()
+        {
+            ItemsCollectionStorages.MinHeight = GridRoot.ActualHeight - Block_Header.ActualHeight;
+            ItemsCollectionStorages.Height = GridRoot.ActualHeight - Block_Header.ActualHeight;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Resize(object sender, SizeChangedEventArgs e)
+        {
+            Page_Loaded();
+        }
 
         #endregion
     }

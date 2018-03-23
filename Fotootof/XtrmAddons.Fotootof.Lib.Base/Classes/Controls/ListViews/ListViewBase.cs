@@ -97,7 +97,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
             }
             else
             {
-                DeleteControl.IsEnabled = true;
+                if (DeleteControl != null) DeleteControl.IsEnabled = true;
 
                 if (SelectedItems.Count > 1)
                 {

@@ -25,11 +25,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.TreeViews
         {
             get
             {
-                return SectionsDirectoriesHeader.Visibility;
+                return Block_Header.Visibility;
             }
             set
             {
-                SectionsDirectoriesHeader.Visibility = value;
+                Block_Header.Visibility = value;
             }
         }
 
@@ -196,16 +196,24 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.TreeViews
             return tv;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void TreeView_Loaded()
         {
             DirectoriesTreeView.Height = GridRoot.ActualHeight;
 
-            if(SectionsDirectoriesHeader.IsVisible)
+            if(Block_Header.IsVisible)
             {
-                DirectoriesTreeView.Height -= SectionsDirectoriesHeader.ActualHeight;
+                DirectoriesTreeView.Height -= Block_Header.ActualHeight;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TreeView_Resize(object sender, SizeChangedEventArgs e)
         {
             TreeView_Loaded();
