@@ -36,6 +36,7 @@ namespace XtrmAddons.Fotootof
         /// </summary>
         public static void Initialize()
         {
+
             InitializeDatabase();
             InitializeServerAsync();
         }
