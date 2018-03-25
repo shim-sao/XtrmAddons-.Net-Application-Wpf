@@ -26,7 +26,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// Class XtrmAddons Fotootof Server Component Section Collections.
         /// </summary>
         /// <param name="options">Options for query filters.</param>
-        public SectionEntityCollection(SectionOptionsList options = null, bool autoLoad = false) : base(autoLoad, options) { }
+        public SectionEntityCollection(bool autoLoad = false, SectionOptionsList options = null) : base(autoLoad, options) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Section Collections.

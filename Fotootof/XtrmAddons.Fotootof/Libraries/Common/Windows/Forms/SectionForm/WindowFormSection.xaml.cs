@@ -1,24 +1,25 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
-using XtrmAddons.Fotootof.Libraries.Common.Converters;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Libraries Common Windows Form Section.
+    /// <para>Class XtrmAddons Fotootof Libraries Common Windows Form Section.</para>
+    /// <para>Provides form to add or edit a Section.</para>
     /// </summary>
     public partial class WindowFormSection : WindowBaseForm, IWindowForm<SectionEntity>
     {
         #region Variables
 
         /// <summary>
-        /// Variable Window AclGroup Form model.
+        /// Variable Window AclGroup Form model of the view.
         /// </summary>
         private WindowFormSectionModel<WindowFormSection> model;
 
@@ -28,7 +29,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         public SectionEntity OldForm { get; set; }
 
         /// <summary>
-        /// Variable Section informations.
+        /// Variable current or new Section informations.
         /// </summary>
         public SectionEntity NewForm
         {
@@ -39,29 +40,34 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         #endregion
 
 
+
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Libraries Common Windows Form Section Constructor.
+        /// Class XtrmAddons Fotootof Libraries Common Windows Form Section Constructor.
         /// </summary>
         /// <param name="entity"></param>
         public WindowFormSection(SectionEntity entity = null) : base()
         {
             InitializeComponent();
-            model = new WindowFormSectionModel<WindowFormSection>(this);
-            Loaded += (s, e) => Window_Load(entity);
+            InitializeModel(entity);
+            Loaded += Window_Load;
+            Closing += Window_Closing;
         }
 
         #endregion
 
 
+
+        #region Methods
+
         /// <summary>
-        /// 
+        /// Method called on Window loaded event.
         /// </summary>
-        protected void Window_Load(SectionEntity entity)
+        protected void InitializeModel(SectionEntity entity)
         {
-            // Assign closing event.
-            Closing += Window_Closing;
+            // Initialize view model.
+            model = new WindowFormSectionModel<WindowFormSection>(this);
 
             // Initialize User first.
             entity = entity ?? new SectionEntity();
@@ -86,7 +92,13 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
 
             // Assign list of Album to the model.
             model.Albums = new AlbumEntityCollection(true);
+        }
 
+        /// <summary>
+        /// Method called on Window loaded event.
+        /// </summary>
+        protected void Window_Load(object sender, RoutedEventArgs e)
+        {
             DataContext = model;
         }
 
@@ -204,16 +216,28 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             model.Section.UnLinkAclGroup(entity.PrimaryKey);
         }
 
+        /// <summary>
+        /// Method called to uncheck Album on the Albums list of the Section.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
         private void CheckBoxAlbum_Checked(object sender, RoutedEventArgs e)
         {
             AlbumEntity entity = (AlbumEntity)((CheckBox)sender).Tag;
             model.Section.LinkAlbum(entity.PrimaryKey);
         }
 
+        /// <summary>
+        /// Method called to uncheck Album on the Albums list of the Section.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
         private void CheckBoxAlbum_UnChecked(object sender, RoutedEventArgs e)
         {
             AlbumEntity entity = (AlbumEntity)((CheckBox)sender).Tag;
             model.Section.UnLinkAlbum(entity.PrimaryKey);
         }
+
+        #endregion
     }
 }

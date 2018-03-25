@@ -50,12 +50,14 @@
                         <ComboBox
                             Grid.Column="2"
                             x:Name="ComboBox_ImageSize"
-                            Margin="2,2,0,0">
+                            Margin="2,2,0,0"
+                            Width="60">
 
-                            <ComboBoxItem IsSelected="True">Icon</ComboBoxItem>
-                            <ComboBoxItem>Thumbnail</ComboBoxItem>
-                            <ComboBoxItem>Vignette</ComboBoxItem>
-                            <ComboBoxItem>Large</ComboBoxItem>
+                            <ComboBoxItem IsSelected="True" Tag="32">Icon</ComboBoxItem>
+                            <ComboBoxItem Tag="64">Thumbnail</ComboBoxItem>
+                            <ComboBoxItem Tag="96">Vignette</ComboBoxItem>
+                            <ComboBoxItem Tag="128">Large</ComboBoxItem>
+                            <ComboBoxItem Tag="256">X-Large</ComboBoxItem>
                         </ComboBox>
                     </Grid>
                 </Border>
@@ -79,13 +81,12 @@
                     ScrollViewer.IsDeferredScrollingEnabled="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                     MouseDoubleClick="ItemsCollection_MouseDoubleClick"
-                    SelectionChanged="ItemsCollection_SelectionChanged"
-                    Padding="0,5,0,10">
-
+                    SelectionChanged="ItemsCollection_SelectionChanged">
+                    
                     <ListView.Resources>
                         <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource ListViewItemDefault}"/>
                     </ListView.Resources>
-
+                    
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel 
@@ -111,24 +112,27 @@
                                     Background="LightGray"
                                     Width="{Binding ImageSize.Height}"
                                     MaxHeight="{Binding ImageSize.Width}">
-<!--
+
                                     <Grid.ContextMenu>
                                         <ContextMenu>
                                             <MenuItem 
-                                                Header="{x:Static p:Resources.Add }"
-                                                Click="OnAdd_Click"/>
+                                                Header="{x:Static p:Resources.Add}"
+                                                Click="OnAdd_Click"
+                                                IsEnabled="False"/>
 
                                             <MenuItem 
-                                                Header="{x:Static p:Resources.Edit }"
-                                                Click="OnEdit_Click"/>
+                                                Header="{x:Static p:Resources.Edit}"
+                                                Click="OnEdit_Click"
+                                                IsEnabled="False"/>
 
                                             <MenuItem 
-                                                Header="{x:Static p:Resources.Delete }"
-                                                Click="OnDelete_Click"/>
+                                                Header="{x:Static p:Resources.Delete}"
+                                                Click="OnDelete_Click"
+                                                IsEnabled="False"/>
 
                                         </ContextMenu>
                                     </Grid.ContextMenu>
--->
+
                                     <Border Margin="{Binding Margin}">
                                         <Image 
                                             Source="{Binding ImageFullName,

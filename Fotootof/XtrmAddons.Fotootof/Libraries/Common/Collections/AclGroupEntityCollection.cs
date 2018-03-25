@@ -61,7 +61,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                 {
                     foreach (AclGroupEntity entity in newItems)
                     {
-                        MainWindow.Database.AclGroups.Add_Async(entity);
+                        MainWindow.Database.AclGroups.Add(entity);
 
                         AppLogger.Info(string.Format("AclGroup [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
@@ -105,7 +105,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Adding AclGroup(s). Done !");
+                AppLogger.Info("Deleting AclGroup(s). Done !");
             }
             catch (Exception ex)
             {

@@ -63,7 +63,7 @@
                 <ucbrowser:TreeViewSystemStorage
                     Grid.Row="0"
                     Grid.Column="0"
-                    x:Name="TreeViewDirectories"
+                    x:Name="UcTreeViewDirectories"
                     IsHeaderVisible="Visible"
                     Background="Coral"/>
 

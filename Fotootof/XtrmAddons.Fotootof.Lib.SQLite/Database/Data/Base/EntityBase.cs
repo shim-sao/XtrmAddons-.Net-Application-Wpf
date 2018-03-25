@@ -86,7 +86,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     else
                     {
                         T item = null;
-                        int id = (int)dependency.GetPropertyValue(typeof(T).Name + "Id");
+                        int id = (int)dependency.GetPropertyValue(typeof(T).Name.Replace("Entity", "") + "Id");
 
                         using (Db.Context)
                         {

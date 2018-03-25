@@ -32,6 +32,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         public override ListView ItemsCollection { get => ItemsCollectionStorages; set => ItemsCollectionStorages = value; }
 
+        /// <summary>
+        /// Property proxy to the combo box selection changed event handler.
+        /// </summary>
+        public event SelectionChangedEventHandler ImageSize_SelectionChanged { add => ComboBox_ImageSize.SelectionChanged += value; remove => ComboBox_ImageSize.SelectionChanged -= value; }
+
         #endregion
 
 
@@ -54,10 +59,19 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Page_Loaded()
         {
             ItemsCollectionStorages.MinHeight = GridRoot.ActualHeight - Block_Header.ActualHeight;
             ItemsCollectionStorages.Height = GridRoot.ActualHeight - Block_Header.ActualHeight;
+
+            GridRoot.MaxWidth = ActualWidth - 17;
+            GridRoot.Width = ActualWidth - 17;
+
+            /*ItemsCollectionStorages.MaxWidth = GridRoot.ActualWidth - 20;
+            ItemsCollectionStorages.Width = GridRoot.ActualWidth - 20;*/
         }
 
         /// <summary>

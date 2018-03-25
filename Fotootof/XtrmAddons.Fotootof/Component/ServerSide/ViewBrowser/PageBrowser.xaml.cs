@@ -25,8 +25,15 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// </summary>
         public PageBrowserModel<PageBrowser> Model { get; private set; }
 
+        /// <summary>
+        ///
+        /// </summary>
         public Size ImageSize { get; set; } = new Size { Height = 32, Width = 32 };
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public DirectoryInfo CurrentDirectoryInfo { get; set; }
 
         #endregion
 
@@ -56,8 +63,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             MiddleContents.MinHeight = GridRoot.ActualHeight - TopControls.ActualHeight;
             MiddleContents.Height = GridRoot.ActualHeight - TopControls.ActualHeight;
 
-            TreeViewDirectories.MinHeight = GridRoot.ActualHeight - TopControls.ActualHeight;
-            TreeViewDirectories.Height = GridRoot.ActualHeight - TopControls.ActualHeight;
+            UcTreeViewDirectories.MinHeight = GridRoot.ActualHeight - TopControls.ActualHeight;
+            UcTreeViewDirectories.Height = GridRoot.ActualHeight - TopControls.ActualHeight;
         }
 
         /// <summary>
@@ -80,7 +87,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             Model = new PageBrowserModel<PageBrowser>(this);
 
             // Add action to the tree view item event handler.
-            TreeViewDirectories.DirectoriesTreeView.SelectedItemChanged += TreeViewDirectories_SelectedItemChanged;
+            UcTreeViewDirectories.DirectoriesTreeView.SelectedItemChanged += TreeViewDirectories_SelectedItemChanged;
+            UcListViewStoragesServer.ImageSize_SelectionChanged += ImageSize_SelectionChanged;
 
             // Reinitialize datacontext.
             Model.StoragesCollection = new ObservableCollection<StorageInfoModel>();
@@ -182,17 +190,25 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
             if (item.Tag.GetType() == typeof(DirectoryInfo))
             {
-                DirectoryInfo dirInfo = (DirectoryInfo)item.Tag;
-
-                DisplayHeaderDirectory(dirInfo);
-                ClearFilesCollection();
-
-                LoadDirectoriesInfosToListView(GetDirectoriesInfos(dirInfo));
-                LoadInfoFilesToListViewAsync(GetInfoFiles(dirInfo));
-
-                UcListViewStoragesServer.Visibility = Visibility.Visible;
+                CurrentDirectoryInfo = (DirectoryInfo)item.Tag;
+                Refresh_UcListViewStoragesServer();
             }
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Refresh_UcListViewStoragesServer()
+        {
+            DisplayHeaderDirectory(CurrentDirectoryInfo);
+            ClearFilesCollection();
+
+            LoadDirectoriesInfosToListView(GetDirectoriesInfos(CurrentDirectoryInfo));
+            LoadInfoFilesToListViewAsync(GetInfoFiles(CurrentDirectoryInfo));
+
+            UcListViewStoragesServer.Visibility = Visibility.Visible;
             UpdateLayout();
         }
 
@@ -209,7 +225,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
             foreach (DirectoryInfo dirInfo in dirInfos)
             {
-                ImageSize = new Size(128, 128);
                 StorageInfoModel item = new StorageInfoModel(dirInfo) { ImageSize = ImageSize };
                 Model.StoragesCollection.Add(item);
             }
@@ -230,7 +245,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
             foreach (FileInfo fileInfo in infoFiles)
             {
-                ImageSize = new Size(128, 128);
                 StorageInfoModel item = new StorageInfoModel(fileInfo) { ImageSize = ImageSize };
                 Model.StoragesCollection.Add(item);
             }
@@ -243,16 +257,45 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void ImageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int dim = 32;
+            int index = ((ComboBox)sender).SelectedIndex;
+
+            switch (index)
+            {
+                case 0:
+                    dim = 32;
+                    break;
+
+                case 1:
+                    dim = 64;
+                    break;
+
+                case 2:
+                    dim = 96;
+                    break;
+
+                case 3:
+                    dim = 128;
+                    break;
+
+                case 4:
+                    dim = 256;
+                    break;
+            }
+
+            ImageSize = new Size(dim, dim);
+            Refresh_UcListViewStoragesServer();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Resize(object sender, SizeChangedEventArgs e)
         {
-            /* fe = this.Parent as FrameworkElement;
-            if (fe != null)
-            {
-                Height = fe.ActualHeight - 200;
-
-                Breadcrumbs.Text = Height.ToString() + "  (" + fe.GetType().ToString() +")";
-            }*/
-
             Page_Loaded();
         }
 

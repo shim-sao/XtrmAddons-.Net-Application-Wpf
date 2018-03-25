@@ -4,7 +4,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries Sections in AclGroups Entity Object.
+    /// Class XtrmAddons Fotootof Libraries SQLite Database Data Tables Sections in AclGroups Entity Dependency.
     /// </summary>
     [Table("SectionsInAclGroups")]
     public class SectionsInAclGroups
