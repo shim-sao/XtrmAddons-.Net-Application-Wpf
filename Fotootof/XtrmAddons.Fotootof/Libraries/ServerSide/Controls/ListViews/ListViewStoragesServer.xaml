@@ -109,7 +109,6 @@
                                 MaxHeight="{Binding ImageSize.Width}">
 
                                 <Grid
-                                    Background="LightGray"
                                     Width="{Binding ImageSize.Height}"
                                     MaxHeight="{Binding ImageSize.Width}">
 

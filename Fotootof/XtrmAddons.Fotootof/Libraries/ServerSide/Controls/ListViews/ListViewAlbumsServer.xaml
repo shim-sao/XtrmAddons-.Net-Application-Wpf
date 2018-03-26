@@ -8,212 +8,222 @@
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews"
     mc:Ignorable="d"
     HorizontalAlignment="Stretch">
-    
+
     <!-- #region : list -->
     <Grid
         x:Name="GridRoot"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch">
 
-        <StackPanel>
+        <StackPanel
+            x:Name="Block_Main">
 
-            <!-- #region Title -->
-            <Grid 
-                x:Name="ControlHeader"
-                Background="{StaticResource DarkGrey}">
+            <StackPanel
+                x:Name="Block_Header">
+
+                <!-- #region Title -->
+                <StackPanel 
+                    x:Name="Block_Title"
+                    Background="{StaticResource DarkGrey}">
                 
-                <Border x:Name="ControlHeaderBorder">
+                    <Border x:Name="ControlHeaderBorder">
 
-                    <TextBlock
-                        Text="Albums"
-                        FontSize="{StaticResource FontSizeHeader}"
-                        Foreground="{StaticResource BigHeader}"
-                        FontWeight="SemiBold"
-                        Margin="5"/>
+                        <TextBlock
+                            Text="Albums"
+                            FontSize="{StaticResource FontSizeHeader}"
+                            Foreground="{StaticResource BigHeader}"
+                            FontWeight="SemiBold"
+                            Margin="5"/>
 
-                </Border>
+                    </Border>
 
+                    <StackPanel
+                        x:Name="ControlHeaderInfos"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+
+                        <TextBlock
+                            x:Name="ControlHeaderSelectedNumber"
+                            FontWeight="SemiBold"
+                            FontSize="{StaticResource FontSizeHeader}"
+                            Foreground="{StaticResource BigHeader}"
+                            Margin="5"
+                            Text="0"/>
+
+                        <TextBlock
+                            x:Name="ControlHeaderCounterSpacer"
+                            FontWeight="SemiBold"
+                            FontSize="{StaticResource FontSizeHeader}"
+                            Foreground="{StaticResource BigHeader}"
+                            Margin="0,5"
+                            Text="/"/>
+
+                        <TextBlock
+                            x:Name="ControlHeaderTotal"
+                            FontWeight="SemiBold"
+                            FontSize="{StaticResource FontSizeHeader}"
+                            Foreground="{StaticResource BigHeader}"
+                            Margin="5"
+                            Text="{Binding Path=Albums.Count}"/>
+
+                    </StackPanel>
+                </StackPanel>
+                <!-- #endregion Title -->
+
+
+                <!-- #region Menu -->
                 <StackPanel
-                    x:Name="ControlHeaderInfos"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Right">
+                    x:Name="Block_Menu"
+                    Background="{StaticResource DarkGrey}">
 
-                    <TextBlock
-                        x:Name="ControlHeaderSelectedNumber"
-                        FontWeight="SemiBold"
-                        FontSize="{StaticResource FontSizeHeader}"
-                        Foreground="{StaticResource BigHeader}"
-                        Margin="5"
-                        Text="0"/>
+                    <Border
+                        x:Name="ControlMenuBorder"
+                        HorizontalAlignment="Left"
+                        Width="Auto">
 
-                    <TextBlock
-                        x:Name="ControlHeaderCounterSpacer"
-                        FontWeight="SemiBold"
-                        FontSize="{StaticResource FontSizeHeader}"
-                        Foreground="{StaticResource BigHeader}"
-                        Margin="0,5"
-                        Text="/"/>
+                        <Grid Margin="0,0,0,3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
 
-                    <TextBlock
-                        x:Name="ControlHeaderTotal"
-                        FontWeight="SemiBold"
-                        FontSize="{StaticResource FontSizeHeader}"
-                        Foreground="{StaticResource BigHeader}"
-                        Margin="5"
-                        Text="{Binding Path=Albums.Count}"/>
+                            <Button 
+                                x:Name="Button_Add"
+                                Grid.Column="0"
+                                Style="{StaticResource Btn}"
+                                Content="{x:Static p:Resources.Add }"
+                                Click="OnAdd_Click"/>
+
+                            <Button
+                                x:Name="Button_Edit"
+                                Grid.Column="1"
+                                Style="{StaticResource Btn}"
+                                Content="{x:Static p:Resources.Edit }"
+                                Click="OnEdit_Click"/>
+
+                            <Button
+                                x:Name="Button_Delete"
+                                Grid.Column="2"
+                                Style="{StaticResource Btn}"
+                                Content="{x:Static p:Resources.Delete}"
+                                Click="OnDelete_Click"/>
+                        </Grid>
+                    </Border>
+
+
+                    <Border
+                        x:Name="ControlMenuBorder2"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,5,0">
+
+                        <Grid Margin="0,0,0,3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button 
+                                x:Name="Button_SelectAll"
+                                Grid.Column="0"
+                                Style="{StaticResource Btn}"
+                                Content="{x:Static p:Resources.SelectAll}"
+                                Click="SelectAll_Click"/>
+
+                            <Button 
+                                Grid.Column="1"
+                                x:Name="Button_ClearSelection"
+                                Style="{StaticResource Btn}"
+                                Content="{x:Static p:Resources.UnselectAll}"
+                                Click="UnselectAll_Click"/>
+
+                        </Grid>
+                    </Border>
 
                 </StackPanel>
-            </Grid>
-            <!-- #endregion Title -->
+                <!-- #endregion Menu -->
 
 
-            <!-- #region Menu -->
-            <Grid
-                x:Name="ControlMenu"
-                Background="{StaticResource DarkGrey}">
+                <!-- #region Filters -->
+                <StackPanel 
+                    x:Name="Block_Filters"
+                    Background="{StaticResource DarkGrey}"
+                    Margin="0,0,0,5">
 
-                <Border
-                    x:Name="ControlMenuBorder"
-                    HorizontalAlignment="Left"
-                    Width="Auto">
-
-                    <Grid Margin="0,0,0,3">
+                    <Grid HorizontalAlignment="Right">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button 
-                            x:Name="Button_Add"
-                            Grid.Column="0"
-                            Style="{StaticResource Btn}"
-                            Content="{x:Static p:Resources.Add }"
-                            Click="OnAdd_Click"/>
+                        <StackPanel 
+                            Orientation="Horizontal"
+                            Margin="5">
 
-                        <Button
-                            x:Name="Button_Edit"
+                            <TextBlock
+                                Text="Quality"
+                                Margin="0,0,5,0"
+                                VerticalAlignment="Center"
+                                Foreground="LightGray"/>
+
+                            <ComboBox 
+                                x:Name="FiltersQualitySelector"
+                                ItemsSource="{Binding FiltersQuality, Mode=OneWay, IsAsync=True}"
+                                Focusable="False"
+                                IsEditable="True"
+                                IsReadOnly="True"
+                                Width="130"
+                                Height="23"
+                                Text="-- Select Quality ---">
+
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" Tag="{Binding}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel 
                             Grid.Column="1"
-                            Style="{StaticResource Btn}"
-                            Content="{x:Static p:Resources.Edit }"
-                            Click="OnEdit_Click"/>
+                            Orientation="Horizontal"
+                            Margin="5">
 
-                        <Button
-                            x:Name="Button_Delete"
-                            Grid.Column="2"
-                            Style="{StaticResource Btn}"
-                            Content="{x:Static p:Resources.Delete}"
-                            Click="OnDelete_Click"/>
+                            <TextBlock
+                                Text="Color"
+                                Margin="0,0,5,0"
+                                VerticalAlignment="Center"
+                                Foreground="LightGray"/>
+
+                            <ComboBox 
+                                x:Name="FiltersColorSelector"
+                                ItemsSource="{Binding FiltersColor, Mode=OneWay, IsAsync=True}"
+                                HorizontalAlignment="Right"
+                                Focusable="False"
+                                IsEditable="True"
+                                IsReadOnly="True"
+                                Width="130"
+                                Height="23"
+                                Text="-- Select Color ---">
+
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" Tag="{Binding}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
                     </Grid>
-                </Border>
 
-
-                <Border
-                    x:Name="ControlMenuBorder2"
-                    HorizontalAlignment="Right"
-                    Margin="0,0,5,0">
-
-                    <Grid Margin="0,0,0,3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Button 
-                            x:Name="Button_SelectAll"
-                            Grid.Column="0"
-                            Style="{StaticResource Btn}"
-                            Content="{x:Static p:Resources.SelectAll}"
-                            Click="SelectAllItems_Click"/>
-
-                        <Button 
-                            Grid.Column="1"
-                            x:Name="Button_ClearSelection"
-                            Style="{StaticResource Btn}"
-                            Content="{x:Static p:Resources.UnselectAll}"
-                            Click="ClearItemsSelection_Click"/>
-
-                    </Grid>
-                </Border>
-
-            </Grid>
-            <!-- #endregion Menu -->
-
-
-            <Grid 
-                x:Name="ControlFilters"
-                Background="{StaticResource DarkGrey}"
-                Margin="0,0,0,5">
-
-                <Grid HorizontalAlignment="Right">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel 
-                        Orientation="Horizontal"
-                        Margin="5">
-
-                        <TextBlock
-                            Text="Quality"
-                            Margin="0,0,5,0"
-                            VerticalAlignment="Center"
-                            Foreground="LightGray"/>
-
-                        <ComboBox 
-                            x:Name="FiltersQualitySelector"
-                            ItemsSource="{Binding FiltersQuality, Mode=OneWay, IsAsync=True}"
-                            Focusable="False"
-                            IsEditable="True"
-                            IsReadOnly="True"
-                            Width="130"
-                            Height="23"
-                            Text="-- Select Quality ---">
-
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" Tag="{Binding}"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </StackPanel>
-
-                    <StackPanel 
-                        Grid.Column="1"
-                        Orientation="Horizontal"
-                        Margin="5">
-
-                        <TextBlock
-                            Text="Color"
-                            Margin="0,0,5,0"
-                            VerticalAlignment="Center"
-                            Foreground="LightGray"/>
-
-                        <ComboBox 
-                            x:Name="FiltersColorSelector"
-                            ItemsSource="{Binding FiltersColor, Mode=OneWay, IsAsync=True}"
-                            HorizontalAlignment="Right"
-                            Focusable="False"
-                            IsEditable="True"
-                            IsReadOnly="True"
-                            Width="130"
-                            Height="23"
-                            Text="-- Select Color ---">
-
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" Tag="{Binding}"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </StackPanel>
-                </Grid>
+                </StackPanel>
+                <!-- #endregion Filters -->
                 
-            </Grid>
+            </StackPanel>
 
-            <Grid x:Name="ControlItems">
+            
+            
+            <Grid x:Name="Block_Items">
                 <ListView
                     x:Name="AlbumssCollection"
                     Background="White"
@@ -229,6 +239,23 @@
                     Margin="0,0,5,10"
                     Padding="0,5,0,10"
                     MinHeight="860">
+
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem 
+                                Header="{x:Static p:Resources.AddNewAlbum }"
+                                Click="OnAdd_Click"/>
+
+                            <MenuItem 
+                                Header="{x:Static p:Resources.SelectAll }"
+                                Click="SelectAll_Click"/>
+
+                            <MenuItem 
+                                Header="{x:Static p:Resources.UnselectAll }"
+                                Click="UnselectAll_Click"/>
+
+                        </ContextMenu>
+                    </ListView.ContextMenu>
 
                     <ListView.Resources>
                         <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource ListViewItemDefault}"/>
@@ -267,7 +294,7 @@
                                     <Grid.ContextMenu>
                                         <ContextMenu>
                                             <MenuItem 
-                                                Header="{x:Static p:Resources.Add }"
+                                                Header="{x:Static p:Resources.AddNewAlbum }"
                                                 Click="OnAdd_Click"/>
 
                                             <MenuItem 

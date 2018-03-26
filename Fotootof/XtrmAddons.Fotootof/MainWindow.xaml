@@ -44,7 +44,7 @@
             BorderThickness="2"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-
+            
             <ScrollViewer
                 x:Name="ScrollViewerMain">
                 <WrapPanel>

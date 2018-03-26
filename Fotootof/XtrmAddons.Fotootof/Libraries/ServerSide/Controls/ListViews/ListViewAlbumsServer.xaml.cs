@@ -8,18 +8,30 @@ using XtrmAddons.Net.Windows.Controls.Extensions;
 namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Server Controls Albums List View.
+    /// Class XtrmAddons Fotootof Libraries Server Side Controls Albums List View.
     /// </summary>
     public partial class ListViewAlbumsServer : ListViewAlbums
     {
         #region Properties
 
+        /// <summary>
+        /// Property to access to the main add to collection control.
+        /// </summary>
         public override Control AddControl => Button_Add;
 
+        /// <summary>
+        /// Property to access to the main edit item control.
+        /// </summary>
         public override Control EditControl => Button_Edit;
 
+        /// <summary>
+        /// Property to access to the main delete items control.
+        /// </summary>
         public override Control DeleteControl => Button_Delete;
 
+        /// <summary>
+        /// Property to access to the items collection.
+        /// </summary>
         public override ListView ItemsCollection { get => AlbumssCollection; set => AlbumssCollection = value; }
 
         /// <summary>
@@ -87,19 +99,29 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        private void ClearItemsSelection_Click(object sender, RoutedEventArgs e)
+        /*private void ClearItemsSelection_Click(object sender, RoutedEventArgs e)
         {
             ItemsCollection.SelectedItems.Clear();
-        }
+        }*/
 
         /// <summary>
         /// Method called on select all click event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        private void SelectAllItems_Click(object sender, RoutedEventArgs e)
+        private void SelectAll_Click(object sender, RoutedEventArgs e)
         {
             ItemsCollection.SelectAll();
+        }
+
+        /// <summary>
+        /// Method called on unselect all click event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        private void UnselectAll_Click(object sender, RoutedEventArgs e)
+        {
+            ItemsCollection.UnselectAll();
         }
 
         /// <summary>

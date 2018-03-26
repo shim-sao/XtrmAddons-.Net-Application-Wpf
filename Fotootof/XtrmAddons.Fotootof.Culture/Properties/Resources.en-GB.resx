@@ -120,6 +120,9 @@
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="AddNewAlbum" xml:space="preserve">
+    <value>Add a new album</value>
+  </data>
   <data name="AddPictures" xml:space="preserve">
     <value>Add Pictures</value>
   </data>

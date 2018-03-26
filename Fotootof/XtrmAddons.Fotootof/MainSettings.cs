@@ -79,8 +79,7 @@ namespace XtrmAddons.Fotootof
                 MessageBox.Show("Starting server : [" + server?.Host + ":" + server?.Port + "] failed !", Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            AppLogger.Info("Initializing HTTP server connection. Done.");
-            AppLogger.Close();
+            AppLogger.InfoAndClose("Initializing HTTP server connection. Done.");
         }
 
         /// <summary>
