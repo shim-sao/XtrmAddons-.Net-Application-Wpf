@@ -23,6 +23,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// </summary>
         private WindowFormSectionModel<WindowFormSection> model;
 
+        #endregion
+
+
+
+        #region Properties
+
         /// <summary>
         /// Variable old Section informations backup.
         /// </summary>
@@ -46,8 +52,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Common Windows Form Section Constructor.
         /// </summary>
-        /// <param name="entity"></param>
-        public WindowFormSection(SectionEntity entity = null) : base()
+        /// <param name="entity">A Section entity.</param>
+        public WindowFormSection(SectionEntity entity = default(SectionEntity)) : base()
         {
             InitializeComponent();
             InitializeModel(entity);
@@ -64,13 +70,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// <summary>
         /// Method called on Window loaded event.
         /// </summary>
+        /// <param name="entity">A Section entity.</param>
         protected void InitializeModel(SectionEntity entity)
         {
             // Initialize view model.
             model = new WindowFormSectionModel<WindowFormSection>(this);
 
             // Initialize User first.
-            entity = entity ?? new SectionEntity();
+            //entity = entity ?? new SectionEntity();
 
             if (entity.PrimaryKey > 0)
             {
@@ -97,6 +104,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// <summary>
         /// Method called on Window loaded event.
         /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Routed event atguments.</param>
         protected void Window_Load(object sender, RoutedEventArgs e)
         {
             DataContext = model;
@@ -197,8 +206,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Routed event atguments.</param>
         private void CheckBoxAclGroup_Checked(object sender, RoutedEventArgs e)
         {
             AclGroupEntity entity = (AclGroupEntity)((CheckBox)sender).Tag;
@@ -208,8 +217,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Routed event atguments.</param>
         private void CheckBoxAclGroup_UnChecked(object sender, RoutedEventArgs e)
         {
             AclGroupEntity entity = (AclGroupEntity)((CheckBox)sender).Tag;

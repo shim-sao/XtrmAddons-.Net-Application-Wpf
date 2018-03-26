@@ -24,6 +24,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// </summary>
         private WindowFormAlbumModel<WindowFormAlbum> model;
 
+        #endregion
+
+
+
+        #region Properties
+
         /// <summary>
         /// Variable old Album informations backup.
         /// </summary>
@@ -48,11 +54,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// Class XtrmAddons Fotootof Libraries Common Window Form Album Constructor.
         /// </summary>
         /// <param name="entity"></param>
-        public WindowFormAlbum(AlbumEntity entity = null) : base()
+        public WindowFormAlbum(AlbumEntity entity = default(AlbumEntity)) : base()
         {
             InitializeComponent();
-            model = new WindowFormAlbumModel<WindowFormAlbum>(this);
-            Loaded += (s, e) => Window_Load(entity);
+            InitializeModel(entity);
+            Loaded += Window_Load;
+            Closing += Window_Closing;
         }
 
         #endregion
@@ -62,33 +69,44 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         #region Methods
 
         /// <summary>
-        /// 
+        /// Method called on Window loaded event.
         /// </summary>
-        /// <param name="entity"></param>
-        private void Window_Load(AlbumEntity entity)
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Routed event atguments.</param>
+        protected void Window_Load(object sender, RoutedEventArgs e)
         {
-            // Assign closing event.
-            Closing += Window_Closing;
-
-            // Initialize User first.
-            entity = entity ?? new AlbumEntity();
-
-            // Store data in new entity.
-            OldForm = entity.Clone();
-
-            // Assign Parent Page & entity to the model.
-            NewForm = entity;
-            IsSectionInAlbum.Entity = NewForm;
-
-            // Assign list of AclGroup to the model.
-            model.Sections = new SectionEntityCollection();
-
             DataContext = model;
 
             InputName.TextChanged += InputName_TextChanged;
             InputAlias.TextChanged += InputAlias_TextChanged;
             InputDescription.TextChanged += InputDescription_TextChanged;
             InputComment.TextChanged += InputComment_TextChanged;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        private void InitializeModel(AlbumEntity entity)
+        {
+            model = new WindowFormAlbumModel<WindowFormAlbum>(this);
+
+            // Initialize User first.
+            //entity = entity ?? new AlbumEntity();
+
+            if (entity.PrimaryKey > 0)
+            {
+                entity.Initialize();
+            }
+
+            // Store data in new entity.
+            OldForm = entity.Clone();
+
+            // Assign Parent Page & entity to the model.
+            IsSectionInAlbum.Entity = NewForm = entity;
+
+            // Assign list of AclGroup to the model.
+            model.Sections = new SectionEntityCollection(true);
         }
 
         /// <summary>

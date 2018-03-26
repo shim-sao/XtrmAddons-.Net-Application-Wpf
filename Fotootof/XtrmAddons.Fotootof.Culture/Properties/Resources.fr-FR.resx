@@ -120,6 +120,9 @@
   <data name="Add" xml:space="preserve">
     <value>Ajouter</value>
   </data>
+  <data name="AddNewAlbum" xml:space="preserve">
+    <value>Ajouter un album</value>
+  </data>
   <data name="AddPictures" xml:space="preserve">
     <value>Ajouter des Images</value>
   </data>

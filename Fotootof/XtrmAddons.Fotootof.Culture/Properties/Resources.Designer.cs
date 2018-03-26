@@ -421,6 +421,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add a new album.
+        /// </summary>
+        public static string AddNewAlbum {
+            get {
+                return ResourceManager.GetString("AddNewAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Add Pictures.
         /// </summary>
         public static string AddPictures {
