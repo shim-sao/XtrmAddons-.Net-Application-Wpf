@@ -64,11 +64,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         public void Page_Loaded()
         {
-            ItemsCollectionStorages.MinHeight = GridRoot.ActualHeight - Block_Header.ActualHeight;
-            ItemsCollectionStorages.Height = GridRoot.ActualHeight - Block_Header.ActualHeight;
-
             GridRoot.MaxWidth = ActualWidth - 17;
             GridRoot.Width = ActualWidth - 17;
+
+            ItemsCollection.MinHeight = GridRoot.ActualHeight - Block_Header.ActualHeight;
+            ItemsCollection.Height = GridRoot.ActualHeight - Block_Header.ActualHeight;
 
             /*ItemsCollectionStorages.MaxWidth = GridRoot.ActualWidth - 20;
             ItemsCollectionStorages.Width = GridRoot.ActualWidth - 20;*/

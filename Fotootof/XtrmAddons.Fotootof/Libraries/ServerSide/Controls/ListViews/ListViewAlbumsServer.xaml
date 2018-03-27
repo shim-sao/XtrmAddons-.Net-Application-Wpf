@@ -7,7 +7,8 @@
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews"
     mc:Ignorable="d"
-    HorizontalAlignment="Stretch">
+    HorizontalAlignment="Stretch"
+    SizeChanged="Window_Resize">
 
     <!-- #region : list -->
     <Grid

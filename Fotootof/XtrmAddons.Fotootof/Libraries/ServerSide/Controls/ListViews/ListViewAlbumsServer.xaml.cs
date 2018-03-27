@@ -66,6 +66,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             InitializeComponent();
             ItemsCollection.KeyDown += ItemsCollection.AddKeyDownSelectAllItems;
             //ItemsCollection.Loaded += (s,e) => ControlHeaderTotal.Text = Albums.Count.ToString();
+            Loaded += (s, e) => Page_Loaded();
         }
 
         #endregion
@@ -132,6 +133,31 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ControlHeaderSelectedNumber.Text = SelectedItems.Count.ToString();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Page_Loaded()
+        {
+            ItemsCollection.MinHeight = GridRoot.ActualHeight - Block_Header.ActualHeight;
+            ItemsCollection.Height = GridRoot.ActualHeight - Block_Header.ActualHeight;
+
+            GridRoot.MaxWidth = ActualWidth - 17;
+            GridRoot.Width = ActualWidth - 17;
+
+            /*ItemsCollectionStorages.MaxWidth = GridRoot.ActualWidth - 20;
+            ItemsCollectionStorages.Width = GridRoot.ActualWidth - 20;*/
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Resize(object sender, SizeChangedEventArgs e)
+        {
+            Page_Loaded();
         }
 
         #endregion
