@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,7 +13,8 @@ using XtrmAddons.Net.Windows.Controls.Extensions;
 namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Side Pages Browser.
+    /// <para>Class XtrmAddons Fotootof Server Side Component Browser View.</para>
+    /// <para>This page is design to display a simple file browser for media manangement.</para>
     /// </summary>
     public partial class PageBrowser : PageBase
     {
@@ -26,12 +26,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         public PageBrowserModel<PageBrowser> Model { get; private set; }
 
         /// <summary>
-        ///
+        /// Property to access to the image size to display.
         /// </summary>
         public Size ImageSize { get; set; } = new Size { Height = 32, Width = 32 };
 
         /// <summary>
-        /// 
+        /// Property to access to the current directory system informations.
         /// </summary>
         public DirectoryInfo CurrentDirectoryInfo { get; set; }
 
@@ -43,13 +43,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Side Pages Browser Constructor.
+        /// Class XtrmAddons Fotootof Server Side Component Browser View.
         /// </summary>
         public PageBrowser()
         {
             InitializeComponent();
             AfterInitializedComponent();
-            Loaded += (s, e) => Page_Loaded();
         }
 
         #endregion
@@ -58,7 +57,27 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
         #region Methods
 
-        public void Page_Loaded()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Resize(object sender, SizeChangedEventArgs e)
+        {
+            ResizeElements();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ResizeElements();
+        }
+
+        public void ResizeElements()
         {
             MiddleContents.MinHeight = GridRoot.ActualHeight - TopControls.ActualHeight;
             MiddleContents.Height = GridRoot.ActualHeight - TopControls.ActualHeight;
@@ -289,14 +308,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             Refresh_UcListViewStoragesServer();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Window_Resize(object sender, SizeChangedEventArgs e)
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Page_Loaded();
+            throw new NotImplementedException();
         }
 
         #endregion

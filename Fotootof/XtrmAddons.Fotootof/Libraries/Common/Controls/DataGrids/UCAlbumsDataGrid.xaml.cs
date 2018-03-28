@@ -197,6 +197,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
         }
 
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

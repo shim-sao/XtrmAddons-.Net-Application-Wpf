@@ -70,5 +70,10 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids
 
             AppNavigator.NavigateToPageCatalogClient(clientHttp);
         }
+
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

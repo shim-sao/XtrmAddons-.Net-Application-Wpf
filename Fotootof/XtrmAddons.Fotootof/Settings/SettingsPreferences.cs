@@ -17,7 +17,6 @@ namespace XtrmAddons.Fotootof.Settings
         {
             await Task.Run(() =>
             {
-                
                 // Create path to configuration server directory. 
                 Directory temp = new Directory
                 {
@@ -40,7 +39,7 @@ namespace XtrmAddons.Fotootof.Settings
                 };
                 ApplicationBase.Storage.Directories.ReplaceKey(temp);
                 temp.Create();
-                Trace.WriteLine("config.server = " + ApplicationBase.Storage.Directories.FindKey("cache.filestypes").AbsolutePath);
+                Trace.WriteLine("config.server = " + ApplicationBase.Storage.Directories.FindKey("config.server").AbsolutePath);
 
                 // Create path to configuration database directory
                 temp = new Directory

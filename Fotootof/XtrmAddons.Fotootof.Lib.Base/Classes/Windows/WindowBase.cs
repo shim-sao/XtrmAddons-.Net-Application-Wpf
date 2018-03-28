@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using System;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
 {
@@ -37,6 +38,32 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
 
 
         #region Methods
+
+        /// <summary>
+        /// Method to convert a Framework Element tag to an object type.
+        /// </summary>
+        /// <param name="fe">A framework element.</param>
+        public static T Tag2Object<T>(object fe, bool defaut = false) where T : class
+        {
+            if (fe is null)
+            {
+                throw new ArgumentNullException(nameof(fe));
+            }
+
+            if (!fe.GetType().IsSubclassOf(typeof(FrameworkElement)))
+            {
+                throw new ArgumentException(fe.GetType() + " " + nameof(fe) + " : invalid parameter type. FrameworkElement inheritance type is required.");
+            }
+
+            if (defaut)
+            {
+                return (T)((FrameworkElement)fe).Tag ?? default(T);
+            }
+            else
+            {
+                return (T)((FrameworkElement)fe).Tag;
+            }
+        }
 
         /// <summary>
         /// Method called on windows closing.

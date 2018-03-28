@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using XtrmAddons.Fotootof.Lib.Api.Models.Json;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
@@ -141,6 +142,11 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
             {
                 AppLogger.Fatal("Loading Sections list failed : " + e.Message, e);
             }
+        }
+
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

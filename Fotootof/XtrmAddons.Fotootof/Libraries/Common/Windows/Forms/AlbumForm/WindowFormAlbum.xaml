@@ -136,7 +136,7 @@
                         CanUserResizeRows="False"
                         SelectionMode="Extended"
                         ItemsSource="{Binding Sections, UpdateSourceTrigger=PropertyChanged}"
-                        DataContext="{Binding DataContext, ElementName=AlbumFormWindow}"
+                        DataContext="{Binding}"
                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                         SelectionUnit="FullRow"
                         HorizontalAlignment="Stretch"

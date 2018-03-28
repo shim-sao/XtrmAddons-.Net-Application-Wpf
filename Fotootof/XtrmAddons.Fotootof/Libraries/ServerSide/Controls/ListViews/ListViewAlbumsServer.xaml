@@ -8,74 +8,80 @@
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews"
     mc:Ignorable="d"
     HorizontalAlignment="Stretch"
-    SizeChanged="Window_Resize">
+    SizeChanged="Control_SizeChanged">
 
-    <!-- #region : list -->
-    <Grid
-        x:Name="GridRoot"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch">
+    <Grid x:Name="GridRoot">
+        
+        <StackPanel x:Name="Block_Main">
 
-        <StackPanel
-            x:Name="Block_Main">
+            <StackPanel x:Name="Block_Header" Background="{StaticResource DarkGrey}">
 
-            <StackPanel
-                x:Name="Block_Header">
+                <!-- #region Block Informations -->
+                <Grid x:Name="Block_Infos">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" x:Name="Block_Title"/>
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
 
-                <!-- #region Title -->
-                <StackPanel 
-                    x:Name="Block_Title"
-                    Background="{StaticResource DarkGrey}">
-                
-                    <Border x:Name="ControlHeaderBorder">
-
+                    <Border x:Name="TitleBorder" Grid.Column="0">
                         <TextBlock
-                            Text="Albums"
+                            x:Name="Title"
+                            Text="{x:Static p:Resources.Albums}"
                             FontSize="{StaticResource FontSizeHeader}"
                             Foreground="{StaticResource BigHeader}"
                             FontWeight="SemiBold"
                             Margin="5"/>
-
                     </Border>
 
-                    <StackPanel
-                        x:Name="ControlHeaderInfos"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Right">
+                    <Border x:Name="CounterBorder" Grid.Column="1">
+                        <StackPanel x:Name="Counter" Orientation="Horizontal" Margin="0,0,10,0">
+                            <TextBlock
+                                x:Name="ControlHeaderSelectedNumber"
+                                FontWeight="SemiBold"
+                                FontSize="{StaticResource FontSizeHeader}"
+                                Foreground="{StaticResource BigHeader}"
+                                Margin="5"
+                                Text="0"/>
 
-                        <TextBlock
-                            x:Name="ControlHeaderSelectedNumber"
-                            FontWeight="SemiBold"
-                            FontSize="{StaticResource FontSizeHeader}"
-                            Foreground="{StaticResource BigHeader}"
-                            Margin="5"
-                            Text="0"/>
+                            <TextBlock
+                                x:Name="ControlHeaderCounterSpacer"
+                                FontWeight="SemiBold"
+                                FontSize="{StaticResource FontSizeHeader}"
+                                Foreground="{StaticResource BigHeader}"
+                                Margin="0,5"
+                                Text="/"/>
 
-                        <TextBlock
-                            x:Name="ControlHeaderCounterSpacer"
-                            FontWeight="SemiBold"
-                            FontSize="{StaticResource FontSizeHeader}"
-                            Foreground="{StaticResource BigHeader}"
-                            Margin="0,5"
-                            Text="/"/>
+                            <TextBlock
+                                x:Name="ControlHeaderTotal"
+                                FontWeight="SemiBold"
+                                FontSize="{StaticResource FontSizeHeader}"
+                                Foreground="{StaticResource BigHeader}"
+                                Margin="5"
+                                Text="{Binding Path=Items.Count}"/>
 
-                        <TextBlock
-                            x:Name="ControlHeaderTotal"
-                            FontWeight="SemiBold"
-                            FontSize="{StaticResource FontSizeHeader}"
-                            Foreground="{StaticResource BigHeader}"
-                            Margin="5"
-                            Text="{Binding Path=Albums.Count}"/>
+                        </StackPanel>
+                    </Border>
 
-                    </StackPanel>
-                </StackPanel>
-                <!-- #endregion Title -->
+                </Grid>
+                <!-- #end Block Informations -->
+
+
+
+                <!-- #region Block Menu -->
+                <Grid x:Name="Block_Menu" Background="AliceBlue">
+
+                    
+
+                    
+                </Grid>
+                <!-- #endregion Block Menu -->
 
 
                 <!-- #region Menu -->
-                <StackPanel
-                    x:Name="Block_Menu"
-                    Background="{StaticResource DarkGrey}">
+                <StackPanel x:Name="Block_Menu1" Orientation="Horizontal">
 
                     <Border
                         x:Name="ControlMenuBorder"
@@ -238,8 +244,7 @@
                     MouseDoubleClick="ItemsCollection_MouseDoubleClick"
                     SelectionChanged="ItemsCollection_SelectionChanged"
                     Margin="0,0,5,10"
-                    Padding="0,5,0,10"
-                    MinHeight="860">
+                    Padding="0,5,0,10">
 
                     <ListView.ContextMenu>
                         <ContextMenu>
@@ -468,10 +473,9 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                
             </Grid>
+            <!-- #endregion : list -->
             
         </StackPanel>
     </Grid>
-    <!-- #endregion : list -->
 </base:ListViewAlbums>

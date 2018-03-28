@@ -190,7 +190,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             UINavigation.AppWindow.FrameMain.Height = UINavigation.AppWindow.RowGridMain.Height.Value;
             */
             AppNavigator.MainWindow.UpdateLayout();
-            Console.WriteLine("AppWindow.ActualHeight = " + AppWindow.ActualHeight);
 
             if (MenuItemDisplayLogsWindow.IsChecked == true)
             {

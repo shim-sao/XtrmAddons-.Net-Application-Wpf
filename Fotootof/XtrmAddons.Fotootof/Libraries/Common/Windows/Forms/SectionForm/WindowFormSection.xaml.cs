@@ -6,6 +6,7 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
+using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
@@ -210,8 +211,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// <param name="e">Routed event atguments.</param>
         private void CheckBoxAclGroup_Checked(object sender, RoutedEventArgs e)
         {
-            AclGroupEntity entity = (AclGroupEntity)((CheckBox)sender).Tag;
-            model.Section.LinkAclGroup(entity.PrimaryKey);
+            try
+            {
+                model.Section.LinkAclGroup(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Error(ex.Message, true);
+            }
         }
 
         /// <summary>
@@ -221,8 +228,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// <param name="e">Routed event atguments.</param>
         private void CheckBoxAclGroup_UnChecked(object sender, RoutedEventArgs e)
         {
-            AclGroupEntity entity = (AclGroupEntity)((CheckBox)sender).Tag;
-            model.Section.UnLinkAclGroup(entity.PrimaryKey);
+            try
+            {
+                model.Section.UnLinkAclGroup(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Error(ex.Message, true);
+            }
         }
 
         /// <summary>
@@ -232,8 +245,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// <param name="e">Routed event arguments.</param>
         private void CheckBoxAlbum_Checked(object sender, RoutedEventArgs e)
         {
-            AlbumEntity entity = (AlbumEntity)((CheckBox)sender).Tag;
-            model.Section.LinkAlbum(entity.PrimaryKey);
+            try
+            {
+                model.Section.LinkAlbum(Tag2Object<AlbumEntity>(sender).PrimaryKey);
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Error(ex.Message, true);
+            }
         }
 
         /// <summary>
@@ -243,8 +262,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// <param name="e">Routed event arguments.</param>
         private void CheckBoxAlbum_UnChecked(object sender, RoutedEventArgs e)
         {
-            AlbumEntity entity = (AlbumEntity)((CheckBox)sender).Tag;
-            model.Section.UnLinkAlbum(entity.PrimaryKey);
+            try
+            {
+                model.Section.UnLinkAlbum(Tag2Object<AlbumEntity>(sender).PrimaryKey);
+            }
+            catch(Exception ex)
+            {
+                AppLogger.Error(ex.Message, true);
+            }
         }
 
         #endregion

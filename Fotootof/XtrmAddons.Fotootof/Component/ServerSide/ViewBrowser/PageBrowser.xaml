@@ -14,7 +14,8 @@
     Title="{x:Static p:Resources.Browser}"
     Style="{StaticResource ResourceKey=PageContent}"
     Background="{StaticResource ResourceKey=LightGrey}"
-    SizeChanged="Window_Resize">
+    SizeChanged="Window_Resize"
+    Loaded="Window_Loaded">
 
     <Grid x:Name="GridRoot">
 
@@ -29,21 +30,21 @@
                 x:Name="TopControls">
 
                 <!-- #region Main navigation -->
-                    <Border>
-                        <ucmenu:MenuServerMain
-                            x:Name="NavigatorMenu"/>
-                    </Border>
-                    <!-- #endegion Main navigation -->
+                <Border>
+                    <ucmenu:MenuServerMain
+                        x:Name="NavigatorMenu"/>
+                </Border>
+                <!-- #endegion Main navigation -->
 
             
-                    <!-- #region Breadcrumbs -->
-                    <Border>
-                        <TextBlock
-                            x:Name="Breadcrumbs"
-                            Margin="10,5"
-                            FontSize="{StaticResource ResourceKey=FontSizeNormal}" />
-                    </Border>
-                    <!-- #endregion Breadcrumbs -->
+                <!-- #region Breadcrumbs -->
+                <Border>
+                    <TextBlock
+                        x:Name="Breadcrumbs"
+                        Margin="10,5"
+                        FontSize="{StaticResource ResourceKey=FontSizeNormal}" />
+                </Border>
+                <!-- #endregion Breadcrumbs -->
             </StackPanel>
 
 

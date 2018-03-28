@@ -102,6 +102,11 @@ namespace XtrmAddons.Fotootof.Libraries.ClientSide.Controls.ListViews
             ItemsCollection.SelectAll();
         }
 
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
     }
 }

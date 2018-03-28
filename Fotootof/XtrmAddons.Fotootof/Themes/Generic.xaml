@@ -40,4 +40,6 @@
     <system:Int32 x:Key="Icon256String">256</system:Int32>
     <system:Int32 x:Key="Icon512String">512</system:Int32>
 
+    <system:String x:Key="ImageAlbumDefault">Assets\Images\Default\album-default.png</system:String>
+
 </ResourceDictionary>

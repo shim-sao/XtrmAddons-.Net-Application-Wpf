@@ -159,7 +159,7 @@
                         CanUserAddRows="False"
                         SelectionMode="Extended"
                         ItemsSource="{Binding Albums, UpdateSourceTrigger=PropertyChanged}"
-                        DataContext="{Binding DataContext}"
+                        DataContext="{Binding}"
                         RowHeight="22"
                         HorizontalAlignment="Stretch"
                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"

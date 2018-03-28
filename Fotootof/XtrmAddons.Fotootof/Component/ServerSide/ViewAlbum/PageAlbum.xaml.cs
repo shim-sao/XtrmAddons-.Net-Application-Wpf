@@ -1,4 +1,5 @@
-﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
+﻿using System.Windows;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
@@ -108,6 +109,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
             // End of busy indicator.
             AppOverwork.BusyContent = "Initializing page content. Done.";
             AppOverwork.IsBusy = false;
+        }
+
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion

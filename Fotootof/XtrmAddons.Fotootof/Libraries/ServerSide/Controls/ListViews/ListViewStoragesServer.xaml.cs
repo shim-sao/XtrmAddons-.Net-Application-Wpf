@@ -79,7 +79,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Window_Resize(object sender, SizeChangedEventArgs e)
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Page_Loaded();
         }

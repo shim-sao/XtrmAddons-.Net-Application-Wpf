@@ -190,5 +190,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
         {
 
         }
+
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

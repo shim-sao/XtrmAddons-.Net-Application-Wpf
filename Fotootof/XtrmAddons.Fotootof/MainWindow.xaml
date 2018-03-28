@@ -12,19 +12,20 @@
     MinWidth="800"
     Width="1024"
     Height="768"
-    MinHeight="600"
-    Closing="Window_Closing">
+    MinHeight="768"
+    Closing="Window_Closing"
+    SizeChanged="Window_SizeChanged">
 
     <Grid 
         x:Name="GridMainWindow"
-        x:Uid="UIDGGridMainWindow">
+        x:Uid="UidGridMainWindow">
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
-            <RowDefinition x:Name="RowGridMain" Height="*" />
+            <RowDefinition x:Name="RowGridMain" Height="1*" />
             <RowDefinition x:Name="RowGridSplitter" Height="0"/>
             <RowDefinition x:Name="RowGridLogs" Height="0"/>
         </Grid.RowDefinitions>
@@ -38,15 +39,13 @@
         <Border 
             x:Name="BorderFrameMain"
             Grid.Row="1"
-            Margin="2"
             Background="{StaticResource ResourceKey=DarkGrey}"
             BorderBrush="{StaticResource ResourceKey=MediumGrey}"
-            BorderThickness="2"
+            BorderThickness="1"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
             
-            <ScrollViewer
-                x:Name="ScrollViewerMain">
+            <ScrollViewer x:Name="ScrollViewerMain">
                 <WrapPanel>
                     <HeaderedItemsControl Header="Frame">
                         <StackPanel>
@@ -55,7 +54,8 @@
                                 x:Name="FrameMain"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                NavigationUIVisibility="Hidden"/>
+                                NavigationUIVisibility="Hidden">
+                            </Frame>
                         </StackPanel>
                     </HeaderedItemsControl>
                 </WrapPanel>
@@ -72,22 +72,20 @@
         <Border
             x:Name="FrameLogsBorder"
             Grid.Row="3"
-            Margin="5"
             Background="{StaticResource ResourceKey=DarkGrey}"
             BorderBrush="{StaticResource ResourceKey=MediumGrey}"
-            BorderThickness="2">
+            BorderThickness="1">
 
             <ScrollViewer>
                 <WrapPanel>
                     <HeaderedItemsControl Header="Frame">
-                        <StackPanel>
+                        <Grid>
                             <Frame
                                 x:Name="FrameLogs"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                Margin="2" 
                                 NavigationUIVisibility="Hidden"/>
-                        </StackPanel>
+                        </Grid>
                     </HeaderedItemsControl>
                 </WrapPanel>
             </ScrollViewer>

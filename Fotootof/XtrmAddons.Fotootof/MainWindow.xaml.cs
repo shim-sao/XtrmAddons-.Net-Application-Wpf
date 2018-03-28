@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -118,6 +119,17 @@ namespace XtrmAddons.Fotootof
         {
             NotifyIconManager.Dispose();
             log.Info(Translation.Logs["ApplicationClosed"]);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Trace.WriteLine("MainWindow.ActualSize = [" + ActualWidth + "," + ActualHeight + "]");
+            Trace.WriteLine("RowGridMain.Height = [" + RowGridMain.Height + "]");
         }
 
         #endregion

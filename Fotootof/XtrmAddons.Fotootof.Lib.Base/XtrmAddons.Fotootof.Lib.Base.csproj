@@ -90,6 +90,7 @@
     <Compile Include="Enums\EditionMode.cs" />
     <Compile Include="Classes\Images\ImageManager.cs" />
     <Compile Include="Classes\Images\ImageType.cs" />
+    <Compile Include="Interfaces\ISizeChanged.cs" />
     <Compile Include="Interfaces\ILoadCollection.cs" />
     <Compile Include="Interfaces\IControlCollection.cs" />
     <Compile Include="Interfaces\IListItems.cs" />

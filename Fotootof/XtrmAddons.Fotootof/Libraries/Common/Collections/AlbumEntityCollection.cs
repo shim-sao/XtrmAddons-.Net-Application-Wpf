@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Collections
 {
@@ -24,17 +28,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <summary>
         /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
         /// </summary>
-        public AlbumEntityCollection(bool autoLoad = false) : base(autoLoad) { }
-
-        /// <summary>
-        /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
-        /// </summary>
         /// <param name="options">Options for query filters.</param>
-        public AlbumEntityCollection(AlbumOptionsList options = null, bool autoLoad = false)
-        {
-            Options = options;
-            Initialize(autoLoad);
-        }
+        public AlbumEntityCollection(bool autoLoad = false, AlbumOptionsList options = null) : base(autoLoad, options) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
@@ -57,24 +52,27 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// Class method to load a list of Album from database.
         /// </summary>
         /// <param name="options">Options for query filters.</param>
-        public override void Load()
+        protected override void LoadOptions(AlbumOptionsList options = default(AlbumOptionsList))
         {
-            LoadOptions(null);
-        }
+            base.LoadOptions(options);
 
-        /// <summary>
-        /// Class method to load a list of Album from database.
-        /// </summary>
-        /// <param name="options">Options for query filters.</param>
-        public new void LoadOptions(AlbumOptionsList options = null)
-        {
-            options = options ?? Options;
-            options = options ?? OptionsDefault;
-
-            var items = MainWindow.Database.Albums.List(options);
-            foreach (AlbumEntity entity in items)
+            string defaultImg = Path.Combine(ApplicationBase.AssetsImagesDefaultDirectory, "album-default.png");
+            foreach (AlbumEntity entity in Items)
             {
-                Add(entity);
+                if (entity.OriginalPath.IsNullOrWhiteSpace())
+                {
+                    entity.OriginalPath = defaultImg;
+                }
+
+                if (entity.ThumbnailPath.IsNullOrWhiteSpace())
+                {
+                    entity.ThumbnailPath = defaultImg;
+                }
+
+                if (entity.PicturePath.IsNullOrWhiteSpace())
+                {
+                    entity.PicturePath = defaultImg;
+                }
             }
         }
 
