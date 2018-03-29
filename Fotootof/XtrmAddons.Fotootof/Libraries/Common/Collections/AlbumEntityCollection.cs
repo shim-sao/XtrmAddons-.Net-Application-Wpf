@@ -59,20 +59,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             string defaultImg = Path.Combine(ApplicationBase.AssetsImagesDefaultDirectory, "album-default.png");
             foreach (AlbumEntity entity in Items)
             {
-                if (entity.OriginalPath.IsNullOrWhiteSpace())
-                {
-                    entity.OriginalPath = defaultImg;
-                }
-
-                if (entity.ThumbnailPath.IsNullOrWhiteSpace())
-                {
-                    entity.ThumbnailPath = defaultImg;
-                }
-
-                if (entity.PicturePath.IsNullOrWhiteSpace())
-                {
-                    entity.PicturePath = defaultImg;
-                }
+                entity.InitializeImages();
             }
         }
 

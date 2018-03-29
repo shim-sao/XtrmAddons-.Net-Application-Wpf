@@ -8,6 +8,7 @@
     <SolidColorBrush x:Key="MediumGrey" Color="DarkGray" />
     <SolidColorBrush x:Key="DarkGrey" Color="#424242" />
     <SolidColorBrush x:Key="LightBlack" Color="#111111" />
+    <SolidColorBrush x:Key="Transparent" Color="Transparent" />
     
     <!-- Generic colors messages -->
     <SolidColorBrush x:Key="Ready" Color="#A2C176" />

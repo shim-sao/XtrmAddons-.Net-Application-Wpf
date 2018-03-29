@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     mc:Ignorable="d"
-    Height="45">
+    Height="40">
     
     <Grid HorizontalAlignment="Stretch">
         
@@ -22,13 +22,15 @@
                 <Button 
                     x:Name="ServerItemButton"
                     Content="{x:Static p:Resources.Server}"
-                    FontSize="{StaticResource Text-H3}"
+                    FontSize="{StaticResource Text-H4}"
                     Background="Transparent"
-                    Padding="10"
+                    Padding="10,0"
                     Foreground="White"
                     FontWeight="Bold"
                     BorderThickness="0"
-                    Click="NavigateToPageServer"/>
+                    Click="NavigateToPageServer"
+                    MouseEnter="ItemButton_MouseEnter"
+                    MouseLeave="ItemButton_MouseLeave"/>
 
             </Border>
 
@@ -39,13 +41,15 @@
                 <Button 
                     x:Name="BrowserItemButton"
                     Content="{x:Static p:Resources.Browser}"
-                    FontSize="{StaticResource Text-H3}"
+                    FontSize="{StaticResource Text-H4}"
                     Background="Transparent"
-                    Padding="10"
+                    Padding="10,0"
                     Foreground="White"
                     FontWeight="Bold"
                     BorderThickness="0"
-                    Click="NavigateToPageBrowser"/>
+                    Click="NavigateToPageBrowser"
+                    MouseEnter="ItemButton_MouseEnter"
+                    MouseLeave="ItemButton_MouseLeave"/>
 
             </Border>
 
@@ -55,13 +59,15 @@
 
                 <Button
                     Content="{x:Static p:Resources.Catalog}"
-                    FontSize="{StaticResource Text-H3}"
+                    FontSize="{StaticResource Text-H4}"
                     Background="Transparent"
-                    Padding="10"
+                    Padding="10,0"
                     Foreground="White"
                     FontWeight="Bold"
                     BorderThickness="0"
-                    Click="NavigateToPageCatalog"/>
+                    Click="NavigateToPageCatalog"
+                    MouseEnter="ItemButton_MouseEnter"
+                    MouseLeave="ItemButton_MouseLeave"/>
 
             </Border>
             

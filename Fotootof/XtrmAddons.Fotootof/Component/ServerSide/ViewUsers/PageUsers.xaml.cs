@@ -8,6 +8,8 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Event;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
+using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
+using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
@@ -47,7 +49,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         {
             get
             {
-                AclGroupEntity a = AclGroupsDataGrid.SelectedItem;
+               AclGroupEntity a = AclGroupsDataGrid.SelectedItem;
 
                 UserOptionsList op = new UserOptionsList
                 {
@@ -95,7 +97,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             //await Task.Delay(1000);
 
             // Paste page to User list.
-            model = model ?? new PageUsersModel<PageUsers>(this);
+            model = model ?? new PageUsersModel<PageUsers>(this)
+            {
+                AclGroups = new DataGridAclGroupsModel<DataGridAclGroups>()
+            };
             AclGroupsDataGrid.Tag = this;
 
             LoadAclGroups();
@@ -109,10 +114,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             AclGroupsDataGrid.DefaultChanged += AclGroupsDataGrid_DefaultChanged;
             AclGroupsDataGrid.SelectionChanged += (s, e) => { LoadUsers(); };
 
-            UsersListView.OnAdd += UsersListView_UserAdded;
-            UsersListView.OnChange += UsersListView_UserChanged;
-            UsersListView.OnCancel += UsersListView_UserCanceled;
-            UsersListView.OnDelete += UsersListView_UserDeleled;
+            UsersDataGrid.OnAdd += UsersListView_UserAdded;
+            UsersDataGrid.OnChange += UsersListView_UserChanged;
+            UsersDataGrid.OnCancel += UsersListView_UserCanceled;
+            UsersDataGrid.OnDelete += UsersListView_UserDeleled;
 
             AppOverwork.IsBusy = false;
         }
@@ -141,8 +146,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             {
 
                 AppLogger.Info("Loading Acl Groups list. Please wait...");
-                model.AclGroups = new AclGroupEntityCollection(true);
-                AppLogger.Info("Loading Acl Groups list. Done.");
+                model.AclGroups.Items = new AclGroupEntityCollection(true);
+                AppLogger.InfoAndClose("Loading Acl Groups list. Done.");
             }
             catch (Exception e)
             {
@@ -158,10 +163,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         private void AclGroupsDataGrid_AclGroupCanceled(object sender, EntityChangesEventArgs e)
         {
             AppLogger.Info("Adding or editing AclGroup operation canceled. Please wait...");
-
             LoadAclGroups();
-
-            AppLogger.Info("Adding or editing AclGroup operation canceled. Done.");
+            AppLogger.InfoAndClose("Adding or editing AclGroup operation canceled. Done.");
         }
 
         /// <summary>
@@ -174,12 +177,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             AppLogger.Info("Saving new AclGroup informations. Please wait...");
 
             AclGroupEntity item = (AclGroupEntity)e.NewEntity;
-            model.AclGroups.Add(item);
+            model.AclGroups.Items.Add(item);
             AclGroupEntityCollection.DbInsert(new List<AclGroupEntity> { item });
 
             Refresh();
 
-            AppLogger.Info("Saving new AclGroup informations. Done.");
+            AppLogger.InfoAndClose("Saving new AclGroup informations. Done.");
         }
 
         /// <summary>
@@ -192,14 +195,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             AppLogger.Info("Saving AclGroup informations. Please wait...");
 
             AclGroupEntity newEntity = (AclGroupEntity)e.NewEntity;
-            AclGroupEntity old = model.AclGroups.Single(x => x.AclGroupId == newEntity.AclGroupId);
-            int index = model.AclGroups.IndexOf(old);
-            model.AclGroups[index] = newEntity;
+            AclGroupEntity old = model.AclGroups.Items.Single(x => x.AclGroupId == newEntity.AclGroupId);
+            int index = model.AclGroups.Items.IndexOf(old);
+            model.AclGroups.Items[index] = newEntity;
             AclGroupEntityCollection.DbUpdateAsync(new List<AclGroupEntity> { newEntity }, new List<AclGroupEntity> { old });
 
             Refresh();
 
-            AppLogger.Info("Saving AclGroup informations. Done.");
+            AppLogger.InfoAndClose("Saving AclGroup informations. Done.");
         }
 
         /// <summary>
@@ -214,14 +217,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             AclGroupEntity item = (AclGroupEntity)e.NewEntity;
 
             // Remove item from list.
-            model.AclGroups.Remove(item);
+            model.AclGroups.Items.Remove(item);
 
             // Delete item from database.
             AclGroupEntityCollection.DbDelete(new List<AclGroupEntity> { item });
 
             Refresh();
 
-            AppLogger.Info("Deleting AclGroup(s). Done.");
+            AppLogger.InfoAndClose("Deleting AclGroup(s). Done.");
         }
 
         /// <summary>
@@ -237,7 +240,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             AclGroupEntityCollection.SetDefault(newEntity);
             LoadAclGroups();
 
-            AppLogger.Info("Setting default Section. Done.");
+            AppLogger.InfoAndClose("Setting default Section. Done.");
         }
 
         #endregion
@@ -256,9 +259,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
                 AppLogger.Info("Loading Users list. Please wait...");
                 UserEntityCollection Users = new UserEntityCollection(UserOptionsList, false);
                 Users.Load();
-
                 model.Users = Users;
-                AppLogger.Info("Loading Users list. Done.");
+
+                AppLogger.InfoAndClose("Loading Users list. Done.");
             }
             catch (Exception e)
             {
@@ -277,7 +280,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             LoadUsers();
 
-            AppLogger.Info("Adding or editing AclGroup operation canceled. Done.");
+            AppLogger.InfoAndClose("Adding or editing AclGroup operation canceled. Done.");
         }
 
         /// <summary>
@@ -296,7 +299,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            AppLogger.Info("Adding or editing User informations. Done");
+            AppLogger.InfoAndClose("Adding or editing User informations. Done");
         }
 
         /// <summary>
@@ -337,9 +340,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            AppLogger.Info("Deleting User(s). Done.");
+            AppLogger.InfoAndClose("Deleting User(s). Done.");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             throw new NotImplementedException();

@@ -59,7 +59,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// </summary>
         /// <param name="s">The message to add to queue.</param>
         /// <param name="log4net">Add message to logs handler.</param>
-        public static async void Info(string s, bool log4net = false, int delay = 1000)
+        public static async void Info(string s, bool log4net = false, int delay = 0)
         {
             if (log4net)
             {
@@ -70,9 +70,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
             {
                 AppOverwork.IsBusy = true;
                 AppOverwork.BusyContent = s;
-                
+
                 LogsDisplay("INFO : " + s);
             }));
+
+            LogsDisplay("INFO : " + s);
 
             await Task.Delay(delay);
         }

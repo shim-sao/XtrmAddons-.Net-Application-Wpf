@@ -59,7 +59,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         /// </summary>
         /// <param name="PageBase">The parent Page Base of the window.</param>
         /// <param name="entity">A user entity.</param>
-        public WindowFormUser(UserEntity entity = null, PageBase owner = null)
+        public WindowFormUser(UserEntity entity = default(UserEntity), PageBase owner = null)
         {
             // Initialize window component.
             InitializeComponent();

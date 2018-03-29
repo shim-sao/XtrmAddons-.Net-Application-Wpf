@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
+using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
+using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 {
@@ -11,10 +13,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
     {
         #region Variables
 
-    /// <summary>
-    /// Variable observable collection of AclGroups.
-    /// </summary>
-    private ObservableCollection<AclGroupEntity> aclGroups;
+        /// <summary>
+        /// Variable observable collection of AclGroups.
+        /// </summary>
+        private DataGridAclGroupsModel<DataGridAclGroups> aclGroups;
         
         /// <summary>
         /// Variable observable collection of Users.
@@ -29,7 +31,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <summary>
         /// Property to access to the observable collection of AclGroups.
         /// </summary>
-        public ObservableCollection<AclGroupEntity> AclGroups
+        public DataGridAclGroupsModel<DataGridAclGroups> AclGroups
         {
             get { return aclGroups; }
             set

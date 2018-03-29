@@ -135,7 +135,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
         /// <param name="e">Routed event arguments.</param>
         private void CheckBoxAlbum_Checked(object sender, RoutedEventArgs e)
         {
-            CheckBoxAlbum_Checked<AlbumEntity>(sender, e);
+            CheckBox_Checked<AlbumEntity>(sender, e);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
         /// <param name="e">Routed event arguments.</param>
         private void CheckBoxAlbum_UnChecked(object sender, RoutedEventArgs e)
         {
-            CheckBoxAlbum_UnChecked<AlbumEntity>(sender, e);
+            CheckBox_UnChecked<AlbumEntity>(sender, e);
         }
 
         #endregion

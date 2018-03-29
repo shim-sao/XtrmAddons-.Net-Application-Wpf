@@ -248,12 +248,17 @@
       <DependentUpon>PageUsers.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\ServerSide\ViewUsers\PageUsersModel.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroups.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroupsModel.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\ListViewStorages.cs" />
     <Compile Include="Libraries\Common\Tools\AppLogger.cs" />
     <Compile Include="Libraries\Common\Tools\AppOverwork.cs" />
     <Compile Include="Libraries\Common\Tools\AppNavigator.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml.cs">
+      <DependentUpon>DataGridAclGroupsServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridHttpClientModel.cs" />
     <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml.cs">
@@ -282,7 +287,6 @@
     <Compile Include="Libraries\ClientSide\Controls\ListViews\ListViewAlbumsClient.xaml.cs">
       <DependentUpon>ListViewAlbumsClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroup.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsers.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\ListViewAlbums.cs" />
     <Compile Include="Libraries\Common\Controls\Menu\MenuMain.xaml.cs">
@@ -313,9 +317,6 @@
       <DependentUpon>UCToolTipPicture.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\Converters\CheckBoxAlbumInSection.cs" />
-    <Compile Include="Libraries\Common\Controls\DataGrids\UCAclGroupDataGrid.xaml.cs">
-      <DependentUpon>UCAclGroupDataGrid.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Libraries\Common\Controls\DataGrids\UCUsersDataGrid.xaml.cs">
       <DependentUpon>UCUsersDataGrid.xaml</DependentUpon>
     </Compile>
@@ -425,6 +426,10 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -450,10 +455,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridSectionsServer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Libraries\Common\Controls\DataGrids\UCAclGroupDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -622,7 +623,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Assets\Images\Default\album-default.png">
+    <Content Include="Assets\Images\Default\album-original.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Default\album-picture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Default\album-thumbnail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\Icons\Favicon.ico">
@@ -886,6 +893,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Component\ServerSide\ViewLogs\" />
+    <Folder Include="Libraries\Common\Windows\About\" />
     <Folder Include="Themes\Template\Converter\" />
   </ItemGroup>
   <ItemGroup>

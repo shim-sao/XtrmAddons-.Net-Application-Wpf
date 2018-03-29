@@ -7,6 +7,7 @@
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:dg="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids"
+    xmlns:dgserver="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids"
     xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.UI.Control.Menu"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
@@ -46,12 +47,12 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            
-            <dg:UCAclGroupDataGrid
+
+            <dgserver:DataGridAclGroupsServer
                 x:Name="AclGroupsDataGrid"
                 Grid.Row="0"
                 Grid.Column="0"
-                DataContext="{Binding}"
+                DataContext="{Binding AclGroups}"
                 HorizontalAlignment="Left"/>
 
             <GridSplitter
@@ -63,7 +64,7 @@
                 Background="{StaticResource ResourceKey=DarkGrey}"/>
             
             <dg:UCUsersDataGrid
-                x:Name="UsersListView"
+                x:Name="UsersDataGrid"
                 Grid.Row="0"
                 Grid.Column="2"
                 DataContext="{Binding}"

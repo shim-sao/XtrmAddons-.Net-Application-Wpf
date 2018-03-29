@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
@@ -10,7 +9,10 @@ using XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
 {
-    public abstract class DataGridAclGroup : DataGridBase<AclGroupEntityCollection, AclGroupEntity>
+    /// <summary>
+    /// Class XtrmAddons Fotootof Libraries Common Controls DataGrid AclGroups.
+    /// </summary>
+    public abstract class DataGridAclGroups : DataGridBase<AclGroupEntityCollection, AclGroupEntity>
     {
         #region Properties
         
@@ -22,7 +24,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
              (
                 "Items",
                 typeof(AclGroupEntityCollection),
-                typeof(DataGridAclGroup),
+                typeof(DataGridAclGroups),
                 new PropertyMetadata(new AclGroupEntityCollection(false))
             );
 
@@ -40,7 +42,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
         public override void OnAdd_Click(object sender, RoutedEventArgs e)
         {
             // Show open file dialog box 
-            WindowFormAclGroup dlg = new WindowFormAclGroup(new AclGroupEntity());
+            WindowFormAclGroup dlg = new WindowFormAclGroup();
             bool? result = dlg.ShowDialog();
 
             // Process open file dialog box results 
@@ -127,11 +129,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        private void CheckBoxDefault_Checked(object sender, RoutedEventArgs e)
+        /*private void CheckBoxDefault_Checked(object sender, RoutedEventArgs e)
         {
             AclGroupEntity entity = (AclGroupEntity)((CheckBox)sender).Tag;
             RaiseDefaultChanged(entity);
-        }
+        }*/
 
         #endregion
     }
