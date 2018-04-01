@@ -139,7 +139,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms
         /// Method to check if form is ready for saving.
         /// </summary>
         /// <returns>True if form is ready for saving otherwise, returns False.</returns>
-        protected override bool ValidateForm()
+        protected new bool ValidateForm()
         {
             bool save = true;
 

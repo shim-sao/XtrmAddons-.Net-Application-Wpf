@@ -23,7 +23,8 @@
                     FontSize="{StaticResource FontSizeHeader}"
                     Foreground="{StaticResource BigHeader}"
                     FontWeight="SemiBold"
-                    Margin="5"/>
+                    Margin="5">
+                </TextBlock>
             </Border>
         </Grid>
         <!-- #endregion Sections Header -->
@@ -34,7 +35,7 @@
               Background="{StaticResource DarkGrey}">
             <Border
                 x:Name="ControlMenuItemsBorder">
-                
+
                 <Grid 
                     x:Name="ControlMenuItemsGrid"
                     Margin="0,0,0,3">
@@ -49,15 +50,17 @@
                         Grid.Column="0"
                         Style="{StaticResource Btn}"
                         Content="{x:Static p:Resources.Add }"
-                        Click="OnAdd_Click"/>
-
+                        Click="OnAdd_Click">
+                    </Button>
+                    
                     <Button
                         x:Name="Button_Edit"
                         Grid.Column="1"
                         Style="{StaticResource Btn}"
                         Content="{x:Static p:Resources.Edit }"
                         Click="OnEdit_Click"
-                        IsEnabled="False"/>
+                        IsEnabled="False">
+                    </Button>
 
                     <Button
                         x:Name="Button_Delete"
@@ -65,7 +68,8 @@
                         Style="{StaticResource Btn}"
                         Content="{x:Static p:Resources.Delete}"
                         Click="OnDelete_Click"
-                        IsEnabled="False"/>
+                        IsEnabled="False">
+                    </Button>
                 </Grid>
             </Border>
         </Grid>

@@ -10,14 +10,14 @@ using XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm;
 namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Libraries Common Controls DataGrids Users.
+    /// Class XtrmAddons Fotootof Libraries Common Controls DataGrids Users.
     /// </summary>
     public abstract class DataGridUsers : DataGridBase<UserEntityCollection, UserEntity>
     {
         #region Properties
 
         /// <summary>
-        /// Property Using a DependencyProperty as the backing store for Items.
+        /// Property Using a DependencyProperty as the backing store for Users Entities.
         /// </summary>
         public new static readonly DependencyProperty PropertyItems =
             DependencyProperty.Register
@@ -41,7 +41,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
         /// <param name="e">Routed event arguments.</param>
         public override void OnAdd_Click(object sender, RoutedEventArgs e)
         {
-            WindowFormUser dlg = new WindowFormUser(new UserEntity());
+            WindowFormUser dlg = new WindowFormUser();
             bool? result = dlg.ShowDialog();
 
             // Process open file dialog box results 

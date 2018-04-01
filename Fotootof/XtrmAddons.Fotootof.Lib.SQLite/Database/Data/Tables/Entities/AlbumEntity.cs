@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 using System.Linq;
+using System.Windows;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
+using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
@@ -310,6 +313,35 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             }
 
             this.InitializeNulls();
+            InitializeImages();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        public void InitializeImages()
+        {
+            if (OriginalPath.IsNullOrWhiteSpace())
+            {
+                OriginalPath = (string)Application.Current.Resources["ImageAlbumDefaultOriginal"];
+                OriginalWidth = 512;
+                OriginalHeight = 512;
+            }
+
+            if (PicturePath.IsNullOrWhiteSpace())
+            {
+                PicturePath = (string)Application.Current.Resources["ImageAlbumDefaultPicture"];
+                PictureWidth = 256;
+                PictureHeight = 256;
+            }
+
+            if (ThumbnailPath.IsNullOrWhiteSpace())
+            {
+                ThumbnailPath = (string)Application.Current.Resources["ImageAlbumDefaultThumbnail"];
+                ThumbnailWidth = 128;
+                ThumbnailHeight = 128;
+            }
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace XtrmAddons.Fotootof.Component.Logs.Pages
@@ -13,7 +14,7 @@ namespace XtrmAddons.Fotootof.Component.Logs.Pages
         /// <summary>
         /// Variable page width marging for content adjustement on size changed.
         /// </summary>
-        protected double MargingWidth = 55;
+        protected double MargingWidth = 17;
 
         #endregion
 

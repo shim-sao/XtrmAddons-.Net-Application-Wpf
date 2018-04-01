@@ -38,7 +38,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids
         #region Properties
 
         /// <summary>
-        /// Property items collection.
+        /// Property to access to the items collection.
         /// </summary>
         public T Items { get => (T)GetValue(PropertyItems); set => SetValue(PropertyItems, value); }
 
@@ -119,7 +119,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids
             }
             else
             {
-                DeleteControl.IsEnabled = true;
+                if (DeleteControl != null) DeleteControl.IsEnabled = true;
 
                 if (SelectedItems.Count > 1)
                 {
@@ -139,8 +139,8 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids
         /// <param name="e">Routed event arguments.</param>
         protected void CheckBoxDefault_Checked<V>(object sender, RoutedEventArgs e) where V : U
         {
-            V entity = (V)((CheckBox)sender).Tag;
-            RaiseDefaultChanged(entity);
+            V item = (V)((CheckBox)sender).Tag;
+            RaiseDefaultChanged(item);
         }
 
         /// <summary>
@@ -149,13 +149,13 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        protected void CheckBoxAlbum_Checked<V>(object sender, RoutedEventArgs e) where V : U
+        protected void CheckBox_Checked<V>(object sender, RoutedEventArgs e) where V : U
         {
-            V entity = (V)((CheckBox)sender).Tag;
+            V item = (V)((CheckBox)sender).Tag;
 
-            if (!SelectedItems.Contains(entity))
+            if (!SelectedItems.Contains(item))
             {
-                SelectedItems.Add(entity);
+                SelectedItems.Add(item);
             }
         }
 
@@ -165,13 +165,13 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        protected void CheckBoxAlbum_UnChecked<V>(object sender, RoutedEventArgs e) where V : U
+        protected void CheckBox_UnChecked<V>(object sender, RoutedEventArgs e) where V : U
         {
-            V entity = (V)((CheckBox)sender).Tag;
+            V item = (V)((CheckBox)sender).Tag;
 
-            if (SelectedItems.Contains(entity))
+            if (SelectedItems.Contains(item))
             {
-                SelectedItems.Remove(entity);
+                SelectedItems.Remove(item);
             }
         }
 

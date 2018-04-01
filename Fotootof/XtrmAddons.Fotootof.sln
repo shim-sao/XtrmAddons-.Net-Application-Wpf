@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Culture
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "XtrmAddons.Fotootof.Setup", "XtrmAddons.Fotootof.Setup\XtrmAddons.Fotootof.Setup.vdproj", "{A6939713-6744-42EE-AB30-145D0E9A651F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Template", "XtrmAddons.Fotootof.Template\XtrmAddons.Fotootof.Template.csproj", "{50E16040-6E0B-411F-A4A0-31A97A64F234}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,18 @@ Global
 		{A6939713-6744-42EE-AB30-145D0E9A651F}.Release|Any CPU.ActiveCfg = Release
 		{A6939713-6744-42EE-AB30-145D0E9A651F}.Release|x64.ActiveCfg = Release
 		{A6939713-6744-42EE-AB30-145D0E9A651F}.Release|x86.ActiveCfg = Release
+		{50E16040-6E0B-411F-A4A0-31A97A64F234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50E16040-6E0B-411F-A4A0-31A97A64F234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50E16040-6E0B-411F-A4A0-31A97A64F234}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{50E16040-6E0B-411F-A4A0-31A97A64F234}.Debug|x64.Build.0 = Debug|Any CPU
+		{50E16040-6E0B-411F-A4A0-31A97A64F234}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{50E16040-6E0B-411F-A4A0-31A97A64F234}.Debug|x86.Build.0 = Debug|Any CPU
+		{50E16040-6E0B-411F-A4A0-31A97A64F234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50E16040-6E0B-411F-A4A0-31A97A64F234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50E16040-6E0B-411F-A4A0-31A97A64F234}.Release|x64.ActiveCfg = Release|Any CPU
+		{50E16040-6E0B-411F-A4A0-31A97A64F234}.Release|x64.Build.0 = Release|Any CPU
+		{50E16040-6E0B-411F-A4A0-31A97A64F234}.Release|x86.ActiveCfg = Release|Any CPU
+		{50E16040-6E0B-411F-A4A0-31A97A64F234}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

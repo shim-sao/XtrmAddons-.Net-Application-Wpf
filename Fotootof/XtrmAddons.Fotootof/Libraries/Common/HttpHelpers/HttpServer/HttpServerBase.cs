@@ -15,8 +15,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         private static event EventHandler OnServerStart = delegate { };
 
+        /// <summary>
+        /// 
+        /// </summary>
         private static event EventHandler OnServerStop = delegate { };
 
         #endregion
@@ -72,7 +78,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
         public static void Stop()
         {
             HttpWebServerApplication.Stop();
-            AppLogger.InfoAndClose(AppLogger.Translate("ServerStarted"), true);
+            AppLogger.InfoAndClose(AppLogger.Translate("ServerStop"), true);
 
             RaiseServerStop();
         }
@@ -123,7 +129,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
             AppLogger.Info("Disabling external server access. Done.");
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="handler">Event handler.</param>
         public static void AddStartHandlerOnce(EventHandler handler)
         {
 
@@ -131,6 +140,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
             OnServerStart += handler;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="handler">Event handler.</param>
         public static void AddStopHandlerOnce(EventHandler handler)
         {
             OnServerStop -= handler;

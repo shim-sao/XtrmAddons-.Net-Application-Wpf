@@ -122,6 +122,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             
             LoadSections();
             LoadAlbums();
+
             model.FiltersQuality = InfoEntityCollection.TypesQuality();
             model.FiltersColor = InfoEntityCollection.TypesColor();
 
@@ -138,6 +139,17 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             UCListViewAlbums.OnDelete += AlbumsListView_OnDelete;
 
             AppOverwork.IsBusy = false;
+        }
+        
+        /// <summary>
+        /// Method called on page size changed event.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            StretchWidth(GridRoot, MiddleContents);
+            StretchHeight(GridRoot, MiddleContents);
         }
 
         #endregion
@@ -255,7 +267,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             try
             {
                 AppLogger.Info("Loading Albums list. Please wait...");
-                model.Albums.Items = new AlbumEntityCollection(AlbumOptionsListFilters, true);
+                model.Albums.Items = new AlbumEntityCollection(true, AlbumOptionsListFilters);
                 AppLogger.InfoAndClose("Loading Albums list. Done.");
             }
             catch (Exception e)
@@ -339,7 +351,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
 
 
 
-        #region Methods
+        #region Methods Filters
 
         /// <summary>
         /// 
@@ -351,9 +363,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             UCListViewAlbums.FiltersQualitySelector.IsEditable = false;
 
             string alias = "quality";
-            InfoEntity info = (sender as ComboBox).SelectedItem as InfoEntity;
 
-            if (info != null && info.Alias != "various-quality")
+            if ((sender as ComboBox).SelectedItem is InfoEntity info && info.Alias != "various-quality")
             {
                 if (filters.Keys.Contains(alias))
                     filters[alias] = info.PrimaryKey;
@@ -378,9 +389,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             UCListViewAlbums.FiltersColorSelector.IsEditable = false;
 
             string alias = "color";
-            InfoEntity info = (sender as ComboBox).SelectedItem as InfoEntity;
 
-            if (info != null && info.Alias != "various-color")
+            if ((sender as ComboBox).SelectedItem is InfoEntity info && info.Alias != "various-color")
             {
                 if (filters.Keys.Contains(alias))
                     filters[alias] = info.PrimaryKey;

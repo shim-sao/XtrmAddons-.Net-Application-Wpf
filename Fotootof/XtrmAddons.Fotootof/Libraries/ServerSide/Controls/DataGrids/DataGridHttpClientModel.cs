@@ -40,8 +40,10 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids
         /// <summary>
         /// Method to initialize the model.
         /// </summary>
-        protected override void InitializeModel()
+        protected new void InitializeModel()
         {
+            base.InitializeModel();
+
             Reset();
         }
 

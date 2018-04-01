@@ -45,7 +45,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         /// </summary>
         /// <param name="pageBase"></param>
         /// <param name="group"></param>
-        public WindowFormAclGroup(AclGroupEntity entity, PageBase pageBase = null)
+        public WindowFormAclGroup(AclGroupEntity entity = default(AclGroupEntity), PageBase pageBase = null)
         {
             // Initialize window component.
             InitializeComponent();
@@ -151,7 +151,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">The text changed event arguments.</param>
-        protected override bool ValidateForm()
+        protected new bool ValidateForm()
         {
             bool save = true;
 

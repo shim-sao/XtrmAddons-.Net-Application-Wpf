@@ -1,7 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using XtrmAddons.Fotootof.Lib.Base.Enums;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Net.Windows.Tools;
 
 namespace XtrmAddons.Fotootof.Libraries.ServerSide.Menu
 {
@@ -61,6 +63,16 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Menu
         private void NavigateToPageUsers(object sender, RoutedEventArgs e)
         {
             AppNavigator.NavigateToPageUsers();
+        }
+
+        private void ItemButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            ((Button)sender).Background = (SolidColorBrush)Application.Current.Resources["LightBlack"];
+        }
+
+        private void ItemButton_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            ((Button)sender).Background = (SolidColorBrush)Application.Current.Resources["Transparent"];
         }
     }
 }

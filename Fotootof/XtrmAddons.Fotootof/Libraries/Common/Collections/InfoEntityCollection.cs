@@ -27,7 +27,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// Class XtrmAddons Fotootof Server Component Section Collections.
         /// </summary>
         /// <param name="options">Options for query filters.</param>
-        public InfoEntityCollection(InfoOptionsList options = null, bool autoLoad = false) : base(autoLoad, options) { }
+        public InfoEntityCollection(bool autoLoad = false, InfoOptionsList options = null) : base(autoLoad, options) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Section Collections.
@@ -45,31 +45,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
 
 
         #region Methods
-
-        /// <summary>
-        /// Class method to load a list of Section from database.
-        /// </summary>
-        /// <param name="options">Options for query filters.</param>
-        public override void Load()
-        {
-            LoadOptions(null);
-        }
-
-        /// <summary>
-        /// Class method to load a list of Section from database.
-        /// </summary>
-        /// <param name="options">Options for query filters.</param>
-        public new void LoadOptions(InfoOptionsList options = null)
-        {
-            options = options ?? Options;
-            options = options ?? OptionsDefault;
-
-            var items = MainWindow.Database.Infos.List(options);
-            foreach (InfoEntity entity in items)
-            {
-                Add(entity);
-            }
-        }
 
         /// <summary>
         /// Method to insert a list of Info entities into the database.
@@ -187,13 +162,13 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         {
             return new InfoEntityCollection
             (
+                true,
                 new InfoOptionsList
                 {
                     Dependencies = { EnumEntitiesDependencies.All },
                     InfoTypesAlias = new List<string>() { "quality" },
                     OrderBy = "Ordering"
-                },
-                true
+                }
             );
         }
 
@@ -204,13 +179,13 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         {
             return new InfoEntityCollection
             (
+                true,
                 new InfoOptionsList
                 {
                     Dependencies = { EnumEntitiesDependencies.All },
                     InfoTypesAlias = new List<string>() { "color" },
                     OrderBy = "Ordering"
-                },
-                true
+                }
             );
         }
 

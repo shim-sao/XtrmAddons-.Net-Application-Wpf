@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer;
@@ -90,6 +91,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewServer
         {
             UCServer.MainContainer.Background = WPFColorHex.ColorToBrush("#FE003E");
             UCServer.RefreshServerMenu();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            
         }
     }
 }

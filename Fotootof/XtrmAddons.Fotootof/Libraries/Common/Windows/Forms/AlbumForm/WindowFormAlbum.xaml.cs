@@ -240,7 +240,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <param name="routedEventArgs">Routed event arguments.</param>
         private void OnThumbnail_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = XtrmAddons.Net.Picture.PictureFileDialogBox.Show();
+            Microsoft.Win32.OpenFileDialog dlg = Net.Picture.PictureFileDialogBox.Show();
 
             if (dlg != null && dlg.FileName != "")
             {
@@ -262,7 +262,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <param name="routedEventArgs">Routed event arguments.</param>
         private void OnPicture_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = XtrmAddons.Net.Picture.PictureFileDialogBox.Show();
+            Microsoft.Win32.OpenFileDialog dlg = Net.Picture.PictureFileDialogBox.Show();
 
             if (dlg != null && dlg.FileName != "")
             {

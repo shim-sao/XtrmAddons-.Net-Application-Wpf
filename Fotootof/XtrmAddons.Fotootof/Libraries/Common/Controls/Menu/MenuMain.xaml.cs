@@ -190,7 +190,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             UINavigation.AppWindow.FrameMain.Height = UINavigation.AppWindow.RowGridMain.Height.Value;
             */
             AppNavigator.MainWindow.UpdateLayout();
-            Console.WriteLine("AppWindow.ActualHeight = " + AppWindow.ActualHeight);
 
             if (MenuItemDisplayLogsWindow.IsChecked == true)
             {
@@ -245,7 +244,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// <param name="e">Routed event arguments</param>
         private void OnUsersListClick(object sender, RoutedEventArgs e)
         {
-            AppNavigator.LoadPage("PageUsers", new PageUsers());
+            AppNavigator.LoadPage(nameof(PageUsers), new PageUsers());
         }
 
         /// <summary>
@@ -285,7 +284,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// <param name="e">Routed event arguments</param>
         private void OnAddUser_Click(object sender, RoutedEventArgs e)
         {
-            WindowFormUser dlg = new WindowFormUser(new UserEntity(), null);
+            WindowFormUser dlg = new WindowFormUser();
             bool? result = dlg.ShowDialog();
 
             // Process open file dialog box results 
@@ -293,11 +292,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             {
                 AppLogger.Info("Adding or editing User informations. Please wait...");
 
-                UserEntityCollection.DbInsert(new List<UserEntity> { dlg.NewEntity });
+                UserEntityCollection.DbInsert(new List<UserEntity> { dlg.NewForm });
 
                 if(MainFrame.Content.GetType() == typeof(PageUsers))
                 {
-                    ((PageUsers)MainFrame.Content).Model.Users.Add(dlg.NewEntity);
+                    ((PageUsers)MainFrame.Content).Model.Users.Items.Add(dlg.NewForm);
                 }
 
                 AppLogger.Info("Adding or editing User informations. Done");

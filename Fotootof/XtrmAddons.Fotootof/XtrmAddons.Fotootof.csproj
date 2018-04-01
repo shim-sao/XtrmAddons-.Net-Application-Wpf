@@ -248,6 +248,9 @@
       <DependentUpon>PageUsers.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\ServerSide\ViewUsers\PageUsersModel.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroups.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsersModel.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroupsModel.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\ListViewStorages.cs" />
     <Compile Include="Libraries\Common\Tools\AppLogger.cs" />
     <Compile Include="Libraries\Common\Tools\AppOverwork.cs" />
@@ -255,7 +258,13 @@
     <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml.cs">
+      <DependentUpon>DataGridAclGroupsServer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridHttpClientModel.cs" />
+    <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml.cs">
+      <DependentUpon>DataGridUsersServer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml.cs">
       <DependentUpon>ListViewStoragesServer.xaml</DependentUpon>
     </Compile>
@@ -282,7 +291,6 @@
     <Compile Include="Libraries\ClientSide\Controls\ListViews\ListViewAlbumsClient.xaml.cs">
       <DependentUpon>ListViewAlbumsClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroup.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsers.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\ListViewAlbums.cs" />
     <Compile Include="Libraries\Common\Controls\Menu\MenuMain.xaml.cs">
@@ -313,12 +321,6 @@
       <DependentUpon>UCToolTipPicture.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\Converters\CheckBoxAlbumInSection.cs" />
-    <Compile Include="Libraries\Common\Controls\DataGrids\UCAclGroupDataGrid.xaml.cs">
-      <DependentUpon>UCAclGroupDataGrid.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Libraries\Common\Controls\DataGrids\UCUsersDataGrid.xaml.cs">
-      <DependentUpon>UCUsersDataGrid.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Libraries\Common\Controls\ListViews\UCPicturesListView.xaml.cs">
       <DependentUpon>UCPicturesListView.xaml</DependentUpon>
     </Compile>
@@ -425,6 +427,14 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -453,17 +463,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Libraries\Common\Controls\DataGrids\UCAclGroupDataGrid.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Libraries\Common\Controls\DataGrids\UCAlbumsDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Libraries\Common\Controls\DataGrids\UCUsersDataGrid.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Libraries\Common\Controls\ListViews\UCPicturesListView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -542,10 +544,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Themes\Template\Color\Default.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -562,11 +560,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Template\Controls\Page\Default.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Template\Controls\StackPanel\Dark.xaml">
+    <Page Include="Themes\Template\Controls\StackPanel\Default.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -622,10 +616,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Assets\Images\Default\picture-default.jpg">
+    <Content Include="Assets\Images\Default\album-original.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\Default\thumbnail-default.jpg">
+    <Content Include="Assets\Images\Default\album-picture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Default\album-thumbnail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\Icons\Favicon.ico">
@@ -874,6 +871,10 @@
       <Project>{60688da2-55cf-4e8d-8619-9e230c03caeb}</Project>
       <Name>XtrmAddons.Fotootof.SQLiteService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XtrmAddons.Fotootof.Template\XtrmAddons.Fotootof.Template.csproj">
+      <Project>{50e16040-6e0b-411f-a4a0-31a97a64f234}</Project>
+      <Name>XtrmAddons.Fotootof.Template</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -889,7 +890,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Component\ServerSide\ViewLogs\" />
-    <Folder Include="Themes\Template\Converter\" />
+    <Folder Include="Libraries\Common\Windows\About\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Shell32">

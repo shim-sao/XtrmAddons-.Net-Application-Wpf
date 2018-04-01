@@ -1,5 +1,4 @@
-﻿<base:ControlBase 
-    x:Name="UCServerInfos"
+﻿<base:ControlBase
     x:Class="XtrmAddons.Fotootof.Libraries.ServerSide.Controls.Servers.ServerInfos"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -42,7 +41,7 @@
                 Margin="10,5"/>
 
             <StackPanel Orientation="Horizontal" Margin="10,0,0,5">
-                
+
                 <!-- #region Host -->
                 <StackPanel Orientation="Horizontal" MinWidth="180">
                     <TextBlock
@@ -73,7 +72,7 @@
                         Width="auto" />
                 </StackPanel>
                 <!-- #endregion Host -->
-            
+
                 <!-- #region Port -->
                 <StackPanel Orientation="Horizontal" Margin="10,0" MinWidth="180">
                     <TextBlock
@@ -106,7 +105,6 @@
                 <!-- #endregion Port -->
 
             </StackPanel>
-
         </StackPanel>
 
 
@@ -162,7 +160,6 @@
                     Height="30"/>
 
             </StackPanel>
-
         </StackPanel>
     </Grid>
 

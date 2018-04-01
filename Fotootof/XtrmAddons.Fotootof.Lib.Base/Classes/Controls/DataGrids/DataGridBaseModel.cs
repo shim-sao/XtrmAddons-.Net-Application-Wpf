@@ -49,7 +49,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids
         /// <summary>
         /// Method to initialize model.
         /// </summary>
-        protected virtual void InitializeModel()
+        protected void InitializeModel()
         {
             Columns.Visibility = new ExpandoObject();
             Rows.IsEnabled = new ExpandoObject();

@@ -3,19 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <!-- Generic colors -->
-    <SolidColorBrush x:Key="LightGrey" Color="#E0E0E0" />
-    <SolidColorBrush x:Key="MediumGrey" Color="DarkGray" />
-    <SolidColorBrush x:Key="DarkGrey" Color="#424242" />
-    <SolidColorBrush x:Key="LightBlack" Color="#111111" />
-    
-    <!-- Generic colors messages -->
-    <SolidColorBrush x:Key="Ready" Color="#A2C176" />
-    <SolidColorBrush x:Key="Warning" Color="#E0110F" /> 
     
     <SolidColorBrush x:Key="BigHeader" Color="#3299BB" />
-    
     <SolidColorBrush x:Key="BgComponent" Color="Gainsboro" />
-    
     <SolidColorBrush x:Key="RoundedButton" Color="#FF9900" />
+    
 </ResourceDictionary>

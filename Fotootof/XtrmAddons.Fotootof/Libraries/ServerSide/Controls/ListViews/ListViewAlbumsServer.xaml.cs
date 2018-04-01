@@ -81,7 +81,10 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <param name="e"></param>
         private void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            AppNavigator.NavigateToPageAlbum(SelectedItem.PrimaryKey);
+            if (SelectedItem != null)
+            {
+                AppNavigator.NavigateToPageAlbum(SelectedItem.PrimaryKey);
+            }
         }
 
         /// <summary>
@@ -93,16 +96,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         {
 
         }
-
-        /// <summary>
-        /// Method called clear items selection click event.
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Routed event arguments.</param>
-        /*private void ClearItemsSelection_Click(object sender, RoutedEventArgs e)
-        {
-            ItemsCollection.SelectedItems.Clear();
-        }*/
 
         /// <summary>
         /// Method called on select all click event.
@@ -132,6 +125,22 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ControlHeaderSelectedNumber.Text = SelectedItems.Count.ToString();
+        }
+
+        /// <summary>
+        /// Method called on page size changed event.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            StretchWidth(this, GridRoot);
+            StretchHeight(this, GridRoot);
+
+            StretchWidth(this, Block_Header);
+
+            StretchWidth(this, ItemsCollection);
+            StretchHeight(this, ItemsCollection, Block_Header.ActualHeight);
         }
 
         #endregion

@@ -38,12 +38,14 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="XtrmAddons.Net.Application">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\XtrmAddons.Net.Application\bin\Release\XtrmAddons.Net.Application.dll</HintPath>
@@ -88,6 +90,7 @@
     <Compile Include="Enums\EditionMode.cs" />
     <Compile Include="Classes\Images\ImageManager.cs" />
     <Compile Include="Classes\Images\ImageType.cs" />
+    <Compile Include="Interfaces\ISizeChanged.cs" />
     <Compile Include="Interfaces\ILoadCollection.cs" />
     <Compile Include="Interfaces\IControlCollection.cs" />
     <Compile Include="Interfaces\IListItems.cs" />

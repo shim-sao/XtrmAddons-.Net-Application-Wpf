@@ -7,46 +7,45 @@
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Properties"
     xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.Menu"
+    xmlns:ucsubmenu="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Menu"
     mc:Ignorable="d"
     Title="{x:Static p:Resources.MainWindowTitle}"
-    MinWidth="800"
-    Width="1024"
-    Height="768"
-    MinHeight="600"
-    Closing="Window_Closing">
+    Style="{StaticResource ResourceKey=ApplicationWindow}"
+    Loaded="Window_Loaded"
+    Closing="Window_Closing"
+    SizeChanged="Window_SizeChanged">
 
-    <Grid 
-        x:Name="GridMainWindow"
-        x:Uid="UIDGGridMainWindow">
+    <Grid x:Name="GridRoot">
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
-            <RowDefinition x:Name="RowGridMain" Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition x:Name="RowGridMain" Height="1*" />
             <RowDefinition x:Name="RowGridSplitter" Height="0"/>
             <RowDefinition x:Name="RowGridLogs" Height="0"/>
         </Grid.RowDefinitions>
 
-        <ucmenu:MenuMain
-            Grid.Row="0"
-            x:Name="UCMainMenuServer"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"/>
+        <ucmenu:MenuMain x:Name="AppMainMenu" />
 
+        <!-- #region Main navigation -->
+        <Border Grid.Row="1">
+            <ucsubmenu:MenuServerMain x:Name="AppMainSubmenu" />
+        </Border>
+        <!-- #endegion Main navigation -->
+        
         <Border 
             x:Name="BorderFrameMain"
-            Grid.Row="1"
-            Margin="2"
+            Grid.Row="2"
             Background="{StaticResource ResourceKey=DarkGrey}"
             BorderBrush="{StaticResource ResourceKey=MediumGrey}"
-            BorderThickness="2"
+            BorderThickness="1"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
             
-            <ScrollViewer
-                x:Name="ScrollViewerMain">
+            <ScrollViewer x:Name="ScrollViewerMain">
                 <WrapPanel>
                     <HeaderedItemsControl Header="Frame">
                         <StackPanel>
@@ -55,7 +54,8 @@
                                 x:Name="FrameMain"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                NavigationUIVisibility="Hidden"/>
+                                NavigationUIVisibility="Hidden">
+                            </Frame>
                         </StackPanel>
                     </HeaderedItemsControl>
                 </WrapPanel>
@@ -64,30 +64,29 @@
 
         <GridSplitter
             x:Name="GridSplitter"
-            Grid.Row="2"
-            Height="5"
+            Grid.Row="3"
+            Height="3"
             HorizontalAlignment="Stretch">
         </GridSplitter>
 
         <Border
             x:Name="FrameLogsBorder"
-            Grid.Row="3"
-            Margin="5"
+            Grid.Row="4"
             Background="{StaticResource ResourceKey=DarkGrey}"
             BorderBrush="{StaticResource ResourceKey=MediumGrey}"
-            BorderThickness="2">
+            BorderThickness="1">
 
             <ScrollViewer>
                 <WrapPanel>
                     <HeaderedItemsControl Header="Frame">
-                        <StackPanel>
+                        <Grid>
                             <Frame
                                 x:Name="FrameLogs"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                Margin="2" 
-                                NavigationUIVisibility="Hidden"/>
-                        </StackPanel>
+                                NavigationUIVisibility="Hidden">
+                            </Frame>
+                        </Grid>
                     </HeaderedItemsControl>
                 </WrapPanel>
             </ScrollViewer>
@@ -95,9 +94,8 @@
 
         <xctk:BusyIndicator
             x:Name="XCTKBusyIndicator"
-            IsBusy="False"
-            Grid.Row="1"
-            Grid.RowSpan="4">
+            IsBusy="True"
+            Grid.RowSpan="5">
         </xctk:BusyIndicator>
     </Grid>
 </Window>

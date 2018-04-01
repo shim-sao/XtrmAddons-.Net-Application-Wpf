@@ -32,7 +32,12 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids
         public override Control EditControl => Button_Edit;
 
         public override Control DeleteControl => Button_Delete;
-        
+
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
     }
 }

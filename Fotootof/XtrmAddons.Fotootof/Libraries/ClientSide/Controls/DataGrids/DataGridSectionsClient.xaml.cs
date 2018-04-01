@@ -31,6 +31,11 @@ namespace XtrmAddons.Fotootof.Libraries.ClientSide.Controls.DataGrids
 
         public override Control DeleteControl => Button_Delete;
 
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
 
 
         #region Methods

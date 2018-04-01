@@ -110,6 +110,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.Servers
             OnServerStart_Click(sender, e);
             //Overwork.IsBusy = false;
         }
+
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
     #endregion

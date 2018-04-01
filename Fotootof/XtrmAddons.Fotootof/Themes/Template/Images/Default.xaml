@@ -3,15 +3,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
+    <!-- Icons -->
+    <system:String x:Key="IconItemMenuFileExit">\Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\exit.png</system:String>
+    
+    
     <!-- Todo : replace & delete -->
-    <system:Int32 x:Key="IconLarge">512</system:Int32>
-    <system:String x:Key="CvThumbnailParameter">320</system:String>
+    <!-- <system:Int32 x:Key="IconLarge">512</system:Int32> -->
+    <!-- <system:String x:Key="CvThumbnailParameter">320</system:String> -->
     <system:String x:Key="CvPreviewParameter">512</system:String>
     <system:String x:Key="IconFolder">Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\folder-5.png</system:String>
 
 
-    <!-- Icons -->
-    <system:String x:Key="IconItemMenuFileExit">\Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\exit.png</system:String>
+    
 
     <system:String x:Key="IconFilesTypes">Assets\Images\Vendor\Flaticon\Roundicons\Files Types</system:String>
 
