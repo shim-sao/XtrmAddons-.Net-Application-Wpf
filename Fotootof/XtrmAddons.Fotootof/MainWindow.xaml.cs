@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,6 +33,7 @@ namespace XtrmAddons.Fotootof
         #endregion
 
 
+
         #region Properties
 
         /// <summary>
@@ -58,6 +58,7 @@ namespace XtrmAddons.Fotootof
         #endregion
 
 
+
         #region Constructor
 
         /// <summary>
@@ -70,9 +71,21 @@ namespace XtrmAddons.Fotootof
             log.Info(Translation.Logs["InitializingApplicationWindowComponentDone"]);
             
             // Main Window to application session.
-            ApplicationSession.Properties.AppWindow = this;
             ApplicationSession.Properties.MainWindow = this;
+        }
 
+        #endregion
+
+
+        #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             // Add application to system tray.
             NotifyIconManager.AddToTray();
             log.Info(Translation.Logs["AddingApplicationToSystemTrayDone"]);
@@ -81,11 +94,6 @@ namespace XtrmAddons.Fotootof
             InitializeContentAsync();
         }
 
-        #endregion
-
-
-        #region Methods
-        
         /// <summary>
         /// Method to initialize application content.
         /// </summary>
@@ -102,7 +110,7 @@ namespace XtrmAddons.Fotootof
             FrameMain.Navigate(new PageBrowser());
 
             // Initialize items of Server Menu.
-            UCMainMenuServer.InitializeMenuItemsServer();
+            AppMainMenu.InitializeMenuItemsServer();
 
             // Adjust frame logs content on resize. 
             SizeChanged += pageLogs.Window_SizeChanged;
@@ -128,8 +136,8 @@ namespace XtrmAddons.Fotootof
         /// <param name="e"></param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Trace.WriteLine("MainWindow.ActualSize = [" + ActualWidth + "," + ActualHeight + "]");
-            Trace.WriteLine("RowGridMain.Height = [" + RowGridMain.Height + "]");
+            log.Debug("MainWindow.ActualSize = [" + ActualWidth + "," + ActualHeight + "]");
+            log.Debug("RowGridMain.Height = [" + RowGridMain.Height + "]");
         }
 
         #endregion

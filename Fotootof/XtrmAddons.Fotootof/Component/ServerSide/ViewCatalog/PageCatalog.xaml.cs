@@ -363,9 +363,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             UCListViewAlbums.FiltersQualitySelector.IsEditable = false;
 
             string alias = "quality";
-            InfoEntity info = (sender as ComboBox).SelectedItem as InfoEntity;
 
-            if (info != null && info.Alias != "various-quality")
+            if ((sender as ComboBox).SelectedItem is InfoEntity info && info.Alias != "various-quality")
             {
                 if (filters.Keys.Contains(alias))
                     filters[alias] = info.PrimaryKey;
@@ -390,9 +389,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             UCListViewAlbums.FiltersColorSelector.IsEditable = false;
 
             string alias = "color";
-            InfoEntity info = (sender as ComboBox).SelectedItem as InfoEntity;
 
-            if (info != null && info.Alias != "various-color")
+            if ((sender as ComboBox).SelectedItem is InfoEntity info && info.Alias != "various-color")
             {
                 if (filters.Keys.Contains(alias))
                     filters[alias] = info.PrimaryKey;

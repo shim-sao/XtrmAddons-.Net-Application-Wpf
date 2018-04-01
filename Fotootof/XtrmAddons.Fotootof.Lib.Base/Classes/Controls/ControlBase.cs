@@ -1,5 +1,4 @@
-﻿using System.Dynamic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 
@@ -37,9 +36,12 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         /// <param name="margin"></param>
         public void StretchHeight(FrameworkElement source, FrameworkElement destination, double margin = 0)
         {
-           // destination.MinHeight = source.ActualHeight - margin;
-           // destination.MaxHeight = source.ActualHeight - margin;
-            destination.Height = source.ActualHeight - margin;
+            if ((source.ActualHeight - margin) > 0)
+            {
+                // destination.MinHeight = source.ActualHeight - margin;
+                // destination.MaxHeight = source.ActualHeight - margin;
+                destination.Height = source.ActualHeight - margin;
+            }
         }
 
         /// <summary>
@@ -50,9 +52,12 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         /// <param name="margin"></param>
         public void StretchWidth(FrameworkElement source, FrameworkElement destination, double margin = 0)
         {
-            //destination.MinWidth = source.ActualWidth - margin;
-            //destination.MaxWidth = source.ActualWidth - margin;
-            destination.Width = source.ActualWidth - margin;
+            if((source.ActualWidth - margin) > 0)
+            {
+                //destination.MinWidth = source.ActualWidth - margin;
+                //destination.MaxWidth = source.ActualWidth - margin;
+                destination.Width = source.ActualWidth - margin;
+            }
         }
 
         /// <summary>

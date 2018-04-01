@@ -249,6 +249,7 @@
     </Compile>
     <Compile Include="Component\ServerSide\ViewUsers\PageUsersModel.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroups.cs" />
+    <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsersModel.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroupsModel.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\ListViewStorages.cs" />
     <Compile Include="Libraries\Common\Tools\AppLogger.cs" />
@@ -261,6 +262,9 @@
       <DependentUpon>DataGridAclGroupsServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridHttpClientModel.cs" />
+    <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml.cs">
+      <DependentUpon>DataGridUsersServer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml.cs">
       <DependentUpon>ListViewStoragesServer.xaml</DependentUpon>
     </Compile>
@@ -317,9 +321,6 @@
       <DependentUpon>UCToolTipPicture.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\Converters\CheckBoxAlbumInSection.cs" />
-    <Compile Include="Libraries\Common\Controls\DataGrids\UCUsersDataGrid.xaml.cs">
-      <DependentUpon>UCUsersDataGrid.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Libraries\Common\Controls\ListViews\UCPicturesListView.xaml.cs">
       <DependentUpon>UCPicturesListView.xaml</DependentUpon>
     </Compile>
@@ -430,6 +431,10 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -461,10 +466,6 @@
     <Page Include="Libraries\Common\Controls\DataGrids\UCAlbumsDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Libraries\Common\Controls\DataGrids\UCUsersDataGrid.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Libraries\Common\Controls\ListViews\UCPicturesListView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -543,10 +544,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Themes\Template\Color\Default.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -563,11 +560,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Template\Controls\Page\Default.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Template\Controls\StackPanel\Dark.xaml">
+    <Page Include="Themes\Template\Controls\StackPanel\Default.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -878,6 +871,10 @@
       <Project>{60688da2-55cf-4e8d-8619-9e230c03caeb}</Project>
       <Name>XtrmAddons.Fotootof.SQLiteService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XtrmAddons.Fotootof.Template\XtrmAddons.Fotootof.Template.csproj">
+      <Project>{50e16040-6e0b-411f-a4a0-31a97a64f234}</Project>
+      <Name>XtrmAddons.Fotootof.Template</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -894,7 +891,6 @@
   <ItemGroup>
     <Folder Include="Component\ServerSide\ViewLogs\" />
     <Folder Include="Libraries\Common\Windows\About\" />
-    <Folder Include="Themes\Template\Converter\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Shell32">

@@ -60,7 +60,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids
         /// <param name="e"></param>
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            AppWindow.UCMainMenuServer.OnServerAddClient_Click(sender, e);
+            AppWindow.AppMainMenu.OnServerAddClient_Click(sender, e);
         }
 
         private void Explore_Click(object sender, RoutedEventArgs e)

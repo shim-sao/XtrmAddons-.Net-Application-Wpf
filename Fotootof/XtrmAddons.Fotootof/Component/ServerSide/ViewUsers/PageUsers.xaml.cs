@@ -99,7 +99,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             // Paste page to User list.
             model = model ?? new PageUsersModel<PageUsers>(this)
             {
-                AclGroups = new DataGridAclGroupsModel<DataGridAclGroups>()
+                AclGroups = new DataGridAclGroupsModel<DataGridAclGroups>(),
+                Users = new DataGridUsersModel<DataGridUsers>()
             };
             AclGroupsDataGrid.Tag = this;
 
@@ -259,7 +260,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
                 AppLogger.Info("Loading Users list. Please wait...");
                 UserEntityCollection Users = new UserEntityCollection(UserOptionsList, false);
                 Users.Load();
-                model.Users = Users;
+                model.Users.Items = Users;
 
                 AppLogger.InfoAndClose("Loading Users list. Done.");
             }
@@ -294,7 +295,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             UserEntity entity = (UserEntity)e.NewEntity;
 
-            model.Users.Add(entity);
+            model.Users.Items.Add(entity);
             UserEntityCollection.DbInsert(new List<UserEntity> { entity });
 
             Refresh();
@@ -311,9 +312,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         {
             UserEntity entity = (UserEntity)e.NewEntity;
 
-            UserEntity old = model.Users.Single(x => x.PrimaryKey == entity.PrimaryKey);
-            int index = model.Users.IndexOf(old);
-            model.Users[index] = entity;
+            UserEntity old = model.Users.Items.Single(x => x.PrimaryKey == entity.PrimaryKey);
+            int index = model.Users.Items.IndexOf(old);
+            model.Users.Items[index] = entity;
             UserEntityCollection.DbUpdate(new List<UserEntity> { entity }, new List<UserEntity> { old });
 
             Refresh();
@@ -333,7 +334,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             UserEntity item = (UserEntity)e.NewEntity;
 
             // Remove item from list.
-            model.Users.Remove(item);
+            model.Users.Items.Remove(item);
 
             // Delete item from database.
             UserEntityCollection.DbDelete(new List<UserEntity> { item });

@@ -63,11 +63,11 @@
                 VerticalAlignment="Stretch"
                 Background="{StaticResource ResourceKey=DarkGrey}"/>
             
-            <dg:UCUsersDataGrid
+            <dgserver:DataGridUsersServer
                 x:Name="UsersDataGrid"
                 Grid.Row="0"
                 Grid.Column="2"
-                DataContext="{Binding}"
+                DataContext="{Binding Users}"
                 HorizontalAlignment="Left"/>
 
         </Grid>

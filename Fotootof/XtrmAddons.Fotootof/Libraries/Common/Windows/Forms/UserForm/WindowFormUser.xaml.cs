@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
+using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
 using XtrmAddons.Fotootof.Libraries.Common.Converters;
@@ -10,16 +10,17 @@ using XtrmAddons.Net.Common.Extensions;
 namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Component Windows User Form.
+    /// <para>Class XtrmAddons Fotootof Libraries Common Windows Form User.</para>
+    /// <para>Provides form to add or edit a User.</para>
     /// </summary>
-    public partial class WindowFormUser : WindowBaseForm
+    public partial class WindowFormUser : WindowBaseForm, IWindowForm<UserEntity>
     {
         #region Variables
 
         /// <summary>
-        /// Variable Window User Form model.
+        /// Variable Window User Form model of the view.
         /// </summary>
-        //private WindowUserFormModel<WindowBaseForm<UserEntity>> model;
+        private WindowFormUserModel<WindowFormUser> model;
 
         #endregion
 
@@ -28,73 +29,74 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         #region Properties
 
         /// <summary>
-        /// Variable old User informations backup.
-        /// </summary>
-        public UserEntity OldEntity { get; set;  }
-
-        /// <summary>
-        /// Variable old User informations backup.
-        /// </summary>
-        public UserEntity NewEntity => Model.User;
-
-        /// <summary>
         /// 
         /// </summary>
-        public UserEntity OldForm { get => OldEntity; set => OldEntity = value; }
+        public UserEntity OldForm { get; set; }
 
         /// <summary>
         /// Variable old User informations backup.
         /// </summary>
-        public UserEntity NewForm { get => Model?.User; set => Model.User = value; }
-
-        /// <summary>
-        /// Accessors to page user model.
-        /// </summary>
-        public WindowFormUserModel<WindowFormUser> Model { get; private set; }
+        public UserEntity NewForm
+        {
+            get => model?.User;
+            set => model.User = value;
+        }
 
         #endregion
+
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Windows User Form Constructor.
         /// </summary>
         /// <param name="PageBase">The parent Page Base of the window.</param>
         /// <param name="entity">A user entity.</param>
-        public WindowFormUser(UserEntity entity = default(UserEntity), PageBase owner = null)
+        public WindowFormUser(UserEntity entity = default(UserEntity))
         {
             // Initialize window component.
             InitializeComponent();
-            Model = new WindowFormUserModel<WindowFormUser>(this);
-            Loaded += (s, e) => Window_Load(entity);
+            InitializeModel(entity);
+            Loaded += Window_Load;
+            Closing += Window_Closing;
         }
 
-        public void Window_Load(UserEntity entity = null)
-        { 
-            // Assign closing event.
-            Closing += Window_Closing;
+        /// <summary>
+        /// Method called on Window loaded event.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Routed event atguments.</param>
+        protected void Window_Load(object sender, RoutedEventArgs e)
+        {
+            DataContext = model;
+        }
 
-            // Initialize User first.
+        protected void InitializeModel(UserEntity entity = default(UserEntity))
+        {
+            // 1 - Initialize view model.
+            model = new WindowFormUserModel<WindowFormUser>(this);
+
+            // 2 - Make sure entity is not null.
             entity = entity ?? new UserEntity();
 
+            // 3 - Initialize new entity if required.
             if (entity.PrimaryKey > 0)
             {
                 entity.Initialize();
             }
 
-            // Store data in new entity.
-            OldEntity.Bind(entity);
+            // 4 - Store current entity data in a new entity.
+            OldForm = entity.Clone();
 
-            // Assign Parent Page & entity to the model.
-            Model.User = entity;
-            CheckBoxUserInAclGroup.User = Model.User;
+            // 5 - Assign entity to the model.
+            NewForm = entity;
 
-            // Assign AclGroup list to model.
-            Model.AclGroups = new AclGroupEntityCollection(true);
+            // 6 - Set model entity to dependencies converters.
+            CheckBoxUserInAclGroup.User = model.User;
 
+            // 7.1 - Assign list of AclGroup to the model.
+            model.AclGroups = new AclGroupEntityCollection(true);
 
-            // Assign model to data context for display.
-            DataContext = Model;
-
-            ValidateForm();
+            // 8 - Validate form on first entry
+            //ValidateForm();
         }
 
         /// <summary>
@@ -104,11 +106,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         /// <param name="e"></param>
         private void InputName_Changed(object sender, TextChangedEventArgs e)
         {
-            if (!InputName.Text.IsNullOrWhiteSpace())
-            {
-                NewEntity.Name = InputName.Text;
-            }
-
+            NewForm.Name = InputName.Text;
             ValidateForm();
         }
 
@@ -119,11 +117,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         /// <param name="e"></param>
         private void InputPassword_Changed(object sender, TextChangedEventArgs e)
         {
-            if (!InputPassword.Text.IsNullOrWhiteSpace())
-            {
-                NewEntity.Password = InputPassword.Text;
-            }
-
+            NewForm.Password = InputPassword.Text;
             ValidateForm();
         }
 
@@ -134,39 +128,35 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         /// <param name="e"></param>
         private void InputEmail_Changed(object sender, TextChangedEventArgs e)
         {
-            if (!InputEmail.Text.IsNullOrWhiteSpace())
-            {
-                NewEntity.Email = InputEmail.Text;
-            }
-
+            NewForm.Email = InputEmail.Text;
             ValidateForm();
         }
 
         /// <summary>
         /// Method to check if saving is enabled.
         /// </summary>
-        protected override bool ValidateForm()
+        protected new bool ValidateForm()
         {
             bool save = true;
 
-            if (NewEntity != null)
+            if (NewForm != null)
             {
-                if (NewEntity.Name.IsNullOrWhiteSpace())
+                if (NewForm.Name.IsNullOrWhiteSpace())
                 {
                     save = false;
                 }
 
-                if (NewEntity.Password.IsNullOrWhiteSpace())
+                if (NewForm.Password.IsNullOrWhiteSpace())
                 {
                     save = false;
                 }
 
-                if (NewEntity.Email.IsNullOrWhiteSpace() || !NewEntity.Email.IsValidEmail())
+                if (NewForm.Email.IsNullOrWhiteSpace() || !NewForm.Email.IsValidEmail())
                 {
                     save = false;
                 }
 
-                if (NewEntity.UsersInAclGroups == null || NewEntity.UsersInAclGroups.Count == 0)
+                if (NewForm.UsersInAclGroups == null || NewForm.UsersInAclGroups.Count == 0)
                 {
                     save = false;
                 }
@@ -189,7 +179,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         private void CheckBoxAclGroup_Checked(object sender, RoutedEventArgs e)
         {
             AclGroupEntity entity = (AclGroupEntity)((CheckBox)sender).Tag;
-            NewEntity.LinkAclGroup(entity.PrimaryKey);
+            //CheckBox_Checked<AclGroupEntity>(sender, e);
+            NewForm.LinkAclGroup(entity.PrimaryKey);
 
             ValidateForm();
         }
@@ -202,7 +193,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         private void CheckBoxAclGroup_UnChecked(object sender, RoutedEventArgs e)
         {
             AclGroupEntity entity = (AclGroupEntity)((CheckBox)sender).Tag;
-            NewEntity.UnLinkAclGroup(entity.PrimaryKey);
+            NewForm.UnLinkAclGroup(entity.PrimaryKey);
 
             ValidateForm();
         }

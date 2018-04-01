@@ -9,17 +9,22 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Dictionary.xaml"/>
 
-                <ResourceDictionary Source="Themes\Generic.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Generic.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Color/Default.xaml"/>
+
+                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Grids.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Pages.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/StackPanels.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Windows.xaml"/>
+
                 <ResourceDictionary Source="Themes\Template\Color\Default.xaml"/>
+                
                 <ResourceDictionary Source="Themes\Template\Controls\Button\Dark.xaml"/>
                 <ResourceDictionary Source="Themes\Template\Controls\Button\RoundedCorner.xaml"/>
                 <ResourceDictionary Source="Themes\Template\Controls\ListView\Default.xaml"/>
-                <ResourceDictionary Source="Themes\Template\Controls\StackPanel\Dark.xaml"/>
                 <ResourceDictionary Source="Themes\Template\Controls\TextBox\Default.xaml"/>
                 <ResourceDictionary Source="Themes\Template\Images\Default.xaml"/>
 
-
-                <ResourceDictionary Source="Themes\Template\Controls\Page\Default.xaml"/>
 
                 <ResourceDictionary Source="Resources\Converter\Parameters.xaml"/>
                 <ResourceDictionary Source="Resources\Style\TreeView\Explorer.xaml"/>

@@ -11,35 +11,17 @@
     xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Menu"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
-    MinWidth="800"
-    MinHeight="985"
-    HorizontalAlignment="Stretch"
-    VerticalAlignment="Stretch"
-    Title="{x:Static p:Resources.Server}">
+    Title="{x:Static p:Resources.Server}"
+    Style="{StaticResource ResourceKey=PageContent}"
+    Background="{StaticResource ResourceKey=LightGrey}"
+    SizeChanged="Control_SizeChanged">
 
-    <Grid Background="{StaticResource ResourceKey=LightBlack}">
+    <Grid x:Name="GridRoot">
         
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="45" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
-
-        <!-- #region Main navigation -->
-        <ucmenu:MenuServerMain
-            Grid.Row="0"
-            x:Name="UCMenuMainNavigation"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top">
-        </ucmenu:MenuServerMain>
-        <!-- #endegion Main navigation -->
 
         
         <!-- #region Main Content -->
         <Grid
-            Grid.Row="1"
             VerticalAlignment="Stretch"
             Background="White">
 

@@ -7,16 +7,16 @@
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     mc:Ignorable="d"
     Height="40">
-    
-    <Grid HorizontalAlignment="Stretch">
+
+    <Grid x:Name="GritRoot" Style="{StaticResource ResourceKey=Root}">
         
         <StackPanel
             HorizontalAlignment="Stretch"
             Orientation="Horizontal"
-            Background="SlateGray">
+            Background="{StaticResource ResourceKey=Panton2}">
 
             <Border
-                x:Name="ServerItemBorder"
+                x:Name="Block_Menu"
                 VerticalAlignment="Stretch">
                 
                 <Button 

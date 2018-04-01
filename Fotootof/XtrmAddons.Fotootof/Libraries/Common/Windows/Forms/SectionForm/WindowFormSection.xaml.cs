@@ -40,7 +40,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// </summary>
         public SectionEntity NewForm
         {
-            get => model.Section;
+            get => model?.Section;
             set => model.Section = value;
         }
 
@@ -72,33 +72,34 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// Method called on Window loaded event.
         /// </summary>
         /// <param name="entity">A Section entity.</param>
-        protected void InitializeModel(SectionEntity entity)
+        protected void InitializeModel(SectionEntity entity = default(SectionEntity))
         {
-            // Initialize view model.
+            // 1 - Initialize view model.
             model = new WindowFormSectionModel<WindowFormSection>(this);
 
-            // Initialize User first.
-            //entity = entity ?? new SectionEntity();
+            // 2 - Make sure entity is not null.
+            entity = entity ?? new SectionEntity();
 
+            // 3 - Initialize new entity if required.
             if (entity.PrimaryKey > 0)
             {
                 entity.Initialize();
             }
 
-            // Store data in new entity.
+            // 4 - Store current entity data in a new entity.
             OldForm = entity.Clone();
 
-            // Assign Parent Page & entity to the model.
+            // 5 - Assign entity to the model.
             NewForm = entity;
 
-            // Set converter main entity.
+            // 6 - Set model entity to dependencies converters.
             IsAclGroupInSection.Entity = model.Section;
             IsAlbumInSection.Entity = model.Section;
 
-            // Assign list of AclGroup to the model.
+            // 7.1 - Assign list of AclGroup to the model.
             model.AclGroups = new AclGroupEntityCollection(true);
 
-            // Assign list of Album to the model.
+            // 7.2 - Assign list of Album to the model.
             model.Albums = new AlbumEntityCollection(true);
         }
 

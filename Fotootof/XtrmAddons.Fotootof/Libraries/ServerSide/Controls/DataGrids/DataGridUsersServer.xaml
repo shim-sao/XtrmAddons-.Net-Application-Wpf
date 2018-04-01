@@ -1,11 +1,11 @@
-﻿<base:ControlBaseCollection
-    x:Class="XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids.UCUsersDataGrid"
+﻿<base:DataGridUsers
+    x:Class="XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids.DataGridUsersServer"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Properties"
-    xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Controls;assembly=XtrmAddons.Fotootof.Lib.Base"
+    xmlns:base="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     mc:Ignorable="d"
     HorizontalAlignment="Stretch">
     
@@ -79,7 +79,7 @@
         <!-- #region Users List -->
         <Grid x:Name="ControlDataGrid">
             <DataGrid 
-                x:Name="ItemsCollection"
+                x:Name="ItemsLayout"
                 AutoGenerateColumns="False"
                 EnableRowVirtualization="false"
                 EnableColumnVirtualization="false"
@@ -87,7 +87,7 @@
                 CanUserDeleteRows="True"
                 CanUserAddRows="False"
                 SelectionMode="Extended"
-                ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
                 RowHeight="22"
                 HorizontalAlignment="Stretch"
                 MouseDoubleClick="OnEdit_Click"
@@ -179,4 +179,4 @@
         <!-- #endregion Users List -->
     </StackPanel>
     <!-- #endregion : list -->
-</base:ControlBaseCollection>
+</base:DataGridUsers>

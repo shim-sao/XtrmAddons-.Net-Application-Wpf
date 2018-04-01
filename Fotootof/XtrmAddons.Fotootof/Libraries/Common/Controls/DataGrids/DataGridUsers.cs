@@ -41,7 +41,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
         /// <param name="e">Routed event arguments.</param>
         public override void OnAdd_Click(object sender, RoutedEventArgs e)
         {
-            WindowFormUser dlg = new WindowFormUser(new UserEntity());
+            WindowFormUser dlg = new WindowFormUser();
             bool? result = dlg.ShowDialog();
 
             // Process open file dialog box results 

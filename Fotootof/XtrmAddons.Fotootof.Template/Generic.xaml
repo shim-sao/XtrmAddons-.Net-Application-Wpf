@@ -43,5 +43,5 @@
     <system:String x:Key="ImageAlbumDefaultOriginal">Assets\Images\Default\album-original.png</system:String>
     <system:String x:Key="ImageAlbumDefaultPicture">Assets\Images\Default\album-picture.png</system:String>
     <system:String x:Key="ImageAlbumDefaultThumbnail">Assets\Images\Default\album-thumbnail.png</system:String>
-    
+
 </ResourceDictionary>

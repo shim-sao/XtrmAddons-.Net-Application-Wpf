@@ -8,7 +8,6 @@
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:ucbrowser="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.TreeViews"
     xmlns:uclistviews="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews"
-    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Menu"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Browser}"
@@ -17,26 +16,14 @@
     SizeChanged="Window_Resize"
     Loaded="Window_Loaded">
 
-    <Grid x:Name="GridRoot">
-
-        <StackPanel
-            Orientation="Vertical"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
+    <Grid x:Name="GridRoot" Style="{StaticResource ResourceKey=Root}">
+        <StackPanel Style="{StaticResource ResourceKey=FieldsetVertical}">
 
             <StackPanel
                 Orientation="Vertical"
                 HorizontalAlignment="Stretch"
                 x:Name="TopControls">
 
-                <!-- #region Main navigation -->
-                <Border>
-                    <ucmenu:MenuServerMain
-                        x:Name="NavigatorMenu"/>
-                </Border>
-                <!-- #endegion Main navigation -->
-
-            
                 <!-- #region Breadcrumbs -->
                 <Border>
                     <TextBlock
@@ -51,7 +38,7 @@
             <Grid 
                 x:Name="MiddleContents"
                 HorizontalAlignment="Stretch">
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColStorages"/>
                     <ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
@@ -66,9 +53,7 @@
                     Grid.Column="0"
                     x:Name="UcTreeViewDirectories"
                     IsHeaderVisible="Visible"
-                    Background="Coral"/>
-
-
+                    Background="{StaticResource ResourceKey=Panton1}"/>
 
                 <GridSplitter
                     Grid.Row="0"
@@ -88,6 +73,5 @@
             </Grid>
 
         </StackPanel>
-
     </Grid>
 </base:PageBase>

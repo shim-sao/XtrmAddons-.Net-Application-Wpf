@@ -93,9 +93,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewServer
             UCServer.RefreshServerMenu();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

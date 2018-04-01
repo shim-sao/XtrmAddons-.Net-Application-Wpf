@@ -21,7 +21,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <summary>
         /// Variable observable collection of Users.
         /// </summary>
-        private ObservableCollection<UserEntity> users;
+        private DataGridUsersModel<DataGridUsers> users;
 
         #endregion
 
@@ -44,7 +44,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <summary>
         /// Property to access to the observable collection of Users.
         /// </summary>
-        public ObservableCollection<UserEntity> Users
+        public DataGridUsersModel<DataGridUsers> Users
         {
             get { return users; }
             set

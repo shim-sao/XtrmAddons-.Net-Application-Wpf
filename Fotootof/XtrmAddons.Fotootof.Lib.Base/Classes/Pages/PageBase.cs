@@ -28,12 +28,12 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <summary>
         /// Variable page height marging for content adjustement on size changed.
         /// </summary>
-        protected double MargingHeight = 220;
+        protected double MargingHeight = SystemParameters.HorizontalScrollBarHeight + 215;
         
         /// <summary>
         /// 
         /// </summary>
-        public static Window AppWindow = (Window)ApplicationSession.Properties.AppWindow;
+        public static Window AppWindow = (Window)ApplicationSession.Properties.MainWindow;
 
         #endregion
 
@@ -73,12 +73,12 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <param name="e">Size changed event arguments.</param>
         protected void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {       
-            if (AppWindow.ActualWidth > MargingWidth)
+            if (AppWindow.ActualWidth > MargingWidth && (AppWindow.ActualWidth - MargingWidth) > 0)
             {
                 Width = AppWindow.ActualWidth - MargingWidth;
             }
 
-            if (AppWindow.ActualHeight > MargingHeight)
+            if (AppWindow.ActualHeight > MargingHeight && (AppWindow.ActualHeight - MargingHeight) > 0)
             {
                 Height = AppWindow.ActualHeight - MargingHeight;
             }

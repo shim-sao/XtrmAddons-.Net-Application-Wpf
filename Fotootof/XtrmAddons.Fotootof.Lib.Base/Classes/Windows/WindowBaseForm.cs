@@ -108,10 +108,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// <param name="propertyName">The name of the property of the object.</param>
         protected virtual void TextBox_TextChanged(TextBox tb, object obj, string propertyName = null, bool validate = true)
         {
-            if(propertyName == null)
-            {
-                propertyName = (string)tb.Tag;
-            }
 
             if (tb == null)
             {
@@ -122,6 +118,8 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
             {
                 throw new ArgumentNullException(nameof(obj));
             }
+
+            propertyName = propertyName ?? (string)tb.Tag;
 
             if (!tb.Text.IsNullOrWhiteSpace())
             {
@@ -143,7 +141,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">The text changed event arguments.</param>
-        protected virtual bool ValidateForm()
+        protected bool ValidateForm()
         {
             return true;
         }
