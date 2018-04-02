@@ -80,7 +80,6 @@
                     VirtualizingStackPanel.VirtualizationMode="Recycling"
                     ScrollViewer.IsDeferredScrollingEnabled="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                    MouseDoubleClick="ItemsCollection_MouseDoubleClick"
                     SelectionChanged="ItemsCollection_SelectionChanged">
                     
                     <ListView.Resources>

@@ -108,7 +108,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             // Add action to the tree view item event handler.
             UcTreeViewDirectories.DirectoriesTreeView.SelectedItemChanged += TreeViewDirectories_SelectedItemChanged;
             UcListViewStoragesServer.ImageSize_SelectionChanged += ImageSize_SelectionChanged;
-
+            
             // Reinitialize datacontext.
             Model.StoragesCollection = new ObservableCollection<StorageInfoModel>();
             DataContext = Model;
@@ -314,5 +314,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         }
 
         #endregion
+
+        private void UcListViewStoragesServer_ItemsCollection_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var a = sender;
+        }
     }
 }

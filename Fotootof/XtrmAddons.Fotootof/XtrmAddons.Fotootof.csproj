@@ -560,10 +560,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Template\Controls\StackPanel\Default.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Themes\Template\Controls\TextBox\Default.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

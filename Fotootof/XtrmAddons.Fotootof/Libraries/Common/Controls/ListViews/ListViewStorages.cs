@@ -57,13 +57,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e) { }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void Item_MouseEnter(object sender, MouseEventArgs e) { }
 
         /// <summary>

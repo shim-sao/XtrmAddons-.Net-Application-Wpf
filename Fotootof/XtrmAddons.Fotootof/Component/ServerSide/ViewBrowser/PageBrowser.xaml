@@ -68,7 +68,8 @@
                     Margin="5,2">
 
                     <uclistviews:ListViewStoragesServer
-                        x:Name="UcListViewStoragesServer"/>
+                        x:Name="UcListViewStoragesServer"
+                        ItemsCollection_MouseDoubleClick="UcListViewStoragesServer_ItemsCollection_MouseDoubleClick"/>
                 </Grid>
             </Grid>
 

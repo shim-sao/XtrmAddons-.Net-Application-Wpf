@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 
@@ -37,6 +38,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         public event SelectionChangedEventHandler ImageSize_SelectionChanged { add => ComboBox_ImageSize.SelectionChanged += value; remove => ComboBox_ImageSize.SelectionChanged -= value; }
 
+        /// <summary>
+        /// Property proxy to the combo box selection changed event handler.
+        /// </summary>
+        public event MouseButtonEventHandler ItemsCollection_MouseDoubleClick { add => ItemsCollection.MouseDoubleClick += value; remove => ItemsCollection.MouseDoubleClick -= value; }
+
         #endregion
 
 
@@ -50,7 +56,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         {
             InitializeComponent();
             ItemsCollection.KeyDown += ItemsCollection.AddKeyDownSelectAllItems;
-            Loaded += (s, e) => Page_Loaded();
         }
 
         #endregion
@@ -62,7 +67,9 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        public void Page_Loaded()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             GridRoot.MaxWidth = ActualWidth - 17;
             GridRoot.Width = ActualWidth - 17;
@@ -72,16 +79,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 
             /*ItemsCollectionStorages.MaxWidth = GridRoot.ActualWidth - 20;
             ItemsCollectionStorages.Width = GridRoot.ActualWidth - 20;*/
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Page_Loaded();
         }
 
         #endregion
