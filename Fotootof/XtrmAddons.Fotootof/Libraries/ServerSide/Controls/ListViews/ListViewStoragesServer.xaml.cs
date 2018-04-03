@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
@@ -71,14 +72,29 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <param name="e"></param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            GridRoot.MaxWidth = ActualWidth - 17;
-            GridRoot.Width = ActualWidth - 17;
+            Block_Root.Width = this.ActualWidth;
+            Block_Root.Height = this.ActualHeight;
 
-            ItemsCollection.MinHeight = GridRoot.ActualHeight - Block_Header.ActualHeight;
-            ItemsCollection.Height = GridRoot.ActualHeight - Block_Header.ActualHeight;
+            Block_Items.Height = this.ActualHeight - Block_Header.RenderSize.Height;
+            ItemsCollection.Height = this.ActualHeight - Block_Header.RenderSize.Height;
 
-            /*ItemsCollectionStorages.MaxWidth = GridRoot.ActualWidth - 20;
-            ItemsCollectionStorages.Width = GridRoot.ActualWidth - 20;*/
+            Trace_Control_SizeChanged(true);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="trace"></param>
+        public void Trace_Control_SizeChanged(bool trace)
+        {
+            if (!trace) return;
+            
+            Trace.WriteLine("ListViewStoragesServer --------------------------------------------------------------------------------");
+            Trace.WriteLine("this.ActualSize = [" + this.ActualWidth + ":" + this.ActualHeight + "]");
+            Trace.WriteLine("this.Size = [" + this.Width + ":" + this.Height + "]");
+            Trace.WriteLine("Block_Root.ActualSize = [" + Block_Root.ActualWidth + ":" + Block_Root.ActualHeight + "]");
+            Trace.WriteLine("Block_Root.Size = [" + Block_Root.Width + ":" + Block_Root.Height + "]");
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }
 
         #endregion

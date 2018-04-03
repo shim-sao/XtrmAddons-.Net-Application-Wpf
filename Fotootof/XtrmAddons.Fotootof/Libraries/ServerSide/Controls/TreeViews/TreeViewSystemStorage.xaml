@@ -11,7 +11,7 @@
     SizeChanged="TreeView_Resize">
 
     <Grid
-        x:Name="GridRoot"
+        x:Name="Block_Root"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch">
         

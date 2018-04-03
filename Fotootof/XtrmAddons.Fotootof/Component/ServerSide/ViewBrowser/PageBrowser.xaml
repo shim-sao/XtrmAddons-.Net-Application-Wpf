@@ -12,32 +12,25 @@
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Browser}"
     Style="{StaticResource ResourceKey=PageContent}"
-    Background="{StaticResource ResourceKey=LightGrey}"
-    SizeChanged="Window_Resize"
-    Loaded="Window_Loaded">
+    SizeChanged="Control_SizeChanged">
 
-    <Grid x:Name="GridRoot" Style="{StaticResource ResourceKey=Root}">
-        <StackPanel Style="{StaticResource ResourceKey=FieldsetVertical}">
+    <Grid x:Name="Block_Root" Style="{StaticResource ResourceKey=Root}">
+        <StackPanel x:Name="Block_RootPanel" Style="{StaticResource ResourceKey=FieldsetVertical}">
 
-            <StackPanel
-                Orientation="Vertical"
-                HorizontalAlignment="Stretch"
-                x:Name="TopControls">
-
+            <StackPanel x:Name="Block_TopControls" Style="{StaticResource ResourceKey=FieldsetVerticalTop}">
                 <!-- #region Breadcrumbs -->
-                <Border>
-                    <TextBlock
+                <Border Background="{StaticResource ResourceKey=LightGrey}">
+                    <TextBox Background="White"
                         x:Name="Breadcrumbs"
-                        Margin="10,5"
-                        FontSize="{StaticResource ResourceKey=FontSizeNormal}" />
+                        Margin="5"
+                        Padding="10,5"
+                        FontSize="{StaticResource ResourceKey=FontSizeNormal}">
+                    </TextBox>
                 </Border>
                 <!-- #endregion Breadcrumbs -->
             </StackPanel>
 
-
-            <Grid 
-                x:Name="MiddleContents"
-                HorizontalAlignment="Stretch">
+            <Grid x:Name="Block_MiddleContents" Style="{StaticResource ResourceKey=MiddleContents}">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColStorages"/>
@@ -64,8 +57,7 @@
                 <Grid
                     Grid.Row="0"
                     Grid.Column="2"
-                    x:Name="GridFiles"
-                    Margin="5,2">
+                    x:Name="GridFiles">
 
                     <uclistviews:ListViewStoragesServer
                         x:Name="UcListViewStoragesServer"

@@ -13,6 +13,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Net.Windows.Controls.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
 {
@@ -148,8 +149,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            StretchWidth(GridRoot, MiddleContents);
-            StretchHeight(GridRoot, MiddleContents);
+            Block_MiddleContents.Width = Block_Root.Width;
+            //Block_Root.Height = Block_MiddleContents.Height;
         }
 
         #endregion

@@ -8,5 +8,11 @@
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
     </Style>
-    
+
+    <Style x:Key="MiddleContents" TargetType="{x:Type Grid}">
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="Red"/>
+    </Style>
+
 </ResourceDictionary>

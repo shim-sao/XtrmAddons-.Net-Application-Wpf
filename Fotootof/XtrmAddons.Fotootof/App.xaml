@@ -10,7 +10,8 @@
                 <ResourceDictionary Source="Dictionary.xaml"/>
 
                 <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Generic.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Color/Default.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Color.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Images.xaml"/>
 
                 <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Grids.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Pages.xaml"/>

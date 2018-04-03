@@ -16,7 +16,7 @@
     Background="{StaticResource ResourceKey=LightGrey}"
     SizeChanged="Control_SizeChanged">
 
-    <Grid x:Name="GridRoot">
+    <Grid x:Name="Block_Root">
         
 
         

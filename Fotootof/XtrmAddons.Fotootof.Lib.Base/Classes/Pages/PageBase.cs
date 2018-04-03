@@ -1,9 +1,12 @@
 ﻿using Microsoft.Win32;
+using System;
+using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
 {
@@ -23,17 +26,17 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <summary>
         /// Variable page width marging for content adjustement on size changed.
         /// </summary>
-        protected double MargingWidth = SystemParameters.VerticalScrollBarWidth + 20;
+        public double MargingWidth { get; set; } = 0; // SystemParameters.VerticalScrollBarWidth
 
         /// <summary>
         /// Variable page height marging for content adjustement on size changed.
         /// </summary>
-        protected double MargingHeight = SystemParameters.HorizontalScrollBarHeight + 215;
-        
+        public double MargingHeight { get; set; } = 0; // SystemParameters.HorizontalScrollBarHeight
+
         /// <summary>
         /// 
         /// </summary>
-        public static Window AppWindow = (Window)ApplicationSession.Properties.MainWindow;
+        public static object AppWindow = ApplicationSession.Properties.MainWindow;
 
         #endregion
 
@@ -48,12 +51,12 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         {
             Loaded += (s, e) => InitializeContent();
 
-            // Initialize on window size event changes.
-            SizeChanged += Window_SizeChanged;
-            AppWindow.SizeChanged += Window_SizeChanged;
+            // Initialize for the window size changed event.
+            SizeChanged += PageBase_SizeChanged;
+            AppWindow.GetPropertyValue<Border>("BlockContent").SizeChanged += PageBase_SizeChanged;
 
             // Merge main resources.
-            Resources.MergedDictionaries.Add(AppWindow.Resources);
+            Resources.MergedDictionaries.Add(((Window)AppWindow).Resources);
         }
 
         /// <summary>
@@ -71,17 +74,18 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Size changed event arguments.</param>
-        protected void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {       
-            if (AppWindow.ActualWidth > MargingWidth && (AppWindow.ActualWidth - MargingWidth) > 0)
-            {
-                Width = AppWindow.ActualWidth - MargingWidth;
-            }
+        protected void PageBase_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Border win = AppWindow.GetPropertyValue<Border>("BlockContent");
 
-            if (AppWindow.ActualHeight > MargingHeight && (AppWindow.ActualHeight - MargingHeight) > 0)
-            {
-                Height = AppWindow.ActualHeight - MargingHeight;
-            }
+            Width = Math.Max(win.ActualWidth - MargingWidth, 0);
+            Height = Math.Max(win.ActualHeight - MargingHeight, 0);
+
+            Trace.WriteLine("PageBase ----------------------------------------------------------------------------------------------");
+            Trace.WriteLine("win.ActualSize = [" + win.ActualWidth + "," + win.ActualHeight + "]");
+            Trace.WriteLine("this.ActualSize = [" + this.ActualWidth + "," + this.ActualHeight + "]");
+            Trace.WriteLine("this.Size = [" + this.Width + "," + this.Height + "]");
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }
 
         /// <summary>
@@ -123,32 +127,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="destination"></param>
-        /// <param name="margin"></param>
-        public void StretchHeight(FrameworkElement source, FrameworkElement destination, double margin = 0)
-        {
-            /*destination.MinHeight = source.ActualHeight - margin;
-            destination.MaxHeight = source.ActualHeight - margin;*/
-            destination.Height = source.ActualHeight - margin;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="destination"></param>
-        /// <param name="margin"></param>
-        public void StretchWidth(FrameworkElement source, FrameworkElement destination, double margin = 0)
-        {
-            /*destination.MinWidth = source.ActualWidth - margin;
-            destination.MaxWidth = source.ActualWidth - margin;*/
-            destination.Width = source.ActualWidth - margin;
         }
 
         /// <summary>

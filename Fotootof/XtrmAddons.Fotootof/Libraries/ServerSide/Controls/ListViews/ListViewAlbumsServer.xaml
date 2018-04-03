@@ -6,13 +6,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews"
-    mc:Ignorable="d"
-    HorizontalAlignment="Stretch"
-    SizeChanged="Control_SizeChanged">
+    mc:Ignorable="d">
 
-    <Grid x:Name="GridRoot">
-        
-        <StackPanel x:Name="Block_Main">
+    <Grid x:Name="Block_Root" Style="{StaticResource ResourceKey=Root}">
+        <StackPanel x:Name="Block_RootPanel" Style="{StaticResource ResourceKey=FieldsetVertical}"  Background="Green">
 
             <StackPanel x:Name="Block_Header" Background="{StaticResource DarkGrey}">
 
@@ -44,7 +41,8 @@
                                 FontSize="{StaticResource FontSizeHeader}"
                                 Foreground="{StaticResource BigHeader}"
                                 Margin="5"
-                                Text="0"/>
+                                Text="0">
+                            </TextBlock>
 
                             <TextBlock
                                 x:Name="ControlHeaderCounterSpacer"
@@ -52,7 +50,8 @@
                                 FontSize="{StaticResource FontSizeHeader}"
                                 Foreground="{StaticResource BigHeader}"
                                 Margin="0,5"
-                                Text="/"/>
+                                Text="/">
+                            </TextBlock>
 
                             <TextBlock
                                 x:Name="ControlHeaderTotal"
@@ -60,7 +59,8 @@
                                 FontSize="{StaticResource FontSizeHeader}"
                                 Foreground="{StaticResource BigHeader}"
                                 Margin="5"
-                                Text="{Binding Path=Items.Count}"/>
+                                Text="{Binding Path=Items.Count}">
+                            </TextBlock>
 
                         </StackPanel>
                     </Border>
@@ -271,7 +271,7 @@
                         <ItemsPanelTemplate>
                             <WrapPanel 
                                 Name="WrapPanelItemsContainer"
-                                Width="{Binding ActualWidth, ElementName=GridRoot, IsAsync=True}"
+                                Width="{Binding ActualWidth, ElementName=Block_Root, IsAsync=True}"
                                 MaxWidth="1900">
 
                                 <WrapPanel.CacheMode>

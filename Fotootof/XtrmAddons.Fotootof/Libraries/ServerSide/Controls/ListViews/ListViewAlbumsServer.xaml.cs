@@ -134,8 +134,8 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            StretchWidth(this, GridRoot);
-            StretchHeight(this, GridRoot);
+            StretchWidth(this, Block_Root);
+            StretchHeight(this, Block_Root);
 
             StretchWidth(this, Block_Header);
 

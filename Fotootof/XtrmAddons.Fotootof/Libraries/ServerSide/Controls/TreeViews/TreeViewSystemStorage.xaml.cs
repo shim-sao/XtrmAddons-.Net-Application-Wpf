@@ -201,7 +201,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.TreeViews
         /// </summary>
         private void TreeView_Loaded()
         {
-            DirectoriesTreeView.Height = GridRoot.ActualHeight;
+            DirectoriesTreeView.Height = Block_Root.ActualHeight;
 
             if(Block_Header.IsVisible)
             {

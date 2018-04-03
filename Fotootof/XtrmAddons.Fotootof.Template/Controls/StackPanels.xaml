@@ -10,6 +10,12 @@
         <Setter Property="VerticalAlignment" Value="Stretch" />
     </Style>
     
+    <Style x:Key="FieldsetVerticalTop" TargetType="{x:Type StackPanel}">
+        <Setter Property="Orientation" Value="Vertical" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+    
     <Style x:Key="FieldsetHorizontal" TargetType="{x:Type StackPanel}">
         <Setter Property="Orientation" Value="Horizontal"/>
         <Setter Property="HorizontalAlignment" Value="Stretch" />
