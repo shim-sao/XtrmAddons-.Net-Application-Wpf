@@ -24,6 +24,11 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
+        /// 
+        /// </summary>
+        protected static bool sizeTrace = false;
+
+        /// <summary>
         /// Variable page width marging for content adjustement on size changed.
         /// </summary>
         public double MargingWidth { get; set; } = 0; // SystemParameters.VerticalScrollBarWidth
@@ -77,15 +82,11 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         protected void PageBase_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Border win = AppWindow.GetPropertyValue<Border>("BlockContent");
+            TraceSize(win);
 
             Width = Math.Max(win.ActualWidth - MargingWidth, 0);
             Height = Math.Max(win.ActualHeight - MargingHeight, 0);
-
-            Trace.WriteLine("PageBase ----------------------------------------------------------------------------------------------");
-            Trace.WriteLine("win.ActualSize = [" + win.ActualWidth + "," + win.ActualHeight + "]");
-            Trace.WriteLine("this.ActualSize = [" + this.ActualWidth + "," + this.ActualHeight + "]");
-            Trace.WriteLine("this.Size = [" + this.Width + "," + this.Height + "]");
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            TraceSize(this);
         }
 
         /// <summary>
@@ -135,6 +136,22 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Size changed event arguments.</param>
         public abstract void Control_SizeChanged(object sender, SizeChangedEventArgs e);
+
+        /// <summary>
+        /// Method called on window sized changed.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
+        protected void TraceSize(FrameworkElement fe)
+        {
+            if (!sizeTrace) return;
+
+            Trace.WriteLine(string.Format("----> Class({0}) : Object({1}) : Name({2})", GetType().Name, fe.GetType().Name, fe.Name));
+            Trace.WriteLine("ActualSize = [" + fe.ActualWidth + "," + fe.ActualHeight + "]");
+            Trace.WriteLine("Size = [" + fe.Width + "," + fe.Height + "]");
+            Trace.WriteLine("RenderSize = [" + fe.RenderSize.Width + "," + fe.RenderSize.Height + "]");
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+        }
 
         #endregion
     }

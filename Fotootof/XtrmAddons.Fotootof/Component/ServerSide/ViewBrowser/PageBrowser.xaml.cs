@@ -78,14 +78,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         {
             FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
 
-            this.Width = fe.ActualWidth;
-            this.Height = fe.ActualHeight;
+            this.Width = Math.Max(fe.ActualWidth, 0);
+            this.Height = Math.Max(fe.ActualHeight, 0);
 
-            Block_MiddleContents.Width = this.Width;
-            Block_MiddleContents.Height = this.Height - Block_TopControls.RenderSize.Height;
+            Block_MiddleContents.Width = Math.Max(this.Width, 0);
+            Block_MiddleContents.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
 
-            UcTreeViewDirectories.Height = this.Height - Block_TopControls.RenderSize.Height;
-            UcListViewStoragesServer.Height = this.Height - Block_TopControls.RenderSize.Height;
+            UcTreeViewDirectories.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
+            UcListViewStoragesServer.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
 
             Trace_Control_SizeChanged(true);
         }
@@ -99,15 +99,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             if (!trace) return;
 
             FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
-            Trace.WriteLine("PageBrowser -------------------------------------------------------------------------------------------");
-            Trace.WriteLine("Block_Content.ActualSize = [" + fe.ActualWidth + ":" + fe.ActualHeight + "]");
-            Trace.WriteLine("this.ActualSize = [" + this.ActualWidth + ":" + this.ActualHeight + "]");
-            Trace.WriteLine("this.Size = [" + this.Width + ":" + this.Height + "]");
-            Trace.WriteLine("Block_TopControls.RenderSize = [" + Block_TopControls.RenderSize.Width + ":" + Block_TopControls.RenderSize.Height + "]");
-            Trace.WriteLine("Block_MiddleContents.Size = [" + Block_MiddleContents.Width + ":" + Block_MiddleContents.Height + "]");
-            Trace.WriteLine("UcTreeViewDirectories.Size = [" + UcTreeViewDirectories.Width + ":" + UcTreeViewDirectories.Height + "]");
-            Trace.WriteLine("UcListViewStoragesServer.Size = [" + UcListViewStoragesServer.Width + ":" + UcListViewStoragesServer.Height + "]");
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+
+            TraceSize(fe);
+            TraceSize(this);
+            TraceSize(Block_TopControls);
+            TraceSize(Block_MiddleContents);
+            TraceSize(UcTreeViewDirectories);
+            TraceSize(UcListViewStoragesServer);
         }
 
         /// <summary>
@@ -368,5 +366,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         }
 
         #endregion
+
+        private void UcListViewStoragesServer_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

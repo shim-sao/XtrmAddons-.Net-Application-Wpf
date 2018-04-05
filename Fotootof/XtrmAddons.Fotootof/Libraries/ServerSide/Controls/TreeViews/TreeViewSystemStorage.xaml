@@ -10,20 +10,11 @@
     Background="AliceBlue"
     SizeChanged="TreeView_Resize">
 
-    <Grid
-        x:Name="Block_Root"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch">
-        
-        <StackPanel
-            x:Name="Block_Main"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
+    <Grid x:Name="Block_Root" Style="{StaticResource ResourceKey=Root}">
+        <StackPanel x:Name="Block_RootPanel" Style="{StaticResource ResourceKey=FieldsetVertical}">
 
             <!-- #region Sections Directories Header -->
-            <StackPanel 
-                x:Name="Block_Header"
-                Background="{StaticResource DarkGrey}">
+            <StackPanel x:Name="Block_Header" Style="{StaticResource FieldsetHeader}">
 
                 <!-- #region Title -->
                 <Border>

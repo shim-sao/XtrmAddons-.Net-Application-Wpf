@@ -61,7 +61,8 @@
 
                     <uclistviews:ListViewStoragesServer
                         x:Name="UcListViewStoragesServer"
-                        ItemsCollection_MouseDoubleClick="UcListViewStoragesServer_ItemsCollection_MouseDoubleClick"/>
+                        ItemsCollection_MouseDoubleClick="UcListViewStoragesServer_ItemsCollection_MouseDoubleClick"
+                        Loaded="UcListViewStoragesServer_Loaded"/>
                 </Grid>
             </Grid>
 

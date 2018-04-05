@@ -44,7 +44,7 @@
                 </Grid.RowDefinitions>
 
                 <dg:DataGridSectionsServer
-                    x:Name="UCDataGridSections"
+                    x:Name="UcDataGridSections"
                     DataContext="{Binding Sections}"/>
 
                 <GridSplitter
@@ -56,15 +56,13 @@
                 <Grid
                     Grid.Row="0"
                     Grid.Column="2"
-                    x:Name="GridAlbums"
-                    Margin="5,2">
+                    x:Name="GridAlbums">
 
                     <albums:ListViewAlbumsServer
-                        x:Name="UCListViewAlbums"
+                        x:Name="UcListViewAlbums"
                         DataContext="{Binding Albums}"
                         FilterColorChanged="FiltersColor_SelectionChanged"
-                        FilterQualityChanged="FiltersQuality_SelectionChanged"
-                        Grid.ColumnSpan="2"/>
+                        FilterQualityChanged="FiltersQuality_SelectionChanged"/>
                 </Grid>
             </Grid>
         

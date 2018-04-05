@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -72,29 +73,37 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <param name="e"></param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Block_Root.Width = this.ActualWidth;
-            Block_Root.Height = this.ActualHeight;
+            ArrangeBlockRoot();
+            ArrangeBlockItems();
+        }
 
-            Block_Items.Height = this.ActualHeight - Block_Header.RenderSize.Height;
-            ItemsCollection.Height = this.ActualHeight - Block_Header.RenderSize.Height;
+        #endregion
 
-            Trace_Control_SizeChanged(true);
+
+        #region Methods Size Changed
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ArrangeBlockRoot()
+        {
+            Block_Root.Arrange(new Rect(new Size(this.ActualWidth, this.ActualHeight)));
+            TraceSize(Block_Root);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="trace"></param>
-        public void Trace_Control_SizeChanged(bool trace)
+        private void ArrangeBlockItems()
         {
-            if (!trace) return;
+            double height = this.ActualHeight - Block_Header.RenderSize.Height;
+
+            Block_Items.Height = height;
+            ItemsCollection.Height = height;
             
-            Trace.WriteLine("ListViewStoragesServer --------------------------------------------------------------------------------");
-            Trace.WriteLine("this.ActualSize = [" + this.ActualWidth + ":" + this.ActualHeight + "]");
-            Trace.WriteLine("this.Size = [" + this.Width + ":" + this.Height + "]");
-            Trace.WriteLine("Block_Root.ActualSize = [" + Block_Root.ActualWidth + ":" + Block_Root.ActualHeight + "]");
-            Trace.WriteLine("Block_Root.Size = [" + Block_Root.Width + ":" + Block_Root.Height + "]");
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            TraceSize(Block_Items);
+            TraceSize(Block_Header);
+            TraceSize(ItemsCollection);
         }
 
         #endregion

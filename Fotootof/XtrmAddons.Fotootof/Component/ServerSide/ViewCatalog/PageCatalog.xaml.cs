@@ -13,7 +13,6 @@ using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
-using XtrmAddons.Net.Windows.Controls.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
 {
@@ -57,7 +56,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         {
             get
             {
-                SectionEntity a = UCDataGridSections.SelectedItem;
+                SectionEntity a = UcDataGridSections.SelectedItem;
 
                 AlbumOptionsList op = new AlbumOptionsList
                 {
@@ -115,8 +114,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             // Paste page to the model & child elements.
             DataContext = model = new PageCatalogModel<PageCatalog>(this)
             {
-                Sections = new DataGridSectionsModel<DataGridSections>(UCDataGridSections),
-                Albums = new ListViewAlbumsModel<ListViewAlbums>(UCListViewAlbums)
+                Sections = new DataGridSectionsModel<DataGridSections>(UcDataGridSections),
+                Albums = new ListViewAlbumsModel<ListViewAlbums>(UcListViewAlbums)
             };
 
             AppOverwork.IsBusy = true;
@@ -127,17 +126,17 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             model.FiltersQuality = InfoEntityCollection.TypesQuality();
             model.FiltersColor = InfoEntityCollection.TypesColor();
 
-            UCDataGridSections.OnAdd += SectionsDataGrid_OnAdd;
-            UCDataGridSections.OnChange += SectionsDataGrid_OnChange;
-            UCDataGridSections.OnCancel += SectionsDataGrid_OnCancel;
-            UCDataGridSections.OnDelete += SectionsDataGrid_OnDelete;
-            UCDataGridSections.DefaultChanged += SectionsDataGrid_OnDefaultChange;
-            UCDataGridSections.SelectionChanged += (s, e) => { RefreshAlbums(); };
+            UcDataGridSections.OnAdd += SectionsDataGrid_OnAdd;
+            UcDataGridSections.OnChange += SectionsDataGrid_OnChange;
+            UcDataGridSections.OnCancel += SectionsDataGrid_OnCancel;
+            UcDataGridSections.OnDelete += SectionsDataGrid_OnDelete;
+            UcDataGridSections.DefaultChanged += SectionsDataGrid_OnDefaultChange;
+            UcDataGridSections.SelectionChanged += (s, e) => { RefreshAlbums(); };
 
-            UCListViewAlbums.OnAdd += AlbumsListView_OnAdd;
-            UCListViewAlbums.OnChange += AlbumsListView_OnChange;
-            UCListViewAlbums.OnCancel += AlbumsListView_OnCancel;
-            UCListViewAlbums.OnDelete += AlbumsListView_OnDelete;
+            UcListViewAlbums.OnAdd += AlbumsListView_OnAdd;
+            UcListViewAlbums.OnChange += AlbumsListView_OnChange;
+            UcListViewAlbums.OnCancel += AlbumsListView_OnCancel;
+            UcListViewAlbums.OnDelete += AlbumsListView_OnDelete;
 
             AppOverwork.IsBusy = false;
         }
@@ -149,8 +148,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Block_MiddleContents.Width = Block_Root.Width;
-            //Block_Root.Height = Block_MiddleContents.Height;
+            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
+
+            this.Width = fe.ActualWidth;
+            this.Height = fe.ActualHeight;
+
+            Block_MiddleContents.Width = this.Width;
+            Block_MiddleContents.Height = this.Height - Block_TopControls.RenderSize.Height;
+
+            UcDataGridSections.Height = this.Height - Block_TopControls.RenderSize.Height;
+            UcListViewAlbums.Height = this.Height - Block_TopControls.RenderSize.Height;
         }
 
         #endregion
@@ -282,9 +289,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// </summary>
         private void RefreshAlbums()
         {
-            UCListViewAlbums.Visibility = Visibility.Hidden;
+            UcListViewAlbums.Visibility = Visibility.Hidden;
             LoadAlbums();
-            UCListViewAlbums.Visibility = Visibility.Visible;
+            UcListViewAlbums.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -361,7 +368,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e"></param>
         private void FiltersQuality_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UCListViewAlbums.FiltersQualitySelector.IsEditable = false;
+            UcListViewAlbums.FiltersQualitySelector.IsEditable = false;
 
             string alias = "quality";
 
@@ -387,7 +394,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <param name="e"></param>
         private void FiltersColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UCListViewAlbums.FiltersColorSelector.IsEditable = false;
+            UcListViewAlbums.FiltersColorSelector.IsEditable = false;
 
             string alias = "color";
 

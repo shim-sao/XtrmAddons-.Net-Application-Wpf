@@ -9,177 +9,177 @@
     mc:Ignorable="d"
     HorizontalAlignment="Stretch">
 
-    <!-- #region Sections list -->
-    <StackPanel>
+    <Grid x:Name="Block_Root" Style="{StaticResource ResourceKey=Root}">
+        <StackPanel x:Name="Block_RootPanel" Style="{StaticResource ResourceKey=FieldsetVertical}">
 
-        <!-- #region Sections Header -->
-        <Grid x:Name="ControlHeader">
-            <Border
-                x:Name="ControlHeaderBorder"
-                Background="{StaticResource DarkGrey}">
-                <TextBlock
-                    x:Name="ControlHeaderText"
-                    Text="{x:Static p:Resources.Sections}"
-                    FontSize="{StaticResource FontSizeHeader}"
-                    Foreground="{StaticResource BigHeader}"
-                    FontWeight="SemiBold"
-                    Margin="5">
-                </TextBlock>
-            </Border>
-        </Grid>
-        <!-- #endregion Sections Header -->
+			<StackPanel x:Name="Block_Header"
+						Style="{StaticResource FieldsetHeader}">
 
-        
-        <!-- #region Menu -->
-        <Grid x:Name="ControlMenu"
-              Background="{StaticResource DarkGrey}">
-            <Border
-                x:Name="ControlMenuItemsBorder">
+				<Border x:Name="Block_Title">
+					<TextBlock x:Name="Header_Text"
+							   Text="{x:Static p:Resources.Sections}"
+							   FontSize="{StaticResource FontSizeHeader}"
+							   Foreground="{StaticResource BigHeader}"
+							   FontWeight="SemiBold"
+							   Margin="5" />
+				</Border>
 
-                <Grid 
-                    x:Name="ControlMenuItemsGrid"
-                    Margin="0,0,0,3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
+			</StackPanel>
 
-                    <Button 
-                        x:Name="Button_Add"
-                        Grid.Column="0"
-                        Style="{StaticResource Btn}"
-                        Content="{x:Static p:Resources.Add }"
-                        Click="OnAdd_Click">
-                    </Button>
-                    
-                    <Button
-                        x:Name="Button_Edit"
-                        Grid.Column="1"
-                        Style="{StaticResource Btn}"
-                        Content="{x:Static p:Resources.Edit }"
-                        Click="OnEdit_Click"
-                        IsEnabled="False">
-                    </Button>
+			
+			<Grid x:Name="Block_Menu"
+				  Style="{StaticResource Grid_Fieldset_Menu}">
+				
+				<Border
+                    x:Name="Menu_Border"
+					Background="Azure">
 
-                    <Button
-                        x:Name="Button_Delete"
-                        Grid.Column="2"
-                        Style="{StaticResource Btn}"
-                        Content="{x:Static p:Resources.Delete}"
-                        Click="OnDelete_Click"
-                        IsEnabled="False">
-                    </Button>
-                </Grid>
-            </Border>
-        </Grid>
-        <!-- #endregion Menu -->
+                    <Grid 
+                        x:Name="ControlMenuItemsGrid"
+                        Margin="2"
+						HorizontalAlignment="Left">
+						
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button 
+                            x:Name="Button_Add"
+                            Grid.Column="0"
+                            Style="{StaticResource Btn}"
+                            Content="{x:Static p:Resources.Add }"
+                            Click="OnAdd_Click">
+                        </Button>
+
+                        <Button
+                            x:Name="Button_Edit"
+                            Grid.Column="1"
+                            Style="{StaticResource Btn}"
+                            Content="{x:Static p:Resources.Edit }"
+                            Click="OnEdit_Click"
+                            IsEnabled="False">
+                        </Button>
+
+                        <Button
+                            x:Name="Button_Delete"
+                            Grid.Column="2"
+                            Style="{StaticResource Btn}"
+                            Content="{x:Static p:Resources.Delete}"
+                            Click="OnDelete_Click"
+                            IsEnabled="False">
+                        </Button>
+                    </Grid>
+                </Border>
+            </Grid>
+            <!-- #endregion Menu -->
 
 
-        <!-- #region Sections DataGrid -->
-        <Grid x:Name="ControlDataGrid">
-            <DataGrid 
-                x:Name="ItemsLayout"
-                ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
-                AutoGenerateColumns="False"
-                EnableRowVirtualization="false"
-                EnableColumnVirtualization="false"
-                HorizontalAlignment="Stretch"
-                RowHeight="22"
-                ColumnWidth="*"
-                ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                SelectionMode="Extended"
-                CanUserDeleteRows="True"
-                CanUserAddRows="False"
-                MouseDoubleClick="OnEdit_Click"
-                SelectionChanged="ItemsCollection_SelectionChanged">
+            <!-- #region Sections DataGrid -->
+            <Grid x:Name="ControlDataGrid">
+                <DataGrid 
+                    x:Name="ItemsLayout"
+                    ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+                    AutoGenerateColumns="False"
+                    EnableRowVirtualization="false"
+                    EnableColumnVirtualization="false"
+                    HorizontalAlignment="Stretch"
+                    RowHeight="22"
+                    ColumnWidth="*"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    SelectionMode="Extended"
+                    CanUserDeleteRows="True"
+                    CanUserAddRows="False"
+                    MouseDoubleClick="OnEdit_Click"
+                    SelectionChanged="ItemsCollection_SelectionChanged">
 
-                <DataGrid.Columns>
-                    <!-- #region : Column PrimaryKey -->
-                    <DataGridTemplateColumn 
-                        IsReadOnly="True"
-                        Width="30"
-                        CanUserSort="True"
-                        Header="{x:Static p:Resources.Id}"
-                        SortMemberPath="PrimaryKey">
+                    <DataGrid.Columns>
+                        <!-- #region : Column PrimaryKey -->
+                        <DataGridTemplateColumn 
+                            IsReadOnly="True"
+                            Width="30"
+                            CanUserSort="True"
+                            Header="{x:Static p:Resources.Id}"
+                            SortMemberPath="PrimaryKey">
 
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
 
-                                <TextBlock
-                                    Margin="5,0"
-                                    Text="{Binding PrimaryKey}"
-                                    ToolTip="{Binding PrimaryKey}"/>
+                                    <TextBlock
+                                        Margin="5,0"
+                                        Text="{Binding PrimaryKey}"
+                                        ToolTip="{Binding PrimaryKey}"/>
 
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <!-- #endregion : Column PrimaryKey -->
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!-- #endregion : Column PrimaryKey -->
 
-                    <!-- #region : Column Is Default -->
-                    <DataGridTemplateColumn 
-                        CanUserResize="False"
-                        IsReadOnly="True"
-                        Width="20"
-                        CanUserSort="True"
-                        Header=""
-                        SortMemberPath="IsDefault">
+                        <!-- #region : Column Is Default -->
+                        <DataGridTemplateColumn 
+                            CanUserResize="False"
+                            IsReadOnly="True"
+                            Width="20"
+                            CanUserSort="True"
+                            Header=""
+                            SortMemberPath="IsDefault">
 
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
 
-                                <CheckBox
-                                    Tag="{Binding}"
-                                    IsChecked="{Binding IsDefault, Mode=TwoWay}"
-                                    Click="CheckBoxDefault_Checked"/>
+                                    <CheckBox
+                                        Tag="{Binding}"
+                                        IsChecked="{Binding IsDefault, Mode=TwoWay}"
+                                        Click="CheckBoxDefault_Checked"/>
 
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <!-- #endregion : Column Is Default -->
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!-- #endregion : Column Is Default -->
 
-                    <!-- #region : Column Name -->
-                    <DataGridTemplateColumn 
-                        IsReadOnly="True"
-                        MinWidth="160"
-                        CanUserSort="True"
-                        Header="{x:Static p:Resources.Name}"
-                        SortMemberPath="Name">
+                        <!-- #region : Column Name -->
+                        <DataGridTemplateColumn 
+                            IsReadOnly="True"
+                            MinWidth="160"
+                            CanUserSort="True"
+                            Header="{x:Static p:Resources.Name}"
+                            SortMemberPath="Name">
 
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
 
-                                <TextBlock Margin="5,0" Text="{Binding Name, Mode=TwoWay}">
-                                    <TextBlock.ContextMenu>
-                                        <ContextMenu>
-                                            <MenuItem
-                                                x:Name="MenuItemOnAdd"
-                                                Header="{x:Static p:Resources.Add}"
-                                                Click="OnAdd_Click"/>
+                                    <TextBlock Margin="5,0" Text="{Binding Name, Mode=TwoWay}">
+                                        <TextBlock.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem
+                                                    x:Name="MenuItemOnAdd"
+                                                    Header="{x:Static p:Resources.Add}"
+                                                    Click="OnAdd_Click"/>
 
-                                            <MenuItem
-                                                x:Name="MenuItemOnEdit"
-                                                Header="{x:Static p:Resources.Edit}"
-                                                Click="OnEdit_Click"/>
+                                                <MenuItem
+                                                    x:Name="MenuItemOnEdit"
+                                                    Header="{x:Static p:Resources.Edit}"
+                                                    Click="OnEdit_Click"/>
 
-                                            <MenuItem
-                                                x:Name="MenuItemOnDelete"
-                                                Header="{x:Static p:Resources.Delete}"
-                                                Click="OnDelete_Click"/>
+                                                <MenuItem
+                                                    x:Name="MenuItemOnDelete"
+                                                    Header="{x:Static p:Resources.Delete}"
+                                                    Click="OnDelete_Click"/>
 
-                                        </ContextMenu>
-                                    </TextBlock.ContextMenu>
-                                </TextBlock>
+                                            </ContextMenu>
+                                        </TextBlock.ContextMenu>
+                                    </TextBlock>
 
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <!-- #endregion : Column Name -->
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!-- #endregion : Column Name -->
 
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
-    </StackPanel>
-    
-    <!-- #endregion : list -->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            
+        </StackPanel>
+    </Grid>
 </base:DataGridSections>
