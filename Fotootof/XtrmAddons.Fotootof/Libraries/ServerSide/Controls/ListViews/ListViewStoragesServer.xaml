@@ -153,12 +153,8 @@
 										<Grid.ContextMenu>
 											<ContextMenu>
 												<MenuItem Header="{x:Static p:Resources.AddPicturesToAlbum}"
-														  Click="OnAddPicturesToAlbum_Click" 
+														  Click="OnAddPicturesToAlbum_Click"
 														  IsEnabled="true" />
-												
-												<MenuItem Header="{x:Static p:Resources.Add}"
-														  Click="OnAdd_Click"
-														  IsEnabled="False" />
 
 												<MenuItem Header="{x:Static p:Resources.Edit}"
 														  Click="OnEdit_Click"

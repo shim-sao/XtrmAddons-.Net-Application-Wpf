@@ -141,7 +141,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// </summary>
         /// <param name="dirInfo"></param>
         /// <returns></returns>
-        private FileInfo[] GetInfoFiles(DirectoryInfo dirInfo)
+        private FileInfo[] GetInfoFiles(DirectoryInfo dirInfo, SearchOption option = SearchOption.TopDirectoryOnly)
         {
             FileInfo[] info = null;
 
