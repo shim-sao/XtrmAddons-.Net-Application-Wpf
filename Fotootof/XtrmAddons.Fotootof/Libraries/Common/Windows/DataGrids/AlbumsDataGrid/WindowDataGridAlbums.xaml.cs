@@ -114,7 +114,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
             {
                 AppLogger.Info("Loading Albums list. Please wait...");
                 model.Albums = new AlbumEntityCollection(true);
-                AppLogger.Info("Loading Albums list. Done.");
+                AppLogger.InfoAndClose("Loading Albums list. Done.");
             }
             catch (Exception e)
             {
@@ -130,7 +130,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         private void UCAlbumsContainer_OnCancel(object sender, EntityChangesEventArgs e)
         {
             AppLogger.Info("Adding or editing Album operation canceled. Please wait...");
-            AppLogger.Info("Adding or editing Album operation canceled. Done.");
+            AppLogger.InfoAndClose("Adding or editing Album operation canceled. Done.");
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
             model.Albums.Add(item);
             AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
 
-            AppLogger.Info("Saving new Album informations. Done.");
+            AppLogger.InfoAndClose("Saving new Album informations. Done.");
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
             model.Albums[index] = newEntity;
             AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
 
-            AppLogger.Info("Saving Album informations. Done.");
+            AppLogger.InfoAndClose("Saving Album informations. Done.");
 
         }
 
@@ -185,7 +185,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
             // Delete item from database.
             AlbumEntityCollection.DbDelete(new List<AlbumEntity> { item });
 
-            AppLogger.Info("Deleting Album(s). Done.");
+            AppLogger.InfoAndClose("Deleting Album(s). Done.");
         }
 
         #endregion

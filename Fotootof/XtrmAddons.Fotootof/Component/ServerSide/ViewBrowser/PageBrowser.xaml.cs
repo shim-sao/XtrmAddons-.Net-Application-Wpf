@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Images;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Net.Memory;
@@ -26,11 +26,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// Property to access to the page browser model.
         /// </summary>
         public PageBrowserModel<PageBrowser> Model { get; private set; }
-
-        /// <summary>
-        /// Property to access to the image size to display.
-        /// </summary>
-        public Size ImageSize { get; set; } = new Size { Height = 32, Width = 32 };
 
         /// <summary>
         /// Property to access to the preview directory system informations.
@@ -127,7 +122,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             // Initialize associated view model of the page.
             Model = new PageBrowserModel<PageBrowser>(this)
             {
-                StoragesCollection = new ObservableCollection<StorageInfoModel>()
+                FilesCollection = new ObservableCollection<StorageInfoModel>()
             };
 
             // Add action to the tree view item event handler.
@@ -206,9 +201,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// </summary>
         private void ClearFilesCollection()
         {
-            Model.StoragesCollection.Clear();
-            //UCBrowserPicture.UpdateLayout();
-            //UCBrowserPicture.Visibility = Visibility.Hidden;
+            Model.FilesCollection.Clear();
 
             // Reset picture memory cache.
             if (PictureMemoryCache.MemCache != null)
@@ -269,16 +262,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
                 return;
             }
 
-            if(CurrentDirectoryInfo.Parent != null)
-            {
-                DirectoryInfo preview = new DirectoryInfo(CurrentDirectoryInfo.Parent.FullName);
-                Model.StoragesCollection.Add(new StorageInfoModel(preview) { ImageSize = ImageSize });
-            }
-
             foreach (DirectoryInfo dirInfo in dirInfos)
             {
-                StorageInfoModel item = new StorageInfoModel(dirInfo) { ImageSize = ImageSize };
-                Model.StoragesCollection.Add(item);
+                StorageInfoModel item = new StorageInfoModel(dirInfo) { ImageSize = Model.ImageSize };
+                Model.FilesCollection.Add(item);
             }
 
             UcListViewStoragesServer.Visibility = Visibility.Visible;
@@ -297,8 +284,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
             foreach (FileInfo fileInfo in infoFiles)
             {
-                StorageInfoModel item = new StorageInfoModel(fileInfo) { ImageSize = ImageSize };
-                Model.StoragesCollection.Add(item);
+                StorageInfoModel item = new StorageInfoModel(fileInfo) { ImageSize = Model.ImageSize };
+                Model.FilesCollection.Add(item);
             }
 
             UcListViewStoragesServer.Visibility = Visibility.Visible;
@@ -311,33 +298,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <param name="e"></param>
         private void ImageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int dim = 32;
             int index = ((ComboBox)sender).SelectedIndex;
+            ImageSize dim = ImageSizeExtensions.Index(index);
 
-            switch (index)
-            {
-                case 0:
-                    dim = 32;
-                    break;
-
-                case 1:
-                    dim = 64;
-                    break;
-
-                case 2:
-                    dim = 96;
-                    break;
-
-                case 3:
-                    dim = 128;
-                    break;
-
-                case 4:
-                    dim = 256;
-                    break;
-            }
-
-            ImageSize = new Size(dim, dim);
+            Model.ImageSize = dim.ToSize();
             Refresh_UcListViewStoragesServer();
         }
 
@@ -365,11 +329,22 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             }
         }
 
-        #endregion
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UcListViewStoragesServer_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
+
+        #endregion
+
+
+
+        #region Methods Size Changed
+
+        #endregion
     }
 }

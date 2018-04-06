@@ -252,11 +252,17 @@
   <data name="Host" xml:space="preserve">
     <value>Host</value>
   </data>
+  <data name="Icon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
   <data name="Informations" xml:space="preserve">
     <value>Informations</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Large</value>
   </data>
   <data name="LastAdded" xml:space="preserve">
     <value>Last Added</value>
@@ -387,6 +393,9 @@
   <data name="Stop" xml:space="preserve">
     <value>Stop</value>
   </data>
+  <data name="Thumbnail" xml:space="preserve">
+    <value>Thumbnail</value>
+  </data>
   <data name="ToolTip_SelectAlbumColor" xml:space="preserve">
     <value>Select the Color associated to the Album.</value>
   </data>
@@ -420,6 +429,9 @@
   <data name="View" xml:space="preserve">
     <value>View</value>
   </data>
+  <data name="Vignette" xml:space="preserve">
+    <value>Vignette</value>
+  </data>
   <data name="WindowAclGroupFormTitle" xml:space="preserve">
     <value>FotootoF Administration : Users group</value>
   </data>
@@ -440,6 +452,9 @@
   </data>
   <data name="WindowUserFormTitle" xml:space="preserve">
     <value>FotootoF Administration : User</value>
+  </data>
+  <data name="XLarge" xml:space="preserve">
+    <value>X-Large</value>
   </data>
   <data name="_About" xml:space="preserve">
     <value>_About XtrmAddons Fotootof Server</value>

@@ -22,7 +22,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         /// <summary>
         /// 
         /// </summary>
-        protected static bool sizeTrace = true;
+        protected static bool sizeTrace = false;
 
         #endregion
 

@@ -5,7 +5,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Images
     /// <summary>
     /// XtrmAddons Net Picture Picture Type Enumerator.
     /// </summary>
-    public enum PictureType
+    public enum ImageType
     {
         /// <summary>
         /// Picture Type Picture. 

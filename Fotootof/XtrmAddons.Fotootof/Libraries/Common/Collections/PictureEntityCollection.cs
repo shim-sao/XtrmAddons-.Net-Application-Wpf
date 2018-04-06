@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
@@ -71,7 +72,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// Method to insert a list of Picture entities into the database.
         /// </summary>
         /// <param name="newItems">Thee list of items to add.</param>
-        public static void DbInsert(List<PictureEntity> newItems, List<AlbumEntity> albums)
+        public static void DbInsert(List<PictureEntity> newItems, List<AlbumEntity> albums = default(List<AlbumEntity>))
         {
             try
             {
@@ -81,13 +82,13 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                 {
                     foreach (PictureEntity entity in newItems)
                     {
-                        MainWindow.Database.Pictures.Add(entity);
-
-                        AppLogger.Info(string.Format("Picture [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
-
-                        /*foreach (Album a in albums)
+                        // Process association for each albums.
+                        foreach (AlbumEntity a in albums)
                         {
+                            // Try to find Picture and Album dependency
                             PicturesInAlbums dependency = (new List<PicturesInAlbums>(entity.PicturesInAlbums)).Find(p => p.AlbumId == a.AlbumId);
+
+                            // Associate Picture to the Album if not already set.
                             if (dependency == null)
                             {
                                 entity.PicturesInAlbums.Add(
@@ -97,10 +98,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                                         Ordering = entity.PicturesInAlbums.Count + 1
                                     }
                                 );
+
+                                AppLogger.Info(string.Format("Picture [{0}:{1}] associated to Album [{2}:{3}].", entity.PrimaryKey, entity.Name, a.PrimaryKey, a.Name));
                             }
                         }
+                        
+                        MainWindow.Database.Pictures.Add(entity);
 
-                        MainWindow.Database.Picture_Update(entity);*/
+                        AppLogger.Info(string.Format("Picture [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
@@ -110,7 +115,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             catch (Exception e)
             {
                 AppLogger.Fatal("Adding Picture(s) failed !", e);
-                //throw new Exception("out", e);
             }
             finally
             {

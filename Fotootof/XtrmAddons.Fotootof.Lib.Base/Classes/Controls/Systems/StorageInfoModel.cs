@@ -1,15 +1,29 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
+using XtrmAddons.Net.Picture.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
 {
+    /// <summary>
+    /// <para>Class XtrmAddons Fotootof Lib Base Classes Controls Systems Storage Informations.</para>
+    /// <para>Storage informations model for custom control displays.</para>
+    /// </summary>
     public class StorageInfoModel
     {
+        #region Properties
+
         /// <summary>
         /// Property full name of the item information.
         /// </summary>
         public string FullName { get; private set; }
+
+        /// <summary>
+        /// Property single name of the item information.
+        /// </summary>
+        public string Name { get; private set; }
 
         /// <summary>
         /// Property full name or path to the image associated to the item.
@@ -93,15 +107,20 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
         /// </summary>
         public string Background { get; private set; } = "#FFFFFF";
 
+        #endregion
 
+
+
+        #region Constructors
 
         /// <summary>
-        /// 
+        /// Class XtrmAddons Fotootof Lib Base Classes Controls Systems Storage Informations Constructor.
         /// </summary>
-        /// <param name="fi"></param>
+        /// <param name="fi">A file system informations.</param>
         public StorageInfoModel(FileInfo info)
         {
             FileInfo = info;
+            Name = FileInfo.Name;
             FullName = FileInfo.FullName;
             ImageFullName = FileInfo.FullName;
             DateCreated = FileInfo.CreationTime;
@@ -110,16 +129,72 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
         }
 
         /// <summary>
-        /// 
+        /// Class XtrmAddons Fotootof Lib Base Classes Controls Systems Storage Informations Constructor.
         /// </summary>
-        /// <param name="fi"></param>
+        /// <param name="fi">A directory system informations.</param>
         public StorageInfoModel(DirectoryInfo info)
         {
             DirectoryInfo = info;
+            Name = DirectoryInfo.Name;
             FullName = DirectoryInfo.FullName;
             ImageFullName = DirectoryInfo.FullName;
             DateCreated = DirectoryInfo.CreationTime;
             DateModified = DirectoryInfo.LastWriteTime;
         }
+
+        #endregion
+
+
+
+        #region Methods
+
+        /// <summary>
+        /// Method to convert object in new Picture entity.
+        /// </summary>
+        /// <returns>A Picture entity with Image informations or null if it is directory or non image file.</returns>
+        public PictureEntity ToPicture()
+        {
+            if (!IsFile)
+            {
+                return null;
+            }
+
+            string ext = Path.GetExtension(FullName);
+            string[] extensions = { ".jpg", ".jpeg", ".png", ".bmp", ".tiff" };
+            PictureEntity p = null;
+
+            if (extensions.Contains(ext.ToLower()))
+            {
+                dynamic metadata = FullName.PictureMetadata();
+
+                DateTime date = metadata.DateTaken != null ? DateTime.Parse(metadata.DateTaken) : DateTime.Now;
+                string Title = metadata.Title ?? "";
+                string Comment = metadata.Comment ?? "";
+
+                p = new PictureEntity()
+                {
+                    PrimaryKey = 0,
+
+                    Name = Title,
+                    Comment = Comment,
+
+                    Captured = date,
+                    Created = DateTime.Now,
+                    Modified = DateTime.Now,
+
+                    ThumbnailPath = FullName,
+                    ThumbnailWidth = (int)metadata.Width,
+                    ThumbnailHeight = (int)metadata.Height,
+
+                    PicturePath = FullName,
+                    PictureWidth = (int)metadata.Width,
+                    PictureHeight = (int)metadata.Height
+                };
+            }
+
+            return p;
+        }
+
+        #endregion
     }
 }

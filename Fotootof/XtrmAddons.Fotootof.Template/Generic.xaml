@@ -28,20 +28,44 @@
     <!-- Image Size -->
     <system:Int32 x:Key="Icon16">32</system:Int32>
     <system:Int32 x:Key="Icon24">24</system:Int32>
-    <system:Int32 x:Key="Icon60">64</system:Int32>
+    <system:Int32 x:Key="Icon64">64</system:Int32>
     <system:Int32 x:Key="Icon128">128</system:Int32>
     <system:Int32 x:Key="Icon256">256</system:Int32>
-    <system:Int32 x:Key="Icon512">512</system:Int32>
+	<system:Int32 x:Key="Icon512">512</system:Int32>
 
-    <system:Int32 x:Key="Icon16String">32</system:Int32>
-    <system:Int32 x:Key="Icon24String">24</system:Int32>
-    <system:Int32 x:Key="Icon60String">64</system:Int32>
-    <system:Int32 x:Key="Icon128String">128</system:Int32>
-    <system:Int32 x:Key="Icon256String">256</system:Int32>
-    <system:Int32 x:Key="Icon512String">512</system:Int32>
+	<system:String x:Key="Icon16String">32</system:String>
+	<system:String x:Key="Icon24String">24</system:String>
+	<system:String x:Key="Icon64String">64</system:String>
+	<system:String x:Key="Icon128String">128</system:String>
+	<system:String x:Key="Icon256String">256</system:String>
+	<system:String x:Key="Icon512String">512</system:String>
 
-    <system:String x:Key="ImageAlbumDefaultOriginal">Assets\Images\Default\album-original.png</system:String>
+	<system:Double x:Key="Icon16Double">32</system:Double>
+	<system:Double x:Key="Icon24Double">24</system:Double>
+	<system:Double x:Key="Icon64Double">64</system:Double>
+	<system:Double x:Key="Icon128Double">128</system:Double>
+	<system:Double x:Key="Icon256Double">256</system:Double>
+	<system:Double x:Key="Icon512Double">512</system:Double>
+
+	<system:String x:Key="ImageAlbumDefaultOriginal">Assets\Images\Default\album-original.png</system:String>
     <system:String x:Key="ImageAlbumDefaultPicture">Assets\Images\Default\album-picture.png</system:String>
     <system:String x:Key="ImageAlbumDefaultThumbnail">Assets\Images\Default\album-thumbnail.png</system:String>
+
+
+
+	<!-- Converters parameters -->
+	<system:String x:Key="CvDateSQLParameter">DateSQL</system:String>
+	<system:String x:Key="CvDateLongParameter">DateLong</system:String>
+	<system:String x:Key="CvDateTimeLongParameter">DateTimeLong</system:String>
+	<system:String x:Key="CvTimeParameter">Time</system:String>
+
+	<system:String x:Key="CvThumbnailParameter">320</system:String>
+	<system:String x:Key="CvPreviewParameter">512</system:String>
+
+	<system:String x:Key="AlbumsPictureDirectory">albums</system:String>
+	<system:String x:Key="CategoriesPictureDirectory">categories</system:String>
+	<system:String x:Key="PicturesDirectory">pictures</system:String>
+
+	<system:Double x:Key="DatagridRowHeight">40</system:Double>
 
 </ResourceDictionary>

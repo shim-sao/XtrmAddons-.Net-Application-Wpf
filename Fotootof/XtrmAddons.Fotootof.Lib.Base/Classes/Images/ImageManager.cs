@@ -104,7 +104,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Images
         /// </summary>
         /// <param name="albumId">The primary key of the album.</param>
         /// <returns>The path to the album directory.</returns>
-        public static string GetAlbumImageAbsolutePath(int albumId, PictureType imgType, string fileExt)
+        public static string GetAlbumImageAbsolutePath(int albumId, ImageType imgType, string fileExt)
         {
             return Path.Combine(GetAlbumsDirectory(), GetRelativePathAlbumImage(albumId, imgType, fileExt));
         }
@@ -114,7 +114,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Images
         /// </summary>
         /// <param name="albumId">The primary key of the album.</param>
         /// <returns>The path to the album directory.</returns>
-        public static async Task<string> GetAbsolutePathAlbumImageAsync(int albumId, PictureType imgType, string fileExt)
+        public static async Task<string> GetAbsolutePathAlbumImageAsync(int albumId, ImageType imgType, string fileExt)
         {
             return Path.Combine(await GetAlbumsDirectoryAsync(), GetRelativePathAlbumImage(albumId, imgType, fileExt));
         }
@@ -144,18 +144,18 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Images
         /// </summary>
         /// <param name="albumId">The primary key of the album.</param>
         /// <returns>The path to the album directory.</returns>
-        public static string GetRelativePathAlbumImage(int albumId, PictureType imgType, string fileExt)
+        public static string GetRelativePathAlbumImage(int albumId, ImageType imgType, string fileExt)
         {
             // Format Album path by Primary Key
             int root = (int)Math.Floor((double)(albumId / 1024));
             string path = Path.Combine(root.ToString().PadLeft(4, '0'), albumId.ToString().PadLeft(4, '0'));
 
-            if (imgType == PictureType.Picture || imgType == PictureType.Original)
+            if (imgType == ImageType.Picture || imgType == ImageType.Original)
             {
                 return Path.Combine(path, "fanart" + fileExt);
             }
 
-            if (imgType == PictureType.Thumbnail)
+            if (imgType == ImageType.Thumbnail)
             {
                 return Path.Combine(path, "cover" + fileExt);
             }
@@ -166,17 +166,17 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Images
         /// <summary>
         /// Method to get a picture path.
         /// </summary>
-        public static async Task<Image> CreateAlbumImage(string sourceFilename, PictureType imgType, int albumId)
+        public static async Task<Image> CreateAlbumImage(string sourceFilename, ImageType imgType, int albumId)
         {
             string destFileName = await GetAbsolutePathAlbumImageAsync(albumId, imgType, Path.GetExtension(sourceFilename));
             File.Copy(sourceFilename, destFileName, true);
 
-            if (imgType == PictureType.Picture)
+            if (imgType == ImageType.Picture)
             {
                 return Image.FromFile(destFileName);
             }
 
-            if (imgType == PictureType.Thumbnail)
+            if (imgType == ImageType.Thumbnail)
             {
                 Image img;
                 using (Image src = Image.FromFile(destFileName))

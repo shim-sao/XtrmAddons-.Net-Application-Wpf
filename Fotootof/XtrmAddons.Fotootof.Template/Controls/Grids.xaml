@@ -4,11 +4,17 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!-- Grid -->
-    <Style x:Key="Grid_Fieldset_Menu" TargetType="{x:Type Grid}">
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Bottom" />
-        <Setter Property="Background" Value="{StaticResource Panton1}" />
-    </Style>
+	<Style x:Key="Grid_Fieldset_Menu"
+		   TargetType="{x:Type Grid}">
+		<Setter Property="HorizontalAlignment"
+				Value="Stretch" />
+		<Setter Property="VerticalAlignment"
+				Value="Bottom" />
+		<Setter Property="Background"
+				Value="{StaticResource Panton1}" />
+		<Setter Property="Height"
+				Value="40" />
+	</Style>
 
     <Style x:Key="MiddleContents" TargetType="{x:Type Grid}">
         <Setter Property="VerticalAlignment" Value="Stretch"/>
