@@ -47,7 +47,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// <summary>
         /// Property to access to the main application frame.
         /// </summary>
-        public static Frame MainFrame => AppWindow.FrameMain;
+        public static Frame MainFrame => AppWindow.Frame_Content;
 
         /// <summary>
         /// Property client added routed event handler.
@@ -187,7 +187,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
                 ? new GridLength(UINavigation.AppWindow.ActualHeight)
                 : new GridLength(UINavigation.AppWindow.ActualHeight - 220);
 
-            UINavigation.AppWindow.FrameMain.Height = UINavigation.AppWindow.RowGridMain.Height.Value;
+            UINavigation.AppWindow.Frame_Content.Height = UINavigation.AppWindow.RowGridMain.Height.Value;
             */
             AppNavigator.MainWindow.UpdateLayout();
 

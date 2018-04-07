@@ -11,33 +11,68 @@
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Browser}"
-    Style="{StaticResource ResourceKey=PageContent}"
-    Background="{StaticResource ResourceKey=LightGrey}"
-    SizeChanged="Window_Resize"
-    Loaded="Window_Loaded">
+    Style="{StaticResource PageContent}"
+    SizeChanged="Control_SizeChanged">
 
-    <Grid x:Name="GridRoot" Style="{StaticResource ResourceKey=Root}">
-        <StackPanel Style="{StaticResource ResourceKey=FieldsetVertical}">
-
-            <StackPanel
-                Orientation="Vertical"
-                HorizontalAlignment="Stretch"
-                x:Name="TopControls">
-
-                <!-- #region Breadcrumbs -->
-                <Border>
-                    <TextBlock
-                        x:Name="Breadcrumbs"
-                        Margin="10,5"
-                        FontSize="{StaticResource ResourceKey=FontSizeNormal}" />
-                </Border>
-                <!-- #endregion Breadcrumbs -->
-            </StackPanel>
+	<Page.Resources>
+		<Image x:Key="ImageBack"
+			   Source="pack://application:,,,/Assets/Images/Icons/Buttons/back.png" />
+		<Image x:Key="ImageForward"
+			   Source="pack://application:,,,/Assets/Images/Icons/Buttons/forward.png" />
+		<Image x:Key="ImageCopy"
+			   Source="pack://application:,,,/Assets/Images/Icons/Buttons/copy.png" />
+	</Page.Resources>
 
 
-            <Grid 
-                x:Name="MiddleContents"
-                HorizontalAlignment="Stretch">
+	<Grid x:Name="Block_Root"
+		  Style="{StaticResource Root}">
+		<StackPanel x:Name="Block_RootPanel"
+					Style="{StaticResource FieldsetVertical}">
+
+			<StackPanel x:Name="Block_TopControls"
+						Style="{StaticResource FieldsetVerticalTop}">
+				<Grid Background="{StaticResource ResourceKey=LightGrey}"
+					  Height="28">
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="auto" />
+						<ColumnDefinition Width="1*" />
+						<ColumnDefinition Width="auto" />
+					</Grid.ColumnDefinitions>
+
+					<StackPanel Grid.Column="0"
+								Orientation="Horizontal"
+								Margin="2,0,0,0">
+						<Button Content="{StaticResource ImageBack}"
+								Height="24"
+								Width="24" />
+
+						<Button Content="{StaticResource ImageForward}"
+								Height="24"
+								Width="24" />
+					</StackPanel>
+
+					<Border Grid.Column="1">
+						<TextBox Background="White"
+								 x:Name="Breadcrumbs"
+								 Margin="2"
+								 Padding="10,5"
+								 FontSize="{StaticResource ResourceKey=FontSizeNormal}"
+								 HorizontalAlignment="Stretch" />
+					</Border>
+
+					<StackPanel Grid.Column="2"
+								Orientation="Horizontal"
+								Margin="0,0,2,0">
+
+						<Button Content="{StaticResource ImageCopy}"
+								Height="24"
+								Width="24" />
+					</StackPanel>
+				</Grid>
+			</StackPanel>
+
+            <Grid x:Name="Block_MiddleContents" Style="{StaticResource MiddleContents}">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColStorages"/>
@@ -64,11 +99,12 @@
                 <Grid
                     Grid.Row="0"
                     Grid.Column="2"
-                    x:Name="GridFiles"
-                    Margin="5,2">
+                    x:Name="GridFiles">
 
                     <uclistviews:ListViewStoragesServer
-                        x:Name="UcListViewStoragesServer"/>
+                        x:Name="UcListViewStoragesServer"
+                        ItemsCollection_MouseDoubleClick="UcListViewStoragesServer_ItemsCollection_MouseDoubleClick"
+                        Loaded="UcListViewStoragesServer_Loaded"/>
                 </Grid>
             </Grid>
 

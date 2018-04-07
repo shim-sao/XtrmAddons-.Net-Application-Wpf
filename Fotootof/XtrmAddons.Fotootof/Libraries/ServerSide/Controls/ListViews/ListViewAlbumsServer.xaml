@@ -7,475 +7,394 @@
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews"
     mc:Ignorable="d"
-    HorizontalAlignment="Stretch"
     SizeChanged="Control_SizeChanged">
 
-    <Grid x:Name="GridRoot">
-        
-        <StackPanel x:Name="Block_Main">
+	<Grid x:Name="Block_Root"
+		  Style="{StaticResource ResourceKey=Root}">
+		<StackPanel x:Name="Block_RootPanel"
+					Style="{StaticResource ResourceKey=FieldsetVertical}">
+			
+			<StackPanel x:Name="Block_Header"
+						Style="{StaticResource FieldsetHeader}">
 
-            <StackPanel x:Name="Block_Header" Background="{StaticResource DarkGrey}">
-
-                <!-- #region Block Informations -->
-                <Grid x:Name="Block_Infos">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" x:Name="Block_Title"/>
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                    </Grid.RowDefinitions>
-
-                    <Border x:Name="TitleBorder" Grid.Column="0">
-                        <TextBlock
-                            x:Name="Title"
-                            Text="{x:Static p:Resources.Albums}"
-                            FontSize="{StaticResource FontSizeHeader}"
-                            Foreground="{StaticResource BigHeader}"
-                            FontWeight="SemiBold"
-                            Margin="5"/>
-                    </Border>
-
-                    <Border x:Name="CounterBorder" Grid.Column="1">
-                        <StackPanel x:Name="Counter" Orientation="Horizontal" Margin="0,0,10,0">
-                            <TextBlock
-                                x:Name="ControlHeaderSelectedNumber"
-                                FontWeight="SemiBold"
-                                FontSize="{StaticResource FontSizeHeader}"
-                                Foreground="{StaticResource BigHeader}"
-                                Margin="5"
-                                Text="0"/>
-
-                            <TextBlock
-                                x:Name="ControlHeaderCounterSpacer"
-                                FontWeight="SemiBold"
-                                FontSize="{StaticResource FontSizeHeader}"
-                                Foreground="{StaticResource BigHeader}"
-                                Margin="0,5"
-                                Text="/"/>
-
-                            <TextBlock
-                                x:Name="ControlHeaderTotal"
-                                FontWeight="SemiBold"
-                                FontSize="{StaticResource FontSizeHeader}"
-                                Foreground="{StaticResource BigHeader}"
-                                Margin="5"
-                                Text="{Binding Path=Items.Count}"/>
-
-                        </StackPanel>
-                    </Border>
-
-                </Grid>
-                <!-- #end Block Informations -->
-
-
-
-                <!-- #region Block Menu -->
-                <Grid x:Name="Block_Menu" Background="AliceBlue">
-
-                    
-
-                    
-                </Grid>
-                <!-- #endregion Block Menu -->
-
-
-                <!-- #region Menu -->
-                <StackPanel x:Name="Block_Menu1" Orientation="Horizontal">
-
-                    <Border
-                        x:Name="ControlMenuBorder"
-                        HorizontalAlignment="Left"
-                        Width="Auto">
-
-                        <Grid Margin="0,0,0,3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Button 
-                                x:Name="Button_Add"
-                                Grid.Column="0"
-                                Style="{StaticResource Btn}"
-                                Content="{x:Static p:Resources.Add }"
-                                Click="OnAdd_Click"/>
-
-                            <Button
-                                x:Name="Button_Edit"
-                                Grid.Column="1"
-                                Style="{StaticResource Btn}"
-                                Content="{x:Static p:Resources.Edit }"
-                                Click="OnEdit_Click"/>
-
-                            <Button
-                                x:Name="Button_Delete"
-                                Grid.Column="2"
-                                Style="{StaticResource Btn}"
-                                Content="{x:Static p:Resources.Delete}"
-                                Click="OnDelete_Click"/>
-                        </Grid>
-                    </Border>
-
-
-                    <Border
-                        x:Name="ControlMenuBorder2"
-                        HorizontalAlignment="Right"
-                        Margin="0,0,5,0">
-
-                        <Grid Margin="0,0,0,3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Button 
-                                x:Name="Button_SelectAll"
-                                Grid.Column="0"
-                                Style="{StaticResource Btn}"
-                                Content="{x:Static p:Resources.SelectAll}"
-                                Click="SelectAll_Click"/>
-
-                            <Button 
-                                Grid.Column="1"
-                                x:Name="Button_ClearSelection"
-                                Style="{StaticResource Btn}"
-                                Content="{x:Static p:Resources.UnselectAll}"
-                                Click="UnselectAll_Click"/>
-
-                        </Grid>
-                    </Border>
-
-                </StackPanel>
-                <!-- #endregion Menu -->
-
-
-                <!-- #region Filters -->
-                <StackPanel 
-                    x:Name="Block_Filters"
-                    Background="{StaticResource DarkGrey}"
-                    Margin="0,0,0,5">
-
-                    <Grid HorizontalAlignment="Right">
+				<Border x:Name="Block_Title"
+						Style="{StaticResource Border_Fieldset_Title}">
+					<Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel 
-                            Orientation="Horizontal"
-                            Margin="5">
+                        <!-- #region Title -->
+                        <Border x:Name="Title_Border">
+                            <TextBlock
+                                x:Name="Title_Text"
+                                Text="{x:Static p:Resources.Albums}"
+                                FontSize="{StaticResource FontSizeHeader}"
+                                Foreground="{StaticResource BigHeader}"
+                                FontWeight="SemiBold"
+                                Margin="5">
+                            </TextBlock>
+                        </Border>
+                        <!-- #endregion Title -->
+                        
+                        <!-- #region Counter -->
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock
+                                x:Name="Counter_SelectedNumber"
+                                FontWeight="SemiBold"
+                                FontSize="{StaticResource FontSizeHeader}"
+                                Foreground="{StaticResource BigHeader}"
+                                Margin="5"
+                                Text="0">
+                            </TextBlock>
 
                             <TextBlock
-                                Text="Quality"
-                                Margin="0,0,5,0"
-                                VerticalAlignment="Center"
-                                Foreground="LightGray"/>
-
-                            <ComboBox 
-                                x:Name="FiltersQualitySelector"
-                                ItemsSource="{Binding FiltersQuality, Mode=OneWay, IsAsync=True}"
-                                Focusable="False"
-                                IsEditable="True"
-                                IsReadOnly="True"
-                                Width="130"
-                                Height="23"
-                                Text="-- Select Quality ---">
-
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Name}" Tag="{Binding}"/>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                        </StackPanel>
-
-                        <StackPanel 
-                            Grid.Column="1"
-                            Orientation="Horizontal"
-                            Margin="5">
+								x:Name="Counter_Spacer"
+								FontWeight="SemiBold"
+								FontSize="{StaticResource FontSizeHeader}"
+								Foreground="{StaticResource BigHeader}"
+								Margin="0,5"
+								Text="/">
+                            </TextBlock>
 
                             <TextBlock
-                                Text="Color"
-                                Margin="0,0,5,0"
-                                VerticalAlignment="Center"
-                                Foreground="LightGray"/>
-
-                            <ComboBox 
-                                x:Name="FiltersColorSelector"
-                                ItemsSource="{Binding FiltersColor, Mode=OneWay, IsAsync=True}"
-                                HorizontalAlignment="Right"
-                                Focusable="False"
-                                IsEditable="True"
-                                IsReadOnly="True"
-                                Width="130"
-                                Height="23"
-                                Text="-- Select Color ---">
-
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Name}" Tag="{Binding}"/>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
+								x:Name="Counter_Total"
+								FontWeight="SemiBold"
+								FontSize="{StaticResource FontSizeHeader}"
+								Foreground="{StaticResource BigHeader}"
+								Margin="5"
+								Text="{Binding Path=Items.Count}">
+                            </TextBlock>
                         </StackPanel>
+                        <!-- #endregion Counter -->
                     </Grid>
+                </Border>
 
-                </StackPanel>
-                <!-- #endregion Filters -->
-                
-            </StackPanel>
 
-            
-            
-            <Grid x:Name="Block_Items">
-                <ListView
-                    x:Name="AlbumssCollection"
-                    Background="White"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    ItemsSource="{Binding Items, Mode=OneWay, IsAsync=True}"
-                    VirtualizingStackPanel.IsVirtualizing="True"
-                    VirtualizingStackPanel.VirtualizationMode="Recycling"
-                    ScrollViewer.IsDeferredScrollingEnabled="True"
-                    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                    MouseDoubleClick="ItemsCollection_MouseDoubleClick"
-                    SelectionChanged="ItemsCollection_SelectionChanged"
-                    Margin="0,0,5,10"
-                    Padding="0,5,0,10">
+				<Grid x:Name="Block_Menu"
+					  Style="{StaticResource Grid_Fieldset_Menu}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="auto" />
+						<ColumnDefinition Width="1*" />
+						<ColumnDefinition Width="auto" />
+					</Grid.ColumnDefinitions>
 
-                    <ListView.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem 
-                                Header="{x:Static p:Resources.AddNewAlbum }"
-                                Click="OnAdd_Click"/>
+					<Border x:Name="MenuLeft">
+						<Grid Margin="2">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
+							</Grid.ColumnDefinitions>
 
-                            <MenuItem 
-                                Header="{x:Static p:Resources.SelectAll }"
-                                Click="SelectAll_Click"/>
+							<Button x:Name="Button_Add"
+									Grid.Column="0"
+									Style="{StaticResource Btn}"
+									Content="{x:Static p:Resources.Add }"
+									Click="OnAdd_Click">
+							</Button>
 
-                            <MenuItem 
-                                Header="{x:Static p:Resources.UnselectAll }"
-                                Click="UnselectAll_Click"/>
+							<Button x:Name="Button_Edit"
+									Grid.Column="1"
+									Style="{StaticResource Btn}"
+									Content="{x:Static p:Resources.Edit }"
+									Click="OnEdit_Click">
+							</Button>
 
-                        </ContextMenu>
-                    </ListView.ContextMenu>
+							<Button x:Name="Button_Delete"
+									Grid.Column="2"
+									Style="{StaticResource Btn}"
+									Content="{x:Static p:Resources.Delete}"
+									Click="OnDelete_Click">
+							</Button>
 
-                    <ListView.Resources>
-                        <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource ListViewItemDefault}"/>
-                    </ListView.Resources>
+							<Button x:Name="Button_SelectAll"
+									Grid.Column="3"
+									Style="{StaticResource Btn}"
+									Content="{x:Static p:Resources.SelectAll}"
+									Click="SelectAll_Click">
+							</Button>
 
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel 
-                                Name="WrapPanelItemsContainer"
-                                Width="{Binding ActualWidth, ElementName=GridRoot, IsAsync=True}"
-                                MaxWidth="1900">
+							<Button Grid.Column="4"
+									x:Name="Button_ClearSelection"
+									Style="{StaticResource Btn}"
+									Content="{x:Static p:Resources.UnselectAll}"
+									Click="UnselectAll_Click">
+							</Button>
+						</Grid>
+					</Border>
 
-                                <WrapPanel.CacheMode>
-                                    <BitmapCache EnableClearType="True"/>
-                                </WrapPanel.CacheMode>
 
-                            </WrapPanel>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
+					<Border x:Name="MenuRight"
+							Grid.Column="2">
+						<Grid Margin="2">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
+							</Grid.ColumnDefinitions>
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Viewbox 
-                                Width="{Binding ActualWidth,
+							<ComboBox x:Name="FiltersQualitySelector"
+									  ItemsSource="{Binding FiltersQuality, Mode=OneWay, IsAsync=True}"
+									  Focusable="False"
+									  IsEditable="True"
+									  IsReadOnly="True"
+									  Width="130"
+									  Height="25"
+									  Text="-- Select Quality ---"
+									  Margin="5,0"
+									  VerticalAlignment="Center">
+
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Name}"
+												   Tag="{Binding}" />
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+
+							<ComboBox x:Name="FiltersColorSelector"
+									  Grid.Column="1"
+									  ItemsSource="{Binding FiltersColor, Mode=OneWay, IsAsync=True}"
+									  HorizontalAlignment="Right"
+									  Focusable="False"
+									  IsEditable="True"
+									  IsReadOnly="True"
+									  Width="130"
+									  Height="25"
+									  Text="-- Select Color ---"
+									  Margin="5,0"
+									  VerticalAlignment="Center">
+
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Name}"
+												   Tag="{Binding}" />
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+
+						</Grid>
+					</Border>
+				</Grid>
+			</StackPanel>
+
+
+			<Grid x:Name="Block_Items">
+
+				<ListView x:Name="AlbumssCollection"
+						  Background="White"
+						  HorizontalAlignment="Stretch"
+						  VerticalAlignment="Stretch"
+						  ItemsSource="{Binding Items, Mode=OneWay, IsAsync=True}"
+						  VirtualizingStackPanel.IsVirtualizing="True"
+						  VirtualizingStackPanel.VirtualizationMode="Recycling"
+						  ScrollViewer.IsDeferredScrollingEnabled="True"
+						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+						  MouseDoubleClick="ItemsCollection_MouseDoubleClick"
+						  SelectionChanged="ItemsCollection_SelectionChanged"
+						  Padding="0,5,0,10">
+
+					<ListView.ContextMenu>
+						<ContextMenu>
+							<MenuItem Header="{x:Static p:Resources.AddNewAlbum}"
+									  Click="OnAdd_Click" />
+
+							<MenuItem Header="{x:Static p:Resources.SelectAll}"
+									  Click="SelectAll_Click" />
+
+							<MenuItem Header="{x:Static p:Resources.UnselectAll}"
+									  Click="UnselectAll_Click" />
+
+						</ContextMenu>
+					</ListView.ContextMenu>
+
+					<ListView.Resources>
+						<Style TargetType="{x:Type ListViewItem}"
+							   BasedOn="{StaticResource ListViewItemDefault}" />
+					</ListView.Resources>
+
+					<ListView.ItemsPanel>
+						<ItemsPanelTemplate>
+							<WrapPanel Name="WrapPanelItemsContainer"
+									   Width="{Binding ActualWidth, ElementName=Block_Root, IsAsync=True}"
+									   MaxWidth="{Binding ActualWidth, ElementName=Block_Root, IsAsync=True}">
+
+								<WrapPanel.CacheMode>
+									<BitmapCache EnableClearType="True" />
+								</WrapPanel.CacheMode>
+
+							</WrapPanel>
+						</ItemsPanelTemplate>
+					</ListView.ItemsPanel>
+
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<Viewbox Width="{Binding ActualWidth,
                                 ElementName=WrapPanelItemsContainer,
                                 Converter={StaticResource CvResponsiveListViewItem}}"
-                                MaxHeight="{Binding ActualWidth,
+									 MaxHeight="{Binding ActualWidth,
                                 ElementName=WrapPanelItemsContainer,
                                 Converter={StaticResource CvResponsiveListViewItem}}">
 
-                                <Grid
-                                    Background="Black"
-                                    Width="400"
-                                    Height="400">
+								<Grid Background="Black"
+									  Width="400"
+									  Height="400">
 
-                                    <Grid.ContextMenu>
-                                        <ContextMenu>
-                                            <MenuItem 
-                                                Header="{x:Static p:Resources.AddNewAlbum }"
-                                                Click="OnAdd_Click"/>
+									<Grid.ContextMenu>
+										<ContextMenu>
+											<MenuItem Header="{x:Static p:Resources.AddNewAlbum }"
+													  Click="OnAdd_Click" />
 
-                                            <MenuItem 
-                                                Header="{x:Static p:Resources.Edit }"
-                                                Click="OnEdit_Click"/>
+											<MenuItem Header="{x:Static p:Resources.Edit }"
+													  Click="OnEdit_Click" />
 
-                                            <MenuItem 
-                                                Header="{x:Static p:Resources.Delete }"
-                                                Click="OnDelete_Click"/>
+											<MenuItem Header="{x:Static p:Resources.Delete }"
+													  Click="OnDelete_Click" />
 
-                                        </ContextMenu>
-                                    </Grid.ContextMenu>
+										</ContextMenu>
+									</Grid.ContextMenu>
 
-                                    <Image 
-                                        Source="{Binding ThumbnailPath,
+									<Image Source="{Binding ThumbnailPath,
                                         Converter={StaticResource CvPictureBase},
                                         ConverterParameter={StaticResource CvThumbnailParameter},
                                         IsAsync=True,
                                         Mode=OneWay}"
-                                        Width="400"
-                                        Stretch="UniformToFill" 
-                                        MouseEnter="OnAlbum_MouseEnter"
-                                        Tag="{Binding}">
+										   Width="400"
+										   Stretch="UniformToFill"
+										   MouseEnter="OnAlbum_MouseEnter"
+										   Tag="{Binding}">
 
+										<Image.ToolTip>
+											<Grid Style="{StaticResource Grid_ImageToolTip}">
 
-                                        <Image.ToolTip>
-                                            <!--
-                                                <tooltips:UCToolTipPicture DataContext="{Binding}" />
-                                                -->
-
-                                            <Grid 
-                                                    MaxWidth="512"
-                                                    MaxHeight="512"
-                                                    Background="Black">
-
-                                                <Image 
-                                                    Source="{Binding PicturePath,
+												<Image Source="{Binding PicturePath,
                                                     Converter={StaticResource CvPictureBase},
                                                     ConverterParameter={StaticResource CvPreviewParameter},
                                                     IsAsync=True,
                                                     Mode=OneWay}"
-                                                    Stretch="Uniform"
-                                                    Panel.ZIndex="0"/>
+													   Stretch="Uniform"
+													   Panel.ZIndex="0" />
 
-                                                <Grid
-                                                    x:Name="GridTooltipDesc"
-                                                    Margin="10"
-                                                    HorizontalAlignment="Left"
-                                                    VerticalAlignment="Stretch">
+												<Grid x:Name="GridTooltipDesc"
+													  Margin="10"
+													  HorizontalAlignment="Left"
+													  VerticalAlignment="Stretch">
 
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="1*"/>
-                                                        <RowDefinition Height="auto"/>
-                                                        <RowDefinition Height="auto"/>
-                                                    </Grid.RowDefinitions>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="1*" />
+													</Grid.ColumnDefinitions>
+													<Grid.RowDefinitions>
+														<RowDefinition Height="1*" />
+														<RowDefinition Height="auto" />
+														<RowDefinition Height="auto" />
+													</Grid.RowDefinitions>
 
-                                                    <StackPanel 
-                                                        Grid.Row="0"
-                                                        Orientation="Horizontal"
-                                                        VerticalAlignment="Top">
+													<StackPanel Grid.Row="0"
+																Orientation="Horizontal"
+																VerticalAlignment="Top">
 
-                                                        <TextBlock  
-                                                            Text="{Binding Name}"
-                                                            VerticalAlignment="Center"
-                                                            HorizontalAlignment="left"
-                                                            Foreground="White"
-                                                            TextAlignment="Center"
-                                                            FontSize="18"
-                                                            Panel.ZIndex="1"
-                                                            TextWrapping="Wrap"/>
+														<TextBlock Text="{Binding Name}"
+																   VerticalAlignment="Center"
+																   HorizontalAlignment="left"
+																   Foreground="White"
+																   TextAlignment="Center"
+																   FontSize="18"
+																   Panel.ZIndex="1"
+																   TextWrapping="Wrap" />
 
-                                                    </StackPanel>
+													</StackPanel>
 
-                                                    <StackPanel 
-                                                        Grid.Row="1"
-                                                        Orientation="Horizontal">
+													<StackPanel Grid.Row="1"
+																Orientation="Horizontal">
 
-                                                        <TextBlock  
-                                                            Text="{Binding Description}"
-                                                            VerticalAlignment="Center"
-                                                            HorizontalAlignment="left"
-                                                            Foreground="White"
-                                                            TextAlignment="Center"
-                                                            FontSize="14"
-                                                            Panel.ZIndex="1"
-                                                            TextWrapping="Wrap"/>
+														<TextBlock Text="{Binding Description}"
+																   VerticalAlignment="Center"
+																   HorizontalAlignment="left"
+																   Foreground="White"
+																   TextAlignment="Center"
+																   FontSize="14"
+																   Panel.ZIndex="1"
+																   TextWrapping="Wrap" />
 
-                                                    </StackPanel>
+													</StackPanel>
 
-                                                    <StackPanel
-                                                        Grid.Row="2"
-                                                        Orientation="Horizontal">
+													<StackPanel Grid.Row="2"
+																Orientation="Horizontal">
 
-                                                        <TextBlock
-                                                            Text="{Binding DateStart,
+														<TextBlock Text="{Binding DateStart,
                                                             Converter={StaticResource CvDate},
                                                             ConverterParameter={StaticResource CvDateTimeLongParameter}}"
-                                                            VerticalAlignment="center"
-                                                            Foreground="White"
-                                                            TextAlignment="Center"
-                                                            FontSize="12"
-                                                            FontStyle="Oblique"/>
+																   VerticalAlignment="center"
+																   Foreground="White"
+																   TextAlignment="Center"
+																   FontSize="12"
+																   FontStyle="Oblique" />
 
-                                                        <TextBlock
-                                                            Text="-"
-                                                            Margin="3,0"
-                                                            VerticalAlignment="Center"
-                                                            Foreground="White"
-                                                            TextAlignment="Center"
-                                                            FontSize="12"
-                                                            FontStyle="Oblique"/>
+														<TextBlock Text="-"
+																   Margin="3,0"
+																   VerticalAlignment="Center"
+																   Foreground="White"
+																   TextAlignment="Center"
+																   FontSize="12"
+																   FontStyle="Oblique" />
 
-                                                        <TextBlock 
-                                                            Text="{Binding DateEnd,
+														<TextBlock Text="{Binding DateEnd,
                                                             Converter={StaticResource CvDate},
                                                             ConverterParameter={StaticResource CvDateTimeLongParameter}}"
-                                                            VerticalAlignment="center"
-                                                            Foreground="White"
-                                                            TextAlignment="Center"
-                                                            FontSize="12"
-                                                            FontStyle="Oblique"/>
+																   VerticalAlignment="center"
+																   Foreground="White"
+																   TextAlignment="Center"
+																   FontSize="12"
+																   FontStyle="Oblique" />
 
-                                                    </StackPanel>
+													</StackPanel>
 
-                                                </Grid>
-                                            </Grid>
-                                        </Image.ToolTip>
-                                    </Image>
+												</Grid>
+											</Grid>
+										</Image.ToolTip>
+									</Image>
 
-                                    <Border
-                                        Background="LightGray"
-                                        Opacity=".5"
-                                        VerticalAlignment="top"
-                                        HorizontalAlignment="Stretch">
+									<Border Background="LightGray"
+											Opacity=".5"
+											VerticalAlignment="top"
+											HorizontalAlignment="Stretch">
 
-                                        <TextBlock 
-                                            Text="{Binding Name}"
-                                            VerticalAlignment="center"
-                                            HorizontalAlignment="Center"
-                                            Foreground="Black"
-                                            TextAlignment="Center"
-                                            TextWrapping="Wrap"
-                                            FontWeight="SemiBold"
-                                            FontSize="22"
-                                            Padding="10"/>
-                                    </Border>
+										<TextBlock Text="{Binding Name}"
+												   VerticalAlignment="center"
+												   HorizontalAlignment="Center"
+												   Foreground="Black"
+												   TextAlignment="Center"
+												   TextWrapping="Wrap"
+												   FontWeight="SemiBold"
+												   FontSize="22"
+												   Padding="10" />
+									</Border>
 
-                                    <Border
-                                        Background="LightGray"
-                                        Opacity=".5"
-                                        VerticalAlignment="Bottom"
-                                        HorizontalAlignment="Stretch">
+									<Border Background="LightGray"
+											Opacity=".5"
+											VerticalAlignment="Bottom"
+											HorizontalAlignment="Stretch">
 
-                                        <TextBlock
-                                            Text="{Binding DateStart,
+										<TextBlock Text="{Binding DateStart,
                                             Converter={StaticResource CvDate},
                                             ConverterParameter={StaticResource CvDateTimeLongParameter}}"
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Center"
-                                            TextAlignment="Center"
-                                            Foreground="Black"
-                                            FontSize="20"
-                                            Padding="10"/>
-                                    </Border>
-                                </Grid>
-                            </Viewbox>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-            <!-- #endregion : list -->
-            
-        </StackPanel>
+												   VerticalAlignment="Center"
+												   HorizontalAlignment="Center"
+												   TextAlignment="Center"
+												   Foreground="Black"
+												   FontSize="20"
+												   Padding="10" />
+									</Border>
+								</Grid>
+							</Viewbox>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</Grid>
+
+		</StackPanel>
     </Grid>
 </base:ListViewAlbums>

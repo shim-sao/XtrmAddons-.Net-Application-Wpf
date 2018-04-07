@@ -33,7 +33,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// <summary>
         /// Property access to the main application frame.
         /// </summary>
-        public static Frame MainFrame => MainWindow.FrameMain;
+        public static Frame MainFrame => MainWindow.Frame_Content;
 
         /// <summary>
         /// Property access to the main application text box logs stack.

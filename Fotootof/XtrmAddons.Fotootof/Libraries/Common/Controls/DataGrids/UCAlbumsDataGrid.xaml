@@ -11,7 +11,7 @@
 
     <!-- #region : list -->
     <Grid
-        x:Name="GridRoot"
+        x:Name="Block_Root"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch">
 
@@ -62,7 +62,7 @@
                     EnableRowVirtualization="false"
                     EnableColumnVirtualization="false"
                     SelectionMode="Extended"
-                    ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+                    ItemsSource="{Binding Albums, UpdateSourceTrigger=PropertyChanged}"
                     HorizontalAlignment="Stretch"
                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                     SelectionUnit="FullRow"

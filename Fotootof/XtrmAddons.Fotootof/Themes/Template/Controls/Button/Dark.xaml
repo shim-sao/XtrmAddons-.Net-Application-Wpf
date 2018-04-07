@@ -4,14 +4,6 @@
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Properties"    
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    
-    <!-- Button -->
-    <Style x:Key="Btn" TargetType="{x:Type Button}">
-        <Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSizeNormal}" />
-        <Setter Property="Padding" Value="5" />
-    </Style>
-
-
     <!-- Datagrid -->
     <Style TargetType="DataGridRow">
         <Style.Resources>

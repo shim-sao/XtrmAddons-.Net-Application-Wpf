@@ -817,6 +817,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Icon.
+        /// </summary>
+        public static string Icon {
+            get {
+                return ResourceManager.GetString("Icon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Id.
         /// </summary>
         public static string Id {
@@ -831,6 +840,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string Informations {
             get {
                 return ResourceManager.GetString("Informations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Large.
+        /// </summary>
+        public static string Large {
+            get {
+                return ResourceManager.GetString("Large", resourceCulture);
             }
         }
         
@@ -1222,6 +1240,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Thumbnail.
+        /// </summary>
+        public static string Thumbnail {
+            get {
+                return ResourceManager.GetString("Thumbnail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Select the Color associated to the Album..
         /// </summary>
         public static string ToolTip_SelectAlbumColor {
@@ -1321,6 +1348,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vignette.
+        /// </summary>
+        public static string Vignette {
+            get {
+                return ResourceManager.GetString("Vignette", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à FotootoF Administration : Users group.
         /// </summary>
         public static string WindowAclGroupFormTitle {
@@ -1380,6 +1416,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string WindowUserFormTitle {
             get {
                 return ResourceManager.GetString("WindowUserFormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à X-Large.
+        /// </summary>
+        public static string XLarge {
+            get {
+                return ResourceManager.GetString("XLarge", resourceCulture);
             }
         }
     }

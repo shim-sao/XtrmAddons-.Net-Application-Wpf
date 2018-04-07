@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 
@@ -10,6 +11,23 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
     /// </summary>
     public abstract class ControlBase : UserControl, ISizeChanged
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        protected static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected static bool sizeTrace = false;
+
+        #endregion
+
+
+
         #region Constructors
 
         /// <summary>
@@ -29,35 +47,19 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         #region Methods
 
         /// <summary>
-        /// 
+        /// Method called on window sized changed.
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="destination"></param>
-        /// <param name="margin"></param>
-        public void StretchHeight(FrameworkElement source, FrameworkElement destination, double margin = 0)
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
+        protected void TraceSize(FrameworkElement fe)
         {
-            if ((source.ActualHeight - margin) > 0)
-            {
-                // destination.MinHeight = source.ActualHeight - margin;
-                // destination.MaxHeight = source.ActualHeight - margin;
-                destination.Height = source.ActualHeight - margin;
-            }
-        }
+            if (!sizeTrace) return;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="destination"></param>
-        /// <param name="margin"></param>
-        public void StretchWidth(FrameworkElement source, FrameworkElement destination, double margin = 0)
-        {
-            if((source.ActualWidth - margin) > 0)
-            {
-                //destination.MinWidth = source.ActualWidth - margin;
-                //destination.MaxWidth = source.ActualWidth - margin;
-                destination.Width = source.ActualWidth - margin;
-            }
+            Trace.WriteLine(string.Format("----> Class({0}) : Object({1}) : Name({2})", GetType().Name, fe.GetType().Name, fe.Name));
+            Trace.WriteLine("ActualSize = [" + fe.ActualWidth + "," + fe.ActualHeight + "]");
+            Trace.WriteLine("Size = [" + fe.Width + "," + fe.Height + "]");
+            Trace.WriteLine("RenderSize = [" + fe.RenderSize.Width + "," + fe.RenderSize.Height + "]");
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }
 
         /// <summary>

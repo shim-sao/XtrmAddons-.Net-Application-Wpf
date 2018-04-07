@@ -8,6 +8,7 @@ namespace XtrmAddons.Fotootof.UI.Control.Menu
     /// <summary>
     /// Class XtrmAddons PhotoAlbum Client UI Control Main Menu Navigation.
     /// </summary>
+    [System.Obsolete("to move or delete")]
     public partial class UCMainNavigation : UserControl
     {
         /// <summary>

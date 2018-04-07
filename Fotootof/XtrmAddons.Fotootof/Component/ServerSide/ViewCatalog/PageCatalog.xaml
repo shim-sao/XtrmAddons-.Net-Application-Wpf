@@ -8,51 +8,31 @@
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:dg="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids"
     xmlns:albums="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews"
-    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Menu"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Sections}"
     Style="{StaticResource ResourceKey=PageContent}"
-    Background="{StaticResource ResourceKey=LightGrey}"
+    Background="Magenta"
     SizeChanged="Control_SizeChanged">
 
-    <Grid x:Name="GridRoot">
+    <Grid x:Name="Block_Root" Style="{StaticResource ResourceKey=Root}">
+        <StackPanel x:Name="Block_RootPanel" Style="{StaticResource ResourceKey=FieldsetVertical}">
 
-        <StackPanel
-            Orientation="Vertical"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
-
-            <StackPanel
-                Orientation="Vertical"
-                HorizontalAlignment="Stretch"
-                x:Name="TopControls">
-
-                <!-- #region Main navigation -->
-                <Border>
-                    <ucmenu:MenuServerMain
-                        x:Name="NavigatorMenu"
-                        DisplayMode="Client">
-                    </ucmenu:MenuServerMain>
-                </Border>
-                <!-- #endegion Main navigation -->
-
-
+            <StackPanel x:Name="Block_TopControls" Style="{StaticResource ResourceKey=FieldsetVerticalTop}">
                 <!-- #region Breadcrumbs -->
-                <Border>
-                    <TextBlock
+                <Border Background="{StaticResource ResourceKey=LightGrey}">
+                    <TextBox Background="White"
                         x:Name="Breadcrumbs"
-                        Margin="10,5"
+                        Margin="5"
+                        Padding="10,5"
                         FontSize="{StaticResource ResourceKey=FontSizeNormal}">
-                    </TextBlock>
+                    </TextBox>
                 </Border>
                 <!-- #endregion Breadcrumbs -->
             </StackPanel>
 
 
-            <Grid 
-                x:Name="MiddleContents"
-                HorizontalAlignment="Stretch">
+            <Grid x:Name="Block_MiddleContents" Style="{StaticResource ResourceKey=MiddleContents}">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColSections"/>
@@ -64,7 +44,7 @@
                 </Grid.RowDefinitions>
 
                 <dg:DataGridSectionsServer
-                    x:Name="UCDataGridSections"
+                    x:Name="UcDataGridSections"
                     DataContext="{Binding Sections}"/>
 
                 <GridSplitter
@@ -76,15 +56,13 @@
                 <Grid
                     Grid.Row="0"
                     Grid.Column="2"
-                    x:Name="GridAlbums"
-                    Margin="5,2">
+                    x:Name="GridAlbums">
 
                     <albums:ListViewAlbumsServer
-                        x:Name="UCListViewAlbums"
+                        x:Name="UcListViewAlbums"
                         DataContext="{Binding Albums}"
                         FilterColorChanged="FiltersColor_SelectionChanged"
-                        FilterQualityChanged="FiltersQuality_SelectionChanged"
-                        Grid.ColumnSpan="2"/>
+                        FilterQualityChanged="FiltersQuality_SelectionChanged"/>
                 </Grid>
             </Grid>
         

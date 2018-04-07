@@ -11,7 +11,7 @@
     
     <!-- #region : list -->
     <Grid
-        x:Name="GridRoot"
+        x:Name="Block_Root"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch">
 
@@ -238,7 +238,7 @@
                         <ItemsPanelTemplate>
                             <WrapPanel 
                                 Name="WrapPanelItemsContainer"
-                                Width="{Binding ActualWidth, ElementName=GridRoot, IsAsync=True}"
+                                Width="{Binding ActualWidth, ElementName=Block_Root, IsAsync=True}"
                                 MaxWidth="1900">
 
                                 <WrapPanel.CacheMode>

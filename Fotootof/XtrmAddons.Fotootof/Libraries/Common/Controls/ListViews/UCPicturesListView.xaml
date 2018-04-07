@@ -10,12 +10,8 @@
     HorizontalAlignment="Stretch">
     
     <!-- #region : list -->
-    <Grid
-        x:Name="GridRoot"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch">
-        
-    <StackPanel>
+    <Grid x:Name="Block_Root" Style="{StaticResource ResourceKey=Root}">
+        <StackPanel x:Name="Block_RootPanel" Style="{StaticResource ResourceKey=FieldsetVertical}">
         
         <!-- #region Title -->
         <Border Background="{StaticResource DarkGrey}">
@@ -120,7 +116,7 @@
                 <ItemsPanelTemplate>
                     <WrapPanel 
                         Name="WrapPanelItemsContainer"
-                        Width="{Binding ActualWidth, ElementName=GridRoot, IsAsync=True}"
+                        Width="{Binding ActualWidth, ElementName=Block_Root, IsAsync=True}"
                         MaxWidth="1900">
                         
                         <WrapPanel.CacheMode>

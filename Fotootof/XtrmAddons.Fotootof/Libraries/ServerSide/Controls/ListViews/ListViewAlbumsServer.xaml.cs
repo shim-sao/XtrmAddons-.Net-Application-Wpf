@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
@@ -124,7 +125,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <param name="e">Selection changed event arguments.</param>
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ControlHeaderSelectedNumber.Text = SelectedItems.Count.ToString();
+            Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
         }
 
         /// <summary>
@@ -134,13 +135,42 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            StretchWidth(this, GridRoot);
-            StretchHeight(this, GridRoot);
+            ArrangeBlockRoot();
+            ArrangeBlockItems();
+        }
 
-            StretchWidth(this, Block_Header);
+        #endregion
 
-            StretchWidth(this, ItemsCollection);
-            StretchHeight(this, ItemsCollection, Block_Header.ActualHeight);
+
+        #region Methods Size Changed
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ArrangeBlockRoot()
+        {
+            Block_Root.Arrange(new Rect(new Size(this.ActualWidth, this.ActualHeight)));
+            TraceSize(Block_Root);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ArrangeBlockItems()
+        {
+            double height = this.ActualHeight - Block_Header.RenderSize.Height;
+
+            Block_Header.Width = Math.Max(this.ActualWidth, 0);
+
+            Block_Items.Width = Math.Max(this.ActualWidth, 0);
+            Block_Items.Height = Math.Max(height, 0);
+
+            ItemsCollection.Width = Math.Max(this.ActualWidth, 0);
+            ItemsCollection.Height = Math.Max(height, 0);
+
+            TraceSize(Block_Header);
+            TraceSize(Block_Items);
+            TraceSize(ItemsCollection);
         }
 
         #endregion

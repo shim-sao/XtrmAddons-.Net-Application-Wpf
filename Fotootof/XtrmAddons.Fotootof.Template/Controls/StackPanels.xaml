@@ -10,6 +10,12 @@
         <Setter Property="VerticalAlignment" Value="Stretch" />
     </Style>
     
+    <Style x:Key="FieldsetVerticalTop" TargetType="{x:Type StackPanel}">
+        <Setter Property="Orientation" Value="Vertical" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+    
     <Style x:Key="FieldsetHorizontal" TargetType="{x:Type StackPanel}">
         <Setter Property="Orientation" Value="Horizontal"/>
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -30,10 +36,16 @@
         <Setter Property="MinHeight" Value="24"/>
     </Style>
 
-    <!-- Fieldset Header -->
-    <Style x:Key="FieldsetHeader" TargetType="{x:Type StackPanel}">
-        <Setter Property="Background" Value="{StaticResource ResourceKey=DarkGrey}" />
-    </Style>
+	<Style x:Key="FieldsetHeader"
+		   TargetType="{x:Type StackPanel}"
+		   BasedOn="{StaticResource FieldsetVerticalTop}">
+		<Setter Property="Height"
+				Value="auto" />
+		<Setter Property="MinHeight"
+				Value="80" />
+		<Setter Property="Background"
+				Value="{StaticResource Panton2}" />
+	</Style>
     
     <!-- Validator -->
     <Style x:Key="Validator" TargetType="{x:Type StackPanel}">

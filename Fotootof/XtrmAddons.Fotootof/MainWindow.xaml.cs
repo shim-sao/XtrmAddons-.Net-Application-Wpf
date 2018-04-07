@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Component.Logs.Pages;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser;
 using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
@@ -45,6 +47,11 @@ namespace XtrmAddons.Fotootof
         /// Property alias to access to the text block container of logs stack.
         /// </summary>
         public TextBlock LogsStack => PageLogs.TextBlockLogsStack;
+
+        /// <summary>
+        /// Property alias to access to the text block container of logs stack.
+        /// </summary>
+        public Border BlockContent => this.Block_Content;
 
         /// <summary>
         /// Property to access to the SQLite Service.
@@ -106,8 +113,8 @@ namespace XtrmAddons.Fotootof
             MainSettings.Initialize();
 
             // Assigned page frames.
-            FrameLogs.Navigate(pageLogs);
-            FrameMain.Navigate(new PageBrowser());
+            Frame_Logs.Navigate(pageLogs);
+            Frame_Content.Navigate(new PageBrowser());
 
             // Initialize items of Server Menu.
             AppMainMenu.InitializeMenuItemsServer();
@@ -136,8 +143,12 @@ namespace XtrmAddons.Fotootof
         /// <param name="e"></param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            log.Debug("MainWindow.ActualSize = [" + ActualWidth + "," + ActualHeight + "]");
-            log.Debug("RowGridMain.Height = [" + RowGridMain.Height + "]");
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            Trace.WriteLine("MainWindow.ActualSize = [" + ActualWidth + "," + ActualHeight + "]");
+            Trace.WriteLine("Block_Content.ActualSize = [" + Block_Content.ActualWidth + "," + Block_Content.ActualHeight + "]");
+            Trace.WriteLine("Frame_Content.ActualSize = [" + Frame_Content.ActualWidth + "," + Frame_Content.ActualHeight + "]");
+            Trace.WriteLine("RowGridMain.Height = [" + RowGridMain.Height + "]");
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }
 
         #endregion

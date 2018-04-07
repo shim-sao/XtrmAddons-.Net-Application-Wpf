@@ -77,6 +77,7 @@
     <Compile Include="Classes\Controls\ControlBaseCollection.cs" />
     <Compile Include="Classes\Controls\ListViews\ListViewModelBase.cs" />
     <Compile Include="Classes\Images\ImageExplorer.cs" />
+    <Compile Include="Classes\Images\ImageSize.cs" />
     <Compile Include="Classes\Models\ModelBase.cs" />
     <Compile Include="Classes\Pages\PageBase.cs" />
     <Compile Include="Classes\Pages\PageBaseModel.cs" />

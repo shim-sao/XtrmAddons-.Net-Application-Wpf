@@ -15,7 +15,7 @@
     Closing="Window_Closing"
     SizeChanged="Window_SizeChanged">
 
-    <Grid x:Name="GridRoot">
+    <Grid x:Name="Block_Root">
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -23,21 +23,25 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
             <RowDefinition Height="40" />
-            <RowDefinition x:Name="RowGridMain" Height="1*" />
+            <RowDefinition x:Name="RowGridMain" Height="*" />
             <RowDefinition x:Name="RowGridSplitter" Height="0"/>
             <RowDefinition x:Name="RowGridLogs" Height="0"/>
         </Grid.RowDefinitions>
 
-        <ucmenu:MenuMain x:Name="AppMainMenu" />
-
         <!-- #region Main navigation -->
-        <Border Grid.Row="1">
-            <ucsubmenu:MenuServerMain x:Name="AppMainSubmenu" />
+        <Border x:Name="Block_MainMenu"  Grid.Row="0">
+            <ucmenu:MenuMain x:Name="AppMainMenu" />
         </Border>
         <!-- #endegion Main navigation -->
+
+        <!-- #region Second menu navigation -->
+        <Border x:Name="Block_MainSubmenu"  Grid.Row="1">
+            <ucsubmenu:MenuServerMain x:Name="AppMainSubmenu" />
+        </Border>
+        <!-- #endegion Second menu navigation -->
         
         <Border 
-            x:Name="BorderFrameMain"
+            x:Name="Block_Content"
             Grid.Row="2"
             Background="{StaticResource ResourceKey=DarkGrey}"
             BorderBrush="{StaticResource ResourceKey=MediumGrey}"
@@ -45,13 +49,14 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
             
+            <!--
             <ScrollViewer x:Name="ScrollViewerMain">
                 <WrapPanel>
                     <HeaderedItemsControl Header="Frame">
                         <StackPanel>
 
                             <Frame
-                                x:Name="FrameMain"
+                                x:Name="Frame_Content"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 NavigationUIVisibility="Hidden">
@@ -60,28 +65,40 @@
                     </HeaderedItemsControl>
                 </WrapPanel>
             </ScrollViewer>
+-->
+            <Frame
+                x:Name="Frame_Content"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                NavigationUIVisibility="Hidden"
+                Background="Azure">
+            </Frame>
         </Border>
-
+            
         <GridSplitter
             x:Name="GridSplitter"
             Grid.Row="3"
             Height="3"
-            HorizontalAlignment="Stretch">
+            ResizeDirection="Rows"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Background="Black"
+            ShowsPreview="true">
         </GridSplitter>
 
         <Border
-            x:Name="FrameLogsBorder"
+            x:Name="Block_Logs"
             Grid.Row="4"
             Background="{StaticResource ResourceKey=DarkGrey}"
             BorderBrush="{StaticResource ResourceKey=MediumGrey}"
             BorderThickness="1">
-
+            
             <ScrollViewer>
                 <WrapPanel>
                     <HeaderedItemsControl Header="Frame">
                         <Grid>
                             <Frame
-                                x:Name="FrameLogs"
+                                x:Name="Frame_Logs"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 NavigationUIVisibility="Hidden">
