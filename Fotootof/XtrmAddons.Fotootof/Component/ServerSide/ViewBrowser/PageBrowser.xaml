@@ -11,26 +11,68 @@
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Browser}"
-    Style="{StaticResource ResourceKey=PageContent}"
+    Style="{StaticResource PageContent}"
     SizeChanged="Control_SizeChanged">
 
-    <Grid x:Name="Block_Root" Style="{StaticResource ResourceKey=Root}">
-        <StackPanel x:Name="Block_RootPanel" Style="{StaticResource ResourceKey=FieldsetVertical}">
+	<Page.Resources>
+		<Image x:Key="ImageBack"
+			   Source="pack://application:,,,/Assets/Images/Icons/Buttons/back.png" />
+		<Image x:Key="ImageForward"
+			   Source="pack://application:,,,/Assets/Images/Icons/Buttons/forward.png" />
+		<Image x:Key="ImageCopy"
+			   Source="pack://application:,,,/Assets/Images/Icons/Buttons/copy.png" />
+	</Page.Resources>
 
-            <StackPanel x:Name="Block_TopControls" Style="{StaticResource ResourceKey=FieldsetVerticalTop}">
-                <!-- #region Breadcrumbs -->
-                <Border Background="{StaticResource ResourceKey=LightGrey}">
-                    <TextBox Background="White"
-                        x:Name="Breadcrumbs"
-                        Margin="5"
-                        Padding="10,5"
-                        FontSize="{StaticResource ResourceKey=FontSizeNormal}">
-                    </TextBox>
-                </Border>
-                <!-- #endregion Breadcrumbs -->
-            </StackPanel>
 
-            <Grid x:Name="Block_MiddleContents" Style="{StaticResource ResourceKey=MiddleContents}">
+	<Grid x:Name="Block_Root"
+		  Style="{StaticResource Root}">
+		<StackPanel x:Name="Block_RootPanel"
+					Style="{StaticResource FieldsetVertical}">
+
+			<StackPanel x:Name="Block_TopControls"
+						Style="{StaticResource FieldsetVerticalTop}">
+				<Grid Background="{StaticResource ResourceKey=LightGrey}"
+					  Height="28">
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="auto" />
+						<ColumnDefinition Width="1*" />
+						<ColumnDefinition Width="auto" />
+					</Grid.ColumnDefinitions>
+
+					<StackPanel Grid.Column="0"
+								Orientation="Horizontal"
+								Margin="2,0,0,0">
+						<Button Content="{StaticResource ImageBack}"
+								Height="24"
+								Width="24" />
+
+						<Button Content="{StaticResource ImageForward}"
+								Height="24"
+								Width="24" />
+					</StackPanel>
+
+					<Border Grid.Column="1">
+						<TextBox Background="White"
+								 x:Name="Breadcrumbs"
+								 Margin="2"
+								 Padding="10,5"
+								 FontSize="{StaticResource ResourceKey=FontSizeNormal}"
+								 HorizontalAlignment="Stretch" />
+					</Border>
+
+					<StackPanel Grid.Column="2"
+								Orientation="Horizontal"
+								Margin="0,0,2,0">
+
+						<Button Content="{StaticResource ImageCopy}"
+								Height="24"
+								Width="24" />
+					</StackPanel>
+				</Grid>
+			</StackPanel>
+
+            <Grid x:Name="Block_MiddleContents" Style="{StaticResource MiddleContents}">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColStorages"/>

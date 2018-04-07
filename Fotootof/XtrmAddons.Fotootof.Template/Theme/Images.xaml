@@ -3,7 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <!-- Icons -->
-    <system:String x:Key="IconItemMenuFileExit">\Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\exit.png</system:String>
+	<!-- Icons -->
+	<system:String x:Key="IconBack">\Assets\Images\Icons\Buttons\back.png</system:String>
+	<system:String x:Key="IconForward">\Assets\Images\Icons\Buttons\forward.png</system:String>
+	
+	<system:String x:Key="IconItemMenuFileExit">\Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\exit.png</system:String>
 
 </ResourceDictionary>
