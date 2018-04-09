@@ -49,7 +49,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// <summary>
         /// Method to clear visited pages.
         /// </summary>
-        public static void Clear() => Pages.Clear();
+        public static void Clear()
+            => Pages.Clear();
 
         /// <summary>
         /// Method to load a page.
@@ -60,7 +61,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         public static void LoadPage(string key, Page page, bool clear = true)
         {
             // Clear pages cache if required.
-            if (clear) Clear();
+            if (clear)
+            {
+                Clear();
+            }
 
             // Create page cache if required.
             if (!Pages.ContainsKey(key))
@@ -92,32 +96,38 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// <summary>
         /// Method to navigate to Album page.
         /// </summary>
-        public static void NavigateToPageAlbum(int albumId) => Navigate(new PageAlbum(albumId));
+        public static void NavigateToPageAlbum(int albumId) 
+            => Navigate(new PageAlbum(albumId));
 
         /// <summary>
         /// Method to navigate to Album page.
         /// </summary>
-        public static void NavigateToPageCatalogClient(ClientHttp server) => Navigate(new PageCatalogClient(server));
+        public static void NavigateToPageCatalogClient(ClientHttp server) 
+            => Navigate(new PageCatalogClient(server));
 
         /// <summary>
         /// Method to navigate to Browser page.
         /// </summary>
-        public static void NavigateToPageBrowser() => Navigate(new PageBrowser());
+        public static void NavigateToPageBrowser() 
+            => Navigate(new PageBrowser());
 
         /// <summary>
         /// Method to navigate to Control Panel page.
         /// </summary>
-        public static void NavigateToPageServer() => Navigate(new PageServer());
+        public static void NavigateToPageServer() 
+            => Navigate(new PageServer());
 
         /// <summary>
         /// Method to navigate to User page.
         /// </summary>
-        public static void NavigateToPageUsers() => Navigate(new PageUsers());
+        public static void NavigateToPageUsers() 
+            => Navigate(new PageUsers());
 
         /// <summary>
         /// Method to navigate to Sections page.
         /// </summary>
-        public static void NavigateToPageCatalog() => Navigate(new PageCatalog());
+        public static void NavigateToPageCatalog()
+            => Navigate(new PageCatalog());
 
         #endregion Methods
     }

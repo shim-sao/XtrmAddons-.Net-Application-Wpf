@@ -9,4 +9,14 @@
 	
 	<system:String x:Key="IconItemMenuFileExit">\Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\exit.png</system:String>
 
+
+	<Image x:Key="ImageBack"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/back.png" />
+	<Image x:Key="ImageCopy"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/copy.png" />
+	<Image x:Key="ImageForward"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/forward.png" />
+	<Image x:Key="ImageUpward"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/upward.png" />
+
 </ResourceDictionary>
