@@ -22,7 +22,6 @@ namespace XtrmAddons.Fotootof.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [Obsolete("Use XtrmAddons.Fotootof.Culture.Properties.Resources")]
     public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
@@ -1291,60 +1290,6 @@ namespace XtrmAddons.Fotootof.Properties {
         public static string View {
             get {
                 return ResourceManager.GetString("View", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fotootof Server Administration : Users group.
-        /// </summary>
-        public static string WindowAclGroupFormTitle {
-            get {
-                return ResourceManager.GetString("WindowAclGroupFormTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fotootof Server Administration : Album.
-        /// </summary>
-        public static string WindowAlbumFormTitle {
-            get {
-                return ResourceManager.GetString("WindowAlbumFormTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fotootof Server Administration : Section.
-        /// </summary>
-        public static string WindowSectionFormTitle {
-            get {
-                return ResourceManager.GetString("WindowSectionFormTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fotootof Server Administration : Server.
-        /// </summary>
-        public static string WindowServerFormTitle {
-            get {
-                return ResourceManager.GetString("WindowServerFormTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fotootof Préférences.
-        /// </summary>
-        public static string WindowSettingsTitle {
-            get {
-                return ResourceManager.GetString("WindowSettingsTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fotootof Server Administration : User.
-        /// </summary>
-        public static string WindowUserFormTitle {
-            get {
-                return ResourceManager.GetString("WindowUserFormTitle", resourceCulture);
             }
         }
     }

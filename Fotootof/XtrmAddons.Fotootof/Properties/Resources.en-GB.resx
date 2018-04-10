@@ -408,24 +408,6 @@
   <data name="View" xml:space="preserve">
     <value>View</value>
   </data>
-  <data name="WindowAclGroupFormTitle" xml:space="preserve">
-    <value>Fotootof Users group</value>
-  </data>
-  <data name="WindowAlbumFormTitle" xml:space="preserve">
-    <value>Fotootof Album</value>
-  </data>
-  <data name="WindowSectionFormTitle" xml:space="preserve">
-    <value>Fotootof Section</value>
-  </data>
-  <data name="WindowServerFormTitle" xml:space="preserve">
-    <value>Fotootof Server</value>
-  </data>
-  <data name="WindowSettingsTitle" xml:space="preserve">
-    <value>Fotootof Settings</value>
-  </data>
-  <data name="WindowUserFormTitle" xml:space="preserve">
-    <value>Fotootof User</value>
-  </data>
   <data name="_About" xml:space="preserve">
     <value>_About XtrmAddons PhotoAlbum Server</value>
   </data>

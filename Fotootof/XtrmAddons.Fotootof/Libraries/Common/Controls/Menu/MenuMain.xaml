@@ -39,18 +39,17 @@
                 <Separator />
 
                 <MenuItem
-                    Name="MenuItem_ServerStart"
+                    Name="MenuItem_Server_Start"
                     Header="{x:Static p:Resources._Start}"
                     Click="OnServerStart_Click"
                     ToolTip="Start Http server."/>
 
-                <MenuItem
-                    Name="MenuItem_ServerStop"
-                    Header="{x:Static p:Resources._Stop}"
-                    Click="OnServerStop_Click"
-                    ToolTip="Stop Http server."/>
+				<MenuItem Name="MenuItem_Server_Stop"
+						  Header="{x:Static p:Resources._Stop}"
+						  ToolTip="{x:Static p:Resources.Tooltip_MenuItem_Server_Stop}"
+						  Click="OnServerStop_Click" />
 
-                <MenuItem
+				<MenuItem
                     Name="MenuItem_ServerRestart"
                     Header="{x:Static p:Resources._Restart}"
                     Click="OnServerRestart_Click"

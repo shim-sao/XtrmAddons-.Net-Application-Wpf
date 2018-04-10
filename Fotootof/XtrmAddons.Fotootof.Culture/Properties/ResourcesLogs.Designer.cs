@@ -88,11 +88,56 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Copying program files to My Documents user folder. Please wait....
+        /// </summary>
+        public static string CopyingProgramFiles {
+            get {
+                return ResourceManager.GetString("CopyingProgramFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Deleting the application options and parameters. Please wait....
+        /// </summary>
+        public static string DeletingOptionsWaiting {
+            get {
+                return ResourceManager.GetString("DeletingOptionsWaiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Deleting the user&apos;s options and parameters. Please wait....
+        /// </summary>
+        public static string DeletingUserOptionsWaiting {
+            get {
+                return ResourceManager.GetString("DeletingUserOptionsWaiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Initializing application window component. Done !.
         /// </summary>
         public static string InitializingApplicationWindowComponentDone {
             get {
                 return ResourceManager.GetString("InitializingApplicationWindowComponentDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0} deleted !.
+        /// </summary>
+        public static string ItemDeleted {
+            get {
+                return ResourceManager.GetString("ItemDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Please wait....
+        /// </summary>
+        public static string PleaseWait {
+            get {
+                return ResourceManager.GetString("PleaseWait", resourceCulture);
             }
         }
         
@@ -120,6 +165,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string ServerStopped {
             get {
                 return ResourceManager.GetString("ServerStopped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Starting the application. Initialiazing the options &amp; parameters. Please wait....
+        /// </summary>
+        public static string StartingApplicationWaiting {
+            get {
+                return ResourceManager.GetString("StartingApplicationWaiting", resourceCulture);
             }
         }
     }

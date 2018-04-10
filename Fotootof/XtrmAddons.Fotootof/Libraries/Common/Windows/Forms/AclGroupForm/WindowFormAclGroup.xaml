@@ -343,7 +343,7 @@
                         Foreground="{StaticResource ResourceKey=RoundedButton}"/>
 
                     <Button
-                        x:Name="ButtonCancel"
+                        x:Name="Button_Cancel"
                         IsCancel="True"
                         Margin="15,0,0,0"
                         Content="{x:Static p:Resources.Cancel}"

@@ -1267,6 +1267,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Stop Http server. Prevent incoming Http request to application..
+        /// </summary>
+        public static string Tooltip_MenuItem_Server_Stop {
+            get {
+                return ResourceManager.GetString("Tooltip_MenuItem_Server_Stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Select the Color associated to the Album..
         /// </summary>
         public static string ToolTip_SelectAlbumColor {

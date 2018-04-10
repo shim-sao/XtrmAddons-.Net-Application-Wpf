@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
@@ -11,6 +12,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Net.Memory;
 using XtrmAddons.Net.Picture;
 using XtrmAddons.Net.Windows.Controls.Extensions;
+using XtrmAddons.Net.Windows.Converter.Picture;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 {
@@ -145,7 +147,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
                 }
                 catch (Exception e)
                 {
-                    AppLogger.Error(e.Message, true);
+                    AppLogger.InfoAndClose(e.Message, true);
                 }
             }
 
@@ -378,8 +380,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
             foreach (FileInfo fileInfo in infoFiles)
             {
-                StorageInfoModel item = new StorageInfoModel(fileInfo) { ImageSize = Model.ImageSize };
-                Model.FilesCollection.Add(item);
+                if (ConverterPictureBase.Extensions.Contains(fileInfo.Extension.ToLower()))
+                { 
+                    StorageInfoModel item = new StorageInfoModel(fileInfo) { ImageSize = Model.ImageSize };
+                    Model.FilesCollection.Add(item);
+                }
             }
 
             UcListViewStoragesServer.Visibility = Visibility.Visible;
@@ -407,9 +412,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         private void UcListViewStoragesServer_ItemsCollection_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ListView list = sender as ListView;
-            StorageInfoModel item = list.SelectedItem as StorageInfoModel;
 
-            if(item != null)
+            if (list.SelectedItem is StorageInfoModel item)
             {
                 if (item.IsPicture)
                 {

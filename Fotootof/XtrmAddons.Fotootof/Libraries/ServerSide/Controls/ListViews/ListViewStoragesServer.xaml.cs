@@ -77,7 +77,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         {
             InitializeComponent();
             ItemsCollection.KeyDown += ItemsCollection.AddKeyDownSelectAllItems;
-            SelectionChanged += ItemsCollection_SelectionChanged;
+            //SelectionChanged += ItemsCollection_SelectionChanged;
         }
 
         #endregion

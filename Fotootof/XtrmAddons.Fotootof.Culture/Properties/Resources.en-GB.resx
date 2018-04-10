@@ -399,6 +399,9 @@
   <data name="Thumbnail" xml:space="preserve">
     <value>Thumbnail</value>
   </data>
+  <data name="Tooltip_MenuItem_Server_Stop" xml:space="preserve">
+    <value>Stop Http server. Prevent incoming Http request to application.</value>
+  </data>
   <data name="ToolTip_SelectAlbumColor" xml:space="preserve">
     <value>Select the Color associated to the Album.</value>
   </data>

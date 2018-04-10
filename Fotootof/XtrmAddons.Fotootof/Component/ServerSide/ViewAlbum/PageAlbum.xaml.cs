@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
@@ -104,7 +105,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
             var a = model.Pictures;
             DataContext = model;
 
-            PicturesListView.TextBlockAlbumName.Text = model.Album.Name;
+            PicturesCollection.TextBlockAlbumName.Text = model.Album.Name;
 
             // End of busy indicator.
             AppOverwork.BusyContent = "Initializing page content. Done.";
@@ -118,9 +119,20 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
         /// <param name="e"></param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            // throw new System.NotImplementedException
+            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
 
-            AppLogger.NotImplemented();
+            this.Width = Math.Max(fe.ActualWidth, 0);
+            this.Height = Math.Max(fe.ActualHeight, 0);
+
+            Block_MiddleContents.Width = Math.Max(this.Width, 0);
+            Block_MiddleContents.Height = Math.Max(this.Height, 0);
+
+            PicturesCollection.Height = Math.Max(this.Height, 0);
+
+            TraceSize(fe);
+            TraceSize(this);
+            TraceSize(Block_MiddleContents);
+            TraceSize(PicturesCollection);
         }
 
         #endregion

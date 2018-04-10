@@ -193,6 +193,7 @@
 						  VirtualizingStackPanel.VirtualizationMode="Recycling"
 						  ScrollViewer.IsDeferredScrollingEnabled="True"
 						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+						  ScrollViewer.VerticalScrollBarVisibility="Auto"
 						  MouseDoubleClick="ItemsCollection_MouseDoubleClick"
 						  SelectionChanged="ItemsCollection_SelectionChanged"
 						  Padding="0,5,0,10">

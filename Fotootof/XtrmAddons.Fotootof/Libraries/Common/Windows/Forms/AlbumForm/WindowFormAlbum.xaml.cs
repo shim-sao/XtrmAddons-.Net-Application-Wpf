@@ -92,7 +92,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             model = new WindowFormAlbumModel<WindowFormAlbum>(this);
 
             // Initialize User first.
-            //entity = entity ?? new AlbumEntity();
+            entity = entity ?? new AlbumEntity();
 
             if (entity.PrimaryKey > 0)
             {

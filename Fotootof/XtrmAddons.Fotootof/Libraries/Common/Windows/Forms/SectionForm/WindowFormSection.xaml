@@ -376,14 +376,14 @@
                         Foreground="{StaticResource ResourceKey=RoundedButton}"/>
 
                     <Button
-                        x:Name="ButtonCancel"
+                        x:Name="Button_Cancel"
                         IsCancel="True"
                         Margin="15,0,0,0"
                         Content="{x:Static p:Resources.Cancel}"
                         Width="80"
                         Style="{StaticResource RoundCorner}"
                         Background="{StaticResource ResourceKey=MediumGrey}"
-                        Foreground="{StaticResource ResourceKey=RoundedButton}" />
+                        Foreground="{StaticResource ResourceKey=RoundedButton}"/>
 
                 </StackPanel>
             </Grid>

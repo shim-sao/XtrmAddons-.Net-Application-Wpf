@@ -11,30 +11,32 @@
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Sections}"
-    Style="{StaticResource ResourceKey=PageContent}"
-    Background="Magenta"
+    Style="{StaticResource PageContent}"
     SizeChanged="Control_SizeChanged">
 
-    <Grid x:Name="Block_Root" Style="{StaticResource ResourceKey=Root}">
-        <StackPanel x:Name="Block_RootPanel" Style="{StaticResource ResourceKey=FieldsetVertical}">
+	<Grid x:Name="Block_Root"
+		  Style="{StaticResource Root}">
+		<StackPanel x:Name="Block_RootPanel"
+					Style="{StaticResource FieldsetVertical}">
 
-            <StackPanel x:Name="Block_TopControls" Style="{StaticResource ResourceKey=FieldsetVerticalTop}">
+			<StackPanel x:Name="Block_TopControls"
+						Style="{StaticResource StackPanel_TopControls}">
                 <!-- #region Breadcrumbs -->
-                <Border Background="{StaticResource ResourceKey=LightGrey}">
-                    <TextBox Background="White"
-                        x:Name="Breadcrumbs"
-                        Margin="5"
-                        Padding="10,5"
-                        FontSize="{StaticResource ResourceKey=FontSizeNormal}">
-                    </TextBox>
-                </Border>
+                <Border Background="{StaticResource LightGrey}">
+					<TextBox Background="White"
+							 x:Name="Breadcrumbs"
+							 Margin="5"
+							 Padding="10,0"
+							 FontSize="{StaticResource FontSizeNormal}" />
+				</Border>
                 <!-- #endregion Breadcrumbs -->
             </StackPanel>
 
 
-            <Grid x:Name="Block_MiddleContents" Style="{StaticResource ResourceKey=MiddleContents}">
+			<Grid x:Name="Block_MiddleContents"
+				  Style="{StaticResource ResourceKey=MiddleContents}">
 
-                <Grid.ColumnDefinitions>
+				<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColSections"/>
                     <ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
                     <ColumnDefinition Width="3*" />

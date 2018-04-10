@@ -132,14 +132,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         {
             if (HttpWebServerApplication.IsStarted)
             {
-                MenuItem_ServerStart.IsEnabled = false;
-                MenuItem_ServerStop.IsEnabled = true;
+                MenuItem_Server_Start.IsEnabled = false;
+                MenuItem_Server_Stop.IsEnabled = true;
                 MenuItem_ServerRestart.IsEnabled = true;
             }
             else
             {
-                MenuItem_ServerStart.IsEnabled = true;
-                MenuItem_ServerStop.IsEnabled = false;
+                MenuItem_Server_Start.IsEnabled = true;
+                MenuItem_Server_Stop.IsEnabled = false;
                 MenuItem_ServerRestart.IsEnabled = false;
             }
         }

@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Markup;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlStorage;
 
@@ -76,6 +78,11 @@ namespace XtrmAddons.Fotootof.Settings
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo(ApplicationBase.Language);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(ApplicationBase.Language);
+
+            FrameworkElement.LanguageProperty.OverrideMetadata(
+                typeof(FrameworkElement),
+                new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(ApplicationBase.Language)));
+
             Trace.WriteLine("ApplicationBase.Language = " + ApplicationBase.Language);
         }
     }

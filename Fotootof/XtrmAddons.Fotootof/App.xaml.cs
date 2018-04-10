@@ -38,15 +38,8 @@ namespace XtrmAddons.Fotootof
             // Reset application : delete user my documents application folder.
             App_Reset();
 
-            // Starting the application
-            // The application loads options & parameters from files.
-            // Create default files if not exists
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-            Trace.WriteLine("Starting the application options & parameters. Please wait...");
-            ApplicationBase.Start();
-            ApplicationBase.Debug();
-            InitializePreferencesAsync();
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            // Startup the application.
+            Startup += App_Startup;
 
             // Add automatic application saving before application closing.
             Exit += App_Exit;
@@ -57,6 +50,24 @@ namespace XtrmAddons.Fotootof
 
 
         #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void App_Startup(object sender, System.Windows.StartupEventArgs e)
+        {
+            // Starting the application
+            // The application loads options & parameters from files.
+            // Create default files if not exists
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            Trace.WriteLine((string)Translation.DLogs.StartingApplicationWaiting);
+            ApplicationBase.Start();
+            ApplicationBase.Debug();
+            InitializePreferencesAsync();
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+        }
 
         /// <summary>
         /// Method called before the application closing.
@@ -81,13 +92,13 @@ namespace XtrmAddons.Fotootof
             {
                 Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
-                Trace.WriteLine("Deleting the application options & parameters. Please wait...");
+                Trace.WriteLine((string)Translation.DLogs.DeletingOptionsWaiting);
                 System.IO.Directory.Delete(ApplicationBase.UserAppDataDirectory, true);
-                Trace.WriteLine(ApplicationBase.UserAppDataDirectory + " deleted !");
+                Trace.WriteLine(string.Format((string)Translation.DLogs.ItemDeleted, ApplicationBase.UserAppDataDirectory));
 
-                Trace.WriteLine("Deleting the user options & parameters. Please wait...");
+                Trace.WriteLine((string)Translation.DLogs.DeletingUserOptionsWaiting);
                 System.IO.Directory.Delete(ApplicationBase.UserMyDocumentsDirectory, true);
-                Trace.WriteLine(ApplicationBase.UserMyDocumentsDirectory + " deleted !");
+                Trace.WriteLine(string.Format((string)Translation.DLogs.ItemDeleted, ApplicationBase.UserMyDocumentsDirectory));
 
                 Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
             }
@@ -107,7 +118,7 @@ namespace XtrmAddons.Fotootof
             await SettingsPreferences.InitializeStorage();
 
             // Copy program files to My Documents user folder.
-            Trace.WriteLine("Copy program files to My Documents user folder. Please wait...");
+            Trace.WriteLine((string)Translation.DLogs.CopyingProgramFiles);
             await ApplicationBase.CopyConfigFiles(true);
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
