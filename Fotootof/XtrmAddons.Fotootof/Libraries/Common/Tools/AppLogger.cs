@@ -70,11 +70,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
             {
                 AppOverwork.IsBusy = true;
                 AppOverwork.BusyContent = s;
-
                 LogsDisplay("INFO : " + s);
             }));
-
-            LogsDisplay("INFO : " + s);
 
             await Task.Delay(delay);
         }
@@ -94,6 +91,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
             }
 
             MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        /// <summary>
+        /// Method to add not implemented message to display in log frame.
+        /// </summary>
+        public static void NotImplemented()
+        {
+            Error("Not Implemented Exception", true);
         }
 
         /// <summary>
@@ -170,20 +175,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// <summary>
         /// Method to clear logs.
         /// </summary>
-        public static void Clear() => logs.Clear();
+        public static void Clear()
+            => logs.Clear();
 
         /// <summary>
         /// Method proxy to close busy indicator.
         /// </summary>
-        public static void Close() => AppOverwork.IsBusy = false;
+        public static void Close()
+            => AppOverwork.IsBusy = false;
 
         /// <summary>
         /// Method proxy to close busy indicator.
         /// </summary>
         public static string Translate(string key)
-        {
-            return (string)Translation.Logs[key];
-        }
+            => (string)Translation.Logs[key];
 
         /// <summary>
         /// Method to add info message to display in log frame.

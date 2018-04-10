@@ -139,6 +139,22 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// 
         /// </summary>
+        public void LogsToggle()
+        {
+            // Set the row grid splitter Height.
+            RowGridSplitter.Height =
+                RowGridSplitter.Height == new GridLength(0)
+                ? new GridLength(5) : new GridLength(0);
+
+            // Set the grid row logs height.
+            RowGridLogs.Height =
+                RowGridLogs.Height == new GridLength(0)
+                ? new GridLength(160) : new GridLength(0);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)

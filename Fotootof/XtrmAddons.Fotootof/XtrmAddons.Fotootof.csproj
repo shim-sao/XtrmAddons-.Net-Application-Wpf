@@ -253,6 +253,7 @@
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsersModel.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroupsModel.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\ListViewStorages.cs" />
+    <Compile Include="Libraries\Common\Controls\Menu\MenuMainModel.cs" />
     <Compile Include="Libraries\Common\Tools\AppLogger.cs" />
     <Compile Include="Libraries\Common\Tools\AppOverwork.cs" />
     <Compile Include="Libraries\Common\Tools\AppNavigator.cs" />

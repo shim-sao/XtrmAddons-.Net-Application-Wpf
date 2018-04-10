@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlStorage;
@@ -65,6 +67,16 @@ namespace XtrmAddons.Fotootof.Settings
                 temp.Create();
                 Trace.WriteLine("config.database.scheme = " + ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath);
             });
+        }
+
+        /// <summary>
+        /// Method to initialize language.
+        /// </summary>
+        public static void InitializeLanguage()
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(ApplicationBase.Language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(ApplicationBase.Language);
+            Trace.WriteLine("ApplicationBase.Language = " + ApplicationBase.Language);
         }
     }
 }

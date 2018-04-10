@@ -111,9 +111,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
             AppOverwork.IsBusy = false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            // throw new System.NotImplementedException
+
+            AppLogger.NotImplemented();
         }
 
         #endregion

@@ -129,6 +129,9 @@
   <data name="InitializingApplicationWindowComponentDone" xml:space="preserve">
     <value>Initializing application window component. Done !</value>
   </data>
+  <data name="SavingApplicationWaiting" xml:space="preserve">
+    <value>Saving the application options &amp; parameters before exit. Please wait...</value>
+  </data>
   <data name="ServerStarted" xml:space="preserve">
     <value>Server started.</value>
   </data>

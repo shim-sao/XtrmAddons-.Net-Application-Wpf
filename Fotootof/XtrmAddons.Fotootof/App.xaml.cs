@@ -1,6 +1,6 @@
 ﻿
-
 using System.Diagnostics;
+using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Settings;
 using XtrmAddons.Net.Application;
 
@@ -44,7 +44,7 @@ namespace XtrmAddons.Fotootof
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
             Trace.WriteLine("Starting the application options & parameters. Please wait...");
             ApplicationBase.Start();
-            TraceStart();
+            ApplicationBase.Debug();
             InitializePreferencesAsync();
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
@@ -66,7 +66,7 @@ namespace XtrmAddons.Fotootof
         private void App_Exit(object sender, System.Windows.ExitEventArgs e)
         {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-            Trace.WriteLine("Saving the application options & parameters before exit. Please wait...");
+            Trace.WriteLine((string)Translation.DLogs.SavingApplicationWaiting);
             ApplicationBase.Save();
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }
@@ -80,30 +80,17 @@ namespace XtrmAddons.Fotootof
             if (Reset && System.IO.Directory.Exists(ApplicationBase.UserMyDocumentsDirectory))
             {
                 Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+
                 Trace.WriteLine("Deleting the application options & parameters. Please wait...");
+                System.IO.Directory.Delete(ApplicationBase.UserAppDataDirectory, true);
+                Trace.WriteLine(ApplicationBase.UserAppDataDirectory + " deleted !");
+
+                Trace.WriteLine("Deleting the user options & parameters. Please wait...");
                 System.IO.Directory.Delete(ApplicationBase.UserMyDocumentsDirectory, true);
                 Trace.WriteLine(ApplicationBase.UserMyDocumentsDirectory + " deleted !");
+
                 Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
             }
-        }
-
-        /// <summary>
-        /// Method to trace main application preferences.
-        /// </summary>
-        private void TraceStart()
-        {
-            Trace.WriteLine("Application Friendly Name = " + ApplicationBase.ApplicationFriendlyName);
-            Trace.WriteLine("Application Roaming Directory = " + ApplicationBase.UserAppDataDirectory);
-            Trace.WriteLine("User My Documents Directory = " + ApplicationBase.UserMyDocumentsDirectory);
-
-            // Displays default application specials directories.
-            Trace.WriteLine("--- Specials Directories ---");
-            Trace.WriteLine("Bin = " + ApplicationBase.BinDirectory);
-            Trace.WriteLine("Cache = " + ApplicationBase.CacheDirectory);
-            Trace.WriteLine("Config = " + ApplicationBase.ConfigDirectory);
-            Trace.WriteLine("Data = " + ApplicationBase.DataDirectory);
-            Trace.WriteLine("Logs = " + ApplicationBase.LogsDirectory);
-            Trace.WriteLine("Theme = " + ApplicationBase.ThemeDirectory);
         }
 
         /// <summary>
@@ -112,6 +99,9 @@ namespace XtrmAddons.Fotootof
         public async void InitializePreferencesAsync()
         {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+
+            // Initialize language.
+            SettingsPreferences.InitializeLanguage();
 
             // Add application storage directories.
             await SettingsPreferences.InitializeStorage();

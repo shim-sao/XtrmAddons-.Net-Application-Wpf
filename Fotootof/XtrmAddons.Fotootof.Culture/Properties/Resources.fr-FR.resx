@@ -222,6 +222,9 @@
   <data name="End" xml:space="preserve">
     <value>Fin</value>
   </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="Explore" xml:space="preserve">
     <value>Explorer</value>
   </data>
@@ -236,6 +239,9 @@
   </data>
   <data name="Folders" xml:space="preserve">
     <value>Répertoires</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>Français</value>
   </data>
   <data name="General" xml:space="preserve">
     <value>Général</value>

@@ -97,6 +97,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Saving the application options &amp; parameters before exit. Please wait....
+        /// </summary>
+        public static string SavingApplicationWaiting {
+            get {
+                return ResourceManager.GetString("SavingApplicationWaiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Server started..
         /// </summary>
         public static string ServerStarted {
