@@ -2,16 +2,16 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using XtrmAddons.Fotootof.Libraries.Common.Collections;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
-using XtrmAddons.Net.Windows.Controls.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries Server Side Controls Albums List View.
+    /// Class XtrmAddons Fotootof Server Common Controls Pictures List View.
     /// </summary>
-    public partial class ListViewAlbumsServer : ListViewAlbums
+    public partial class ListViewPicturesServer : ListViewPictures
     {
         #region Properties
 
@@ -33,25 +33,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// Property to access to the items collection.
         /// </summary>
-        public override ListView ItemsCollection { get => AlbumssCollection; set => AlbumssCollection = value; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public event SelectionChangedEventHandler FilterQualityChanged
-        {
-            add { FiltersQualitySelector.SelectionChanged += value; }
-            remove { FiltersQualitySelector.SelectionChanged -= value; }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public event SelectionChangedEventHandler FilterColorChanged
-        {
-            add { FiltersColorSelector.SelectionChanged += value; }
-            remove { FiltersColorSelector.SelectionChanged -= value; }
-        }
+        public override ListView ItemsCollection { get => PicturesCollection; set => PicturesCollection = value; }
 
         #endregion
 
@@ -60,13 +42,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Common Controls Albums List View Constructor.
+        /// Class XtrmAddons Fotootof Server Common Controls Pictures List View Constructor.
         /// </summary>
-        public ListViewAlbumsServer()
+        public ListViewPicturesServer()
         {
             InitializeComponent();
-            ItemsCollection.KeyDown += ItemsCollection.AddKeyDownSelectAllItems;
-            //ItemsCollection.Loaded += (s,e) => ControlHeaderTotal.Text = Albums.Count.ToString();
         }
 
         #endregion
@@ -82,10 +62,10 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <param name="e"></param>
         private void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (SelectedItem != null)
-            {
-                AppNavigator.NavigateToPageAlbum(SelectedItem.PrimaryKey);
-            }
+            /*ListView lv = (ListView)sender;
+            Album entity = (Album)lv.SelectedItem;
+            UINavigation.NavigateToPageAlbum(entity.PrimaryKey);*/
+            AppLogger.NotImplemented();
         }
 
         /// <summary>
@@ -93,9 +73,19 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnAlbum_MouseEnter(object sender, MouseEventArgs e)
+        private void OnImageRefresh_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnImage_MouseEnter(object sender, MouseEventArgs e)
+        {
+            
         }
 
         /// <summary>
@@ -128,21 +118,22 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
         }
 
+        #endregion
+
+
+
+        #region Methods Size Changed
+
         /// <summary>
-        /// Method called on page size changed event.
+        /// 
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Size changed event arguments.</param>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             ArrangeBlockRoot();
             ArrangeBlockItems();
         }
-
-        #endregion
-
-
-        #region Methods Size Changed
 
         /// <summary>
         /// 
@@ -159,18 +150,12 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         private void ArrangeBlockItems()
         {
             double height = Math.Max(this.ActualHeight - Block_Header.RenderSize.Height, 0);
-            double width = Math.Max(this.ActualWidth, 0);
 
-            Block_Header.Width = width;
-
-            Block_Items.Width = width;
             Block_Items.Height = height;
-
-            ItemsCollection.Width = width;
             ItemsCollection.Height = height;
 
-            TraceSize(Block_Header);
             TraceSize(Block_Items);
+            TraceSize(Block_Header);
             TraceSize(ItemsCollection);
         }
 

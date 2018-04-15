@@ -29,7 +29,10 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
         public U OptionsDefault => GetOptionsDefault();
 
 
-        string ManagerName => GetType().Name.Replace("EntityCollection", "") + "s";
+        /// <summary>
+        /// Property to access to the  entity manager name.
+        /// </summary>
+        public string ManagerName => GetType().Name.Replace("EntityCollection", "") + "s";
 
         #endregion
 

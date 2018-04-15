@@ -23,7 +23,7 @@
                     Click="OnFileExit_Click">
 
                     <MenuItem.Icon>
-                        <Image Source="{Binding Mode=OneWay, Source={StaticResource IconItemMenuFileExit}}" />
+                        <Image Source="{Binding Mode=OneWay, Source={StaticResource Icon24Exit}}" />
                     </MenuItem.Icon>
                 </MenuItem>
 

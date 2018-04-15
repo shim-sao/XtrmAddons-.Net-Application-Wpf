@@ -579,4 +579,7 @@
   <data name="_Yes" xml:space="preserve">
     <value>_Yes</value>
   </data>
+  <data name="Pictures" xml:space="preserve">
+    <value>Pictures</value>
+  </data>
 </root>

@@ -1060,6 +1060,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pictures.
+        /// </summary>
+        public static string Pictures {
+            get {
+                return ResourceManager.GetString("Pictures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Port.
         /// </summary>
         public static string Port {

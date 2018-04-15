@@ -6,13 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
-    xmlns:lv="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews"
+    xmlns:pictures="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews"
     mc:Ignorable="d"
 	ShowsNavigationUI="False"
-	MinWidth="800"
-	MinHeight="985"
-	HorizontalAlignment="Stretch"
-	VerticalAlignment="Stretch"
 	Title="{x:Static p:Resources.Album}"
 	Style="{StaticResource ResourceKey=PageContent}"
 	SizeChanged="Control_SizeChanged">
@@ -24,53 +20,12 @@
 
 			<Grid x:Name="Block_MiddleContents"
 				  Style="{StaticResource MiddleContents}">
-				<lv:UCPicturesListView x:Name="PicturesCollection"
-									   Grid.Row="0"
-									   Grid.Column="0"
-									   DataContext="{Binding}"
-									   HorizontalAlignment="Stretch" />
+				<pictures:ListViewPicturesServer x:Name="PicturesCollection"
+												 Grid.Row="0"
+												 Grid.Column="0"
+												 DataContext="{Binding}" />
 			</Grid>
 
 		</StackPanel>
 	</Grid>
-	
-	<!--
-
-	<Grid x:Name="Block_Root"
-		  Style="{StaticResource ResourceKey=Root}">
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="30" />
-			<RowDefinition Height="1*" />
-		</Grid.RowDefinitions>
-
-		<TextBlock
-            Grid.Row="0"
-            x:Name="TextBlockAlbumHeader"
-            Margin="10,5"
-            FontSize="{StaticResource ResourceKey=FontSizeNormal}" />
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-            </Grid.RowDefinitions>
-
-
-
-            <lv:UCPicturesListView
-                x:Name="PicturesListView"
-                Grid.Row="0"
-                Grid.Column="0"
-                DataContext="{Binding}"
-                HorizontalAlignment="Stretch"/>
-
-        </Grid>
-    
-    </Grid>-->
 </base:PageBase>

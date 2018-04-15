@@ -21,16 +21,14 @@
 
 			<StackPanel x:Name="Block_TopControls"
 						Style="{StaticResource StackPanel_TopControls}">
-                <!-- #region Breadcrumbs -->
-                <Border Background="{StaticResource LightGrey}">
+				<Border Background="{StaticResource LightGrey}">
 					<TextBox Background="White"
 							 x:Name="Breadcrumbs"
 							 Margin="5"
 							 Padding="10,0"
 							 FontSize="{StaticResource FontSizeNormal}" />
 				</Border>
-                <!-- #endregion Breadcrumbs -->
-            </StackPanel>
+			</StackPanel>
 
 
 			<Grid x:Name="Block_MiddleContents"
@@ -45,27 +43,24 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <dg:DataGridSectionsServer
-                    x:Name="UcDataGridSections"
-                    DataContext="{Binding Sections}"/>
+				<dg:DataGridSectionsServer x:Name="UcDataGridSections"
+										   DataContext="{Binding Sections}" />
 
-                <GridSplitter
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch" />
+				<GridSplitter Grid.Row="0"
+							  Grid.Column="1"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch" />
 
-                <Grid
+				<Grid
                     Grid.Row="0"
                     Grid.Column="2"
                     x:Name="GridAlbums">
 
-                    <albums:ListViewAlbumsServer
-                        x:Name="UcListViewAlbums"
-                        DataContext="{Binding Albums}"
-                        FilterColorChanged="FiltersColor_SelectionChanged"
-                        FilterQualityChanged="FiltersQuality_SelectionChanged"/>
-                </Grid>
+					<albums:ListViewAlbumsServer x:Name="UcListViewAlbums"
+												 DataContext="{Binding Albums}"
+												 FilterColorChanged="FiltersColor_SelectionChanged"
+												 FilterQualityChanged="FiltersQuality_SelectionChanged" />
+				</Grid>
             </Grid>
         
         </StackPanel>

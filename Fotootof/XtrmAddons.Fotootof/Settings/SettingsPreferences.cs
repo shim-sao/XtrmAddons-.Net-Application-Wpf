@@ -70,20 +70,5 @@ namespace XtrmAddons.Fotootof.Settings
                 Trace.WriteLine("config.database.scheme = " + ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath);
             });
         }
-
-        /// <summary>
-        /// Method to initialize language.
-        /// </summary>
-        public static void InitializeLanguage()
-        {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(ApplicationBase.Language);
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(ApplicationBase.Language);
-
-            FrameworkElement.LanguageProperty.OverrideMetadata(
-                typeof(FrameworkElement),
-                new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(ApplicationBase.Language)));
-
-            Trace.WriteLine("ApplicationBase.Language = " + ApplicationBase.Language);
-        }
     }
 }

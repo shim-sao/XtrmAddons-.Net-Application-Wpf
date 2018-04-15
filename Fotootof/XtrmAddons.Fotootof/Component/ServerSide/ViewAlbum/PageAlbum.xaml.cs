@@ -13,34 +13,17 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
     /// </summary>
     public partial class PageAlbum : PageBase
     {
-        #region Variable
-
-        /// <summary>
-        /// Variable page album view model.
-        /// </summary>
-        private PageAlbumModel<PageAlbum> model;
-
-        /// <summary>
-        /// Variable album id.
-        /// </summary>
-        private int itemId;
-
-        #endregion
-
-
-
         #region Properties
 
         /// <summary>
         /// Property to access to the page album model.
         /// </summary>
-        public PageAlbumModel<PageAlbum> Model
-        {
-            get
-            {
-                return model;
-            }
-        }
+        public PageAlbumModel<PageAlbum> Model { get; private set; }
+
+        /// <summary>
+        /// Property to access to the album id.
+        /// </summary>
+        private int ItemId { get; }
 
         #endregion
 
@@ -53,9 +36,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
         /// </summary>
         public PageAlbum(int albumId = 0)
         {
-            itemId = albumId;
-
             InitializeComponent();
+            ItemId = albumId;
             AfterInitializedComponent();
         }
 
@@ -74,7 +56,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
         {
 
             // Initialize associated view model of the page.
-            model = new PageAlbumModel<PageAlbum>(this);
+            Model = new PageAlbumModel<PageAlbum>(this);
 
             // Set busy indicator
             AppOverwork.IsBusy = true;
@@ -82,12 +64,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
 
             AlbumEntity album = new AlbumEntity();
 
-            if (itemId > 0)
+            if (ItemId > 0)
             {
                 AlbumOptionsSelect options = new AlbumOptionsSelect
                 {
                     Dependencies = { EnumEntitiesDependencies.All },
-                    PrimaryKey = itemId
+                    PrimaryKey = ItemId
                 };
                 album = await MainWindow.Database.Albums.SingleOrNullAsync(options);
 
@@ -100,12 +82,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
             {
                 album  = new AlbumEntity();
             }
-            var g = album.Pictures;
-            model.Album = album;
-            var a = model.Pictures;
-            DataContext = model;
 
-            PicturesCollection.TextBlockAlbumName.Text = model.Album.Name;
+            Model.Album = album;
+            DataContext = Model;
+
+            PicturesCollection.Title_Text.Text = Model.Album.Name;
 
             // End of busy indicator.
             AppOverwork.BusyContent = "Initializing page content. Done.";
@@ -115,8 +96,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;

@@ -1,5 +1,7 @@
 ﻿
 using System.Diagnostics;
+using System.Globalization;
+using System.Threading;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Settings;
 using XtrmAddons.Net.Application;
@@ -38,6 +40,16 @@ namespace XtrmAddons.Fotootof
             // Reset application : delete user my documents application folder.
             App_Reset();
 
+            // Starting the application
+            // The application loads options & parameters from files.
+            // Create default files if not exists
+            ApplicationBase.Start();
+             
+            // Initialize language.
+            CultureInfo ci = new CultureInfo(ApplicationBase.Language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+
             // Startup the application.
             Startup += App_Startup;
 
@@ -58,12 +70,8 @@ namespace XtrmAddons.Fotootof
         /// <param name="e"></param>
         private void App_Startup(object sender, System.Windows.StartupEventArgs e)
         {
-            // Starting the application
-            // The application loads options & parameters from files.
-            // Create default files if not exists
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
             Trace.WriteLine((string)Translation.DLogs.StartingApplicationWaiting);
-            ApplicationBase.Start();
             ApplicationBase.Debug();
             InitializePreferencesAsync();
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
@@ -110,9 +118,6 @@ namespace XtrmAddons.Fotootof
         public async void InitializePreferencesAsync()
         {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-
-            // Initialize language.
-            SettingsPreferences.InitializeLanguage();
 
             // Add application storage directories.
             await SettingsPreferences.InitializeStorage();

@@ -35,7 +35,7 @@
 								   Margin="5" />
 
 						<!-- #endregion Title -->
-
+						
 						<!-- #region Counter -->
 						<StackPanel Grid.Column="1"
 									Orientation="Horizontal">

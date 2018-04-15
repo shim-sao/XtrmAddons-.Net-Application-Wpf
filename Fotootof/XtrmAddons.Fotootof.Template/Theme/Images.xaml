@@ -4,18 +4,18 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 	<!-- Icons -->
-	<system:String x:Key="IconBack">\Assets\Images\Icons\Buttons\back.png</system:String>
-	<system:String x:Key="IconForward">\Assets\Images\Icons\Buttons\forward.png</system:String>
+	<system:String x:Key="Icon24Exit">\Assets\Images\Icons\Buttons\exit-24.png</system:String>
+
+
+	<Image x:Key="Icon24Back"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/back-24.png" />
 	
-	<system:String x:Key="IconItemMenuFileExit">\Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\exit.png</system:String>
-
-
-	<Image x:Key="ImageBack"
-		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/back.png" />
 	<Image x:Key="ImageCopy"
-		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/copy.png" />
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/copy-24.png" />
+	
 	<Image x:Key="ImageForward"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/forward.png" />
+	
 	<Image x:Key="ImageUpward"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/upward.png" />
 

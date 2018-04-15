@@ -199,7 +199,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         private void ArrangeBlockItems()
         {
-            double height = this.ActualHeight - Block_Header.RenderSize.Height;
+            double height = Math.Max(this.ActualHeight - Block_Header.RenderSize.Height, 0);
 
             Block_Items.Height = height;
             ItemsCollection.Height = height;

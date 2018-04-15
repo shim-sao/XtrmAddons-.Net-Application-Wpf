@@ -61,8 +61,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Assets\Images\Icons\Favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -252,6 +251,8 @@
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroups.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsersModel.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroupsModel.cs" />
+    <Compile Include="Libraries\Common\Controls\ListViews\ListViewPictures.cs" />
+    <Compile Include="Libraries\Common\Controls\ListViews\ListViewPicturesModel.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\ListViewStorages.cs" />
     <Compile Include="Libraries\Common\Controls\Menu\MenuMainModel.cs" />
     <Compile Include="Libraries\Common\Tools\AppLogger.cs" />
@@ -266,6 +267,9 @@
     <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridHttpClientModel.cs" />
     <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml.cs">
       <DependentUpon>DataGridUsersServer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewPicturesServer.xaml.cs">
+      <DependentUpon>ListViewPicturesServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml.cs">
       <DependentUpon>ListViewStoragesServer.xaml</DependentUpon>
@@ -437,6 +441,10 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewPicturesServer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -603,7 +611,8 @@
     <EmbeddedResource Include="UI\Forms\About\FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="autoexec.bat" />
+    <None Include="autoexec.release.bat" />
+    <None Include="autoexec.debug.bat" />
     <None Include="postbuild.bat" />
     <None Include="prebuild.bat" />
     <None Include="Properties\Settings.settings">
@@ -619,10 +628,13 @@
     <Content Include="Assets\Images\Default\album-thumbnail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\Icons\Buttons\back.png">
+    <Content Include="Assets\Images\Icons\Buttons\back-24.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\Icons\Buttons\copy.png">
+    <Content Include="Assets\Images\Icons\Buttons\copy-24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Buttons\exit-24.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\Icons\Buttons\forward.png">
@@ -728,6 +740,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>call "$(ProjectDir)autoexec.bat"</PostBuildEvent>
+    <PostBuildEvent>call "$(ProjectDir)autoexec.debug.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>
