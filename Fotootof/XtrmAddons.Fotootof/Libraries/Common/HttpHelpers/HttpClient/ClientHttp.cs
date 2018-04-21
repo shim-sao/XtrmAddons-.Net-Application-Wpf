@@ -258,6 +258,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
                     AppLogger.Error(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), true);
                     AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
                 }
+
+                AppLogger.InfoAndClose("Initializing server list sections done.", true);
             }
             catch (Exception e)
             {

@@ -22,7 +22,7 @@
                 Margin="5"
                 FontWeight="SemiBold"
                 FontSize="{StaticResource FontSizeHeader}"
-                Foreground="{StaticResource BigHeader}"/>
+                Foreground="{StaticResource Panton_3}"/>
 
         </Border>
         <!-- #endregion Title -->
@@ -154,7 +154,7 @@
                             <Image 
                                 Source="{Binding ThumbnailPath,
                                 Converter={StaticResource CvPictureBase},
-                                ConverterParameter={StaticResource CvThumbnailParameter},
+                                ConverterParameter={StaticResource Icon256String},
                                 IsAsync=True,
                                 Mode=OneWay}"
                                 Width="400"
@@ -172,7 +172,7 @@
                                         <Image 
                                             Source="{Binding PicturePath,
                                             Converter={StaticResource CvPictureBase},
-                                            ConverterParameter={StaticResource CvPreviewParameter},
+                                            ConverterParameter={StaticResource Icon512String},
                                             IsAsync=True,
                                             Mode=OneWay}"
                                             Stretch="Uniform"

@@ -128,8 +128,13 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
         }
 
+        #endregion
+
+
+        #region Methods Size Changed
+
         /// <summary>
-        /// Method called on page size changed event.
+        /// Method called on user control size changed event.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Size changed event arguments.</param>
@@ -138,11 +143,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             ArrangeBlockRoot();
             ArrangeBlockItems();
         }
-
-        #endregion
-
-
-        #region Methods Size Changed
 
         /// <summary>
         /// 

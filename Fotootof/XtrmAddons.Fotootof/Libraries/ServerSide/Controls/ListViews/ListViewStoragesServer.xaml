@@ -30,7 +30,7 @@
 						<TextBlock x:Name="Title_Text"
 								   Text="{x:Static p:Resources.Files}"
 								   FontSize="{StaticResource FontSizeHeader}"
-								   Foreground="{StaticResource BigHeader}"
+								   Foreground="{StaticResource Panton_3}"
 								   FontWeight="SemiBold"
 								   Margin="5" />
 
@@ -42,23 +42,44 @@
 							<TextBlock x:Name="Counter_SelectedNumber"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
-									   Foreground="{StaticResource BigHeader}"
+									   Foreground="{StaticResource Panton_3}"
 									   Margin="5"
 									   Text="0" />
 
 							<TextBlock x:Name="Counter_Spacer"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
-									   Foreground="{StaticResource BigHeader}"
+									   Foreground="{StaticResource Panton_3}"
 									   Margin="0,5"
 									   Text="/" />
 
-							<TextBlock x:Name="Counter_Total"
+							<TextBlock x:Name="Counter_TotalImages"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
-									   Foreground="{StaticResource BigHeader}"
+									   Foreground="{StaticResource Panton_3}"
 									   Margin="5"
-									   Text="0" />
+									   Text="{Binding FilesCollection.ImagesCount, Mode=OneWay, IsAsync=True}" />
+
+							<TextBlock x:Name="Counter_BraketOpen"
+									   FontWeight="SemiBold"
+									   FontSize="{StaticResource FontSizeHeader}"
+									   Foreground="{StaticResource Panton_3}"
+									   Margin="5,5,0,5"
+									   Text="(" />
+
+							<TextBlock x:Name="Counter_TotalDirectories"
+									   FontWeight="SemiBold"
+									   FontSize="{StaticResource FontSizeHeader}"
+									   Foreground="{StaticResource Panton_3}"
+									   Margin="0,5"
+									   Text="{Binding FilesCollection.DirectoriesCount, Mode=OneWay, IsAsync=True}" />
+
+							<TextBlock x:Name="Counter_BraketClose"
+									   FontWeight="SemiBold"
+									   FontSize="{StaticResource FontSizeHeader}"
+									   Foreground="{StaticResource Panton_3}"
+									   Margin="0,5,5,5"
+									   Text=")" />
 						</StackPanel>
 						<!-- #endregion Counter -->
 					</Grid>
@@ -77,9 +98,10 @@
 							Margin="5,0">
 
 						<Button x:Name="Button_AddPicturesToAlbum"
-								Style="{StaticResource Button_DefaultRounded}"
-								Content="{x:Static p:Resources.AddPicturesToAlbum}"
-								Click="OnAddPicturesToAlbum_Click"
+								Content="{StaticResource Icon24ImagePlus}"
+								Style="{StaticResource Button_Icon24Default}"
+								PreviewMouseLeftButtonUp="OnAddPicturesToAlbum_Click"
+								ToolTipService.ToolTip="{x:Static p:Resources.AddPicturesToAlbum}"
 								IsEnabled="False"/>
 					</Border>
 
@@ -92,9 +114,9 @@
 								  Style="{StaticResource DefaultComboBox}">
 
 							<ComboBoxItem Content="{x:Static p:Resources.Icon}" />
-							<ComboBoxItem IsSelected="True"
-										  Content="{x:Static p:Resources.Thumbnail}" />
-							<ComboBoxItem Content="{x:Static p:Resources.Vignette}" />
+							<ComboBoxItem Content="{x:Static p:Resources.Thumbnail}" />
+							<ComboBoxItem Content="{x:Static p:Resources.Vignette}"
+										  IsSelected="True" />
 							<ComboBoxItem Content="{x:Static p:Resources.Large}" />
 							<ComboBoxItem Content="{x:Static p:Resources.XLarge}" />
 						</ComboBox>
@@ -158,13 +180,13 @@
 														  Click="OnAddPicturesToAlbum_Click"
 														  IsEnabled="true" />
 
-												<MenuItem Header="{x:Static p:Resources.Edit}"
+												<!--<MenuItem Header="{x:Static p:Resources.Edit}"
 														  Click="OnEdit_Click"
 														  IsEnabled="False" />
 
 												<MenuItem Header="{x:Static p:Resources.Delete}"
 														  Click="OnDelete_Click"
-														  IsEnabled="False" />
+														  IsEnabled="False" />-->
 											</ContextMenu>
 										</Grid.ContextMenu>
 
@@ -185,7 +207,7 @@
 									<Viewbox.ToolTip>
 										<Grid MaxWidth="{StaticResource Icon512Double}"
 											  MaxHeight="{StaticResource Icon512Double}"
-											  Background="Black">
+											  Background="{StaticResource Panton_0}">
 
 											<Image Source="{Binding ImageFullName, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon512String}, IsAsync=True, Mode=OneWay}"
 												   Stretch="Uniform"
@@ -203,42 +225,32 @@
 												</Grid.RowDefinitions>
 
 												<StackPanel Grid.Row="1"
-															Orientation="Horizontal">
+															Orientation="Horizontal"
+															Margin="5">
 
-													<TextBlock Text="{Binding ImageFullName}"
-															   VerticalAlignment="Center"
+													<TextBlock Text="{Binding Name}"
+															   Style="{StaticResource TextBlock_Tooltip}"
 															   HorizontalAlignment="left"
-															   Foreground="White"
-															   TextAlignment="Center"
-															   FontSize="{StaticResource FontSizeNormal}"
 															   Panel.ZIndex="1"
 															   TextWrapping="Wrap" />
 
 												</StackPanel>
 
 												<StackPanel Grid.Row="2"
-															Orientation="Horizontal">
+															Orientation="Horizontal"
+															Margin="5">
 
 													<TextBlock Text="{Binding DateCreated, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateSQLParameter}}"
-															   VerticalAlignment="center"
-															   Foreground="White"
-															   TextAlignment="Center"
-															   FontSize="{StaticResource FontSizeNormal}"
+															   Style="{StaticResource TextBlock_Tooltip}"
 															   FontStyle="Oblique" />
 
 													<TextBlock Text="-"
-															   Margin="3,0"
-															   VerticalAlignment="Center"
-															   Foreground="White"
-															   TextAlignment="Center"
-															   FontSize="{StaticResource FontSizeNormal}"
-															   FontStyle="Oblique" />
+															   Style="{StaticResource TextBlock_Tooltip}"
+															   FontStyle="Oblique"
+															   Margin="3,0" />
 
 													<TextBlock Text="{Binding DateModified, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateSQLParameter}}"
-															   VerticalAlignment="center"
-															   Foreground="White"
-															   TextAlignment="Center"
-															   FontSize="{StaticResource FontSizeNormal}"
+															   Style="{StaticResource TextBlock_Tooltip}"
 															   FontStyle="Oblique" />
 
 												</StackPanel>
@@ -254,14 +266,16 @@
 										MaxHeight="24">
 
 									<TextBox Text="{Binding Name, Mode=OneWay}"
+											 FontSize="{StaticResource FontSizeNormal}"
 											 VerticalAlignment="center"
-											 HorizontalAlignment="Center"
+											 HorizontalAlignment="Stretch"
+											 HorizontalContentAlignment="Center"
 											 Foreground="Black"
 											 TextAlignment="Center"
 											 TextWrapping="Wrap"
-											 FontSize="{StaticResource FontSizeNormal}"
 											 Padding="2"
-											 IsEnabled="False" BorderThickness="0"/>
+											 IsEnabled="False"
+											 BorderThickness="0"/>
 								</Border>
 
 								<!--

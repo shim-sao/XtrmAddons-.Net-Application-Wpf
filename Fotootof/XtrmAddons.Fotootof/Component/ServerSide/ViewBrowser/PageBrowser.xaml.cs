@@ -8,7 +8,9 @@ using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Images;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
+using XtrmAddons.Fotootof.Libraries.Common.Collections;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Memory;
 using XtrmAddons.Net.Picture;
 using XtrmAddons.Net.Windows.Controls.Extensions;
@@ -116,7 +118,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             // Initialize associated view model of the page.
             Model = new PageBrowserModel<PageBrowser>(this)
             {
-                FilesCollection = new ObservableCollection<StorageInfoModel>()
+                FilesCollection = new StorageCollection()
             };
 
             // Add action to the tree view item event handler.
@@ -320,6 +322,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             }
 
             UcListViewStoragesServer.Visibility = Visibility.Visible;
+            UcListViewStoragesServer.CounterTotalImages.Text = Model.FilesCollection.ImagesCount.ToString();
+            UcListViewStoragesServer.CounterTotalDirectories.Text = Model.FilesCollection.DirectoriesCount.ToString();
+
+            //((TextBlock)UcListViewStoragesServer.GetPropertyValue("CounterTotalImages")).Text = Model.FilesCollection.ImagesCount.ToString();
+            //((TextBlock)UcListViewStoragesServer.GetPropertyValue("CounterTotalDirectories")).Text = Model.FilesCollection.DirectoriesCount.ToString();
 
             UpdateLayout();
         }

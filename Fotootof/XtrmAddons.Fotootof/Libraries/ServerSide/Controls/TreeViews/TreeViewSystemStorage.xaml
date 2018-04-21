@@ -22,7 +22,7 @@
 						Style="{StaticResource Border_Fieldset_Title}">
 					<TextBlock Text="{x:Static p:Resources.Folders}"
 							   FontSize="{StaticResource FontSizeHeader}"
-							   Foreground="{StaticResource BigHeader}"
+							   Foreground="{StaticResource Panton_3}"
 							   FontWeight="SemiBold"
 							   Margin="5" />
 

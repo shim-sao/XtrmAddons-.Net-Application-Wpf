@@ -30,7 +30,7 @@
 						<TextBlock x:Name="Title_Text"
 								   Text="{x:Static p:Resources.Pictures}"
 								   FontSize="{StaticResource FontSizeHeader}"
-								   Foreground="{StaticResource BigHeader}"
+								   Foreground="{StaticResource Panton_3}"
 								   FontWeight="SemiBold"
 								   Margin="5" />
 
@@ -40,21 +40,21 @@
 							<TextBlock x:Name="Counter_SelectedNumber"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
-									   Foreground="{StaticResource BigHeader}"
+									   Foreground="{StaticResource Panton_3}"
 									   Margin="5"
 									   Text="0" />
 
 							<TextBlock x:Name="Counter_Spacer"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
-									   Foreground="{StaticResource BigHeader}"
+									   Foreground="{StaticResource Panton_3}"
 									   Margin="0,5"
 									   Text="/" />
 
 							<TextBlock x:Name="Counter_Total"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
-									   Foreground="{StaticResource BigHeader}"
+									   Foreground="{StaticResource Panton_3}"
 									   Margin="5"
 									   Text="0" />
 						</StackPanel>
@@ -179,8 +179,8 @@
 									 MaxHeight="{Binding ActualWidth, ElementName=WrapPanelItemsContainer, Converter={StaticResource CvResponsiveListViewItem}}">
 
 								<Grid Background="Black"
-									  Width="400"
-									  Height="400">
+									  Width="{StaticResource Icon256Double}"
+									  Height="{StaticResource Icon256Double}">
 
 									<Grid.ContextMenu>
 										<ContextMenu>
@@ -190,11 +190,11 @@
 										</ContextMenu>
 									</Grid.ContextMenu>
 
-									<Image Source="{Binding ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource CvThumbnailParameter}, IsAsync=True, Mode=OneWay}"
+									<Image Source="{Binding ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}, IsAsync=True, Mode=OneWay}"
 										   Stretch="UniformToFill"
 										   MouseEnter="OnImage_MouseEnter"
-										   Tag="{Binding}"
-										   Width="400">
+										   Width="{StaticResource Icon256Double}"
+										   Tag="{Binding}">
 
 										<ToolTipService.ToolTip>
 
@@ -202,7 +202,7 @@
 												  MaxHeight="{StaticResource Icon512Double}"
 												  Background="Black">
 
-												<Image Source="{Binding PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource CvPreviewParameter}, IsAsync=True, Mode=OneWay}"
+												<Image Source="{Binding PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon512String}, IsAsync=True, Mode=OneWay}"
 													   Stretch="Uniform"
 													   Panel.ZIndex="0"/>
 

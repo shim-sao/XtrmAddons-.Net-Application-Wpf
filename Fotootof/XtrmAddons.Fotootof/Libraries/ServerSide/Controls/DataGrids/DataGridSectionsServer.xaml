@@ -21,7 +21,7 @@
 					<TextBlock x:Name="Header_Text"
 							   Text="{x:Static p:Resources.Sections}"
 							   FontSize="{StaticResource FontSizeHeader}"
-							   Foreground="{StaticResource BigHeader}"
+							   Foreground="{StaticResource Panton_3}"
 							   FontWeight="SemiBold"
 							   Margin="5" />
 				</Border>

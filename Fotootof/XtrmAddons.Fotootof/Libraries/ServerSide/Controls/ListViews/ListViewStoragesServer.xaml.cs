@@ -64,6 +64,16 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             remove => ItemsCollection.MouseDoubleClick -= value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public TextBlock CounterTotalImages => Counter_TotalImages;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TextBlock CounterTotalDirectories => Counter_TotalDirectories;
+
         #endregion
 
 
@@ -77,7 +87,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         {
             InitializeComponent();
             ItemsCollection.KeyDown += ItemsCollection.AddKeyDownSelectAllItems;
-            //SelectionChanged += ItemsCollection_SelectionChanged;
         }
 
         #endregion
@@ -101,7 +110,17 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             }
             else
             {
-                Button_AddPicturesToAlbum.IsEnabled = true;
+                bool find = false;
+                foreach(StorageInfoModel sim in SelectedItems)
+                {
+                    if(sim.IsPicture)
+                    {
+                        find = true;
+                        break;
+                    }
+                }
+
+                Button_AddPicturesToAlbum.IsEnabled = find;
             }
         }
 
@@ -135,27 +154,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
                     // Check if storage information is and return a picture information.
                     if (picture != null)
                     {
-                        /*
-                        // Process adding for each albums.
-                        foreach (AlbumEntity a in dlg.SelectedAlbums)
-                        {
-                            // Try to find Picture and Album dependency
-                            PicturesInAlbums dependency = (new List<PicturesInAlbums>(picture.PicturesInAlbums)).Find(p => p.AlbumId == a.AlbumId);
-
-                            // Associate Picture to the Album if not already set.
-                            if (dependency == null)
-                            {
-                                picture.PicturesInAlbums.Add(
-                                    new PicturesInAlbums
-                                    {
-                                        AlbumId = a.AlbumId,
-                                        Ordering = picture.PicturesInAlbums.Count + 1
-                                    }
-                                );
-                            }
-                        }
-                        */
-
                         // Add Picture to the list for Pictures final saving.
                         pictures.Add(picture);
                     }
@@ -175,10 +173,10 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         #region Methods Size Changed
 
         /// <summary>
-        /// 
+        /// Method called on user control size changed event.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             ArrangeBlockRoot();

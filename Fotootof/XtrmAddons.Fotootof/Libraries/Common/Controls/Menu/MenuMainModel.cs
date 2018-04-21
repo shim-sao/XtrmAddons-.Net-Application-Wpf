@@ -19,10 +19,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             get { return ApplicationBase.UI.Controls.FindKey("ShowLogsWindow"); }
             set
             {
-                if(ApplicationBase.UI.Controls.FindKey("ShowLogsWindow") != null)
-                    ApplicationBase.UI.Controls.ReplaceKeyUnique(value, "ShowLogsWindow");
-                else
-                    ApplicationBase.UI.Controls.Add(value);
+                GetOptionsShowLogsWindow(value);
                 RaisePropertyChanged("ShowLogsWindow");
             }
         }
@@ -39,6 +36,28 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         public MenuMainModel(MenuMain menuMain)
         {
             OwnerBase = menuMain;
+        }
+
+        #endregion
+
+
+
+        #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        private static void GetOptionsShowLogsWindow(UiElement value)
+        {
+            if (ApplicationBase.UI.Controls.FindKey("ShowLogsWindow") != null)
+            {
+                ApplicationBase.UI.Controls.ReplaceKeyUnique(value, "ShowLogsWindow");
+            }
+            else
+            {
+                ApplicationBase.UI.Controls.Add(value);
+            }
         }
 
         #endregion

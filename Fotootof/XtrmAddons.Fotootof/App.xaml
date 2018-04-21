@@ -16,21 +16,19 @@
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Borders.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Buttons.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/ComboBoxs.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/DataGrids.xaml.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Grids.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/ListViews.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Pages.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/StackPanels.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Windows.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TextBlock.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Windows.xaml"/>
 
-                <ResourceDictionary Source="Themes\Template\Color\Default.xaml"/>
-                
-                <ResourceDictionary Source="Themes\Template\Controls\Button\Dark.xaml"/>
-                <ResourceDictionary Source="Themes\Template\Controls\Button\RoundedCorner.xaml"/>
-                <ResourceDictionary Source="Themes\Template\Controls\ListView\Default.xaml"/>
-                <ResourceDictionary Source="Themes\Template\Controls\TextBox\Default.xaml"/>
-                <ResourceDictionary Source="Themes\Template\Images\Default.xaml"/>
+				<ResourceDictionary Source="Themes\Template\Controls\Button\RoundedCorner.xaml"/>
+				<ResourceDictionary Source="Themes\Template\Controls\TextBox\Default.xaml"/>
 
 
-                <ResourceDictionary Source="Resources\Style\TreeView\Explorer.xaml"/>
+				<ResourceDictionary Source="Resources\Style\TreeView\Explorer.xaml"/>
                 <ResourceDictionary Source="Resources\Style\Text\Text.xaml"/>
                 
             </ResourceDictionary.MergedDictionaries>

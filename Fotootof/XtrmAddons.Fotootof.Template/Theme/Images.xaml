@@ -7,14 +7,33 @@
 	<system:String x:Key="Icon24Exit">\Assets\Images\Icons\Buttons\button-exit-24.png</system:String>
 
 
+	<!-- Icons 24 -->
 	<Image x:Key="Icon24Back"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-back-24.png" />
 	
 	<Image x:Key="Icon24Copy"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-copy-24.png" />
 
+	<Image x:Key="Icon24FolderDelete"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-delete-24.png" />
+
+	<Image x:Key="Icon24FolderEdit"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-edit-24.png" />
+
+	<Image x:Key="Icon24FolderPlus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-plus-24.png" />
+
+	<Image x:Key="Icon24FolderSelect"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-select-24.png" />
+
+	<Image x:Key="Icon24FolderUnselect"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-unselect-24.png" />
+
 	<Image x:Key="Icon24Forward"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-forward-24.png" />
+
+	<Image x:Key="Icon24ImagePlus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-plus-24.png" />
 
 	<Image x:Key="Icon24Minus"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-minus-24.png" />
@@ -27,7 +46,7 @@
 
 
 
-
+	<!-- Icons 32 -->
 	<Image x:Key="Icon32LeftArrow"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-left-arrow-32.png" />
 
@@ -48,6 +67,24 @@
 
 	<Image x:Key="Icon32RightArrow"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-right-arrow-32.png" />
+
+	
+	
+	<!-- Todo : replace & delete -->
+	<system:String x:Key="IconFolder">Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\folder-5.png</system:String>
+
+
+
+
+
+	<system:String x:Key="IconLink">Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\link.png</system:String>
+	<system:String x:Key="IconInfo">Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\info.png</system:String>
+
+
+
+	<!-- BitmapImage -->
+	<BitmapImage x:Key="BmpIconLink" UriSource="\Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\link.png" />
+	<BitmapImage x:Key="BmpIconInfo" UriSource="\Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\info.png" />
 
 
 

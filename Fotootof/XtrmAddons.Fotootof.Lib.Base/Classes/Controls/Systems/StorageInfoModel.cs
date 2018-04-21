@@ -126,6 +126,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
             DateCreated = FileInfo.CreationTime;
             DateModified = FileInfo.LastWriteTime;
             IsFile = true;
+            CheckIfIsPicture();
         }
 
         /// <summary>
@@ -193,6 +194,25 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
             }
 
             return p;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void CheckIfIsPicture()
+        {
+            if (!IsFile)
+            {
+                IsPicture = false;
+            }
+
+            string ext = Path.GetExtension(FullName);
+            string[] extensions = { ".jpg", ".jpeg", ".png", ".bmp", ".tiff" };
+
+            if (extensions.Contains(ext.ToLower()))
+            {
+                IsPicture = true;
+            }
         }
 
         #endregion
