@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
@@ -11,6 +12,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Net.Memory;
 using XtrmAddons.Net.Picture;
 using XtrmAddons.Net.Windows.Controls.Extensions;
+using XtrmAddons.Net.Windows.Converter.Picture;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 {
@@ -30,17 +32,22 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// Property to access to the preview directory system informations.
         /// </summary>
-        public Stack<DirectoryInfo> PreviewDirectoryInfoStack { get; set; } = new Stack<DirectoryInfo>();
-
-        /// <summary>
-        /// Property to access to the current directory system informations.
-        /// </summary>
-        public DirectoryInfo CurrentDirectoryInfo { get; set; }
+        public Stack<object> PreviewStack { get; set; } = new Stack<object>();
 
         /// <summary>
         /// Property to access to the preview directory system informations.
         /// </summary>
-        public DirectoryInfo NextDirectoryInfo { get; set; }
+        public Stack<object> NextStack { get; set; } = new Stack<object>();
+
+        /// <summary>
+        /// Property to access to the preview directory system informations.
+        /// </summary>
+        //public List<object> UserStack { get; set; } = new List<object>();
+
+        /// <summary>
+        /// Property to access to the current drive system informations.
+        /// </summary>
+        public object CurrentItem { get; set; }
 
         #endregion
 
@@ -82,19 +89,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             UcTreeViewDirectories.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
             UcListViewStoragesServer.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
 
-            Trace_Control_SizeChanged(true);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="trace"></param>
-        public void Trace_Control_SizeChanged(bool trace)
-        {
-            if (!trace) return;
-
-            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
-
             TraceSize(fe);
             TraceSize(this);
             TraceSize(Block_TopControls);
@@ -128,7 +122,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             // Add action to the tree view item event handler.
             UcTreeViewDirectories.DirectoriesTreeView.SelectedItemChanged += TreeViewDirectories_SelectedItemChanged;
             UcListViewStoragesServer.ImageSize_SelectionChanged += ImageSize_SelectionChanged;
-            
+
             // Reinitialize datacontext.
             DataContext = Model;
 
@@ -153,7 +147,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
                 }
                 catch (Exception e)
                 {
-                    log.Error(e);
+                    AppLogger.InfoAndClose(e.Message, true);
                 }
             }
 
@@ -177,7 +171,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
                 }
                 catch(Exception e)
                 {
-                    log.Error(e);
+                    AppLogger.Error(e.Message, true);
                 }
             }
 
@@ -188,11 +182,19 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// Method to display header title of directory.
         /// </summary>
         /// <param name="dirInfo">A directory info.</param>
-        private void DisplayHeaderDirectory(DirectoryInfo dirInfo)
+        private void DisplayHeaderDirectory(object dirInfo)
         {
             if (dirInfo != null)
             {
-                Breadcrumbs.Text = dirInfo.FullName;
+                if (dirInfo.GetType().Equals(typeof(DirectoryInfo)))
+                {
+                    Breadcrumbs.Text = ((DirectoryInfo)dirInfo).FullName;
+                }
+
+                if(dirInfo.GetType().Equals(typeof(DriveInfo)))
+                {
+                    Breadcrumbs.Text = ((DriveInfo)dirInfo).Name;
+                }
             }
         }
 
@@ -201,14 +203,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// </summary>
         private void ClearFilesCollection()
         {
+            // Clear model files collection.
             Model.FilesCollection.Clear();
 
-            // Reset picture memory cache.
-            if (PictureMemoryCache.MemCache != null)
-            {
-                PictureMemoryCache.MemCache.Dispose();
-                PictureMemoryCache.MemCache = null;
-            }
+            // Clear picture memory cache.
+            PictureMemoryCache.Clear();
 
             // Fix increase memory.
             MemoryManager.fixMemoryLeak();
@@ -221,16 +220,79 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <param name="e"></param>
         private void TreeViewDirectories_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            TreeViewItem item = (TreeViewItem)e.NewValue;
-            TreeViewItem parent = item.GetTreeViewItemRoot();
+            NextStack.Clear();
+            Button_Forward.IsEnabled = false;
 
-            if (item.Tag.GetType() == typeof(DirectoryInfo))
+            PreviewStack.Push(CurrentItem);
+            if (PreviewStack.Count > 1)
             {
-                DirectoryInfo di = (DirectoryInfo)item.Tag;
+                Button_Back.IsEnabled = true;
+            }
 
-                PreviewDirectoryInfoStack.Push(CurrentDirectoryInfo);
-                CurrentDirectoryInfo = di;
-                Refresh_UcListViewStoragesServer();
+            CurrentItem = ((TreeViewItem)e.NewValue).Tag;
+            Refresh_UcListViewStoragesServer();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBack_Click(object sender, RoutedEventArgs e)
+        {
+            NextStack.Push(CurrentItem);
+            Button_Forward.IsEnabled = true;
+
+            CurrentItem = PreviewStack.Pop();
+            Refresh_UcListViewStoragesServer();
+
+            if (PreviewStack.Count <= 1)
+            {
+                Button_Back.IsEnabled = false;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnForward_Click(object sender, RoutedEventArgs e)
+        {
+            PreviewStack.Push(CurrentItem);
+            Button_Back.IsEnabled = true;
+
+            CurrentItem = NextStack.Pop();
+            Refresh_UcListViewStoragesServer();
+
+            if (NextStack.Count == 0)
+            {
+                Button_Forward.IsEnabled = false;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpward_Click(object sender, RoutedEventArgs e)
+        {
+            DirectoryInfo di = GetCurrentDirectoryInfo();
+
+            if (di != null)
+            {
+                if(di.Parent != null)
+                {
+                    PreviewStack.Push(CurrentItem);
+                    Button_Back.IsEnabled = true;
+
+                    NextStack.Clear();
+                    Button_Forward.IsEnabled = false;
+
+                    CurrentItem = new DirectoryInfo(di.Parent.FullName);
+                    Refresh_UcListViewStoragesServer();
+                }
             }
         }
 
@@ -241,14 +303,48 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <param name="e"></param>
         private void Refresh_UcListViewStoragesServer()
         {
-            DisplayHeaderDirectory(CurrentDirectoryInfo);
-            ClearFilesCollection();
+            DirectoryInfo di = null;
+            if (CurrentItem != null)
+            {
+                DisplayHeaderDirectory(CurrentItem);
 
-            LoadDirectoriesInfosToListView(GetDirectoriesInfos(CurrentDirectoryInfo));
-            LoadInfoFilesToListViewAsync(GetInfoFiles(CurrentDirectoryInfo));
+                ClearFilesCollection();
+                di = GetCurrentDirectoryInfo();
+
+                LoadDirectoriesInfosToListView(GetDirectoriesInfos(di));
+                LoadInfoFilesToListViewAsync(GetInfoFiles(di));
+            }
+            else
+            {
+                UcListViewStoragesServer.Visibility = Visibility.Hidden;
+            }
 
             UcListViewStoragesServer.Visibility = Visibility.Visible;
+
             UpdateLayout();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private DirectoryInfo GetCurrentDirectoryInfo()
+        {
+            DirectoryInfo di = null;
+
+            if(CurrentItem != null)
+            {
+                if (CurrentItem.GetType().Equals(typeof(DriveInfo)))
+                {
+                    di = new DirectoryInfo(((DriveInfo)CurrentItem).RootDirectory.FullName);
+                }
+                else
+                {
+                    di = (DirectoryInfo)CurrentItem;
+                }
+            }
+
+            return di;
         }
 
         /// <summary>
@@ -284,8 +380,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
             foreach (FileInfo fileInfo in infoFiles)
             {
-                StorageInfoModel item = new StorageInfoModel(fileInfo) { ImageSize = Model.ImageSize };
-                Model.FilesCollection.Add(item);
+                if (ConverterPictureBase.Extensions.Contains(fileInfo.Extension.ToLower()))
+                { 
+                    StorageInfoModel item = new StorageInfoModel(fileInfo) { ImageSize = Model.ImageSize };
+                    Model.FilesCollection.Add(item);
+                }
             }
 
             UcListViewStoragesServer.Visibility = Visibility.Visible;
@@ -313,9 +412,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         private void UcListViewStoragesServer_ItemsCollection_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ListView list = sender as ListView;
-            StorageInfoModel item = list.SelectedItem as StorageInfoModel;
 
-            if(item != null)
+            if (list.SelectedItem is StorageInfoModel item)
             {
                 if (item.IsPicture)
                 {
@@ -323,7 +421,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
                 }
                 else if (item.DirectoryInfo != null)
                 {
-                    CurrentDirectoryInfo = item.DirectoryInfo;
+                    NextStack.Clear();
+                    Button_Forward.IsEnabled = false;
+
+                    PreviewStack.Push(CurrentItem);
+                    if (PreviewStack.Count > 1)
+                    {
+                        Button_Back.IsEnabled = true;
+                    }
+
+                    CurrentItem = item.DirectoryInfo;
                     Refresh_UcListViewStoragesServer();
                 }
             }
@@ -339,9 +446,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
         }
 
+
         #endregion
-
-
 
         #region Methods Size Changed
 

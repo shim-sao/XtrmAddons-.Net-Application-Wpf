@@ -1,0 +1,28 @@
+﻿<base:PageBase
+    x:Class="XtrmAddons.Fotootof.Component.ServerSide.ViewSlideshow.PageSlideshow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
+    mc:Ignorable="d"
+	ShowsNavigationUI="False"
+	Title="{x:Static p:Resources.Album}"
+	Style="{StaticResource PageContent}"
+	SizeChanged="Control_SizeChanged">
+
+	<Grid x:Name="Block_Root"
+		  Style="{StaticResource Root}"
+		  Background="Red">
+
+		<Border Background="Aqua">
+			<Image x:Name="Image_CurrentPicture"
+				   Source="{Binding Path=CurrentPicture.PicturePath}"
+				   MaxWidth="{Binding Path=CurrentPicture.PictureWidth}"
+				   MaxHeight="{Binding Path=CurrentPicture.PictureHeight}"
+				   Stretch="Uniform"/>
+		</Border>
+
+	</Grid>
+</base:PageBase>

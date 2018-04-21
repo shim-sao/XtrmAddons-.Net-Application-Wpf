@@ -126,13 +126,34 @@
   <data name="ApplicationSettingsSaved" xml:space="preserve">
     <value>Application settings saved.</value>
   </data>
+  <data name="CopyingProgramFiles" xml:space="preserve">
+    <value>Copying program files to My Documents user folder. Please wait...</value>
+  </data>
+  <data name="DeletingOptionsWaiting" xml:space="preserve">
+    <value>Deleting the application options and parameters. Please wait...</value>
+  </data>
+  <data name="DeletingUserOptionsWaiting" xml:space="preserve">
+    <value>Deleting the user's options and parameters. Please wait...</value>
+  </data>
   <data name="InitializingApplicationWindowComponentDone" xml:space="preserve">
     <value>Initializing application window component. Done !</value>
+  </data>
+  <data name="ItemDeleted" xml:space="preserve">
+    <value>{0} deleted !</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Please wait...</value>
+  </data>
+  <data name="SavingApplicationWaiting" xml:space="preserve">
+    <value>Saving the application options &amp; parameters before exit. Please wait...</value>
   </data>
   <data name="ServerStarted" xml:space="preserve">
     <value>Server started.</value>
   </data>
   <data name="ServerStopped" xml:space="preserve">
     <value>Server stopped.</value>
+  </data>
+  <data name="StartingApplicationWaiting" xml:space="preserve">
+    <value>Starting the application. Initialiazing the options &amp; parameters. Please wait...</value>
   </data>
 </root>

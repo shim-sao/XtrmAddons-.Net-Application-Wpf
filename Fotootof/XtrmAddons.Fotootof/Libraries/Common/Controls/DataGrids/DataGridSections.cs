@@ -45,6 +45,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             WindowFormSection dlg = new WindowFormSection(new SectionEntity());
             bool? result = dlg.ShowDialog();
 
+            if(!dlg.Activate())
+            {
+                AppLogger.Warning("Can't open Sections edit file dialog box. Please try again.");
+                dlg.Close();
+            }
+
             // Process open file dialog box results 
             if (result == true)
             {

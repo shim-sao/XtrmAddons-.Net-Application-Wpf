@@ -28,7 +28,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <summary>
         /// Class XtrmAddons Fotootof Component Users AclGroup Collections Constructor.
         /// </summary>
-        public AclGroupEntityCollection(bool autoLoad = false, AclGroupOptionsList options = null) : base(autoLoad, options) { }
+        public AclGroupEntityCollection(bool autoLoad = false, AclGroupOptionsList options = null)
+            : base(autoLoad, options) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Component Users AclGroup Collections Constructor.
@@ -40,7 +41,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// Class XtrmAddons Fotootof Component Users AclGroup Collections Constructor.
         /// </summary>
         /// <param name="collection">>A collection of AclGroup to paste in.</param>
-        public AclGroupEntityCollection(IEnumerable<AclGroupEntity> collection) : base(collection) { }
+        public AclGroupEntityCollection(IEnumerable<AclGroupEntity> collection)
+            : base(collection) { }
 
         #endregion
 

@@ -9,7 +9,7 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient
     /// <summary>
     /// 
     /// </summary>
-    public class HttpWebClientApplication
+    public class HttpWebClientApplication : IDisposable
     {
         #region Properties
 

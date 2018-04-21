@@ -7,7 +7,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite
     /// <summary>
     /// Class to provide XtrmAddons Fotootof Server SQLite management.
     /// </summary>
-    public class SQLiteManager : WPFSQLiteData
+    public class SQLiteManager : WpfSQLiteData
     {
         /// <summary>
         /// Class SQLite Manager constructor.

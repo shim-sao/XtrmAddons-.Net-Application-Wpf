@@ -8,7 +8,7 @@
         <!-- <Setter Property="MinHeight" Value="975"/> -->
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="Background" Value="{StaticResource ResourceKey=Panton0}" />
+        <Setter Property="Background" Value="{StaticResource ResourceKey=Panton_2}" />
     </Style>
 
 </ResourceDictionary>

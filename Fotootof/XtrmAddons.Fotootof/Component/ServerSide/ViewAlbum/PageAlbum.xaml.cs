@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
@@ -12,34 +13,17 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
     /// </summary>
     public partial class PageAlbum : PageBase
     {
-        #region Variable
-
-        /// <summary>
-        /// Variable page album view model.
-        /// </summary>
-        private PageAlbumModel<PageAlbum> model;
-
-        /// <summary>
-        /// Variable album id.
-        /// </summary>
-        private int itemId;
-
-        #endregion
-
-
-
         #region Properties
 
         /// <summary>
         /// Property to access to the page album model.
         /// </summary>
-        public PageAlbumModel<PageAlbum> Model
-        {
-            get
-            {
-                return model;
-            }
-        }
+        public PageAlbumModel<PageAlbum> Model { get; private set; }
+
+        /// <summary>
+        /// Property to access to the album id.
+        /// </summary>
+        private int ItemId { get; }
 
         #endregion
 
@@ -52,11 +36,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
         /// </summary>
         public PageAlbum(int albumId = 0)
         {
-            itemId = albumId;
-
             InitializeComponent();
+            ItemId = albumId;
             AfterInitializedComponent();
         }
+
+        #endregion
+
+
+
+        #region Methods
 
         /// <summary>
         /// Method to initialize page content.
@@ -71,9 +60,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
         /// </summary>
         public async override void InitializeContentAsync()
         {
-
             // Initialize associated view model of the page.
-            model = new PageAlbumModel<PageAlbum>(this);
+            Model = new PageAlbumModel<PageAlbum>(this);
 
             // Set busy indicator
             AppOverwork.IsBusy = true;
@@ -81,12 +69,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
 
             AlbumEntity album = new AlbumEntity();
 
-            if (itemId > 0)
+            if (ItemId > 0)
             {
                 AlbumOptionsSelect options = new AlbumOptionsSelect
                 {
                     Dependencies = { EnumEntitiesDependencies.All },
-                    PrimaryKey = itemId
+                    PrimaryKey = ItemId
                 };
                 album = await MainWindow.Database.Albums.SingleOrNullAsync(options);
 
@@ -95,25 +83,38 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
                     album = new AlbumEntity();
                 }
             }
-            else
-            {
-                album  = new AlbumEntity();
-            }
-            var g = album.Pictures;
-            model.Album = album;
-            var a = model.Pictures;
-            DataContext = model;
 
-            PicturesListView.TextBlockAlbumName.Text = model.Album.Name;
+            Model.Album = album;
+            DataContext = Model;
+
+            PicturesCollection.Title_Text.Text = Model.Album.Name;
 
             // End of busy indicator.
             AppOverwork.BusyContent = "Initializing page content. Done.";
             AppOverwork.IsBusy = false;
         }
 
+        /// <summary>
+        /// Method called on user control size changed event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
+
+            this.Width = Math.Max(fe.ActualWidth, 0);
+            this.Height = Math.Max(fe.ActualHeight, 0);
+
+            Block_MiddleContents.Width = Math.Max(this.Width, 0);
+            Block_MiddleContents.Height = Math.Max(this.Height, 0);
+
+            PicturesCollection.Height = Math.Max(this.Height, 0);
+
+            TraceSize(fe);
+            TraceSize(this);
+            TraceSize(Block_MiddleContents);
+            TraceSize(PicturesCollection);
         }
 
         #endregion

@@ -126,13 +126,34 @@
   <data name="ApplicationSettingsSaved" xml:space="preserve">
     <value>Paramètres de l'application enregistrés.</value>
   </data>
+  <data name="CopyingProgramFiles" xml:space="preserve">
+    <value>Copie des fichiers du programme dans le dossier utilisateur Mes documents. Patientez, s'il vous plaît...</value>
+  </data>
+  <data name="DeletingOptionsWaiting" xml:space="preserve">
+    <value>Suppression des options et des paramètres de l'application. Patientez, s'il vous plaît...</value>
+  </data>
+  <data name="DeletingUserOptionsWaiting" xml:space="preserve">
+    <value>Suppression des options et des paramètres de l'utilisateur. Patientez, s'il vous plaît...</value>
+  </data>
   <data name="InitializingApplicationWindowComponentDone" xml:space="preserve">
     <value>Initialisation du composant de la fenêtre d'application. Terminé !</value>
   </data>
+  <data name="ItemDeleted" xml:space="preserve">
+    <value>{0} supprimé !</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Patientez, s'il vous plaît...</value>
+  </data>
+  <data name="SavingApplicationWaiting" xml:space="preserve">
+    <value>Sauvegarde des options et paramètres de l'application avant de quitter. Patientez, s'il vous plaît...</value>
+  </data>
   <data name="ServerStarted" xml:space="preserve">
-    <value>Serveur démarré.</value>
+    <value>Serveur processus démarré.</value>
   </data>
   <data name="ServerStopped" xml:space="preserve">
-    <value>Serveur arrêté</value>
+    <value>Serveur processus arrêté.</value>
+  </data>
+  <data name="StartingApplicationWaiting" xml:space="preserve">
+    <value>Démarrage de l'application. Initialisation des options et des paramètres. Patientez, s'il vous plaît...</value>
   </data>
 </root>

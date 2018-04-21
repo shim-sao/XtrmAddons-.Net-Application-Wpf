@@ -92,7 +92,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             model = new WindowFormAlbumModel<WindowFormAlbum>(this);
 
             // Initialize User first.
-            //entity = entity ?? new AlbumEntity();
+            entity = entity ?? new AlbumEntity();
 
             if (entity.PrimaryKey > 0)
             {
@@ -310,6 +310,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             }
         }
 
+        /// <summary>
+        /// Method called on color filters selector loaded event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
         private void FiltersColorSelector_Loaded(object sender, RoutedEventArgs e)
         {
             foreach (InfoEntity inf in model.FiltersColor)
@@ -324,10 +329,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         }
 
         /// <summary>
-        /// 
+        /// Method called on quality filters selector loaded event.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
         private void FiltersQualitySelector_Loaded(object sender, RoutedEventArgs e)
         {
             foreach (InfoEntity inf in FiltersQualitySelector.Items)

@@ -35,7 +35,7 @@
 								   Margin="5" />
 
 						<!-- #endregion Title -->
-
+						
 						<!-- #region Counter -->
 						<StackPanel Grid.Column="1"
 									Orientation="Horizontal">
@@ -73,17 +73,19 @@
 					</Grid.ColumnDefinitions>
 
 					<Border x:Name="MenuLeft"
-							Grid.Column="0">
+							Grid.Column="0"
+							Margin="5,0">
 
 						<Button x:Name="Button_AddPicturesToAlbum"
-								Style="{StaticResource Btn}"
+								Style="{StaticResource Button_DefaultRounded}"
 								Content="{x:Static p:Resources.AddPicturesToAlbum}"
 								Click="OnAddPicturesToAlbum_Click"
 								IsEnabled="False"/>
 					</Border>
 
 					<Border x:Name="MenuRight"
-							Grid.Column="2">
+							Grid.Column="2"
+							Margin="5,0">
 
 						<ComboBox Grid.Column="2"
 								  x:Name="ComboBox_ImageSize"

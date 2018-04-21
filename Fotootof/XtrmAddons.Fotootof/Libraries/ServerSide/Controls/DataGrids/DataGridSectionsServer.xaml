@@ -44,14 +44,14 @@
 
 							<Button x:Name="Button_Add"
 									Grid.Column="0"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.Add }"
 									Click="OnAdd_Click">
 							</Button>
 
 							<Button x:Name="Button_Edit"
 									Grid.Column="1"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.Edit }"
 									Click="OnEdit_Click"
 									IsEnabled="False">
@@ -59,7 +59,7 @@
 
 							<Button x:Name="Button_Delete"
 									Grid.Column="2"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.Delete}"
 									Click="OnDelete_Click"
 									IsEnabled="False">

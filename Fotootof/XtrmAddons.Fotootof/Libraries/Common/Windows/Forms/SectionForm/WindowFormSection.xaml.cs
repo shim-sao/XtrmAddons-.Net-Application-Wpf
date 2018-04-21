@@ -111,6 +111,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         protected void Window_Load(object sender, RoutedEventArgs e)
         {
             DataContext = model;
+            Button_Cancel.Focus();
         }
 
         /// <summary>
@@ -129,9 +130,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
 
             if (!old.IsNullOrWhiteSpace())
             {
-                //var a = NewForm.Alias.Sanitize().RemoveDiacritics().ToLower();
-                //var b = old.Sanitize().RemoveDiacritics().ToLower();
-
                 if (NewForm.Alias.IsNullOrWhiteSpace() || NewForm.Alias.Sanitize().RemoveDiacritics().ToLower() == old.Sanitize().RemoveDiacritics().ToLower())
                 {
                     InputAlias.Text = InputName.Text;

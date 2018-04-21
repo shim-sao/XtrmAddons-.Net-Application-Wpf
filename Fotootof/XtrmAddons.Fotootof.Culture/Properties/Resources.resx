@@ -225,6 +225,9 @@
   <data name="End" xml:space="preserve">
     <value>End</value>
   </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="Explore" xml:space="preserve">
     <value>Explore</value>
   </data>
@@ -239,6 +242,9 @@
   </data>
   <data name="Folders" xml:space="preserve">
     <value>Folders</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>French</value>
   </data>
   <data name="General" xml:space="preserve">
     <value>General</value>
@@ -395,6 +401,9 @@
   </data>
   <data name="Thumbnail" xml:space="preserve">
     <value>Thumbnail</value>
+  </data>
+  <data name="Tooltip_MenuItem_Server_Stop" xml:space="preserve">
+    <value>Stop Http server. Prevent incoming Http request to application.</value>
   </data>
   <data name="ToolTip_SelectAlbumColor" xml:space="preserve">
     <value>Select the Color associated to the Album.</value>
@@ -572,5 +581,8 @@
   </data>
   <data name="_Yes" xml:space="preserve">
     <value>_Yes</value>
+  </data>
+  <data name="Pictures" xml:space="preserve">
+    <value>Pictures</value>
   </data>
 </root>

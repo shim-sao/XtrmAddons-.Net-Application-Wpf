@@ -736,6 +736,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à English.
+        /// </summary>
+        public static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Explore.
         /// </summary>
         public static string Explore {
@@ -777,6 +786,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string Folders {
             get {
                 return ResourceManager.GetString("Folders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à French.
+        /// </summary>
+        public static string French {
+            get {
+                return ResourceManager.GetString("French", resourceCulture);
             }
         }
         
@@ -1042,6 +1060,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pictures.
+        /// </summary>
+        public static string Pictures {
+            get {
+                return ResourceManager.GetString("Pictures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Port.
         /// </summary>
         public static string Port {
@@ -1245,6 +1272,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string Thumbnail {
             get {
                 return ResourceManager.GetString("Thumbnail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Stop Http server. Prevent incoming Http request to application..
+        /// </summary>
+        public static string Tooltip_MenuItem_Server_Stop {
+            get {
+                return ResourceManager.GetString("Tooltip_MenuItem_Server_Stop", resourceCulture);
             }
         }
         

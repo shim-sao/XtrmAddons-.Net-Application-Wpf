@@ -19,11 +19,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         protected static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        protected static bool sizeTrace = false;
-
         #endregion
 
 
@@ -51,10 +46,9 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Size changed event arguments.</param>
+        [Conditional("DEBUG")]
         protected void TraceSize(FrameworkElement fe)
         {
-            if (!sizeTrace) return;
-
             Trace.WriteLine(string.Format("----> Class({0}) : Object({1}) : Name({2})", GetType().Name, fe.GetType().Name, fe.Name));
             Trace.WriteLine("ActualSize = [" + fe.ActualWidth + "," + fe.ActualHeight + "]");
             Trace.WriteLine("Size = [" + fe.Width + "," + fe.Height + "]");

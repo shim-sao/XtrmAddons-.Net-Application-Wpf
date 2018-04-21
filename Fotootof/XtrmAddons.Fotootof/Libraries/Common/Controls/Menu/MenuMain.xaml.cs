@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -17,6 +16,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm;
 using XtrmAddons.Fotootof.Libraries.Common.Windows.Settings;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
 {
@@ -54,6 +54,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// </summary>
         public static event RoutedEventHandler ClientAdded = delegate { };
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public MenuMainModel<MenuMain> Model { get; private set; }
+
         #endregion
 
 
@@ -68,6 +73,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             InitializeComponent();
             HttpServerBase.AddStartHandlerOnce((s, e) => { InitializeMenuItemsServer(); });
             HttpServerBase.AddStopHandlerOnce((s, e) => { InitializeMenuItemsServer(); });
+            Model = new MenuMainModel<MenuMain>(this);
         }
 
         #endregion
@@ -87,20 +93,53 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The routed event arguments.</param>
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            InitializeLogsWindow();
+        }
+
+        /// <summary>
+        /// Method to initialize server menu items.
+        /// </summary>
+        public void InitializeLogsWindow()
+        {
+            var parameters = Model.ShowLogsWindow;
+
+            if (parameters == null)
+            {
+                Model.ShowLogsWindow = new UiElement(MenuItem_Display_LogsWindow);
+                ApplicationBase.Save();
+            }
+            else
+            {
+                MenuItem_Display_LogsWindow.IsChecked = parameters.IsChecked;
+
+                if (parameters.IsChecked)
+                {
+                    AppNavigator.MainWindow.LogsToggle();
+                }
+            }
+        }
+
+        /// <summary>
         /// Method to initialize server menu items.
         /// </summary>
         public void InitializeMenuItemsServer()
         {
             if (HttpWebServerApplication.IsStarted)
             {
-                MenuItem_ServerStart.IsEnabled = false;
-                MenuItem_ServerStop.IsEnabled = true;
+                MenuItem_Server_Start.IsEnabled = false;
+                MenuItem_Server_Stop.IsEnabled = true;
                 MenuItem_ServerRestart.IsEnabled = true;
             }
             else
             {
-                MenuItem_ServerStart.IsEnabled = true;
-                MenuItem_ServerStop.IsEnabled = false;
+                MenuItem_Server_Start.IsEnabled = true;
+                MenuItem_Server_Stop.IsEnabled = false;
                 MenuItem_ServerRestart.IsEnabled = false;
             }
         }
@@ -171,36 +210,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// <param name="e">The routed event arguments.</param>
         private void OnDisplayLogsWindowClick(object sender, RoutedEventArgs e)
         {
-            // Set the row grid splitter Height.
-            AppNavigator.MainWindow.RowGridSplitter.Height =
-                AppNavigator.MainWindow.RowGridSplitter.Height == new GridLength(0)
-                ? new GridLength(5) : new GridLength(0);
+            AppNavigator.MainWindow.LogsToggle();
 
-            // Set the grid row logs height.
-            AppNavigator.MainWindow.RowGridLogs.Height =
-                AppNavigator.MainWindow.RowGridLogs.Height == new GridLength(0)
-                ? new GridLength(160) : new GridLength(0);
-
-            /*            
-            UINavigation.AppWindow.RowGridMain.Height =
-                UINavigation.AppWindow.RowGridLogs.Height == new GridLength(0)
-                ? new GridLength(UINavigation.AppWindow.ActualHeight)
-                : new GridLength(UINavigation.AppWindow.ActualHeight - 220);
-
-            UINavigation.AppWindow.Frame_Content.Height = UINavigation.AppWindow.RowGridMain.Height.Value;
-            */
-            AppNavigator.MainWindow.UpdateLayout();
-
-            if (MenuItemDisplayLogsWindow.IsChecked == true)
+            if (MenuItem_Display_LogsWindow.IsChecked == true)
             {
-                MenuItemDisplayLogsWindow.IsChecked = false;
+                MenuItem_Display_LogsWindow.IsChecked = false;
+                Model.ShowLogsWindow.IsChecked = false;
             }
             else
             {
-                MenuItemDisplayLogsWindow.IsChecked = true;
+                MenuItem_Display_LogsWindow.IsChecked = true;
+                Model.ShowLogsWindow.IsChecked = true;
             }
 
-            AppNavigator.MainWindow.UpdateLayout();
+            ApplicationBase.Save();
         }
 
         /// <summary>
@@ -219,12 +242,38 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void LanguageChanged_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menu = (MenuItem)sender;
+            string culture = (string)menu.Tag;
+
+            CultureInfo before = Thread.CurrentThread.CurrentCulture;
+
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(culture);
+                menu.IsChecked = true;
+
+            }
+            catch
+            {
+                Thread.CurrentThread.CurrentUICulture = before;
+            }
+
+            ApplicationBase.Language = Thread.CurrentThread.CurrentCulture.ToString();
+            ApplicationBase.Save();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnDisplayLanguageFrClick(object sender, RoutedEventArgs e)
         {
             CultureInfo before = Thread.CurrentThread.CurrentCulture;
 
             try
-
             {
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
             }
@@ -346,6 +395,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
 
         }
 
-        #endregion Methods
+        #endregion
     }
 }

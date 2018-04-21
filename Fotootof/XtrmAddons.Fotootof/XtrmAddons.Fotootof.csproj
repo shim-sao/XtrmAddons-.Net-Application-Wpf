@@ -61,8 +61,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Assets\Images\Icons\Favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -235,6 +234,7 @@
     <Compile Include="Component\ClientSide\ViewCatalog\PageCatalogClient.xaml.cs">
       <DependentUpon>PageCatalogClient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Component\ServerSide\ViewBrowser\PageBrowserController.cs" />
     <Compile Include="Component\ServerSide\ViewBrowser\PageBrowserModel.cs" />
     <Compile Include="Component\ServerSide\ViewCatalog\PageCatalog.xaml.cs">
       <DependentUpon>PageCatalog.xaml</DependentUpon>
@@ -244,6 +244,10 @@
       <DependentUpon>PageServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\ServerSide\ViewServer\PageServerModel.cs" />
+    <Compile Include="Component\ServerSide\ViewSlideshow\PageSlideshow.xaml.cs">
+      <DependentUpon>PageSlideshow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Component\ServerSide\ViewSlideshow\PageSlideshowModel.cs" />
     <Compile Include="Component\ServerSide\ViewUsers\PageUsers.xaml.cs">
       <DependentUpon>PageUsers.xaml</DependentUpon>
     </Compile>
@@ -251,19 +255,30 @@
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroups.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsersModel.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroupsModel.cs" />
+    <Compile Include="Libraries\Common\Controls\ListViews\ListViewPictures.cs" />
+    <Compile Include="Libraries\Common\Controls\ListViews\ListViewPicturesModel.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\ListViewStorages.cs" />
+    <Compile Include="Libraries\Common\Controls\Menu\MenuMainModel.cs" />
     <Compile Include="Libraries\Common\Tools\AppLogger.cs" />
     <Compile Include="Libraries\Common\Tools\AppOverwork.cs" />
     <Compile Include="Libraries\Common\Tools\AppNavigator.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml.cs">
+      <DependentUpon>WindowSlideshow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Windows\Slideshow\WindowSlideshowModel.cs" />
+    <Compile Include="Libraries\Common\Windows\Slideshow\ZoomBoder.cs" />
     <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml.cs">
       <DependentUpon>DataGridAclGroupsServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridHttpClientModel.cs" />
     <Compile Include="Libraries\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml.cs">
       <DependentUpon>DataGridUsersServer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewPicturesServer.xaml.cs">
+      <DependentUpon>ListViewPicturesServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml.cs">
       <DependentUpon>ListViewStoragesServer.xaml</DependentUpon>
@@ -407,6 +422,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Component\ServerSide\ViewSlideshow\PageSlideshow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Component\ServerSide\ViewUsers\PageUsers.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -427,6 +446,10 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
@@ -434,6 +457,10 @@
     <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewPicturesServer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -601,7 +628,8 @@
     <EmbeddedResource Include="UI\Forms\About\FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="autoexec.bat" />
+    <None Include="autoexec.release.bat" />
+    <None Include="autoexec.debug.bat" />
     <None Include="postbuild.bat" />
     <None Include="prebuild.bat" />
     <None Include="Properties\Settings.settings">
@@ -617,13 +645,43 @@
     <Content Include="Assets\Images\Default\album-thumbnail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\Icons\Buttons\back.png">
+    <SplashScreen Include="Assets\Images\Default\splashscreen.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </SplashScreen>
+    <Content Include="Assets\Images\Icons\Buttons\button-back-24.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\Icons\Buttons\copy.png">
+    <Content Include="Assets\Images\Icons\Buttons\button-copy-24.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\Icons\Buttons\forward.png">
+    <Resource Include="Assets\Images\Icons\Buttons\button-play-32.png" />
+    <Resource Include="Assets\Images\Icons\Buttons\button-pause-32.png" />
+    <Content Include="Assets\Images\Icons\Buttons\button-left-arrow-32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Buttons\button-minus-24.png" />
+    <Content Include="Assets\Images\Icons\Buttons\button-minus-32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Buttons\button-plus-32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Buttons\button-refresh-32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Buttons\button-exit-24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Buttons\button-forward-24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Buttons\button-plus-24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Buttons\button-right-arrow-32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Buttons\button-upward-24.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\Icons\Favicon.ico">
@@ -633,9 +691,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Favicon.ico" />
-    <Content Include="Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\exit.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\info.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -723,6 +778,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>call "$(ProjectDir)autoexec.bat"</PostBuildEvent>
+    <PostBuildEvent>call "$(ProjectDir)autoexec.debug.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>

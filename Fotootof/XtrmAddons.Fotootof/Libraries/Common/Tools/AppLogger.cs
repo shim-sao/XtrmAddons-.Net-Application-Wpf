@@ -33,6 +33,21 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         #region Methods
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
+        public static void DispatchLogs(string s)
+        {
+            AppOverwork.IsBusy = true;
+
+            AppNavigator.MainWindow.Dispatcher.Invoke(new Action(() =>
+            {
+                AppOverwork.BusyContent = s;
+                LogsDisplay("INFO : " + s);
+            }));
+        }
+
+        /// <summary>
         /// Method to add message to display in log frame.
         /// </summary>
         /// <param name="s">The message to add to queue.</param>
@@ -44,7 +59,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
                 logs.Dequeue();
             }
             logs.Enqueue(s);
-
+            
             string output = "";
             foreach (string str in logs.Cast<string>().Reverse())
             {
@@ -66,17 +81,19 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
                 log.Info(s);
             }
 
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                AppOverwork.IsBusy = true;
-                AppOverwork.BusyContent = s;
-
-                LogsDisplay("INFO : " + s);
-            }));
-
-            LogsDisplay("INFO : " + s);
-
+            DispatchLogs(s);
             await Task.Delay(delay);
+        }
+
+        /// <summary>
+        /// Method to add info message to display in log frame.
+        /// </summary>
+        /// <param name="s">The message to add to queue.</param>
+        /// <param name="log4net">Add message to logs handler.</param>
+        public static void InfoAndClose(string s, bool log4net = false, int delay = 0)
+        {
+            Info(s, log4net, delay);
+            Close();
         }
 
         /// <summary>
@@ -94,6 +111,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
             }
 
             MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        /// <summary>
+        /// Method to add not implemented message to display in log frame.
+        /// </summary>
+        public static void NotImplemented()
+        {
+            Error("Not Implemented Exception", true);
         }
 
         /// <summary>
@@ -170,31 +195,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// <summary>
         /// Method to clear logs.
         /// </summary>
-        public static void Clear() => logs.Clear();
+        public static void Clear()
+            => logs.Clear();
 
         /// <summary>
         /// Method proxy to close busy indicator.
         /// </summary>
-        public static void Close() => AppOverwork.IsBusy = false;
+        public static void Close()
+            => AppOverwork.IsBusy = false;
 
         /// <summary>
         /// Method proxy to close busy indicator.
         /// </summary>
         public static string Translate(string key)
-        {
-            return (string)Translation.Logs[key];
-        }
-
-        /// <summary>
-        /// Method to add info message to display in log frame.
-        /// </summary>
-        /// <param name="s">The message to add to queue.</param>
-        /// <param name="log4net">Add message to logs handler.</param>
-        public static void InfoAndClose(string s, bool log4net = false, int delay = 1000)
-        {
-            Info(s, log4net, delay);
-            Close();
-        }
+            => (string)Translation.Logs[key];
 
         #endregion Methods
     }

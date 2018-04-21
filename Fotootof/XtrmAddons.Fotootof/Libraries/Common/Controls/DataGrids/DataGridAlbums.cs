@@ -42,6 +42,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             WindowFormAlbum dlg = new WindowFormAlbum(new AlbumEntity());
             bool? result = dlg.ShowDialog();
 
+            if (!dlg.Activate())
+            {
+                AppLogger.Warning("Can't open Albums edit file dialog box. Please try again.");
+                dlg.Close();
+            }
+
             // Process open file dialog box results 
             if (result == true)
             {

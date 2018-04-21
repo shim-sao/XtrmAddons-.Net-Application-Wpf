@@ -16,7 +16,7 @@
     <Style x:Key="FieldsetHeaderMenu" TargetType="{x:Type Border}">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
-        <Setter Property="Background" Value="{StaticResource Panton1}" />
+        <Setter Property="Background" Value="{StaticResource Panton_3}" />
     </Style>
 
 </ResourceDictionary>

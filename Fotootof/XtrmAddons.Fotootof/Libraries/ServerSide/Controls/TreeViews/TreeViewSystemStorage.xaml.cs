@@ -219,6 +219,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.TreeViews
             TreeView_Loaded();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             throw new System.NotImplementedException();

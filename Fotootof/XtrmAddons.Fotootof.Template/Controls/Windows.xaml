@@ -10,6 +10,6 @@
         <Setter Property="Height" Value="768"/>
         <Setter Property="MinHeight" Value="768"/>
         <Setter Property="MaxHeight" Value="1080"/>
-        <Setter Property="Background" Value="{StaticResource ResourceKey=Panton0}" />
+        <Setter Property="Background" Value="{StaticResource ResourceKey=Panton_2}" />
     </Style>
 </ResourceDictionary>

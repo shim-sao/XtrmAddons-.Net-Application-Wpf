@@ -12,6 +12,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override bool IsAutoloadEnabled => true;
 
         #endregion
@@ -23,7 +26,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
         /// </summary>
         /// <param name="options">Options for query filters.</param>
-        public PictureEntityCollection(PictureOptionsList options = null, bool autoLoad = false) : base(autoLoad, options) { }
+        public PictureEntityCollection(PictureOptionsList options = null, bool autoLoad = false)
+            : base(autoLoad, options) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.

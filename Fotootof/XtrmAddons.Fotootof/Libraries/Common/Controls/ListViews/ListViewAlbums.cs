@@ -124,7 +124,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
         /// <param name="e"></param>
         private void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            AppNavigator.NavigateToPageAlbum(SelectedItem.PrimaryKey);
+            AppNavigator.NavigateToPageAlbumServer(SelectedItem.PrimaryKey);
         }
 
         /// <summary>

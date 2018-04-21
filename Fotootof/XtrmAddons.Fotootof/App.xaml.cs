@@ -1,6 +1,8 @@
 ﻿
-
 using System.Diagnostics;
+using System.Globalization;
+using System.Threading;
+using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Settings;
 using XtrmAddons.Net.Application;
 
@@ -41,12 +43,15 @@ namespace XtrmAddons.Fotootof
             // Starting the application
             // The application loads options & parameters from files.
             // Create default files if not exists
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-            Trace.WriteLine("Starting the application options & parameters. Please wait...");
             ApplicationBase.Start();
-            TraceStart();
-            InitializePreferencesAsync();
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+             
+            // Initialize language.
+            CultureInfo ci = new CultureInfo(ApplicationBase.Language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+
+            // Startup the application.
+            Startup += App_Startup;
 
             // Add automatic application saving before application closing.
             Exit += App_Exit;
@@ -59,6 +64,20 @@ namespace XtrmAddons.Fotootof
         #region Methods
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void App_Startup(object sender, System.Windows.StartupEventArgs e)
+        {
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            Trace.WriteLine((string)Translation.DLogs.StartingApplicationWaiting);
+            ApplicationBase.Debug();
+            InitializePreferencesAsync();
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+        }
+
+        /// <summary>
         /// Method called before the application closing.
         /// </summary>
         /// <param name="sender">The object sender of the event</param>
@@ -66,7 +85,7 @@ namespace XtrmAddons.Fotootof
         private void App_Exit(object sender, System.Windows.ExitEventArgs e)
         {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-            Trace.WriteLine("Saving the application options & parameters before exit. Please wait...");
+            Trace.WriteLine((string)Translation.DLogs.SavingApplicationWaiting);
             ApplicationBase.Save();
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }
@@ -80,30 +99,17 @@ namespace XtrmAddons.Fotootof
             if (Reset && System.IO.Directory.Exists(ApplicationBase.UserMyDocumentsDirectory))
             {
                 Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-                Trace.WriteLine("Deleting the application options & parameters. Please wait...");
+
+                Trace.WriteLine((string)Translation.DLogs.DeletingOptionsWaiting);
+                System.IO.Directory.Delete(ApplicationBase.UserAppDataDirectory, true);
+                Trace.WriteLine(string.Format((string)Translation.DLogs.ItemDeleted, ApplicationBase.UserAppDataDirectory));
+
+                Trace.WriteLine((string)Translation.DLogs.DeletingUserOptionsWaiting);
                 System.IO.Directory.Delete(ApplicationBase.UserMyDocumentsDirectory, true);
-                Trace.WriteLine(ApplicationBase.UserMyDocumentsDirectory + " deleted !");
+                Trace.WriteLine(string.Format((string)Translation.DLogs.ItemDeleted, ApplicationBase.UserMyDocumentsDirectory));
+
                 Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
             }
-        }
-
-        /// <summary>
-        /// Method to trace main application preferences.
-        /// </summary>
-        private void TraceStart()
-        {
-            Trace.WriteLine("Application Friendly Name = " + ApplicationBase.ApplicationFriendlyName);
-            Trace.WriteLine("Application Roaming Directory = " + ApplicationBase.UserAppDataDirectory);
-            Trace.WriteLine("User My Documents Directory = " + ApplicationBase.UserMyDocumentsDirectory);
-
-            // Displays default application specials directories.
-            Trace.WriteLine("--- Specials Directories ---");
-            Trace.WriteLine("Bin = " + ApplicationBase.BinDirectory);
-            Trace.WriteLine("Cache = " + ApplicationBase.CacheDirectory);
-            Trace.WriteLine("Config = " + ApplicationBase.ConfigDirectory);
-            Trace.WriteLine("Data = " + ApplicationBase.DataDirectory);
-            Trace.WriteLine("Logs = " + ApplicationBase.LogsDirectory);
-            Trace.WriteLine("Theme = " + ApplicationBase.ThemeDirectory);
         }
 
         /// <summary>
@@ -117,7 +123,7 @@ namespace XtrmAddons.Fotootof
             await SettingsPreferences.InitializeStorage();
 
             // Copy program files to My Documents user folder.
-            Trace.WriteLine("Copy program files to My Documents user folder. Please wait...");
+            Trace.WriteLine((string)Translation.DLogs.CopyingProgramFiles);
             await ApplicationBase.CopyConfigFiles(true);
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");

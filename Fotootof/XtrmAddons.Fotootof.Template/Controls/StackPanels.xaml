@@ -3,7 +3,26 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <!-- Generic Fieldset -->
+
+	<Style x:Key="StackPanel_TopControls"
+		   TargetType="{x:Type StackPanel}">
+		<Setter Property="Orientation"
+				Value="Vertical" />
+		<Setter Property="HorizontalAlignment"
+				Value="Stretch" />
+		<Setter Property="VerticalAlignment"
+				Value="Top" />
+		<Setter Property="Height"
+				Value="30" />
+		<Setter Property="Background"
+				Value="{StaticResource ResourceKey=Panton_3}" />
+	</Style>
+
+
+	
+	
+
+	<!-- Generic Fieldset -->
     <Style x:Key="FieldsetVertical" TargetType="{x:Type StackPanel}">
         <Setter Property="Orientation" Value="Vertical" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -42,9 +61,9 @@
 		<Setter Property="Height"
 				Value="auto" />
 		<Setter Property="MinHeight"
-				Value="80" />
+				Value="70" />
 		<Setter Property="Background"
-				Value="{StaticResource Panton2}" />
+				Value="{StaticResource Panton_4}" />
 	</Style>
     
     <!-- Validator -->

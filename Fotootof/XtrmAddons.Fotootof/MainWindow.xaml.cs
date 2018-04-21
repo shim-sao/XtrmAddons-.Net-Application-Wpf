@@ -1,8 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
 using XtrmAddons.Fotootof.Component.Logs.Pages;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser;
 using XtrmAddons.Fotootof.Culture;
@@ -76,7 +79,7 @@ namespace XtrmAddons.Fotootof
             // Initialize window component.
             InitializeComponent();
             log.Info(Translation.Logs["InitializingApplicationWindowComponentDone"]);
-            
+
             // Main Window to application session.
             ApplicationSession.Properties.MainWindow = this;
         }
@@ -134,6 +137,22 @@ namespace XtrmAddons.Fotootof
         {
             NotifyIconManager.Dispose();
             log.Info(Translation.Logs["ApplicationClosed"]);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void LogsToggle()
+        {
+            // Set the row grid splitter Height.
+            RowGridSplitter.Height =
+                RowGridSplitter.Height == new GridLength(0)
+                ? new GridLength(5) : new GridLength(0);
+
+            // Set the grid row logs height.
+            RowGridLogs.Height =
+                RowGridLogs.Height == new GridLength(0)
+                ? new GridLength(160) : new GridLength(0);
         }
 
         /// <summary>

@@ -84,7 +84,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         {
             if (SelectedItem != null)
             {
-                AppNavigator.NavigateToPageAlbum(SelectedItem.PrimaryKey);
+                AppNavigator.NavigateToPageAlbumServer(SelectedItem.PrimaryKey);
             }
         }
 
@@ -158,15 +158,16 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         private void ArrangeBlockItems()
         {
-            double height = this.ActualHeight - Block_Header.RenderSize.Height;
+            double height = Math.Max(this.ActualHeight - Block_Header.RenderSize.Height, 0);
+            double width = Math.Max(this.ActualWidth, 0);
 
-            Block_Header.Width = Math.Max(this.ActualWidth, 0);
+            Block_Header.Width = width;
 
-            Block_Items.Width = Math.Max(this.ActualWidth, 0);
-            Block_Items.Height = Math.Max(height, 0);
+            Block_Items.Width = width;
+            Block_Items.Height = height;
 
-            ItemsCollection.Width = Math.Max(this.ActualWidth, 0);
-            ItemsCollection.Height = Math.Max(height, 0);
+            ItemsCollection.Width = width;
+            ItemsCollection.Height = height;
 
             TraceSize(Block_Header);
             TraceSize(Block_Items);
