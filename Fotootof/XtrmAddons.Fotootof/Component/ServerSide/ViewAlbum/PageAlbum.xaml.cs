@@ -41,6 +41,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
             AfterInitializedComponent();
         }
 
+        #endregion
+
+
+
+        #region Methods
+
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
@@ -54,7 +60,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
         /// </summary>
         public async override void InitializeContentAsync()
         {
-
             // Initialize associated view model of the page.
             Model = new PageAlbumModel<PageAlbum>(this);
 
@@ -78,10 +83,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
                     album = new AlbumEntity();
                 }
             }
-            else
-            {
-                album  = new AlbumEntity();
-            }
 
             Model.Album = album;
             DataContext = Model;
@@ -94,7 +95,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
         }
 
         /// <summary>
-        /// 
+        /// Method called on user control size changed event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Size changed event arguments.</param>

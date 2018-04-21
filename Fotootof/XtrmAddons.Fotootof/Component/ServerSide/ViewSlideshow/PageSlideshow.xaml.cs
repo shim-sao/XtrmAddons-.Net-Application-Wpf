@@ -1,281 +1,137 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+﻿using System.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
+using XtrmAddons.Fotootof.Libraries.Common.Collections;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.ViewSlideshow
 {
     /// <summary>
-    /// 
+    /// Class XtrmAddons Fotootof Component ServerSide View Slideshow.
     /// </summary>
-    public sealed partial class PageSlideshow : PageBase
+    public partial class PageSlideshow : PageBase
     {
-        #region Properties
+        #region Variables
 
         /// <summary>
-        /// Property to access to the page album model.
+        /// Variable to store the constructor collection argument.
         /// </summary>
-        public PageSlideshowModel<PageSlideshow> Model { get; private set; }
+        private PictureEntityCollection pictures;
 
         /// <summary>
-        /// Property to access to the album id.
+        /// Variable to store the constructor current picture argument.
         /// </summary>
-        private int ItemId { get; }
+        private PictureEntity currentPicture;
+
+        /// <summary>
+        /// Variable to store constructor album id argument.
+        /// </summary>
+        private int albumPk;
 
         #endregion
 
 
 
-        #region Variables
+        #region Properties
 
         /// <summary>
-        /// Variable list of pictures.
+        /// Property to access to the page model.
         /// </summary>
-        private ObservableCollection<Classes.UI.BitmapSource> ListPictures = SlideshowSession.ListPictures;
+        public PageSlideshowModel<PageSlideshow> Model { get; private set; }
+
+        #endregion
+
+
+
+        #region Constructor
 
         /// <summary>
-        /// Variable list index to start.
+        /// Class XtrmAddons Fotootof Component ServerSide View Slideshow Constructor.
         /// </summary>
-        private int Start = SlideshowSession.Start;
+        /// <param name="collection">A pictures entities Collection.</param>
+        public PageSlideshow(PictureEntityCollection collection, PictureEntity picture = null)
+        {
+            InitializeComponent();
+            pictures = collection;
+            currentPicture = picture;
+            AfterInitializedComponent();
+        }
 
         /// <summary>
-        ///  Variable current list index.
+        /// Class XtrmAddons Fotootof Component ServerSide View Slideshow Constructor.
         /// </summary>
-        private int Current = SlideshowSession.Current;
-
-        /// <summary>
-        /// Variable store if slide show is running
-        /// </summary>
-        private bool isRunning = false;
-
-        /// <summary>
-        /// Variable delay for slide show
-        /// </summary>
-        private int delay = 3000;
+        /// <param name="collection">An album primary key.</param>
+        public PageSlideshow(int albumPk, PictureEntity picture = null)
+        {
+            InitializeComponent();
+            this.albumPk = albumPk;
+            currentPicture = picture;
+            AfterInitializedComponent();
+        }
 
         #endregion
 
 
 
         #region Methods
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public PageSlideshow()
-        {
-            InitializeComponent();
 
-            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
+        /// <summary>
+        /// Method to initialize page content.
+        /// </summary>
+        public override void InitializeContent()
+        {
+            InitializeContentAsync();
+        }
+
+        /// <summary>
+        /// Method to initialize page content asynchronously.
+        /// </summary>
+        public override async void InitializeContentAsync()
+        {
+
+            Model = new PageSlideshowModel<PageSlideshow>(this)
+            {
+                Pictures = pictures
+            };
+
+            if (albumPk > 0)
+            {
+                AlbumEntity album = new AlbumEntity();
+
+                AlbumOptionsSelect options = new AlbumOptionsSelect
+                {
+                    Dependencies = { EnumEntitiesDependencies.All },
+                    PrimaryKey = albumPk
+                };
+                album = await MainWindow.Database.Albums.SingleOrNullAsync(options);
+
+                if (album != null)
+                {
+                    Model.Pictures = new PictureEntityCollection(album.Pictures);
+                }
+            }
+
+            if(currentPicture != null)
+            {
+                Model.CurrentPicture = currentPicture;
+            }
+            else if(Model.Pictures.Count > 0)
+            {
+                Model.CurrentPicture = Model.Pictures[0];
+            }
+
+            DataContext = Model;
+        }
+
+        /// <summary>
+        /// Method called on user control size changed event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
             
-            Display();
-        }
-
-        #endregion
-
-
-
-        private void ToggleFullScreenModeButton()
-        {
-            ApplicationView view = ApplicationView.GetForCurrentView();
-            if (view.IsFullScreenMode)
-            {
-                view.ExitFullScreenMode();
-                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
-                // The SizeChanged event will be raised when the exit from full-screen mode is complete.
-            }
-            else
-            {
-                if (view.TryEnterFullScreenMode())
-                {
-                    ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
-                    // The SizeChanged event will be raised when the entry to full-screen mode is complete.
-                }
-            }
-        }
-
-        private void ToggleFullScreenModeButton_Click(object sender, RoutedEventArgs e)
-        {
-            ToggleFullScreenModeButton();
-        }
-
-        #region ---------- Display ----------
-        private void Display()
-        {
-            if (ListPictures.Count > 0)
-            {
-                DisplayPicture(Start);
-            }
-        }
-
-        private void DisplayPicture(int index)
-        {
-            BitmapImage hack = ListPictures[index].BitmapImage;
-            UIE_I_Picture.Source = ListPictures[index].BitmapImage;
-        }
-        #endregion ---------- Display ----------
-
-
-        private void CoreWindow_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.VirtualKey)
-            {
-                case VirtualKey.PageDown:
-                case VirtualKey.Down:
-                case VirtualKey.Right:
-                    ShowNext();
-                    break;
-
-                case VirtualKey.PageUp:
-                case VirtualKey.Up:
-                case VirtualKey.Left:
-                case VirtualKey.Back:
-                    ShowPreview();
-                    break;
-                    
-                case VirtualKey.Enter:
-                case VirtualKey.Space:
-                    if (!isRunning)
-                        StartSlide(false);
-                    else
-                        PauseSlide();
-                    break;
-
-                case VirtualKey.Escape:
-                    StopSlide();
-                    break;
-            }
-        }
-
-        private void HistoryBack_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.GoBack();
-        }
-
-
-        private void OnPicturePointerReleased(object sender, PointerRoutedEventArgs e)
-        {
-            delay = 3000;
-            StartSlide();
-        }
-
-        private void StartSlide(bool ToggleFullScreenMode = true)
-        {
-            if (ToggleFullScreenMode)
-                ToggleFullScreenModeButton();
-
-            if (isRunning)
-            {
-                StopSlide();
-            }
-            else
-            {
-                InitSlide();
-            }
-        }
-
-        private async void InitSlide()
-        {
-            isRunning = true;
-
-            UIE_B_MainMenu.Visibility = Visibility.Collapsed;
-            UIE_B_Picture.Margin = new Thickness(0, 0, 0, 0);
-
-            UIE_B_Preview.Visibility = Visibility.Collapsed;
-            UIE_B_Next.Visibility = Visibility.Collapsed;
-
-            await Task.Delay(delay);
-            await slide();
-        }
-
-        private void StopSlide()
-        {
-            isRunning = false;
-
-            UIE_B_MainMenu.Visibility = Visibility.Visible;
-            UIE_B_Picture.Margin = new Thickness(0, 60, 0, 0);
-
-            UIE_B_Preview.Visibility = Visibility.Visible;
-            UIE_B_Next.Visibility = Visibility.Visible;
-        }
-
-        private void PauseSlide()
-        {
-            isRunning = false;
-        }
-
-        private async Task slide()
-        {
-            if (isRunning)
-            {
-                if (Current > ListPictures.Count - 1)
-                {
-                    Current = 0;
-                }
-
-                DisplayPicture(Current);
-
-                await Task.Delay(delay);
-
-                Current++;
-
-                await slide();
-            }
-        }
-
-
-        private void SlideShow_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = (Button)sender;
-            delay = Int32.Parse(b.Content.ToString()) * 1000;
-            StartSlide();
-        }
-
-        private void ShowPreview_Click(object sender, RoutedEventArgs e)
-        {
-            ShowPreview();
-        }
-
-        private void ShowPreview()
-        {
-            Current--;
-
-            if (Current < 0)
-            {
-                Current = ListPictures.Count - 1;
-            }
-
-            DisplayPicture(Current);
-        }
-
-        private void ShowNext_Click(object sender, RoutedEventArgs e)
-        {
-            ShowNext();
-        }
-
-        private void ShowNext()
-        {
-            Current++;
-
-            if (Current > ListPictures.Count - 1)
-            {
-                Current = 0;
-            }
-
-            DisplayPicture(Current);
-        }
-
-
-        #region Page Navigation
-
-        /// <summary>
-        /// Method to show setting view.
-        /// </summary>
-        /// <param name="sender">Object sender</param>
-        /// <param name="e">Event</param>
-        private void ShowViewSetting_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(SettingView));
         }
 
         #endregion

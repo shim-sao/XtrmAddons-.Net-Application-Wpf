@@ -11,7 +11,7 @@
     <DockPanel
         HorizontalAlignment="Stretch"
         VerticalAlignment="Top"
-        Background="{StaticResource Panton1}"
+        Background="{StaticResource Panton_3}"
         Height="24">
 
         <Menu DockPanel.Dock="Top" Margin="2">

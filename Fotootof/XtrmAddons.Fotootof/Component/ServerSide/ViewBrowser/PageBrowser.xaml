@@ -24,7 +24,7 @@
 						Style="{StaticResource StackPanel_TopControls}">
 
 				<Grid>
-
+					
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
 						<ColumnDefinition Width="1*" />
@@ -42,13 +42,13 @@
 								Click="OnBack_Click"/>
 
 						<Button x:Name="Button_Forward"
-								Content="{StaticResource ImageForward}"
+								Content="{StaticResource Icon24Forward}"
 								Style="{StaticResource Button_Icon24Default}"
 								IsEnabled="False"
 								Click="OnForward_Click"/>
 
 						<Button x:Name="Button_Upward"
-								Content="{StaticResource ImageUpward}"
+								Content="{StaticResource Icon24Upward}"
 								Style="{StaticResource Button_Icon24Default}"
 								Click="OnUpward_Click" />
 						
@@ -70,7 +70,7 @@
 								Margin="2,0,5,0">
 
 						<Button x:Name="Button_Copy"
-								Content="{StaticResource ImageCopy}"
+								Content="{StaticResource Icon24Copy}"
 								Style="{StaticResource Button_Icon24Default}"
 								IsEnabled="False" />
 					</StackPanel>
@@ -94,7 +94,7 @@
                     Grid.Column="0"
                     x:Name="UcTreeViewDirectories"
                     IsHeaderVisible="Visible"
-                    Background="{StaticResource ResourceKey=Panton1}"/>
+                    Background="{StaticResource ResourceKey=Panton_3}"/>
 
                 <GridSplitter
                     Grid.Row="0"

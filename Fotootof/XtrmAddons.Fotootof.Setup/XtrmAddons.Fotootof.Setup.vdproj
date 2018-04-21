@@ -51,6 +51,30 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_06ADEB25A3722DF980584681A3E2ED30"
+        "OwnerKey" = "8:_CC2751354C3004C64F83D090EC7BB795"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_06ADEB25A3722DF980584681A3E2ED30"
+        "OwnerKey" = "8:_C93FDCDA094EF1B62DBB828BF84CC7DE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_06ADEB25A3722DF980584681A3E2ED30"
+        "OwnerKey" = "8:_050412A64CF3427CB7DEC6BDCA1B2446"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_06ADEB25A3722DF980584681A3E2ED30"
+        "OwnerKey" = "8:_B4DE76AFA131D92D0182969EB39A3B05"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0893338DF7AA609E18FAFD548D10E2A9"
         "OwnerKey" = "8:_050412A64CF3427CB7DEC6BDCA1B2446"
         "MsmSig" = "8:_UNDEFINED"
@@ -406,6 +430,12 @@
         "Entry"
         {
         "MsmKey" = "8:_2B4EBF6668FC7E8A169F44816AE51B86"
+        "OwnerKey" = "8:_60D7F065FE1443E884444D87879E4377"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2B4EBF6668FC7E8A169F44816AE51B86"
         "OwnerKey" = "8:_8BBA8C6A52BF0E242E94DDCC08CE80A0"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -425,12 +455,6 @@
         {
         "MsmKey" = "8:_2B4EBF6668FC7E8A169F44816AE51B86"
         "OwnerKey" = "8:_D31CF2AEB4C0195C4C4EB21DCD0EE17D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2B4EBF6668FC7E8A169F44816AE51B86"
-        "OwnerKey" = "8:_60D7F065FE1443E884444D87879E4377"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -461,6 +485,12 @@
         {
         "MsmKey" = "8:_2B4EBF6668FC7E8A169F44816AE51B86"
         "OwnerKey" = "8:_E1EF6A6E375EEF758DE42DC9BDE0B4C1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2B4EBF6668FC7E8A169F44816AE51B86"
+        "OwnerKey" = "8:_06ADEB25A3722DF980584681A3E2ED30"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -695,12 +725,6 @@
         {
         "MsmKey" = "8:_458597D9BE7C0A8B8063978D2AEFFFC2"
         "OwnerKey" = "8:_050412A64CF3427CB7DEC6BDCA1B2446"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_45A04483878B466EB3CFD7FB95A84E92"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -940,25 +964,7 @@
         "Entry"
         {
         "MsmKey" = "8:_60D7F065FE1443E884444D87879E4377"
-        "OwnerKey" = "8:_B4DE76AFA131D92D0182969EB39A3B05"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_60D7F065FE1443E884444D87879E4377"
         "OwnerKey" = "8:_050412A64CF3427CB7DEC6BDCA1B2446"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_60D7F065FE1443E884444D87879E4377"
-        "OwnerKey" = "8:_C93FDCDA094EF1B62DBB828BF84CC7DE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_60D7F065FE1443E884444D87879E4377"
-        "OwnerKey" = "8:_CC2751354C3004C64F83D090EC7BB795"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1270,7 +1276,7 @@
         "Entry"
         {
         "MsmKey" = "8:_8BC038C486D1B10F862C8FE463B6D49E"
-        "OwnerKey" = "8:_60D7F065FE1443E884444D87879E4377"
+        "OwnerKey" = "8:_06ADEB25A3722DF980584681A3E2ED30"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1353,12 +1359,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_95C2C8CAA9E546F88275837814291C1A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_9641120825C6B66A3D83DDDF7DB32489"
         "OwnerKey" = "8:_2013F3C3888078E159D1B6119C0BE369"
         "MsmSig" = "8:_UNDEFINED"
@@ -1426,7 +1426,19 @@
         "Entry"
         {
         "MsmKey" = "8:_9883FE7E1AD5D8DB99B94DC2B9181EAB"
+        "OwnerKey" = "8:_9C263D0A1EE0EEF9CF38EAC48C1FB3F4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9883FE7E1AD5D8DB99B94DC2B9181EAB"
         "OwnerKey" = "8:_050412A64CF3427CB7DEC6BDCA1B2446"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9883FE7E1AD5D8DB99B94DC2B9181EAB"
+        "OwnerKey" = "8:_60D7F065FE1443E884444D87879E4377"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1613,12 +1625,6 @@
         {
         "MsmKey" = "8:_AAC78491EDE417AC2A7119CC67B9926E"
         "OwnerKey" = "8:_F668E451D792B0D7EB1ACC48AAE8E53E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AB201ED2341E4F5CA472718F98E38380"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2656,13 +2662,13 @@
         "Entry"
         {
         "MsmKey" = "8:_D13A468DC9F34B55726E7C1E764C06B2"
-        "OwnerKey" = "8:_050412A64CF3427CB7DEC6BDCA1B2446"
+        "OwnerKey" = "8:_60D7F065FE1443E884444D87879E4377"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D17BA8B6117E40239D0481788D74C6DD"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_D13A468DC9F34B55726E7C1E764C06B2"
+        "OwnerKey" = "8:_050412A64CF3427CB7DEC6BDCA1B2446"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3034,25 +3040,13 @@
         "Entry"
         {
         "MsmKey" = "8:_E1EF6A6E375EEF758DE42DC9BDE0B4C1"
-        "OwnerKey" = "8:_CC2751354C3004C64F83D090EC7BB795"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E1EF6A6E375EEF758DE42DC9BDE0B4C1"
-        "OwnerKey" = "8:_9C263D0A1EE0EEF9CF38EAC48C1FB3F4"
+        "OwnerKey" = "8:_06ADEB25A3722DF980584681A3E2ED30"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_E1EF6A6E375EEF758DE42DC9BDE0B4C1"
         "OwnerKey" = "8:_050412A64CF3427CB7DEC6BDCA1B2446"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E1EF6A6E375EEF758DE42DC9BDE0B4C1"
-        "OwnerKey" = "8:_60D7F065FE1443E884444D87879E4377"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3065,6 +3059,12 @@
         {
         "MsmKey" = "8:_E1EF6A6E375EEF758DE42DC9BDE0B4C1"
         "OwnerKey" = "8:_8C9E121E21C0115CFEC8ACAF75C9E6CE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E1EF6A6E375EEF758DE42DC9BDE0B4C1"
+        "OwnerKey" = "8:_CC2751354C3004C64F83D090EC7BB795"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3286,6 +3286,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_49B8BD109EA946CEA01F8DFDCD81380E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_DF0E72219E96429C9354554AAF5B31F3"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3335,12 +3341,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_76F009919B3E4BACB0EF1B04A9E86FC9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_49B8BD109EA946CEA01F8DFDCD81380E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3400,12 +3400,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D13A468DC9F34B55726E7C1E764C06B2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D63A331BB7D71F92DC8C3D35100F4280"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3419,6 +3413,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_8D2F7DF5C88FEDC39437B0537AE9BDD2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_60D7F065FE1443E884444D87879E4377"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D13A468DC9F34B55726E7C1E764C06B2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3472,18 +3478,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_60D7F065FE1443E884444D87879E4377"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8BC038C486D1B10F862C8FE463B6D49E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_8C9E121E21C0115CFEC8ACAF75C9E6CE"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3497,6 +3491,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_EF814F916EB34062B68727748279DDD3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_06ADEB25A3722DF980584681A3E2ED30"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8BC038C486D1B10F862C8FE463B6D49E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -4012,6 +4018,37 @@
                     }
                 }
             "SourcePath" = "8:System.Security.Cryptography.Csp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_EEFE7B0AC68A4C988C721532D8B5EFA2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_06ADEB25A3722DF980584681A3E2ED30"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Net.Application, Version=1.0.18105.1154, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_06ADEB25A3722DF980584681A3E2ED30"
+                    {
+                    "Name" = "8:XtrmAddons.Net.Application.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:XtrmAddons.Net.Application.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_EEFE7B0AC68A4C988C721532D8B5EFA2"
@@ -4693,7 +4730,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Culture.resources, Version=1.18.413.816, Culture=en-GB, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Culture.resources, Version=1.18.417.1354, Culture=en-GB, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_1DDBCE9BEBC74C2ABF29CACCB6ACA5BB"
@@ -4972,7 +5009,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Template, Version=1.18.413.816, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Template, Version=1.18.417.1542, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_2A23A9CD52D2C268433509E73E379913"
@@ -5158,7 +5195,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons Fotootof.resources, Version=1.0.18103.846, Culture=fr-FR, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons Fotootof.resources, Version=1.0.18107.1629, Culture=fr-FR, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_34F881CE22584FA19F7DB94D7B6E9652"
@@ -5557,26 +5594,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_45A04483878B466EB3CFD7FB95A84E92"
-            {
-            "SourcePath" = "8:..\\XtrmAddons.Fotootof\\Assets\\Images\\Icons\\Buttons\\forward.png"
-            "TargetName" = "8:forward.png"
-            "Tag" = "8:"
-            "Folder" = "8:_0079A5E6E8EE4896ABDCEE82CC3452B0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_45F3657EFCD6B0E9D4FCED01B3771766"
             {
             "AssemblyRegister" = "3:1"
@@ -5674,7 +5691,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons Fotootof.resources, Version=1.0.18103.846, Culture=en-GB, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons Fotootof.resources, Version=1.0.18107.1629, Culture=en-GB, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_49B8BD109EA946CEA01F8DFDCD81380E"
@@ -5705,7 +5722,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Culture, Version=1.18.413.816, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Culture, Version=1.18.417.1354, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_4A162DC1FA985EBFCAAE80862DFA8D87"
@@ -6144,11 +6161,11 @@
                 {
                     "_60D7F065FE1443E884444D87879E4377"
                     {
-                    "Name" = "8:XtrmAddons.Net.Application.DLL"
+                    "Name" = "8:XtrmAddons.Net.Application.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:XtrmAddons.Net.Application.DLL"
+            "SourcePath" = "8:XtrmAddons.Net.Application.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_EEFE7B0AC68A4C988C721532D8B5EFA2"
@@ -7027,7 +7044,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Lib.HttpClient, Version=1.0.18103.816, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Lib.HttpClient, Version=1.0.18107.1354, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_8BBA8C6A52BF0E242E94DDCC08CE80A0"
@@ -7058,7 +7075,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Net.SystemIO, Version=1.0.18099.946, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Net.SystemIO, Version=1.0.18105.1154, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_8BC038C486D1B10F862C8FE463B6D49E"
@@ -7151,7 +7168,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons Fotootof HttpServer Libraries, Version=1.0.18103.816, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons Fotootof HttpServer Libraries, Version=1.0.18107.1354, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_8C9E121E21C0115CFEC8ACAF75C9E6CE"
@@ -7333,26 +7350,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_95C2C8CAA9E546F88275837814291C1A"
-            {
-            "SourcePath" = "8:..\\XtrmAddons.Fotootof\\Assets\\Images\\Icons\\Buttons\\copy.png"
-            "TargetName" = "8:copy.png"
-            "Tag" = "8:"
-            "Folder" = "8:_0079A5E6E8EE4896ABDCEE82CC3452B0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9641120825C6B66A3D83DDDF7DB32489"
             {
             "AssemblyRegister" = "3:1"
@@ -7419,7 +7416,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Net.Common, Version=1.0.18067.933, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Net.Common, Version=1.0.18099.946, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_9883FE7E1AD5D8DB99B94DC2B9181EAB"
@@ -7873,7 +7870,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Lib.SQLite, Version=1.18.413.816, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Lib.SQLite, Version=1.18.417.1354, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_A950534509B7B1F8DD03A7CF074685A3"
@@ -7929,26 +7926,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AB201ED2341E4F5CA472718F98E38380"
-            {
-            "SourcePath" = "8:..\\XtrmAddons.Fotootof\\Assets\\Images\\Icons\\Buttons\\back.png"
-            "TargetName" = "8:back.png"
-            "Tag" = "8:"
-            "Folder" = "8:_0079A5E6E8EE4896ABDCEE82CC3452B0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AB2A8543134FE4632318085C1B20900A"
@@ -8234,7 +8211,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Net.SQLiteBundle, Version=1.0.18051.1040, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Net.SQLiteBundle, Version=1.0.18105.1444, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_B4DE76AFA131D92D0182969EB39A3B05"
@@ -8875,7 +8852,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -8914,7 +8891,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Lib.Base, Version=1.18.413.831, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Lib.Base, Version=1.18.417.1623, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_C93FDCDA094EF1B62DBB828BF84CC7DE"
@@ -8976,7 +8953,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Net.Network, Version=1.0.18048.1559, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Net.Network, Version=1.0.18099.1015, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_CBBC778AB69DE274AAFF3AAD4462A7D5"
@@ -9038,7 +9015,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Lib.Api, Version=1.0.18103.816, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Lib.Api, Version=1.0.18107.1623, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_CC2751354C3004C64F83D090EC7BB795"
@@ -9105,11 +9082,11 @@
                 {
                     "_D13A468DC9F34B55726E7C1E764C06B2"
                     {
-                    "Name" = "8:XtrmAddons.Net.SystemIO.dll"
+                    "Name" = "8:XtrmAddons.Net.SystemIO.DLL"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:XtrmAddons.Net.SystemIO.dll"
+            "SourcePath" = "8:XtrmAddons.Net.SystemIO.DLL"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_EEFE7B0AC68A4C988C721532D8B5EFA2"
@@ -9125,26 +9102,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D17BA8B6117E40239D0481788D74C6DD"
-            {
-            "SourcePath" = "8:..\\XtrmAddons.Fotootof\\Assets\\Images\\Icons\\Buttons\\upward.png"
-            "TargetName" = "8:upward.png"
-            "Tag" = "8:"
-            "Folder" = "8:_0079A5E6E8EE4896ABDCEE82CC3452B0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D192B89763FD1EEB17E1C3DA32852BB7"
@@ -9182,7 +9139,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.SQLiteService, Version=1.0.18103.816, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.SQLiteService, Version=1.0.18107.1623, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_D31CF2AEB4C0195C4C4EB21DCD0EE17D"
@@ -9729,7 +9686,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Culture.resources, Version=1.18.413.816, Culture=fr-FR, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Fotootof.Culture.resources, Version=1.18.417.1354, Culture=fr-FR, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_DF0E72219E96429C9354554AAF5B31F3"
@@ -9791,7 +9748,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XtrmAddons.Net.Common, Version=1.0.18099.946, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XtrmAddons.Net.Common, Version=1.0.18105.1154, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_E1EF6A6E375EEF758DE42DC9BDE0B4C1"

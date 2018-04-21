@@ -92,35 +92,35 @@
 
 							<Button x:Name="Button_Add"
 									Grid.Column="0"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.Add }"
 									Click="OnAdd_Click">
 							</Button>
 
 							<Button x:Name="Button_Edit"
 									Grid.Column="1"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.Edit }"
 									Click="OnEdit_Click">
 							</Button>
 
 							<Button x:Name="Button_Delete"
 									Grid.Column="2"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.Delete}"
 									Click="OnDelete_Click">
 							</Button>
 
 							<Button x:Name="Button_SelectAll"
 									Grid.Column="3"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.SelectAll}"
 									Click="SelectAll_Click">
 							</Button>
 
 							<Button Grid.Column="4"
 									x:Name="Button_ClearSelection"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.UnselectAll}"
 									Click="UnselectAll_Click">
 							</Button>
@@ -196,7 +196,7 @@
 						  ScrollViewer.VerticalScrollBarVisibility="Auto"
 						  MouseDoubleClick="ItemsCollection_MouseDoubleClick"
 						  SelectionChanged="ItemsCollection_SelectionChanged"
-						  Padding="0,5,0,10">
+						  Padding="5,5,5,10">
 
 					<ListView.ContextMenu>
 						<ContextMenu>
@@ -233,16 +233,12 @@
 
 					<ListView.ItemTemplate>
 						<DataTemplate>
-							<Viewbox Width="{Binding ActualWidth,
-                                ElementName=WrapPanelItemsContainer,
-                                Converter={StaticResource CvResponsiveListViewItem}}"
-									 MaxHeight="{Binding ActualWidth,
-                                ElementName=WrapPanelItemsContainer,
-                                Converter={StaticResource CvResponsiveListViewItem}}">
+							<Viewbox Width="{Binding ActualWidth, ElementName=WrapPanelItemsContainer, Converter={StaticResource CvResponsiveListViewItem}}"
+									 MaxHeight="{Binding ActualWidth, ElementName=WrapPanelItemsContainer, Converter={StaticResource CvResponsiveListViewItem}}">
 
-								<Grid Background="Black"
-									  Width="400"
-									  Height="400">
+								<Grid Background="{StaticResource Transparent}"
+									  Width="{StaticResource Icon256Double}"
+									  Height="{StaticResource Icon256Double}">
 
 									<Grid.ContextMenu>
 										<ContextMenu>
@@ -258,12 +254,8 @@
 										</ContextMenu>
 									</Grid.ContextMenu>
 
-									<Image Source="{Binding ThumbnailPath,
-                                        Converter={StaticResource CvPictureBase},
-                                        ConverterParameter={StaticResource CvThumbnailParameter},
-                                        IsAsync=True,
-                                        Mode=OneWay}"
-										   Width="400"
+									<Image Source="{Binding ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}, IsAsync=True, Mode=OneWay}"
+										   Width="{StaticResource Icon256Double}"
 										   Stretch="UniformToFill"
 										   MouseEnter="OnAlbum_MouseEnter"
 										   Tag="{Binding}">
@@ -271,11 +263,7 @@
 										<Image.ToolTip>
 											<Grid Style="{StaticResource Grid_ImageToolTip}">
 
-												<Image Source="{Binding PicturePath,
-                                                    Converter={StaticResource CvPictureBase},
-                                                    ConverterParameter={StaticResource CvPreviewParameter},
-                                                    IsAsync=True,
-                                                    Mode=OneWay}"
+												<Image Source="{Binding PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon512String}, IsAsync=True, Mode=OneWay}"
 													   Stretch="Uniform"
 													   Panel.ZIndex="0" />
 
@@ -342,9 +330,7 @@
 																   FontSize="12"
 																   FontStyle="Oblique" />
 
-														<TextBlock Text="{Binding DateEnd,
-                                                            Converter={StaticResource CvDate},
-                                                            ConverterParameter={StaticResource CvDateTimeLongParameter}}"
+														<TextBlock Text="{Binding DateEnd, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateTimeLongParameter}}"
 																   VerticalAlignment="center"
 																   Foreground="White"
 																   TextAlignment="Center"
@@ -358,36 +344,35 @@
 										</Image.ToolTip>
 									</Image>
 
-									<Border Background="LightGray"
-											Opacity=".5"
+									<Border Opacity=".75"
 											VerticalAlignment="top"
 											HorizontalAlignment="Stretch">
 
-										<TextBlock Text="{Binding Name}"
-												   VerticalAlignment="center"
-												   HorizontalAlignment="Center"
-												   Foreground="Black"
-												   TextAlignment="Center"
-												   TextWrapping="Wrap"
-												   FontWeight="SemiBold"
-												   FontSize="22"
-												   Padding="10" />
+										<TextBox Background="{StaticResource Panton_2}"
+												 Text="{Binding Name}"
+												 VerticalAlignment="center"
+												 HorizontalAlignment="Stretch"
+												 Foreground="{StaticResource Panton_0}"
+												 TextAlignment="Center"
+												 TextWrapping="Wrap"
+												 FontWeight="SemiBold"
+												 FontSize="14"
+												 Padding="5"
+												 IsEnabled="False"/>
 									</Border>
 
-									<Border Background="LightGray"
-											Opacity=".5"
+									<Border Background="{StaticResource Panton_2}"
+											Opacity=".75"
 											VerticalAlignment="Bottom"
 											HorizontalAlignment="Stretch">
 
-										<TextBlock Text="{Binding DateStart,
-                                            Converter={StaticResource CvDate},
-                                            ConverterParameter={StaticResource CvDateTimeLongParameter}}"
+										<TextBlock Text="{Binding DateStart, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateTimeLongParameter}}"
 												   VerticalAlignment="Center"
 												   HorizontalAlignment="Center"
 												   TextAlignment="Center"
-												   Foreground="Black"
-												   FontSize="20"
-												   Padding="10" />
+												   Foreground="{StaticResource Panton_0}"
+												   FontSize="12"
+												   Padding="5" />
 									</Border>
 								</Grid>
 							</Viewbox>

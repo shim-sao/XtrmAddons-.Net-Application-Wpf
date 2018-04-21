@@ -15,7 +15,7 @@
 		<Setter Property="Height"
 				Value="30" />
 		<Setter Property="Background"
-				Value="{StaticResource ResourceKey=Panton1}" />
+				Value="{StaticResource ResourceKey=Panton_3}" />
 	</Style>
 
 
@@ -61,9 +61,9 @@
 		<Setter Property="Height"
 				Value="auto" />
 		<Setter Property="MinHeight"
-				Value="80" />
+				Value="70" />
 		<Setter Property="Background"
-				Value="{StaticResource Panton2}" />
+				Value="{StaticResource Panton_4}" />
 	</Style>
     
     <!-- Validator -->

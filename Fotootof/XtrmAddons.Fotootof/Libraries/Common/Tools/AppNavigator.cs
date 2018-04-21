@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using XtrmAddons.Net.Memory;
 using XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog;
-using XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewServer;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewUsers;
+using XtrmAddons.Fotootof.Libraries.Common.Collections;
 using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient;
+using XtrmAddons.Net.Memory;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Tools
 {
@@ -94,10 +94,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         }
 
         /// <summary>
-        /// Method to navigate to Album page.
+        /// Method to navigate to the Album page.
         /// </summary>
-        public static void NavigateToPageAlbum(int albumId) 
-            => Navigate(new PageAlbum(albumId));
+        public static void NavigateToPageAlbumServer(int albumId) 
+            => Navigate(new Component.ServerSide.ViewAlbum.PageAlbum(albumId));
 
         /// <summary>
         /// Method to navigate to Album page.
@@ -112,7 +112,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
             => Navigate(new PageBrowser());
 
         /// <summary>
-        /// Method to navigate to Control Panel page.
+        /// Method to navigate to the Server page.
         /// </summary>
         public static void NavigateToPageServer() 
             => Navigate(new PageServer());
@@ -124,10 +124,22 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
             => Navigate(new PageUsers());
 
         /// <summary>
-        /// Method to navigate to Sections page.
+        /// Method to navigate to the Sections page.
         /// </summary>
         public static void NavigateToPageCatalog()
             => Navigate(new PageCatalog());
+
+        /// <summary>
+        /// Method to navigate to the Slideshow Server page.
+        /// </summary>
+        public static void NavigateToPageSlideshowServer(PictureEntityCollection collection)
+            => Navigate(new Component.ServerSide.ViewSlideshow.PageSlideshow(collection));
+
+        /// <summary>
+        /// Method to navigate to the Slideshow Server page.
+        /// </summary>
+        public static void NavigateToPageSlideshowServer(int albumPk)
+            => Navigate(new Component.ServerSide.ViewSlideshow.PageSlideshow(albumPk));
 
         #endregion Methods
     }

@@ -4,12 +4,36 @@
 	xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 	<!-- Button -->
+	<Style x:Key="Button_Default"
+		   TargetType="{x:Type Button}">
+		<Setter Property="Width"
+				Value="auto" />
+		<Setter Property="Height"
+				Value="24" />
+		<Setter Property="BorderThickness"
+				Value="1" />
+		<Setter Property="Margin"
+				Value="2,0" />
+	</Style>
+	
 	<Style x:Key="Button_Icon24"
 		   TargetType="{x:Type Button}">
 		<Setter Property="Width"
 				Value="24" />
 		<Setter Property="Height"
 				Value="24" />
+		<Setter Property="BorderThickness"
+				Value="0" />
+		<Setter Property="Margin"
+				Value="2,0" />
+	</Style>
+	
+	<Style x:Key="Button_Icon32"
+		   TargetType="{x:Type Button}">
+		<Setter Property="Width"
+				Value="32" />
+		<Setter Property="Height"
+				Value="32" />
 		<Setter Property="BorderThickness"
 				Value="0" />
 		<Setter Property="Margin"
@@ -43,7 +67,83 @@
 								 Value="true">
 							<Setter Property="Background"
 									TargetName="border"
-									Value="{StaticResource Panton1}" />
+									Value="{StaticResource Panton_3}" />
+							<Setter Property="Opacity"
+									TargetName="border"
+									Value="1" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="Button_Icon32Default"
+		   TargetType="{x:Type Button}"
+		   BasedOn="{StaticResource Button_Icon32}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+
+					<Grid x:Name="grid">
+						<Border x:Name="border"
+								BorderThickness="0"
+								Background="Transparent"
+								Padding="2">
+							<ContentPresenter HorizontalAlignment="Center"
+											  VerticalAlignment="Center" />
+						</Border>
+					</Grid>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled"
+								 Value="False">
+							<Setter Property="Opacity"
+									TargetName="border"
+									Value=".25" />
+						</Trigger>
+						<Trigger Property="IsEnabled"
+								 Value="true">
+							<Setter Property="Opacity"
+									TargetName="border"
+									Value="1" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="Button_DefaultRounded"
+		   TargetType="{x:Type Button}"
+		   BasedOn="{StaticResource Button_Default}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+
+					<Grid x:Name="grid">
+						<Border x:Name="border"
+								Background="{StaticResource Panton_5}"
+								BorderThickness="1"
+								BorderBrush="{StaticResource Panton_2}"
+								CornerRadius="3"
+								Padding="3,0">
+							<ContentPresenter HorizontalAlignment="Center"
+											  VerticalAlignment="Center" />
+						</Border>
+					</Grid>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled"
+								 Value="False">
+							<Setter Property="Opacity"
+									TargetName="border"
+									Value=".25" />
+						</Trigger>
+						<Trigger Property="IsEnabled"
+								 Value="true">
 							<Setter Property="Opacity"
 									TargetName="border"
 									Value="1" />
@@ -64,9 +164,11 @@
 		<Setter Property="FontSize"
 				Value="{StaticResource FontSizeNormal}" />
 		<Setter Property="Padding"
-				Value="5" />
+				Value="5,0" />
 		<Setter Property="Width"
 				Value="auto" />
+		<Setter Property="Height"
+				Value="25" />
 	</Style>
 
 </ResourceDictionary>

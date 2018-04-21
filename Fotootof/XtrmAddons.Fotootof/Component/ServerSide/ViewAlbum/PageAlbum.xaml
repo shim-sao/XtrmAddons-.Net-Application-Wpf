@@ -23,7 +23,7 @@
 				<pictures:ListViewPicturesServer x:Name="PicturesCollection"
 												 Grid.Row="0"
 												 Grid.Column="0"
-												 DataContext="{Binding}" />
+												 DataContext="{Binding}"/>
 			</Grid>
 
 		</StackPanel>

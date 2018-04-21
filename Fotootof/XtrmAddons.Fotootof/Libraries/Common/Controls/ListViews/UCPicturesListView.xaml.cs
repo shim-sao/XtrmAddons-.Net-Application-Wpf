@@ -155,7 +155,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
         {
             /*ListView lv = (ListView)sender;
             Album entity = (Album)lv.SelectedItem;
-            UINavigation.NavigateToPageAlbum(entity.PrimaryKey);*/
+            UINavigation.NavigateToPageAlbumServer(entity.PrimaryKey);*/
 
         }
 

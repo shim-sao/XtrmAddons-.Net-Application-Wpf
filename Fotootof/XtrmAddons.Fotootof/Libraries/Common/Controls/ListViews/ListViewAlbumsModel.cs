@@ -63,13 +63,21 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
         /// Class XtrmAddons Fotootof Libraries Common Models List View Albums Constructor.
         /// </summary>
         /// <param name="control">A Data Grid Base User Control.</param>
-        public ListViewAlbumsModel() : base() { }
+        public ListViewAlbumsModel() : base()
+        {
+            FiltersQuality = InfoEntityCollection.TypesQuality();
+            FiltersColor = InfoEntityCollection.TypesColor();
+        }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Common Models List View Albums Constructor.
         /// </summary>
         /// <param name="control">A Data Grid Base User Control.</param>
-        public ListViewAlbumsModel(T owner) : base(owner) { }
+        public ListViewAlbumsModel(T owner) : base(owner)
+        {
+            FiltersQuality = InfoEntityCollection.TypesQuality();
+            FiltersColor = InfoEntityCollection.TypesColor();
+        }
 
         #endregion
     }

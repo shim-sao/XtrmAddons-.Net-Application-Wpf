@@ -11,9 +11,9 @@
 		<Setter Property="VerticalAlignment"
 				Value="Bottom" />
 		<Setter Property="Background"
-				Value="{StaticResource Panton1}" />
+				Value="{StaticResource Panton_3}" />
 		<Setter Property="Height"
-				Value="40" />
+				Value="30" />
 	</Style>
 
     <Style x:Key="MiddleContents" TargetType="{x:Type Grid}">

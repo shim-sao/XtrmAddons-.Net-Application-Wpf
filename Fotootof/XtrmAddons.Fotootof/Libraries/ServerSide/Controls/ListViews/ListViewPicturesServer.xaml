@@ -71,7 +71,8 @@
 					</Grid.ColumnDefinitions>
 
 					<Border x:Name="MenuLeft"
-							Grid.Column="0">
+							Grid.Column="0"
+							Margin="5,0">
 
 						<Grid Margin="0,0,0,3">
 							<Grid.ColumnDefinitions>
@@ -82,25 +83,27 @@
 
 							<Button x:Name="Button_Add"
 									Grid.Column="0"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.Add }"
 									Click="OnAdd_Click"/>
 
 							<Button x:Name="Button_Edit"
 									Grid.Column="1"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.Edit }"
 									Click="OnEdit_Click"/>
 
 							<Button x:Name="Button_Delete"
 									Grid.Column="2"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.Delete}"
 									Click="OnDelete_Click"/>
 						</Grid>
 					</Border>
 
-					<Border x:Name="MenuRight" Grid.Column="2">
+					<Border x:Name="MenuRight"
+							Grid.Column="2"
+							Margin="5,0">
 
 						<Grid Margin="0,0,0,3">
 							<Grid.ColumnDefinitions>
@@ -111,13 +114,13 @@
 
 							<Button x:Name="Button_SelectAll"
 									Grid.Column="0"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.SelectAll}"
 									Click="SelectAll_Click"/>
 
 							<Button Grid.Column="1"
 									x:Name="Button_UnselectAll"
-									Style="{StaticResource Btn}"
+									Style="{StaticResource Button_DefaultRounded}"
 									Content="{x:Static p:Resources.UnselectAll}"
 									Click="UnselectAll_Click"/>
 
@@ -142,7 +145,7 @@
 						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 						  MouseDoubleClick="ItemsCollection_MouseDoubleClick"
 						  SelectionChanged="ItemsCollection_SelectionChanged"
-						  Padding="5">
+						  Padding="5,5,5,10">
 
 					<ListView.ContextMenu>
 						<ContextMenu>

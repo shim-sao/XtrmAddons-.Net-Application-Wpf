@@ -84,7 +84,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         {
             if (SelectedItem != null)
             {
-                AppNavigator.NavigateToPageAlbum(SelectedItem.PrimaryKey);
+                AppNavigator.NavigateToPageAlbumServer(SelectedItem.PrimaryKey);
             }
         }
 

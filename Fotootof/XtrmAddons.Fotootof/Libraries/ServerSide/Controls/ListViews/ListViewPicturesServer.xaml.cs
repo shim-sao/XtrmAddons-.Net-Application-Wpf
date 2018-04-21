@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Fotootof.Libraries.Common.Windows.Slideshow;
 
 namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 {
@@ -60,12 +64,20 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private async void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            /*ListView lv = (ListView)sender;
-            Album entity = (Album)lv.SelectedItem;
-            UINavigation.NavigateToPageAlbum(entity.PrimaryKey);*/
-            AppLogger.NotImplemented();
+            PictureEntity pict = ItemsCollection.SelectedItem as PictureEntity;
+            List<PictureEntity> pictList = ItemsCollection.Items.SourceCollection as List<PictureEntity>;
+
+            //AppNavigator.NavigateToPageSlideshowServer(new PictureEntityCollection(pictList));
+
+            WindowSlideshow ws = new WindowSlideshow(new PictureEntityCollection(pictList), pict);
+            ws.Show();
+            ws.Activate();
+            ws.Topmost = true;
+            await Task.Delay(10);
+            ws.Topmost = false;
+            ws.Focus();
         }
 
         /// <summary>

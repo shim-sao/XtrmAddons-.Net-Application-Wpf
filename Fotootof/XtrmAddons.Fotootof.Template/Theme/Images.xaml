@@ -4,19 +4,52 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 	<!-- Icons -->
-	<system:String x:Key="Icon24Exit">\Assets\Images\Icons\Buttons\exit-24.png</system:String>
+	<system:String x:Key="Icon24Exit">\Assets\Images\Icons\Buttons\button-exit-24.png</system:String>
 
 
 	<Image x:Key="Icon24Back"
-		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/back-24.png" />
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-back-24.png" />
 	
-	<Image x:Key="ImageCopy"
-		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/copy-24.png" />
+	<Image x:Key="Icon24Copy"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-copy-24.png" />
+
+	<Image x:Key="Icon24Forward"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-forward-24.png" />
+
+	<Image x:Key="Icon24Minus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-minus-24.png" />
+
+	<Image x:Key="Icon24Plus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-plus-24.png" />
+
+	<Image x:Key="Icon24Upward"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-upward-24.png" />
+
+
+
+
+	<Image x:Key="Icon32LeftArrow"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-left-arrow-32.png" />
+
+	<Image x:Key="Icon32Minus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-minus-32.png" />
 	
-	<Image x:Key="ImageForward"
-		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/forward.png" />
+	<Image x:Key="Icon32Pause"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-pause-32.png" />
+
+	<Image x:Key="Icon32Play"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-play-32.png" />
+
+	<Image x:Key="Icon32Plus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-plus-32.png" />
 	
-	<Image x:Key="ImageUpward"
-		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/upward.png" />
+	<Image x:Key="Icon32Refresh"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-refresh-32.png" />
+
+	<Image x:Key="Icon32RightArrow"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-right-arrow-32.png" />
+
+
+
 
 </ResourceDictionary>
