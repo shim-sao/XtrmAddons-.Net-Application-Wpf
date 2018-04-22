@@ -283,6 +283,7 @@
     <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml.cs">
       <DependentUpon>ListViewStoragesServer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServerModel.cs" />
     <Compile Include="Libraries\ServerSide\Controls\Menu\MenuServerMain.xaml.cs">
       <DependentUpon>MenuServerMain.xaml</DependentUpon>
     </Compile>
@@ -567,15 +568,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Template\Controls\Button\Dark.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Themes\Template\Controls\Button\RoundedCorner.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Template\Controls\ListView\Default.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
