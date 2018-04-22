@@ -12,6 +12,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 using System.Linq;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 
 namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 {
@@ -21,6 +22,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
     public partial class ListViewStoragesServer : ListViewStorages
     {
         #region Properties
+
+        /// <summary>
+        /// Property to access to the user control model.
+        /// </summary>
+        public ListViewStoragesServerModel Model { get; private set; }
 
         /// <summary>
         /// Property to access to the main add to collection control.
@@ -94,6 +100,30 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 
 
         #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Control_Loaded(object sender, RoutedEventArgs e)
+        {
+            Model = new ListViewStoragesServerModel(this)
+            {
+                Items = ItemsCollection.ItemsSource as StorageCollection
+            };
+
+            var option = Model.ListViewStoragesServerImageSize;
+            var b = option;
+            if(Model.ListViewStoragesServerImageSize == null)
+            {
+                Model.ListViewStoragesServerImageSize = new UiElement(ComboBox_ImageSize);
+            }
+            else
+            {
+                ComboBox_ImageSize.SelectedIndex = int.Parse(Model.ListViewStoragesServerImageSize.Value);
+            }
+        }
 
         /// <summary>
         /// Method called on items collection selection changed.
@@ -205,6 +235,14 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             TraceSize(Block_Items);
             TraceSize(Block_Header);
             TraceSize(ItemsCollection);
+        }
+
+        private void ComboBox_ImageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(Model != null)
+            {
+                Model.ListViewStoragesServerImageSize.Value = ComboBox_ImageSize.SelectedIndex.ToString();
+            }
         }
 
         #endregion

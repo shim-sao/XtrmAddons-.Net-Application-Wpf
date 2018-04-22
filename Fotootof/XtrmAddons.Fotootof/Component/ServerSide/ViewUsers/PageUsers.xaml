@@ -11,61 +11,45 @@
     xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.UI.Control.Menu"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
-    MinWidth="800"
-    MinHeight="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"
-    HorizontalAlignment="Stretch"
-    VerticalAlignment="Stretch"
     Title="{x:Static p:Resources.Users}"
-    Background="{StaticResource ResourceKey=LightGrey}">
+    Background="{StaticResource ResourceKey=LightGrey}"
+    SizeChanged="Control_SizeChanged">
 
 	<Grid x:Name="Block_Root"
 		  Style="{StaticResource Root}">
-		
 		<StackPanel x:Name="Block_RootPanel"
 					Style="{StaticResource FieldsetVertical}">
-		
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*" />
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="60" />
-				<RowDefinition Height="1*" />
-			</Grid.RowDefinitions>
+
+			<StackPanel x:Name="Block_TopControls"
+						Style="{StaticResource StackPanel_TopControls}">
+				
+			</StackPanel>
 
 
-			<Grid
-				Grid.Row="1">
+			<Grid x:Name="Block_MiddleContents"
+				  Style="{StaticResource ResourceKey=MiddleContents}">
 
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="345" />
+					<ColumnDefinition Width="1*" MinWidth="240" x:Name="ColLeft"/>
 					<ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
-					<ColumnDefinition Width="3*" />
+					<ColumnDefinition Width="3*" x:Name="ColRight" />
 				</Grid.ColumnDefinitions>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="1*" />
 				</Grid.RowDefinitions>
 
-				<dgserver:DataGridAclGroupsServer
-					x:Name="AclGroupsDataGrid"
-					Grid.Row="0"
-					Grid.Column="0"
-					DataContext="{Binding AclGroups}"
-					HorizontalAlignment="Left"/>
+				<dgserver:DataGridAclGroupsServer x:Name="UcDataGridAclGroups"
+												  DataContext="{Binding AclGroups}"
+												  HorizontalAlignment="Left"/>
 
-				<GridSplitter
-					Grid.Row="0"
-					Grid.Column="1"
-					IsEnabled="False"
-					HorizontalAlignment="Stretch"
-					VerticalAlignment="Stretch"
-					Background="{StaticResource ResourceKey=DarkGrey}"/>
+				<GridSplitter Grid.Column="1"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch" />
 
-				<dgserver:DataGridUsersServer
-					x:Name="UsersDataGrid"
-					Grid.Row="0"
-					Grid.Column="2"
-					DataContext="{Binding Users}"
-					HorizontalAlignment="Left"/>
+				<dgserver:DataGridUsersServer x:Name="UcDataGridUsers"
+											  Grid.Column="2"
+											  DataContext="{Binding Users}"
+											  HorizontalAlignment="Stretch"/>
 
 			</Grid>
 

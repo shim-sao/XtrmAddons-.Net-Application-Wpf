@@ -74,32 +74,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         #region Methods
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
-
-            this.Width = Math.Max(fe.ActualWidth, 0);
-            this.Height = Math.Max(fe.ActualHeight, 0);
-
-            Block_MiddleContents.Width = Math.Max(this.Width, 0);
-            Block_MiddleContents.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
-
-            UcTreeViewDirectories.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
-            UcListViewStoragesServer.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
-
-            TraceSize(fe);
-            TraceSize(this);
-            TraceSize(Block_TopControls);
-            TraceSize(Block_MiddleContents);
-            TraceSize(UcTreeViewDirectories);
-            TraceSize(UcListViewStoragesServer);
-        }
-
-        /// <summary>
         /// Method to initialize page content.
         /// </summary>
         public override void InitializeContent()
@@ -456,7 +430,35 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
 
         #endregion
 
+
+
         #region Methods Size Changed
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
+
+            this.Width = Math.Max(fe.ActualWidth, 0);
+            this.Height = Math.Max(fe.ActualHeight, 0);
+
+            Block_MiddleContents.Width = Math.Max(this.Width, 0);
+            Block_MiddleContents.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
+
+            UcTreeViewDirectories.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
+            UcListViewStoragesServer.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
+
+            TraceSize(fe);
+            TraceSize(this);
+            TraceSize(Block_TopControls);
+            TraceSize(Block_MiddleContents);
+            TraceSize(UcTreeViewDirectories);
+            TraceSize(UcListViewStoragesServer);
+        }
 
         #endregion
     }

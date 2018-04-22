@@ -23,8 +23,8 @@
                     Click="OnFileExit_Click">
 
                     <MenuItem.Icon>
-                        <Image Source="{Binding Mode=OneWay, Source={StaticResource Icon24Exit}}" />
-                    </MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24Exit}}" />
+					</MenuItem.Icon>
                 </MenuItem>
 
             </MenuItem>
@@ -34,7 +34,8 @@
                 <MenuItem
                     Header="{x:Static p:Resources._ClientNew}"
                     Name="MenuItem_ServerAddClient"
-                    Click="OnServerAddClient_Click"/>
+                    Click="OnServerAddClient_Click">
+				</MenuItem>
 
                 <Separator />
 
@@ -42,7 +43,8 @@
                     Name="MenuItem_Server_Start"
                     Header="{x:Static p:Resources._Start}"
                     Click="OnServerStart_Click"
-                    ToolTip="Start Http server."/>
+                    ToolTip="Start Http server.">
+				</MenuItem>
 
 				<MenuItem Name="MenuItem_Server_Stop"
 						  Header="{x:Static p:Resources._Stop}"
@@ -83,15 +85,25 @@
                 Header="{x:Static p:Resources._Users}">
 
                 <MenuItem
-                    Header="{x:Static p:Resources._UsersList}"
                     Name="UI_MI_Users"
-                    Click="OnUsersListClick"/>
+                    Header="{x:Static p:Resources._UsersList}"
+                    Click="OnUsersListClick">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24UserSetting}}" />
+					</MenuItem.Icon>
+				</MenuItem>
 
                 <MenuItem
-                    Header="{x:Static p:Resources._UsersNew}"
                     Name="MenuItem_AddUser"
-                    Click="OnAddUser_Click"/>
-            </MenuItem>
+                    Header="{x:Static p:Resources._UsersNew}"
+                    Click="OnAddUser_Click">
+
+					<MenuItem.Icon>
+							<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24UserPlus}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
 
             <MenuItem
                 Header="{x:Static p:Resources._Sections}">

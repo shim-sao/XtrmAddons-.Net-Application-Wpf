@@ -72,6 +72,12 @@
 									TargetName="border"
 									Value="1" />
 						</Trigger>
+						<Trigger Property="IsMouseOver"
+								 Value="True">
+							<Setter Property="Background"
+									TargetName="border"
+									Value="{StaticResource Panton_2}" />
+						</Trigger>
 					</ControlTemplate.Triggers>
 
 				</ControlTemplate>

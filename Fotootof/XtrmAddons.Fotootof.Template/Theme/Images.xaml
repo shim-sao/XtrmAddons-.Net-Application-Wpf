@@ -4,7 +4,9 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 	<!-- Icons -->
-	<system:String x:Key="Icon24Exit">\Assets\Images\Icons\Buttons\button-exit-24.png</system:String>
+	<system:String x:Key="IconPath24Exit">\Assets\Images\Icons\Buttons\button-exit-24.png</system:String>
+	<system:String x:Key="IconPath24UserPlus">\Assets\Images\Icons\Buttons\button-user-plus-24.png</system:String>
+	<system:String x:Key="IconPath24UserSetting">\Assets\Images\Icons\Buttons\button-user-setting-24.png</system:String>
 
 
 	<!-- Icons 24 -->
@@ -13,6 +15,9 @@
 	
 	<Image x:Key="Icon24Copy"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-copy-24.png" />
+	
+	<Image x:Key="Icon24Exit"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-exit-24.png" />
 
 	<Image x:Key="Icon24FolderDelete"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-delete-24.png" />
@@ -43,6 +48,18 @@
 
 	<Image x:Key="Icon24Upward"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-upward-24.png" />
+
+	<Image x:Key="Icon24UserEdit"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-user-edit-24.png" />
+
+	<Image x:Key="Icon24UserMinus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-user-minus-24.png" />
+
+	<Image x:Key="Icon24UserPlus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-user-plus-24.png" />
+
+	<Image x:Key="Icon24UserSetting"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-user-setting-24.png" />
 
 
 
