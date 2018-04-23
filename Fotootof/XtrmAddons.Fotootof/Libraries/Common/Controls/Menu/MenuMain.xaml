@@ -90,7 +90,7 @@
                     Click="OnUsersListClick">
 
 					<MenuItem.Icon>
-						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24UserSetting}}" />
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24UsersSetting}}" />
 					</MenuItem.Icon>
 				</MenuItem>
 

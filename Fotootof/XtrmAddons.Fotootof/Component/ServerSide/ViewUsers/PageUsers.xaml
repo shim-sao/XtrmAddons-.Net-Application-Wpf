@@ -20,12 +20,6 @@
 		<StackPanel x:Name="Block_RootPanel"
 					Style="{StaticResource FieldsetVertical}">
 
-			<StackPanel x:Name="Block_TopControls"
-						Style="{StaticResource StackPanel_TopControls}">
-				
-			</StackPanel>
-
-
 			<Grid x:Name="Block_MiddleContents"
 				  Style="{StaticResource ResourceKey=MiddleContents}">
 
@@ -39,17 +33,15 @@
 				</Grid.RowDefinitions>
 
 				<dgserver:DataGridAclGroupsServer x:Name="UcDataGridAclGroups"
-												  DataContext="{Binding AclGroups}"
-												  HorizontalAlignment="Left"/>
+												  DataContext="{Binding AclGroups}"/>
 
 				<GridSplitter Grid.Column="1"
 							  HorizontalAlignment="Stretch"
 							  VerticalAlignment="Stretch" />
 
-				<dgserver:DataGridUsersServer x:Name="UcDataGridUsers"
-											  Grid.Column="2"
-											  DataContext="{Binding Users}"
-											  HorizontalAlignment="Stretch"/>
+				<dgserver:DataGridUsersServer Grid.Column="2"
+											  x:Name="UcDataGridUsers"
+											  DataContext="{Binding Users}"/>
 
 			</Grid>
 

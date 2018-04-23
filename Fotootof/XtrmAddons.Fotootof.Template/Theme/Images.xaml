@@ -61,6 +61,18 @@
 	<Image x:Key="Icon24UserSetting"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-user-setting-24.png" />
 
+	<Image x:Key="Icon24UsersEdit"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-users-edit-24.png" />
+
+	<Image x:Key="Icon24UsersMinus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-users-minus-24.png" />
+
+	<Image x:Key="Icon24UsersPlus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-users-plus-24.png" />
+
+	<Image x:Key="Icon24UsersSetting"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-users-setting-24.png" />
+
 
 
 	<!-- Icons 32 -->

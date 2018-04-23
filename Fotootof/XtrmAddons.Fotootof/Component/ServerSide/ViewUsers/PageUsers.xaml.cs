@@ -381,13 +381,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         private void ArrangeMiddleContents()
         {
             Block_MiddleContents.Width = Math.Max(this.Width, 0);
-            Block_MiddleContents.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
+            Block_MiddleContents.Height = Math.Max(this.Height, 0);
 
-            TraceSize(Block_TopControls);
             TraceSize(Block_MiddleContents);
 
-            UcDataGridAclGroups.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
-            UcDataGridUsers.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
+            UcDataGridAclGroups.Height = Math.Max(this.Height, 0);
+            UcDataGridUsers.Height = Math.Max(this.Height, 0);
 
             TraceSize(UcDataGridAclGroups);
             TraceSize(UcDataGridUsers);
