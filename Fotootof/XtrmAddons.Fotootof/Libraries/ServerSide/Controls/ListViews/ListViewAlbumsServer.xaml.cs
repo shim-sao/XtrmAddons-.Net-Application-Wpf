@@ -126,6 +126,17 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
+
+            if(SelectedItems.Count > 0)
+            {
+                Button_Delete.IsEnabled = true;
+                Button_Edit.IsEnabled = true;
+            }
+            else
+            {
+                Button_Delete.IsEnabled = false;
+                Button_Edit.IsEnabled = false;
+            }
         }
 
         #endregion

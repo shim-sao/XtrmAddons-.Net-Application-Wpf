@@ -183,13 +183,20 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
                     Created = DateTime.Now,
                     Modified = DateTime.Now,
 
-                    ThumbnailPath = FullName,
-                    ThumbnailWidth = (int)metadata.Width,
-                    ThumbnailHeight = (int)metadata.Height,
+                    OriginalPath = FullName,
+                    OriginalWidth = (int)metadata.Width,
+                    OriginalHeight = (int)metadata.Height,
+                    OriginalLength = (long)metadata.Length,
 
                     PicturePath = FullName,
                     PictureWidth = (int)metadata.Width,
-                    PictureHeight = (int)metadata.Height
+                    PictureHeight = (int)metadata.Height,
+                    PictureLength = (long)metadata.Length,
+
+                    ThumbnailPath = FullName,
+                    ThumbnailWidth = (int)metadata.Width,
+                    ThumbnailHeight = (int)metadata.Height,
+                    ThumbnailLength = (long)metadata.Length
                 };
             }
 

@@ -71,8 +71,7 @@
 					</Grid.ColumnDefinitions>
 
 					<Border x:Name="MenuLeft"
-							Grid.Column="0"
-							Margin="5,0">
+							Style="{StaticResource Border_MenuLeft}">
 
 						<Grid Margin="0,0,0,3">
 							<Grid.ColumnDefinitions>
@@ -82,28 +81,31 @@
 							</Grid.ColumnDefinitions>
 
 							<Button x:Name="Button_Add"
-									Grid.Column="0"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.Add }"
-									Click="OnAdd_Click"/>
+									Content="{StaticResource Icon24ImagePlus}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="OnAdd_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.Add}"/>
 
-							<Button x:Name="Button_Edit"
-									Grid.Column="1"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.Edit }"
-									Click="OnEdit_Click"/>
+							<Button Grid.Column="1"
+									x:Name="Button_Edit"
+									Content="{StaticResource Icon24ImageEdit}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="OnEdit_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
+									IsEnabled="False"/>
 
-							<Button x:Name="Button_Delete"
-									Grid.Column="2"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.Delete}"
-									Click="OnDelete_Click"/>
+							<Button Grid.Column="2"
+									x:Name="Button_Delete"
+									Content="{StaticResource Icon24ImageMinus}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="OnDelete_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
+									IsEnabled="False"/>
 						</Grid>
 					</Border>
 
 					<Border x:Name="MenuRight"
-							Grid.Column="2"
-							Margin="5,0">
+							Style="{StaticResource Border_MenuRight}">
 
 						<Grid Margin="0,0,0,3">
 							<Grid.ColumnDefinitions>
@@ -113,16 +115,24 @@
 							</Grid.ColumnDefinitions>
 
 							<Button x:Name="Button_SelectAll"
-									Grid.Column="0"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.SelectAll}"
-									Click="SelectAll_Click"/>
+									Content="{StaticResource Icon24ImageSelect}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="SelectAll_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.SelectAll}"/>
 
 							<Button Grid.Column="1"
 									x:Name="Button_UnselectAll"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.UnselectAll}"
-									Click="UnselectAll_Click"/>
+									Content="{StaticResource Icon24ImageUnselect}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="UnselectAll_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"/>
+
+							<Button Grid.Column="2"
+									x:Name="Button_Refresh"
+									Content="{StaticResource Icon24ImageRefresh}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="OnRefresh_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.Refresh}"/>
 
 						</Grid>
 					</Border>
@@ -145,7 +155,8 @@
 						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 						  MouseDoubleClick="ItemsCollection_MouseDoubleClick"
 						  SelectionChanged="ItemsCollection_SelectionChanged"
-						  Padding="5,5,5,10">
+						  Padding="5,5,5,10"
+						  DataContextChanged="ListView_DataContextChanged">
 
 					<ListView.ContextMenu>
 						<ContextMenu>
@@ -154,6 +165,9 @@
 
 							<MenuItem Header="{x:Static p:Resources.UnselectAll}"
 									  Click="UnselectAll_Click" />
+
+							<MenuItem Header="{x:Static p:Resources.Refresh}"
+									  Click="OnRefresh_Click" />
 
 						</ContextMenu>
 
@@ -182,13 +196,13 @@
 									  Width="{StaticResource Icon256Double}"
 									  Height="{StaticResource Icon256Double}">
 
-									<Grid.ContextMenu>
+									<!--<Grid.ContextMenu>
 										<ContextMenu>
-											<MenuItem Header="Refresh"
+											<MenuItem Header="{x:Static p:Resources.Refresh}"
 													  Click="OnImageRefresh_Click"/>
 
 										</ContextMenu>
-									</Grid.ContextMenu>
+									</Grid.ContextMenu>-->
 
 									<Image Source="{Binding ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}, IsAsync=True, Mode=OneWay}"
 										   Stretch="UniformToFill"
@@ -252,10 +266,7 @@
 										</ToolTipService.ToolTip>
 									</Image>
 
-									<Border Background="LightGray"
-											Opacity=".5"
-											VerticalAlignment="top"
-											HorizontalAlignment="Stretch">
+									<Border Style="{StaticResource Border_ImageTextTop}">
 
 										<TextBlock Text="{Binding Name}"
 												   VerticalAlignment="center"
@@ -263,23 +274,20 @@
 												   Padding="10"
 												   Foreground="Black"
 												   TextAlignment="Center"
-												   FontSize="22"
+												   FontSize="14"
 												   FontWeight="SemiBold"
 												   TextWrapping="Wrap"/>
 									</Border>
 
-									<Border Background="LightGray"
-											Opacity=".5"
-											VerticalAlignment="Bottom"
-											HorizontalAlignment="Stretch">
+									<Border Style="{StaticResource Border_ImageTextBottom}">
 
 										<TextBlock Text="{Binding Captured, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateTimeLongParameter}}"
 												   VerticalAlignment="Center"
 												   HorizontalAlignment="Center"
 												   Padding="10"
-												   Foreground="Black"
+												   Foreground="{StaticResource Panton_0}"
 												   TextAlignment="Center"
-												   FontSize="22"/>
+												   FontSize="12"/>
 									</Border>
 								</Grid>
 							</Viewbox>

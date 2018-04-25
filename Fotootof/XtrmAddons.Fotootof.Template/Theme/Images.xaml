@@ -5,8 +5,10 @@
 
 	<!-- Icons -->
 	<system:String x:Key="IconPath24Exit">\Assets\Images\Icons\Buttons\button-exit-24.png</system:String>
+	<system:String x:Key="IconPath24ListPlus">\Assets\Images\Icons\Buttons\button-list-plus-24.png</system:String>
 	<system:String x:Key="IconPath24UserPlus">\Assets\Images\Icons\Buttons\button-user-plus-24.png</system:String>
 	<system:String x:Key="IconPath24UserSetting">\Assets\Images\Icons\Buttons\button-user-setting-24.png</system:String>
+	<system:String x:Key="IconPath24UsersSetting">\Assets\Images\Icons\Buttons\button-users-setting-24.png</system:String>
 
 
 	<!-- Icons 24 -->
@@ -37,8 +39,32 @@
 	<Image x:Key="Icon24Forward"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-forward-24.png" />
 
+	<Image x:Key="Icon24ImageEdit"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-edit-24.png" />
+
+	<Image x:Key="Icon24ImageMinus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-minus-24.png" />
+
 	<Image x:Key="Icon24ImagePlus"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-plus-24.png" />
+
+	<Image x:Key="Icon24ImageRefresh"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-refresh-24.png" />
+
+	<Image x:Key="Icon24ImageSelect"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-select-24.png" />
+
+	<Image x:Key="Icon24ImageUnselect"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-unselect-24.png" />
+
+	<Image x:Key="Icon24ListEdit"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-list-edit-24.png" />
+
+	<Image x:Key="Icon24ListMinus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-list-minus-24.png" />
+
+	<Image x:Key="Icon24ListPlus"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-list-plus-24.png" />
 
 	<Image x:Key="Icon24Minus"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-minus-24.png" />

@@ -18,6 +18,7 @@
 
     <!-- XtrmAddons.Fotootof.Lib.Base -->
     <cvBase:IsAclGroupInSection x:Key="IsAclGroupInSection" />
+	<cvBase:IsAclGroupInUser x:Key="IsAclGroupInUser" />
     <cvBase:IsAlbumInSection x:Key="IsAlbumInSection" />
     <cvBase:IsSectionInAlbum x:Key="IsSectionInAlbum" />
     <cvBase:IsUserInAclGroup x:Key="IsUserInAclGroup" />

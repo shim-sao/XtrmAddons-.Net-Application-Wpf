@@ -66,6 +66,7 @@
     <Compile Include="Classes\Collection\CollectionBaseEntity.cs" />
     <Compile Include="Classes\Controls\ControlBase.cs" />
     <Compile Include="Classes\Controls\ControlBaseModel.cs" />
+    <Compile Include="Classes\Controls\Converters\IsAclGroupInUser.cs" />
     <Compile Include="Classes\Controls\Converters\IsUserInAclGroup.cs" />
     <Compile Include="Classes\Controls\Converters\IsAclGroupInSection.cs" />
     <Compile Include="Classes\Controls\Converters\IsSectionInAlbum.cs" />

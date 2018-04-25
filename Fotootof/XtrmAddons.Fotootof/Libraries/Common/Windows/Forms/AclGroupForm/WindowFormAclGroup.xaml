@@ -15,346 +15,292 @@
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen">
 
-    <Grid
-        Margin="2"
-        Background="{StaticResource ResourceKey=LightGrey}">
+	<Grid Margin="2"
+		  Background="{StaticResource ResourceKey=LightGrey}">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="40"/>
-        </Grid.RowDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="1*"/>
+			<RowDefinition Height="40"/>
+		</Grid.RowDefinitions>
 
-        <TabControl 
-            x:Name="TabControlContent"
-            Grid.Row="0">
+		<TabControl x:Name="TabControlContent"
+					Grid.Row="0">
 
-            <!-- #region : Tabs Informations -->
-            <TabItem Header="{x:Static p:Resources.Informations}">
+			<!-- #region : Tabs Informations -->
+			<TabItem Header="{x:Static p:Resources.Informations}">
 
-                <StackPanel
-                    Style="{StaticResource Form}"
-                    Background="White">
+				<StackPanel Style="{StaticResource Form}"
+							Background="White">
 
-                    <!-- #region : Field Name -->
-                    <StackPanel
-                        Orientation="Horizontal"
-                        Style="{StaticResource Field}">
+					<!-- #region : Field Name -->
+					<StackPanel Orientation="Horizontal"
+								Style="{StaticResource Field}">
 
-                        <TextBlock
-                            Text="{x:Static p:Resources.Name}"
-                            Style="{StaticResource FieldLabel}"/>
+						<TextBlock Text="{x:Static p:Resources.Name}"
+								   Style="{StaticResource FieldLabel}"/>
 
-                        <TextBox
-                            x:Name="InputName"
-                            Style="{StaticResource FieldInput}"
-                            Text="{Binding Path=AclGroup.Name, Mode=TwoWay}"
-                            TextChanged="InputText_Changed"/>
+						<TextBox x:Name="InputName"
+								 Style="{StaticResource FieldInput}"
+								 Text="{Binding Path=AclGroup.Name, Mode=TwoWay}"
+								 TextChanged="InputText_Changed"/>
 
-                    </StackPanel>
-                    <!-- #endregion : Field Name -->
+					</StackPanel>
+					<!-- #endregion : Field Name -->
 
-                    <!-- #region : Field Alias -->
-                    <StackPanel
-                        Orientation="Horizontal"
-                        Style="{StaticResource Field}">
+					<!-- #region : Field Alias -->
+					<StackPanel Orientation="Horizontal"
+								Style="{StaticResource Field}">
 
-                        <TextBlock
-                            Text="{x:Static p:Resources.Alias}"
-                            Style="{StaticResource FieldLabel}"/>
+						<TextBlock Text="{x:Static p:Resources.Alias}"
+								   Style="{StaticResource FieldLabel}"/>
 
-                        <TextBox
-                            x:Name="InputAlias"
-                            Style="{StaticResource FieldInput}"
-                            Text="{Binding Path=AclGroup.Alias, Mode=TwoWay}"/>
+						<TextBox x:Name="InputAlias"
+								 Style="{StaticResource FieldInput}"
+								 Text="{Binding Path=AclGroup.Alias, Mode=TwoWay}"/>
+					</StackPanel>
 
-                    </StackPanel>
+					<StackPanel Orientation="Horizontal"
+								Style="{StaticResource Field}">
 
-                    <StackPanel
-                        Orientation="Horizontal"
-                        Style="{StaticResource Field}">
+						<TextBlock Style="{StaticResource FieldLabel}"
+								   Text="{x:Static p:Resources.Default}"/>
 
-                        <TextBlock
-                            Style="{StaticResource FieldLabel}"
-                            Text="{x:Static p:Resources.Default}"/>
+						<CheckBox Style="{StaticResource FieldInputCb}"
+								  IsChecked="{Binding Path=AclGroup.IsDefault, Mode=TwoWay}"/>
 
-                        <CheckBox
-                            Style="{StaticResource FieldInputCb}"
-                            IsChecked="{Binding Path=AclGroup.IsDefault, Mode=TwoWay}"/>
+					</StackPanel>
 
-                    </StackPanel>
+					<StackPanel Orientation="Horizontal"
+								Style="{StaticResource Field}">
 
-                    <StackPanel
-                        Orientation="Horizontal"
-                        Style="{StaticResource Field}">
+						<TextBlock Style="{StaticResource FieldLabelArea}"
+								   Text="{x:Static p:Resources.Comment}"/>
 
-                        <TextBlock
-                            Style="{StaticResource FieldLabelArea}"
-                            Text="{x:Static p:Resources.Comment}"/>
+						<TextBox Style="{StaticResource FieldInputArea}"
+								 Text="{Binding Path=AclGroup.Comment, Mode=TwoWay}"/>
+					</StackPanel>
 
-                        <TextBox
-                            Style="{StaticResource FieldInputArea}"
-                            Text="{Binding Path=AclGroup.Comment, Mode=TwoWay}"/>
-                    </StackPanel>
+				</StackPanel>
 
-                </StackPanel>
+			</TabItem>
 
-            </TabItem>
 
 
+			<TabItem Header="{x:Static p:Resources.Rights}">
+				<Border>
+					<Grid>
 
-            <TabItem Header="{x:Static p:Resources.Rights}">
-                <Border>
-                    <Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="30"/>
+							<RowDefinition Height="auto"/>
+							<RowDefinition Height="30"/>
+							<RowDefinition Height="1*"/>
+						</Grid.RowDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
+						<!--  Rights Section-->
+						<StackPanel Grid.Row="0"
+									Style="{StaticResource FieldsetHeader}">
 
-                        <!--  Rights Section-->
-                        <StackPanel
-                            Grid.Row="0"
-                            Style="{StaticResource FieldsetHeader}">
+							<TextBlock Grid.Row="0"
+									   Text="{x:Static p:Resources.Section}"
+									   Style="{StaticResource SettingsHeader}"/>
+						</StackPanel>
 
-                            <TextBlock 
-                                Grid.Row="0"
-                                Text="{x:Static p:Resources.Section}" 
-                                Style="{StaticResource SettingsHeader}"/>
+						<StackPanel Grid.Row="1"
+									Orientation="Horizontal">
 
-                        </StackPanel>
+							<StackPanel Orientation="Horizontal"
+										Style="{StaticResource Field}">
 
-                        <StackPanel
-                            Grid.Row="1"
-                            Orientation="Horizontal">
+								<TextBlock Text="{x:Static p:Resources.Create}"
+										   Style="{StaticResource FieldLabelCb}" />
 
-                            <StackPanel
-                                Orientation="Horizontal"
-                                Style="{StaticResource Field}">
-
-                                <TextBlock
-                                    Text="{x:Static p:Resources.Create}"
-                                    Style="{StaticResource FieldLabelCb}" />
-
-                                <CheckBox
-                                    x:Name="CheckBoxSectionAdd"
-                                    Style="{StaticResource FieldInputCb}"
-                                    IsChecked="False"
-                                    Click="CheckBoxSection_Click"/>
-
-                            </StackPanel>
-
-                            <StackPanel
-                                Orientation="Horizontal"
-                                Style="{StaticResource Field}">
-
-                                <TextBlock
-                                    Text="{x:Static p:Resources.Edit}"
-                                    Style="{StaticResource FieldLabelCb}"/>
-
-                                <CheckBox
-                                    x:Name="CheckBoxSectionEdit"
-                                    Style="{StaticResource FieldInputCb}"
-                                    IsChecked="False"
-                                    Click="CheckBoxSection_Click"/>
-
-                            </StackPanel>
-
-                            <StackPanel
-                                Orientation="Horizontal"
-                                Style="{StaticResource Field}">
-
-                                <TextBlock
-                                    Text="{x:Static p:Resources.Delete}"
-                                    Style="{StaticResource FieldLabelCb}"/>
-
-                                <CheckBox
-                                    x:Name="CheckBoxSectionDelete"
-                                    Style="{StaticResource FieldInputCb}"
-                                    IsChecked="False"
-                                    Click="CheckBoxSection_Click"/>
-
-                            </StackPanel>
-
-                            <StackPanel
-                                Orientation="Horizontal"
-                                Style="{StaticResource Field}">
-
-                                <TextBlock
-                                    Text="{x:Static p:Resources.View}"
-                                    Style="{StaticResource FieldLabelCb}"/>
-
-                                <CheckBox
-                                    x:Name="CheckBoxSectionView"
-                                    Style="{StaticResource FieldInputCb}"
-                                    IsChecked="False"
-                                    Click="CheckBoxSection_Click"/>
-
-                            </StackPanel>
-
-                        </StackPanel>
-
-                        <StackPanel
-                            Grid.Row="2"
-                            Style="{StaticResource FieldsetHeader}">
-
-                            <TextBlock 
-                                Grid.Row="0"
-                                Text="Album" 
-                                Style="{StaticResource SettingsHeader}"/>
-
-                        </StackPanel>
-
-                        <StackPanel
-                            Grid.Row="3">
-                        </StackPanel>
-
-                    </Grid>
-                </Border>
-            </TabItem>
-
-
-
-            <TabItem Header="{x:Static p:Resources.Users}">
-
-                <!-- #region : Field Sections -->
-                <StackPanel
-                    VerticalAlignment="Top"
-                    Style="{StaticResource Field}">
-
-                    <DataGrid  
-                        x:Name="DataGridUsers"
-                        AutoGenerateColumns="False"
-                        EnableRowVirtualization="false"
-                        EnableColumnVirtualization="false"
-                        ColumnWidth="*"
-                        CanUserDeleteRows="False"
-                        CanUserAddRows="False"
-                        SelectionMode="Extended"
-                        ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}"
-                        DataContext="{Binding DataContext, ElementName=WindowAclGroupFormName}"
-                        RowHeight="22"
-                        HorizontalAlignment="Stretch"
-                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                        Width="430"
-                        Height="340"
-                        SelectionUnit="FullRow"
-                        Cursor="Hand"
-                        CanUserReorderColumns="False"
-                        CanUserResizeColumns="False"
-                        CanUserSortColumns="True"
-                        CanUserResizeRows="False">
-
-
-                        <DataGrid.Columns>
-                            <!-- #region : Column PrimaryKey -->
-                            <DataGridTemplateColumn 
-                                IsReadOnly="True"
-                                Width="30"
-                                CanUserSort="True"
-                                Header="{x:Static p:Resources.Id}"
-                                SortMemberPath="AlbumId">
-
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-
-                                        <TextBlock
-                                            Margin="5,0"
-                                            Text="{Binding PrimaryKey}"
-                                            ToolTip="{Binding PrimaryKey}"/>
-
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <!-- #endregion : Column PrimaryKey -->
-
-                            <!-- #region : Column Name -->
-                            <DataGridTemplateColumn 
-                                IsReadOnly="True"
-                                MinWidth="160"
-                                CanUserSort="True"
-                                Header="{x:Static p:Resources.Name}"
-                                SortMemberPath="Name">
-
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-
-                                        <TextBlock
-                                            Margin="5,0"
-                                            Text="{Binding Name, Mode=TwoWay}"/>
-
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <!-- #endregion : Column Name -->
-
-                            <!-- #region : Column CheckBox -->
-                            <DataGridTemplateColumn 
-                                    IsReadOnly="True"
-                                    Width="20"
-                                    CanUserSort="True">
-
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-
-                                        <CheckBox 
-                                            Tag="{Binding}"
-                                            IsChecked="{Binding PrimaryKey,
-                                            Converter={StaticResource IsUserInAclGroup}}"
-                                            Click="CheckBoxUser_Click"/>
-
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <!-- #endregion : Column CheckBox -->
-
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                </StackPanel>
-                <!-- #endregion : Field Sections -->
-
-            </TabItem>
-
-        </TabControl>
-
-        <Border
-            Grid.Row="1"
-            Grid.RowSpan="2">
-
-            <Grid>
-                <StackPanel
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="center"
-                    Height="30">
-
-                    <Button
-                        x:Name="ButtonSave"
-                        IsEnabled="False"
-                        IsDefault="True"
-                        Click="DialogSave_Click"
-                        Margin="0,0,15,0"
-                        Content="{x:Static p:Resources.Save}"
-                        MinWidth="80"
-                        Style="{StaticResource RoundCorner}"
-                        Background="{StaticResource ResourceKey=MediumGrey}"
-                        Foreground="{StaticResource ResourceKey=RoundedButton}"/>
-
-                    <Button
-                        x:Name="Button_Cancel"
-                        IsCancel="True"
-                        Margin="15,0,0,0"
-                        Content="{x:Static p:Resources.Cancel}"
-                        Width="80"
-                        Style="{StaticResource RoundCorner}"
-                        Background="{StaticResource ResourceKey=MediumGrey}"
-                        Foreground="{StaticResource ResourceKey=RoundedButton}" />
-
-                </StackPanel>
-            </Grid>
-        </Border>
-
-    </Grid>
+								<CheckBox x:Name="CheckBoxSectionAdd"
+										  Style="{StaticResource FieldInputCb}"
+										  IsChecked="False"
+										  Click="CheckBoxSection_Click"/>
+							</StackPanel>
+
+							<StackPanel Orientation="Horizontal"
+										Style="{StaticResource Field}">
+
+								<TextBlock Text="{x:Static p:Resources.Edit}"
+										   Style="{StaticResource FieldLabelCb}"/>
+
+								<CheckBox x:Name="CheckBoxSectionEdit"
+										  Style="{StaticResource FieldInputCb}"
+										  IsChecked="False"
+										  Click="CheckBoxSection_Click"/>
+							</StackPanel>
+
+							<StackPanel Orientation="Horizontal"
+										Style="{StaticResource Field}">
+
+								<TextBlock Text="{x:Static p:Resources.Delete}"
+										   Style="{StaticResource FieldLabelCb}"/>
+
+								<CheckBox x:Name="CheckBoxSectionDelete"
+										  Style="{StaticResource FieldInputCb}"
+										  IsChecked="False"
+										  Click="CheckBoxSection_Click"/>
+							</StackPanel>
+
+							<StackPanel Orientation="Horizontal"
+										Style="{StaticResource Field}">
+
+								<TextBlock Text="{x:Static p:Resources.View}"
+										   Style="{StaticResource FieldLabelCb}"/>
+
+								<CheckBox x:Name="CheckBoxSectionView"
+										  Style="{StaticResource FieldInputCb}"
+										  IsChecked="False"
+										  Click="CheckBoxSection_Click"/>
+							</StackPanel>
+
+						</StackPanel>
+
+						<StackPanel Grid.Row="2"
+									Style="{StaticResource FieldsetHeader}">
+
+							<TextBlock Grid.Row="0"
+									   Text="Album"
+									   Style="{StaticResource SettingsHeader}"/>
+						</StackPanel>
+
+						<StackPanel Grid.Row="3">
+						</StackPanel>
+
+					</Grid>
+				</Border>
+			</TabItem>
+
+
+
+			<TabItem Header="{x:Static p:Resources.Users}">
+
+				<!-- #region : Field Sections -->
+				<StackPanel VerticalAlignment="Top"
+							Style="{StaticResource Field}">
+
+					<DataGrid x:Name="DataGridUsers"
+							  AutoGenerateColumns="False"
+							  EnableRowVirtualization="false"
+							  EnableColumnVirtualization="false"
+							  ColumnWidth="*"
+							  CanUserDeleteRows="False"
+							  CanUserAddRows="False"
+							  SelectionMode="Extended"
+							  ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}"
+							  DataContext="{Binding DataContext, ElementName=WindowAclGroupFormName}"
+							  RowHeight="22"
+							  HorizontalAlignment="Stretch"
+							  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+							  Width="430"
+							  Height="340"
+							  SelectionUnit="FullRow"
+							  Cursor="Hand"
+							  CanUserReorderColumns="False"
+							  CanUserResizeColumns="False"
+							  CanUserSortColumns="True"
+							  CanUserResizeRows="False">
+
+
+						<DataGrid.Columns>
+							<!-- #region : Column PrimaryKey -->
+							<DataGridTemplateColumn IsReadOnly="True"
+													Width="30"
+													CanUserSort="True"
+													Header="{x:Static p:Resources.Id}"
+													SortMemberPath="AlbumId">
+
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+
+										<TextBlock Margin="5,0"
+												   Text="{Binding PrimaryKey}"
+												   ToolTip="{Binding PrimaryKey}"/>
+
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<!-- #endregion : Column PrimaryKey -->
+
+							<!-- #region : Column Name -->
+							<DataGridTemplateColumn IsReadOnly="True"
+													MinWidth="160"
+													CanUserSort="True"
+													Header="{x:Static p:Resources.Name}"
+													SortMemberPath="Name">
+
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+
+										<TextBlock Margin="5,0"
+												   Text="{Binding Name, Mode=TwoWay}"/>
+
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<!-- #endregion : Column Name -->
+
+							<!-- #region : Column CheckBox -->
+							<DataGridTemplateColumn IsReadOnly="True"
+													Width="20"
+													CanUserSort="True">
+
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+
+										<CheckBox Tag="{Binding}"
+												  IsChecked="{Binding PrimaryKey, Converter={StaticResource IsUserInAclGroup}}"
+												  Click="CheckBoxUser_Click"/>
+
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<!-- #endregion : Column CheckBox -->
+
+						</DataGrid.Columns>
+					</DataGrid>
+
+				</StackPanel>
+				<!-- #endregion : Field Sections -->
+
+			</TabItem>
+		</TabControl>
+
+		<Border Grid.Row="1"
+				Grid.RowSpan="2">
+
+			<Grid>
+				<StackPanel Orientation="Horizontal"
+							HorizontalAlignment="Center"
+							VerticalAlignment="center"
+							Height="30">
+
+					<Button x:Name="ButtonSave"
+							IsEnabled="False"
+							IsDefault="True"
+							Click="DialogSave_Click"
+							Margin="0,0,15,0"
+							Content="{x:Static p:Resources.Save}"
+							MinWidth="80"
+							Style="{StaticResource RoundCorner}"
+							Background="{StaticResource ResourceKey=MediumGrey}"
+							Foreground="{StaticResource ResourceKey=RoundedButton}"/>
+
+					<Button x:Name="Button_Cancel"
+							IsCancel="True"
+							Margin="15,0,0,0"
+							Content="{x:Static p:Resources.Cancel}"
+							MinWidth="80"
+							Style="{StaticResource RoundCorner}"
+							Background="{StaticResource ResourceKey=MediumGrey}"
+							Foreground="{StaticResource ResourceKey=RoundedButton}" />
+
+				</StackPanel>
+			</Grid>
+		</Border>
+
+	</Grid>
 </base:WindowBaseForm>

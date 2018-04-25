@@ -13,7 +13,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Images
         /// <summary>
         /// 
         /// </summary>
-        public static Size SizeThumnail { get; set; } = new Size(400, 400);
+        public static Size SizeThumnail { get; set; } = new Size(256, 256);
 
 
         #region Generic

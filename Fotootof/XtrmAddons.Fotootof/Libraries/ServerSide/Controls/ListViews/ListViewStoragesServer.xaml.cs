@@ -113,8 +113,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
                 Items = ItemsCollection.ItemsSource as StorageCollection
             };
 
-            var option = Model.ListViewStoragesServerImageSize;
-            var b = option;
             if(Model.ListViewStoragesServerImageSize == null)
             {
                 Model.ListViewStoragesServerImageSize = new UiElement(ComboBox_ImageSize);

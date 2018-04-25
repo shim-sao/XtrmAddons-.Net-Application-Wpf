@@ -111,8 +111,13 @@
                 <MenuItem
                     Header="{x:Static p:Resources._AddSection}"
                     x:Name="MenuItem_AddSection"
-                    Click="OnAddSection_Click"/>
-            </MenuItem>
+                    Click="OnAddSection_Click">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ListPlus}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
 
             <MenuItem
                 Header="{x:Static p:Resources._Display}">

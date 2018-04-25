@@ -27,46 +27,38 @@
 
                         <!-- #region Title -->
                         <Border x:Name="Title_Border">
-                            <TextBlock
-                                x:Name="Title_Text"
-                                Text="{x:Static p:Resources.Albums}"
-                                FontSize="{StaticResource FontSizeHeader}"
-                                Foreground="{StaticResource Panton_3}"
-                                FontWeight="SemiBold"
-                                Margin="5">
-                            </TextBlock>
-                        </Border>
+							<TextBlock x:Name="Title_Text"
+									   Text="{x:Static p:Resources.Albums}"
+									   FontSize="{StaticResource FontSizeHeader}"
+									   Foreground="{StaticResource Panton_3}"
+									   FontWeight="SemiBold"
+									   Margin="5"/>
+						</Border>
                         <!-- #endregion Title -->
                         
                         <!-- #region Counter -->
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
-                            <TextBlock
-                                x:Name="Counter_SelectedNumber"
-                                FontWeight="SemiBold"
-                                FontSize="{StaticResource FontSizeHeader}"
-                                Foreground="{StaticResource Panton_3}"
-                                Margin="5"
-                                Text="0">
-                            </TextBlock>
+							<TextBlock x:Name="Counter_SelectedNumber"
+									   FontWeight="SemiBold"
+									   FontSize="{StaticResource FontSizeHeader}"
+									   Foreground="{StaticResource Panton_3}"
+									   Margin="5"
+									   Text="0"/>
 
-                            <TextBlock
-								x:Name="Counter_Spacer"
-								FontWeight="SemiBold"
-								FontSize="{StaticResource FontSizeHeader}"
-								Foreground="{StaticResource Panton_3}"
-								Margin="0,5"
-								Text="/">
-                            </TextBlock>
+							<TextBlock x:Name="Counter_Spacer"
+									   FontWeight="SemiBold"
+									   FontSize="{StaticResource FontSizeHeader}"
+									   Foreground="{StaticResource Panton_3}"
+									   Margin="0,5"
+									   Text="/"/>
 
-                            <TextBlock
-								x:Name="Counter_Total"
-								FontWeight="SemiBold"
-								FontSize="{StaticResource FontSizeHeader}"
-								Foreground="{StaticResource Panton_3}"
-								Margin="5"
-								Text="{Binding Path=Items.Count}">
-                            </TextBlock>
-                        </StackPanel>
+							<TextBlock x:Name="Counter_Total"
+									   FontWeight="SemiBold"
+									   FontSize="{StaticResource FontSizeHeader}"
+									   Foreground="{StaticResource Panton_3}"
+									   Margin="5"
+									   Text="{Binding Path=Items.Count}"/>
+						</StackPanel>
                         <!-- #endregion Counter -->
                     </Grid>
                 </Border>
