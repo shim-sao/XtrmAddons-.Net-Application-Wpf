@@ -129,7 +129,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <param name="e">Selection changed event arguments.</param>
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
+            //Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
 
             if(SelectedItems.Count > 0)
             {

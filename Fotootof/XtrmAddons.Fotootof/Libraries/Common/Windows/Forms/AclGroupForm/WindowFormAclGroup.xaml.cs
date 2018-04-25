@@ -8,7 +8,6 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
-using XtrmAddons.Fotootof.Libraries.Common.Converters;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm

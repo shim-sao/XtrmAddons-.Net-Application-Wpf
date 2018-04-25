@@ -336,15 +336,12 @@
     <Compile Include="Libraries\Common\Controls\Tooltips\UCToolTipPicture.xaml.cs">
       <DependentUpon>UCToolTipPicture.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Libraries\Common\Converters\CheckBoxAlbumInSection.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\UCPicturesListView.xaml.cs">
       <DependentUpon>UCPicturesListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\Controls\ListViews\UCAlbumsListView.xaml.cs">
       <DependentUpon>UCAlbumsListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Libraries\Common\Converters\CheckBoxAclGroupInSection.cs" />
-    <Compile Include="Libraries\Common\Converters\CheckBoxUserInAclGroup.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridSectionsModel.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\AclGroupForm\WindowFormAclGroupModel.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\AlbumForm\WindowFormAlbumModel.cs" />
@@ -552,14 +549,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Style\Text\CheckBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Style\TreeView\TreeViews.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UI\Control\Menu\UCMainNavigation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -692,6 +681,15 @@
     <Content Include="Assets\Images\Icons\Buttons\button-right-arrow-32.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Images\Icons\Buttons\button-server-restart-24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Buttons\button-server-start-24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Icons\Buttons\button-server-stop-24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Images\Icons\Buttons\button-upward-24.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -795,6 +793,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Component\ServerSide\ViewLogs\" />
+    <Folder Include="Libraries\Common\Converters\" />
     <Folder Include="Libraries\Common\Windows\About\" />
   </ItemGroup>
   <ItemGroup>
