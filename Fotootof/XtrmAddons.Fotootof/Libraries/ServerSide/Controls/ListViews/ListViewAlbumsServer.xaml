@@ -109,14 +109,14 @@
 									Grid.Column="3"
 									Content="{StaticResource Icon24FolderSelect}"
 									Style="{StaticResource Button_Icon24Default}"
-									PreviewMouseLeftButtonUp="SelectAll_Click"
+									PreviewMouseLeftButtonUp="OnSelectAll_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.SelectAll}"/>
 
 							<Button x:Name="Button_ClearSelection"
 									Grid.Column="4"
 									Content="{StaticResource Icon24FolderUnselect}"
 									Style="{StaticResource Button_Icon24Default}"
-									PreviewMouseLeftButtonUp="UnselectAll_Click"
+									PreviewMouseLeftButtonUp="OnUnselectAll_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"/>
 						</Grid>
 					</Border>
@@ -198,10 +198,10 @@
 									  Click="OnAdd_Click" />
 
 							<MenuItem Header="{x:Static p:Resources.SelectAll}"
-									  Click="SelectAll_Click" />
+									  Click="OnSelectAll_Click" />
 
 							<MenuItem Header="{x:Static p:Resources.UnselectAll}"
-									  Click="UnselectAll_Click" />
+									  Click="OnUnselectAll_Click" />
 
 						</ContextMenu>
 					</ListView.ContextMenu>

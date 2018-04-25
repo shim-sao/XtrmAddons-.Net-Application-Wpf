@@ -295,38 +295,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             return IsChanged;
         }
 
-        //private bool FileSearch(PictureEntity pe, string propertyPathName)
-        //{
-        //    try
-        //    {
-        //        foreach(DriveInfo di in DriveInfo.GetDrives())
-        //        {
-        //            string filename = Path.GetFileName(pe.GetPropertyValue(propertyPathName).ToString());
-        //            string[] files = Directory.GetFiles(di.Name, filename, SearchOption.AllDirectories);
-                    
-        //            foreach (string f in files)
-        //            {
-        //                FileInfo fi = new FileInfo(f);
-
-        //                long? l = (long)pe.GetPropertyValue(propertyPathName.Replace("Path", "Length"));
-
-        //                if (l == null || l == 0 || fi.Length == l)
-        //                {
-        //                    pe.SetPropertyValue(propertyPathName, fi.FullName);
-        //                    return true;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        AppLogger.Error(string.Format("Serching Picture {0} failed !", propertyPathName), true);
-        //        log.Error(e);
-        //    }
-
-        //    return false;
-        //}
-
         /// <summary>
         /// 
         /// </summary>

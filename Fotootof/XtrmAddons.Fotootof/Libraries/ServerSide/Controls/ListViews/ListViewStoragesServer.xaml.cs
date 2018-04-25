@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
-using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
-using XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid;
-using XtrmAddons.Net.Windows.Controls.Extensions;
-using System.Linq;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
+using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
+using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
+using XtrmAddons.Net.Windows.Controls.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 {
@@ -195,6 +194,51 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             ItemsCollection.SelectedItems.Clear();
         }
 
+        /// <summary>
+        /// Method called on select all click event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        private void OnSelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            ItemsCollection.SelectAll();
+        }
+
+        /// <summary>
+        /// Method called on select all click event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        private void OnUnselectAll_Click(object sender, RoutedEventArgs e)
+        {
+            ItemsCollection.UnselectAll();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Routed changed event arguments.</param>
+        private void OnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            ItemsCollection.Visibility = Visibility.Hidden;
+            ItemsCollection.Items.Refresh();
+            ItemsCollection.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Selection changed event arguments.</param>
+        private void ComboBox_ImageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Model != null)
+            {
+                Model.ListViewStoragesServerImageSize.Value = ComboBox_ImageSize.SelectedIndex.ToString();
+            }
+        }
+
         #endregion
 
 
@@ -233,14 +277,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             TraceSize(Block_Items);
             TraceSize(Block_Header);
             TraceSize(ItemsCollection);
-        }
-
-        private void ComboBox_ImageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(Model != null)
-            {
-                Model.ListViewStoragesServerImageSize.Value = ComboBox_ImageSize.SelectedIndex.ToString();
-            }
         }
 
         #endregion

@@ -33,7 +33,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// Property to access to the items collection.
         /// </summary>
-        public override ListView ItemsCollection { get => AlbumssCollection; set => AlbumssCollection = value; }
+        public override ListView ItemsCollection
+        {
+            get => AlbumssCollection;
+            set => AlbumssCollection = value;
+        }
 
         /// <summary>
         /// 
@@ -103,7 +107,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        private void SelectAll_Click(object sender, RoutedEventArgs e)
+        private void OnSelectAll_Click(object sender, RoutedEventArgs e)
         {
             ItemsCollection.SelectAll();
         }
@@ -113,7 +117,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        private void UnselectAll_Click(object sender, RoutedEventArgs e)
+        private void OnUnselectAll_Click(object sender, RoutedEventArgs e)
         {
             ItemsCollection.UnselectAll();
         }

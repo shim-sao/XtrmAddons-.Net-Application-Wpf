@@ -45,7 +45,7 @@
 									   FontSize="{StaticResource FontSizeHeader}"
 									   Foreground="{StaticResource Panton_3}"
 									   Margin="5"
-									   Text="0" />
+									   Text="{Binding SelectedItems.Count, ElementName=ItemsCollectionStorages, IsAsync=True}" />
 
 							<TextBlock x:Name="Counter_Spacer"
 									   FontWeight="SemiBold"
@@ -94,8 +94,8 @@
 						<ColumnDefinition Width="auto" />
 					</Grid.ColumnDefinitions>
 
-					<Border x:Name="MenuLeft"
-							Grid.Column="0"
+					<Border Grid.Column="0"
+							x:Name="MenuLeft"
 							Margin="5,0">
 
 						<Button x:Name="Button_AddPicturesToAlbum"
@@ -106,23 +106,48 @@
 								IsEnabled="False"/>
 					</Border>
 
-					<Border x:Name="MenuRight"
-							Grid.Column="2"
+					<Border Grid.Column="2"
+							x:Name="MenuRight"
 							Margin="5,0">
 
-						<ComboBox Grid.Column="2"
-								  x:Name="ComboBox_ImageSize"
-								  x:Uid="ListViewStoragesServerImageSize"
-								  Style="{StaticResource DefaultComboBox}"
-								  SelectionChanged="ComboBox_ImageSize_SelectionChanged">
+						<StackPanel Orientation="Horizontal">
+							
+							<ComboBox Grid.Column="2"
+									  x:Name="ComboBox_ImageSize"
+									  x:Uid="ListViewStoragesServerImageSize"
+									  Style="{StaticResource DefaultComboBox}"
+									  SelectionChanged="ComboBox_ImageSize_SelectionChanged">
 
-							<ComboBoxItem Content="{x:Static p:Resources.Icon}" />
-							<ComboBoxItem Content="{x:Static p:Resources.Thumbnail}" />
-							<ComboBoxItem Content="{x:Static p:Resources.Vignette}"
-										  IsSelected="True" />
-							<ComboBoxItem Content="{x:Static p:Resources.Large}" />
-							<ComboBoxItem Content="{x:Static p:Resources.XLarge}" />
-						</ComboBox>
+								<ComboBoxItem Content="{x:Static p:Resources.Icon}" />
+								<ComboBoxItem Content="{x:Static p:Resources.Thumbnail}" />
+								<ComboBoxItem Content="{x:Static p:Resources.Vignette}"
+											  IsSelected="True" />
+								<ComboBoxItem Content="{x:Static p:Resources.Large}" />
+								<ComboBoxItem Content="{x:Static p:Resources.XLarge}" />
+							</ComboBox>
+
+							<Button x:Name="Button_SelectAll"
+									Content="{StaticResource Icon24ImageSelect}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="OnSelectAll_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.SelectAll}"/>
+
+							<Button Grid.Column="1"
+									x:Name="Button_UnselectAll"
+									Content="{StaticResource Icon24ImageUnselect}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="OnUnselectAll_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"/>
+
+							<Button Grid.Column="2"
+									x:Name="Button_Refresh"
+									Content="{StaticResource Icon24ImageRefresh}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="OnRefresh_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.Refresh}"/>
+
+
+						</StackPanel>
 					</Border>
 				</Grid>
 
@@ -149,6 +174,19 @@
 							   BasedOn="{StaticResource ListViewItemDefault}" />
 					</ListView.Resources>
 
+					<ListView.ContextMenu>
+						<ContextMenu>
+							<MenuItem Header="{x:Static p:Resources.SelectAll}"
+									  Click="OnSelectAll_Click" />
+
+							<MenuItem Header="{x:Static p:Resources.UnselectAll}"
+									  Click="OnUnselectAll_Click" />
+
+							<MenuItem Header="{x:Static p:Resources.Refresh}"
+									  Click="OnRefresh_Click" />
+						</ContextMenu>
+					</ListView.ContextMenu>
+
 					<ListView.ItemsPanel>
 						<ItemsPanelTemplate>
 							<WrapPanel Name="WrapPanelItemsContainer"
@@ -162,7 +200,7 @@
 							</WrapPanel>
 						</ItemsPanelTemplate>
 					</ListView.ItemsPanel>
-
+					
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<Grid>
