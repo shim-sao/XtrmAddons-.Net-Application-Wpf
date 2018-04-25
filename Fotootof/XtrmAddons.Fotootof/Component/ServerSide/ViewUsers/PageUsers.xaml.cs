@@ -49,7 +49,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         {
             get
             {
-               AclGroupEntity a = AclGroupsDataGrid.SelectedItem;
+               AclGroupEntity a = UcDataGridAclGroups.SelectedItem;
 
                 UserOptionsList op = new UserOptionsList
                 {
@@ -102,23 +102,23 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
                 AclGroups = new DataGridAclGroupsModel<DataGridAclGroups>(),
                 Users = new DataGridUsersModel<DataGridUsers>()
             };
-            AclGroupsDataGrid.Tag = this;
+            UcDataGridAclGroups.Tag = this;
 
             LoadAclGroups();
             LoadUsers();
             DataContext = model;
 
-            AclGroupsDataGrid.OnAdd += AclGroupsDataGrid_AclGroupAdded;
-            AclGroupsDataGrid.OnChange += AclGroupsDataGrid_AclGroupChanged;
-            AclGroupsDataGrid.OnCancel += AclGroupsDataGrid_AclGroupCanceled;
-            AclGroupsDataGrid.OnDelete += AclGroupsDataGrid_AclGroupDeleted;
-            AclGroupsDataGrid.DefaultChanged += AclGroupsDataGrid_DefaultChanged;
-            AclGroupsDataGrid.SelectionChanged += (s, e) => { LoadUsers(); };
+            UcDataGridAclGroups.OnAdd += UcDataGridAclGroups_AclGroupAdded;
+            UcDataGridAclGroups.OnChange += UcDataGridAclGroups_AclGroupChanged;
+            UcDataGridAclGroups.OnCancel += UcDataGridAclGroups_AclGroupCanceled;
+            UcDataGridAclGroups.OnDelete += UcDataGridAclGroups_AclGroupDeleted;
+            UcDataGridAclGroups.DefaultChanged += UcDataGridAclGroups_DefaultChanged;
+            UcDataGridAclGroups.SelectionChanged += (s, e) => { LoadUsers(); };
 
-            UsersDataGrid.OnAdd += UsersListView_UserAdded;
-            UsersDataGrid.OnChange += UsersListView_UserChanged;
-            UsersDataGrid.OnCancel += UsersListView_UserCanceled;
-            UsersDataGrid.OnDelete += UsersListView_UserDeleled;
+            UcDataGridUsers.OnAdd += UcDataGridUsers_UserAdded;
+            UcDataGridUsers.OnChange += UcDataGridUsers_UserChanged;
+            UcDataGridUsers.OnCancel += UcDataGridUsers_UserCanceled;
+            UcDataGridUsers.OnDelete += UcDataGridUsers_UserDeleled;
 
             AppOverwork.IsBusy = false;
         }
@@ -161,7 +161,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Entity changes event arguments.</param>
-        private void AclGroupsDataGrid_AclGroupCanceled(object sender, EntityChangesEventArgs e)
+        private void UcDataGridAclGroups_AclGroupCanceled(object sender, EntityChangesEventArgs e)
         {
             AppLogger.Info("Adding or editing AclGroup operation canceled. Please wait...");
             LoadAclGroups();
@@ -173,7 +173,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Event arguments.</param>
-        private void AclGroupsDataGrid_AclGroupAdded(object sender, EntityChangesEventArgs e)
+        private void UcDataGridAclGroups_AclGroupAdded(object sender, EntityChangesEventArgs e)
         {
             AppLogger.Info("Saving new AclGroup informations. Please wait...");
 
@@ -191,7 +191,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Event arguments.</param>
-        private void AclGroupsDataGrid_AclGroupChanged(object sender, EntityChangesEventArgs e)
+        private void UcDataGridAclGroups_AclGroupChanged(object sender, EntityChangesEventArgs e)
         {
             AppLogger.Info("Saving AclGroup informations. Please wait...");
 
@@ -211,7 +211,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e"></param>
-        private void AclGroupsDataGrid_AclGroupDeleted(object sender, EntityChangesEventArgs e)
+        private void UcDataGridAclGroups_AclGroupDeleted(object sender, EntityChangesEventArgs e)
         {
             AppLogger.Info("Deleting AclGroup(s). Please wait...");
 
@@ -233,7 +233,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Event arguments.</param>
-        private void AclGroupsDataGrid_DefaultChanged(object sender, EntityChangesEventArgs e)
+        private void UcDataGridAclGroups_DefaultChanged(object sender, EntityChangesEventArgs e)
         {
             AppLogger.Info("Setting default Section. Please wait...");
 
@@ -275,7 +275,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UsersListView_UserCanceled(object sender, EntityChangesEventArgs e)
+        private void UcDataGridUsers_UserCanceled(object sender, EntityChangesEventArgs e)
         {
             AppLogger.Info("Adding or editing User operation canceled. Please wait...");
 
@@ -289,7 +289,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Event arguments.</param>
-        private void UsersListView_UserAdded(object sender, EntityChangesEventArgs e)
+        private void UcDataGridUsers_UserAdded(object sender, EntityChangesEventArgs e)
         {
             AppLogger.Info("Adding or editing User informations. Please wait...");
 
@@ -308,7 +308,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Event arguments.</param>
-        private void UsersListView_UserChanged(object sender, EntityChangesEventArgs e)
+        private void UcDataGridUsers_UserChanged(object sender, EntityChangesEventArgs e)
         {
             UserEntity entity = (UserEntity)e.NewEntity;
 
@@ -319,7 +319,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            AppLogger.Warning("UsersListView_UserChanged", false);
+            AppLogger.Warning("UcDataGridUsers_UserChanged", false);
         }
 
         /// <summary>
@@ -327,7 +327,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UsersListView_UserDeleled(object sender, EntityChangesEventArgs e)
+        private void UcDataGridUsers_UserDeleled(object sender, EntityChangesEventArgs e)
         {
             AppLogger.Info("Deleting User(s). Please wait...");
 
@@ -344,14 +344,52 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             AppLogger.InfoAndClose("Deleting User(s). Done.");
         }
 
+        #endregion
+
+
+
+        #region Methods Size Changed
+
         /// <summary>
-        /// 
+        /// Method called on page size changed event.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            ArrangeSize();
+            ArrangeMiddleContents();
+        }
+
+        /// <summary>
+        /// Method to arrange new page size.
+        /// </summary>
+        private void ArrangeSize()
+        {
+            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
+
+            this.Width = Math.Max(fe.ActualWidth, 0);
+            this.Height = Math.Max(fe.ActualHeight, 0);
+
+            TraceSize(fe);
+            TraceSize(this);
+        }
+
+        /// <summary>
+        /// Method to arrange new page middle content size.
+        /// </summary>
+        private void ArrangeMiddleContents()
+        {
+            Block_MiddleContents.Width = Math.Max(this.Width, 0);
+            Block_MiddleContents.Height = Math.Max(this.Height, 0);
+
+            TraceSize(Block_MiddleContents);
+
+            UcDataGridAclGroups.Height = Math.Max(this.Height, 0);
+            UcDataGridUsers.Height = Math.Max(this.Height, 0);
+
+            TraceSize(UcDataGridAclGroups);
+            TraceSize(UcDataGridUsers);
         }
 
         #endregion

@@ -34,5 +34,7 @@
     <!-- Generic colors messages -->
     <SolidColorBrush x:Key="Ready" Color="#A2C176" />
     <SolidColorBrush x:Key="Warning" Color="#E0110F" />
-	
+
+	<SolidColorBrush x:Key="RoundedButton" Color="#FF9900" />
+
 </ResourceDictionary>

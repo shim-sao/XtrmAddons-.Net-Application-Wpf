@@ -102,64 +102,59 @@
             <!-- #endregion : Tabs Informations -->
 
 
-            
-            <!-- #region : Tabs Sections -->
-            <TabItem Header="{x:Static p:Resources.UsersGroups}">
 
-                <!-- #region : Field Groups -->
-                <StackPanel
-                    VerticalAlignment="Top"
-                    Style="{StaticResource Field}">
-                        
-                    <DataGrid 
-                        x:Name="DataGridCollectionAclGroups"
-                        AutoGenerateColumns="False"
-                        EnableRowVirtualization="false"
-                        EnableColumnVirtualization="false"
-                        ColumnWidth="*"
-                        CanUserDeleteRows="False"
-                        CanUserAddRows="False"
-                        SelectionMode="Extended"
-                        ItemsSource="{Binding AclGroups, UpdateSourceTrigger=PropertyChanged}"
-                        DataContext="{Binding DataContext, ElementName=WindowUserName}"
-                        RowHeight="22"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                        Width="430"
-                        Height="340"
-                        SelectionUnit="FullRow"
-                        SelectionChanged="DataGridCollectionItems_SelectionChanged"
-                        Cursor="Hand"
-                        CanUserReorderColumns="False"
-                        CanUserResizeColumns="False"
-                        CanUserSortColumns="True"
-                        CanUserResizeRows="False">
+			<TabItem Header="{x:Static p:Resources.UsersGroups}">
+				<StackPanel VerticalAlignment="Top"
+							Style="{StaticResource Field}">
 
-                        <DataGrid.Columns>
-                            <!-- #region : Column AclGroupId -->
-                            <DataGridTemplateColumn 
+					<DataGrid x:Name="DataGridCollectionAclGroups"
+							  AutoGenerateColumns="False"
+							  EnableRowVirtualization="false"
+							  EnableColumnVirtualization="false"
+							  ColumnWidth="*"
+							  CanUserDeleteRows="False"
+							  CanUserAddRows="False"
+							  SelectionMode="Extended"
+							  ItemsSource="{Binding AclGroups, UpdateSourceTrigger=PropertyChanged}"
+							  DataContext="{Binding DataContext, ElementName=WindowUserName}"
+							  RowHeight="22"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch"
+							  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+							  Width="430"
+							  Height="340"
+							  SelectionUnit="FullRow"
+							  SelectionChanged="DataGridCollectionItems_SelectionChanged"
+							  Cursor="Hand"
+							  CanUserReorderColumns="False"
+							  CanUserResizeColumns="False"
+							  CanUserSortColumns="True"
+							  CanUserResizeRows="False">
+
+						<DataGrid.Columns>
+							<!-- #region : Column AclGroupId -->
+							<DataGridTemplateColumn 
                                 IsReadOnly="True"
                                 Width="30"
                                 CanUserSort="True"
                                 Header="{x:Static p:Resources.Id}"
                                 SortMemberPath="AclGroupId">
 
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
 
-                                        <TextBlock
+										<TextBlock
                                             Margin="5,0"
                                             Text="{Binding AclGroupId}"
                                             ToolTip="{Binding AclGroupId}"/>
 
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <!-- #endregion : Column AclGroupId -->
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<!-- #endregion : Column AclGroupId -->
 
-                            <!-- #region : Column Is Default -->
-                            <DataGridTemplateColumn 
+							<!-- #region : Column Is Default -->
+							<DataGridTemplateColumn 
                                 CanUserResize="False"
                                 IsReadOnly="True"
                                 Width="20"
@@ -167,96 +162,91 @@
                                 Header=""
                                 SortMemberPath="IsDefault">
 
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
 
-                                        <CheckBox
+										<CheckBox
                                             IsChecked="{Binding IsDefault, Mode=TwoWay}"
                                             IsEnabled="False"/>
 
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <!-- #endregion : Column Is Default -->
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<!-- #endregion : Column Is Default -->
 
-                            <!-- #region : Column Name -->
-                            <DataGridTemplateColumn 
+							<!-- #region : Column Name -->
+							<DataGridTemplateColumn 
                                 IsReadOnly="True"
                                 MinWidth="160"
                                 CanUserSort="True"
                                 Header="{x:Static p:Resources.Name}"
                                 SortMemberPath="Name">
 
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
 
-                                        <TextBlock Margin="5,0" Text="{Binding Name, Mode=TwoWay}"/>
+										<TextBlock Margin="5,0" Text="{Binding Name, Mode=TwoWay}"/>
 
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <!-- #endregion : Column Name -->
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<!-- #endregion : Column Name -->
 
-                            <!-- #region : Column CheckBox -->
-                            <DataGridTemplateColumn 
+							<!-- #region : Column CheckBox -->
+							<DataGridTemplateColumn 
                                 IsReadOnly="True"
                                 Width="20"
                                 CanUserSort="True">
 
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
 
-                                        <CheckBox 
+										<CheckBox 
                                         Tag="{Binding}"
                                         IsChecked="{Binding PrimaryKey,
-                                        Converter={StaticResource IsUserInAclGroup}}"
+                                        Converter={StaticResource IsAclGroupInUser}}"
                                         Checked="CheckBoxAclGroup_Checked"
                                         Unchecked="CheckBoxAclGroup_UnChecked"/>
 
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <!-- #endregion : Column CheckBox -->
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<!-- #endregion : Column CheckBox -->
 
-                        </DataGrid.Columns>
-                    </DataGrid>
-                        
-                </StackPanel>
-                <!-- #endregion : Field Groups -->
-            
-            </TabItem>
+						</DataGrid.Columns>
+					</DataGrid>
+
+				</StackPanel>
+			</TabItem>
 
         </TabControl>
 
         
-        <Border
-            Grid.Row="1"
-            Grid.RowSpan="2">
+        <Border Grid.Row="1"
+				Grid.RowSpan="2">
 
             <Grid>
                 <StackPanel Style="{StaticResource Validator}">
 
-                    <Button
-                        x:Name="ButtonSave"
-                        IsEnabled="False"
-                        IsDefault="True"
-                        Click="DialogSave_Click"
-                        Margin="0,0,15,0"
-                        Content="{x:Static p:Resources.Save}"
-                        MinWidth="80"
-                        Style="{StaticResource RoundCorner}"
-                        Background="{StaticResource ResourceKey=MediumGrey}"
-                        Foreground="{StaticResource ResourceKey=RoundedButton}"/>
+                    <Button x:Name="ButtonSave"
+							IsEnabled="False"
+							IsDefault="True"
+							Click="DialogSave_Click"
+							Margin="0,0,15,0"
+							Content="{x:Static p:Resources.Save}"
+							MinWidth="80"
+							Style="{StaticResource RoundCorner}"
+							Background="{StaticResource ResourceKey=MediumGrey}"
+							Foreground="{StaticResource ResourceKey=RoundedButton}"/>
 
-                    <Button
-                        x:Name="Button_Cancel"
-                        IsCancel="True"
-                        Margin="15,0,0,0"
-                        Content="{x:Static p:Resources.Cancel}"
-                        Width="80"
-                        Style="{StaticResource RoundCorner}"
-                        Background="{StaticResource ResourceKey=MediumGrey}"
-                        Foreground="{StaticResource ResourceKey=RoundedButton}" />
+                    <Button x:Name="Button_Cancel"
+							IsCancel="True"
+							Margin="15,0,0,0"
+							Content="{x:Static p:Resources.Cancel}"
+							Width="80"
+							Style="{StaticResource RoundCorner}"
+							Background="{StaticResource ResourceKey=MediumGrey}"
+							Foreground="{StaticResource ResourceKey=RoundedButton}" />
 
                 </StackPanel>
             </Grid>

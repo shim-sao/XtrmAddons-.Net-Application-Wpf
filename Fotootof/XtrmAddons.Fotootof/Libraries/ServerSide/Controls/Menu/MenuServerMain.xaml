@@ -8,66 +8,60 @@
     mc:Ignorable="d"
     Height="40">
 
-    <Grid x:Name="GritRoot" Style="{StaticResource ResourceKey=Root}">
+    <Grid x:Name="GritRoot"
+		  Style="{StaticResource ResourceKey=Root}">
         
-        <StackPanel
-            HorizontalAlignment="Stretch"
-            Orientation="Horizontal"
-            Background="{StaticResource ResourceKey=Panton_4}">
+        <StackPanel HorizontalAlignment="Stretch"
+					Orientation="Horizontal"
+					Background="{StaticResource ResourceKey=Panton_4}">
 
-            <Border
-                x:Name="Block_Menu"
-                VerticalAlignment="Stretch">
+            <Border x:Name="Block_Menu"
+					VerticalAlignment="Stretch">
                 
-                <Button 
-                    x:Name="ServerItemButton"
-                    Content="{x:Static p:Resources.Server}"
-                    FontSize="{StaticResource Text-H4}"
-                    Background="Transparent"
-                    Padding="10,0"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    BorderThickness="0"
-                    Click="NavigateToPageServer"
-                    MouseEnter="ItemButton_MouseEnter"
-                    MouseLeave="ItemButton_MouseLeave"/>
+                <Button x:Name="ServerItemButton"
+						Content="{x:Static p:Resources.Server}"
+						FontSize="{StaticResource Text-H4}"
+						Background="Transparent"
+						Padding="10,0"
+						Foreground="White"
+						FontWeight="Bold"
+						BorderThickness="0"
+						Click="NavigateToPageServer"
+						MouseEnter="ItemButton_MouseEnter"
+						MouseLeave="ItemButton_MouseLeave"/>
 
             </Border>
 
-            <Border
-                x:Name="BrowserItemBorder"
-                VerticalAlignment="Stretch">
+            <Border x:Name="BrowserItemBorder"
+					VerticalAlignment="Stretch">
 
-                <Button 
-                    x:Name="BrowserItemButton"
-                    Content="{x:Static p:Resources.Browser}"
-                    FontSize="{StaticResource Text-H4}"
-                    Background="Transparent"
-                    Padding="10,0"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    BorderThickness="0"
-                    Click="NavigateToPageBrowser"
-                    MouseEnter="ItemButton_MouseEnter"
-                    MouseLeave="ItemButton_MouseLeave"/>
+                <Button x:Name="BrowserItemButton"
+						Content="{x:Static p:Resources.Browser}"
+						FontSize="{StaticResource Text-H4}"
+						Background="Transparent"
+						Padding="10,0"
+						Foreground="White"
+						FontWeight="Bold"
+						BorderThickness="0"
+						Click="NavigateToPageBrowser"
+						MouseEnter="ItemButton_MouseEnter"
+						MouseLeave="ItemButton_MouseLeave"/>
 
             </Border>
 
-            <Border
-                x:Name="CatalogItemBorder"
-                VerticalAlignment="Stretch">
+            <Border x:Name="CatalogItemBorder"
+					VerticalAlignment="Stretch">
 
-                <Button
-                    Content="{x:Static p:Resources.Catalog}"
-                    FontSize="{StaticResource Text-H4}"
-                    Background="Transparent"
-                    Padding="10,0"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    BorderThickness="0"
-                    Click="NavigateToPageCatalog"
-                    MouseEnter="ItemButton_MouseEnter"
-                    MouseLeave="ItemButton_MouseLeave"/>
+                <Button Content="{x:Static p:Resources.Catalog}"
+						FontSize="{StaticResource Text-H4}"
+						Background="Transparent"
+						Padding="10,0"
+						Foreground="White"
+						FontWeight="Bold"
+						BorderThickness="0"
+						Click="NavigateToPageCatalog"
+						MouseEnter="ItemButton_MouseEnter"
+						MouseLeave="ItemButton_MouseLeave"/>
 
             </Border>
             

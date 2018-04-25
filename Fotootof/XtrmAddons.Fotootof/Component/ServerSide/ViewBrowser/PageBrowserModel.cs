@@ -1,9 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
+﻿using System.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Images;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
-using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
+using XtrmAddons.Fotootof.Libraries.Common.Collections;
 using ImgSize = XtrmAddons.Fotootof.Lib.Base.Classes.Images.ImageSize;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
@@ -18,12 +16,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// Variable image size to display.
         /// </summary>
-        public Size imageSize = new Size { Height = ImgSize.Thumbnail.ToDouble(), Width = ImgSize.Thumbnail.ToDouble() };
+        public Size imageSize = new Size { Height = ImgSize.Vignette.ToDouble(), Width = ImgSize.Vignette.ToDouble() };
 
         /// <summary>
         /// Variable collection of directories and files informations.
         /// </summary>
-        private ObservableCollection<StorageInfoModel> filesCollection;
+        private StorageCollection filesCollection;
 
         #endregion
 
@@ -47,7 +45,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// Property to access to the collection of directories and files informations.
         /// </summary>
-        public ObservableCollection<StorageInfoModel> FilesCollection
+        public StorageCollection FilesCollection
         {
             get => filesCollection;
             set

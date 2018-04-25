@@ -21,7 +21,7 @@
 					<TextBlock x:Name="Header_Text"
 							   Text="{x:Static p:Resources.Sections}"
 							   FontSize="{StaticResource FontSizeHeader}"
-							   Foreground="{StaticResource BigHeader}"
+							   Foreground="{StaticResource Panton_3}"
 							   FontWeight="SemiBold"
 							   Margin="5" />
 				</Border>
@@ -43,27 +43,26 @@
 							</Grid.ColumnDefinitions>
 
 							<Button x:Name="Button_Add"
-									Grid.Column="0"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.Add }"
-									Click="OnAdd_Click">
-							</Button>
+									Content="{StaticResource Icon24ListPlus}"
+									Style="{StaticResource Button_Icon24Default}"
+									ToolTipService.ToolTip="{x:Static p:Resources.Add}"
+									Click="OnAdd_Click" />
 
-							<Button x:Name="Button_Edit"
-									Grid.Column="1"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.Edit }"
+							<Button Grid.Column="1"
+									x:Name="Button_Edit"
+									Content="{StaticResource Icon24ListEdit}"
+									Style="{StaticResource Button_Icon24Default}"
+									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
 									Click="OnEdit_Click"
-									IsEnabled="False">
-							</Button>
+									IsEnabled="False"/>
 
-							<Button x:Name="Button_Delete"
-									Grid.Column="2"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.Delete}"
+							<Button Grid.Column="2"
+									x:Name="Button_Delete"
+									Content="{StaticResource Icon24ListMinus}"
+									Style="{StaticResource Button_Icon24Default}"
+									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
 									Click="OnDelete_Click"
-									IsEnabled="False">
-							</Button>
+									IsEnabled="False"/>
 						</Grid>
 					</Border>
 				</Grid>
@@ -92,20 +91,18 @@
 
                     <DataGrid.Columns>
                         <!-- #region : Column PrimaryKey -->
-                        <DataGridTemplateColumn 
-                            IsReadOnly="True"
-                            Width="30"
-                            CanUserSort="True"
-                            Header="{x:Static p:Resources.Id}"
-                            SortMemberPath="PrimaryKey">
+                        <DataGridTemplateColumn IsReadOnly="True"
+												Width="30"
+												CanUserSort="True"
+												Header="{x:Static p:Resources.Id}"
+												SortMemberPath="PrimaryKey">
 
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
 
-                                    <TextBlock
-                                        Margin="5,0"
-                                        Text="{Binding PrimaryKey}"
-                                        ToolTip="{Binding PrimaryKey}"/>
+                                    <TextBlock Margin="5,0"
+											   Text="{Binding PrimaryKey}"
+											   ToolTip="{Binding PrimaryKey}"/>
 
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

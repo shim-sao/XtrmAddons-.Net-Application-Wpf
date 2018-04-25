@@ -579,4 +579,10 @@
   <data name="Pictures" xml:space="preserve">
     <value>Images</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Rafraichir</value>
+  </data>
+  <data name="RefreshPictures" xml:space="preserve">
+    <value>Rafraichir les images.</value>
+  </data>
 </root>

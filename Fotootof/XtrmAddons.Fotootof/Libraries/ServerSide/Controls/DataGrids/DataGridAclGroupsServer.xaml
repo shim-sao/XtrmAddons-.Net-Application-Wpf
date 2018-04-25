@@ -7,169 +7,208 @@
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     mc:Ignorable="d"
-    HorizontalAlignment="Stretch">
-    
-    <!-- #region : list -->
-    <StackPanel>
+    HorizontalAlignment="Stretch"
+	SizeChanged="Control_SizeChanged">
 
-        <!-- #region Title -->
-        <Grid x:Name="ControlHeader">
-            <Border
-                x:Name="ControlHeaderBorder"
-                Background="{StaticResource DarkGrey}">
-                <TextBlock
-                    x:Name="ControlHeaderText"
-                    Text="{x:Static p:Resources.UsersGroups}"
-                    FontSize="{StaticResource FontSizeHeader}"
-                    Foreground="{StaticResource BigHeader}"
-                    FontWeight="SemiBold"
-                    Margin="5">
-                </TextBlock>
-            </Border>
-        </Grid>
-        <!-- #endregion Title -->
+	<Grid x:Name="Block_Root"
+		  Style="{StaticResource ResourceKey=Root}">
+		<StackPanel x:Name="Block_RootPanel"
+					Style="{StaticResource ResourceKey=FieldsetVertical}">
 
+			<StackPanel x:Name="Block_Header"
+						Style="{StaticResource FieldsetHeader}">
 
-        <!-- #region Menu -->
-        <Grid x:Name="ControlMenu">
-            <Border
-                x:Name="ControlMenuItemsBorder"
-                Background="{StaticResource DarkGrey}"
-                HorizontalAlignment="Stretch">
+				<Border x:Name="Block_Title"
+						Style="{StaticResource Border_Fieldset_Title}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="1*"/>
+							<ColumnDefinition Width="auto"/>
+						</Grid.ColumnDefinitions>
 
-                <Grid 
-                    x:Name="ControlMenuItemsGrid"
-                    Margin="0,0,0,3">
-                    
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
+						<!-- #region Title -->
+						<Border x:Name="Title_Border">
+							<TextBlock
+                                x:Name="Title_Text"
+                                Text="{x:Static p:Resources.UsersGroups}"
+                                FontSize="{StaticResource FontSizeHeader}"
+                                Foreground="{StaticResource Panton_3}"
+                                FontWeight="SemiBold"
+                                Margin="5">
+							</TextBlock>
+						</Border>
+						<!-- #endregion Title -->
 
-                    <Button 
-                        x:Name="Button_Add"
-                        Grid.Column="0"
-                        Style="{StaticResource Button_DefaultRounded}"
-                        Content="{x:Static p:Resources.Add }"
-                        Click="OnAdd_Click">
-                    </Button>
+						<!-- #region Counter -->
+						<StackPanel Grid.Column="1" Orientation="Horizontal">
+							<TextBlock
+                                x:Name="Counter_SelectedNumber"
+                                FontWeight="SemiBold"
+                                FontSize="{StaticResource FontSizeHeader}"
+                                Foreground="{StaticResource Panton_3}"
+                                Margin="5"
+                                Text="0">
+							</TextBlock>
 
-                    <Button
-                        x:Name="Button_Edit"
-                        Grid.Column="1"
-                        Style="{StaticResource Button_DefaultRounded}"
-                        Content="{x:Static p:Resources.Edit }"
-                        Click="OnEdit_Click"
-                        IsEnabled="False">
-                    </Button>
+							<TextBlock
+								x:Name="Counter_Spacer"
+								FontWeight="SemiBold"
+								FontSize="{StaticResource FontSizeHeader}"
+								Foreground="{StaticResource Panton_3}"
+								Margin="0,5"
+								Text="/">
+							</TextBlock>
 
-                    <Button
-                        x:Name="Button_Delete"
-                        Grid.Column="2"
-                        Style="{StaticResource Button_DefaultRounded}"
-                        Content="{x:Static p:Resources.Delete}"
-                        Click="OnDelete_Click"
-                        IsEnabled="False">
-                    </Button>
-                </Grid>
-            </Border>
-        </Grid>
-        <!-- #endregion Menu -->
+							<TextBlock
+								x:Name="Counter_Total"
+								FontWeight="SemiBold"
+								FontSize="{StaticResource FontSizeHeader}"
+								Foreground="{StaticResource Panton_3}"
+								Margin="5"
+								Text="{Binding Path=Items.Count}">
+							</TextBlock>
+						</StackPanel>
+						<!-- #endregion Counter -->
+					</Grid>
+				</Border>
 
 
-        <!-- #region Users List -->                                        
-        <Grid x:Name="ControlDataGrid">
-            <DataGrid 
-                x:Name="ItemsLayout"
-                AutoGenerateColumns="False"
-                EnableRowVirtualization="false"
-                EnableColumnVirtualization="false"
-                ColumnWidth="*"
-                CanUserDeleteRows="True"
-                CanUserAddRows="False"
-                SelectionMode="Extended"
-                ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
-                RowHeight="22"
-                HorizontalAlignment="Stretch"
-                ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                MouseDoubleClick="OnEdit_Click"
-                SelectionChanged="ItemsCollection_SelectionChanged">
-                
-                <DataGrid.Columns>
-                    <!-- #region : Column AclGroupId -->
-                    <DataGridTemplateColumn 
-                        IsReadOnly="True"
-                        Width="30"
-                        CanUserSort="True"
-                        Header="{x:Static p:Resources.Id}"
-                        SortMemberPath="AclGroupId">
+				<Grid x:Name="Block_Menu"
+					  Style="{StaticResource Grid_Fieldset_Menu}">
 
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="auto" />
+						<ColumnDefinition Width="1*" />
+						<ColumnDefinition Width="auto" />
+					</Grid.ColumnDefinitions>
 
-                                <TextBlock
-                                    Margin="5,0"
-                                    Text="{Binding AclGroupId}"
-                                    ToolTip="{Binding AclGroupId}"/>
+					<Border x:Name="MenuLeft">
+						<Grid Margin="2">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
+							</Grid.ColumnDefinitions>
 
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <!-- #endregion : Column AclGroupId -->
+							<Button x:Name="Button_Add"
+									Content="{StaticResource Icon24UsersPlus}"
+									Style="{StaticResource Button_Icon24Default}"
+									ToolTipService.ToolTip="{x:Static p:Resources.Add}"
+									Click="OnAdd_Click" />
 
-                    <!-- #region : Column Is Default -->
-                    <DataGridTemplateColumn 
-                    CanUserResize="False"
-                    IsReadOnly="True"
-                    Width="20"
-                    CanUserSort="True"
-                    Header=""
-                    SortMemberPath="IsDefault">
+							<Button Grid.Column="1"
+									x:Name="Button_Edit"
+									Content="{StaticResource Icon24UsersEdit}"
+									Style="{StaticResource Button_Icon24Default}"
+									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
+									Click="OnEdit_Click"
+									IsEnabled="False"/>
 
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
+							<Button Grid.Column="2"
+									x:Name="Button_Delete"
+									Content="{StaticResource Icon24UsersMinus}"
+									Style="{StaticResource Button_Icon24Default}"
+									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
+									Click="OnDelete_Click"
+									IsEnabled="False"/>
+						</Grid>
+					</Border>
+				</Grid>
+			</StackPanel>
 
-                                <CheckBox
-                                    Tag="{Binding}"
-                                    IsChecked="{Binding IsDefault, Mode=TwoWay}"
-                                    Click="CheckBoxDefault_Checked"/>
 
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <!-- #endregion : Column Is Default -->
+			<Grid x:Name="Block_Items">
+				
+				<DataGrid x:Name="ItemsLayout"
+						  AutoGenerateColumns="False"
+						  EnableRowVirtualization="false"
+						  EnableColumnVirtualization="false"
+						  ColumnWidth="*"
+						  CanUserDeleteRows="True"
+						  CanUserAddRows="False"
+						  SelectionMode="Extended"
+						  ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+						  RowHeight="22"
+						  HorizontalAlignment="Stretch"
+						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+						  MouseDoubleClick="OnEdit_Click"
+						  SelectionChanged="ItemsCollection_SelectionChanged">
 
-                    <!-- #region : Column Name -->
-                    <DataGridTemplateColumn 
-                    IsReadOnly="True"
-                    MinWidth="160"
-                    CanUserSort="True"
-                    Header="{x:Static p:Resources.Name}"
-                    SortMemberPath="Name">
+					<DataGrid.Columns>
+						<!-- #region : Column AclGroupId -->
+						<DataGridTemplateColumn 
+							IsReadOnly="True"
+							Width="30"
+							CanUserSort="True"
+							Header="{x:Static p:Resources.Id}"
+							SortMemberPath="AclGroupId">
 
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
 
-                                <TextBlock Margin="5,0" Text="{Binding Name, Mode=TwoWay}">
-                                    <TextBlock.ContextMenu>
-                                        <ContextMenu>
-                                            <MenuItem Header="{x:Static p:Resources.Add}" Click="OnAdd_Click"/>
-                                            <MenuItem Header="{x:Static p:Resources.Edit}" Click="OnEdit_Click"/>
-                                            <MenuItem Header="{x:Static p:Resources.Delete}" Click="OnDelete_Click"/>
-                                        </ContextMenu>
-                                    </TextBlock.ContextMenu>
-                                </TextBlock>
+									<TextBlock
+										Margin="5,0"
+										Text="{Binding AclGroupId}"
+										ToolTip="{Binding AclGroupId}"/>
 
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <!-- #endregion : Column Name -->
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<!-- #endregion : Column AclGroupId -->
 
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
-    </StackPanel>
-    
-    <!-- #endregion : list -->
+						<!-- #region : Column Is Default -->
+						<DataGridTemplateColumn 
+						CanUserResize="False"
+						IsReadOnly="True"
+						Width="20"
+						CanUserSort="True"
+						Header=""
+						SortMemberPath="IsDefault">
+
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+
+									<CheckBox
+										Tag="{Binding}"
+										IsChecked="{Binding IsDefault, Mode=TwoWay}"
+										Click="CheckBoxDefault_Checked"/>
+
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<!-- #endregion : Column Is Default -->
+
+						<!-- #region : Column Name -->
+						<DataGridTemplateColumn 
+						IsReadOnly="True"
+						MinWidth="160"
+						CanUserSort="True"
+						Header="{x:Static p:Resources.Name}"
+						SortMemberPath="Name">
+
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+
+									<TextBlock Margin="5,0" Text="{Binding Name, Mode=TwoWay}">
+										<TextBlock.ContextMenu>
+											<ContextMenu>
+												<MenuItem Header="{x:Static p:Resources.Add}" Click="OnAdd_Click"/>
+												<MenuItem Header="{x:Static p:Resources.Edit}" Click="OnEdit_Click"/>
+												<MenuItem Header="{x:Static p:Resources.Delete}" Click="OnDelete_Click"/>
+											</ContextMenu>
+										</TextBlock.ContextMenu>
+									</TextBlock>
+
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<!-- #endregion : Column Name -->
+
+					</DataGrid.Columns>
+				</DataGrid>
+			
+			</Grid>
+
+		</StackPanel>
+	</Grid>
 </base:DataGridAclGroups>

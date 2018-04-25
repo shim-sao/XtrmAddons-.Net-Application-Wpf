@@ -127,32 +127,32 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         }
 
         /// <summary>
-        /// Method to delete a list of Album entities from the database.
+        /// Method to delete a list of Picture entities from the database.
         /// </summary>
         /// <param name="newItems">The list of items to remove.</param>
-        public static void DbDelete(List<AlbumEntity> oldItems)
+        public static void DbDelete(List<PictureEntity> oldItems)
         {
             // Check for Removing items.
             try
             {
-                AppLogger.Info("Deleting Album(s). Please wait...");
+                AppLogger.Info("Deleting Picture(s). Please wait...");
 
                 if (oldItems != null && oldItems.Count > 0)
                 {
-                    foreach (AlbumEntity entity in oldItems)
+                    foreach (PictureEntity entity in oldItems)
                     {
-                        MainWindow.Database.Albums.Delete(entity);
+                        MainWindow.Database.Pictures.Delete(entity);
 
                         AppLogger.Info(string.Format("Album [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Adding Album(s). Done !");
+                AppLogger.Info("Adding Picture(s). Done !");
             }
             catch (Exception ex)
             {
-                AppLogger.Fatal("Deleting Album(s) list failed !", ex);
+                AppLogger.Fatal("Deleting Picture(s) list failed !", ex);
             }
             finally
             {
@@ -161,33 +161,32 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         }
 
         /// <summary>
-        /// Method to update a list of Album entities into the database.
+        /// Method to update a list of Picture entities into the database.
         /// </summary>
-        /// <param name="newItems">Thee list of items to update.</param>
-        public static async void DbUpdateAsync(List<AlbumEntity> newItems, List<AlbumEntity> oldItems)
+        /// <param name="newItems">The list of items to update.</param>
+        public static async void DbUpdateAsync(List<PictureEntity> newItems, List<PictureEntity> oldItems)
         {
             // Check for Replace | Edit items.
             try
             {
-                AppLogger.Info("Replacing Album. Please wait...");
+                AppLogger.Info("Replacing Picture. Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
-                    foreach (AlbumEntity entity in newItems)
+                    foreach (PictureEntity entity in newItems)
                     {
-                        await MainWindow.Database.Albums.UpdateAsync(entity);
-                        //await MainWindow.Database.Album_CleanDependencies_Async("AlbumsInACLGroups", "AclGroupId", entity.PrimaryKey, entity.AclGroupsPK);
+                        await MainWindow.Database.Pictures.UpdateAsync(entity);
 
-                        AppLogger.Info(string.Format("Album [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
+                        AppLogger.Info(string.Format("Picture [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Replacing Album(s). Done !");
+                AppLogger.Info("Replacing Picture(s). Done !");
             }
             catch (Exception ex)
             {
-                AppLogger.Fatal("Replacing Album(s) failed !", ex);
+                AppLogger.Fatal("Replacing Picture(s) failed !", ex);
             }
             finally
             {

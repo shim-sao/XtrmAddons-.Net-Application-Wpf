@@ -23,59 +23,70 @@
                     Click="OnFileExit_Click">
 
                     <MenuItem.Icon>
-                        <Image Source="{Binding Mode=OneWay, Source={StaticResource Icon24Exit}}" />
-                    </MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24Exit}}" />
+					</MenuItem.Icon>
                 </MenuItem>
 
             </MenuItem>
 
             <MenuItem Header="{x:Static p:Resources._Server}">
 
-                <MenuItem
-                    Header="{x:Static p:Resources._ClientNew}"
-                    Name="MenuItem_ServerAddClient"
-                    Click="OnServerAddClient_Click"/>
+                <MenuItem Header="{x:Static p:Resources._ClientNew}"
+						  Name="MenuItem_ServerAddClient"
+						  Click="OnServerAddClient_Click">
+				</MenuItem>
 
                 <Separator />
 
-                <MenuItem
-                    Name="MenuItem_Server_Start"
-                    Header="{x:Static p:Resources._Start}"
-                    Click="OnServerStart_Click"
-                    ToolTip="Start Http server."/>
+                <MenuItem Name="MenuItem_Server_Start"
+						  Header="{x:Static p:Resources._Start}"
+						  Click="OnServerStart_Click"
+						  ToolTip="Start Http server.">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ServerStart}}" />
+					</MenuItem.Icon>
+				</MenuItem>
 
 				<MenuItem Name="MenuItem_Server_Stop"
 						  Header="{x:Static p:Resources._Stop}"
 						  ToolTip="{x:Static p:Resources.Tooltip_MenuItem_Server_Stop}"
-						  Click="OnServerStop_Click" />
+						  Click="OnServerStop_Click">
 
-				<MenuItem
-                    Name="MenuItem_ServerRestart"
-                    Header="{x:Static p:Resources._Restart}"
-                    Click="OnServerRestart_Click"
-                    ToolTip="Restart Http server."/>
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ServerStop}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+
+				<MenuItem Name="MenuItem_ServerRestart"
+						  Header="{x:Static p:Resources._Restart}"
+						  Click="OnServerRestart_Click"
+						  ToolTip="Restart Http server.">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ServerRestart}}" />
+					</MenuItem.Icon>
+				</MenuItem>
 
                 <Separator />
 
-                <MenuItem
-                    Name="MenuItem_ServerAddFireWall"
-                    Header="{x:Static p:Resources._AddToFirewall}"
-                    Click="OnServerAddToFirewall_Click"
-                    ToolTip="Add Http server URL to the firewall rules. Enable external access."/>
+                <MenuItem Name="MenuItem_ServerAddFireWall"
+						  Header="{x:Static p:Resources._AddToFirewall}"
+						  Click="OnServerAddToFirewall_Click"
+						  ToolTip="Add Http server URL to the firewall rules. Enable external access."/>
 
-                <MenuItem
-                    Name="MenuItem_ServerRemoveFireWall"
-                    Header="{x:Static p:Resources._RemoveFromFirewall}"
-                    Click="OnServerRemoveFromFirewall_Click"
-                    ToolTip="Remove Http server URL to the firewall rules. Disable external access."/>
+                <MenuItem Name="MenuItem_ServerRemoveFireWall"
+						  Header="{x:Static p:Resources._RemoveFromFirewall}"
+						  Click="OnServerRemoveFromFirewall_Click"
+						  ToolTip="Remove Http server URL to the firewall rules. Disable external access."/>
+				
             </MenuItem>
 
             <MenuItem Header="{x:Static p:Resources._Edition}">
 
-                <MenuItem
-                    Header="{x:Static p:Resources._Preferences}"
-                    Name="MenuItem_EditionPreferences"
-                    Click="OnEditionPreferences_Click"/>
+                <MenuItem Header="{x:Static p:Resources._Preferences}"
+						  Name="MenuItem_EditionPreferences"
+						  Click="OnEditionPreferences_Click"/>
                 
             </MenuItem>
 
@@ -83,15 +94,25 @@
                 Header="{x:Static p:Resources._Users}">
 
                 <MenuItem
-                    Header="{x:Static p:Resources._UsersList}"
                     Name="UI_MI_Users"
-                    Click="OnUsersListClick"/>
+                    Header="{x:Static p:Resources._UsersList}"
+                    Click="OnUsersListClick">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24UsersSetting}}" />
+					</MenuItem.Icon>
+				</MenuItem>
 
                 <MenuItem
-                    Header="{x:Static p:Resources._UsersNew}"
                     Name="MenuItem_AddUser"
-                    Click="OnAddUser_Click"/>
-            </MenuItem>
+                    Header="{x:Static p:Resources._UsersNew}"
+                    Click="OnAddUser_Click">
+
+					<MenuItem.Icon>
+							<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24UserPlus}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
 
             <MenuItem
                 Header="{x:Static p:Resources._Sections}">
@@ -99,8 +120,13 @@
                 <MenuItem
                     Header="{x:Static p:Resources._AddSection}"
                     x:Name="MenuItem_AddSection"
-                    Click="OnAddSection_Click"/>
-            </MenuItem>
+                    Click="OnAddSection_Click">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ListPlus}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
 
             <MenuItem
                 Header="{x:Static p:Resources._Display}">

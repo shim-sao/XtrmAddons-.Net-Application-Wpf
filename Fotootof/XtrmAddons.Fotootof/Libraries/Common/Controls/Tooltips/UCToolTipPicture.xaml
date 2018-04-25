@@ -17,7 +17,7 @@
         <Image 
             Source="{Binding PicturePath,
             Converter={StaticResource CvPictureBase},
-            ConverterParameter={StaticResource CvPreviewParameter},
+            ConverterParameter={StaticResource Icon512String},
             Mode=OneWay}"
             Stretch="Uniform"
             Panel.ZIndex="0"/>

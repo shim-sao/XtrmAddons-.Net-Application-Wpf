@@ -126,6 +126,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
             DateCreated = FileInfo.CreationTime;
             DateModified = FileInfo.LastWriteTime;
             IsFile = true;
+            CheckIfIsPicture();
         }
 
         /// <summary>
@@ -182,17 +183,43 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
                     Created = DateTime.Now,
                     Modified = DateTime.Now,
 
-                    ThumbnailPath = FullName,
-                    ThumbnailWidth = (int)metadata.Width,
-                    ThumbnailHeight = (int)metadata.Height,
+                    OriginalPath = FullName,
+                    OriginalWidth = (int)metadata.Width,
+                    OriginalHeight = (int)metadata.Height,
+                    OriginalLength = (long)metadata.Length,
 
                     PicturePath = FullName,
                     PictureWidth = (int)metadata.Width,
-                    PictureHeight = (int)metadata.Height
+                    PictureHeight = (int)metadata.Height,
+                    PictureLength = (long)metadata.Length,
+
+                    ThumbnailPath = FullName,
+                    ThumbnailWidth = (int)metadata.Width,
+                    ThumbnailHeight = (int)metadata.Height,
+                    ThumbnailLength = (long)metadata.Length
                 };
             }
 
             return p;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void CheckIfIsPicture()
+        {
+            if (!IsFile)
+            {
+                IsPicture = false;
+            }
+
+            string ext = Path.GetExtension(FullName);
+            string[] extensions = { ".jpg", ".jpeg", ".png", ".bmp", ".tiff" };
+
+            if (extensions.Contains(ext.ToLower()))
+            {
+                IsPicture = true;
+            }
         }
 
         #endregion

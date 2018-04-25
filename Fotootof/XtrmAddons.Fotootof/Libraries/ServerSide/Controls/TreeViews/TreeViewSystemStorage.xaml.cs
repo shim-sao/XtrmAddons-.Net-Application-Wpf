@@ -220,13 +220,13 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.TreeViews
         }
 
         /// <summary>
-        /// 
+        /// Method called on user control size changed event.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

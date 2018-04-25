@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
-using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
-using XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid;
-using XtrmAddons.Net.Windows.Controls.Extensions;
-using System.Linq;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
+using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
+using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
+using XtrmAddons.Net.Windows.Controls.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 {
@@ -21,6 +21,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
     public partial class ListViewStoragesServer : ListViewStorages
     {
         #region Properties
+
+        /// <summary>
+        /// Property to access to the user control model.
+        /// </summary>
+        public ListViewStoragesServerModel Model { get; private set; }
 
         /// <summary>
         /// Property to access to the main add to collection control.
@@ -64,6 +69,16 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             remove => ItemsCollection.MouseDoubleClick -= value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public TextBlock CounterTotalImages => Counter_TotalImages;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TextBlock CounterTotalDirectories => Counter_TotalDirectories;
+
         #endregion
 
 
@@ -77,7 +92,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         {
             InitializeComponent();
             ItemsCollection.KeyDown += ItemsCollection.AddKeyDownSelectAllItems;
-            //SelectionChanged += ItemsCollection_SelectionChanged;
         }
 
         #endregion
@@ -85,6 +99,28 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 
 
         #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Control_Loaded(object sender, RoutedEventArgs e)
+        {
+            Model = new ListViewStoragesServerModel(this)
+            {
+                Items = ItemsCollection.ItemsSource as StorageCollection
+            };
+
+            if(Model.ListViewStoragesServerImageSize == null)
+            {
+                Model.ListViewStoragesServerImageSize = new UiElement(ComboBox_ImageSize);
+            }
+            else
+            {
+                ComboBox_ImageSize.SelectedIndex = int.Parse(Model.ListViewStoragesServerImageSize.Value);
+            }
+        }
 
         /// <summary>
         /// Method called on items collection selection changed.
@@ -101,7 +137,17 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             }
             else
             {
-                Button_AddPicturesToAlbum.IsEnabled = true;
+                bool find = false;
+                foreach(StorageInfoModel sim in SelectedItems)
+                {
+                    if(sim.IsPicture)
+                    {
+                        find = true;
+                        break;
+                    }
+                }
+
+                Button_AddPicturesToAlbum.IsEnabled = find;
             }
         }
 
@@ -135,27 +181,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
                     // Check if storage information is and return a picture information.
                     if (picture != null)
                     {
-                        /*
-                        // Process adding for each albums.
-                        foreach (AlbumEntity a in dlg.SelectedAlbums)
-                        {
-                            // Try to find Picture and Album dependency
-                            PicturesInAlbums dependency = (new List<PicturesInAlbums>(picture.PicturesInAlbums)).Find(p => p.AlbumId == a.AlbumId);
-
-                            // Associate Picture to the Album if not already set.
-                            if (dependency == null)
-                            {
-                                picture.PicturesInAlbums.Add(
-                                    new PicturesInAlbums
-                                    {
-                                        AlbumId = a.AlbumId,
-                                        Ordering = picture.PicturesInAlbums.Count + 1
-                                    }
-                                );
-                            }
-                        }
-                        */
-
                         // Add Picture to the list for Pictures final saving.
                         pictures.Add(picture);
                     }
@@ -169,16 +194,61 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             ItemsCollection.SelectedItems.Clear();
         }
 
+        /// <summary>
+        /// Method called on select all click event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        private void OnSelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            ItemsCollection.SelectAll();
+        }
+
+        /// <summary>
+        /// Method called on select all click event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        private void OnUnselectAll_Click(object sender, RoutedEventArgs e)
+        {
+            ItemsCollection.UnselectAll();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Routed changed event arguments.</param>
+        private void OnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            ItemsCollection.Visibility = Visibility.Hidden;
+            ItemsCollection.Items.Refresh();
+            ItemsCollection.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Selection changed event arguments.</param>
+        private void ComboBox_ImageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Model != null)
+            {
+                Model.ListViewStoragesServerImageSize.Value = ComboBox_ImageSize.SelectedIndex.ToString();
+            }
+        }
+
         #endregion
 
 
         #region Methods Size Changed
 
         /// <summary>
-        /// 
+        /// Method called on user control size changed event.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             ArrangeBlockRoot();

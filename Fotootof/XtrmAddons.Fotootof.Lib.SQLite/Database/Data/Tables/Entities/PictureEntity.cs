@@ -111,49 +111,68 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         [JsonIgnore]
         public int OriginalHeight { get; set; }
 
+        /// <summary>
+        /// Property the original length.
+        /// </summary>
+        [Column(Order = 11)]
+        [JsonIgnore]
+        public long OriginalLength { get; set; }
+
 
         /// <summary>
         /// Property picture path.
         /// </summary>
-        [Column(Order = 11)]
+        [Column(Order = 12)]
         public string PicturePath { get; set; }
 
         /// <summary>
         /// Property picture width.
         /// </summary>
-        [Column(Order = 12)]
+        [Column(Order = 13)]
         public int PictureWidth { get; set; }
 
         /// <summary>
         /// Property picture height.
         /// </summary>
-        [Column(Order = 13)]
+        [Column(Order = 14)]
         public int PictureHeight { get; set; }
+
+        /// <summary>
+        /// Property picture length.
+        /// </summary>
+        [Column(Order = 15)]
+        public long PictureLength { get; set; }
 
 
         /// <summary>
         /// Property thumbnail picture path.
         /// </summary>
-        [Column(Order = 14)]
+        [Column(Order = 16)]
         public string ThumbnailPath { get; set; }
 
         /// <summary>
         /// Property thumbnail width.
         /// </summary>
-        [Column(Order = 15)]
+        [Column(Order = 17)]
         public int ThumbnailWidth { get; set; }
 
         /// <summary>
         /// Property thumbnail height.
         /// </summary>
-        [Column(Order = 16)]
+        [Column(Order = 18)]
         public int ThumbnailHeight { get; set; }
+
+        /// <summary>
+        /// Property thumbnail length.
+        /// </summary>
+        [Column(Order = 19)]
+        public long ThumbnailLength { get; set; }
 
 
         /// <summary>
         /// Property comment.
         /// </summary>
-        [Column(Order = 17)]
+        [Column(Order = 20)]
         public string Comment { get; set; }
 
         #endregion

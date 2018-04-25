@@ -114,7 +114,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
 
 
 
-        #region Methods : Section
+        #region Methods Section
 
         /// <summary>
         /// Method to load the list of Section from server.
@@ -136,7 +136,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
                     Model.Sections = new DataGridSectionsModel<DataGridSections>(UCDataGridSections);
                 }
                 Model.Sections.Items = new SectionEntityCollection(l);
-                AppLogger.Info("Loading Sections list. Done.");
+                AppLogger.InfoAndClose("Loading Sections list. Done.");
             }
             catch (Exception e)
             {
@@ -144,9 +144,15 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
             }
         }
 
+        #endregion
+
+
+
+        #region Methods Size Changed
+
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         #endregion

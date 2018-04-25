@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Properties"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Controls;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:tooltips="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.Tooltips"
     mc:Ignorable="d"
@@ -28,7 +28,7 @@
                     <TextBlock
                         Text="Albums"
                         FontSize="{StaticResource FontSizeHeader}"
-                        Foreground="{StaticResource BigHeader}"
+                        Foreground="{StaticResource Panton_3}"
                         FontWeight="SemiBold"
                         Margin="5"/>
 
@@ -43,7 +43,7 @@
                         x:Name="ControlHeaderSelectedNumber"
                         FontWeight="SemiBold"
                         FontSize="{StaticResource FontSizeHeader}"
-                        Foreground="{StaticResource BigHeader}"
+                        Foreground="{StaticResource Panton_3}"
                         Margin="5"
                         Text="0"/>
 
@@ -51,7 +51,7 @@
                         x:Name="ControlHeaderCounterSpacer"
                         FontWeight="SemiBold"
                         FontSize="{StaticResource FontSizeHeader}"
-                        Foreground="{StaticResource BigHeader}"
+                        Foreground="{StaticResource Panton_3}"
                         Margin="0,5"
                         Text="/"/>
 
@@ -59,7 +59,7 @@
                         x:Name="ControlHeaderTotal"
                         FontWeight="SemiBold"
                         FontSize="{StaticResource FontSizeHeader}"
-                        Foreground="{StaticResource BigHeader}"
+                        Foreground="{StaticResource Panton_3}"
                         Margin="5"
                         Text="{Binding Path=Albums.Count}"/>
 
@@ -285,7 +285,7 @@
                                     <Image 
                                         Source="{Binding ThumbnailPath,
                                         Converter={StaticResource CvPictureBase},
-                                        ConverterParameter={StaticResource CvThumbnailParameter},
+                                        ConverterParameter={StaticResource Icon256String},
                                         IsAsync=True,
                                         Mode=OneWay}"
                                         Width="400"
@@ -307,7 +307,7 @@
                                                 <Image 
                                                     Source="{Binding PicturePath,
                                                     Converter={StaticResource CvPictureBase},
-                                                    ConverterParameter={StaticResource CvPreviewParameter},
+                                                    ConverterParameter={StaticResource Icon512String},
                                                     IsAsync=True,
                                                     Mode=OneWay}"
                                                     Stretch="Uniform"

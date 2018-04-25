@@ -239,7 +239,7 @@
                             x:Name="ImageThumbnail"
                             Source="{Binding Album.ThumbnailPath,
                             Converter={StaticResource CvPictureBase},
-                            ConverterParameter={StaticResource CvThumbnailParameter}}"
+                            ConverterParameter={StaticResource Icon256String}}"
                             Width="160"
                             Height="160"
                             MaxWidth="160"
@@ -263,7 +263,7 @@
                             Name="ImagePicture"
                             Source="{Binding Album.PicturePath,
                             Converter={StaticResource CvPictureBase},
-                            ConverterParameter={StaticResource CvPreviewParameter}}"
+                            ConverterParameter={StaticResource Icon512String}}"
                             Width="285"
                             Height="160"
                             MaxWidth="285"

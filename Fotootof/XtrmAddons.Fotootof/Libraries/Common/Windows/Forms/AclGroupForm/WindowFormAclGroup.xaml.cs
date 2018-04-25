@@ -2,12 +2,12 @@
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
-using XtrmAddons.Fotootof.Libraries.Common.Converters;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
@@ -51,6 +51,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
             InitializeComponent();
             Model = new WindowFormAclGroupModel<WindowFormAclGroup>(this);
             Loaded += (s, e) => Window_LoadAsync(entity);
+            Closing += Window_Closing;
         }
 
         #endregion
@@ -61,9 +62,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         /// </summary>
         private async void Window_LoadAsync(AclGroupEntity entity)
         {
-            // Assign closing event.
-            Closing += Window_Closing;
-
             entity = entity ?? new AclGroupEntity();
 
             if (entity.PrimaryKey > 0)
@@ -73,12 +71,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
 
             // Store data in new entity.
             OldForm = entity.Clone();
-
-            // Assign Parent Page & entity to the model.
-            NewForm = entity;
-
-            // Assign model to data context for display.
-            DataContext = Model;
+            
+            // 5 - Assign entity to the model.
+            // 6 - Set model entity to dependencies converters.
+            IsUserInAclGroup.Entity = NewForm = entity;
 
             Model.AclActions = await MainWindow.Database.AclActions.ListAsync();
 
@@ -97,10 +93,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
             action = await Model.AclAction_FindActionAsync("section.view");
             CheckBoxSectionView.Tag = action;
             CheckBoxSectionView.IsChecked = Model.AclGroup_CanDoAclAction(action.AclActionId);
-
-            CheckBoxUserInAclGroup.User = null;
-            CheckBoxUserInAclGroup.AclGroup = Model.AclGroup;
+            
             Model.Users = new UserEntityCollection(true);
+
+            // Assign model to data context for display.
+            DataContext = Model;
 
             ValidateForm();
         }

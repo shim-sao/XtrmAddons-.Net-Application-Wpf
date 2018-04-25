@@ -11,67 +11,40 @@
     xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.UI.Control.Menu"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
-    MinWidth="800"
-    MinHeight="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"
-    HorizontalAlignment="Stretch"
-    VerticalAlignment="Stretch"
     Title="{x:Static p:Resources.Users}"
-    Background="{StaticResource ResourceKey=LightGrey}">
+    Background="{StaticResource ResourceKey=LightGrey}"
+    SizeChanged="Control_SizeChanged">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
+	<Grid x:Name="Block_Root"
+		  Style="{StaticResource Root}">
+		<StackPanel x:Name="Block_RootPanel"
+					Style="{StaticResource FieldsetVertical}">
 
-        <!-- #region Main navigation -->
-        <ucmenu:UCMainNavigation
-            Grid.Row="0"
-            x:Name="UCMenuMainNavigation"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"/>
-        <!-- #endegion Main navigation -->
+			<Grid x:Name="Block_MiddleContents"
+				  Style="{StaticResource ResourceKey=MiddleContents}">
 
-        <!-- #region List -->
-        <Grid
-            Grid.Row="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" MinWidth="240" x:Name="ColLeft"/>
+					<ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
+					<ColumnDefinition Width="3*" x:Name="ColRight" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="1*" />
+				</Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="345" />
-                <ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
-                <ColumnDefinition Width="3*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-            </Grid.RowDefinitions>
+				<dgserver:DataGridAclGroupsServer x:Name="UcDataGridAclGroups"
+												  DataContext="{Binding AclGroups}"/>
 
-            <dgserver:DataGridAclGroupsServer
-                x:Name="AclGroupsDataGrid"
-                Grid.Row="0"
-                Grid.Column="0"
-                DataContext="{Binding AclGroups}"
-                HorizontalAlignment="Left"/>
+				<GridSplitter Grid.Column="1"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch" />
 
-            <GridSplitter
-                Grid.Row="0"
-                Grid.Column="1"
-                IsEnabled="False"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Background="{StaticResource ResourceKey=DarkGrey}"/>
-            
-            <dgserver:DataGridUsersServer
-                x:Name="UsersDataGrid"
-                Grid.Row="0"
-                Grid.Column="2"
-                DataContext="{Binding Users}"
-                HorizontalAlignment="Left"/>
+				<dgserver:DataGridUsersServer Grid.Column="2"
+											  x:Name="UcDataGridUsers"
+											  DataContext="{Binding Users}"/>
 
-        </Grid>
-        <!-- #endregion List -->
-        
+			</Grid>
+
+		</StackPanel>
     </Grid>
 </base:PageBase>

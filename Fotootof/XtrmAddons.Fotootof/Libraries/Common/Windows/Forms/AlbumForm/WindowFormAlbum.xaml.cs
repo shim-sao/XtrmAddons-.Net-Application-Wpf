@@ -102,7 +102,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             // Store data in new entity.
             OldForm = entity.Clone();
 
-            // Assign Parent Page & entity to the model.
+            // Assign entity to the model.
             IsSectionInAlbum.Entity = NewForm = entity;
 
             // Assign list of AclGroup to the model.

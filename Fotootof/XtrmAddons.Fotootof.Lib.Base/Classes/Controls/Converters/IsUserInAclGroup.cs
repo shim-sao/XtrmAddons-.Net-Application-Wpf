@@ -6,7 +6,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters
     /// <para>Class to check dependencies of the set entity.</para>
     /// <para>Perform try to find dependency of an User In AclGroup.</para>
     /// </summary>
-    public class IsUserInAclGroup : IsDependency<SectionEntity>
+    public class IsUserInAclGroup : IsDependency<AclGroupEntity>
     {
         /// <summary>
         /// Property to access to the name of Users dependencies primary keys.

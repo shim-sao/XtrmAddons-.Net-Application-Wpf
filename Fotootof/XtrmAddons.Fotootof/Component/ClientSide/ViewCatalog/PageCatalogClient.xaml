@@ -7,7 +7,7 @@
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:dg2="clr-namespace:XtrmAddons.Fotootof.Libraries.ClientSide.Controls.DataGrids"
     xmlns:lv="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Properties"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.UI.Control.Menu"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
@@ -18,96 +18,76 @@
     Title="{x:Static p:Resources.Sections}"
     Background="{StaticResource ResourceKey=LightGrey}">
 
-    <!-- #region : Main Grid -->
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="60" />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="1*" />
+		</Grid.RowDefinitions>
 
 
-        <!-- #region Main navigation -->
-        <ucmenu:UCMainNavigation
+		<!-- #region Main navigation -->
+		<ucmenu:UCMainNavigation
             Grid.Row="0"
             x:Name="UCMenuMainNavigation"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             DisplayMode="Client"/>
-        <!-- #endegion Main navigation -->
+		<!-- #endegion Main navigation -->
 
 
-        <!-- #region Breadcrumbs -->
-        <TextBlock
+		<!-- #region Breadcrumbs -->
+		<TextBlock
             x:Name="TextBlock_Breadcrumbs"
             Grid.Row="1"
             Margin="10,5"
             FontSize="{StaticResource ResourceKey=FontSizeNormal}" />
-        <!-- #endegion Breadcrumbs -->
+		<!-- #endegion Breadcrumbs -->
 
 
-        <!-- #region Content -->
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
-                <ColumnDefinition Width="3*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-            </Grid.RowDefinitions>
+		<!-- #region Content -->
+		<Grid Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1*" />
+				<ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
+				<ColumnDefinition Width="3*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="1*" />
+			</Grid.RowDefinitions>
 
+			<dg2:DataGridSectionsClient x:Name="UCDataGridSections"
+										Grid.Row="0"
+										Grid.Column="0"
+										DataContext="{Binding Sections}"
+										HorizontalAlignment="Left"/>
 
-            <!-- #region : List Sections
-            <dg:UCSectionsDataGrid
-                x:Name="UCSectionsDataGrid_Container"
-                Grid.Row="0"
-                Grid.Column="0"
-                DataContext="{Binding}"
-                HorizontalAlignment="Left"/> -->
-            
-            <dg2:DataGridSectionsClient
-                x:Name="UCDataGridSections"
-                Grid.Row="0"
-                Grid.Column="0"
-                DataContext="{Binding Sections}"
-                HorizontalAlignment="Left"/>
-            <!-- #endregion : List Sections -->
-
-
-
-            <!-- #region : Splitter -->
-            <GridSplitter
+			<GridSplitter
                 x:Name="GridSplitter_SplitterContent"
                 Grid.Row="0"
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch" />
-            <!-- #endregion : Splitter -->
 
+			<Grid x:Name="Grid_AlbumsCollectionContainer"
+				  Grid.Row="0"
+				  Grid.Column="2">
 
-
-            <!-- #region : List Album -->
-            <Grid
-                x:Name="Grid_AlbumsCollectionContainer"
-                Grid.Row="0"
-                Grid.Column="2">
-
-                <lv:UCAlbumsListView
+				<lv:UCAlbumsListView
                     x:Name="UCAlbumsListView_Container"
                     Grid.Row="0"
                     Grid.Column="0"
                     DataContext="{Binding}"
                     HorizontalAlignment="Stretch"/>
 
-            </Grid>
-            <!-- #endregion : List Album -->
-        </Grid>
-        <!-- #endregion : Content -->
+			</Grid>
+			
+		</Grid>
+		<!-- #endregion : Content -->
 
-    </Grid>
-    <!-- #endregion : Main Grid -->
+	</Grid>
+	
 </base:PageBase>

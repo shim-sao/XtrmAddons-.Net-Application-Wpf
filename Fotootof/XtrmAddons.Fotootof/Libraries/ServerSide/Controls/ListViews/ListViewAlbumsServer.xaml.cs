@@ -33,7 +33,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// Property to access to the items collection.
         /// </summary>
-        public override ListView ItemsCollection { get => AlbumssCollection; set => AlbumssCollection = value; }
+        public override ListView ItemsCollection
+        {
+            get => AlbumssCollection;
+            set => AlbumssCollection = value;
+        }
 
         /// <summary>
         /// 
@@ -103,7 +107,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        private void SelectAll_Click(object sender, RoutedEventArgs e)
+        private void OnSelectAll_Click(object sender, RoutedEventArgs e)
         {
             ItemsCollection.SelectAll();
         }
@@ -113,7 +117,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        private void UnselectAll_Click(object sender, RoutedEventArgs e)
+        private void OnUnselectAll_Click(object sender, RoutedEventArgs e)
         {
             ItemsCollection.UnselectAll();
         }
@@ -125,11 +129,27 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <param name="e">Selection changed event arguments.</param>
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
+            //Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
+
+            if(SelectedItems.Count > 0)
+            {
+                Button_Delete.IsEnabled = true;
+                Button_Edit.IsEnabled = true;
+            }
+            else
+            {
+                Button_Delete.IsEnabled = false;
+                Button_Edit.IsEnabled = false;
+            }
         }
 
+        #endregion
+
+
+        #region Methods Size Changed
+
         /// <summary>
-        /// Method called on page size changed event.
+        /// Method called on user control size changed event.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Size changed event arguments.</param>
@@ -138,11 +158,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             ArrangeBlockRoot();
             ArrangeBlockItems();
         }
-
-        #endregion
-
-
-        #region Methods Size Changed
 
         /// <summary>
         /// 

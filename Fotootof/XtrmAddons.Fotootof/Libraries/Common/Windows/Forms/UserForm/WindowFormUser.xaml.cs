@@ -1,10 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
-using XtrmAddons.Fotootof.Libraries.Common.Converters;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
@@ -87,10 +87,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
             OldForm = entity.Clone();
 
             // 5 - Assign entity to the model.
-            NewForm = entity;
-
             // 6 - Set model entity to dependencies converters.
-            CheckBoxUserInAclGroup.User = model.User;
+            IsAclGroupInUser.Entity = NewForm = entity;
 
             // 7.1 - Assign list of AclGroup to the model.
             model.AclGroups = new AclGroupEntityCollection(true);
@@ -179,7 +177,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         private void CheckBoxAclGroup_Checked(object sender, RoutedEventArgs e)
         {
             AclGroupEntity entity = (AclGroupEntity)((CheckBox)sender).Tag;
-            //CheckBox_Checked<AclGroupEntity>(sender, e);
             NewForm.LinkAclGroup(entity.PrimaryKey);
 
             ValidateForm();

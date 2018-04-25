@@ -27,46 +27,38 @@
 
                         <!-- #region Title -->
                         <Border x:Name="Title_Border">
-                            <TextBlock
-                                x:Name="Title_Text"
-                                Text="{x:Static p:Resources.Albums}"
-                                FontSize="{StaticResource FontSizeHeader}"
-                                Foreground="{StaticResource BigHeader}"
-                                FontWeight="SemiBold"
-                                Margin="5">
-                            </TextBlock>
-                        </Border>
+							<TextBlock x:Name="Title_Text"
+									   Text="{x:Static p:Resources.Albums}"
+									   FontSize="{StaticResource FontSizeHeader}"
+									   Foreground="{StaticResource Panton_3}"
+									   FontWeight="SemiBold"
+									   Margin="5"/>
+						</Border>
                         <!-- #endregion Title -->
                         
                         <!-- #region Counter -->
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
-                            <TextBlock
-                                x:Name="Counter_SelectedNumber"
-                                FontWeight="SemiBold"
-                                FontSize="{StaticResource FontSizeHeader}"
-                                Foreground="{StaticResource BigHeader}"
-                                Margin="5"
-                                Text="0">
-                            </TextBlock>
+							<TextBlock x:Name="Counter_SelectedNumber"
+									   FontWeight="SemiBold"
+									   FontSize="{StaticResource FontSizeHeader}"
+									   Foreground="{StaticResource Panton_3}"
+									   Margin="5"
+									   Text="{Binding SelectedItems.Count, ElementName=AlbumssCollection, IsAsync=True}"/>
 
-                            <TextBlock
-								x:Name="Counter_Spacer"
-								FontWeight="SemiBold"
-								FontSize="{StaticResource FontSizeHeader}"
-								Foreground="{StaticResource BigHeader}"
-								Margin="0,5"
-								Text="/">
-                            </TextBlock>
+							<TextBlock x:Name="Counter_Spacer"
+									   FontWeight="SemiBold"
+									   FontSize="{StaticResource FontSizeHeader}"
+									   Foreground="{StaticResource Panton_3}"
+									   Margin="0,5"
+									   Text="/"/>
 
-                            <TextBlock
-								x:Name="Counter_Total"
-								FontWeight="SemiBold"
-								FontSize="{StaticResource FontSizeHeader}"
-								Foreground="{StaticResource BigHeader}"
-								Margin="5"
-								Text="{Binding Path=Items.Count}">
-                            </TextBlock>
-                        </StackPanel>
+							<TextBlock x:Name="Counter_Total"
+									   FontWeight="SemiBold"
+									   FontSize="{StaticResource FontSizeHeader}"
+									   Foreground="{StaticResource Panton_3}"
+									   Margin="5"
+									   Text="{Binding Path=Items.Count}"/>
+						</StackPanel>
                         <!-- #endregion Counter -->
                     </Grid>
                 </Border>
@@ -74,6 +66,7 @@
 
 				<Grid x:Name="Block_Menu"
 					  Style="{StaticResource Grid_Fieldset_Menu}">
+					
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
 						<ColumnDefinition Width="1*" />
@@ -91,39 +84,26 @@
 							</Grid.ColumnDefinitions>
 
 							<Button x:Name="Button_Add"
-									Grid.Column="0"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.Add }"
-									Click="OnAdd_Click">
-							</Button>
+									Content="{StaticResource Icon24FolderPlus}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="OnAdd_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.AddNewAlbum}"/>
 
 							<Button x:Name="Button_Edit"
 									Grid.Column="1"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.Edit }"
-									Click="OnEdit_Click">
-							</Button>
+									Content="{StaticResource Icon24FolderEdit}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="OnEdit_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
+									IsEnabled="False"/>
 
 							<Button x:Name="Button_Delete"
 									Grid.Column="2"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.Delete}"
-									Click="OnDelete_Click">
-							</Button>
-
-							<Button x:Name="Button_SelectAll"
-									Grid.Column="3"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.SelectAll}"
-									Click="SelectAll_Click">
-							</Button>
-
-							<Button Grid.Column="4"
-									x:Name="Button_ClearSelection"
-									Style="{StaticResource Button_DefaultRounded}"
-									Content="{x:Static p:Resources.UnselectAll}"
-									Click="UnselectAll_Click">
-							</Button>
+									Content="{StaticResource Icon24FolderDelete}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="OnDelete_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
+									IsEnabled="False"/>
 						</Grid>
 					</Border>
 
@@ -134,18 +114,17 @@
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="1*" />
 								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
 							</Grid.ColumnDefinitions>
 
 							<ComboBox x:Name="FiltersQualitySelector"
 									  ItemsSource="{Binding FiltersQuality, Mode=OneWay, IsAsync=True}"
+									  Style="{StaticResource DefaultComboBox}"
 									  Focusable="False"
 									  IsEditable="True"
 									  IsReadOnly="True"
-									  Width="130"
-									  Height="25"
-									  Text="-- Select Quality ---"
-									  Margin="5,0"
-									  VerticalAlignment="Center">
+									  Text="-- Select Quality ---">
 
 								<ComboBox.ItemTemplate>
 									<DataTemplate>
@@ -155,18 +134,14 @@
 								</ComboBox.ItemTemplate>
 							</ComboBox>
 
-							<ComboBox x:Name="FiltersColorSelector"
-									  Grid.Column="1"
+							<ComboBox Grid.Column="1"
+									  x:Name="FiltersColorSelector"
 									  ItemsSource="{Binding FiltersColor, Mode=OneWay, IsAsync=True}"
-									  HorizontalAlignment="Right"
+									  Style="{StaticResource DefaultComboBox}"
 									  Focusable="False"
 									  IsEditable="True"
 									  IsReadOnly="True"
-									  Width="130"
-									  Height="25"
-									  Text="-- Select Color ---"
-									  Margin="5,0"
-									  VerticalAlignment="Center">
+									  Text="-- Select Color ---">
 
 								<ComboBox.ItemTemplate>
 									<DataTemplate>
@@ -175,6 +150,20 @@
 									</DataTemplate>
 								</ComboBox.ItemTemplate>
 							</ComboBox>
+
+							<Button Grid.Column="2"
+									x:Name="Button_SelectAll"
+									Content="{StaticResource Icon24FolderSelect}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="OnSelectAll_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.SelectAll}"/>
+
+							<Button Grid.Column="3"
+									x:Name="Button_ClearSelection"
+									Content="{StaticResource Icon24FolderUnselect}"
+									Style="{StaticResource Button_Icon24Default}"
+									PreviewMouseLeftButtonUp="OnUnselectAll_Click"
+									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"/>
 
 						</Grid>
 					</Border>
@@ -203,11 +192,13 @@
 							<MenuItem Header="{x:Static p:Resources.AddNewAlbum}"
 									  Click="OnAdd_Click" />
 
+							<Separator />
+
 							<MenuItem Header="{x:Static p:Resources.SelectAll}"
-									  Click="SelectAll_Click" />
+									  Click="OnSelectAll_Click" />
 
 							<MenuItem Header="{x:Static p:Resources.UnselectAll}"
-									  Click="UnselectAll_Click" />
+									  Click="OnUnselectAll_Click" />
 
 						</ContextMenu>
 					</ListView.ContextMenu>
@@ -245,11 +236,19 @@
 											<MenuItem Header="{x:Static p:Resources.AddNewAlbum }"
 													  Click="OnAdd_Click" />
 
-											<MenuItem Header="{x:Static p:Resources.Edit }"
+											<MenuItem Header="{x:Static p:Resources.Edit}"
 													  Click="OnEdit_Click" />
 
-											<MenuItem Header="{x:Static p:Resources.Delete }"
+											<MenuItem Header="{x:Static p:Resources.Delete}"
 													  Click="OnDelete_Click" />
+
+											<Separator />
+
+											<MenuItem Header="{x:Static p:Resources.SelectAll}"
+													  Click="OnSelectAll_Click" />
+
+											<MenuItem Header="{x:Static p:Resources.UnselectAll}"
+													  Click="OnUnselectAll_Click" />
 
 										</ContextMenu>
 									</Grid.ContextMenu>
