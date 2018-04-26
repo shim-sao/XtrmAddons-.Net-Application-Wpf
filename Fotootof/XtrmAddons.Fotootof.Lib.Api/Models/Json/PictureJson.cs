@@ -46,22 +46,27 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
         public DateTime Captured { get; set; }
 
         /// <summary>
-        /// Variable the picture path.
+        /// Variable the entity path.
         /// </summary>
         public string PicturePath { get; set; }
 
         /// <summary>
-        /// Variable the picture width.
+        /// Variable the entity width.
         /// </summary>
         public int PictureWidth { get; set; }
 
         /// <summary>
-        /// Variable the picture height.
+        /// Variable the entity height.
         /// </summary>
         public int PictureHeight { get; set; }
 
         /// <summary>
-        /// Variable the thumbnail picture path.
+        /// Variable the picture length.
+        /// </summary>
+        public long PictureLength { get; set; }
+
+        /// <summary>
+        /// Variable the thumbnail entity path.
         /// </summary>
         public string ThumbnailPath { get; set; }
 
@@ -75,12 +80,17 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
         /// </summary>
         public int ThumbnailHeight { get; set; }
 
+        /// <summary>
+        /// Variable the thumbnail length.
+        /// </summary>
+        public long ThumbnailLength { get; set; }
+
         #endregion
 
 
 
         #region Constructor
-        
+
         /// <summary>
         /// Class XtrmAddons Fotootof Lib Api Models Json Picture Constructor.
         /// </summary>
@@ -89,25 +99,27 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
         /// <summary>
         /// Class XtrmAddons Fotootof Lib Api Models Json Picture Constructor.
         /// </summary>
-        /// <param name="picture">A picture entity.</param>
-        public PictureJson(PictureEntity picture) : this()
+        /// <param name="entity">A entity entity.</param>
+        public PictureJson(PictureEntity entity) : this()
         {
-            PictureId = picture.PictureId;
-            Name = picture.Name;
+            PictureId = entity.PictureId;
+            Name = entity.Name;
 
-            Ordering = picture.Ordering;
+            Ordering = entity.Ordering;
 
-            Created = picture.Created;
-            Modified = picture.Modified;
-            Captured = picture.Captured;
+            Created = entity.Created;
+            Modified = entity.Modified;
+            Captured = entity.Captured;
 
-            PicturePath = picture.PicturePath;
-            PictureWidth = picture.PictureWidth;
-            PictureHeight = picture.PictureHeight;
+            PicturePath = entity.PicturePath;
+            PictureWidth = entity.PictureWidth;
+            PictureHeight = entity.PictureHeight;
+            PictureLength = entity.PictureLength;
 
-            ThumbnailPath = picture.ThumbnailPath;
-            ThumbnailWidth = picture.ThumbnailWidth;
-            ThumbnailHeight = picture.ThumbnailHeight;
+            ThumbnailPath = entity.ThumbnailPath;
+            ThumbnailWidth = entity.ThumbnailWidth;
+            ThumbnailHeight = entity.ThumbnailHeight;
+            ThumbnailLength = entity.ThumbnailLength;
         }
 
         #endregion

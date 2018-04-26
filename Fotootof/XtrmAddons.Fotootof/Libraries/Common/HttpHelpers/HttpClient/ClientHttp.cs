@@ -142,8 +142,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
                     WebClient = new HttpWebClientApplication(
                         Server.Host,
                         Server.Port,
-                        Server.UserName,
-                        Server.Password
+                        Server.Email,
+                        Server.Password,
+                        Server.UserName
                     );
                 }
             }

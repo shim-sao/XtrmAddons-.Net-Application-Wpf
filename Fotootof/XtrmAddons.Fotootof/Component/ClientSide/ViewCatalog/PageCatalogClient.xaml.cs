@@ -68,6 +68,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
 
             svr.OnListSectionsSuccess += Svr_OnListSectionsSuccess;
             svr.OnListSectionsFailed += Svr_OnListSectionsFailed;
+            svr.Authentication();
             svr.ListSections();
 
             DataContext = Model;

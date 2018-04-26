@@ -82,6 +82,11 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
         public int PictureHeight { get; set; }
 
         /// <summary>
+        /// Variable the picture length.
+        /// </summary>
+        //public long PictureLength { get; set; }
+
+        /// <summary>
         /// Variable the thumbnail picture path.
         /// </summary>
         public string ThumbnailPath { get; set; }
@@ -95,6 +100,11 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
         /// Variable the thumbnail height.
         /// </summary>
         public int ThumbnailHeight { get; set; }
+
+        /// <summary>
+        /// Variable the thumbnail length.
+        /// </summary>
+        //public int ThumbnailLength { get; set; }
 
         /// <summary>
         /// Variable the comment.
@@ -159,12 +169,16 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
             DateEnd = entity.DateEnd;
             Created = entity.Created;
             Modified = entity.Modified;
+
             PicturePath = entity.PicturePath;
             PictureWidth = entity.PictureWidth;
             PictureHeight = entity.PictureHeight;
+            //PictureLength = entity.PictureLength;
+
             ThumbnailPath = entity.ThumbnailPath;
             ThumbnailWidth = entity.ThumbnailWidth;
             ThumbnailHeight = entity.ThumbnailHeight;
+            //ThumbnailHeight = entity.ThumbnailLength;
 
             if (auth)
             {
@@ -188,9 +202,11 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
             entity.DateEnd = DateEnd;
             entity.Created = Created;
             Modified = entity.Modified;
+
             entity.PicturePath = PicturePath;
             entity.PictureWidth = PictureWidth;
             entity.PictureHeight = PictureHeight;
+
             entity.ThumbnailPath = ThumbnailPath;
             entity.ThumbnailWidth = ThumbnailWidth;
             entity.ThumbnailHeight = ThumbnailHeight;
