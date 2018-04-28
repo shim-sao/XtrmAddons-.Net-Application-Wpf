@@ -59,7 +59,7 @@
 				<RowDefinition Height="1*" />
 			</Grid.RowDefinitions>
 
-			<dg2:DataGridSectionsClient x:Name="UCDataGridSections"
+			<dg2:DataGridSectionsClient x:Name="UcDataGridSections"
 										Grid.Row="0"
 										Grid.Column="0"
 										DataContext="{Binding Sections}"

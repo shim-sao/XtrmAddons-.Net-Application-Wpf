@@ -147,6 +147,63 @@
   <data name="SavingApplicationWaiting" xml:space="preserve">
     <value>Sauvegarde des options et paramètres de l'application avant de quitter. Patientez, s'il vous plaît...</value>
   </data>
+  <data name="SendingAlbumsCommand" xml:space="preserve">
+    <value>Envoi de la commande ListAlbums au serveur {0}:{1}</value>
+  </data>
+  <data name="SendingAlbumsCommandDone" xml:space="preserve">
+    <value>Envoi de la commande ListAlbums au serveur fin !</value>
+  </data>
+  <data name="SendingAuthenticationCommand" xml:space="preserve">
+    <value>Envoi de la commande Authentication au serveur {0}:{1}</value>
+  </data>
+  <data name="SendingAuthenticationCommandDone" xml:space="preserve">
+    <value>Envoi de la commande Authentication au serveur fin !</value>
+  </data>
+  <data name="SendingAuthenticationCommandException" xml:space="preserve">
+    <value>Envoi de la commande Authentication : échec exception !</value>
+  </data>
+  <data name="SendingAuthenticationCommandResponseFailed" xml:space="preserve">
+    <value>Envoi de la commande Authentication : échec depuis le serveur !</value>
+  </data>
+  <data name="SendingAuthenticationCommandResponseOk" xml:space="preserve">
+    <value>Envoi de la commande Authentication : succès !</value>
+  </data>
+  <data name="SendingAuthenticationCommandUnauthorized" xml:space="preserve">
+    <value>Envoi de la commande Authentication : utilisateur non authentifié !</value>
+  </data>
+  <data name="SendingListSectionsCommand" xml:space="preserve">
+    <value>Envoi de la commande ListSections au serveur {0}:{1}</value>
+  </data>
+  <data name="SendingListSectionsCommandDone" xml:space="preserve">
+    <value>Envoi de la commande ListSections au serveur fin !</value>
+  </data>
+  <data name="SendingListSectionsCommandException" xml:space="preserve">
+    <value>Envoi de la commande ListSections : failed exception !</value>
+  </data>
+  <data name="SendingListSectionsCommandResponseFailed" xml:space="preserve">
+    <value>Envoi de la commande ListSections : failed from server !</value>
+  </data>
+  <data name="SendingListSectionsCommandResponseOk" xml:space="preserve">
+    <value>Envoi de la commande ListSections : success !</value>
+  </data>
+  <data name="SendingListSectionsCommandUnauthorized" xml:space="preserve">
+    <value>Envoi de la commande ListSections : user unauthorized !</value>
+  </data>
+  <data name="SendingPingCommand" xml:space="preserve">
+    <value>Envoi de la commande Ping au serveur {0}:{1}</value>
+  </data>
+  <data name="SendingPingCommandDone" xml:space="preserve">
+    <value>Envoi de la commande Ping au serveur fin !</value>
+  </data>
+  <data name="SendingPingCommandException" xml:space="preserve">
+    <value>Envoi de la commande Ping : échec exception !</value>
+  </data>
+  <data name="SendingPingCommandResponseFailed" xml:space="preserve">
+    <value>Envoi de la commande Ping : échec depuis le serveur !</value>
+  </data>
+  <data name="SendingPingCommandResponseOk" xml:space="preserve">
+    <value>Envoi de la commande Ping : succès !</value>
+  </data>
   <data name="ServerStarted" xml:space="preserve">
     <value>Serveur processus démarré.</value>
   </data>

@@ -56,7 +56,8 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -240,6 +241,9 @@
       <DependentUpon>PageCatalog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\ServerSide\ViewCatalog\PageCatalogModel.cs" />
+    <Compile Include="Component\ServerSide\ViewLogs\PageLogs.xaml.cs">
+      <DependentUpon>PageLogs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Component\ServerSide\ViewServer\PageServer.xaml.cs">
       <DependentUpon>PageServer.xaml</DependentUpon>
     </Compile>
@@ -416,6 +420,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Component\ServerSide\ViewLogs\PageLogs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Component\ServerSide\ViewServer\PageServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -545,19 +553,12 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Component\Logs\Pages\PageLogs.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UI\Control\Menu\UCMainNavigation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Component\Logs\Pages\PageLogs.xaml.cs">
-      <DependentUpon>PageLogs.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -792,7 +793,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Component\ServerSide\ViewLogs\" />
     <Folder Include="Libraries\Common\Converters\" />
     <Folder Include="Libraries\Common\Windows\About\" />
   </ItemGroup>

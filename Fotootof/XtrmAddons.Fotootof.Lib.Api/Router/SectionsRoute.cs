@@ -57,21 +57,23 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
                             }
                         );
 
-                    /*
-                    foreach (Section sectionEntity in entity.Sections)
+                    
+                    foreach (SectionEntity sectionEntity in entity.Sections)
                     {
-                        l.Add(
-                            Database.Section_SingleOrNull
-                            (
-                                new SectionOptionsSelect
-                                {
-                                    PrimaryKey = section.PrimaryKey,
-                                    Dependencies = new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All }
-                                }
-                            )
-                        );
+                        if(!l.Exists(x => x.PrimaryKey == sectionEntity.PrimaryKey))
+                        {
+                            l.Add(
+                                Database.Sections.SingleOrNull
+                                (
+                                    new SectionOptionsSelect
+                                    {
+                                        PrimaryKey = sectionEntity.PrimaryKey,
+                                        Dependencies = new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All }
+                                    }
+                                )
+                            );
+                        }
                     }
-                    */
                 }
 
                 // Get list of folders associated to user.

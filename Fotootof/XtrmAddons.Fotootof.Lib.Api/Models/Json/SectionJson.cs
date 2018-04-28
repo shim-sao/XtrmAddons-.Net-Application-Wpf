@@ -187,12 +187,15 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
             section.Description = Description;
             section.Ordering = Ordering;
             section.IsDefault = IsDefault;
+
             section.PicturePath = PicturePath;
             section.PictureWidth = PictureWidth;
             section.PictureHeight = PictureHeight;
+
             section.ThumbnailPath = ThumbnailPath;
             section.ThumbnailWidth = ThumbnailWidth;
             section.ThumbnailHeight = ThumbnailHeight;
+
             section.Comment = Comment;
 
             if(Albums.Count > 0)

@@ -2,10 +2,10 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace XtrmAddons.Fotootof.Component.Logs.Pages
+namespace XtrmAddons.Fotootof.Component.ServerSide.ViewLogs
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Component Logs Page.
+    /// Class XtrmAddons Fotootof Component Views Logs Page.
     /// </summary>
     public partial class PageLogs : Page
     {
@@ -38,15 +38,11 @@ namespace XtrmAddons.Fotootof.Component.Logs.Pages
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Component Logs Page Constructor.
+        /// Class XtrmAddons Fotootof Component Views Logs Page Constructor.
         /// </summary>
         public PageLogs()
         {
-            // Initialize page component.
             InitializeComponent();
-
-            // Method called for size adjustement.
-            SizeChanged += Window_SizeChanged;
         }
 
         #endregion
@@ -59,7 +55,7 @@ namespace XtrmAddons.Fotootof.Component.Logs.Pages
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Size changed event arguments.</param>
-        public void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        public void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Width = AppWindow.ActualWidth - MargingWidth;
         }

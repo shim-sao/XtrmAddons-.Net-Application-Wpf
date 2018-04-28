@@ -151,6 +151,177 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending ListAlbums command to server {0}:{1}.
+        /// </summary>
+        public static string SendingAlbumsCommand {
+            get {
+                return ResourceManager.GetString("SendingAlbumsCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending ListAlbums command to server done !.
+        /// </summary>
+        public static string SendingAlbumsCommandDone {
+            get {
+                return ResourceManager.GetString("SendingAlbumsCommandDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending Authentication command to server {0}:{1}.
+        /// </summary>
+        public static string SendingAuthenticationCommand {
+            get {
+                return ResourceManager.GetString("SendingAuthenticationCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending Authentication command to server done !.
+        /// </summary>
+        public static string SendingAuthenticationCommandDone {
+            get {
+                return ResourceManager.GetString("SendingAuthenticationCommandDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending Authentication command : failed exception !.
+        /// </summary>
+        public static string SendingAuthenticationCommandException {
+            get {
+                return ResourceManager.GetString("SendingAuthenticationCommandException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending Authentication command : failed from server !.
+        /// </summary>
+        public static string SendingAuthenticationCommandResponseFailed {
+            get {
+                return ResourceManager.GetString("SendingAuthenticationCommandResponseFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending Authentication command : success !.
+        /// </summary>
+        public static string SendingAuthenticationCommandResponseOk {
+            get {
+                return ResourceManager.GetString("SendingAuthenticationCommandResponseOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending Authentication command : user unauthorized !.
+        /// </summary>
+        public static string SendingAuthenticationCommandUnauthorized {
+            get {
+                return ResourceManager.GetString("SendingAuthenticationCommandUnauthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending ListSections command to server {0}:{1}.
+        /// </summary>
+        public static string SendingListSectionsCommand {
+            get {
+                return ResourceManager.GetString("SendingListSectionsCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending ListSections command to server done !.
+        /// </summary>
+        public static string SendingListSectionsCommandDone {
+            get {
+                return ResourceManager.GetString("SendingListSectionsCommandDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending ListSections command : failed exception !.
+        /// </summary>
+        public static string SendingListSectionsCommandException {
+            get {
+                return ResourceManager.GetString("SendingListSectionsCommandException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending ListSections command : failed from server !.
+        /// </summary>
+        public static string SendingListSectionsCommandResponseFailed {
+            get {
+                return ResourceManager.GetString("SendingListSectionsCommandResponseFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending ListSections command : success !.
+        /// </summary>
+        public static string SendingListSectionsCommandResponseOk {
+            get {
+                return ResourceManager.GetString("SendingListSectionsCommandResponseOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending ListSections command : user unauthorized !.
+        /// </summary>
+        public static string SendingListSectionsCommandUnauthorized {
+            get {
+                return ResourceManager.GetString("SendingListSectionsCommandUnauthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending Ping command to server {0}:{1}.
+        /// </summary>
+        public static string SendingPingCommand {
+            get {
+                return ResourceManager.GetString("SendingPingCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending Ping command to server done !.
+        /// </summary>
+        public static string SendingPingCommandDone {
+            get {
+                return ResourceManager.GetString("SendingPingCommandDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending Ping command : failed exception !.
+        /// </summary>
+        public static string SendingPingCommandException {
+            get {
+                return ResourceManager.GetString("SendingPingCommandException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending Ping command : failed from server !.
+        /// </summary>
+        public static string SendingPingCommandResponseFailed {
+            get {
+                return ResourceManager.GetString("SendingPingCommandResponseFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending Ping command : success !.
+        /// </summary>
+        public static string SendingPingCommandResponseOk {
+            get {
+                return ResourceManager.GetString("SendingPingCommandResponseOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Server started..
         /// </summary>
         public static string ServerStarted {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using XtrmAddons.Fotootof.Lib.Api.Models.Json;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
@@ -33,6 +34,25 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// </summary>
         /// <param name="list">A list of Section to paste in.</param>
         public SectionEntityCollection(List<SectionEntity> list) : base(list) { }
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Server Component Section Collections.
+        /// </summary>
+        /// <param name="list">A list of Section to paste in.</param>
+        public SectionEntityCollection(List<SectionJson> list) : base()
+        {
+            List<SectionEntity> entities = new List<SectionEntity>();
+            
+            if(list == null)
+            {
+                throw new ArgumentNullException(nameof(list));
+            }
+
+            foreach(SectionJson sj in list)
+            {
+                Add(sj.ToEntity());
+            }
+        }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Section Collections.

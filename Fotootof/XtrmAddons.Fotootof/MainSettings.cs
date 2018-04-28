@@ -97,9 +97,9 @@ namespace XtrmAddons.Fotootof
                 database = new Database
                 {
                     Key = "default",
-                    Name = "default.s3db",
+                    Name = "default.db3",
                     Type = DatabaseType.SQLite,
-                    Source = Path.Combine(ApplicationBase.DataDirectory, "default.s3db"),
+                    Source = Path.Combine(ApplicationBase.DataDirectory, "default.db3"),
                     Default = true,
                     Comment = "Default SQLite installed database."
 

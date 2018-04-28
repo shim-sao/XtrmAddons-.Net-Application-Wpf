@@ -1,15 +1,14 @@
-﻿using System;
+﻿using log4net;
+using log4net.Appender;
+using log4net.Repository.Hierarchy;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Markup;
-using XtrmAddons.Fotootof.Component.Logs.Pages;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser;
+using XtrmAddons.Fotootof.Component.ServerSide.ViewLogs;
 using XtrmAddons.Fotootof.Culture;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
@@ -102,6 +101,23 @@ namespace XtrmAddons.Fotootof
 
             // Initialize window content.
             InitializeContentAsync();
+            
+            /*
+            var hierarchy = (Hierarchy)log4net.LogManager.GetRepository();
+            var memoryAppender = (MemoryAppender)hierarchy.Root.GetAppender("Memory");
+            var events = memoryAppender.GetEvents();
+            string result = "";
+            using (var writer = new System.IO.StringWriter())
+            {
+                foreach (var ev in events)
+                {
+                    memoryAppender.Layout.Format(writer, ev);
+                }
+                result = writer.ToString();
+            }
+
+            var a = events;
+            */
         }
 
         /// <summary>
@@ -123,7 +139,7 @@ namespace XtrmAddons.Fotootof
             AppMainMenu.InitializeMenuItemsServer();
 
             // Adjust frame logs content on resize. 
-            SizeChanged += pageLogs.Window_SizeChanged;
+            SizeChanged += pageLogs.Page_SizeChanged;
 
             AppOverwork.IsBusy = false;
         }
