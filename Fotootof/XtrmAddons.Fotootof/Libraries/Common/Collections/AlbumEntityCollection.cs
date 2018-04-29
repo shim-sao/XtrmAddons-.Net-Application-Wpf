@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Collections
 {
@@ -18,6 +16,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
     {
         #region Properties
 
+        /// <summary>
+        /// Property to set or check if auto load is enabled.
+        /// </summary>
         public override bool IsAutoloadEnabled => true;
 
         #endregion

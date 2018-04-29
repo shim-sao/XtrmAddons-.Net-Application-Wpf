@@ -54,10 +54,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
 
         /// <summary>
         /// Method to load a page.
-        /// <paramref name="key"/>The key of the page to load.</param>
-        /// <paramref name="page"/>The page to load.</param>
-        /// <paramref name="clear"/>The page to navigate.</param>
         /// </summary>
+        /// <param name="key">The key of the page to load.</param>
+        /// <param name="page">The page to load.</param>
+        /// <param name="clear">The page to navigate.</param>
         public static void LoadPage(string key, Page page, bool clear = true)
         {
             // Clear pages cache if required.
@@ -82,7 +82,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
 
         /// <summary>
         /// Method to navigate to a page.
-        /// <paramref name="page"/>The page to navigate.</param>
+        /// <param name="page">The page to navigate.</param>
         /// </summary>
         public static void Navigate(Page page)
         {

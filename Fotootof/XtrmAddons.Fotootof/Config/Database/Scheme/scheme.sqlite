@@ -8,16 +8,16 @@ CREATE TABLE IF NOT EXISTS [AclActions] (
 	[Parameters] TEXT DEFAULT '' NOT NULL
 );
 
-REPLACE INTO [AclActions] (AclActionId, Action, Parameters) VALUES (1, 'section.add', '');
-REPLACE INTO [AclActions] (AclActionId, Action, Parameters) VALUES (2, 'section.edit', '');
-REPLACE INTO [AclActions] (AclActionId, Action, Parameters) VALUES (3, 'section.delete', '');
-REPLACE INTO [AclActions] (AclActionId, Action, Parameters) VALUES (4, 'section.view', '');
-
-
-REPLACE INTO [AclActions] (AclActionId, Action, Parameters) VALUES (5, 'album.add', '');
-REPLACE INTO [AclActions] (AclActionId, Action, Parameters) VALUES (6, 'album.edit', '');
-REPLACE INTO [AclActions] (AclActionId, Action, Parameters) VALUES (7, 'album.delete', '');
-REPLACE INTO [AclActions] (AclActionId, Action, Parameters) VALUES (8, 'album.view', '');
+REPLACE INTO [AclActions] (AclActionId, Action, Parameters)
+VALUES
+(1, 'section.add', ''),
+(2, 'section.edit', ''),
+(3, 'section.delete', ''),
+(4, 'section.view', ''),
+(5, 'album.add', ''),
+(6, 'album.edit', ''),
+(7, 'album.delete', ''),
+(8, 'album.view', '');
 
 
 /** ********************************************************************
@@ -37,8 +37,10 @@ CREATE TABLE IF NOT EXISTS [AclGroups] (
 	[Comment] TEXT DEFAULT '' NOT NULL
 );
 
-REPLACE INTO [AclGroups] (AclGroupId, Name, Alias, ParentId, IsDefault, Ordering, Comment) VALUES (1, 'Administrateur', 'administrateur', 0, 0, 0, 'Groupe authorisés à gérer l''administration du serveur.');
-REPLACE INTO [AclGroups] (AclGroupId, Name, Alias, ParentId, IsDefault, Ordering, Comment) VALUES (2, 'Visiteurs', 'visiteurs', 0, 1, 0, 'Groupe authorisé à visiter la librairie d''images.');
+REPLACE INTO [AclGroups] (AclGroupId, Name, Alias, ParentId, IsDefault, Ordering, Comment)
+VALUES
+(1, 'Administrateur', 'administrateur', 0, 0, 0, 'Groupe authorisés à gérer l''administration du serveur.'),
+(2, 'Visiteurs', 'visiteurs', 0, 1, 0, 'Groupe authorisé à visiter la librairie d''images.');
 
 CREATE TABLE IF NOT EXISTS [AclGroupsInAclActions] (
 	[AclGroupId] INTEGER,
@@ -101,14 +103,18 @@ CREATE TABLE IF NOT EXISTS [Infos] (
 	[Ordering] INTEGER DEFAULT '0' NOT NULL
 );
 
-REPLACE INTO [Infos] (InfoId, InfoTypeId, Name, Alias, Description, IsDefault, Ordering) VALUES (1, 1, 'High Quality', 'high-quality', 'Defines High Quality pictures.', 1, 0);
-REPLACE INTO [Infos] (InfoId, InfoTypeId, Name, Alias, Description, IsDefault, Ordering) VALUES (2, 1, 'Medium Quality', 'medium-quality', 'Defines Medium Quality pictures.', 0, 1);
-REPLACE INTO [Infos] (InfoId, InfoTypeId, Name, Alias, Description, IsDefault, Ordering) VALUES (3, 1, 'Low Quality', 'low-quality', 'Defines Low Quality pictures.', 0, 2);
-REPLACE INTO [Infos] (InfoId, InfoTypeId, Name, Alias, Description, IsDefault, Ordering) VALUES (4, 1, 'Various', 'various-quality', 'Defines High Quality pictures.', 0, 3);
+REPLACE INTO [Infos] (InfoId, InfoTypeId, Name, Alias, Description, IsDefault, Ordering)
+VALUES
+(1, 1, 'High Quality', 'high-quality', 'Defines High Quality pictures.', 1, 0),
+(2, 1, 'Medium Quality', 'medium-quality', 'Defines Medium Quality pictures.', 0, 1),
+(3, 1, 'Low Quality', 'low-quality', 'Defines Low Quality pictures.', 0, 2),
+(4, 1, 'Various', 'various-quality', 'Defines High Quality pictures.', 0, 3);
 
-REPLACE INTO [Infos] (InfoId, InfoTypeId, Name, Alias, Description, IsDefault, Ordering) VALUES (5, 2, 'True Color', 'true-color', 'Defines true color pictures.', 0, 0);
-REPLACE INTO [Infos] (InfoId, InfoTypeId, Name, Alias, Description, IsDefault, Ordering) VALUES (6, 2, 'Black & White', 'black-white', 'Defines true color pictures.', 0, 1);
-REPLACE INTO [Infos] (InfoId, InfoTypeId, Name, Alias, Description, IsDefault, Ordering) VALUES (7, 2, 'Various', 'various-color', 'Defines various color pictures.', 0, 2);
+REPLACE INTO [Infos] (InfoId, InfoTypeId, Name, Alias, Description, IsDefault, Ordering)
+VALUES
+(5, 2, 'True Color', 'true-color', 'Defines true color pictures.', 0, 0),
+(6, 2, 'Black & White', 'black-white', 'Defines true color pictures.', 0, 1),
+(7, 2, 'Various', 'various-color', 'Defines various color pictures.', 0, 2);
 
 CREATE TABLE IF NOT EXISTS [InfosTypes] (
 	[InfoTypeId] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,

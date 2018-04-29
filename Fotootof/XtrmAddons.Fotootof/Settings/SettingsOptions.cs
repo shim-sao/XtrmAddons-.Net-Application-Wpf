@@ -1,6 +1,17 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Data.SQLite;
+using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
+using System.Windows;
+using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.HttpServer;
+using XtrmAddons.Fotootof.Lib.SQLite;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
+using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer;
+using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlData;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Network;
@@ -12,10 +23,21 @@ namespace XtrmAddons.Fotootof.Settings
     /// </summary>
     public static class SettingsOptions
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
         /// <summary>
         /// Method to initialize server application.
         /// </summary>
-        public static async Task<Server> InitializeServerAsync()
+        public static async Task<Server> GetDefaultServerOptions()
         {            
             return await Task.Run(() =>
             {
@@ -54,6 +76,135 @@ namespace XtrmAddons.Fotootof.Settings
 
                 return server;
             });
+        }
+
+        /// <summary>
+        /// Method to initialize application database.
+        /// </summary>
+        public static async Task<SQLiteSvc> InitializeDatabase()
+        {
+            return await Task.Run(() =>
+            {
+                // Get the default database in preferences if exists.
+                log.Info("Initializing database connection. Please wait...");
+
+                Database database = ApplicationBase.Options.Data.Databases.FindDefault();
+
+                // Create default database parameters if not exists.
+                if (database == null || database.Key == null)
+                {
+                    database = new Database
+                    {
+                        Key = "default",
+                        Name = "default.db3",
+                        Type = DatabaseType.SQLite,
+                        Source = Path.Combine(ApplicationBase.DataDirectory, "default.db3"),
+                        Default = true,
+                        Comment = "Default SQLite installed database."
+
+                    };
+
+                    ApplicationBase.Options.Data.Databases.Add(database);
+                }
+
+                // Try to connect to the database.
+                try
+                {
+                    // Check if default database exists.
+                    if (File.Exists(database.Source))
+                    {
+                        using (SQLiteConnection db = SQLiteManager.Instance(database.Source).Db)
+                        {
+                            log.Info("Database connection ready.");
+                        }
+                    }
+
+                    // Create new database from scheme.
+                    else
+                    {
+                        using (
+                            SQLiteConnection db =
+                                SQLiteManager.Instance(
+                                    database: database.Source,
+                                    createFile: true,
+                                    scheme: Path.Combine(ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath, "scheme.sqlite")
+                                ).Db
+                        )
+                        {
+                            log.Info("New database connection ready.");
+                        }
+                    }
+
+                    // Add connection to SQLite Service.
+                    SQLiteSvc.Db = new DatabaseCore(database.Source);
+
+                    // Add SQLite Service to the main window | application session for depencies..
+                    MainWindow.Database = new SQLiteSvc();
+                }
+
+                // Catch connection to the database exceptions.
+                catch (Exception e)
+                {
+                    log.Fatal("Connecting to the database failed !", e);
+                    MessageBox.Show("Connecting to the database failed !", Translation.DWords.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                // End of database initilization.
+                log.Info("Initializing database connection. Done !");
+
+                return MainWindow.Database;
+            });
+        }
+
+        /// <summary>
+        /// Method to initialize server application.
+        /// </summary>
+        public static async void AutostartServerAsync()
+        {
+            // Get default server in preferences.
+            log.Info("Initializing HTTP server connection. Please wait...");
+            Server server = null;
+
+            // Try to start server.
+            try
+            {
+                AddServerMap();
+
+                server = await SettingsOptions.GetDefaultServerOptions();
+                HttpServerBase.AddNetworkAcl();
+                HttpServerBase.Start();
+
+                // Start the http server.
+                // HttpWebServerApplication.Start(server.Host, server.Port);
+
+                log.Info("Initializing server connection. Done !");
+                log.Info("Server started : [" + server.Host + ":" + server.Port + "]");
+            }
+
+            // Catch server start exception.
+            catch (Exception e)
+            {
+                //log.Fatal("Server initialization failed : [" + server?.Host + ":" + server?.Port + "]", e, true);
+                MessageBox.Show("Starting server : [" + server?.Host + ":" + server?.Port + "] failed !", Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            //AppLogger.InfoAndClose("Initializing HTTP server connection. Done.");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private static void AddServerMap()
+        {
+            log.Info("Adding API mapping to server.");
+
+            // Add API mapping to server.
+            HttpMapping.Load(
+                Path.Combine(
+                    ApplicationBase.Storage.Directories.FindKey("config.server").AbsolutePath,
+                    "server-mapping.xml"
+                )
+            );
         }
     }
 }

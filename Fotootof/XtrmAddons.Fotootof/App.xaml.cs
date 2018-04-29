@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
+using System.Windows;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Settings;
 using XtrmAddons.Net.Application;
@@ -75,6 +76,25 @@ namespace XtrmAddons.Fotootof
             ApplicationBase.Debug();
             InitializePreferencesAsync();
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+
+            // Application is running
+            // Process command line args
+            bool startMinimized = false;
+            for (int i = 0; i != e.Args.Length; ++i)
+            {
+                if (e.Args[i] == "/StartMinimized")
+                {
+                    startMinimized = true;
+                }
+            }
+
+            // Create main application window, starting minimized if specified
+            MainWindow mainWindow = new MainWindow();
+            if (startMinimized)
+            {
+                mainWindow.WindowState = WindowState.Minimized;
+            }
+            mainWindow.Show();
         }
 
         /// <summary>
@@ -125,6 +145,8 @@ namespace XtrmAddons.Fotootof
             // Copy program files to My Documents user folder.
             Trace.WriteLine((string)Translation.DLogs.CopyingProgramFiles);
             await ApplicationBase.CopyConfigFiles(true);
+
+            await SettingsOptions.InitializeDatabase();
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }

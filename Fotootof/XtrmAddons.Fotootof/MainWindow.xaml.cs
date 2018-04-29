@@ -93,15 +93,21 @@ namespace XtrmAddons.Fotootof
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Add application to system tray.
             NotifyIconManager.AddToTray();
-            log.Info(Translation.Logs["AddingApplicationToSystemTrayDone"]);
+            log.Info(Translation.DLogs.AddingApplicationToSystemTrayDone);
+
+
+            AppOverwork.IsBusy = true;
+            await Task.Delay(10);
 
             // Initialize window content.
-            InitializeContentAsync();
-            
+            await InitializeContentAsync();
+
+            AppOverwork.IsBusy = false;
+
             /*
             var hierarchy = (Hierarchy)log4net.LogManager.GetRepository();
             var memoryAppender = (MemoryAppender)hierarchy.Root.GetAppender("Memory");
@@ -123,9 +129,8 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Method to initialize application content.
         /// </summary>
-        private async void InitializeContentAsync()
+        private async Task InitializeContentAsync()
         {
-            AppOverwork.IsBusy = true;
             await Task.Delay(10);
 
             // Initialize application settings.
@@ -140,8 +145,6 @@ namespace XtrmAddons.Fotootof
 
             // Adjust frame logs content on resize. 
             SizeChanged += pageLogs.Page_SizeChanged;
-
-            AppOverwork.IsBusy = false;
         }
 
         /// <summary>

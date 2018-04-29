@@ -222,7 +222,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
 
         /// <summary>
         /// Method called on items collection selection changed click event.
-        /// </summary
+        /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Selection changed event arguments.</param>
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)

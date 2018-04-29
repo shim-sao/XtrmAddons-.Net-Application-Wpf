@@ -1,7 +1,5 @@
 @echo off
 
-echo turlututu : $(ProjectDir)
-
 :: IMPORTANT : Replace here the path of the root directory of the project.
 set SourceDirName=G:\projects-visualstudio-git\XtrmAddons-.Net-Application-Wpf\Fotootof\XtrmAddons.Fotootof
 :: set SourceDirName=%cd%

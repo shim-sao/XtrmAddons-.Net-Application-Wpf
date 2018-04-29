@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Data.SQLite;
 using System.IO;
 using System.Windows;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.HttpServer;
-using XtrmAddons.Fotootof.Lib.SQLite;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
 using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Fotootof.Settings;
-using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlData;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
 
 namespace XtrmAddons.Fotootof
@@ -37,7 +32,7 @@ namespace XtrmAddons.Fotootof
         public static void Initialize()
         {
 
-            InitializeDatabase();
+            //InitializeDatabase();
             InitializeServerAsync();
         }
 
@@ -61,7 +56,7 @@ namespace XtrmAddons.Fotootof
                     )
                 );
 
-                server = await SettingsOptions.InitializeServerAsync();
+                server = await SettingsOptions.GetDefaultServerOptions();
                 HttpServerBase.AddNetworkAcl();
                 HttpServerBase.Start();
 
@@ -80,80 +75,6 @@ namespace XtrmAddons.Fotootof
             }
 
             AppLogger.InfoAndClose("Initializing HTTP server connection. Done.");
-        }
-
-        /// <summary>
-        /// Method to initialize application database.
-        /// </summary>
-        public static void InitializeDatabase()
-        {
-            // Get the default database in preferences if exists.
-            AppLogger.Info("Initializing database connection. Please wait...");
-            Database database = ApplicationBase.Options.Data.Databases.FindDefault();
-
-            // Create default database parameters if not exists.
-            if(database == null || database.Key == null)
-            {
-                database = new Database
-                {
-                    Key = "default",
-                    Name = "default.db3",
-                    Type = DatabaseType.SQLite,
-                    Source = Path.Combine(ApplicationBase.DataDirectory, "default.db3"),
-                    Default = true,
-                    Comment = "Default SQLite installed database."
-
-                };
-
-                ApplicationBase.Options.Data.Databases.Add(database);
-            }
-
-            // Try to connect to the database.
-            try
-            {
-                // Check if default database exists.
-                if (File.Exists(database.Source))
-                {
-                    using (SQLiteConnection db = SQLiteManager.Instance(database.Source).Db)
-                    {
-                        log.Debug("Database connection ready.");
-                        AppLogger.Info("Database connection ready.");
-                    }
-                }
-
-                // Create new database from scheme.
-                else
-                {
-                    using (
-                        SQLiteConnection db =
-                            SQLiteManager.Instance(
-                                database: database.Source,
-                                createFile: true,
-                                scheme: Path.Combine(ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath, "scheme.sqlite")
-                            ).Db
-                    )
-                    {
-                        log.Debug("New database connection ready.");
-                        AppLogger.Info("New database connection ready.");
-                    }
-                }
-
-                // Add connection to SQLite Service.
-                SQLiteSvc.Db = new DatabaseCore(database.Source);
-
-                // Add SQLite Service to the main window | application session for depencies..
-                MainWindow.Database = new SQLiteSvc();
-            }
-
-            // Catch connection to the database exceptions.
-            catch (Exception e)
-            {
-                AppLogger.Fatal("Connecting to the database failed !", e, true);
-                MessageBox.Show("Connecting to the database failed !", Translation.DWords.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-            // End of database initilization.
-            AppLogger.Info("Initializing database connection. Done !");
         }
 
         #endregion Methods

@@ -4,11 +4,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:dg2="clr-namespace:XtrmAddons.Fotootof.Libraries.ClientSide.Controls.DataGrids"
     xmlns:lv="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
-    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.UI.Control.Menu"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     MinWidth="800"
@@ -27,25 +26,6 @@
 			<RowDefinition Height="30" />
 			<RowDefinition Height="1*" />
 		</Grid.RowDefinitions>
-
-
-		<!-- #region Main navigation -->
-		<ucmenu:UCMainNavigation
-            Grid.Row="0"
-            x:Name="UCMenuMainNavigation"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            DisplayMode="Client"/>
-		<!-- #endegion Main navigation -->
-
-
-		<!-- #region Breadcrumbs -->
-		<TextBlock
-            x:Name="TextBlock_Breadcrumbs"
-            Grid.Row="1"
-            Margin="10,5"
-            FontSize="{StaticResource ResourceKey=FontSizeNormal}" />
-		<!-- #endegion Breadcrumbs -->
 
 
 		<!-- #region Content -->
@@ -76,12 +56,12 @@
 				  Grid.Row="0"
 				  Grid.Column="2">
 
-				<lv:UCAlbumsListView
+				<!--<lv:UCAlbumsListView
                     x:Name="UCAlbumsListView_Container"
                     Grid.Row="0"
                     Grid.Column="0"
                     DataContext="{Binding}"
-                    HorizontalAlignment="Stretch"/>
+                    HorizontalAlignment="Stretch"/>-->
 
 			</Grid>
 			
