@@ -287,6 +287,8 @@
     <Compile Include="Libraries\Common\Tools\AppLogger.cs" />
     <Compile Include="Libraries\Common\Tools\AppOverwork.cs" />
     <Compile Include="Libraries\Common\Tools\AppNavigator.cs" />
+    <Compile Include="Libraries\Common\Tools\LogWatcher.cs" />
+    <Compile Include="Libraries\Common\Tools\MemoryAppenderWithEvents.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
@@ -360,12 +362,6 @@
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridSections.cs" />
     <Compile Include="Libraries\Common\Controls\Tooltips\UCToolTipPicture.xaml.cs">
       <DependentUpon>UCToolTipPicture.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Libraries\Common\Controls\ListViews\UCPicturesListView.xaml.cs">
-      <DependentUpon>UCPicturesListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Libraries\Common\Controls\ListViews\UCAlbumsListView.xaml.cs">
-      <DependentUpon>UCAlbumsListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridSectionsModel.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\AclGroupForm\WindowFormAclGroupModel.cs" />
@@ -521,14 +517,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Libraries\Common\Controls\ListViews\UCPicturesListView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Libraries\Common\Controls\ListViews\UCAlbumsListView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Libraries\Common\Controls\Tooltips\UCToolTipPicture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -569,7 +557,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainSettings.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

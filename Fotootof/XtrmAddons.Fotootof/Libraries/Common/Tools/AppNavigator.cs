@@ -28,7 +28,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// <summary>
         /// Property access to the application main window.
         /// </summary>
-        public static MainWindow MainWindow => (MainWindow)Application.Current.MainWindow;
+        public static MainWindow MainWindow
+            => (MainWindow)Application.Current.MainWindow;
 
         /// <summary>
         /// Property access to the main application frame.

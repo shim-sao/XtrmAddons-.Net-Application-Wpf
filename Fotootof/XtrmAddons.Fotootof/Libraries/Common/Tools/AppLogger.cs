@@ -32,6 +32,18 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
 
         #region Methods
 
+        public static void UpdateLogTextbox(string value)
+        {
+            try
+            {
+                AppNavigator.MainWindow.Dispatcher.Invoke(new Action(() =>
+                {
+                    LogsDisplay(value);
+                }));
+            }
+            catch { }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -61,9 +73,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
             logs.Enqueue(s);
             
             string output = "";
+            int index = logs.Cast<string>().Reverse().Count();
             foreach (string str in logs.Cast<string>().Reverse())
             {
-                output += "\n> " + str;
+                output += string.Format("[{0}] > {1}", index--, str);
             }
 
             AppNavigator.LogsStack.Text = output;
@@ -74,6 +87,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// </summary>
         /// <param name="s">The message to add to queue.</param>
         /// <param name="log4net">Add message to logs handler.</param>
+        [Obsolete("use log4net")]
         public static async void Info(string s, bool log4net = false, int delay = 0)
         {
             if (log4net)
@@ -90,6 +104,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// </summary>
         /// <param name="s">The message to add to queue.</param>
         /// <param name="log4net">Add message to logs handler.</param>
+        [Obsolete("use log4net")]
         public static void InfoAndClose(string s, bool log4net = false, int delay = 0)
         {
             Info(s, log4net, delay);
@@ -207,6 +222,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// <summary>
         /// Method proxy to close busy indicator.
         /// </summary>
+        [Obsolete("use Translation.DLogs")]
         public static string Translate(string key)
             => (string)Translation.Logs[key];
 

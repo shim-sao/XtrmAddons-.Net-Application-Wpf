@@ -37,7 +37,7 @@ namespace XtrmAddons.Fotootof.Settings
         /// <summary>
         /// Method to initialize server application.
         /// </summary>
-        public static async Task<Server> GetDefaultServerOptions()
+        public static async Task<Server> InitializeServer()
         {            
             return await Task.Run(() =>
             {
@@ -159,42 +159,39 @@ namespace XtrmAddons.Fotootof.Settings
         /// <summary>
         /// Method to initialize server application.
         /// </summary>
-        public static async void AutostartServerAsync()
+        public static void AutoStartServer()
         {
             // Get default server in preferences.
-            log.Info("Initializing HTTP server connection. Please wait...");
+            log.Info("Auto start HTTP server connection. Please wait...");
+
             Server server = null;
 
             // Try to start server.
             try
             {
-                AddServerMap();
+                //AddServerMap();
+                //server = await InitializeServer();
 
-                server = await SettingsOptions.GetDefaultServerOptions();
                 HttpServerBase.AddNetworkAcl();
                 HttpServerBase.Start();
 
-                // Start the http server.
-                // HttpWebServerApplication.Start(server.Host, server.Port);
-
-                log.Info("Initializing server connection. Done !");
                 log.Info("Server started : [" + server.Host + ":" + server.Port + "]");
             }
 
             // Catch server start exception.
             catch (Exception e)
             {
-                //log.Fatal("Server initialization failed : [" + server?.Host + ":" + server?.Port + "]", e, true);
+                log.Error("Server initialization failed : [" + server?.Host + ":" + server?.Port + "]", e);
                 MessageBox.Show("Starting server : [" + server?.Host + ":" + server?.Port + "] failed !", Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            //AppLogger.InfoAndClose("Initializing HTTP server connection. Done.");
+            log.Info("Auto start HTTP server connection. Done !");
         }
 
         /// <summary>
-        /// 
+        /// Method to add server mapping of DLL. 
         /// </summary>
-        private static void AddServerMap()
+        public static void AddServerMap()
         {
             log.Info("Adding API mapping to server.");
 

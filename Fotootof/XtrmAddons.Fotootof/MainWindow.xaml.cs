@@ -1,6 +1,7 @@
 ﻿using log4net;
 using log4net.Appender;
 using log4net.Repository.Hierarchy;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -33,6 +34,9 @@ namespace XtrmAddons.Fotootof
         /// Variable logs page.
         /// </summary>
         private PageLogs pageLogs = new PageLogs();
+
+
+        private LogWatcher logWatcher = new LogWatcher();
 
         #endregion
 
@@ -103,6 +107,12 @@ namespace XtrmAddons.Fotootof
             AppOverwork.IsBusy = true;
             await Task.Delay(10);
 
+            //pageLogs.TextBlockLogsStack.Text = logWatcher.LogContent;
+            AppLogger.LogsDisplay(logWatcher.LogContent);
+            logWatcher.LogContent = "";
+
+            logWatcher.Updated += logWatcher_Updated;
+
             // Initialize window content.
             await InitializeContentAsync();
 
@@ -127,14 +137,21 @@ namespace XtrmAddons.Fotootof
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void logWatcher_Updated(object sender, EventArgs e)
+        {
+            AppLogger.UpdateLogTextbox(logWatcher.LogContent);
+        }
+
+        /// <summary>
         /// Method to initialize application content.
         /// </summary>
         private async Task InitializeContentAsync()
         {
             await Task.Delay(10);
-
-            // Initialize application settings.
-            MainSettings.Initialize();
 
             // Assigned page frames.
             Frame_Logs.Navigate(pageLogs);

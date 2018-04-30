@@ -33,7 +33,7 @@ namespace XtrmAddons.Fotootof
         {
 
             //InitializeDatabase();
-            InitializeServerAsync();
+            //InitializeServerAsync();
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace XtrmAddons.Fotootof
                     )
                 );
 
-                server = await SettingsOptions.GetDefaultServerOptions();
+                server = await SettingsOptions.InitializeServer();
                 HttpServerBase.AddNetworkAcl();
                 HttpServerBase.Start();
 

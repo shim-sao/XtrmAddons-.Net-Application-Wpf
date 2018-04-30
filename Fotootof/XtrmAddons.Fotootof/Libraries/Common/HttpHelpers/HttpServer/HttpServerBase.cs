@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.HttpServer;
-using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Network;
 using ServerData = XtrmAddons.Net.Application.Serializable.Elements.XmlRemote.Server;
@@ -13,6 +13,17 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
     /// </summary>
     public class HttpServerBase
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
         #region Properties
 
         /// <summary>
@@ -61,14 +72,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
                 if (server != null)
                 {
                     HttpWebServerApplication.Start(server.Host, server.Port);
-                    AppLogger.InfoAndClose(AppLogger.Translate("ServerStarted"), true);
+                    log.Info(Translation.DLogs.ServerStarted);
                 }
 
                 RaiseServerStart();
             }
             else
             {
-                AppLogger.Info("Server already started.");
+                log.Info("Server is already started.");
             }
         }
 
@@ -78,7 +89,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
         public static void Stop()
         {
             HttpWebServerApplication.Stop();
-            AppLogger.InfoAndClose(AppLogger.Translate("ServerStop"), true);
+            log.Info(Translation.DLogs.ServerStopped);
 
             RaiseServerStop();
         }
@@ -90,7 +101,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
         /// <param name="e">The routed event arguments.</param>
         public static void AddNetworkAcl()
         {
-            AppLogger.Info("Enabling external server access. Please wait.");
+            log.Info("Enabling external server access. Please wait.");
 
             Task.Run(() =>
             {
@@ -103,7 +114,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
                 }
             });
 
-            AppLogger.InfoAndClose("Enabling external server access. Done.");
+            log.Info("Enabling external server access. Done.");
         }
 
         /// <summary>
@@ -113,7 +124,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
         /// <param name="e">The routed event arguments.</param>
         public static void RemoveNetworkAcl()
         {
-            AppLogger.Info("Disabling external server access. Please wait.");
+            log.Info("Disabling external server access. Please wait.");
             
             Task.Run(() =>
             {
@@ -126,7 +137,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
                 }
             });
 
-            AppLogger.Info("Disabling external server access. Done.");
+            log.Info("Disabling external server access. Done.");
         }
 
         /// <summary>

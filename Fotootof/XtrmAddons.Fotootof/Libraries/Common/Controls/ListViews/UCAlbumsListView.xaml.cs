@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
@@ -163,8 +164,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
                 // Alert user for acceptation.
                 MessageBoxResult result = MessageBox.Show
                 (
-                    String.Format(Properties.Resources.MessageBox_Acceptation_DeleteGeneric, Properties.Resources.Album, SelectedItem.Name),
-                    Properties.Resources.ApplicationName ,
+                    String.Format(Properties.Resources.MessageBox_Acceptation_DeleteGeneric, Translation.DWords.Album, SelectedItem.Name),
+                    Translation.DWords.ApplicationName ,
                     MessageBoxButton.YesNoCancel
                 );
 

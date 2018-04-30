@@ -75,6 +75,7 @@ namespace XtrmAddons.Fotootof
             Trace.WriteLine((string)Translation.DLogs.StartingApplicationWaiting);
             ApplicationBase.Debug();
             InitializePreferencesAsync();
+            SettingsOptions.AutoStartServer();
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
             // Application is running
@@ -147,6 +148,8 @@ namespace XtrmAddons.Fotootof
             await ApplicationBase.CopyConfigFiles(true);
 
             await SettingsOptions.InitializeDatabase();
+            await SettingsOptions.InitializeServer();
+            SettingsOptions.AddServerMap();
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }
