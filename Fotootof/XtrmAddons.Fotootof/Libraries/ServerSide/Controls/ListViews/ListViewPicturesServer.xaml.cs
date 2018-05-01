@@ -104,20 +104,22 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <returns></returns>
         protected CommonOpenFileDialog FolderDialogBox(bool multiselect = false, Environment.SpecialFolder folder = Environment.SpecialFolder.MyDocuments)
         {
-            CommonOpenFileDialog dlg = new CommonOpenFileDialog();
-            dlg.Title = "My Title";
-            dlg.IsFolderPicker = true;
-            dlg.InitialDirectory = folder.ToString();
+            CommonOpenFileDialog dlg = new CommonOpenFileDialog
+            {
+                Title = "My Title",
+                IsFolderPicker = true,
+                InitialDirectory = folder.ToString(),
 
-            dlg.AddToMostRecentlyUsedList = false;
-            dlg.AllowNonFileSystemItems = false;
-            dlg.DefaultDirectory = Environment.SpecialFolder.DesktopDirectory.ToString();
-            dlg.EnsureFileExists = true;
-            dlg.EnsurePathExists = true;
-            dlg.EnsureReadOnly = false;
-            dlg.EnsureValidNames = true;
-            dlg.Multiselect = multiselect;
-            dlg.ShowPlacesList = true;
+                AddToMostRecentlyUsedList = false,
+                AllowNonFileSystemItems = false,
+                DefaultDirectory = Environment.SpecialFolder.DesktopDirectory.ToString(),
+                EnsureFileExists = true,
+                EnsurePathExists = true,
+                EnsureReadOnly = false,
+                EnsureValidNames = true,
+                Multiselect = multiselect,
+                ShowPlacesList = true
+            };
 
             if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
             {
@@ -140,8 +142,10 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             {
                 return;
             }
-            
-            AppLogger.Info("Refreshing pictures list. Please wait...", true);
+
+            AppOverwork.IsBusy = true;
+            log.Info("Refreshing pictures list. Please wait...");
+
             await Task.Delay(3000);
             
             List<PictureEntity> newItems = new List<PictureEntity>();
@@ -149,24 +153,24 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 
             foreach(PictureEntity pe in Items)
             {
-                AppLogger.Info(string.Format("Processing on picture [{0}]{1}. Please wait...", pe.PrimaryKey, pe.Name), true);
+                log.Info(string.Format("Processing on picture [{0}]{1}. Please wait...", pe.PrimaryKey, pe.Name));
                 bool IsChanged = false;
 
                 if (!pe.OriginalPath.IsNullOrWhiteSpace() && !File.Exists(pe.OriginalPath))
                 {
-                    AppLogger.Info(string.Format("OriginalPath : {0}", pe.OriginalPath));
+                    log.Info(string.Format("OriginalPath : {0}", pe.OriginalPath));
                     IsChanged = DirSearch(pe, "OriginalPath", dlg.FileName);
                 }
 
                 if (!pe.PicturePath.IsNullOrWhiteSpace() && !File.Exists(pe.PicturePath))
                 {
-                    AppLogger.Info(string.Format("PicturePath : {0}", pe.PicturePath));
+                    log.Info(string.Format("PicturePath : {0}", pe.PicturePath));
                     IsChanged = DirSearch(pe, "PicturePath", dlg.FileName);
                 }
 
                 if (!pe.ThumbnailPath.IsNullOrWhiteSpace() && !File.Exists(pe.ThumbnailPath))
                 {
-                    AppLogger.Info(string.Format("ThumbnailPath : {0}", pe.ThumbnailPath));
+                    log.Info(string.Format("ThumbnailPath : {0}", pe.ThumbnailPath));
                     IsChanged = DirSearch(pe, "ThumbnailPath", dlg.FileName);
                 }
 
@@ -203,7 +207,8 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 
             ItemsCollection.ItemsSource = new PictureEntityCollection(newItems);
 
-            AppLogger.InfoAndClose("Saving pictures list. Done...", true);
+            log.Info("Saving pictures list. Done...");
+            AppOverwork.IsBusy = false;
         }
 
         /// <summary>
@@ -260,8 +265,9 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             try
             {
                 string filename = Path.Combine(sDir, Path.GetFileName(pe.GetPropertyValue(propertyPathName).ToString()));
+
+                log.Info(string.Format("Searching Picture : {0}", filename));
                 Trace.TraceInformation(filename);
-                AppLogger.Info(string.Format("Searching Picture : {0}", filename));
 
                 if (File.Exists(filename))
                 {
@@ -284,12 +290,12 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
             }
             catch (UnauthorizedAccessException uae)
             {
-                AppLogger.Info(uae.Message);
+                log.Info(uae.Message);
             }
             catch (Exception e)
             {
-                AppLogger.Error(string.Format("Searching Picture {0} failed !\n {1}", propertyPathName, e.Message), true);
                 log.Error(e);
+                AppLogger.Error(string.Format("Searching Picture {0} failed !\n {1}", propertyPathName, e.Message));
             }
 
             return IsChanged;

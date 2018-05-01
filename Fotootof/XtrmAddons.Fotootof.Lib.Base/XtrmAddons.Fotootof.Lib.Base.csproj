@@ -85,6 +85,8 @@
     <Compile Include="Classes\Pages\PageBase.cs" />
     <Compile Include="Classes\Pages\PageBaseModel.cs" />
     <Compile Include="Classes\Controls\Systems\StorageInfoModel.cs" />
+    <Compile Include="Classes\System\Log4net\MemoryLogWatcher.cs" />
+    <Compile Include="Classes\System\Log4net\MemoryAppenderWithEvents.cs" />
     <Compile Include="Classes\Windows\WindowBase.cs" />
     <Compile Include="Classes\Windows\WindowBaseDataGridModel.cs" />
     <Compile Include="Classes\Windows\WindowBaseForm.cs" />

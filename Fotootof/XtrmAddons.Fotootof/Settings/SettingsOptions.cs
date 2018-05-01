@@ -159,29 +159,40 @@ namespace XtrmAddons.Fotootof.Settings
         /// <summary>
         /// Method to initialize server application.
         /// </summary>
-        public static void AutoStartServer()
+        public static async void AutoStartServerAsync()
         {
             // Get default server in preferences.
             log.Info("Auto start HTTP server connection. Please wait...");
 
-            Server server = null;
+            Server server = await InitializeServer();
+
+            if(!server.AutoStart)
+            {
+                log.Debug("Auto start HTTP server connection. Aborted !");
+                log.Info("Auto start HTTP server connection. Done !");
+                return;
+            }
 
             // Try to start server.
             try
             {
-                //AddServerMap();
-                //server = await InitializeServer();
+                if(server != null)
+                {
+                    HttpServerBase.AddNetworkAcl();
+                    HttpServerBase.Start();
 
-                HttpServerBase.AddNetworkAcl();
-                HttpServerBase.Start();
-
-                log.Info("Server started : [" + server.Host + ":" + server.Port + "]");
+                    log.Info("Server started : [" + server.Host + ":" + server.Port + "]");
+                }
+                else
+                {
+                    log.Error("Server preferences not found !");
+                }
             }
 
             // Catch server start exception.
             catch (Exception e)
             {
-                log.Error("Server initialization failed : [" + server?.Host + ":" + server?.Port + "]", e);
+                log.Error("Auto start HTTP server connection failed : [" + server?.Host + ":" + server?.Port + "]", e);
                 MessageBox.Show("Starting server : [" + server?.Host + ":" + server?.Port + "] failed !", Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 

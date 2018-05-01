@@ -75,7 +75,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
             Model.Server.Authentication();
             Model.Server.ListSections();
 
-            AppLogger.Close();
+            AppOverwork.IsBusy = false;
         }
 
         #endregion
@@ -91,7 +91,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
         //{
         //    try
         //    {
-        //        AppLogger.Info("Loading Sections list. Please wait...");
+        //        log.Info("Loading Sections list. Please wait...");
 
         //        List<SectionEntity> l = new List<SectionEntity>();
         //        foreach (SectionJson s in serverResponse.Response.Response)

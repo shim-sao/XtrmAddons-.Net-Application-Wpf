@@ -55,9 +55,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <param name="newItems">Thee list of items to add.</param>
         public static void DbInsert(List<AclGroupEntity> newItems)
         {
+            AppOverwork.IsBusy = true;
+            log.Info("Adding AclGroup(s). Please wait...");
+
             try
             {
-                AppLogger.Info("Adding AclGroup(s). Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -65,34 +67,35 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     {
                         MainWindow.Database.AclGroups.Add(entity);
 
-                        AppLogger.Info(string.Format("AclGroup [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
+                        log.Info(string.Format("AclGroup [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Adding AclGroup(s). Done !");
+                log.Info("Adding AclGroup(s). Done !");
             }
             catch (Exception e)
             {
+                log.Error(e);
                 AppLogger.Fatal("Adding AclGroup(s) failed !", e);
             }
             finally
             {
-                AppLogger.Close();
+                AppOverwork.IsBusy = false;
             }
         }
 
         /// <summary>
         /// Method to delete a list of AclGroup entities from the database.
         /// </summary>
-        /// <param name="newItems">The list of items to remove.</param>
+        /// <param name="oldItems">The list of items to remove.</param>
         public static void DbDelete(List<AclGroupEntity> oldItems)
         {
-            // Check for Removing items.
+            AppOverwork.IsBusy = true;
+            log.Info("Deleting AclGroup(s). Please wait...");
+
             try
             {
-                AppLogger.Info("Deleting AclGroup(s). Please wait...");
-
                 if (oldItems != null && oldItems.Count > 0)
                 {
                     foreach (AclGroupEntity entity in oldItems)
@@ -102,20 +105,21 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                             MainWindow.Database.AclGroups.Delete(entity.PrimaryKey);
                         }
 
-                        AppLogger.Info(string.Format("AclGroup [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
+                        log.Info(string.Format("AclGroup [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Deleting AclGroup(s). Done !");
+                log.Info("Deleting AclGroup(s). Done !");
             }
             catch (Exception ex)
             {
+                log.Error(ex);
                 AppLogger.Fatal("Deleting AclGroup(s) list failed !", ex);
             }
             finally
             {
-                AppLogger.Clear();
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -123,13 +127,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// Method to update a list of AclGroup entities into the database.
         /// </summary>
         /// <param name="newItems">Thee list of items to update.</param>
+        /// <param name="oldItems"></param>
         public static async void DbUpdateAsync(List<AclGroupEntity> newItems, List<AclGroupEntity> oldItems)
         {
-            // Check for Replace | Edit items.
+            AppOverwork.IsBusy = true;
+            log.Info("Replacing AclGroup. Please wait...");
+
             try
             {
-                AppLogger.Info("Replacing AclGroup. Please wait...");
-
                 if (newItems != null && newItems.Count > 0)
                 {
                     foreach (AclGroupEntity entity in newItems)
@@ -142,20 +147,21 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                             MainWindow.Database.AclGroups.SetDefault(entity.PrimaryKey);
                         }
 
-                        AppLogger.Info(string.Format("AclGroup [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
+                        log.Info(string.Format("AclGroup [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Replacing AclGroup(s). Done !");
+                log.Info("Replacing AclGroup(s). Done !");
             }
             catch (Exception ex)
             {
+                log.Error(ex);
                 AppLogger.Fatal("Replacing AclGroup(s) failed !", ex);
             }
             finally
             {
-                AppLogger.Clear();
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -166,25 +172,27 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <param name="oldItems"></param>
         public static void SetDefault(AclGroupEntity newItem)
         {
+            AppOverwork.IsBusy = true;
+            log.Info("Setting default User Group. Please wait...");
+
             try
             {
-                AppLogger.Info("Setting default User Group. Please wait...");
-
                 if (newItem != null)
                 {
                     MainWindow.Database.AclGroups.SetDefault(newItem.PrimaryKey);
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Setting default User Group. Done !");
+                log.Info("Setting default User Group. Done !");
             }
             catch (Exception ex)
             {
+                log.Error(ex);
                 AppLogger.Fatal("Setting default User Group failed !", ex);
             }
             finally
             {
-                AppLogger.Clear();
+                AppOverwork.IsBusy = false;
             }
         }
 

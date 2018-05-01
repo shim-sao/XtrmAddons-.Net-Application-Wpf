@@ -96,10 +96,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <param name="newItems">Thee list of items to add.</param>
         public static void DbInsert(List<SectionEntity> newItems)
         {
+            AppOverwork.IsBusy = true;
+            log.Info("Adding Section(s). Please wait...");
+
             try
             {
-                AppLogger.Info("Adding Section(s). Please wait...");
-
                 if (newItems != null && newItems.Count > 0)
                 {
                     foreach (SectionEntity entity in newItems)
@@ -107,20 +108,21 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                         entity.Initialize();
                         MainWindow.Database.Sections.Add(entity);
 
-                        AppLogger.Info(string.Format("Section [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
+                        log.Info(string.Format("Section [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Adding Section(s). Done !");
+                log.Info("Adding Section(s). Done !");
             }
             catch (Exception e)
             {
+                log.Error(e);
                 AppLogger.Fatal("Adding Section(s) failed !", e);
             }
             finally
             {
-                AppLogger.Close();
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -130,23 +132,23 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <param name="newItems">The list of items to remove.</param>
         public static void DbDelete(List<SectionEntity> oldItems)
         {
-            // Check for Removing items.
+            AppOverwork.IsBusy = true;
+            log.Info("Deleting Section(s). Please wait...");
+
             try
             {
-                AppLogger.Info("Deleting Section(s). Please wait...");
-
                 if (oldItems != null && oldItems.Count > 0)
                 {
                     foreach (SectionEntity entity in oldItems)
                     {
                         MainWindow.Database.Sections.Delete(entity.PrimaryKey);
 
-                        AppLogger.Info(string.Format("Section [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
+                        log.Info(string.Format("Section [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Adding Section(s). Done !");
+                log.Info("Adding Section(s). Done !");
             }
             catch (Exception ex)
             {
@@ -154,7 +156,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             }
             finally
             {
-                AppLogger.Close();
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -165,31 +167,31 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <param name="oldItems"></param>
         public static async void DbUpdateAsync(List<SectionEntity> newItems, List<SectionEntity> oldItems)
         {
-            // Check for Replace | Edit items.
+            AppOverwork.IsBusy = true;
+            log.Info("Replacing Section. Please wait...");
+
             try
             {
-                AppLogger.Info("Replacing Section. Please wait...");
-
                 if (newItems != null && newItems.Count > 0)
                 {
                     foreach (SectionEntity entity in newItems)
                     {
                         await MainWindow.Database.Sections.UpdateAsync(entity);
-
-                        AppLogger.Info(string.Format("Section [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
+                        log.Info(string.Format("Section [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Replacing Section(s). Done !");
             }
             catch (Exception ex)
             {
+                log.Error(ex);
                 AppLogger.Fatal("Replacing Section(s) failed !", ex);
             }
             finally
             {
-                AppLogger.Close();
+                log.Info("Replacing Section(s). Done !");
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -200,25 +202,27 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <param name="oldItems"></param>
         public static void SetDefault(SectionEntity newItem)
         {
+            AppOverwork.IsBusy = true;
+            log.Info("Setting default Section. Please wait...");
+
             try
             {
-                AppLogger.Info("Setting default Section. Please wait...");
-
                 if (newItem != null)
                 {
                     MainWindow.Database.Sections.SetDefault(newItem.PrimaryKey);
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Setting default Section. Done !");
             }
             catch (Exception ex)
             {
-                AppLogger.Fatal("Setting default Section failed !", ex);
+                log.Error(ex);
+                AppLogger.Fatal("Setting default Section. Failed !", ex);
             }
             finally
             {
-                AppLogger.Close();
+                log.Info("Setting default Section. Done !");
+                AppOverwork.IsBusy = false;
             }
         }
 

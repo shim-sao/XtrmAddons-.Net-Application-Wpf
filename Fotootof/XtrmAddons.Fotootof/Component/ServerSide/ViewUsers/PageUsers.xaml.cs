@@ -11,6 +11,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Collections;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 {
@@ -93,9 +94,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         public override void InitializeContentAsync()
         {
-            AppOverwork.IsBusy = true;
-            //await Task.Delay(1000);
-
             // Paste page to User list.
             model = model ?? new PageUsersModel<PageUsers>(this)
             {
@@ -119,8 +117,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             UcDataGridUsers.OnChange += UcDataGridUsers_UserChanged;
             UcDataGridUsers.OnCancel += UcDataGridUsers_UserCanceled;
             UcDataGridUsers.OnDelete += UcDataGridUsers_UserDeleled;
-
-            AppOverwork.IsBusy = false;
         }
 
         #endregion
@@ -143,16 +139,25 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         private void LoadAclGroups()
         {
+            AppOverwork.IsBusy = true;
+            log.Info("Loading Acl Groups list. Please wait...");
+
             try
             {
 
-                AppLogger.Info("Loading Acl Groups list. Please wait...");
                 model.AclGroups.Items = new AclGroupEntityCollection(true);
-                AppLogger.InfoAndClose("Loading Acl Groups list. Done.");
             }
             catch (Exception e)
             {
-                AppLogger.Fatal("Loading Acl Groups list failed : " + e.Message, e);
+                string message = "Loading Acl Groups list. failed !" + e.Message;
+                log.Error(message);
+                log.Error(e.Output());
+                AppLogger.Fatal(message, e);
+            }
+            finally
+            {
+                log.Info("Loading Acl Groups list. Done.");
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -163,9 +168,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e">Entity changes event arguments.</param>
         private void UcDataGridAclGroups_AclGroupCanceled(object sender, EntityChangesEventArgs e)
         {
-            AppLogger.Info("Adding or editing AclGroup operation canceled. Please wait...");
+            log.Info("Adding or editing AclGroup operation canceled. Please wait...");
+
             LoadAclGroups();
-            AppLogger.InfoAndClose("Adding or editing AclGroup operation canceled. Done.");
+
+            log.Info("Adding or editing AclGroup operation canceled. Done.");
         }
 
         /// <summary>
@@ -175,7 +182,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e">Event arguments.</param>
         private void UcDataGridAclGroups_AclGroupAdded(object sender, EntityChangesEventArgs e)
         {
-            AppLogger.Info("Saving new AclGroup informations. Please wait...");
+            log.Info("Saving new AclGroup informations. Please wait...");
 
             AclGroupEntity item = (AclGroupEntity)e.NewEntity;
             model.AclGroups.Items.Add(item);
@@ -183,7 +190,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            AppLogger.InfoAndClose("Saving new AclGroup informations. Done.");
+            log.Info("Saving new AclGroup informations. Done.");
         }
 
         /// <summary>
@@ -193,7 +200,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e">Event arguments.</param>
         private void UcDataGridAclGroups_AclGroupChanged(object sender, EntityChangesEventArgs e)
         {
-            AppLogger.Info("Saving AclGroup informations. Please wait...");
+            log.Info("Saving AclGroup informations. Please wait...");
 
             AclGroupEntity newEntity = (AclGroupEntity)e.NewEntity;
             AclGroupEntity old = model.AclGroups.Items.Single(x => x.AclGroupId == newEntity.AclGroupId);
@@ -203,7 +210,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            AppLogger.InfoAndClose("Saving AclGroup informations. Done.");
+            log.Info("Saving AclGroup informations. Done.");
         }
 
         /// <summary>
@@ -213,7 +220,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e"></param>
         private void UcDataGridAclGroups_AclGroupDeleted(object sender, EntityChangesEventArgs e)
         {
-            AppLogger.Info("Deleting AclGroup(s). Please wait...");
+            log.Info("Deleting AclGroup(s). Please wait...");
 
             AclGroupEntity item = (AclGroupEntity)e.NewEntity;
 
@@ -225,7 +232,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            AppLogger.InfoAndClose("Deleting AclGroup(s). Done.");
+            log.Info("Deleting AclGroup(s). Done.");
         }
 
         /// <summary>
@@ -235,13 +242,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e">Event arguments.</param>
         private void UcDataGridAclGroups_DefaultChanged(object sender, EntityChangesEventArgs e)
         {
-            AppLogger.Info("Setting default Section. Please wait...");
+            log.Info("Setting default Section. Please wait...");
 
             AclGroupEntity newEntity = (AclGroupEntity)e.NewEntity;
             AclGroupEntityCollection.SetDefault(newEntity);
             LoadAclGroups();
 
-            AppLogger.InfoAndClose("Setting default Section. Done.");
+            log.Info("Setting default Section. Done.");
         }
 
         #endregion
@@ -255,18 +262,20 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// </summary>
         private void LoadUsers()
         {
+            log.Info("Loading Users list. Please wait...");
+
             try
             {
-                AppLogger.Info("Loading Users list. Please wait...");
                 UserEntityCollection Users = new UserEntityCollection(UserOptionsList, false);
                 Users.Load();
                 model.Users.Items = Users;
 
-                AppLogger.InfoAndClose("Loading Users list. Done.");
+                log.Info("Loading Users list. Done.");
             }
             catch (Exception e)
             {
-                AppLogger.Fatal("Loading Users list failed : " + e.Message, e, true);
+                log.Error(e);
+                AppLogger.Fatal("Loading Users list. Failed !", e);
             }
         }
 
@@ -277,11 +286,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e"></param>
         private void UcDataGridUsers_UserCanceled(object sender, EntityChangesEventArgs e)
         {
-            AppLogger.Info("Adding or editing User operation canceled. Please wait...");
+            log.Info("Adding or editing User operation canceled. Please wait...");
 
             LoadUsers();
 
-            AppLogger.InfoAndClose("Adding or editing AclGroup operation canceled. Done.");
+            log.Info("Adding or editing AclGroup operation canceled. Done.");
         }
 
         /// <summary>
@@ -291,16 +300,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e">Event arguments.</param>
         private void UcDataGridUsers_UserAdded(object sender, EntityChangesEventArgs e)
         {
-            AppLogger.Info("Adding or editing User informations. Please wait...");
+            log.Info("Adding or editing User informations. Please wait...");
 
             UserEntity entity = (UserEntity)e.NewEntity;
-
             model.Users.Items.Add(entity);
             UserEntityCollection.DbInsert(new List<UserEntity> { entity });
-
             Refresh();
 
-            AppLogger.InfoAndClose("Adding or editing User informations. Done");
+            log.Info("Adding or editing User informations. Done");
         }
 
         /// <summary>
@@ -310,6 +317,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e">Event arguments.</param>
         private void UcDataGridUsers_UserChanged(object sender, EntityChangesEventArgs e)
         {
+            log.Info("Editing User informations. Please wait...");
+
             UserEntity entity = (UserEntity)e.NewEntity;
 
             UserEntity old = model.Users.Items.Single(x => x.PrimaryKey == entity.PrimaryKey);
@@ -319,7 +328,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            AppLogger.Warning("UcDataGridUsers_UserChanged", false);
+            log.Info("Editing User informations. Done");
         }
 
         /// <summary>
@@ -329,11 +338,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <param name="e"></param>
         private void UcDataGridUsers_UserDeleled(object sender, EntityChangesEventArgs e)
         {
-            AppLogger.Info("Deleting User(s). Please wait...");
-
-            UserEntity item = (UserEntity)e.NewEntity;
+            log.Info("Deleting User(s). Please wait...");
 
             // Remove item from list.
+            UserEntity item = (UserEntity)e.NewEntity;
             model.Users.Items.Remove(item);
 
             // Delete item from database.
@@ -341,7 +349,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
 
             Refresh();
 
-            AppLogger.InfoAndClose("Deleting User(s). Done.");
+            log.Info("Deleting User(s). Done.");
         }
 
         #endregion

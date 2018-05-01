@@ -1,7 +1,4 @@
-﻿using log4net;
-using log4net.Appender;
-using log4net.Repository.Hierarchy;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -10,6 +7,7 @@ using System.Windows.Controls;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewLogs;
 using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Log4net;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
@@ -35,8 +33,10 @@ namespace XtrmAddons.Fotootof
         /// </summary>
         private PageLogs pageLogs = new PageLogs();
 
-
-        private LogWatcher logWatcher = new LogWatcher();
+        /// <summary>
+        /// Property log watcher.
+        /// </summary>
+        private MemoryLogWatcher logWatcher = new MemoryLogWatcher();
 
         #endregion
 
@@ -47,17 +47,20 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Property to access to the logs page.
         /// </summary>
-        public PageLogs PageLogs => pageLogs;
+        public PageLogs PageLogs
+            => pageLogs;
 
         /// <summary>
         /// Property alias to access to the text block container of logs stack.
         /// </summary>
-        public TextBlock LogsStack => PageLogs.TextBlockLogsStack;
+        public TextBlock LogsStack
+            => PageLogs.TextBlockLogsStack;
 
         /// <summary>
         /// Property alias to access to the text block container of logs stack.
         /// </summary>
-        public Border BlockContent => this.Block_Content;
+        public Border BlockContent
+            => this.Block_Content;
 
         /// <summary>
         /// Property to access to the SQLite Service.
@@ -81,7 +84,7 @@ namespace XtrmAddons.Fotootof
         {
             // Initialize window component.
             InitializeComponent();
-            log.Info(Translation.Logs["InitializingApplicationWindowComponentDone"]);
+            log.Info(Translation.DLogs.InitializingApplicationWindowComponentDone);
 
             // Main Window to application session.
             ApplicationSession.Properties.MainWindow = this;
@@ -93,47 +96,28 @@ namespace XtrmAddons.Fotootof
         #region Methods
 
         /// <summary>
-        /// 
+        /// Method called on window load event.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            AppOverwork.IsBusy = true;
+            await Task.Delay(10);
+
             // Add application to system tray.
             NotifyIconManager.AddToTray();
             log.Info(Translation.DLogs.AddingApplicationToSystemTrayDone);
 
-
-            AppOverwork.IsBusy = true;
-            await Task.Delay(10);
-
-            //pageLogs.TextBlockLogsStack.Text = logWatcher.LogContent;
-            AppLogger.LogsDisplay(logWatcher.LogContent);
+            // Add application log watcher event handler.
+            AppLogger.UpdateLogTextbox(logWatcher.LogContent);
             logWatcher.LogContent = "";
-
             logWatcher.Updated += logWatcher_Updated;
 
             // Initialize window content.
             await InitializeContentAsync();
 
             AppOverwork.IsBusy = false;
-
-            /*
-            var hierarchy = (Hierarchy)log4net.LogManager.GetRepository();
-            var memoryAppender = (MemoryAppender)hierarchy.Root.GetAppender("Memory");
-            var events = memoryAppender.GetEvents();
-            string result = "";
-            using (var writer = new System.IO.StringWriter())
-            {
-                foreach (var ev in events)
-                {
-                    memoryAppender.Layout.Format(writer, ev);
-                }
-                result = writer.ToString();
-            }
-
-            var a = events;
-            */
         }
 
         /// <summary>
@@ -144,6 +128,7 @@ namespace XtrmAddons.Fotootof
         public void logWatcher_Updated(object sender, EventArgs e)
         {
             AppLogger.UpdateLogTextbox(logWatcher.LogContent);
+            logWatcher.LogContent = "";
         }
 
         /// <summary>

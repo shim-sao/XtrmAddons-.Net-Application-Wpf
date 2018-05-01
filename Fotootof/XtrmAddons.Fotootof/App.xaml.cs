@@ -75,7 +75,7 @@ namespace XtrmAddons.Fotootof
             Trace.WriteLine((string)Translation.DLogs.StartingApplicationWaiting);
             ApplicationBase.Debug();
             InitializePreferencesAsync();
-            SettingsOptions.AutoStartServer();
+            SettingsOptions.AutoStartServerAsync();
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
             // Application is running

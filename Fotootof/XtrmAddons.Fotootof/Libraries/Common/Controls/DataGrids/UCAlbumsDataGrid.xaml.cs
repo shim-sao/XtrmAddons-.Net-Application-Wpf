@@ -129,7 +129,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                AppLogger.Warning(string.Format("{0} not found !", typeof(AlbumEntity).Name), true, true);
+                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                log.Warn(message);
+                AppLogger.Warning(message);
             }
         }
 
@@ -161,7 +163,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                AppLogger.Warning(string.Format("{0} not found !", typeof(AlbumEntity).Name), true, true);
+                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                log.Warn(message);
+                AppLogger.Warning(message);
             }
         }
 

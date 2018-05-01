@@ -339,7 +339,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             // Process open file dialog box results 
             if (result == true)
             {
-                AppLogger.Info("Adding or editing User informations. Please wait...");
+                log.Info("Adding or editing User informations. Please wait...");
 
                 UserEntityCollection.DbInsert(new List<UserEntity> { dlg.NewForm });
 
@@ -348,8 +348,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
                     ((PageUsers)MainFrame.Content).Model.Users.Items.Add(dlg.NewForm);
                 }
 
-                AppLogger.Info("Adding or editing User informations. Done");
-                AppLogger.Close();
+                log.Info("Adding or editing User informations. Done");
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -367,12 +367,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             // Process open file dialog box results 
             if (result == true)
             {
-                AppLogger.Info("Adding or editing Section informations. Please wait...");
+                log.Info("Adding or editing Section informations. Please wait...");
                 
                 SectionEntityCollection.DbInsert(new List<SectionEntity> { dlg.NewForm });
 
-                AppLogger.Info("Adding or editing Section informations. Done");
-                AppLogger.Close();
+                log.Info("Adding or editing Section informations. Done");
+                AppOverwork.IsBusy = false;
             }
         }
 

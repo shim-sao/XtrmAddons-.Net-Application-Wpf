@@ -44,7 +44,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
 
             if (!dlg.Activate())
             {
-                AppLogger.Warning("Can't open Albums edit file dialog box. Please try again.");
+                log.Warn("Albums edit file dialog boxn is busy. Please try again.");
+                AppLogger.Warning("Albums edit file dialog boxn is busy. Please try again.");
                 dlg.Close();
             }
 
@@ -85,7 +86,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                AppLogger.Warning(string.Format("{0} not found !", typeof(AlbumEntity).Name), true, true);
+                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                log.Warn(message);
+                AppLogger.Warning(message);
             }
         }
 
@@ -119,7 +122,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                AppLogger.Warning(string.Format("{0} not found !", typeof(AlbumEntity).Name), true, true);
+                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                log.Warn(message);
+                AppLogger.Warning(message);
             }
         }
 

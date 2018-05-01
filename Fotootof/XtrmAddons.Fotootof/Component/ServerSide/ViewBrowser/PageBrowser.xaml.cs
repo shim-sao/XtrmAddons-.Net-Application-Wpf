@@ -87,7 +87,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         public override void InitializeContentAsync()
         {
             // Set busy indicator
-            AppLogger.Info("Initializing page content. Please wait...", true);
+            AppOverwork.IsBusy = true;
+            log.Info("Initializing page content. Please wait...");
 
             // Initialize associated view model of the page.
             Model = new PageBrowserModel<PageBrowser>(this)
@@ -103,7 +104,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             DataContext = Model;
 
             // End of busy indicator.
-            AppLogger.InfoAndClose("Initializing page content. Done.", true);
+            log.Info("Initializing page content. Done.");
+            AppOverwork.IsBusy = false;
         }
 
         /// <summary>
@@ -123,7 +125,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
                 }
                 catch (Exception e)
                 {
-                    AppLogger.InfoAndClose(e.Message, true);
+                    log.Error(e);
+                    AppLogger.Error(e);
                 }
             }
 
@@ -147,7 +150,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
                 }
                 catch(Exception e)
                 {
-                    AppLogger.Error(e.Message, true);
+                    log.Error(e);
+                    AppLogger.Error(e);
                 }
             }
 

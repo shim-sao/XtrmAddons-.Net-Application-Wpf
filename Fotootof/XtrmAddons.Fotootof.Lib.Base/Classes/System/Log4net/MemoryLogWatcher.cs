@@ -2,17 +2,15 @@
 using log4net.Appender;
 using log4net.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Log4net;
 
-namespace XtrmAddons.Fotootof.Libraries.Common.Tools
+namespace XtrmAddons.Fotootof.Lib.Base.Classes.Log4net
 {
     /// <summary>
-    /// 
+    /// <para>Class XtrmAddons Fotootof Libraries Common.Tools Application Log Watcher.</para>
     /// </summary>
-    public class LogWatcher
+    public class MemoryLogWatcher
     {
         /// <summary>
         /// 
@@ -33,7 +31,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// <summary>
         /// 
         /// </summary>
-        public LogWatcher()
+        public MemoryLogWatcher()
         {
             // Get the memory appender
             memoryAppender = (MemoryAppenderWithEvents)Array.Find(LogManager.GetRepository().GetAppenders(), GetMemoryAppender);
@@ -47,8 +45,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
 
         public void HandleUpdate(object sender, EventArgs e)
         {
-            //LogContent += GetEvents(memoryAppender);
-            LogContent = GetEvents(memoryAppender);
+            LogContent += GetEvents(memoryAppender);
 
             // Then alert the Updated event that the LogWatcher has been updated
             Updated?.Invoke(this, new EventArgs());
@@ -84,7 +81,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
                 foreach (LoggingEvent ev in events)
                 {
                     // Construct the line we want to log
-                    string line = ev.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss,fff") + " [" + ev.ThreadName + "] " + ev.Level + " " + ev.LoggerName + ": " + ev.RenderedMessage + "\r\n";
+                    // string line = ev.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss,fff") + " [" + ev.ThreadName + "] " + ev.Level + " " + ev.LoggerName + ": " + ev.RenderedMessage + "\r\n";
+                    string line = ev.TimeStamp.ToString("HH:mm:ss,fff") + " " + ev.Level + " : " + ev.RenderedMessage + "\r\n";
 
                     // Append to the StringBuilder
                     output.Append(line);

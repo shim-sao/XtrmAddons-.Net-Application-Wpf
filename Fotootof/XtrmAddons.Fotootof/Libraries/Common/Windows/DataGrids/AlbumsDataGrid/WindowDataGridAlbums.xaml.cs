@@ -110,15 +110,23 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         /// </summary>
         private void LoadAlbums()
         {
+            AppOverwork.IsBusy = true;
+            log.Info("Loading Albums list. Please wait...");
+
             try
             {
-                AppLogger.Info("Loading Albums list. Please wait...");
                 model.Albums = new AlbumEntityCollection(true);
-                AppLogger.InfoAndClose("Loading Albums list. Done.");
+
+                log.Info("Loading Albums list. Done.");
             }
             catch (Exception e)
             {
-                AppLogger.Fatal("Loading Albums list failed : " + e.Message, e);
+                log.Error(e);
+                AppLogger.Fatal("Loading Albums list. Failed !", e);
+            }
+            finally
+            {
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -129,8 +137,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         /// <param name="e">Entity changes event arguments.</param>
         private void UCAlbumsContainer_OnCancel(object sender, EntityChangesEventArgs e)
         {
-            AppLogger.Info("Adding or editing Album operation canceled. Please wait...");
-            AppLogger.InfoAndClose("Adding or editing Album operation canceled. Done.");
+            log.Info("Adding or editing Album operation canceled. Please wait...");
+            log.Info("Adding or editing Album operation canceled. Done.");
         }
 
         /// <summary>
@@ -140,13 +148,15 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         /// <param name="e">Event arguments.</param>
         private void UCAlbumsContainer_OnAdd(object sender, EntityChangesEventArgs e)
         {
-            AppLogger.Info("Saving new Album informations. Please wait...");
+            AppOverwork.IsBusy = true;
+            log.Info("Saving new Album informations. Please wait...");
 
             AlbumEntity item = (AlbumEntity)e.NewEntity;
             model.Albums.Add(item);
             AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
 
-            AppLogger.InfoAndClose("Saving new Album informations. Done.");
+            log.Info("Saving new Album informations. Done.");
+            AppOverwork.IsBusy = false;
         }
 
         /// <summary>
@@ -156,7 +166,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         /// <param name="e">Event arguments.</param>
         private void UCAlbumsContainer_OnChange(object sender, EntityChangesEventArgs e)
         {
-            AppLogger.Info("Saving Album informations. Please wait...");
+            AppOverwork.IsBusy = true;
+            log.Info("Saving Album informations. Please wait...");
 
             AlbumEntity newEntity = (AlbumEntity)e.NewEntity;
             AlbumEntity old = model.Albums.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
@@ -164,7 +175,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
             model.Albums[index] = newEntity;
             AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
 
-            AppLogger.InfoAndClose("Saving Album informations. Done.");
+            log.Info("Saving Album informations. Done.");
+            AppOverwork.IsBusy = false;
 
         }
 
@@ -175,17 +187,18 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         /// <param name="e">Event arguments.</param>
         private void UCAlbumsContainer_OnDelete(object sender, EntityChangesEventArgs e)
         {
-            AppLogger.Info("Deleting Album(s). Please wait...");
-
-            AlbumEntity item = (AlbumEntity)e.NewEntity;
+            AppOverwork.IsBusy = true;
+            log.Info("Deleting Album(s). Please wait...");
 
             // Remove item from list.
+            AlbumEntity item = (AlbumEntity)e.NewEntity;
             model.Albums.Remove(item);
 
             // Delete item from database.
             AlbumEntityCollection.DbDelete(new List<AlbumEntity> { item });
 
-            AppLogger.InfoAndClose("Deleting Album(s). Done.");
+            log.Info("Deleting Album(s). Done.");
+            AppOverwork.IsBusy = false;
         }
 
         #endregion

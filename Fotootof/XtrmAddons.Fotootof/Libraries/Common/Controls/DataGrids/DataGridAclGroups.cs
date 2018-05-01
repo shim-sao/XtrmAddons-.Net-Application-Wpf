@@ -82,7 +82,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                AppLogger.Warning("Group not found !", false);
+                log.Error("Group not found !");
+                AppLogger.Warning("Group not found !");
             }
         }
 
@@ -116,11 +117,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else if (SelectedItem != null && SelectedItem.IsDefault == true)
             {
-                AppLogger.Info("Default User Group cannot be delete !", true);
+                log.Info("Default User Group cannot be delete !");
             }
             else
             {
-                AppLogger.Warning("User Group not found !", true);
+                log.Error("User not found !");
+                AppLogger.Warning("User not found !");
             }
         }
 

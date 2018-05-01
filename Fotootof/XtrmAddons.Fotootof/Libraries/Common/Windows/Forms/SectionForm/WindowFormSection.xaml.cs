@@ -216,7 +216,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             }
             catch (Exception ex)
             {
-                AppLogger.Error(ex.Message, true);
+                log.Error(ex);
+                AppLogger.Error(ex);
             }
         }
 
@@ -233,7 +234,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             }
             catch (Exception ex)
             {
-                AppLogger.Error(ex.Message, true);
+                log.Error(ex);
+                AppLogger.Error(ex);
             }
         }
 
@@ -250,7 +252,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             }
             catch (Exception ex)
             {
-                AppLogger.Error(ex.Message, true);
+                log.Error(ex);
+                AppLogger.Error(ex);
             }
         }
 
@@ -267,7 +270,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             }
             catch(Exception ex)
             {
-                AppLogger.Error(ex.Message, true);
+                log.Error(ex);
+                AppLogger.Error(ex);
             }
         }
 

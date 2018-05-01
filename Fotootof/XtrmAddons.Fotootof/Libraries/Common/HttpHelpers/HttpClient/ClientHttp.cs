@@ -151,7 +151,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// <param name="ServerInfos"></param>
         public void InitializeWebClient()
         {
-            AppLogger.Info("Initializing server connection.", true);
+            log.Info("Initializing server connection.");
 
             try
             {
@@ -168,7 +168,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
             }
             catch (Exception e)
             {
-                AppLogger.Fatal("Initializing server connection failed.", e, true);
+                log.Error(e);
+                AppLogger.Fatal("Initializing server connection failed.", e);
             }
         }
 
@@ -343,9 +344,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// </summary>
         public async void ListAlbums()
         {
-            log.Info(string.Format(Translation.Logs["SendingAlbumsCommand"].ToString(), Server.Host, Server.Port));
-
-            AppLogger.Info("Initializing server list albums.", true);
+            log.Info(string.Format(Translation.DLogs.SendingAlbumsCommand.ToString(), Server.Host, Server.Port));
 
             ServerResponseSections serverResponse = null;
 
@@ -367,17 +366,22 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
                 else
                 {
                     RaiseListSectionsFailed(Server, serverResponse);
-                    AppLogger.Error(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), true);
-                    AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
+                    AppLogger.Error(
+                        string.Format(
+                            "Server list sections {0}:{1} failed !\n\r {2} : {3}",
+                            Server.Host, Server.Port,
+                            response.StatusCode.ToString(), serverResponse.Error
+                        )
+                    );
                 }
             }
             catch (Exception e)
             {
                 RaiseListSectionsFailed(Server, serverResponse);
-                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e, true);
+                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e);
             }
 
-            log.Info(Translation.Logs["SendingAlbumsCommandDone"]);
+            log.Info(Translation.DLogs.SendingAlbumsCommandDone);
         }
 
 
@@ -386,7 +390,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// </summary>
         public async void SingleSection(int pk)
         {
-            AppLogger.Info("Initializing server single section.", true);
+            log.Info("Initializing server single section.");
             ServerResponseSections serverResponse = null;
 
             try
@@ -406,14 +410,19 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
                 else
                 {
                     RaiseSingleSectionFailed(Server, serverResponse);
-                    AppLogger.Error(string.Format("Server list albums {0}:{1} failed !", Server.Host, Server.Port), true);
-                    AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
+                    AppLogger.Error(
+                        string.Format(
+                            "Server list albums {0}:{1} failed !\n\r {2} : {3}",
+                            Server.Host, Server.Port,
+                            response.StatusCode.ToString(), serverResponse.Error
+                        )
+                    );
                 }
             }
             catch (Exception e)
             {
                 RaiseSingleSectionFailed(Server, serverResponse);
-                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e, true);
+                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e);
             }
         }
     }
