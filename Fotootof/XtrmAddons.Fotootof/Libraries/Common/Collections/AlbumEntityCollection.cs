@@ -139,7 +139,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <param name="newItems">Thee list of items to update.</param>
         public static async void DbUpdateAsync(List<AlbumEntity> newItems, List<AlbumEntity> oldItems)
         {
-            AppOverwork.IsBusy = false;
+            AppOverwork.IsBusy = true;
             log.Info("Replacing Album. Please wait...");
 
             try

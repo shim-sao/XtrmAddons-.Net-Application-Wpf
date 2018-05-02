@@ -819,7 +819,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>:: call "$(ProjectDir)autoexec.debug.bat"
-call "$(ProjectDir)autoexec.release.bat"</PostBuildEvent>
+    <PostBuildEvent>call "$(ProjectDir)autoexec.debug.bat"
+:: call "$(ProjectDir)autoexec.release.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>

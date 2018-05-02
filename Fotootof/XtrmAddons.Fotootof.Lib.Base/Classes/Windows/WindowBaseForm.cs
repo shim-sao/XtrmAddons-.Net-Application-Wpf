@@ -21,7 +21,24 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// Method to check if form is ready to save.
         /// </summary>
         /// <returns>True if it is ready otherwise False.</returns>
-        protected virtual bool IsSaveEnabled { get => isSaveEnabled; set => isSaveEnabled = value; }
+        protected virtual bool IsSaveEnabled
+        {
+            get => isSaveEnabled;
+            set => isSaveEnabled = value;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected System.Windows.Media.Brush BorderStyleError
+            = (System.Windows.Media.Brush)Application.Current.Resources["Error"];
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected System.Windows.Media.Brush BorderStyleReady
+            = (System.Windows.Media.Brush)Application.Current.Resources["Ready"];
+
 
 
         #region Constructor

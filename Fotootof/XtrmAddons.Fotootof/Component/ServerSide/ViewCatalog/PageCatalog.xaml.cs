@@ -308,7 +308,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             }
             finally
             {
-                AppOverwork.IsBusy = true;
+                AppOverwork.IsBusy = false;
             }
         }
 

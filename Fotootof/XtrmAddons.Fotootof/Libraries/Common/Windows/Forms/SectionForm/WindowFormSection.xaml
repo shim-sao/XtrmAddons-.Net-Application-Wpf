@@ -7,6 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Windows;assembly=XtrmAddons.Fotootof.Lib.Base"
+    xmlns:rrString="clr-namespace:XtrmAddons.Net.Windows.ValidationRules;assembly=XtrmAddons.Net.Windows"
+    xmlns:local="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm"
     mc:Ignorable="d"
     Width="480"
     Height="480"
@@ -14,8 +16,8 @@
     Background="{StaticResource ResourceKey=DarkGrey}"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen">
-
-    <Grid
+	
+	<Grid
         Margin="2"
         Background="{StaticResource ResourceKey=LightGrey}">
 
@@ -48,18 +50,44 @@
                                 Orientation="Horizontal"
                                 Style="{StaticResource Field}">
 
-                                <TextBlock
+								<TextBlock
                                     Text="{x:Static p:Resources.Name}"
                                     Style="{StaticResource FieldLabel}"/>
 
-                                <TextBox
+								<TextBox
                                     x:Name="InputName"
-                                    Style="{StaticResource FieldInput}"
-                                    Text="{Binding Path=Section.Name, Mode=TwoWay}"
-                                    TextChanged="InputName_TextChanged"
-                                    Width="310"/>
+                                    Style="{StaticResource Textbox_FieldInput_Required}"
+									Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+									Validation.Error="Input_Error"
+									SourceUpdated="InputName_SourceUpdated"
+									TargetUpdated="InputName_TargetUpdated"
+									TextChanged="InputName_TextChanged"
+                                    Width="310">
 
-                            </StackPanel>
+									<TextBox.Text>
+										<Binding Path="Section.Name"
+												 Mode="TwoWay"
+												 UpdateSourceTrigger="LostFocus"
+												 IsAsync="True"
+												 ValidatesOnDataErrors="True"
+												 ValidatesOnExceptions="True">
+											<Binding.ValidationRules>
+												<rrString:StringRequired />
+											</Binding.ValidationRules>
+											<Binding.NotifyOnValidationError>
+												True
+											</Binding.NotifyOnValidationError>
+											<Binding.NotifyOnSourceUpdated>
+												True
+											</Binding.NotifyOnSourceUpdated>
+											<Binding.NotifyOnTargetUpdated>
+												True
+											</Binding.NotifyOnTargetUpdated>
+										</Binding>
+									</TextBox.Text>
+								</TextBox>
+
+							</StackPanel>
                             <!-- #endregion : Field Name -->
 
                             <!-- #region : Field Alias -->
@@ -71,14 +99,40 @@
                                         Text="{x:Static p:Resources.Alias}"
                                         Style="{StaticResource FieldLabel}"/>
 
-                                <TextBox
-                                        x:Name="InputAlias"
-                                        Style="{StaticResource FieldInput}"
-                                        Text="{Binding Path=Section.Alias, Mode=TwoWay}"
-                                        TextChanged="InputAlias_TextChanged"
-                                        Width="310"/>
+								<TextBox
+                                    x:Name="InputAlias"
+                                    Style="{StaticResource Textbox_FieldInput_Required}"
+									Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+									Validation.Error="Input_Error"
+									SourceUpdated="InputAlias_SourceUpdated"
+									TargetUpdated="InputAlias_TargetUpdated"
+									TextChanged="InputAlias_TextChanged"
+                                    Width="310">
 
-                            </StackPanel>
+									<TextBox.Text>
+										<Binding Path="Section.Alias"
+												 Mode="TwoWay"
+												 UpdateSourceTrigger="LostFocus"
+												 IsAsync="True"
+												 ValidatesOnDataErrors="True"
+												 ValidatesOnExceptions="True">
+											<Binding.ValidationRules>
+												<rrString:StringRequired />
+											</Binding.ValidationRules>
+											<Binding.NotifyOnValidationError>
+												True
+											</Binding.NotifyOnValidationError>
+											<Binding.NotifyOnSourceUpdated>
+												True
+											</Binding.NotifyOnSourceUpdated>
+											<Binding.NotifyOnTargetUpdated>
+												True
+											</Binding.NotifyOnTargetUpdated>
+										</Binding>
+									</TextBox.Text>
+								</TextBox>
+
+							</StackPanel>
                             <!-- #endregion : Field Alias -->
 
                             <!-- #region : Field Default -->

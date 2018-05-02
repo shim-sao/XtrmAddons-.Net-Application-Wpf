@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
@@ -31,12 +33,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         #region Properties
 
         /// <summary>
-        /// Variable old Section informations backup.
+        /// Property old Section informations backup.
         /// </summary>
         public SectionEntity OldForm { get; set; }
 
         /// <summary>
-        /// Variable current or new Section informations.
+        /// Property current or new Section informations.
         /// </summary>
         public SectionEntity NewForm
         {
@@ -115,46 +117,259 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         }
 
         /// <summary>
-        /// Method called on input name text changes event.
+        /// 
         /// </summary>
-        /// <param name="sender">The object sender.</param>
-        /// <param name="routedEventArgs">Text changed event arguments.</param>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Input_Error(object sender, ValidationErrorEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            ButtonSave.IsEnabled = false;
+
+            Trace.WriteLine("-------------------------------------------------------------");
+            Trace.WriteLine("Input_Error Name => " + tb.Name);
+            Trace.WriteLine("Input_Error Text => " + tb.Text);
+            Trace.WriteLine("ButtonSave.IsEnabled = " + ButtonSave.IsEnabled);
+            Trace.WriteLine("-------------------------------------------------------------");
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InputName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string old = NewForm.Name;
+            TextBox tb = sender as TextBox;
+            TextBox originalSource = e.OriginalSource as TextBox;
+            string previewAlias = NewForm.Name.Sanitize().RemoveDiacritics().ToLower();
 
-            if (!InputName.Text.IsNullOrWhiteSpace())
+            if (tb.IsInitialized == false)
+                return;
+
+            Trace.WriteLine("-------------------------------------------------------------");
+            Trace.WriteLine("Input_TextChanged Name => " + tb.Name);
+            Trace.WriteLine("Input_TextChanged Text => " + tb.Text);
+            Trace.WriteLine("InputName.Text = " + InputName.Text);
+            Trace.WriteLine("InputAlias.Text = " + InputAlias.Text);
+            Trace.WriteLine("NewForm.HandledName = " + NewForm.Name);
+            Trace.WriteLine("NewForm.Name = " + NewForm.Name);
+            Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
+            Trace.WriteLine("-----------------------------");
+
+            NewForm.Name = tb.Text;
+            if (NewForm.Name.IsNullOrWhiteSpace())
             {
-                NewForm.Name = InputName.Text;
+                ButtonSave.IsEnabled = false;
+            }
+            else
+            {
+                ButtonSave.IsEnabled = IsSaveEnabled;
             }
 
-            if (!old.IsNullOrWhiteSpace())
+            if(NewForm.Alias.IsNullOrWhiteSpace() || NewForm.Alias == previewAlias)
             {
-                if (NewForm.Alias.IsNullOrWhiteSpace() || NewForm.Alias.Sanitize().RemoveDiacritics().ToLower() == old.Sanitize().RemoveDiacritics().ToLower())
+                NewForm.Alias = NewForm.Name.Sanitize().RemoveDiacritics().ToLower();
+                InputAlias.Text = NewForm.Alias;
+                InputAlias.UpdateDefaultStyle();
+
+                if (NewForm.Alias.IsNotNullOrWhiteSpace())
                 {
-                    InputAlias.Text = InputName.Text;
+                    ClearInvalid(InputAlias);
+                }
+            }
+
+            Trace.WriteLine("InputName.Text = " + InputName.Text);
+            Trace.WriteLine("InputAlias.Text = " + InputAlias.Text);
+            Trace.WriteLine("NewForm.HandledName = " + NewForm.Name);
+            Trace.WriteLine("NewForm.Name = " + NewForm.Name);
+            Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
+
+            Trace.WriteLine("ButtonSave.IsEnabled = " + ButtonSave.IsEnabled);
+            Trace.WriteLine("-------------------------------------------------------------");
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InputName_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+
+            Trace.WriteLine("-------------------------------------------------------------");
+            Trace.WriteLine("InputName_SourceUpdated Name => " + tb.Name);
+            Trace.WriteLine("InputName_SourceUpdated Text => " + tb.Text);
+
+            Trace.WriteLine("InputName.Text = " + InputName.Text);
+            Trace.WriteLine("InputAlias.Text = " + InputAlias.Text);
+            Trace.WriteLine("NewForm.Name = " + NewForm.Name);
+            Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
+            Trace.WriteLine("-----------------------------");
+
+            if (InputAlias.Text.IsNullOrWhiteSpace() && !tb.Text.IsNullOrWhiteSpace())
+            {
+                InputAlias.Text = InputName.Text.Sanitize().RemoveDiacritics().ToLower();
+                NewForm.Alias = InputAlias.Text;
+
+                if (NewForm.Alias.IsNotNullOrWhiteSpace())
+                {
+                    ClearInvalid(InputAlias);
                 }
             }
 
             ButtonSave.IsEnabled = IsSaveEnabled;
+
+            Trace.WriteLine("InputName.Text = " + InputName.Text);
+            Trace.WriteLine("InputAlias.Text = " + InputAlias.Text);
+            Trace.WriteLine("NewForm.Name = " + NewForm.Name);
+            Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
+
+            Trace.WriteLine("ButtonSave.IsEnabled = " + IsSaveEnabled);
+            Trace.WriteLine("-------------------------------------------------------------");
         }
 
         /// <summary>
-        /// Method called on input alias text changes event.
+        /// 
         /// </summary>
-        /// <param name="sender">The object sender.</param>
-        /// <param name="routedEventArgs">Text changed event arguments.</param>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InputName_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            ButtonSave.IsEnabled = IsSaveEnabled;
+
+            Trace.WriteLine("-------------------------------------------------------------");
+            Trace.WriteLine("InputName_TargetUpdated Name => " + tb.Name);
+            Trace.WriteLine("InputName_TargetUpdated Text => " + tb.Text);
+
+            Trace.WriteLine("InputName.Text = " + InputName.Text);
+            Trace.WriteLine("InputAlias.Text = " + InputAlias.Text);
+            Trace.WriteLine("NewForm.Name = " + NewForm.Name);
+            Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
+
+            Trace.WriteLine("ButtonSave.IsEnabled = " + IsSaveEnabled);
+            Trace.WriteLine("-------------------------------------------------------------");
+        }
+
+
+        private void ClearInvalid(TextBox txtBox)
+        {
+            BindingExpression bindingExpression =
+                BindingOperations.GetBindingExpression(txtBox, TextBox.TextProperty);
+            Validation.ClearInvalid(bindingExpression);
+
+            /*BindingExpressionBase bindingExpressionBase =
+                BindingOperations.GetBindingExpressionBase(txtBox, TextBox.TextProperty);
+
+            ValidationError validationError =
+                new ValidationError(new ExceptionValidationRule(), bindingExpression);*/
+
+            //Validation.MarkInvalid(bindingExpressionBase, validationError);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InputAlias_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (InputAlias.Text != "" && InputAlias.Text != InputAlias.Text.Sanitize().RemoveDiacritics().ToLower())
+            TextBox tb = sender as TextBox;
+
+            Trace.WriteLine("-------------------------------------------------------------");
+            Trace.WriteLine("InputAlias_TextChanged Name => " + tb.Name);
+            Trace.WriteLine("InputAlias_TextChanged Text => " + tb.Text);
+
+            Trace.WriteLine("InputName.Text = " + InputName.Text);
+            Trace.WriteLine("InputAlias.Text = " + InputAlias.Text);
+            Trace.WriteLine("NewForm.Name = " + NewForm.Name);
+            Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
+            Trace.WriteLine("-----------------------------");
+
+            if (tb.IsInitialized == false)
+                return;
+
+            InputAlias.Text = tb.Text.Sanitize().RemoveDiacritics().ToLower();
+            NewForm.Alias = tb.Text;
+            if (NewForm.Alias.IsNullOrWhiteSpace())
             {
-                InputAlias.Text = InputAlias.Text.Sanitize().RemoveDiacritics().ToLower();
+                ButtonSave.IsEnabled = false;
+            }
+            else
+            {
+                ButtonSave.IsEnabled = IsSaveEnabled;
             }
 
-            NewForm.Alias = InputAlias.Text;
+            Trace.WriteLine("InputName.Text = " + InputName.Text);
+            Trace.WriteLine("InputAlias.Text = " + InputAlias.Text);
+            Trace.WriteLine("NewForm.Name = " + NewForm.Name);
+            Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
+
+            Trace.WriteLine("ButtonSave.IsEnabled = " + ButtonSave.IsEnabled);
+            Trace.WriteLine("-------------------------------------------------------------");
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InputAlias_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+
+            Trace.WriteLine("-------------------------------------------------------------");
+            Trace.WriteLine("InputAlias_SourceUpdated Name => " + tb.Name);
+            Trace.WriteLine("InputAlias_SourceUpdated Text => " + tb.Text);
+
+            Trace.WriteLine("InputName.Text = " + InputName.Text);
+            Trace.WriteLine("InputAlias.Text = " + InputAlias.Text);
+
+            Trace.WriteLine("NewForm.Name = " + NewForm.Name);
+            Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
 
             ButtonSave.IsEnabled = IsSaveEnabled;
+
+            Trace.WriteLine("ButtonSave.IsEnabled = " + IsSaveEnabled);
+            Trace.WriteLine("-------------------------------------------------------------");
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InputAlias_TargetUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+
+            if (tb.IsInitialized == false)
+                return;
+
+            Trace.WriteLine("-------------------------------------------------------------");
+            Trace.WriteLine("InputAlias_TargetUpdated Name => " + tb.Name);
+            Trace.WriteLine("InputAlias_TargetUpdated Text => " + tb.Text);
+
+            Trace.WriteLine("InputName.Text = " + InputName.Text);
+            Trace.WriteLine("InputAlias.Text = " + InputAlias.Text);
+
+            Trace.WriteLine("NewForm.Name = " + NewForm.Name);
+            Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
+
+            ButtonSave.IsEnabled = IsSaveEnabled;
+
+            Trace.WriteLine("ButtonSave.IsEnabled = " + IsSaveEnabled);
+            Trace.WriteLine("-------------------------------------------------------------");
+        }
+
+
+
+
 
         /// <summary>
         /// 
@@ -181,26 +396,33 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">The text changed event arguments.</param>
-        protected override bool IsSaveEnabled
-        {
-            get
-            {
-                bool save = true;
+        protected override bool IsSaveEnabled => ValidateForm();
 
-                if (NewForm != null)
-                {
-                    if (NewForm.Name == null || NewForm.Name.Length == 0)
-                    {
-                        save = false;
-                    }
-                }
-                else
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private new bool ValidateForm()
+        {
+            bool save = false;
+
+            if (NewForm != null)
+            {
+                save = true;
+
+                if (NewForm.Name.IsNullOrWhiteSpace())
                 {
                     save = false;
                 }
 
-                return save;
+                NewForm.Alias = NewForm.Alias.Sanitize().RemoveDiacritics().ToLower();
+                if (NewForm.Alias.IsNullOrWhiteSpace())
+                {
+                    save = false;
+                }
             }
+
+            return save;
         }
 
         /// <summary>

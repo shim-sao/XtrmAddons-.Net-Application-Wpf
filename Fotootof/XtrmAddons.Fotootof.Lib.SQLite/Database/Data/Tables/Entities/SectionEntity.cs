@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Windows;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Net.Common.Extensions;
@@ -50,6 +52,24 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [Column(Order = 1)]
         public string Name { get; set; }
+
+        ///// <summary>
+        ///// Property name of the item.
+        ///// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        public string HandledName
+        {
+            get { return Name; }
+            set
+            {
+                if (value != Name)
+                {
+                    Name = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property name of the item.
