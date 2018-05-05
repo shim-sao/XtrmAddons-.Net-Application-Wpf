@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
@@ -20,10 +21,15 @@ namespace XtrmAddons.Fotootof
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// <para>Property to define if the application must be reset on start.</para>
+        /// <para>Variable to define if the application must be reset on start.</para>
         /// <para>Used as tool for quick development.</para>
         /// </summary>
         private bool Reset = false;
+
+        /// <summary>
+        /// Variable application settings options initilizer. 
+        /// </summary>
+        SettingsOptionsInitializer options = new SettingsOptionsInitializer();
 
         #endregion
 
@@ -36,26 +42,29 @@ namespace XtrmAddons.Fotootof
         /// </summary>
         public App()
         {
+            // Must be placed at the top start of the application.
+            // todo : check why no log if place elsewhere.
             log4net.Config.XmlConfigurator.Configure();
 
-            // Reset application : delete user my documents application folder.
+            // Reset application
+            // delete user my documents application folder.
             App_Reset();
 
             // Starting the application
             // The application loads options & parameters from files.
             // Create default files if not exists
             ApplicationBase.Start();
-             
+
             // Initialize language.
+            // Must be placed in the top start of the application.
             CultureInfo ci = new CultureInfo(ApplicationBase.Language);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
 
-            // Startup the application.
-            Startup += App_Startup;
-
-            // Add automatic application saving before application closing.
-            Exit += App_Exit;
+            //Current.Resources.MergedDictionaries.Add(new ResourceDictionary()
+            //{
+            //    Source = new Uri("/../XtrmAddons.Fotootof.Template;component/Generic.xaml", UriKind.RelativeOrAbsolute)
+            //});
         }
 
         #endregion
@@ -67,15 +76,22 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
-        private void App_Startup(object sender, System.Windows.StartupEventArgs e)
+        private void App_Startup(object sender, StartupEventArgs e)
         {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
             Trace.WriteLine((string)Translation.DLogs.StartingApplicationWaiting);
+
+            // Start application base manager.
             ApplicationBase.Debug();
+
+            // Initialize application preferences.
             InitializePreferencesAsync();
-            SettingsOptions.AutoStartServerAsync();
+
+            // Initialize application options.
+            InitializeOPtions();
+
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
             // Application is running
@@ -147,9 +163,20 @@ namespace XtrmAddons.Fotootof
             Trace.WriteLine((string)Translation.DLogs.CopyingProgramFiles);
             await ApplicationBase.CopyConfigFiles(true);
 
-            await SettingsOptions.InitializeDatabase();
-            await SettingsOptions.InitializeServer();
-            SettingsOptions.AddServerMap();
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+        }
+
+        /// <summary>
+        /// Method example of custom options settings adding.
+        /// </summary>
+        public void InitializeOPtions()
+        {
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            
+            options.InitializeDatabase();
+            options.InitializeServer();
+            options.AddServerMap();
+            options.AutoStartServer();
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }

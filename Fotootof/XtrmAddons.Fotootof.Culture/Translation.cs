@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Resources;
 using System.Threading;
 using System.Windows;
@@ -8,32 +9,33 @@ namespace XtrmAddons.Fotootof.Culture
 {
     public static class Translation
     {
-        private static ResourceManager RmWords = new ResourceManager("XtrmAddons.Fotootof.Culture.Properties.Resources", System.Reflection.Assembly.GetExecutingAssembly());
-        private static ResourceManager RmLogs = new ResourceManager("XtrmAddons.Fotootof.Culture.Properties.ResourcesLogs", System.Reflection.Assembly.GetExecutingAssembly());
-
-        private static ResourceDictionary words;
-        private static ResourceDictionary logs;
+        #region Variables
 
         /// <summary>
-        /// 
+        /// Variable resources manager for generic words translations.
         /// </summary>
-        public static ResourceDictionary Words
-        {
-            get
+        private static Dictionary<string, ResourceManager> rms 
+            = new Dictionary<string, ResourceManager>()
             {
-                if (words == null)
-                {
-                    Translate();
-                }
-
-                return words;
-            }
-        }
+                { "Words", new ResourceManager("XtrmAddons.Fotootof.Culture.Properties.Resources", System.Reflection.Assembly.GetExecutingAssembly()) },
+                { "Logs", new ResourceManager("XtrmAddons.Fotootof.Culture.Properties.ResourcesLogs", System.Reflection.Assembly.GetExecutingAssembly()) }
+            };
 
         /// <summary>
-        /// 
+        /// Variable resources manager for generic words translations.
         /// </summary>
-        public static dynamic DWords => Words.ToExpando();
+        private static Dictionary<string, ResourceDictionary> rds 
+            = new Dictionary<string, ResourceDictionary>()
+            {
+                { "Words", null },
+                { "Logs", null }
+            };
+
+        #endregion
+
+
+
+        #region Properties
 
         /// <summary>
         /// 
@@ -42,38 +44,62 @@ namespace XtrmAddons.Fotootof.Culture
         {
             get
             {
-                if (logs == null)
+                if (rds["Logs"] == null)
                 {
-                    Translate();
+                    Translate("Logs");
                 }
 
-                return logs;
+                return rds["Logs"];
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public static dynamic DLogs => Logs.ToExpando();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static void Translate()
+        public static ResourceDictionary Words
         {
-            words = new ResourceDictionary();
-            ResourceSet rsWords = RmWords.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
-            foreach (DictionaryEntry de in rsWords)
+            get
             {
-                words.Add(de.Key.ToString(), de.Value.ToString());
-            }
-            
-            logs = new ResourceDictionary();
-            rsWords = RmLogs.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
-            foreach (DictionaryEntry de in rsWords)
-            {
-                logs.Add(de.Key.ToString(), de.Value.ToString());
+                if (rds["Words"] == null)
+                {
+                    Translate("Words");
+                }
+
+                return rds["Words"];
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static dynamic DLogs
+            => Logs.ToExpando();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static dynamic DWords
+            => Words.ToExpando();
+
+        #endregion
+
+
+
+        #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private static void Translate(string name)
+        {
+            rds[name] = new ResourceDictionary();
+            var rs = rms[name].GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
+            foreach (DictionaryEntry de in rs)
+            {
+                rds[name].Add(de.Key.ToString(), de.Value.ToString());
+            }
+        }
+
+        #endregion
     }
 }

@@ -36,7 +36,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
             set
             {
                 qualityFilters = value;
-                RaisePropertyChanged("FiltersQuality");
+                NotifyPropertyChanged();
             }
         }
 
@@ -49,7 +49,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
             set
             {
                 colorFilters = value;
-                RaisePropertyChanged("FiltersColor");
+                NotifyPropertyChanged();
             }
         }
 

@@ -66,6 +66,7 @@
     <Compile Include="QueryManagers\QuerierInfo.cs" />
     <Compile Include="QueryManagers\QuerierPicture.cs" />
     <Compile Include="QueryManagers\QuerierSection.cs" />
+    <Compile Include="QueryManagers\QuerierVersion.cs" />
     <Compile Include="QueryManagers\QuerierUser.cs" />
     <Compile Include="SQLiteSvc.cs" />
     <Compile Include="SQLiteSvc.svc.cs" />

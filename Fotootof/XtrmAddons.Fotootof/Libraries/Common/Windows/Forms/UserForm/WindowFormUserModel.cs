@@ -36,7 +36,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
             set
             {
                 user = value;
-                RaisePropertyChanged("User");
+                NotifyPropertyChanged();
             }
         }
 
@@ -49,7 +49,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
             set
             {
                 aclGroups = value;
-                RaisePropertyChanged("AclGroups");
+                NotifyPropertyChanged();
             }
         }
 

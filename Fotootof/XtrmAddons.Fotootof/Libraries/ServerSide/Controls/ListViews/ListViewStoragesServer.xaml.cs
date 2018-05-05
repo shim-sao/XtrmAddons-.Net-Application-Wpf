@@ -103,7 +103,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Control_Loaded(object sender, RoutedEventArgs e)
         {
@@ -112,13 +112,19 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
                 Items = ItemsCollection.ItemsSource as StorageCollection
             };
 
-            if(Model.ListViewStoragesServerImageSize == null)
+            var ctrl = Model.ListViewStoragesServerImageSize;
+
+            if (ctrl == null)
             {
-                Model.ListViewStoragesServerImageSize = new UiElement(ComboBox_ImageSize);
+                ctrl = new UiElement(ComboBox_ImageSize);
             }
             else
-            {
-                ComboBox_ImageSize.SelectedIndex = int.Parse(Model.ListViewStoragesServerImageSize.Value);
+            { 
+                if (ctrl.JsonContext != null)
+                {
+                    //ComboBox_ImageSize = (ComboBox)Model.ListViewStoragesServerImageSize.ToControl();
+                    Model.ListViewStoragesServerImageSize.ToControl(ComboBox_ImageSize);
+                }
             }
         }
 
@@ -154,7 +160,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnAddPicturesToAlbum_Click(object sender, RoutedEventArgs e)
         {
@@ -235,7 +241,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         {
             if (Model != null)
             {
-                Model.ListViewStoragesServerImageSize.Value = ComboBox_ImageSize.SelectedIndex.ToString();
+                Model.ListViewStoragesServerImageSize = new UiElement(ComboBox_ImageSize);
             }
         }
 

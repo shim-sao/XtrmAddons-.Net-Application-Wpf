@@ -30,7 +30,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
             set
             {
                 albums = value;
-                RaisePropertyChanged("Albums");
+                NotifyPropertyChanged();
             }
         }
 

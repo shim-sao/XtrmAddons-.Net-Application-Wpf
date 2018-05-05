@@ -61,6 +61,11 @@ namespace XtrmAddons.Fotootof.SQLiteService
         /// 
         /// </summary>
         public QuerierUser Users { get; } = new QuerierUser();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public QuerierVersion Versions { get; } = new QuerierVersion();
         
         #endregion
 

@@ -68,39 +68,29 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
         public DateTime LastAdded { get; set; }
 
         /// <summary>
-        /// Variable the picture path.
+        /// Variable the background picture id.
         /// </summary>
-        public string PicturePath { get; set; }
+        public int BackgroundPictureId { get; set; }
 
         /// <summary>
         /// Variable the picture width.
         /// </summary>
-        public int PictureWidth { get; set; }
+        public int PreviewPictureId { get; set; }
 
         /// <summary>
         /// Variable the picture height.
         /// </summary>
-        public int PictureHeight { get; set; }
-
-        /// <summary>
-        /// Variable the thumbnail picture path.
-        /// </summary>
-        public string ThumbnailPath { get; set; }
-
-        /// <summary>
-        /// Variable the thumbnail width.
-        /// </summary>
-        public int ThumbnailWidth { get; set; }
-
-        /// <summary>
-        /// Variable the thumbnail height.
-        /// </summary>
-        public int ThumbnailHeight { get; set; }
+        public int ThumbnailPictureId { get; set; }
 
         /// <summary>
         /// Variable the comment.
         /// </summary>
         public string Comment { get; set; }
+
+        /// <summary>
+        /// Variable the paremeters.
+        /// </summary>
+        public string Parameters { get; set; }
 
         /// <summary>
         /// Variable list of albums in category.
@@ -148,6 +138,8 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
 
 
 
+        #region Methods
+
         /// <summary>
         /// 
         /// </summary>
@@ -161,12 +153,10 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
             Description = entity.Description;
             Ordering = entity.Ordering;
             IsDefault = entity.IsDefault;
-            PicturePath = entity.PicturePath;
-            PictureWidth = entity.PictureWidth;
-            PictureHeight = entity.PictureHeight;
-            ThumbnailPath = entity.ThumbnailPath;
-            ThumbnailWidth = entity.ThumbnailWidth;
-            ThumbnailHeight = entity.ThumbnailHeight;
+            BackgroundPictureId = entity.BackgroundPictureId;
+            PreviewPictureId = entity.PreviewPictureId;
+            ThumbnailPictureId = entity.ThumbnailPictureId;
+            Parameters = entity.Parameters;
 
             if (auth)
             {
@@ -179,35 +169,41 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
         /// </summary>
         public SectionEntity ToEntity()
         {
-            SectionEntity section = new SectionEntity();
-            
-            section.PrimaryKey = PrimaryKey;
-            section.Name = Name;
-            section.Alias = Alias;
-            section.Description = Description;
-            section.Ordering = Ordering;
-            section.IsDefault = IsDefault;
+            SectionEntity entity = new SectionEntity();
 
-            section.PicturePath = PicturePath;
-            section.PictureWidth = PictureWidth;
-            section.PictureHeight = PictureHeight;
+            entity.PrimaryKey = PrimaryKey;
+            entity.Name = Name;
+            entity.Alias = Alias;
+            entity.Description = Description;
+            entity.Ordering = Ordering;
+            entity.IsDefault = IsDefault;
 
-            section.ThumbnailPath = ThumbnailPath;
-            section.ThumbnailWidth = ThumbnailWidth;
-            section.ThumbnailHeight = ThumbnailHeight;
+            entity.BackgroundPictureId = BackgroundPictureId;
+            entity.PreviewPictureId = PreviewPictureId;
+            entity.ThumbnailPictureId = ThumbnailPictureId;
+            entity.Parameters = Parameters;
+            entity.Comment = Comment;
 
-            section.Comment = Comment;
+            AddAlbumToEntity(entity);
 
-            if(Albums.Count > 0)
+            return entity;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        private void AddAlbumToEntity(SectionEntity entity)
+        {
+            if (Albums.Count > 0)
             {
-                foreach(AlbumJson a in Albums)
+                foreach (AlbumJson a in Albums)
                 {
-                    //section.Albums.Add();
-                    section.AlbumsInSections.Add(new AlbumsInSections { AlbumId = a.PrimaryKey});
+                    entity.AlbumsInSections.Add(new AlbumsInSections { AlbumId = a.PrimaryKey });
                 }
             }
-
-            return section;
         }
+
+        #endregion
     }
 }

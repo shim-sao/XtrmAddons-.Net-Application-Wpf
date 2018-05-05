@@ -100,7 +100,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void InputName_Changed(object sender, TextChangedEventArgs e)
         {
@@ -111,7 +111,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void InputPassword_Changed(object sender, TextChangedEventArgs e)
         {
@@ -122,7 +122,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void InputEmail_Changed(object sender, TextChangedEventArgs e)
         {
@@ -172,7 +172,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void CheckBoxAclGroup_Checked(object sender, RoutedEventArgs e)
         {
@@ -185,7 +185,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void CheckBoxAclGroup_UnChecked(object sender, RoutedEventArgs e)
         {

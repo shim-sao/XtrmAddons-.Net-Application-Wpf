@@ -91,7 +91,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void SelectedAlbums_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

@@ -196,7 +196,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void TreeViewDirectories_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
@@ -216,7 +216,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -235,7 +235,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnForward_Click(object sender, RoutedEventArgs e)
         {
@@ -254,7 +254,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnUpward_Click(object sender, RoutedEventArgs e)
         {
@@ -279,7 +279,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Refresh_UcListViewStoragesServer()
         {
@@ -378,7 +378,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void ImageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -392,7 +392,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void UcListViewStoragesServer_ItemsCollection_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -424,7 +424,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void UcListViewStoragesServer_Loaded(object sender, RoutedEventArgs e)
         {
@@ -441,7 +441,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {

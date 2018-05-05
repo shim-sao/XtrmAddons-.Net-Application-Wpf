@@ -55,7 +55,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Slideshow
             set
             {
                 pictures = value;
-                RaisePropertyChanged("Pictures");
+                NotifyPropertyChanged();
             }
         }
 
@@ -75,7 +75,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Slideshow
                 }
 
                 currentPicture = value;
-                RaisePropertyChanged("CurrentPicture");
+                NotifyPropertyChanged();
             }
         }
 
@@ -88,7 +88,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Slideshow
             set
             {
                 delay = value;
-                RaisePropertyChanged("Delay");
+                NotifyPropertyChanged();
             }
         }
 
@@ -101,7 +101,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Slideshow
             set
             {
                 isPlaying = value;
-                RaisePropertyChanged("IsPlaying");
+                NotifyPropertyChanged();
             }
         }
 
@@ -114,7 +114,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Slideshow
             set
             {
                 startIndex = value;
-                RaisePropertyChanged("StartIndex");
+                NotifyPropertyChanged();
             }
         }
 
@@ -127,7 +127,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Slideshow
             set
             {
                 currentIndex = value;
-                RaisePropertyChanged("CurrentIndex");
+                NotifyPropertyChanged();
             }
         }
 
@@ -153,7 +153,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Slideshow
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         public async void NextAsync()
         {
@@ -180,7 +180,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Slideshow
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         public async void PreviewAsync()
         {

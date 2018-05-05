@@ -282,7 +282,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <summary>
         /// Method called on User view cancel event.
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void UcDataGridUsers_UserCanceled(object sender, EntityChangesEventArgs e)
         {
@@ -334,7 +334,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <summary>
         /// Method called on User view delete event.
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void UcDataGridUsers_UserDeleled(object sender, EntityChangesEventArgs e)
         {

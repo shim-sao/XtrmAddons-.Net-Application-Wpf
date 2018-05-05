@@ -48,7 +48,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             set
             {
                 sections = value;
-                RaisePropertyChanged("Sections");
+                NotifyPropertyChanged();
             }
         }
 
@@ -61,7 +61,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             set
             {
                 albums = value;
-                RaisePropertyChanged("Albums");
+                NotifyPropertyChanged();
             }
         }
 
@@ -74,7 +74,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             set
             {
                 qualityFilters = value;
-                RaisePropertyChanged("FiltersQuality");
+                NotifyPropertyChanged();
             }
         }
 
@@ -87,7 +87,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             set
             {
                 colorFilters = value;
-                RaisePropertyChanged("FiltersColor");
+                NotifyPropertyChanged();
             }
         }
 

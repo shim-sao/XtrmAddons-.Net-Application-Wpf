@@ -1,4 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
+using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
 {
@@ -27,11 +32,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
         public T OwnerBase { get; protected set; }
 
         /// <summary>
-        /// Delegate property changed event handler of the model.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
-
-        /// <summary>
         /// Property to access to the dynamic translation words.
         /// </summary>
         public dynamic TranslationWords => Culture.Translation.Words;
@@ -40,6 +40,17 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
         /// Property to access to the dynamic translation logs.
         /// </summary>
         public dynamic TranslationLogs => Culture.Translation.Logs;
+
+        #endregion
+
+
+
+        #region Events Handlers
+
+        /// <summary>
+        /// Delegate property changed event handler of the model.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         #endregion
 
@@ -68,13 +79,60 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
         #region Methods
 
         /// <summary>
+        /// <para>This method is called by the Set accessor of each property.</para>
+        /// <para>The CallerMemberName attribute that is applied to the optional propertyName</para>
+        /// </summary>
+        /// <param name="propertyName">Parameter causes the property name of the caller to be substituted as an argument.</param>
+        protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
         /// <para>Method to raise property changed.</para>
         /// <para>Send property changed event</para>
         /// </summary>
         /// <param name="propertyName">The name of the property.</param>
+        [Obsolete("Use NotifyPropertyChanged() instead.", false)]
         protected void RaisePropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            NotifyPropertyChanged(propertyName);
+            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+
+
+        #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static UiElement GetOptionsControl(string key)
+        {
+            return ApplicationBase.UI.Controls.FindKey(key);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public static void SetOptionsControl(string key, UiElement value)
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                if (ApplicationBase.UI.Controls.FindKey(key) != null)
+                {
+                    ApplicationBase.UI.Controls.ReplaceKeyUnique(value);
+                }
+                else
+                {
+                    ApplicationBase.UI.Controls.Add(value);
+                }
+            }));
         }
 
         #endregion

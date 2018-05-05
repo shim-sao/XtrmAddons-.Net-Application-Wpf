@@ -22,6 +22,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// </summary>
         private static DatabaseCore db;
 
+        /// <summary>
+        /// Variable primary key auto incremented.
+        /// </summary>
+        protected int primaryKey = 0;
+
         #endregion
 
 
@@ -44,13 +49,28 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// </summary>
         [JsonIgnore]
         [NotMapped]
-        public static DatabaseCore Db { get => db; set => db = value; }
+        public static DatabaseCore Db
+        {
+            get => db;
+            set => db = value;
+        }
 
         /// <summary>
         /// Property alias to access to the primary key of the entity.
         /// </summary>
         [NotMapped]
-        public abstract int PrimaryKey { get; set; }
+        public int PrimaryKey
+        {
+            get { return primaryKey; }
+            set
+            {
+                if (value != primaryKey)
+                {
+                    primaryKey = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         #endregion
 

@@ -98,7 +98,7 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Method called on window load event.
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -123,7 +123,7 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         public void logWatcher_Updated(object sender, EventArgs e)
         {
@@ -157,11 +157,11 @@ namespace XtrmAddons.Fotootof
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             NotifyIconManager.Dispose();
-            log.Info(Translation.Logs["ApplicationClosed"]);
+            log.Info(Translation.DLogs.ApplicationClosed);
         }
 
         /// <summary>
-        /// 
+        /// Method to toggle logs window.
         /// </summary>
         public void LogsToggle()
         {
@@ -173,13 +173,13 @@ namespace XtrmAddons.Fotootof
             // Set the grid row logs height.
             RowGridLogs.Height =
                 RowGridLogs.Height == new GridLength(0)
-                ? new GridLength(160) : new GridLength(0);
+                ? new GridLength(250) : new GridLength(0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {

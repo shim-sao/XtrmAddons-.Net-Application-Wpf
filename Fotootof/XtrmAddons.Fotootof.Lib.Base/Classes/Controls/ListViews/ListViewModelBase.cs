@@ -55,7 +55,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
             set
             {
                 items = value;
-                RaisePropertyChanged("Items");
+                NotifyPropertyChanged();
             }
         }
 

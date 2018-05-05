@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
+﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 
 namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 {
-   public class ListViewStoragesServerModel : ListViewBaseModel<ListViewStoragesServer, StorageCollection>
+    public class ListViewStoragesServerModel : ListViewBaseModel<ListViewStoragesServer, StorageCollection>
     {
         #region Properties
 
@@ -19,11 +14,11 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// </summary>
         public UiElement ListViewStoragesServerImageSize
         {
-            get { return ApplicationBase.UI.Controls.FindKey("ListViewStoragesServerImageSize"); }
+            get => GetOptionsControl("ListViewStoragesServerImageSize");
             set
             {
-                GetOptionsListViewStoragesServerImageSize(value);
-                RaisePropertyChanged("ListViewStoragesServerImageSize");
+                SetOptionsControl("ListViewStoragesServerImageSize", value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -44,22 +39,6 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 
 
         #region Methods
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        private static void GetOptionsListViewStoragesServerImageSize(UiElement value)
-        {
-            if (ApplicationBase.UI.Controls.FindKey("ListViewStoragesServerImageSize") != null)
-            {
-                ApplicationBase.UI.Controls.ReplaceKeyUnique(value, "ListViewStoragesServerImageSize");
-            }
-            else
-            {
-                ApplicationBase.UI.Controls.Add(value);
-            }
-        }
 
         #endregion
 

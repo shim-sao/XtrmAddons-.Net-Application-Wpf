@@ -213,17 +213,14 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="XtrmAddons.Net.Application, Version=1.0.18032.1543, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\XtrmAddons.Net.Application.dll</HintPath>
+    <Reference Include="XtrmAddons.Net.Application">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
-    <Reference Include="XtrmAddons.Net.Common, Version=1.0.18032.1520, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\XtrmAddons.Net.Common.dll</HintPath>
+    <Reference Include="XtrmAddons.Net.Common">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
-    <Reference Include="XtrmAddons.Net.HttpWebServer, Version=1.0.18022.1713, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\XtrmAddons.Net.HttpWebServer.dll</HintPath>
+    <Reference Include="XtrmAddons.Net.HttpWebServer">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.HttpWebServer.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Memory">
       <HintPath>packages\XtrmAddons.Net.Memory.dll</HintPath>
@@ -235,7 +232,7 @@
       <HintPath>packages\XtrmAddons.Net.NotifyIcons.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Picture">
-      <HintPath>packages\XtrmAddons.Net.Picture.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Picture.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SQLiteBundle">
       <HintPath>packages\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
@@ -244,7 +241,7 @@
       <HintPath>packages\XtrmAddons.Net.SystemIO.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Windows">
-      <HintPath>packages\XtrmAddons.Net.Windows.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Windows.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +286,9 @@
     <Compile Include="Libraries\Common\Tools\AppNavigator.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionTest.xaml.cs">
+      <DependentUpon>WindowFormSectionTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml.cs">
       <DependentUpon>WindowSlideshow.xaml</DependentUpon>
@@ -467,6 +467,10 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionTest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
@@ -595,6 +599,9 @@
     </EmbeddedResource>
     <None Include="autoexec.release.bat" />
     <None Include="autoexec.debug.bat" />
+    <Content Include="Config\Database\Scheme\update.1.0.18123.2149.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="postbuild.bat" />
     <None Include="prebuild.bat" />
     <None Include="Properties\Settings.settings">

@@ -45,7 +45,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
             set
             {
                 sections = value;
-                RaisePropertyChanged("Sections");
+                NotifyPropertyChanged();
             }
         }
 
@@ -58,7 +58,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
             set
             {
                 albums = value;
-                RaisePropertyChanged("Albums");
+                NotifyPropertyChanged();
             }
         }
 
@@ -72,7 +72,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
             {
                 server = value;
                 AddClientHttp();
-                RaisePropertyChanged("Server");
+                NotifyPropertyChanged();
             }
         }
 
@@ -111,7 +111,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Svr_OnAuthenticationFailed(object sender, EventArgs e)
         {
@@ -123,7 +123,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Svr_OnListSectionsSuccess(object sender, EventArgs e)
         {
@@ -137,7 +137,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Svr_OnListSectionsFailed(object sender, EventArgs e)
         {

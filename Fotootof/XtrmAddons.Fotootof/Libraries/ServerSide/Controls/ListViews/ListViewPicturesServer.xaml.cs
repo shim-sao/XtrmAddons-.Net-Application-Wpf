@@ -71,7 +71,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void ListView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -82,7 +82,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private async void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -132,7 +132,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private async void OnRefresh_Click(object sender, RoutedEventArgs e)
         {
@@ -304,7 +304,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnImageRefresh_Click(object sender, RoutedEventArgs e)
         {
@@ -314,7 +314,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnImage_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -360,7 +360,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {

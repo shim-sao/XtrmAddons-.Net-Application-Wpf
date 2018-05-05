@@ -74,7 +74,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids
             set
             {
                 items = value;
-                RaisePropertyChanged("Items");
+                NotifyPropertyChanged();
             }
         }
 

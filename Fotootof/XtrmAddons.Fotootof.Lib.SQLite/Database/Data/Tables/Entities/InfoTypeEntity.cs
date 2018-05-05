@@ -29,7 +29,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [Key]
         [Column(Order = 0)]
-        public int InfoTypeId { get; set; }
+        public int InfoTypeId
+        {
+            get { return primaryKey; }
+            set
+            {
+                if (value != primaryKey)
+                {
+                    primaryKey = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property Name of the Info.
@@ -60,18 +71,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [Column(Order = 5)]
         public int Ordering { get; set; }
-
-        #endregion
-
-
-
-        #region Properties : Dependencies
-
-        /// <summary>
-        /// Property alias to access to the primary key of the entity.
-        /// </summary>
-        [NotMapped]
-        public override int PrimaryKey { get => InfoTypeId; set => InfoTypeId = value; }
 
         #endregion
 

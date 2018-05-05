@@ -72,6 +72,7 @@
     <Compile Include="Database\Data\Tables\Entities\InfoEntity.cs" />
     <Compile Include="Database\Data\Tables\Entities\InfoTypeEntity.cs" />
     <Compile Include="Database\Data\Tables\Entities\PictureEntity.cs" />
+    <Compile Include="Database\Data\Tables\Entities\VersionEntity.cs" />
     <Compile Include="Database\Data\Tables\Entities\SectionEntity.cs" />
     <Compile Include="Database\Data\Tables\Entities\UserEntity.cs" />
     <Compile Include="Database\Data\Tables\Entities\AclActionEntity.cs" />
@@ -105,6 +106,9 @@
     <Compile Include="Database\Manager\Entity\Users\UserManager.cs" />
     <Compile Include="Database\Manager\Entity\Users\UserOptionsList.cs" />
     <Compile Include="Database\Manager\Entity\Users\UserOptionsSelect.cs" />
+    <Compile Include="Database\Manager\Entity\Versions\VersionOptionsSelect.cs" />
+    <Compile Include="Database\Manager\Entity\Versions\VersionOptionsList.cs" />
+    <Compile Include="Database\Manager\Entity\Versions\VersionManager.cs" />
     <Compile Include="Database\Scheme\DatabaseContextCore.cs" />
     <Compile Include="Database\Scheme\DatabaseCore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

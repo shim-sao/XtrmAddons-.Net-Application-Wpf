@@ -37,7 +37,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [Key]
         [Column(Order = 0)]
-        public int UserId { get; set; }
+        public int UserId
+        {
+            get { return primaryKey; }
+            set
+            {
+                if (value != primaryKey)
+                {
+                    primaryKey = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property name of the user.
@@ -80,12 +91,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
 
         #region Properties : Dependencies
-
-        /// <summary>
-        /// Property alias to access to the primary key of the entity.
-        /// </summary>
-        [NotMapped]
-        public override int PrimaryKey { get => UserId; set => UserId = value; }
 
         /// <summary>
         /// Variable AclGroup id (required for entity dependency).

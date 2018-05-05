@@ -209,7 +209,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// Method called on Section add event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Event arguments.</param>
+        /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_OnAdd(object sender, EntityChangesEventArgs e)
         {
             AppOverwork.IsBusy = true;
@@ -219,15 +219,15 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
             model.Sections.Items.Add(item);
             SectionEntityCollection.DbInsert(new List<SectionEntity> { item });
 
-            log.Info("Saving new AclGroup informations. Done.");
-            AppOverwork.IsBusy = true;
+            log.Info("Saving new Section informations. Done.");
+            AppOverwork.IsBusy = false;
         }
 
         /// <summary>
         /// Method called on Section change event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Event arguments.</param>
+        /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_OnChange(object sender, EntityChangesEventArgs e)
         {
             AppOverwork.IsBusy = true;
@@ -235,11 +235,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
 
             SectionEntity newEntity = (SectionEntity)e.NewEntity;
             SectionEntity old = model.Sections.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
-            int index = model.Sections.Items.IndexOf(old);
-            model.Sections.Items[index] = newEntity;
+            /*int index = model.Sections.Items.IndexOf(old);
+            model.Sections.Items[index] = newEntity;*/
             SectionEntityCollection.DbUpdateAsync(new List<SectionEntity> { newEntity }, new List<SectionEntity> { old });
+            LoadSections();
 
-            log.Info("Saving AclGroup informations. Done.");
+            log.Info("Saving Section informations. Done.");
             AppOverwork.IsBusy = false;
         }
 
@@ -247,7 +248,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// Method called on Section delete event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Event arguments.</param>
+        /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_OnDelete(object sender, EntityChangesEventArgs e)
         {
             AppOverwork.IsBusy = true;
@@ -268,7 +269,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// Method called on Section default change event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Event arguments.</param>
+        /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_OnDefaultChange(object sender, EntityChangesEventArgs e)
         {
             AppOverwork.IsBusy = true;
@@ -368,9 +369,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
 
             AlbumEntity newEntity = (AlbumEntity)e.NewEntity;
             AlbumEntity old = model.Albums.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
-            int index = model.Albums.Items.IndexOf(old);
-            model.Albums.Items[index] = newEntity;
+            /*int index = model.Albums.Items.IndexOf(old);
+            model.Albums.Items[index] = newEntity;*/
             AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
+            LoadAlbums();
 
             log.Info("Saving Album informations. Done.");
             AppOverwork.IsBusy = false;
@@ -380,7 +382,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// Method called on Album delete event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Event arguments.</param>
+        /// <param name="e">Entity changes event arguments.</param>
         private void AlbumsListView_OnDelete(object sender, EntityChangesEventArgs e)
         {
             AppOverwork.IsBusy = true;
@@ -407,7 +409,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void FiltersQuality_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -433,7 +435,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void FiltersColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

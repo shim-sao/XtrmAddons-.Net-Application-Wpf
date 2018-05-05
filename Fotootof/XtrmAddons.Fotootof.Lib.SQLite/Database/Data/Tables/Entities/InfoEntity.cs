@@ -45,7 +45,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [Key]
         [Column(Order = 0)]
-        public int InfoId { get; set; }
+        public int InfoId
+        {
+            get { return primaryKey; }
+            set
+            {
+                if (value != primaryKey)
+                {
+                    primaryKey = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property assaciated InfoType primary key.
@@ -88,12 +99,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
 
         #region Properties : Dependencies
-
-        /// <summary>
-        /// Property alias to access to the primary key of the entity.
-        /// </summary>
-        [NotMapped]
-        public override int PrimaryKey { get => InfoId; set => InfoId = value; }
 
         /// <summary>
         /// Variable Album id (required for entity dependency).

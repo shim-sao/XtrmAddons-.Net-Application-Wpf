@@ -105,7 +105,7 @@ namespace XtrmAddons.Fotootof.Forms.About
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void labelProductName_Click(object sender, EventArgs e)
         {
@@ -115,7 +115,7 @@ namespace XtrmAddons.Fotootof.Forms.About
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnFormCloseClick(object sender, EventArgs e)
         {

@@ -20,6 +20,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Variables
 
         /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
         /// Variable list of Albums associated to the item.
         /// </summary>
         [NotMapped]
@@ -44,8 +50,19 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [Key]
         [Column(Order = 0)]
-        public int PictureId { get; set; }
-        
+        public int PictureId
+        {
+            get { return primaryKey; }
+            set
+            {
+                if (value != primaryKey)
+                {
+                    primaryKey = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         /// <summary>
         /// Property name.
         /// </summary>
@@ -180,12 +197,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
 
         #region Properties : Dependencies
-
-        /// <summary>
-        /// Property alias to access to the primary key of the entity.
-        /// </summary>
-        [NotMapped]
-        public override int PrimaryKey { get => PictureId; set => PictureId = value; }
 
         /// <summary>
         /// Property Album id (required for entity dependency).

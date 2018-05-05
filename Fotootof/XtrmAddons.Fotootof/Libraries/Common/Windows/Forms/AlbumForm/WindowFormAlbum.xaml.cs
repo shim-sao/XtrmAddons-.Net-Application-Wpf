@@ -280,7 +280,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Filters_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

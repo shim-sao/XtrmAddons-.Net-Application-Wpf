@@ -1,15 +1,17 @@
 ﻿<Application 
     x:Class="XtrmAddons.Fotootof.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Startup="App_Startup"
+	Exit="App_Exit">
 
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Dictionary.xaml"/>
 
-                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Generic.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Color.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Generic.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Color.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Images.xaml"/>
 
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Borders.xaml" />

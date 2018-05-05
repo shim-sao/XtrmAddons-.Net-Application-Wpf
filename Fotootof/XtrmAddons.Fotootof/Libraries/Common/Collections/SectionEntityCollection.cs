@@ -63,6 +63,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         #endregion
 
 
+
         #region Methods
 
         /// <summary>
@@ -101,11 +102,22 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
 
             try
             {
+                var items = MainWindow.Database.Sections.List(GetOptionsDefault());
+                bool newItem = true;
+
                 if (newItems != null && newItems.Count > 0)
                 {
                     foreach (SectionEntity entity in newItems)
                     {
+                        // todo : delete when Class Entity update NotifyPropertyChanged
                         entity.Initialize();
+                        
+                        if(items.Count == 0 && newItem)
+                        {
+                            entity.IsDefault = true;
+                            newItem = false;
+                        }
+
                         MainWindow.Database.Sections.Add(entity);
 
                         log.Info(string.Format("Section [{0}:{1}] added.", entity.PrimaryKey, entity.Name));

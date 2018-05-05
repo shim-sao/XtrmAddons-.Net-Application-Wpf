@@ -30,7 +30,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer
             set
             {
                 server = value;
-                RaisePropertyChanged("Server");
+                NotifyPropertyChanged();
             }
         }
 

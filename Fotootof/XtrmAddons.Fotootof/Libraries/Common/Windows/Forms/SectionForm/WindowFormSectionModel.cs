@@ -41,7 +41,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             set
             {
                 section = value;
-                RaisePropertyChanged("Section");
+                NotifyPropertyChanged();
             }
         }
 
@@ -54,7 +54,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             set
             {
                 aclGroups = value;
-                RaisePropertyChanged("AclGroups");
+                NotifyPropertyChanged();
             }
         }
 
@@ -67,7 +67,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             set
             {
                 albums = value;
-                RaisePropertyChanged("Albums");
+                NotifyPropertyChanged();
             }
         }
 

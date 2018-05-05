@@ -196,12 +196,19 @@ CREATE TABLE IF NOT EXISTS [Sections] (
 	[IsDefault] BOOLEAN DEFAULT '0' NOT NULL,
 	[Ordering] INTEGER DEFAULT '0' NOT NULL,
 
-	[backgroundPictureId] INTEGER DEFAULT '0' NOT NULL,
-	[previewPictureId] INTEGER DEFAULT '0' NOT NULL,
-	[thumbnailPictureId] INTEGER DEFAULT '0' NOT NULL,
+	[OriginalPath] VARCHAR(256) NOT NULL DEFAULT '' NOT NULL,
+	[OriginalWidth] INTEGER DEFAULT '0' NOT NULL,
+	[OriginalHeight] INTEGER DEFAULT '0' NOT NULL,
 
-	[Comment] TEXT DEFAULT '' NOT NULL,
-	[Parameters] TEXT DEFAULT '' NOT NULL
+	[PicturePath] VARCHAR(256) NOT NULL DEFAULT '' NOT NULL,
+	[PictureWidth] INTEGER DEFAULT '0' NOT NULL,
+	[PictureHeight] INTEGER DEFAULT '0' NOT NULL,
+
+	[ThumbnailPath] VARCHAR(256) DEFAULT '' NOT NULL,
+	[ThumbnailWidth] INTEGER DEFAULT '0' NOT NULL,
+	[ThumbnailHeight] INTEGER DEFAULT '0' NOT NULL,
+
+	[Comment] TEXT DEFAULT '' NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS [SectionsInAclGroups] (

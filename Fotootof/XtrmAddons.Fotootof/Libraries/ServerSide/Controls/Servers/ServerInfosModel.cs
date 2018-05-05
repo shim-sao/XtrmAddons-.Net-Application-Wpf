@@ -31,7 +31,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.Servers
             set
             {
                 server = value;
-                RaisePropertyChanged("Server");
+                NotifyPropertyChanged();
             }
         }
 
