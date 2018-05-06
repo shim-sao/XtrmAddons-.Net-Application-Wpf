@@ -418,7 +418,7 @@
                     Height="30">
 
                     <Button
-                        x:Name="ButtonSave"
+                        x:Name="Button_Save"
                         IsEnabled="False"
                         IsDefault="True"
                         Click="DialogSave_Click"

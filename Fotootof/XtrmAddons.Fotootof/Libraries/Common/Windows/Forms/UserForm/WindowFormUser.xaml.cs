@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
@@ -25,7 +26,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         #endregion
 
 
-
         #region Properties
 
         /// <summary>
@@ -42,8 +42,16 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
             set => model.User = value;
         }
 
+        /// <summary>
+        /// Property to define if the form can be saftly saved.
+        /// </summary>
+        protected override bool IsSaveEnabled
+            => ValidateForm();
+
         #endregion
 
+
+        #region Constructors
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Windows User Form Constructor.
@@ -55,9 +63,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
             // Initialize window component.
             InitializeComponent();
             InitializeModel(entity);
-            Loaded += Window_Load;
-            Closing += Window_Closing;
+            //Loaded += Window_Load;
+            //Closing += Window_Closing;
         }
+
+        #endregion
+
+
+        #region Methods
 
         /// <summary>
         /// Method called on Window loaded event.
@@ -78,45 +91,152 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
             entity = entity ?? new UserEntity();
 
             // 3 - Initialize new entity if required.
-            if (entity.PrimaryKey > 0)
+            /*if (entity.PrimaryKey > 0)
             {
                 entity.Initialize();
-            }
+            }*/
 
             // 4 - Store current entity data in a new entity.
             OldForm = entity.Clone();
 
             // 5 - Assign entity to the model.
+            NewForm = entity;
+            
             // 6 - Set model entity to dependencies converters.
-            IsAclGroupInUser.Entity = NewForm = entity;
+            IsAclGroupInUser.Entity = NewForm;
 
             // 7.1 - Assign list of AclGroup to the model.
             model.AclGroups = new AclGroupEntityCollection(true);
-
-            // 8 - Validate form on first entry
-            //ValidateForm();
         }
 
         /// <summary>
-        /// 
+        /// Method to validate the Form Data.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
-        private void InputName_Changed(object sender, TextChangedEventArgs e)
+        protected new bool ValidateForm()
         {
-            NewForm.Name = InputName.Text;
-            ValidateForm();
+            if (NewForm == null)
+            {
+                return false;
+            }
+
+            if (NewForm.Name.IsNullOrWhiteSpace())
+            {
+                return false;
+            }
+
+            if (NewForm.Password.IsNullOrWhiteSpace())
+            {
+                return false;
+            }
+
+            if (NewForm.Email.IsNullOrWhiteSpace() || !NewForm.Email.IsValidEmail())
+            {
+                return false;
+            }
+
+            if (NewForm.UsersInAclGroups == null || NewForm.UsersInAclGroups.Count == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
-        /// 
+        /// Method to validate the Inputs.
+        /// </summary>
+        private new bool ValidateInput()
+        {
+            if (NewForm == null)
+            {
+                return false;
+            }
+
+            if (InputName.Text.IsNullOrWhiteSpace())
+            {
+                return false;
+            }
+            
+            if (!InputEmail.Text.IsValidEmail())
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// <para>Method to send validation error to a TextBox.</para>
+        /// <para>Disable Form Save Button to prevent unwanted save.</para>
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
-        private void InputPassword_Changed(object sender, TextChangedEventArgs e)
+        /// <param name="e">Validation error event argumments.</param>
+        private void Input_Error(object sender, ValidationErrorEventArgs e)
         {
-            NewForm.Password = InputPassword.Text;
-            ValidateForm();
+            Button_Save.IsEnabled = false;
+        }
+
+        /// <summary>
+        /// <para>Method called on input updated event.</para>
+        /// <para>Send Form validation to prevent unwanted save.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Data transfer event arguments</param>
+        private void Input_Updated(object sender, DataTransferEventArgs e)
+        {
+            Button_Save.IsEnabled = IsSaveEnabled;
+        }
+
+        /// <summary>
+        /// <para>Method called on input name text changed event.</para>
+        /// <para>Send Form validation to prevent unwanted save.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Text changed event arguments.</param>
+        private void InputName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            Button_Save.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
+        }
+
+        /// <summary>
+        /// <para>Method called on input name text source changed event.</para>
+        /// <para>Send Form validation to prevent unwanted save.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Text changed event arguments.</param>
+        private void InputName_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            Button_Save.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
+        }
+
+        /// <summary>
+        /// <para>Method called on input Password text changed event.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Text changed event arguments.</param>
+        private void InputPassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb.Text.IsNullOrWhiteSpace())
+            {
+                NewForm.Password = OldForm.Password;
+            }
+        }
+
+        /// <summary>
+        /// <para>Method called on input Password text source updated event.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Text changed event arguments.</param>
+        private void InputPassword_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb.Text.IsNullOrWhiteSpace())
+            {
+                NewForm.Password = OldForm.Password;
+            }
         }
 
         /// <summary>
@@ -128,45 +248,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         {
             NewForm.Email = InputEmail.Text;
             ValidateForm();
-        }
-
-        /// <summary>
-        /// Method to check if saving is enabled.
-        /// </summary>
-        protected new bool ValidateForm()
-        {
-            bool save = true;
-
-            if (NewForm != null)
-            {
-                if (NewForm.Name.IsNullOrWhiteSpace())
-                {
-                    save = false;
-                }
-
-                if (NewForm.Password.IsNullOrWhiteSpace())
-                {
-                    save = false;
-                }
-
-                if (NewForm.Email.IsNullOrWhiteSpace() || !NewForm.Email.IsValidEmail())
-                {
-                    save = false;
-                }
-
-                if (NewForm.UsersInAclGroups == null || NewForm.UsersInAclGroups.Count == 0)
-                {
-                    save = false;
-                }
-            }
-            else
-            {
-                save = false;
-            }
-
-            ButtonSave.IsEnabled = IsSaveEnabled = save;
-
-            return save;
         }
 
         /// <summary>
@@ -204,5 +285,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         {
 
         }
+
+        #endregion
     }
 }

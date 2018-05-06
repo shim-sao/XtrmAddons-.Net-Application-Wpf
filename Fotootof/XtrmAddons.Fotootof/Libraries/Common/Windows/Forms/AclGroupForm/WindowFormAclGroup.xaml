@@ -278,7 +278,7 @@
 							VerticalAlignment="center"
 							Height="30">
 
-					<Button x:Name="ButtonSave"
+					<Button x:Name="Button_Save"
 							IsEnabled="False"
 							IsDefault="True"
 							Click="DialogSave_Click"

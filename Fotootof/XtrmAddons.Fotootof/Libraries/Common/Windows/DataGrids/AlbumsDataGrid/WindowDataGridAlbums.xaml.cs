@@ -97,11 +97,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         {
             if (SelectedAlbums.Count > 0)
             {
-                ButtonSave.IsEnabled = true;
+                Button_Save.IsEnabled = true;
             }
             else
             {
-                ButtonSave.IsEnabled = false;
+                Button_Save.IsEnabled = false;
             }
         }
 

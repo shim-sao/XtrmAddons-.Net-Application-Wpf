@@ -71,7 +71,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms
             DataContext = Model;
 
             // Validate form for saving.
-            ButtonSave.IsEnabled = ValidateForm();
+            Button_Save.IsEnabled = ValidateForm();
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms
         private void InputText_Changed(object sender, TextChangedEventArgs e)
         {
             TextBox_TextChanged((TextBox)sender, NewForm);
-            ButtonSave.IsEnabled = IsSaveEnabled;
+            Button_Save.IsEnabled = IsSaveEnabled;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms
                 InputName.Text = NewForm.Name = NewForm.Host;
             }
 
-            ButtonSave.IsEnabled = ValidateForm();
+            Button_Save.IsEnabled = ValidateForm();
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms
         private void InputPort_Changed(object sender, TextChangedEventArgs e)
         {
             TextBox_TextChanged((TextBox)sender, NewForm);
-            ButtonSave.IsEnabled = IsSaveEnabled;
+            Button_Save.IsEnabled = IsSaveEnabled;
         }
 
         /// <summary>

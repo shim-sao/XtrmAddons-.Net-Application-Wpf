@@ -30,12 +30,14 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// <summary>
         /// 
         /// </summary>
+        [Obsolete("Use template Xaml")]
         protected System.Windows.Media.Brush BorderStyleError
             = (System.Windows.Media.Brush)Application.Current.Resources["Error"];
 
         /// <summary>
         /// 
         /// </summary>
+        [Obsolete("Use template Xaml")]
         protected System.Windows.Media.Brush BorderStyleReady
             = (System.Windows.Media.Brush)Application.Current.Resources["Ready"];
 
@@ -47,7 +49,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// Class XtrmAddons Fotootof Server Libraries Base Windows Form Constructor.
         /// </summary>
         public WindowBaseForm() : base() { }
-
+        
         #endregion
 
 

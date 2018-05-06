@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Windows;assembly=XtrmAddons.Fotootof.Lib.Base"
+    xmlns:rrString="clr-namespace:XtrmAddons.Net.Windows.ValidationRules;assembly=XtrmAddons.Net.Windows"
     mc:Ignorable="d"
     Width="480"
     Height="480"
@@ -14,7 +15,9 @@
     Background="{StaticResource ResourceKey=DarkGrey}"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
-    FocusManager.FocusedElement="{Binding ElementName=InputName}">
+    FocusManager.FocusedElement="{Binding ElementName=InputName}"
+	Loaded="Window_Load"
+	Closing="Window_Closing">
 
     <Grid
         Margin="2"
@@ -47,13 +50,40 @@
                                 Text="{x:Static p:Resources.Name}"
                                 Style="{StaticResource FieldLabel}"/>
 
-                            <TextBox
-                                x:Name="InputName"
-                                Style="{StaticResource FieldInput}"
-                                Text="{Binding Path=User.Name, Mode=TwoWay}"
-                                TextChanged="InputName_Changed"/>
+							<TextBox x:Name="InputName"
+									 Style="{StaticResource Textbox_FieldInput_Required}"
+									 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+									 Validation.Error="Input_Error"
+									 SourceUpdated="InputName_SourceUpdated"
+									 TargetUpdated="Input_Updated"
+									 TextChanged="InputName_TextChanged"
+									 Width="310">
 
-                        </StackPanel>
+								<TextBox.Text>
+									<Binding Path="User.Name"
+											 Mode="TwoWay"
+											 UpdateSourceTrigger="LostFocus"
+											 IsAsync="True"
+											 ValidatesOnDataErrors="True"
+											 ValidatesOnExceptions="True">
+
+										<Binding.ValidationRules>
+											<rrString:StringRequired />
+										</Binding.ValidationRules>
+										<Binding.NotifyOnValidationError>
+											True
+										</Binding.NotifyOnValidationError>
+										<Binding.NotifyOnSourceUpdated>
+											True
+										</Binding.NotifyOnSourceUpdated>
+										<Binding.NotifyOnTargetUpdated>
+											True
+										</Binding.NotifyOnTargetUpdated>
+									</Binding>
+								</TextBox.Text>
+							</TextBox>
+							
+						</StackPanel>
                         <!-- #endregion : Field Name -->
 
 
@@ -66,13 +96,40 @@
                                 Text="{x:Static p:Resources.Password}"
                                 Style="{StaticResource FieldLabel}"/>
 
-                            <TextBox
-                                x:Name="InputPassword"
-                                Style="{StaticResource FieldInput}"
-                                Text="{Binding Path=User.Password, Mode=TwoWay}"
-                                TextChanged="InputPassword_Changed"/>
+							<TextBox x:Name="InputPassword"
+									 Style="{StaticResource Textbox_FieldInput_Required}"
+									 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+									 Validation.Error="Input_Error"
+									 SourceUpdated="InputPassword_SourceUpdated"
+									 TargetUpdated="Input_Updated"
+									 TextChanged="InputPassword_TextChanged"
+									 Width="310">
 
-                        </StackPanel>
+								<TextBox.Text>
+									<Binding Path="User.Password"
+											 Mode="TwoWay"
+											 UpdateSourceTrigger="LostFocus"
+											 IsAsync="True"
+											 ValidatesOnDataErrors="True"
+											 ValidatesOnExceptions="True">
+
+										<Binding.ValidationRules>
+											<rrString:StringRequired />
+										</Binding.ValidationRules>
+										<Binding.NotifyOnValidationError>
+											True
+										</Binding.NotifyOnValidationError>
+										<Binding.NotifyOnSourceUpdated>
+											True
+										</Binding.NotifyOnSourceUpdated>
+										<Binding.NotifyOnTargetUpdated>
+											False
+										</Binding.NotifyOnTargetUpdated>
+									</Binding>
+								</TextBox.Text>
+							</TextBox>
+
+						</StackPanel>
                         <!-- #endregion : Field Password -->
                     
 
@@ -228,7 +285,7 @@
             <Grid>
                 <StackPanel Style="{StaticResource Validator}">
 
-                    <Button x:Name="ButtonSave"
+                    <Button x:Name="Button_Save"
 							IsEnabled="False"
 							IsDefault="True"
 							Click="DialogSave_Click"

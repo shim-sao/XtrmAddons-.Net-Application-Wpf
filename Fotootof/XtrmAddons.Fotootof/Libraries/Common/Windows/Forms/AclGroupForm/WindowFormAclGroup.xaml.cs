@@ -140,7 +140,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
 
             InputAlias.Text = NewForm.Alias;
 
-            ButtonSave.IsEnabled = IsSaveEnabled;
+            Button_Save.IsEnabled = IsSaveEnabled;
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
                 save = false;
             }
 
-            ButtonSave.IsEnabled = IsSaveEnabled = save;
+            Button_Save.IsEnabled = IsSaveEnabled = save;
 
             return save;
         }

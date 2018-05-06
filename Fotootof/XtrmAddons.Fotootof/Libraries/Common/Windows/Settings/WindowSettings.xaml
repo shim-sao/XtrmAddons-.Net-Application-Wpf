@@ -312,7 +312,7 @@
                 <StackPanel Style="{StaticResource Validator}">
 
                     <Button
-                        x:Name="ButtonSave"
+                        x:Name="Button_Save"
                         IsDefault="True"
                         Click="DialogSave_Click"
                         Content="{x:Static p:Resources.Save}"

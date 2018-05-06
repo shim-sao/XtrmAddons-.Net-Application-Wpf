@@ -15,7 +15,10 @@
     Title="{x:Static p:Resources.WindowSectionFormTitle}"
     Background="{StaticResource ResourceKey=DarkGrey}"
     ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen">
+    WindowStartupLocation="CenterScreen"
+    FocusManager.FocusedElement="{Binding ElementName=InputName}"
+	Loaded="Window_Load"
+	Closing="Window_Closing">
 	
 	<Grid Margin="2"
 		  Background="{StaticResource ResourceKey=LightGrey}">
@@ -380,7 +383,7 @@
 							VerticalAlignment="center"
 							Height="30">
 
-                    <Button x:Name="ButtonSave"
+                    <Button x:Name="Button_Save"
 							IsEnabled="False"
 							IsDefault="True"
 							Click="DialogSave_Click"

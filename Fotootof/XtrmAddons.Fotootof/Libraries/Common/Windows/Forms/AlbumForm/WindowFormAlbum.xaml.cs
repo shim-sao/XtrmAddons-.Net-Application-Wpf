@@ -118,7 +118,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         {
             NewForm.Description = InputDescription.Text;
 
-            ButtonSave.IsEnabled = IsSaveEnabled;
+            Button_Save.IsEnabled = IsSaveEnabled;
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         {
             NewForm.Comment = InputComment.Text;
 
-            ButtonSave.IsEnabled = IsSaveEnabled;
+            Button_Save.IsEnabled = IsSaveEnabled;
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
                 }
             }
 
-            ButtonSave.IsEnabled = IsSaveEnabled;
+            Button_Save.IsEnabled = IsSaveEnabled;
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
 
             NewForm.Alias = InputAlias.Text;
 
-            ButtonSave.IsEnabled = IsSaveEnabled;
+            Button_Save.IsEnabled = IsSaveEnabled;
         }
 
         /// <summary>

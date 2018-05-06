@@ -57,6 +57,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             set => model.Section = value;
         }
 
+        /// <summary>
+        /// Property to define if the form can be saftly saved.
+        /// </summary>
+        protected override bool IsSaveEnabled
+            => ValidateForm();
+
         #endregion
 
 
@@ -71,8 +77,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         {
             InitializeComponent();
             InitializeModel(entity);
-            Loaded += Window_Load;
-            Closing += Window_Closing;
+            //Loaded += Window_Load;
+            //Closing += Window_Closing;
         }
 
         #endregion
@@ -124,141 +130,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         protected void Window_Load(object sender, RoutedEventArgs e)
         {
             DataContext = model;
-            Button_Cancel.Focus();
         }
 
         /// <summary>
-        /// <para>Method to send validation error to a TextBox.</para>
-        /// <para>Disable Form Save Button to prevent unwanted save.</para>
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Validation error event argumments.</param>
-        private void Input_Error(object sender, ValidationErrorEventArgs e)
-        {
-            ButtonSave.IsEnabled = false;
-        }
-
-        /// <summary>
-        /// <para>Method called on input updated event.</para>
-        /// <para>Send Form validation to prevent unwanted save.</para>
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Data transfer event arguments</param>
-        private void Input_Updated(object sender, DataTransferEventArgs e)
-        {
-            ButtonSave.IsEnabled = IsSaveEnabled;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Text changed event arguments.</param>
-        private void InputName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-
-            if (InputAlias.Text.IsNullOrWhiteSpace() || InputAlias.Text == previewName)
-            {
-                updateNameAlias = true;
-            }
-
-            previewName = tb.Text.Sanitize().RemoveDiacritics().ToLower();
-            ButtonSave.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
-
-            //
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Text changed event arguments.</param>
-        private void InputName_SourceUpdated(object sender, DataTransferEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-
-            if (tb.Text.IsNotNullOrWhiteSpace() && InputAlias.Text.IsNullOrWhiteSpace() || updateNameAlias)
-            {
-                InputAlias.Text = tb.Text.Sanitize().RemoveDiacritics().ToLower();
-
-                if (InputAlias.Text.IsNotNullOrWhiteSpace())
-                {
-                    InputAlias.ValidationClear();
-                }
-
-                if(!InputAlias.Focus())
-                {
-                    NewForm.Alias = InputAlias.Text;
-                }
-            }
-
-            updateNameAlias = false;
-            ButtonSave.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Text changed event arguments.</param>
-        private void InputAlias_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            //tb.Text = tb.Text.Sanitize().RemoveDiacritics().ToLower();
-            updateNameAlias = false;
-            ButtonSave.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
-        }
-
-        /// <summary>
-        /// <para>Method called on input updated event.</para>
-        /// <para>Send Form validation to prevent unwanted save.</para>
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Data transfer event arguments</param>
-        private void InputAlias_SourceUpdated(object sender, DataTransferEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            tb.Text = tb.Text.Sanitize().RemoveDiacritics().ToLower();
-            updateNameAlias = false;
-            ButtonSave.IsEnabled = IsSaveEnabled;
-        }
-
-
-
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
-        private void DataGridCollectionAlbum_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
-        private void DataGridCollectionAclGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">The text changed event arguments.</param>
-        protected override bool IsSaveEnabled => ValidateForm();
-
-        /// <summary>
-        /// Method to validate the Form.
+        /// Method to validate the Form Data.
         /// </summary>
         private new bool ValidateForm()
         {
@@ -266,7 +141,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             {
                 return false;
             }
-            
+
             if (NewForm.Name.IsNullOrWhiteSpace())
             {
                 return false;
@@ -303,6 +178,127 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// <para>Method to send validation error to a TextBox.</para>
+        /// <para>Disable Form Save Button to prevent unwanted save.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Validation error event argumments.</param>
+        private void Input_Error(object sender, ValidationErrorEventArgs e)
+        {
+            Button_Save.IsEnabled = false;
+        }
+
+        /// <summary>
+        /// <para>Method called on input updated event.</para>
+        /// <para>Send Form validation to prevent unwanted save.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Data transfer event arguments</param>
+        private void Input_Updated(object sender, DataTransferEventArgs e)
+        {
+            Button_Save.IsEnabled = IsSaveEnabled;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Text changed event arguments.</param>
+        private void InputName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+
+            if (InputAlias.Text.IsNullOrWhiteSpace() || InputAlias.Text == previewName)
+            {
+                updateNameAlias = true;
+            }
+
+            previewName = tb.Text.Sanitize().RemoveDiacritics().ToLower();
+            Button_Save.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Text changed event arguments.</param>
+        private void InputName_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+
+            if (tb.Text.IsNotNullOrWhiteSpace() && InputAlias.Text.IsNullOrWhiteSpace() || updateNameAlias)
+            {
+                InputAlias.Text = tb.Text.Sanitize().RemoveDiacritics().ToLower();
+
+                if (InputAlias.Text.IsNotNullOrWhiteSpace())
+                {
+                    InputAlias.ValidationClear();
+                }
+
+                if(!InputAlias.Focus())
+                {
+                    NewForm.Alias = InputAlias.Text;
+                }
+            }
+
+            updateNameAlias = false;
+            Button_Save.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
+        }
+
+
+        /// <summary>
+        /// <para>Method called on input Password text changed event.</para>
+        /// <para>Send Form validation to prevent unwanted save.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Text changed event arguments.</param>
+        private void InputAlias_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            //tb.Text = tb.Text.Sanitize().RemoveDiacritics().ToLower();
+            updateNameAlias = false;
+            Button_Save.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
+        }
+
+        /// <summary>
+        /// <para>Method called on input updated event.</para>
+        /// <para>Send Form validation to prevent unwanted save.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Data transfer event arguments</param>
+        private void InputAlias_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            tb.Text = tb.Text.Sanitize().RemoveDiacritics().ToLower();
+            updateNameAlias = false;
+            Button_Save.IsEnabled = IsSaveEnabled;
+        }
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e"></param>
+        private void DataGridCollectionAlbum_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e"></param>
+        private void DataGridCollectionAclGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
         /// <summary>
