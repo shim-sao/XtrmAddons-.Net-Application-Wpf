@@ -25,7 +25,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\XtrmAddons.Fotootof\bin\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,7 +33,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\XtrmAddons.Fotootof\bin\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -51,16 +51,16 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="XtrmAddons.Net.Application">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\XtrmAddons.Net.Application\bin\Release\XtrmAddons.Net.Application.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Common">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\XtrmAddons.Net.Common\bin\Release\XtrmAddons.Net.Common.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.HttpWebServer">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\XtrmAddons.Net.HttpWebServer\bin\Release\XtrmAddons.Net.HttpWebServer.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.HttpWebServer.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Xml">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\XtrmAddons.Net.Xml\bin\Release\XtrmAddons.Net.Xml.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Xml.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

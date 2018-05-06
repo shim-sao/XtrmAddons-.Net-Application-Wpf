@@ -223,22 +223,22 @@
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.HttpWebServer.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Memory">
-      <HintPath>packages\XtrmAddons.Net.Memory.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Memory.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Network">
-      <HintPath>packages\XtrmAddons.Net.Network.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Network.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.NotifyIcons">
-      <HintPath>packages\XtrmAddons.Net.NotifyIcons.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.NotifyIcons.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Picture">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Picture.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SQLiteBundle">
-      <HintPath>packages\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SystemIO">
-      <HintPath>packages\XtrmAddons.Net.SystemIO.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SystemIO.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Windows">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Windows.dll</HintPath>
@@ -465,7 +465,7 @@
     </Page>
     <Page Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml">
       <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionTest.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -473,15 +473,15 @@
     </Page>
     <Page Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml">
       <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml">
       <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml">
       <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewPicturesServer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -501,7 +501,7 @@
     </Page>
     <Page Include="Libraries\Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml">
       <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Libraries\Common\Windows\Settings\WindowSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -749,7 +749,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Public\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Uninstall.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
