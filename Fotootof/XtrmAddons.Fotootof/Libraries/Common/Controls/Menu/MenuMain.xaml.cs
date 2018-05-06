@@ -107,18 +107,21 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// </summary>
         public void InitializeLogsWindow()
         {
-            var parameters = Model.ShowLogsWindow;
+            var ctrl = Model.ShowLogsWindow;
 
-            if (parameters == null)
+            if (ctrl == null)
             {
                 Model.ShowLogsWindow = new UiElement(MenuItem_Display_LogsWindow);
                 ApplicationBase.Save();
             }
             else
             {
-                MenuItem_Display_LogsWindow.IsChecked = parameters.IsChecked;
+                if(ctrl.JsonContext != null)
+                {
+                    ctrl.ToControl(MenuItem_Display_LogsWindow);
+                }
 
-                if (parameters.IsChecked)
+                if (MenuItem_Display_LogsWindow.IsChecked)
                 {
                     AppNavigator.MainWindow.LogsToggle();
                 }
@@ -211,25 +214,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         private void OnDisplayLogsWindowClick(object sender, RoutedEventArgs e)
         {
             AppNavigator.MainWindow.LogsToggle();
-
-            if (MenuItem_Display_LogsWindow.IsChecked == true)
-            {
-                MenuItem_Display_LogsWindow.IsChecked = false;
-                Model.ShowLogsWindow.IsChecked = false;
-            }
-            else
-            {
-                MenuItem_Display_LogsWindow.IsChecked = true;
-                Model.ShowLogsWindow.IsChecked = true;
-            }
-
+            Model.ShowLogsWindow = new UiElement(MenuItem_Display_LogsWindow);
             ApplicationBase.Save();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnDisplayHelpAboutClick(object sender, RoutedEventArgs e)
         {
@@ -240,7 +232,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void LanguageChanged_Click(object sender, RoutedEventArgs e)
         {
@@ -267,7 +259,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnDisplayLanguageFrClick(object sender, RoutedEventArgs e)
         {
@@ -339,7 +331,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             // Process open file dialog box results 
             if (result == true)
             {
-                AppLogger.Info("Adding or editing User informations. Please wait...");
+                log.Info("Adding or editing User informations. Please wait...");
 
                 UserEntityCollection.DbInsert(new List<UserEntity> { dlg.NewForm });
 
@@ -348,15 +340,15 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
                     ((PageUsers)MainFrame.Content).Model.Users.Items.Add(dlg.NewForm);
                 }
 
-                AppLogger.Info("Adding or editing User informations. Done");
-                AppLogger.Close();
+                log.Info("Adding or editing User informations. Done");
+                AppOverwork.IsBusy = false;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnAddSection_Click(object sender, RoutedEventArgs e)
         {
@@ -367,19 +359,19 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             // Process open file dialog box results 
             if (result == true)
             {
-                AppLogger.Info("Adding or editing Section informations. Please wait...");
+                log.Info("Adding or editing Section informations. Please wait...");
                 
                 SectionEntityCollection.DbInsert(new List<SectionEntity> { dlg.NewForm });
 
-                AppLogger.Info("Adding or editing Section informations. Done");
-                AppLogger.Close();
+                log.Info("Adding or editing Section informations. Done");
+                AppOverwork.IsBusy = false;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnEditionPreferences_Click(object sender, RoutedEventArgs e)
         {

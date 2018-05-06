@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Tools
 {
@@ -26,6 +29,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// </summary>
         private static Queue logs = new Queue();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private static int maxLogsLinesLength = 100;
+
         #endregion Variables
 
 
@@ -35,7 +43,63 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="value"></param>
+        public static void UpdateLogTextbox(string value)
+        {
+            try
+            {
+                AppNavigator.MainWindow.Dispatcher.Invoke(new Action(() =>
+                {
+                    string[] buffer = value.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach(string s in buffer)
+                    {
+                        AddLog(s+ "\r\n");
+                    }
+                }));
+            }
+            catch(Exception e)
+            {
+                Trace.WriteLine(string.Format("{0} : {1}", e.HResult, e.Message));
+            }
+        }
+
+        /// <summary>
+        /// Method to add message to display in log frame.
+        /// </summary>
+        /// <param name="s">The message to add to the queue.</param>
+        public static void AddLog(string s)
+        {
+            // Enqueue message to display.
+            if (logs.Count > maxLogsLinesLength)
+            {
+                logs.Dequeue();
+            }
+            logs.Enqueue(s);
+
+            IEnumerable<string> outputs = logs.Cast<string>().Reverse();
+            string buffer = "";
+            int index = outputs.Count();
+
+            foreach (string str in logs.Cast<string>().Reverse())
+            {
+                buffer += string.Format("[{0}]> {1}", index--, str);
+            }
+
+            AppOverwork.BusyContent = s;
+            AppNavigator.LogsStack.Text = buffer;
+        }
+
+        /// <summary>
+        /// Method to clear logs.
+        /// </summary>
+        public static void Clear()
+            => logs.Clear();
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="s"></param>
+        [Obsolete("Use log4net instead.", true)]
         public static void DispatchLogs(string s)
         {
             AppOverwork.IsBusy = true;
@@ -51,22 +115,27 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// Method to add message to display in log frame.
         /// </summary>
         /// <param name="s">The message to add to queue.</param>
+        [Obsolete("Use AddLog(string s)", true)]
         public static void LogsDisplay(string s)
         {
-            // Enqueue message to display.
-            if (logs.Count > 100)
-            {
-                logs.Dequeue();
-            }
-            logs.Enqueue(s);
-            
-            string output = "";
-            foreach (string str in logs.Cast<string>().Reverse())
-            {
-                output += "\n> " + str;
-            }
+            AddLog(s);
+            return;
 
-            AppNavigator.LogsStack.Text = output;
+            //// Enqueue message to display.
+            //if (logs.Count > 100)
+            //{
+            //    logs.Dequeue();
+            //}
+            //logs.Enqueue(s);
+            
+            //string output = "";
+            //int index = logs.Cast<string>().Reverse().Count();
+            //foreach (string str in logs.Cast<string>().Reverse())
+            //{
+            //    output += string.Format("[{0}] > {1}", index--, str);
+            //}
+
+            //AppNavigator.LogsStack.Text = output;
         }
 
         /// <summary>
@@ -74,6 +143,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// </summary>
         /// <param name="s">The message to add to queue.</param>
         /// <param name="log4net">Add message to logs handler.</param>
+        [Obsolete("Use log4net instead.", true)]
         public static async void Info(string s, bool log4net = false, int delay = 0)
         {
             if (log4net)
@@ -90,27 +160,29 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// </summary>
         /// <param name="s">The message to add to queue.</param>
         /// <param name="log4net">Add message to logs handler.</param>
+        [Obsolete("Use log4net instead.", true)]
         public static void InfoAndClose(string s, bool log4net = false, int delay = 0)
         {
             Info(s, log4net, delay);
-            Close();
+            AppOverwork.IsBusy = false;
         }
 
         /// <summary>
-        /// Method to add Error message to display in log frame.
+        /// Method to add Error message to display in a dialog box.
         /// </summary>
         /// <param name="s">The message to add to queue.</param>
-        /// <param name="log4net">Add message to logs handler.</param>
-        public static void Error(string s, bool log4net = false)
+        public static void Error(string s)
         {
-            LogsDisplay("ERROR : " + s);
-
-            if (log4net)
-            {
-                log.Error("ERROR : " + s);
-            }
-
             MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        /// <summary>
+        /// Method to add Error message to display in a dialog box.
+        /// </summary>
+        /// <param name="e">The exception to add to the message box.</param>
+        public static void Error(Exception e)
+        {
+            MessageBox.Show(e.Output(), Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         /// <summary>
@@ -118,27 +190,16 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// </summary>
         public static void NotImplemented()
         {
-            Error("Not Implemented Exception", true);
+            Error("Not Implemented Exception");
         }
 
         /// <summary>
         /// Method to add Warning message to display in log frame.
         /// </summary>
         /// <param name="s">The message to add to queue.</param>
-        /// <param name="log4net">Add message to logs handler.</param>
-        public static void Warning(string s, bool log4net = false, bool messageBox = false)
+        public static void Warning(string s)
         {
-            LogsDisplay("WARNING : " + s);
-
-            if (log4net)
-            {
-                log.Error("ERROR : " + s);
-            }
-
-            if (messageBox)
-            {
-                MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         /// <summary>
@@ -146,24 +207,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// </summary>
         /// <param name="s">The message to add to queue.</param>
         /// <param name="e">The Exception to add to queue.</param>
-        /// <param name="log4net">Add message to logs handler.</param>
-        public static void Fatal(string s, Exception e, bool log4net = false)
+        public static void Fatal(string s, Exception e)
         {
-            LogsDisplay("FATAL : " + s);
-            LogsDisplay(string.Format("{0} : {1}", e.HResult, e.Message));
-            LogsDisplay(e.TargetSite.Name);
-            LogsDisplay(e.Source);
-            LogsDisplay(e.StackTrace);
-
-            if (log4net)
-            {
-                log.Fatal("FATAL : " + s);
-                log.Fatal(string.Format("{0} : {1}", e.HResult, e.Message));
-                log.Fatal(e.TargetSite);
-                log.Fatal(e.Source);
-                log.Fatal(e.StackTrace);
-            }
-
+            s += "\n\r" + e.Output();
             MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Stop);
         }
 
@@ -173,6 +219,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// <param name="s">The message to add to queue.</param>
         /// <param name="e">The Exception to add to queue.</param>
         /// <param name="log4net">Add message to logs handler.</param>
+        [Obsolete("Use log4net instead.", true)]
         public static void Exception(string s, Exception e, bool log4net = false)
         {
             LogsDisplay("EXCEPTION : " + s);
@@ -193,20 +240,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         }
 
         /// <summary>
-        /// Method to clear logs.
-        /// </summary>
-        public static void Clear()
-            => logs.Clear();
-
-        /// <summary>
         /// Method proxy to close busy indicator.
         /// </summary>
-        public static void Close()
-            => AppOverwork.IsBusy = false;
-
-        /// <summary>
-        /// Method proxy to close busy indicator.
-        /// </summary>
+        [Obsolete("use Translation.DLogs")]
         public static string Translate(string key)
             => (string)Translation.Logs[key];
 

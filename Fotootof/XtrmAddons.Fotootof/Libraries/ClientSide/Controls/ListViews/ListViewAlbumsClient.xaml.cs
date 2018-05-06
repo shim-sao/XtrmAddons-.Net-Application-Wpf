@@ -65,7 +65,7 @@ namespace XtrmAddons.Fotootof.Libraries.ClientSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -75,7 +75,7 @@ namespace XtrmAddons.Fotootof.Libraries.ClientSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnAlbum_MouseEnter(object sender, MouseEventArgs e)
         {

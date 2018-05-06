@@ -23,6 +23,27 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Variables
 
         /// <summary>
+        /// Variable name of the Album.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private string name = "";
+
+        /// <summary>
+        /// Variable alias of the Album.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private string alias = "";
+
+        /// <summary>
+        /// Variable description of the Album.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        public string description = "";
+
+        /// <summary>
         /// Variable list of Section associated to the Album.
         /// </summary>
         [NotMapped]
@@ -54,19 +75,52 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [Key]
         [Column(Order = 0)]
-        public int AlbumId { get; set; }
-        
-        /// <summary>
-        /// Property name of the item.
-        /// </summary>
-        [Column(Order = 1)]
-        public string Name { get; set; }
+        public int AlbumId
+        {
+            get { return primaryKey; }
+            set
+            {
+                if (value != primaryKey)
+                {
+                    primaryKey = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property name of the item.
         /// </summary>
+        [Column(Order = 1)]
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                if (value != name)
+                {
+                    name = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the alias of the Album.
+        /// </summary>
         [Column(Order = 2)]
-        public string Alias { get; set; }
+        public string Alias
+        {
+            get { return alias; }
+            set
+            {
+                if (value != alias)
+                {
+                    alias = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property description of the item.
@@ -183,12 +237,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
 
         #region Properties : Dependencies
-
-        /// <summary>
-        /// Property alias to access to the primary key of the entity.
-        /// </summary>
-        [NotMapped]
-        public override int PrimaryKey { get => AlbumId; set => AlbumId = value; }
 
         /// <summary>
         /// Property Section id.

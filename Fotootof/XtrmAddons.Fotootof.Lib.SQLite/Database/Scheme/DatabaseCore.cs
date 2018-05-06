@@ -70,6 +70,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
         public UserManager Users { get; private set; }
 
         /// <summary>
+        /// Variable Version entities manager.
+        /// </summary>
+        public VersionManager Versions { get; private set; }
+
+        /// <summary>
         /// Accessors for database context entity core.
         /// </summary>
         public DatabaseContextCore Context
@@ -176,6 +181,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
             Pictures = new PictureManager(context);
             Sections = new SectionManager(context);
             Users = new UserManager(context);
+            Versions = new VersionManager(context);
         }
 
         #endregion

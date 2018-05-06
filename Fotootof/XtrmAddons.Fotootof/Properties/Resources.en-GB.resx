@@ -117,45 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="AddPictures" xml:space="preserve">
-    <value>Add Pictures</value>
-  </data>
-  <data name="AddPicturesToAlbum" xml:space="preserve">
-    <value>Add to Album</value>
-  </data>
-  <data name="Album" xml:space="preserve">
-    <value>Album</value>
-  </data>
-  <data name="Albums" xml:space="preserve">
-    <value>Albums</value>
-  </data>
-  <data name="Alias" xml:space="preserve">
-    <value>Alias</value>
-  </data>
-  <data name="Application" xml:space="preserve">
-    <value>Application</value>
-  </data>
-  <data name="ApplicationName" xml:space="preserve">
-    <value>XtrmAddons Fotootof</value>
-  </data>
-  <data name="AssociatedAlbums" xml:space="preserve">
-    <value>Associated albums</value>
-  </data>
-  <data name="AssociatedCategories" xml:space="preserve">
-    <value>Associated categories</value>
-  </data>
-  <data name="AssociatedFolders" xml:space="preserve">
-    <value>Associated folders</value>
-  </data>
-  <data name="AssociatedPictures" xml:space="preserve">
-    <value>Associated pictures</value>
-  </data>
-  <data name="AssociatedUsers" xml:space="preserve">
-    <value>Associated users</value>
-  </data>
   <data name="BaseDirectory" xml:space="preserve">
     <value>Base Directory</value>
   </data>

@@ -44,7 +44,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
             set
             {
                 aclGroup = value;
-                RaisePropertyChanged("AclGroup");
+                NotifyPropertyChanged();
             }
         }
 
@@ -57,7 +57,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
             set
             {
                 aclActions = value;
-                RaisePropertyChanged("AclActions");
+                NotifyPropertyChanged();
             }
         }
 
@@ -70,7 +70,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
             set
             {
                 users = value;
-                RaisePropertyChanged("Users");
+                NotifyPropertyChanged();
             }
         }
 

@@ -105,7 +105,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void InputText_Changed(object sender, TextChangedEventArgs e)
         {
@@ -172,7 +172,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         protected override void DialogSave_Click(object sender, RoutedEventArgs e)
         {
@@ -182,7 +182,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         /// <summary>
         /// Method called on windows closing.
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         protected override void Window_Closing(object sender, CancelEventArgs e)
         {
@@ -235,7 +235,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         /// <summary>
         /// Method called on Section check box click event.
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void CheckBoxSection_Click(object sender, RoutedEventArgs e)
         {
@@ -257,7 +257,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void CheckBoxUser_Click(object sender, RoutedEventArgs e)
         {

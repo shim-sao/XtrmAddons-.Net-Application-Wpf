@@ -1,15 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Markup;
-using XtrmAddons.Fotootof.Component.Logs.Pages;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser;
+using XtrmAddons.Fotootof.Component.ServerSide.ViewLogs;
 using XtrmAddons.Fotootof.Culture;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Log4net;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
@@ -35,6 +33,11 @@ namespace XtrmAddons.Fotootof
         /// </summary>
         private PageLogs pageLogs = new PageLogs();
 
+        /// <summary>
+        /// Property log watcher.
+        /// </summary>
+        private MemoryLogWatcher logWatcher = new MemoryLogWatcher();
+
         #endregion
 
 
@@ -44,17 +47,20 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Property to access to the logs page.
         /// </summary>
-        public PageLogs PageLogs => pageLogs;
+        public PageLogs PageLogs
+            => pageLogs;
 
         /// <summary>
         /// Property alias to access to the text block container of logs stack.
         /// </summary>
-        public TextBlock LogsStack => PageLogs.TextBlockLogsStack;
+        public TextBlock LogsStack
+            => PageLogs.TextBlockLogsStack;
 
         /// <summary>
         /// Property alias to access to the text block container of logs stack.
         /// </summary>
-        public Border BlockContent => this.Block_Content;
+        public Border BlockContent
+            => this.Block_Content;
 
         /// <summary>
         /// Property to access to the SQLite Service.
@@ -78,7 +84,7 @@ namespace XtrmAddons.Fotootof
         {
             // Initialize window component.
             InitializeComponent();
-            log.Info(Translation.Logs["InitializingApplicationWindowComponentDone"]);
+            log.Info(Translation.DLogs.InitializingApplicationWindowComponentDone);
 
             // Main Window to application session.
             ApplicationSession.Properties.MainWindow = this;
@@ -90,30 +96,47 @@ namespace XtrmAddons.Fotootof
         #region Methods
 
         /// <summary>
-        /// 
+        /// Method called on window load event.
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            AppOverwork.IsBusy = true;
+            await Task.Delay(10);
+
             // Add application to system tray.
             NotifyIconManager.AddToTray();
-            log.Info(Translation.Logs["AddingApplicationToSystemTrayDone"]);
+            log.Info(Translation.DLogs.AddingApplicationToSystemTrayDone);
+
+            // Add application log watcher event handler.
+            AppLogger.UpdateLogTextbox(logWatcher.LogContent);
+            logWatcher.LogContent = "";
+            logWatcher.Updated += logWatcher_Updated;
 
             // Initialize window content.
-            InitializeContentAsync();
+            await InitializeContentAsync();
+
+            AppOverwork.IsBusy = false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e"></param>
+        public void logWatcher_Updated(object sender, EventArgs e)
+        {
+            AppLogger.UpdateLogTextbox(logWatcher.LogContent);
+            logWatcher.LogContent = "";
         }
 
         /// <summary>
         /// Method to initialize application content.
         /// </summary>
-        private async void InitializeContentAsync()
+        private async Task InitializeContentAsync()
         {
-            AppOverwork.IsBusy = true;
             await Task.Delay(10);
-
-            // Initialize application settings.
-            MainSettings.Initialize();
 
             // Assigned page frames.
             Frame_Logs.Navigate(pageLogs);
@@ -123,9 +146,7 @@ namespace XtrmAddons.Fotootof
             AppMainMenu.InitializeMenuItemsServer();
 
             // Adjust frame logs content on resize. 
-            SizeChanged += pageLogs.Window_SizeChanged;
-
-            AppOverwork.IsBusy = false;
+            SizeChanged += pageLogs.Page_SizeChanged;
         }
 
         /// <summary>
@@ -136,11 +157,11 @@ namespace XtrmAddons.Fotootof
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             NotifyIconManager.Dispose();
-            log.Info(Translation.Logs["ApplicationClosed"]);
+            log.Info(Translation.DLogs.ApplicationClosed);
         }
 
         /// <summary>
-        /// 
+        /// Method to toggle logs window.
         /// </summary>
         public void LogsToggle()
         {
@@ -152,13 +173,13 @@ namespace XtrmAddons.Fotootof
             // Set the grid row logs height.
             RowGridLogs.Height =
                 RowGridLogs.Height == new GridLength(0)
-                ? new GridLength(160) : new GridLength(0);
+                ? new GridLength(250) : new GridLength(0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {

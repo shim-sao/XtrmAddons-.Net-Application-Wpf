@@ -96,7 +96,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewServer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {

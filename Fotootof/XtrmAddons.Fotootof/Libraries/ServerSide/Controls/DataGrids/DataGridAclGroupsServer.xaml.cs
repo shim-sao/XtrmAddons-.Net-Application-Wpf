@@ -56,7 +56,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void CheckBoxDefault_Checked(object sender, RoutedEventArgs e)
         {

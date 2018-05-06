@@ -82,7 +82,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -95,7 +95,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnAlbum_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -124,7 +124,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
 
         /// <summary>
         /// Method called on items collection selection changed click event.
-        /// </summary
+        /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Selection changed event arguments.</param>
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)

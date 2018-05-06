@@ -129,7 +129,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                AppLogger.Warning(string.Format("{0} not found !", typeof(AlbumEntity).Name), true, true);
+                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                log.Warn(message);
+                AppLogger.Warning(message);
             }
         }
 
@@ -161,14 +163,16 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                AppLogger.Warning(string.Format("{0} not found !", typeof(AlbumEntity).Name), true, true);
+                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                log.Warn(message);
+                AppLogger.Warning(message);
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void CheckBoxAlbum_Checked(object sender, RoutedEventArgs e)
         {
@@ -184,7 +188,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void CheckBoxAlbum_UnChecked(object sender, RoutedEventArgs e)
         {

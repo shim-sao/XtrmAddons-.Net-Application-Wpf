@@ -212,7 +212,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.TreeViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void TreeView_Resize(object sender, SizeChangedEventArgs e)
         {

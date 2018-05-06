@@ -10,6 +10,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
     /// </summary>
     public class DatabaseContextCore : DbContext
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
@@ -52,6 +64,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
         /// </summary>
         public DbSet<UserEntity> Users { get; set; }
 
+        /// <summary>
+        /// Property database table Versions entity queries link.
+        /// </summary>
+        public DbSet<VersionEntity> Versions { get; set; }
+
         
 
         /// <summary>
@@ -89,10 +106,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
         /// </summary>
         public DbSet<UsersInAclGroups> UsersInAclGroups { get; set; }
 
-        #endregion Properties
+        #endregion
 
 
-        #region
+
+        #region Methods
 
         /// <summary>
         /// Class XtrmAddons PhotoAlbum Server SQLite Database Context Core constructor.
@@ -146,8 +164,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
                     .HasOne(d => d.AclActionEntity)
                     .WithMany(x => x.AclGroupsInAclActions)
                     .HasForeignKey(d => d.AclActionId);
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
+                log.Fatal(e);
                 throw new Exception("Method to add AclGroups In AclActions dependencies failed !", e);
             }
         }
@@ -175,6 +195,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
             }
             catch (Exception e)
             {
+                log.Fatal(e);
                 throw new Exception("Method to add Albums In Sections dependencies failed !", e);
             }
         }
@@ -202,6 +223,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
             }
             catch (Exception e)
             {
+                log.Fatal(e);
                 throw new Exception("Method to add Pictures In Albums dependencies failed !", e);
             }
         }
@@ -229,6 +251,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
             }
             catch (Exception e)
             {
+                log.Fatal(e);
                 throw new Exception("Method to add users in AclGroups dependencies failed !", e);
             }
         }
@@ -256,6 +279,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
             }
             catch (Exception e)
             {
+                log.Fatal(e);
                 throw new Exception("Method to add Sections in AclGroups dependencies failed !", e);
             }
         }
@@ -283,6 +307,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
             }
             catch (Exception e)
             {
+                log.Fatal(e);
                 throw new Exception("Method to add Infos in Albums dependencies failed !", e);
             }
         }
@@ -310,6 +335,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
             }
             catch (Exception e)
             {
+                log.Fatal(e);
                 throw new Exception("Method to add Infos in Pictures dependencies failed !", e);
             }
         }

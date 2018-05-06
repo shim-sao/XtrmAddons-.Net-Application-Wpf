@@ -1,4 +1,8 @@
-﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Models;
+﻿using System;
+using System.Threading;
+using System.Windows;
+using System.Windows.Threading;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Models;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 
@@ -16,11 +20,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         /// </summary>
         public UiElement ShowLogsWindow
         {
-            get { return ApplicationBase.UI.Controls.FindKey("ShowLogsWindow"); }
+            get => GetOptionsControl("ShowLogsWindow");
             set
             {
-                GetOptionsShowLogsWindow(value);
-                RaisePropertyChanged("ShowLogsWindow");
+                SetOptionsControl("ShowLogsWindow", value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -36,28 +40,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
         public MenuMainModel(MenuMain menuMain)
         {
             OwnerBase = menuMain;
-        }
-
-        #endregion
-
-
-
-        #region Methods
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        private static void GetOptionsShowLogsWindow(UiElement value)
-        {
-            if (ApplicationBase.UI.Controls.FindKey("ShowLogsWindow") != null)
-            {
-                ApplicationBase.UI.Controls.ReplaceKeyUnique(value, "ShowLogsWindow");
-            }
-            else
-            {
-                ApplicationBase.UI.Controls.Add(value);
-            }
         }
 
         #endregion

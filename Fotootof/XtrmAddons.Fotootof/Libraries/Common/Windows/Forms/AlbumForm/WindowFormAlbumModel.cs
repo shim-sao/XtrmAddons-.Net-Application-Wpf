@@ -47,7 +47,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             set
             {
                 album = value;
-                RaisePropertyChanged("Album");
+                NotifyPropertyChanged();
             }
         }
 
@@ -60,7 +60,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             set
             {
                 sections = value;
-                RaisePropertyChanged("Sections");
+                NotifyPropertyChanged();
             }
         }
 
@@ -73,7 +73,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             set
             {
                 qualityFilters = value;
-                RaisePropertyChanged("FiltersQuality");
+                NotifyPropertyChanged();
             }
         }
 
@@ -86,7 +86,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             set
             {
                 colorFilters = value;
-                RaisePropertyChanged("FiltersColor");
+                NotifyPropertyChanged();
             }
         }
 

@@ -47,7 +47,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
 
             if(!dlg.Activate())
             {
-                AppLogger.Warning("Can't open Sections edit file dialog box. Please try again.");
+                string message = "Sections edit file dialog box is busy. Please try again.";
+                log.Warn(message);
+                AppLogger.Warning(message);
                 dlg.Close();
             }
 
@@ -88,7 +90,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                AppLogger.Warning(string.Format("{0} not found !", nameof(SectionEntity)), true, true);
+                string message = string.Format("{0} not found !", nameof(SectionEntity));
+                log.Warn(message);
+                AppLogger.Warning(message);
             }
         }
 
@@ -123,7 +127,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
             }
             else
             {
-                AppLogger.Warning(string.Format("{0} not found !", nameof(SectionEntity)), true, true);
+                string message = string.Format("{0} not found !", nameof(SectionEntity));
+                log.Warn(message);
+                AppLogger.Warning(message);
             }
         }
 

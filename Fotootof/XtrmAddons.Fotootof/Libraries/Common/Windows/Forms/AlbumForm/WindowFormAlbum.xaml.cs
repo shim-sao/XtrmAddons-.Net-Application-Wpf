@@ -185,21 +185,21 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
                     if (NewForm.Name.IsNullOrWhiteSpace())
                     {
                         save = false;
-                        InputName.BorderBrush = (Brush)Application.Current.Resources["Warning"];
+                        InputName.BorderBrush = BorderStyleError;
                     }
                     else
                     {
-                        InputName.BorderBrush = (Brush)Application.Current.Resources["Ready"];
+                        InputName.BorderBrush = BorderStyleReady;
                     }
 
                     if (NewForm.Alias.IsNullOrWhiteSpace())
                     {
                         save = false;
-                        InputAlias.BorderBrush = (Brush)Application.Current.Resources["Warning"];
+                        InputAlias.BorderBrush = BorderStyleError;
                     }
                     else
                     {
-                        InputAlias.BorderBrush = (Brush)Application.Current.Resources["Ready"];
+                        InputAlias.BorderBrush = BorderStyleReady;
                     }
                 }
                 else
@@ -280,7 +280,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Filters_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

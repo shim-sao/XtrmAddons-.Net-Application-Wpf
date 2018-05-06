@@ -83,7 +83,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
             }
             else
             {
-                AppLogger.Warning(string.Format("{0} not found !", typeof(AlbumEntity).Name), true, true);
+                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                log.Warn(message);
+                AppLogger.Warning(message);
             }
         }
 
@@ -113,14 +115,16 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
             }
             else
             {
-                AppLogger.Warning(string.Format("{0} not found !", typeof(AlbumEntity).Name), true, true);
+                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                log.Warn(message);
+                AppLogger.Warning(message);
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -130,7 +134,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void OnAlbum_MouseEnter(object sender, MouseEventArgs e)
         {

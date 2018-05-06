@@ -126,6 +126,16 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms
         }
 
         /// <summary>
+        /// Method to check and validate input email text changes.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Text changed event arguments.</param>
+        private void InputEmail_Changed(object sender, TextChangedEventArgs e)
+        {
+            TextBox_TextChanged((TextBox)sender, NewForm);
+        }
+
+        /// <summary>
         /// Method to check and validate input password text changes.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>

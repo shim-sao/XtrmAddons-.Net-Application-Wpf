@@ -30,8 +30,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
             set
             {
                 album = value;
-                RaisePropertyChanged("Album");
-                RaisePropertyChanged("Pictures");
+                NotifyPropertyChanged("Album");
+                NotifyPropertyChanged("Pictures");
             }
         }
 

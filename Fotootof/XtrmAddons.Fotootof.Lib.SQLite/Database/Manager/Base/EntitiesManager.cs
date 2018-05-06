@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
 using XtrmAddons.Net.Common.Extensions;
@@ -52,6 +53,26 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
 
 
         #region Methods
+
+        /// <summary>
+        /// Method to select single item by id or primary key.
+        /// </summary>
+        /// <typeparam name="T">The Entity type.</typeparam>
+        /// <param name="query">The query to search item.</param>
+        /// <param name="exp">The expression to find the primary key.</param>
+        /// <returns>An entity or null if not found.</returns>
+        public T SingleIdOrNull<T>(IQueryable<T> query, Expression<Func<T, bool>> exp) where T : class
+        {
+            T item = query.SingleOrDefault(exp);
+
+            // Check if item is found, return null instead of default.
+            if (item != null && (int)item.GetPropertyValue("PrimaryKey") == 0)
+            {
+                return null;
+            }
+
+            return item;
+        }
 
         /// <summary>
         /// Method to save database context core changes.

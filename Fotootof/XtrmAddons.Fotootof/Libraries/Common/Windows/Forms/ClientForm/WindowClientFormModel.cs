@@ -30,7 +30,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms
             set
             {
                 client = value;
-                RaisePropertyChanged("Client");
+                NotifyPropertyChanged();
             }
         }
 

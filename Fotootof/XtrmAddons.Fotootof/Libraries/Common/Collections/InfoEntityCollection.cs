@@ -54,7 +54,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         {
             try
             {
-                AppLogger.Info("Adding Info(s). Please wait...");
+                log.Info("Adding Info(s). Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -70,7 +70,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Adding Info(s). Done !");
+                log.Info("Adding Info(s). Done !");
             }
             catch (Exception e)
             {
@@ -78,7 +78,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             }
             finally
             {
-                AppLogger.Close();
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -91,7 +91,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Removing items.
             try
             {
-                AppLogger.Info("Deleting Section(s). Please wait...");
+                log.Info("Deleting Section(s). Please wait...");
 
                 if (oldItems != null && oldItems.Count > 0)
                 {
@@ -106,7 +106,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Adding Section(s). Done !");
+                log.Info("Adding Section(s). Done !");
             }
             catch (Exception ex)
             {
@@ -114,7 +114,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             }
             finally
             {
-                AppLogger.Close();
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -128,7 +128,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Replace | Edit items.
             try
             {
-                AppLogger.Info("Replacing Info. Please wait...");
+                log.Info("Replacing Info. Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -143,7 +143,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Replacing Info(s). Done !");
+                log.Info("Replacing Info(s). Done !");
             }
             catch (Exception ex)
             {
@@ -151,7 +151,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             }
             finally
             {
-                AppLogger.Close();
+                AppOverwork.IsBusy = false;
             }
         }
 

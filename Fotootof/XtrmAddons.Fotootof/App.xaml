@@ -2,27 +2,29 @@
     x:Class="XtrmAddons.Fotootof.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    StartupUri="MainWindow.xaml">
+	Startup="App_Startup"
+	Exit="App_Exit">
 
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Dictionary.xaml"/>
 
-                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Generic.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Color.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Generic.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Color.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Images.xaml"/>
 
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Borders.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Buttons.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/CheckBoxs.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/ComboBoxs.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/ControlTemplates.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/DataGrids.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Grids.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/ListViews.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Pages.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/StackPanels.xaml"/>
-				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TextBlock.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TextBlocks.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TextBoxs.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TreeViews.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Windows.xaml"/>

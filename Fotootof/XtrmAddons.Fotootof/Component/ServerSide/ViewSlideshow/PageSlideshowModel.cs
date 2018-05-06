@@ -36,7 +36,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewSlideshow
             set
             {
                 pictures = value;
-                RaisePropertyChanged("Pictures");
+                NotifyPropertyChanged();
             }
         }
 
@@ -49,7 +49,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewSlideshow
             set
             {
                 currentPicture = value;
-                RaisePropertyChanged("CurrentPicture");
+                NotifyPropertyChanged();
             }
         }
 

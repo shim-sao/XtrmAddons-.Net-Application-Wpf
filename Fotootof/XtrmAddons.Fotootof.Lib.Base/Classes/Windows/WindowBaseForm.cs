@@ -21,7 +21,24 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// Method to check if form is ready to save.
         /// </summary>
         /// <returns>True if it is ready otherwise False.</returns>
-        protected virtual bool IsSaveEnabled { get => isSaveEnabled; set => isSaveEnabled = value; }
+        protected virtual bool IsSaveEnabled
+        {
+            get => isSaveEnabled;
+            set => isSaveEnabled = value;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected System.Windows.Media.Brush BorderStyleError
+            = (System.Windows.Media.Brush)Application.Current.Resources["Error"];
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected System.Windows.Media.Brush BorderStyleReady
+            = (System.Windows.Media.Brush)Application.Current.Resources["Ready"];
+
 
 
         #region Constructor
@@ -44,7 +61,22 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// <param name="e">Routed event arguments.</param>
         protected virtual void DialogSave_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            if(!ValidateForm())
+            {
+                MessageBox.Show
+                (
+                    "The form is not valid.",
+                    Culture.Translation.DWords.ApplicationName,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Exclamation
+                );
+
+                DialogResult = false;
+            }
+            else
+            {
+                DialogResult = true;
+            }
         }
 
         /// <summary>
@@ -106,6 +138,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// <param name="tb">A TextBox to get value.</param>
         /// <param name="obj">An object to bind text box value.</param>
         /// <param name="propertyName">The name of the property of the object.</param>
+        [Obsolete("Use Xaml validationError")]
         protected virtual void TextBox_TextChanged(TextBox tb, object obj, string propertyName = null, bool validate = true)
         {
 
@@ -137,11 +170,17 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         }
 
         /// <summary>
-        /// 
+        /// Method to validate the Form.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">The text changed event arguments.</param>
         protected bool ValidateForm()
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Method to validate the Inputs.
+        /// </summary>
+        protected bool ValidateInput()
         {
             return true;
         }

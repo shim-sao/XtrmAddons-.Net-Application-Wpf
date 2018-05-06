@@ -27,7 +27,7 @@ namespace XtrmAddons.Fotootof.UI.Control.Menu
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void NavigateToPageBrowser(object sender, RoutedEventArgs e)
         {
@@ -37,7 +37,7 @@ namespace XtrmAddons.Fotootof.UI.Control.Menu
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void NavigateToPageServer(object sender, RoutedEventArgs e)
         {
@@ -47,7 +47,7 @@ namespace XtrmAddons.Fotootof.UI.Control.Menu
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void NavigateToPageCatalog(object sender, RoutedEventArgs e)
         {
@@ -57,7 +57,7 @@ namespace XtrmAddons.Fotootof.UI.Control.Menu
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void NavigateToPageUsers(object sender, RoutedEventArgs e)
         {

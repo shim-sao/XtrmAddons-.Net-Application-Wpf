@@ -23,7 +23,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewServer
             set
             {
                 server = value;
-                RaisePropertyChanged("Server");
+                NotifyPropertyChanged();
             }
         }
 

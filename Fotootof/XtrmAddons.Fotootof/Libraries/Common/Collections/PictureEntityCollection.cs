@@ -80,7 +80,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         {
             try
             {
-                AppLogger.Info("Adding Picture(s). Please wait...");
+                log.Info("Adding Picture(s). Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -103,18 +103,18 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                                     }
                                 );
 
-                                AppLogger.Info(string.Format("Picture [{0}:{1}] associated to Album [{2}:{3}].", entity.PrimaryKey, entity.Name, a.PrimaryKey, a.Name));
+                                log.Info(string.Format("Picture [{0}:{1}] associated to Album [{2}:{3}].", entity.PrimaryKey, entity.Name, a.PrimaryKey, a.Name));
                             }
                         }
                         
                         MainWindow.Database.Pictures.Add(entity);
 
-                        AppLogger.Info(string.Format("Picture [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
+                        log.Info(string.Format("Picture [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Adding Picture(s). Done !");
+                log.Info("Adding Picture(s). Done !");
             }
             catch (Exception e)
             {
@@ -122,7 +122,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             }
             finally
             {
-                AppLogger.Close();
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -135,7 +135,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Removing items.
             try
             {
-                AppLogger.Info("Deleting Picture(s). Please wait...");
+                log.Info("Deleting Picture(s). Please wait...");
 
                 if (oldItems != null && oldItems.Count > 0)
                 {
@@ -143,12 +143,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     {
                         MainWindow.Database.Pictures.Delete(entity);
 
-                        AppLogger.Info(string.Format("Album [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
+                        log.Info(string.Format("Album [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Adding Picture(s). Done !");
+                log.Info("Adding Picture(s). Done !");
             }
             catch (Exception ex)
             {
@@ -156,7 +156,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             }
             finally
             {
-                AppLogger.Close();
+                AppOverwork.IsBusy = false;
             }
         }
 
@@ -169,7 +169,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             // Check for Replace | Edit items.
             try
             {
-                AppLogger.Info("Replacing Picture. Please wait...");
+                log.Info("Replacing Picture. Please wait...");
 
                 if (newItems != null && newItems.Count > 0)
                 {
@@ -177,12 +177,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     {
                         await MainWindow.Database.Pictures.UpdateAsync(entity);
 
-                        AppLogger.Info(string.Format("Picture [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
+                        log.Info(string.Format("Picture [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
                 AppNavigator.Clear();
-                AppLogger.Info("Replacing Picture(s). Done !");
+                log.Info("Replacing Picture(s). Done !");
             }
             catch (Exception ex)
             {
@@ -190,7 +190,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             }
             finally
             {
-                AppLogger.Close();
+                AppOverwork.IsBusy = false;
             }
         }
 

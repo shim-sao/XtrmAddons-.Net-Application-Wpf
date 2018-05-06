@@ -118,6 +118,24 @@
                         <!-- #endregion : Field UserName -->
 
 
+                        <!-- #region : Field Email -->
+                        <StackPanel Orientation="Horizontal"
+									Style="{StaticResource Field}">
+
+							<TextBlock Text="{x:Static p:Resources.Email}"
+									   Style="{StaticResource FieldLabel}"/>
+
+							<TextBox x:Name="InputEmail"
+									 Style="{StaticResource FieldInput}"
+									 Text="{Binding Path=Client.Email, Mode=TwoWay}"
+									 TextChanged="InputEmail_Changed"
+									 Tag="Email"/>
+
+                        </StackPanel>
+						<!-- #endregion : Field Email -->
+
+
+
                         <!-- #region : Field Password -->
                         <StackPanel
                             Orientation="Horizontal"

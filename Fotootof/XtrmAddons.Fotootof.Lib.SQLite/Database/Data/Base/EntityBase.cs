@@ -1,7 +1,10 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
 using XtrmAddons.Net.Common.Extensions;
 
@@ -10,7 +13,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries SQLite Database Data Base Entity.
     /// </summary>
-    public abstract class EntityBase : IEntityBaseInterface
+    public abstract class EntityBase : IEntityBaseInterface, INotifyPropertyChanged
     {
         #region Variables
 
@@ -18,6 +21,22 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// Variable database connector.
         /// </summary>
         private static DatabaseCore db;
+
+        /// <summary>
+        /// Variable primary key auto incremented.
+        /// </summary>
+        protected int primaryKey = 0;
+
+        #endregion
+
+
+
+        #region Event Handler
+
+        /// <summary>
+        /// Delegate property changed event handler of the model.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         #endregion
 
@@ -30,19 +49,42 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// </summary>
         [JsonIgnore]
         [NotMapped]
-        public static DatabaseCore Db { get => db; set => db = value; }
+        public static DatabaseCore Db
+        {
+            get => db;
+            set => db = value;
+        }
 
         /// <summary>
         /// Property alias to access to the primary key of the entity.
         /// </summary>
         [NotMapped]
-        public abstract int PrimaryKey { get; set; }
+        public int PrimaryKey
+        {
+            get { return primaryKey; }
+            set
+            {
+                if (value != primaryKey)
+                {
+                    primaryKey = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         #endregion
 
 
 
         #region Methods
+
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         /// <summary>
         /// Method to get a list of primaries keys.

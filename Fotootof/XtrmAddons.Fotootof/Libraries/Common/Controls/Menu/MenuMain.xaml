@@ -136,7 +136,7 @@
                     Name="MenuItem_Display_LogsWindow"
                     Header="{x:Static p:Resources._LogsWindow}"
                     Click="OnDisplayLogsWindowClick"
-                    IsChecked="False"/>
+                    IsCheckable="True"/>
 
 				<MenuItem Header="{x:Static p:Resources._Language}"
 						  Name="MenuItemDisplayLanguage">

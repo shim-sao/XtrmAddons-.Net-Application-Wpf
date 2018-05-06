@@ -76,7 +76,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
         /// Method to create default entities collection filters for autoload.
         /// </summary>
         /// <returns>An object options list filters according to the entities collection.</returns>
-        private static U GetOptionsDefault()
+        protected static U GetOptionsDefault()
         {
             U item = (U)Activator.CreateInstance(typeof(U));
             item.SetPropertyValue("Dependencies", new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All });

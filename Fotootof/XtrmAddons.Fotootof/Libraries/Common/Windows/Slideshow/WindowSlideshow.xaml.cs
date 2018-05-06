@@ -43,7 +43,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Slideshow
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -178,7 +178,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Slideshow
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {

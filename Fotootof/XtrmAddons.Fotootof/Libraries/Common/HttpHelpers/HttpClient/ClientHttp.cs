@@ -2,6 +2,7 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.HttpClient;
 using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient.Responses;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
@@ -13,6 +14,13 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
     public class ClientHttp
     {
         #region Variable
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         #endregion
 
 
@@ -42,6 +50,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         public event EventHandler OnAuthenticationSuccess = delegate { };
 
         public event EventHandler OnAuthenticationFailed = delegate { };
+
+        public event EventHandler OnAuthenticationUnauthorized = delegate { };
 
         public event EventHandler OnListSectionsSuccess = delegate { };
 
@@ -76,6 +86,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         protected void RaiseAuthenticationFailed<T>(Client server, T response = null) where T : class
         {
             OnAuthenticationFailed?.Invoke(this, new ClientHttpEventArgs<T>(server, response));
+        }
+
+        /// <summary>
+        /// Method to raise authentication unauthorized event.
+        /// </summary>
+        protected void RaiseAuthenticationUnauthorized<T>(Client server, T response = null) where T : class
+        {
+            OnAuthenticationUnauthorized?.Invoke(this, new ClientHttpEventArgs<T>(server, response));
         }
 
         /// <summary>
@@ -133,7 +151,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// <param name="ServerInfos"></param>
         public void InitializeWebClient()
         {
-            AppLogger.Info("Initializing server connection.", true);
+            log.Info("Initializing server connection.");
 
             try
             {
@@ -142,89 +160,125 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
                     WebClient = new HttpWebClientApplication(
                         Server.Host,
                         Server.Port,
-                        Server.UserName,
-                        Server.Password
+                        Server.Email,
+                        Server.Password,
+                        Server.UserName
                     );
                 }
             }
             catch (Exception e)
             {
-                AppLogger.Fatal("Initializing server connection failed.", e, true);
+                log.Error(e);
+                AppLogger.Fatal("Initializing server connection failed.", e);
             }
         }
 
         /// <summary>
-        /// Method to ping a server.
+        /// <para>Method to send ping command to a server asynchronously.</para>
+        /// <para>Command to check if the server is running.</para>
         /// </summary>
-        /// <param name="ServerInfos"></param>
         public async void Ping()
         {
-            AppLogger.Info(string.Format("Ping server {0}:{1}", Server.Host, Server.Port), true);
+            log.Info(string.Format(Translation.Logs["SendingPingCommand"].ToString(), Server.Host, Server.Port));
 
+            // Initialize server response.
             ServerResponse serverResponse = null;
 
+            // Try to check if the server is running.
             try
             {
+                // Send command Ping to the server.
+                // Decode response as JSon format to exploit.
                 HttpResponseMessage response = WebClient.Client.Ping();
                 string message = await WebClient.Client.Read(response);
                 serverResponse = JsonConvert.DeserializeObject<ServerResponse>(message);
 
+                // Raise ping success event on HTTP OK response.
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
+                    log.Info(Translation.Logs["SendingPingCommandResponseOk"]);
                     RaisePingSuccess(Server, serverResponse);
                 }
+
+                // Raise ping failed event on others HTTP response.
+                // Todo : Adapt all http responses
                 else
                 {
+                    log.Error(Translation.Logs["SendingPingCommandResponseFailed"]);
+                    log.Error(response.StatusCode.ToString() + " : " + serverResponse.Error);
+
                     RaisePingFailed(Server, serverResponse);
-                    AppLogger.Error(string.Format("Ping server {0}:{1} failed !", Server.Host, Server.Port), true);
-                    AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
                 }
             }
+
+            // Catch all exceptions.
             catch (Exception e)
             {
+                log.Error(Translation.Logs["SendingPingCommandException"]);
+                log.Fatal(e);
+
                 RaisePingFailed(Server, serverResponse);
-                AppLogger.Fatal(string.Format("Ping server {0}:{1} failed !", Server.Host, Server.Port), e, true);
             }
+
+            log.Info(Translation.Logs["SendingPingCommandDone"]);
         }
 
 
         /// <summary>
-        /// 
+        /// <para>Method to send authentication command to a server asynchronously.</para>
+        /// <para>Command to authenticate a user on a server.</para>
         /// </summary>
         public async void Authentication()
         {
-            AppLogger.Info("Initializing server authentication.", true);
+            log.Info(string.Format(Translation.Logs["SendingAuthenticationCommand"].ToString(), Server.Host, Server.Port));
 
+            // Initialize server response.
             ServerResponse serverResponse = null;
 
+            // Try to check if the user can access to server content.
             try
             {
+                // Send command Authentication to the server.
+                // Decode response as JSon format to exploit.
                 HttpResponseMessage response = WebClient.Client.Authentication();
                 string message = await WebClient.Client.Read(response);
                 serverResponse = JsonConvert.DeserializeObject<ServerResponse>(message);
 
+                // Raise authentication success event on HTTP OK response.
                 if (response.StatusCode == HttpStatusCode.OK && serverResponse.Authentication)
                 {
-
+                    log.Debug(Translation.Logs["SendingAuthenticationCommandResponseOk"]);
                     RaiseAuthenticationSuccess(Server, serverResponse);
                 }
+
+                // Raise authentication unauthorized event unauthorized HTTP response.
                 else if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    RaiseAuthenticationFailed(Server, serverResponse);
+                    log.Debug(Translation.Logs["SendingAuthenticationCommandResponseUnauthorized"]);
+                    RaiseAuthenticationUnauthorized(Server, serverResponse);
                 }
+
+                // Raise ping failed event on others HTTP response.
+                // Todo : Adapt all http responses
                 else
                 {
+                    log.Error(Translation.Logs["SendingAuthenticationCommandResponseFailed"]);
+                    log.Error(response.StatusCode.ToString() + " : " + serverResponse.Error);
+
                     RaiseAuthenticationFailed(Server, serverResponse);
-                    AppLogger.Error(string.Format("Server authentication on server [{0}:{1}] failed !", Server.Host, Server.Port), true);
-                    AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
                 }
             }
+
+            // Catch all exceptions.
             catch (Exception e)
             {
+                log.Error(Translation.Logs["SendingAuthenticationCommandException"]);
+                log.Fatal(e);
+
                 RaiseAuthenticationFailed(Server, serverResponse);
-                AppLogger.Fatal(string.Format("Server authentication on server[{0}:{1}] failed !", Server.Host, Server.Port), e, true);
             }
 
+            log.Info(Translation.Logs["SendingAuthenticationCommandDone"]);
         }
 
 
@@ -233,39 +287,55 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// </summary>
         public async void ListSections()
         {
-            AppLogger.Info("Initializing server list sections.", true);
+            log.Info(string.Format(Translation.Logs["SendingListSectionsCommand"].ToString(), Server.Host, Server.Port));
 
+            // Initialize sections server response.
             ServerResponseSections serverResponse = null;
 
+            // Try to check if the user can access to server content.
             try
             {
+                // Send command ListSections to the server.
+                // Decode response as JSon format to exploit sections list.
                 HttpResponseMessage response = WebClient.Client.ListSections();
                 string message = await WebClient.Client.Read(response);
                 serverResponse = JsonConvert.DeserializeObject<ServerResponseSections>(message);
 
+                // Raise ListSections success event on HTTP OK response.
                 if (response.StatusCode == HttpStatusCode.OK && serverResponse.Authentication)
                 {
-
+                    log.Debug(Translation.Logs["SendingListSectionsCommandResponseOk"]);
                     RaiseListSectionsSuccess(Server, serverResponse);
                 }
+
+                // Raise authentication unauthorized event unauthorized HTTP response.
                 else if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    RaiseListSectionsFailed(Server, serverResponse);
-                }
-                else
-                {
-                    RaiseListSectionsFailed(Server, serverResponse);
-                    AppLogger.Error(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), true);
-                    AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
+                    log.Debug(Translation.Logs["SendingListSectionsCommandUnauthorized"]);
+                    RaiseAuthenticationUnauthorized(Server, serverResponse);
                 }
 
-                AppLogger.InfoAndClose("Initializing server list sections done.", true);
+                // Raise ping failed event on others HTTP response.
+                // Todo : Adapt all http responses
+                else
+                {
+                    log.Error(Translation.Logs["SendingListSectionsCommandResponseFailed"]);
+                    log.Error(response.StatusCode.ToString() + " : " + serverResponse.Error);
+
+                    RaiseListSectionsFailed(Server, serverResponse);
+                }
             }
+
+            // Catch all exceptions.
             catch (Exception e)
             {
+                log.Error(Translation.Logs["SendingListSectionsCommandException"]);
+                log.Fatal(e);
+
                 RaiseListSectionsFailed(Server, serverResponse);
-                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e, true);
             }
+
+            log.Info(Translation.Logs["SendingListSectionsCommandDone"]);
         }
 
 
@@ -274,7 +344,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// </summary>
         public async void ListAlbums()
         {
-            AppLogger.Info("Initializing server list albums.", true);
+            log.Info(string.Format(Translation.DLogs.SendingAlbumsCommand.ToString(), Server.Host, Server.Port));
 
             ServerResponseSections serverResponse = null;
 
@@ -296,15 +366,22 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
                 else
                 {
                     RaiseListSectionsFailed(Server, serverResponse);
-                    AppLogger.Error(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), true);
-                    AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
+                    AppLogger.Error(
+                        string.Format(
+                            "Server list sections {0}:{1} failed !\n\r {2} : {3}",
+                            Server.Host, Server.Port,
+                            response.StatusCode.ToString(), serverResponse.Error
+                        )
+                    );
                 }
             }
             catch (Exception e)
             {
                 RaiseListSectionsFailed(Server, serverResponse);
-                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e, true);
+                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e);
             }
+
+            log.Info(Translation.DLogs.SendingAlbumsCommandDone);
         }
 
 
@@ -313,7 +390,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
         /// </summary>
         public async void SingleSection(int pk)
         {
-            AppLogger.Info("Initializing server single section.", true);
+            log.Info("Initializing server single section.");
             ServerResponseSections serverResponse = null;
 
             try
@@ -333,14 +410,19 @@ namespace XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient
                 else
                 {
                     RaiseSingleSectionFailed(Server, serverResponse);
-                    AppLogger.Error(string.Format("Server list albums {0}:{1} failed !", Server.Host, Server.Port), true);
-                    AppLogger.Error(response.StatusCode.ToString() + " : " + serverResponse.Error, true);
+                    AppLogger.Error(
+                        string.Format(
+                            "Server list albums {0}:{1} failed !\n\r {2} : {3}",
+                            Server.Host, Server.Port,
+                            response.StatusCode.ToString(), serverResponse.Error
+                        )
+                    );
                 }
             }
             catch (Exception e)
             {
                 RaiseSingleSectionFailed(Server, serverResponse);
-                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e, true);
+                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e);
             }
         }
     }

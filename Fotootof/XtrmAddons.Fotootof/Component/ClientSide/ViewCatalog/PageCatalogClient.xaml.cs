@@ -64,50 +64,18 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
         public override void InitializeContentAsync()
         {
             // Paste page to the model & child elements.
-            Model = new PageCatalogClientModel<PageCatalogClient>(this);
-
-            svr.OnListSectionsSuccess += Svr_OnListSectionsSuccess;
-            svr.OnListSectionsFailed += Svr_OnListSectionsFailed;
-            svr.ListSections();
+            Model = new PageCatalogClientModel<PageCatalogClient>(this)
+            {
+                Server = svr,
+                Sections = new DataGridSectionsModel<DataGridSections>(UcDataGridSections)
+            };
 
             DataContext = Model;
-        }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Svr_OnListSectionsFailed(object sender, EventArgs e)
-        {
-            AppLogger.Warning("Loading Sections from server failed !", true);
-        }
+            Model.Server.Authentication();
+            Model.Server.ListSections();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Svr_OnListSectionsSuccess(object sender, EventArgs e)
-        {
-            ClientHttpEventArgs<ServerResponseSections> serverResponse = e as ClientHttpEventArgs<ServerResponseSections>;
-            LoadSections(serverResponse, true);
-
-        }
-
-        private void Svr_OnSingleSectionFailed(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Svr_OnSingleSectionSuccess(object sender, EventArgs e)
-        {
-            /*ClientHttpEventArgs<ServerResponseSection> serverResponse = e as ClientHttpEventArgs<ServerResponseSections>;
-
-            svr.OnSingleSectionSuccess += Svr_OnSingleSectionSuccess;
-            svr.OnSingleSectionFailed += Svr_OnSingleSectionFailed;
-            svr.SingleSection(jSections.);
-            throw new NotImplementedException();*/
+            AppOverwork.IsBusy = false;
         }
 
         #endregion
@@ -119,30 +87,30 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
         /// <summary>
         /// Method to load the list of Section from server.
         /// </summary>
-        private void LoadSections(ClientHttpEventArgs<ServerResponseSections> serverResponse, bool reset = false)
-        {
-            try
-            {
-                AppLogger.Info("Loading Sections list. Please wait...");
+        //private void LoadSections(ClientHttpEventArgs<ServerResponseSections> serverResponse, bool reset = false)
+        //{
+        //    try
+        //    {
+        //        log.Info("Loading Sections list. Please wait...");
 
-                List<SectionEntity> l = new List<SectionEntity>();
-                foreach (SectionJson s in serverResponse.Response.Response)
-                {
-                    l.Add(s.ToEntity());
-                }
+        //        List<SectionEntity> l = new List<SectionEntity>();
+        //        foreach (SectionJson s in serverResponse.Response.Response)
+        //        {
+        //            l.Add(s.ToEntity());
+        //        }
 
-                if (reset || Model.Sections == null)
-                {
-                    Model.Sections = new DataGridSectionsModel<DataGridSections>(UCDataGridSections);
-                }
-                Model.Sections.Items = new SectionEntityCollection(l);
-                AppLogger.InfoAndClose("Loading Sections list. Done.");
-            }
-            catch (Exception e)
-            {
-                AppLogger.Fatal("Loading Sections list failed : " + e.Message, e);
-            }
-        }
+        //        if (reset || Model.Sections == null)
+        //        {
+        //            Model.Sections = new DataGridSectionsModel<DataGridSections>(UCDataGridSections);
+        //        }
+        //        Model.Sections.Items = new SectionEntityCollection(l);
+        //        AppLogger.InfoAndClose("Loading Sections list. Done.");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        AppLogger.Fatal("Loading Sections list failed : " + e.Message, e);
+        //    }
+        //}
 
         #endregion
 

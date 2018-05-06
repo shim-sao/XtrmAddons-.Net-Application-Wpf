@@ -41,7 +41,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Edit_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -56,7 +56,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void Edit_Click(object sender, RoutedEventArgs e)
         {

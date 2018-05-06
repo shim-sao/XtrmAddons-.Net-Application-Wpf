@@ -8,12 +8,12 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>XtrmAddons.Fotootof</RootNamespace>
     <AssemblyName>XtrmAddons Fotootof</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ShouldCreateLogs>True</ShouldCreateLogs>
@@ -24,16 +24,25 @@
     <AssemblyVersionSettings>None.None.DateStamp.TimeStamp</AssemblyVersionSettings>
     <AssemblyFileVersionSettings>None.None.DateStamp.TimeStamp</AssemblyFileVersionSettings>
     <AssemblyInfoVersionSettings>None.None.DateStamp.TimeStamp</AssemblyInfoVersionSettings>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <TargetFrameworkProfile />
+    <PublishUrl>ftp://home191827562.1and1-data.host/public_html/xtrmaddons/download/download/fotootof/</PublishUrl>
+    <Install>false</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://download.xtrmaddons.com/fotootof/</InstallUrl>
+    <SupportUrl>http://www.xtrmaddons.com/</SupportUrl>
+    <ErrorReportUrl>http://www.xtrmaddons.com/</ErrorReportUrl>
+    <ProductName>Fotootof</ProductName>
+    <PublisherName>XtrmAddons</PublisherName>
+    <SuiteName>XtrmAddons</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>index.htm</WebPage>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
@@ -56,16 +65,19 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Assets\Images\Icons\Favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -108,6 +120,15 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.3.0" />
@@ -125,8 +146,8 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.0.0" />
-    <PackageReference Include="Microsoft.NETCore.Platforms" Version="2.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="Microsoft.NETCore.Platforms" Version="2.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Remotion.Linq" Version="2.2.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
     <PackageReference Include="SQLite.Net-PCL">
@@ -135,12 +156,12 @@
     <PackageReference Include="SQLite.Net.Async-PCL">
       <Version>3.1.1</Version>
     </PackageReference>
-    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.9" />
-    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.9" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.linux" Version="1.1.9" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.osx" Version="1.1.9" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.9" />
-    <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.9" />
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.10" />
+    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.10" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.linux" Version="1.1.10" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.osx" Version="1.1.10" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.10" />
+    <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.10" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.Collections.Immutable" Version="1.4.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
@@ -166,7 +187,7 @@
     <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
     <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.2" />
     <PackageReference Include="System.Threading" Version="4.3.0" />
-    <PackageReference Include="WindowsAPICodePack-Core" Version="1.1.2" />
+    <PackageReference Include="WindowsAPICodePack-Core" Version="1.1.1" />
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +196,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -191,17 +213,14 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="XtrmAddons.Net.Application, Version=1.0.18032.1543, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\XtrmAddons.Net.Application.dll</HintPath>
+    <Reference Include="XtrmAddons.Net.Application">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
-    <Reference Include="XtrmAddons.Net.Common, Version=1.0.18032.1520, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\XtrmAddons.Net.Common.dll</HintPath>
+    <Reference Include="XtrmAddons.Net.Common">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
-    <Reference Include="XtrmAddons.Net.HttpWebServer, Version=1.0.18022.1713, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\XtrmAddons.Net.HttpWebServer.dll</HintPath>
+    <Reference Include="XtrmAddons.Net.HttpWebServer">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.HttpWebServer.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Memory">
       <HintPath>packages\XtrmAddons.Net.Memory.dll</HintPath>
@@ -213,7 +232,7 @@
       <HintPath>packages\XtrmAddons.Net.NotifyIcons.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Picture">
-      <HintPath>packages\XtrmAddons.Net.Picture.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Picture.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SQLiteBundle">
       <HintPath>packages\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
@@ -222,7 +241,7 @@
       <HintPath>packages\XtrmAddons.Net.SystemIO.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Windows">
-      <HintPath>packages\XtrmAddons.Net.Windows.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Windows.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +259,9 @@
       <DependentUpon>PageCatalog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\ServerSide\ViewCatalog\PageCatalogModel.cs" />
+    <Compile Include="Component\ServerSide\ViewLogs\PageLogs.xaml.cs">
+      <DependentUpon>PageLogs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Component\ServerSide\ViewServer\PageServer.xaml.cs">
       <DependentUpon>PageServer.xaml</DependentUpon>
     </Compile>
@@ -264,6 +286,9 @@
     <Compile Include="Libraries\Common\Tools\AppNavigator.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionTest.xaml.cs">
+      <DependentUpon>WindowFormSectionTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml.cs">
       <DependentUpon>WindowSlideshow.xaml</DependentUpon>
@@ -335,12 +360,6 @@
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridSections.cs" />
     <Compile Include="Libraries\Common\Controls\Tooltips\UCToolTipPicture.xaml.cs">
       <DependentUpon>UCToolTipPicture.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Libraries\Common\Controls\ListViews\UCPicturesListView.xaml.cs">
-      <DependentUpon>UCPicturesListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Libraries\Common\Controls\ListViews\UCAlbumsListView.xaml.cs">
-      <DependentUpon>UCAlbumsListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridSectionsModel.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\AclGroupForm\WindowFormAclGroupModel.cs" />
@@ -416,6 +435,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Component\ServerSide\ViewLogs\PageLogs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Component\ServerSide\ViewServer\PageServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -443,6 +466,10 @@
     <Page Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionTest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml">
       <SubType>Designer</SubType>
@@ -492,14 +519,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Libraries\Common\Controls\ListViews\UCPicturesListView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Libraries\Common\Controls\ListViews\UCAlbumsListView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Libraries\Common\Controls\Tooltips\UCToolTipPicture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -540,24 +559,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainSettings.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Component\Logs\Pages\PageLogs.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UI\Control\Menu\UCMainNavigation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Component\Logs\Pages\PageLogs.xaml.cs">
-      <DependentUpon>PageLogs.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -588,6 +599,9 @@
     </EmbeddedResource>
     <None Include="autoexec.release.bat" />
     <None Include="autoexec.debug.bat" />
+    <Content Include="Config\Database\Scheme\update.1.0.18123.2149.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="postbuild.bat" />
     <None Include="prebuild.bat" />
     <None Include="Properties\Settings.settings">
@@ -603,6 +617,7 @@
     <Content Include="Assets\Images\Default\album-thumbnail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="XtrmAddons.Fotootof_TemporaryKey.pfx" />
     <SplashScreen Include="Assets\Images\Default\splashscreen.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </SplashScreen>
@@ -780,9 +795,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 et x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.6.2 %28x86 et x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -792,7 +807,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Component\ServerSide\ViewLogs\" />
     <Folder Include="Libraries\Common\Converters\" />
     <Folder Include="Libraries\Common\Windows\About\" />
   </ItemGroup>
@@ -812,6 +826,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>call "$(ProjectDir)autoexec.debug.bat"</PostBuildEvent>
+    <PostBuildEvent>call "$(ProjectDir)autoexec.debug.bat"
+:: call "$(ProjectDir)autoexec.release.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>

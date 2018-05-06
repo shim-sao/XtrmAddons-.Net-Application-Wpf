@@ -51,7 +51,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [Key]
         [Column(Order = 0)]
-        public int AclGroupId { get; set; }
+        public int AclGroupId
+        {
+            get { return primaryKey; }
+            set
+            {
+                if (value != primaryKey)
+                {
+                    primaryKey = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property name of the item.
@@ -96,17 +107,22 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Properties : Dependencies
 
         /// <summary>
-        /// Property alias to access to the primary key of the entity.
-        /// </summary>
-        [NotMapped]
-        public override int PrimaryKey { get => AclGroupId; set => AclGroupId = value; }
-
-        /// <summary>
         /// Property to access to the AclAction id (required for entity dependency).
         /// </summary>
         [NotMapped]
         [JsonIgnore]
-        public int AclActionId { get; set; }
+        public int AclActionId
+        {
+            get { return primaryKey; }
+            set
+            {
+                if (value != primaryKey)
+                {
+                    primaryKey = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property to access to the Section primary key (required for entity dependency).

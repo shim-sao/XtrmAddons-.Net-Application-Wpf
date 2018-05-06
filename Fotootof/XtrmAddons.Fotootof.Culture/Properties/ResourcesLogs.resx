@@ -147,6 +147,63 @@
   <data name="SavingApplicationWaiting" xml:space="preserve">
     <value>Saving the application options &amp; parameters before exit. Please wait...</value>
   </data>
+  <data name="SendingAlbumsCommand" xml:space="preserve">
+    <value>Sending ListAlbums command to server {0}:{1}</value>
+  </data>
+  <data name="SendingAlbumsCommandDone" xml:space="preserve">
+    <value>Sending ListAlbums command to server done !</value>
+  </data>
+  <data name="SendingAuthenticationCommand" xml:space="preserve">
+    <value>Sending Authentication command to server {0}:{1}</value>
+  </data>
+  <data name="SendingAuthenticationCommandDone" xml:space="preserve">
+    <value>Sending Authentication command to server done !</value>
+  </data>
+  <data name="SendingAuthenticationCommandException" xml:space="preserve">
+    <value>Sending Authentication command : failed exception !</value>
+  </data>
+  <data name="SendingAuthenticationCommandResponseFailed" xml:space="preserve">
+    <value>Sending Authentication command : failed from server !</value>
+  </data>
+  <data name="SendingAuthenticationCommandResponseOk" xml:space="preserve">
+    <value>Sending Authentication command : success !</value>
+  </data>
+  <data name="SendingAuthenticationCommandUnauthorized" xml:space="preserve">
+    <value>Sending Authentication command : user unauthorized !</value>
+  </data>
+  <data name="SendingListSectionsCommand" xml:space="preserve">
+    <value>Sending ListSections command to server {0}:{1}</value>
+  </data>
+  <data name="SendingListSectionsCommandDone" xml:space="preserve">
+    <value>Sending ListSections command to server done !</value>
+  </data>
+  <data name="SendingListSectionsCommandException" xml:space="preserve">
+    <value>Sending ListSections command : failed exception !</value>
+  </data>
+  <data name="SendingListSectionsCommandResponseFailed" xml:space="preserve">
+    <value>Sending ListSections command : failed from server !</value>
+  </data>
+  <data name="SendingListSectionsCommandResponseOk" xml:space="preserve">
+    <value>Sending ListSections command : success !</value>
+  </data>
+  <data name="SendingListSectionsCommandUnauthorized" xml:space="preserve">
+    <value>Sending ListSections command : user unauthorized !</value>
+  </data>
+  <data name="SendingPingCommand" xml:space="preserve">
+    <value>Sending Ping command to server {0}:{1}</value>
+  </data>
+  <data name="SendingPingCommandDone" xml:space="preserve">
+    <value>Sending Ping command to server done !</value>
+  </data>
+  <data name="SendingPingCommandException" xml:space="preserve">
+    <value>Sending Ping command : failed exception !</value>
+  </data>
+  <data name="SendingPingCommandResponseFailed" xml:space="preserve">
+    <value>Sending Ping command : failed from server !</value>
+  </data>
+  <data name="SendingPingCommandResponseOk" xml:space="preserve">
+    <value>Sending Ping command : success !</value>
+  </data>
   <data name="ServerStarted" xml:space="preserve">
     <value>Server started.</value>
   </data>

@@ -38,7 +38,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             set
             {
                 imageSize = value;
-                RaisePropertyChanged("ImageSize");
+                NotifyPropertyChanged();
             }
         }
 
@@ -51,7 +51,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
             set
             {
                 filesCollection = value;
-                RaisePropertyChanged("FilesCollection");
+                NotifyPropertyChanged();
             }
         }
 

@@ -37,7 +37,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             set
             {
                 aclGroups = value;
-                RaisePropertyChanged("AclGroups");
+                NotifyPropertyChanged();
             }
         }
 
@@ -50,7 +50,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             set
             {
                 users = value;
-                RaisePropertyChanged("Users");
+                NotifyPropertyChanged();
             }
         }
 

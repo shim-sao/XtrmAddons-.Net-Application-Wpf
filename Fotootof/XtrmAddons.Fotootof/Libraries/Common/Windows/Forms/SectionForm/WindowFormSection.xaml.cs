@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
@@ -8,6 +10,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Net.Windows.Controls.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
 {
@@ -24,6 +27,16 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// </summary>
         private WindowFormSectionModel<WindowFormSection> model;
 
+        /// <summary>
+        /// Variable preview TextBox Name text for Alias autofill compared.
+        /// </summary>
+        private string previewName = "";
+
+        /// <summary>
+        /// Variable current TextBox Name text for Alias autofill compared.
+        /// </summary>
+        private bool updateNameAlias = false;
+
         #endregion
 
 
@@ -31,12 +44,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         #region Properties
 
         /// <summary>
-        /// Variable old Section informations backup.
+        /// Property old Section informations backup.
         /// </summary>
         public SectionEntity OldForm { get; set; }
 
         /// <summary>
-        /// Variable current or new Section informations.
+        /// Property current or new Section informations.
         /// </summary>
         public SectionEntity NewForm
         {
@@ -115,53 +128,114 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         }
 
         /// <summary>
-        /// Method called on input name text changes event.
+        /// <para>Method to send validation error to a TextBox.</para>
+        /// <para>Disable Form Save Button to prevent unwanted save.</para>
         /// </summary>
-        /// <param name="sender">The object sender.</param>
-        /// <param name="routedEventArgs">Text changed event arguments.</param>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Validation error event argumments.</param>
+        private void Input_Error(object sender, ValidationErrorEventArgs e)
+        {
+            ButtonSave.IsEnabled = false;
+        }
+
+        /// <summary>
+        /// <para>Method called on input updated event.</para>
+        /// <para>Send Form validation to prevent unwanted save.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Data transfer event arguments</param>
+        private void Input_Updated(object sender, DataTransferEventArgs e)
+        {
+            ButtonSave.IsEnabled = IsSaveEnabled;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Text changed event arguments.</param>
         private void InputName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string old = NewForm.Name;
+            TextBox tb = sender as TextBox;
 
-            if (!InputName.Text.IsNullOrWhiteSpace())
+            if (InputAlias.Text.IsNullOrWhiteSpace() || InputAlias.Text == previewName)
             {
-                NewForm.Name = InputName.Text;
+                updateNameAlias = true;
             }
 
-            if (!old.IsNullOrWhiteSpace())
+            previewName = tb.Text.Sanitize().RemoveDiacritics().ToLower();
+            ButtonSave.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
+
+            //
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Text changed event arguments.</param>
+        private void InputName_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+
+            if (tb.Text.IsNotNullOrWhiteSpace() && InputAlias.Text.IsNullOrWhiteSpace() || updateNameAlias)
             {
-                if (NewForm.Alias.IsNullOrWhiteSpace() || NewForm.Alias.Sanitize().RemoveDiacritics().ToLower() == old.Sanitize().RemoveDiacritics().ToLower())
+                InputAlias.Text = tb.Text.Sanitize().RemoveDiacritics().ToLower();
+
+                if (InputAlias.Text.IsNotNullOrWhiteSpace())
                 {
-                    InputAlias.Text = InputName.Text;
+                    InputAlias.ValidationClear();
+                }
+
+                if(!InputAlias.Focus())
+                {
+                    NewForm.Alias = InputAlias.Text;
                 }
             }
 
-            ButtonSave.IsEnabled = IsSaveEnabled;
+            updateNameAlias = false;
+            ButtonSave.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
         }
 
+
         /// <summary>
-        /// Method called on input alias text changes event.
+        /// 
         /// </summary>
-        /// <param name="sender">The object sender.</param>
-        /// <param name="routedEventArgs">Text changed event arguments.</param>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Text changed event arguments.</param>
         private void InputAlias_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (InputAlias.Text != "" && InputAlias.Text != InputAlias.Text.Sanitize().RemoveDiacritics().ToLower())
-            {
-                InputAlias.Text = InputAlias.Text.Sanitize().RemoveDiacritics().ToLower();
-            }
+            TextBox tb = sender as TextBox;
+            //tb.Text = tb.Text.Sanitize().RemoveDiacritics().ToLower();
+            updateNameAlias = false;
+            ButtonSave.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
+        }
 
-            NewForm.Alias = InputAlias.Text;
-
+        /// <summary>
+        /// <para>Method called on input updated event.</para>
+        /// <para>Send Form validation to prevent unwanted save.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Data transfer event arguments</param>
+        private void InputAlias_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            tb.Text = tb.Text.Sanitize().RemoveDiacritics().ToLower();
+            updateNameAlias = false;
             ButtonSave.IsEnabled = IsSaveEnabled;
         }
+
+
+
+
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
-        private void DataGridCollectionAlbum_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void DataGridCollectionAlbum_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
@@ -169,9 +243,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
-        private void DataGridCollectionAclGroup_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void DataGridCollectionAclGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
@@ -181,26 +255,54 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">The text changed event arguments.</param>
-        protected override bool IsSaveEnabled
+        protected override bool IsSaveEnabled => ValidateForm();
+
+        /// <summary>
+        /// Method to validate the Form.
+        /// </summary>
+        private new bool ValidateForm()
         {
-            get
+            if (NewForm == null)
             {
-                bool save = true;
-
-                if (NewForm != null)
-                {
-                    if (NewForm.Name == null || NewForm.Name.Length == 0)
-                    {
-                        save = false;
-                    }
-                }
-                else
-                {
-                    save = false;
-                }
-
-                return save;
+                return false;
             }
+            
+            if (NewForm.Name.IsNullOrWhiteSpace())
+            {
+                return false;
+            }
+
+            //NewForm.Alias = NewForm.Alias.Sanitize().RemoveDiacritics().ToLower();
+            if (NewForm.Alias.IsNullOrWhiteSpace())
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Method to validate the Inputs.
+        /// </summary>
+        private new bool ValidateInput()
+        {
+            if (NewForm == null)
+            {
+                return false;
+            }
+
+            if (InputName.Text.IsNullOrWhiteSpace())
+            {
+                return false;
+            }
+
+            string alias = InputAlias.Text.Sanitize().RemoveDiacritics().ToLower();
+            if (alias.IsNullOrWhiteSpace())
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -216,7 +318,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             }
             catch (Exception ex)
             {
-                AppLogger.Error(ex.Message, true);
+                log.Error(ex);
+                AppLogger.Error(ex);
             }
         }
 
@@ -233,7 +336,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             }
             catch (Exception ex)
             {
-                AppLogger.Error(ex.Message, true);
+                log.Error(ex);
+                AppLogger.Error(ex);
             }
         }
 
@@ -250,7 +354,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             }
             catch (Exception ex)
             {
-                AppLogger.Error(ex.Message, true);
+                log.Error(ex);
+                AppLogger.Error(ex);
             }
         }
 
@@ -263,11 +368,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         {
             try
             {
-                model.Section.UnLinkAlbum(Tag2Object<AlbumEntity>(sender).PrimaryKey);
+                model.Section.UnlinkAlbum(Tag2Object<AlbumEntity>(sender).PrimaryKey);
             }
             catch(Exception ex)
             {
-                AppLogger.Error(ex.Message, true);
+                log.Error(ex);
+                AppLogger.Error(ex);
             }
         }
 
