@@ -18,7 +18,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
         /// Variable logger.
         /// </summary>
         protected static readonly log4net.ILog log =
-        log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 

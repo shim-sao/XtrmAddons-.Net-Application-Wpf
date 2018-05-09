@@ -287,9 +287,6 @@
     <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionTest.xaml.cs">
-      <DependentUpon>WindowFormSectionTest.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml.cs">
       <DependentUpon>WindowSlideshow.xaml</DependentUpon>
     </Compile>
@@ -372,7 +369,7 @@
       <DependentUpon>UCAlbumsDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionModel.cs" />
-    <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowClientFormModel.cs" />
+    <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClientModel.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\UserForm\WindowFormUserModel.cs" />
     <Compile Include="Libraries\Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbumsModel.cs" />
     <Compile Include="Libraries\Common\HttpHelpers\HttpServer\ServerInfosModel.cs" />
@@ -466,10 +463,6 @@
     <Page Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionTest.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml">
       <SubType>Designer</SubType>
@@ -617,7 +610,6 @@
     <Content Include="Assets\Images\Default\album-thumbnail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="XtrmAddons.Fotootof_TemporaryKey.pfx" />
     <SplashScreen Include="Assets\Images\Default\splashscreen.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </SplashScreen>
@@ -750,9 +742,6 @@
     </Content>
     <Content Include="Public\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Uninstall.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

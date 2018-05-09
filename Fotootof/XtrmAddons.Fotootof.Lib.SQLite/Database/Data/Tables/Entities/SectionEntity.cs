@@ -118,6 +118,42 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
 
 
+        #region Variables Dependencies
+
+        /// <summary>
+        /// Variable Album id (required for entity dependency).
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private int albumId = 0;
+
+        /// <summary>
+        /// Variable AclGroup id (required for entity dependency).
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private int aclGroupId = 0;
+
+        /// <summary>
+        /// Variable associated AclGroups primary keys list.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private List<int> aclGroupsPK = new List<int>();
+
+
+        /// <summary>
+        /// Variable collection of relationship Users in AclGroups.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        ObservableCollection<UsersInAclGroups> usersInAclGroups
+            = new ObservableCollection<UsersInAclGroups>();
+
+        #endregion
+
+
+
         #region Proprerties
 
         /// <summary>
@@ -167,7 +203,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             {
                 if (value != alias)
                 {
-                    alias = value.Sanitize().RemoveDiacritics().ToLower();
                     NotifyPropertyChanged();
                 }
             }
@@ -321,14 +356,36 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [NotMapped]
         [JsonIgnore]
-        public int AlbumId { get; set; }
+        public int AlbumId
+        {
+            get => albumId;
+            set
+            {
+                if (value != albumId)
+                {
+                    albumId = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property AclGroup id (required for entity dependency).
         /// </summary>
         [NotMapped]
         [JsonIgnore]
-        public int AclGroupId { get; set; }
+        public int AclGroupId
+        {
+            get => aclGroupId;
+            set
+            {
+                if (value != aclGroupId)
+                {
+                    aclGroupId = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property to access to the collection of relationship Albums in Sections.

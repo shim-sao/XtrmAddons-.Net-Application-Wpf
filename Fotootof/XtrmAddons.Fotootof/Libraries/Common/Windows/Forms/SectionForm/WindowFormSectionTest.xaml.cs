@@ -403,7 +403,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">The text changed event arguments.</param>
-        protected override bool IsSaveEnabled => ValidateForm();
+        public override bool IsSaveEnabled
+            => IsValidInputs();
 
         /// <summary>
         /// 

@@ -88,7 +88,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                 {
                     foreach (UserEntity entity in newItems)
                     {
-                        entity.Initialize();
                         MainWindow.Database.Users.Add(entity);
 
                         log.Info(string.Format("User [{0}:{1}] added.", entity.PrimaryKey, entity.Name));

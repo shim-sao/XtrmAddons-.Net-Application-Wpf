@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -20,15 +21,21 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         #region Variables
 
         /// <summary>
-        /// Variable Window Album Form model.
+        /// Variable logger.
         /// </summary>
-        private WindowFormAlbumModel<WindowFormAlbum> model;
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 
 
 
         #region Properties
+
+        /// <summary>
+        /// Property to access to the Window model.
+        /// </summary>
+        public new WindowFormAlbumModel<WindowFormAlbum> Model { get; private set; }
 
         /// <summary>
         /// Variable old Album informations backup.
@@ -40,9 +47,19 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// </summary>
         public AlbumEntity NewForm
         {
-            get => model.Album;
-            set => model.Album = value;
+            get => Model.Album;
+            set => Model.Album = value;
         }
+
+        /// <summary>
+        /// Property to access to the main form save button.
+        /// </summary>
+        public Button ButtonSave => Button_Save;
+
+        /// <summary>
+        /// Property to access to the main form cancel button.
+        /// </summary>
+        public Button ButtonCancel => Button_Cancel;
 
         #endregion
 
@@ -56,10 +73,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <param name="entity"></param>
         public WindowFormAlbum(AlbumEntity entity = default(AlbumEntity)) : base()
         {
+            // Initialize window component.
             InitializeComponent();
+            Name = "UCWindowFormAlbum";
+
+            // Initialize window data model.
             InitializeModel(entity);
-            Loaded += Window_Load;
-            Closing += Window_Closing;
         }
 
         #endregion
@@ -75,7 +94,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <param name="e">Routed event atguments.</param>
         protected void Window_Load(object sender, RoutedEventArgs e)
         {
-            DataContext = model;
+            DataContext = Model;
 
             InputName.TextChanged += InputName_TextChanged;
             InputAlias.TextChanged += InputAlias_TextChanged;
@@ -89,7 +108,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <param name="entity"></param>
         private void InitializeModel(AlbumEntity entity)
         {
-            model = new WindowFormAlbumModel<WindowFormAlbum>(this);
+            Model = new WindowFormAlbumModel<WindowFormAlbum>(this);
 
             // Initialize User first.
             entity = entity ?? new AlbumEntity();
@@ -106,7 +125,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             IsSectionInAlbum.Entity = NewForm = entity;
 
             // Assign list of AclGroup to the model.
-            model.Sections = new SectionEntityCollection(true);
+            Model.Sections = new SectionEntityCollection(true);
         }
 
         /// <summary>
@@ -174,42 +193,43 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <summary>
         /// Method to check if saving is enabled.
         /// </summary>
-        protected override bool IsSaveEnabled
-        {
-            get
-            {
-                bool save = true;
+        //[Obsolete()]
+        //public override bool IsSaveEnabled
+        //{
+        //    get
+        //    {
+        //        bool save = true;
 
-                if (NewForm != null)
-                {
-                    if (NewForm.Name.IsNullOrWhiteSpace())
-                    {
-                        save = false;
-                        InputName.BorderBrush = BorderStyleError;
-                    }
-                    else
-                    {
-                        InputName.BorderBrush = BorderStyleReady;
-                    }
+        //        if (NewForm != null)
+        //        {
+        //            if (NewForm.Name.IsNullOrWhiteSpace())
+        //            {
+        //                save = false;
+        //                InputName.BorderBrush = BorderStyleError;
+        //            }
+        //            else
+        //            {
+        //                InputName.BorderBrush = BorderStyleReady;
+        //            }
 
-                    if (NewForm.Alias.IsNullOrWhiteSpace())
-                    {
-                        save = false;
-                        InputAlias.BorderBrush = BorderStyleError;
-                    }
-                    else
-                    {
-                        InputAlias.BorderBrush = BorderStyleReady;
-                    }
-                }
-                else
-                {
-                    save = false;
-                }
+        //            if (NewForm.Alias.IsNullOrWhiteSpace())
+        //            {
+        //                save = false;
+        //                InputAlias.BorderBrush = BorderStyleError;
+        //            }
+        //            else
+        //            {
+        //                InputAlias.BorderBrush = BorderStyleReady;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            save = false;
+        //        }
 
-                return save;
-            }
-        }
+        //        return save;
+        //    }
+        //}
 
         /// <summary>
         /// Method called on section check box checked event.
@@ -317,11 +337,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <param name="e">Routed event arguments.</param>
         private void FiltersColorSelector_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach (InfoEntity inf in model.FiltersColor)
+            foreach (InfoEntity inf in Model.FiltersColor)
             {
                 try
                 {
-                    InfosInAlbums info = model.Album.InfosInAlbums.Single(x => x.InfoId == inf.InfoId);
+                    InfosInAlbums info = Model.Album.InfosInAlbums.Single(x => x.InfoId == inf.InfoId);
                     FiltersColorSelector.SelectedItem = inf;
                 }
                 catch { }
@@ -339,7 +359,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             {
                 try
                 {
-                    InfosInAlbums info = model.Album.InfosInAlbums.Single(x => x.InfoId == inf.InfoId);
+                    InfosInAlbums info = Model.Album.InfosInAlbums.Single(x => x.InfoId == inf.InfoId);
                     FiltersQualitySelector.SelectedItem = inf;
                 }
                 catch { }

@@ -16,18 +16,24 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
     /// </summary>
     public partial class WindowDataGridAlbums : WindowBaseForm
     {
-        #region Variables
+        #region Variable
 
         /// <summary>
-        /// Variable Window Albums model.
+        /// Variable logger.
         /// </summary>
-        private WindowDataGridAlbumsModel<WindowDataGridAlbums> model;
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 
 
 
         #region Properties
+
+        /// <summary>
+        /// Property to access to the Window model.
+        /// </summary>
+        public new WindowDataGridAlbumsModel<WindowDataGridAlbums> Model { get; private set; }
 
         /// <summary>
         /// Proper to get selected Albums.
@@ -44,8 +50,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
         /// </summary>
         public AlbumEntityCollection NewForm
         {
-            get => model.Albums;
-            set => model.Albums = value;
+            get => Model.Albums;
+            set => Model.Albums = value;
         }
 
         #endregion
@@ -75,7 +81,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
             Closing += Window_Closing;
 
             // Assign list of AclGroup to the model.
-            model = new WindowDataGridAlbumsModel<WindowDataGridAlbums>(this);
+            Model = new WindowDataGridAlbumsModel<WindowDataGridAlbums>(this);
             LoadAlbums();
 
             UCAlbumsContainer.OnAdd += UCAlbumsContainer_OnAdd;
@@ -83,7 +89,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
             UCAlbumsContainer.OnChange += UCAlbumsContainer_OnChange;
             UCAlbumsContainer.OnDelete += UCAlbumsContainer_OnDelete;
 
-            DataContext = model;
+            DataContext = Model;
 
             SelectedAlbums.CollectionChanged += SelectedAlbums_CollectionChanged;
         }
@@ -115,7 +121,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
 
             try
             {
-                model.Albums = new AlbumEntityCollection(true);
+                Model.Albums = new AlbumEntityCollection(true);
 
                 log.Info("Loading Albums list. Done.");
             }
@@ -152,7 +158,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
             log.Info("Saving new Album informations. Please wait...");
 
             AlbumEntity item = (AlbumEntity)e.NewEntity;
-            model.Albums.Add(item);
+            Model.Albums.Add(item);
             AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
 
             log.Info("Saving new Album informations. Done.");
@@ -170,9 +176,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
             log.Info("Saving Album informations. Please wait...");
 
             AlbumEntity newEntity = (AlbumEntity)e.NewEntity;
-            AlbumEntity old = model.Albums.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
-            int index = model.Albums.IndexOf(old);
-            model.Albums[index] = newEntity;
+            AlbumEntity old = Model.Albums.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
+            int index = Model.Albums.IndexOf(old);
+            Model.Albums[index] = newEntity;
             AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
 
             log.Info("Saving Album informations. Done.");
@@ -192,7 +198,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid
 
             // Remove item from list.
             AlbumEntity item = (AlbumEntity)e.NewEntity;
-            model.Albums.Remove(item);
+            Model.Albums.Remove(item);
 
             // Delete item from database.
             AlbumEntityCollection.DbDelete(new List<AlbumEntity> { item });

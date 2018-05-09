@@ -466,7 +466,7 @@
     <value>_About XtrmAddons PhotoAlbum Server</value>
   </data>
   <data name="_AddSection" xml:space="preserve">
-    <value>Add Section</value>
+    <value>Add _Section</value>
   </data>
   <data name="_AddToFirewall" xml:space="preserve">
     <value>_Add to Firewall</value>
@@ -587,5 +587,11 @@
   </data>
   <data name="RefreshPictures" xml:space="preserve">
     <value>Refresh pictures.</value>
+  </data>
+  <data name="FormFieldRequired" xml:space="preserve">
+    <value>The field {0} is required and must be not empty.</value>
+  </data>
+  <data name="_AutoStart" xml:space="preserve">
+    <value>A_uto start</value>
   </data>
 </root>

@@ -6,7 +6,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms
     /// <summary>
     /// Class XtrmAddons Fotootof Server Window Client Form Model.
     /// </summary>
-    public class WindowClientFormModel<WindowClientForm> : WindowBaseFormModel<WindowClientForm>
+    public class WindowFormClientModel<WindowClientForm> : WindowBaseFormModel<WindowClientForm>
     {
         #region Variables
 
@@ -44,7 +44,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms
         /// Class XtrmAddons Fotootof Server Window Client Form Model Constructor.
         /// </summary>
         /// <param name="pBase"></param>
-        public WindowClientFormModel(WindowClientForm pBase) : base(pBase) { }
+        public WindowFormClientModel(WindowClientForm pBase) : base(pBase) { }
 
         #endregion
     }

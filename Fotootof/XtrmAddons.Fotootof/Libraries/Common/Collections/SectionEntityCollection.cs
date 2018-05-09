@@ -5,6 +5,7 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Collections
 {
@@ -107,23 +108,42 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
 
                 if (newItems != null && newItems.Count > 0)
                 {
+                    int i = 0;
                     foreach (SectionEntity entity in newItems)
                     {
                         // todo : delete when Class Entity update NotifyPropertyChanged
                         entity.Initialize();
                         
+                        // Check new entity to set IsDefault if required.
                         if(items.Count == 0 && newItem)
                         {
                             entity.IsDefault = true;
                             newItem = false;
                         }
 
+                        // Check if the alias is empty. Set formated name if required.
+                        if(entity.Alias.IsNullOrWhiteSpace())
+                        {
+                            entity.Alias = entity.Name.Sanitize().RemoveDiacritics().ToLower();
+                        }
+
+                        // Check if another entity with the same alias is in database.
+                        SectionEntity se = MainWindow.Database.Sections.SingleOrNull(new SectionOptionsSelect { Alias = entity.Alias });
+                        if (se != null && se.PrimaryKey != entity.PrimaryKey)
+                        {
+                            DateTime d = DateTime.Now;
+                            entity.Alias += d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss") + "-" + i;
+                        }
+
+                        // Finally add the entity into the database.
                         MainWindow.Database.Sections.Add(entity);
+                        i++;
 
                         log.Info(string.Format("Section [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
+                // Clear navigation cache.
                 AppNavigator.Clear();
                 log.Info("Adding Section(s). Done !");
             }

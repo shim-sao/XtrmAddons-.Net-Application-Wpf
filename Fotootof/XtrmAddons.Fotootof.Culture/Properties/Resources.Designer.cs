@@ -70,7 +70,7 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Add Section.
+        ///   Recherche une chaîne localisée semblable à Add _Section.
         /// </summary>
         public static string _AddSection {
             get {
@@ -111,6 +111,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string _AlbumsNew {
             get {
                 return ResourceManager.GetString("_AlbumsNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à A_uto start.
+        /// </summary>
+        public static string _AutoStart {
+            get {
+                return ResourceManager.GetString("_AutoStart", resourceCulture);
             }
         }
         
@@ -786,6 +795,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string Folders {
             get {
                 return ResourceManager.GetString("Folders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The field {0} is required and must be not empty..
+        /// </summary>
+        public static string FormFieldRequired {
+            get {
+                return ResourceManager.GetString("FormFieldRequired", resourceCulture);
             }
         }
         

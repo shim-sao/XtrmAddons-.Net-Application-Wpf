@@ -17,12 +17,23 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
     /// </summary>
     public partial class WindowFormAclGroup : WindowBaseForm, IWindowForm<AclGroupEntity>
     {
+        #region Variable
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
         #region Properties
 
         /// <summary>
-        /// Accessors to Window AclGroup Form model.
+        /// Property to access to the Window model.
         /// </summary>
-        public WindowFormAclGroupModel<WindowFormAclGroup> Model { get; private set; }
+        public new WindowFormAclGroupModel<WindowFormAclGroup> Model { get; private set; }
 
         /// <summary>
         /// Property to access to the old AclGroup backuped informations.
@@ -33,6 +44,16 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         /// Property to access to the new AclGroup informations.
         /// </summary>
         public AclGroupEntity NewForm { get => Model.AclGroup; set => Model.AclGroup = value; }
+
+        /// <summary>
+        /// Property to access to the main form save button.
+        /// </summary>
+        public Button ButtonSave => Button_Save;
+
+        /// <summary>
+        /// Property to access to the main form cancel button.
+        /// </summary>
+        public Button ButtonCancel => Button_Cancel;
 
         #endregion
 
@@ -49,6 +70,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         {
             // Initialize window component.
             InitializeComponent();
+            Name = "UCWindowAclGroupForm";
+
+            // Initialize window data model.
             Model = new WindowFormAclGroupModel<WindowFormAclGroup>(this);
             Loaded += (s, e) => Window_LoadAsync(entity);
             Closing += Window_Closing;
@@ -99,7 +123,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
             // Assign model to data context for display.
             DataContext = Model;
 
-            ValidateForm();
+            IsValidForm();
         }
 
         /// <summary>
@@ -148,7 +172,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">The text changed event arguments.</param>
-        protected new bool ValidateForm()
+        protected new bool IsValidForm()
         {
             bool save = true;
 
@@ -251,7 +275,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
                 NewForm.UnLinkAclAction(action.PrimaryKey);
             }
 
-            ValidateForm();
+            IsValidForm();
         }
 
         /// <summary>
@@ -273,7 +297,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
                 NewForm.UnLinkUser(entity.PrimaryKey);
             }
 
-            ValidateForm();
+            IsValidForm();
         }
     }
 }

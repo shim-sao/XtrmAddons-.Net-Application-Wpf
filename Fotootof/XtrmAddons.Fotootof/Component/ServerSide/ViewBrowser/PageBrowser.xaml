@@ -8,6 +8,7 @@
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:ucbrowser="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.TreeViews"
     xmlns:uclistviews="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Browser}"
@@ -34,7 +35,7 @@
 					<StackPanel Grid.Column="0"
 								Orientation="Horizontal"
 								Margin="2,0">
-
+						
 						<Button x:Name="Button_Back"
 								Content="{StaticResource Icon24Back}"
 								Style="{StaticResource Button_Icon24Default}"

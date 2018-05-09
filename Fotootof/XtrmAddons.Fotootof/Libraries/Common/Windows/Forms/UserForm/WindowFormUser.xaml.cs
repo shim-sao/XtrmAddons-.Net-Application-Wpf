@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
+using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
@@ -19,55 +22,76 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         #region Variables
 
         /// <summary>
-        /// Variable Window User Form model of the view.
+        /// Variable logger.
         /// </summary>
-        private WindowFormUserModel<WindowFormUser> model;
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
+        /// Variable to store the secure Password.
+        /// </summary>
+        private string SecurePassWord = "";
 
         #endregion
+
 
 
         #region Properties
 
         /// <summary>
-        /// 
+        /// Property to access to the Window model.
         /// </summary>
-        public UserEntity OldForm { get; set; }
+        public new WindowFormUserModel<WindowFormUser> Model
+        {
+            get => (WindowFormUserModel<WindowFormUser>)model;
+            protected set { model = value; }
+        }
 
         /// <summary>
         /// Variable old User informations backup.
         /// </summary>
+        public UserEntity OldForm { get; set; }
+
+        /// <summary>
+        /// Property to access  old User informations backup.
+        /// </summary>
         public UserEntity NewForm
         {
-            get => model?.User;
-            set => model.User = value;
+            get => Model?.User;
+            set => Model.User = value;
         }
 
         /// <summary>
-        /// Property to define if the form can be saftly saved.
+        /// Property to access to the main form save button.
         /// </summary>
-        protected override bool IsSaveEnabled
-            => ValidateForm();
+        public Button ButtonSave => Button_Save;
+
+        /// <summary>
+        /// Property to access to the main form cancel button.
+        /// </summary>
+        public Button ButtonCancel => Button_Cancel;
 
         #endregion
+
 
 
         #region Constructors
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Component Windows User Form Constructor.
+        /// Class XtrmAddons Fotootof Server Component Windows Form User Constructor.
         /// </summary>
-        /// <param name="PageBase">The parent Page Base of the window.</param>
-        /// <param name="entity">A user entity.</param>
+        /// <param name="entity">A user entity to edit or a default entity is created if no argument is specified.</param>
         public WindowFormUser(UserEntity entity = default(UserEntity))
         {
             // Initialize window component.
             InitializeComponent();
+
+            // Initialize window data model.
             InitializeModel(entity);
-            //Loaded += Window_Load;
-            //Closing += Window_Closing;
         }
 
         #endregion
+
 
 
         #region Methods
@@ -79,22 +103,21 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
         /// <param name="e">Routed event atguments.</param>
         protected void Window_Load(object sender, RoutedEventArgs e)
         {
-            DataContext = model;
+            // Add model to data context for binding.
+            DataContext = Model;
         }
 
+        /// <summary>
+        /// Method to initialize the data model of the Window Form User.
+        /// </summary>
+        /// <param name="entity">A user entity to edit or a default entity is created if no argument is specified.</param>
         protected void InitializeModel(UserEntity entity = default(UserEntity))
         {
-            // 1 - Initialize view model.
-            model = new WindowFormUserModel<WindowFormUser>(this);
-
-            // 2 - Make sure entity is not null.
+            // 1 - Make sure entity is not null.
             entity = entity ?? new UserEntity();
 
-            // 3 - Initialize new entity if required.
-            /*if (entity.PrimaryKey > 0)
-            {
-                entity.Initialize();
-            }*/
+            // 2 - Initialize view model.
+            Model = new WindowFormUserModel<WindowFormUser>(this);
 
             // 4 - Store current entity data in a new entity.
             OldForm = entity.Clone();
@@ -106,184 +129,220 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.UserForm
             IsAclGroupInUser.Entity = NewForm;
 
             // 7.1 - Assign list of AclGroup to the model.
-            model.AclGroups = new AclGroupEntityCollection(true);
+            Model.AclGroups = new AclGroupEntityCollection(true);
+        }
+
+        #endregion
+
+
+
+        #region Methods Validate Form
+
+        /// <summary>
+        /// Method to validate the new Form Data.
+        /// </summary>
+        protected new bool IsValidForm()
+        {
+            try
+            {
+                IsValidFormNotNullOrWhiteSpace(NewForm, "Name");
+                IsValidFormEmail(NewForm, "Email");
+                IsValidFormPassword();
+                IsValidFormUserGroupsDependencies();
+
+                return true;
+            }
+            catch (ArgumentNullException e)
+            {
+                log.Error(e);
+                throw new ArgumentNullException(e.Message);
+            }
         }
 
         /// <summary>
-        /// Method to validate the Form Data.
+        /// Method to validate the Form Data Password.
         /// </summary>
-        protected new bool ValidateForm()
+        private void IsValidFormPassword()
         {
-            if (NewForm == null)
-            {
-                return false;
-            }
-
-            if (NewForm.Name.IsNullOrWhiteSpace())
-            {
-                return false;
-            }
-
+            // Validate the form field Password
             if (NewForm.Password.IsNullOrWhiteSpace())
             {
-                return false;
-            }
+                // New password is blank, so check for old form value. 
+                if (OldForm.Password.IsNullOrWhiteSpace())
+                {
+                    throw new ArgumentNullException(string.Format(CultureInfo.CurrentUICulture, Translation.DWords.FormFieldRequired, Translation.DWords.Password));
+                }
 
-            if (NewForm.Email.IsNullOrWhiteSpace() || !NewForm.Email.IsValidEmail())
+                // Keep old password back if new password is blank.
+                NewForm.Password = OldForm.Password;
+            }
+        }
+
+        /// <summary>
+        /// Method to validate the Form Data User Groups Dependencies.
+        /// </summary>
+        private void IsValidFormUserGroupsDependencies()
+        {
+            // Validate the groups association fields.
+            if (NewForm.UsersInAclGroups == null || NewForm.UsersInAclGroups.Count == 0)
+            {
+                throw new ArgumentNullException(string.Format(CultureInfo.CurrentUICulture, Translation.DWords.FormFieldRequired, Translation.DWords.UsersGroups));
+            }
+        }
+
+        #endregion
+
+
+
+        #region Methods Validate Inputs
+
+        /// <summary>
+        /// Method to validate the Inputs.
+        /// </summary>
+        protected override bool IsValidInputs()
+        {
+            // Check if the name is not empty.
+            Trace.WriteLine("Checking if the name is not empty...");
+            if (!IsValidInput(InputName))
             {
                 return false;
             }
 
+            // Check if the password is valid.
+            Trace.WriteLine("Checking if the password is valid...");
+            if (!IsValidPassword(InputPassword))
+            {
+                return false;
+            }
+
+            // Check if the email is valid.
+            Trace.WriteLine("Checking if the email is valid...");
+            if (!IsValidInputEmail(InputEmail))
+            {
+                return false;
+            }
+
+            // Check for user group association.
+            // We need at least 1 association.
+            Trace.WriteLine("Checking if the user group association is valid...");
+            Trace.WriteLine("NewForm.UsersInAclGroups = " + NewForm.UsersInAclGroups);
+            Trace.WriteLine("NewForm.UsersInAclGroups.Count = " + NewForm.UsersInAclGroups.Count);
             if (NewForm.UsersInAclGroups == null || NewForm.UsersInAclGroups.Count == 0)
             {
                 return false;
             }
 
+            Trace.WriteLine("All inputs have been verified !");
+            return base.IsValidInputs();
+        }
+
+        /// <summary>
+        /// Method to validate a required password.
+        /// </summary>
+        /// <param name="pb">The password box to validate.</param>
+        /// <returns>True if Password is valid otherwise false.</returns>
+        protected bool IsValidPassword(PasswordBox pb)
+        {
+            SecurePassWord = pb.Password.Length > 0 ? pb.Password.MD5Hash() : "";
+
+            Trace.WriteLine("pb.Password : " + pb.Password);
+            Trace.WriteLine("pb.Password.Length : " + pb.Password.Length);
+            Trace.WriteLine("SecurePassWord : " + SecurePassWord);
+
+            // Check if it is new form.
+            if (NewForm.PrimaryKey == 0)
+            {
+                // We can set secure password to the form.
+                NewForm.Password = SecurePassWord;
+                Trace.WriteLine("SecurePassWord : " + SecurePassWord);
+
+                // Check if new secure password is valid.
+                if (pb.Password.IsNullOrWhiteSpace() || pb.Password.Length < 8)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+            // For edit we must check if password is changed.
+            // Empty imput doen't change old paswword.
+            else
+            {
+                Trace.WriteLine("Check if it is new form. : " + NewForm.PrimaryKey);
+                Trace.WriteLine("SecurePassWord : " + SecurePassWord);
+
+                if (pb.Password.IsNullOrWhiteSpace())
+                {
+                    if (OldForm.Password.IsNullOrWhiteSpace())
+                    {
+                        Trace.WriteLine("Old password is empty");
+                        return false;
+                    }
+
+                    // Keep old password back.
+                    NewForm.Password = OldForm.Password;
+                    Trace.WriteLine("Keep old password back : " + OldForm.Password);
+                    return true;
+                }
+
+                // We can set secure password to the form.
+                NewForm.Password = SecurePassWord;
+                Trace.WriteLine("Secure password sended to new form");
+
+                // Password is not already valid.
+                if (pb.Password.Length < 8)
+                {
+                    Trace.WriteLine("Secure password sended to new form");
+                    return false;
+                }
+            }
+
             return true;
         }
 
-        /// <summary>
-        /// Method to validate the Inputs.
-        /// </summary>
-        private new bool ValidateInput()
-        {
-            if (NewForm == null)
-            {
-                return false;
-            }
+        #endregion
 
-            if (InputName.Text.IsNullOrWhiteSpace())
-            {
-                return false;
-            }
-            
-            if (!InputEmail.Text.IsValidEmail())
-            {
-                return false;
-            }
 
-            return true;
-        }
+
+        #region Methods Events InputPassword
 
         /// <summary>
-        /// <para>Method to send validation error to a TextBox.</para>
-        /// <para>Disable Form Save Button to prevent unwanted save.</para>
+        /// Method called on Password text input changed.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Validation error event argumments.</param>
-        private void Input_Error(object sender, ValidationErrorEventArgs e)
+        /// <param name="e">Routed event arguments.</param>
+        private void OnInputPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            Button_Save.IsEnabled = false;
+            IsSaveEnabled = !IsValidPassword(sender as PasswordBox) ? false : IsValidInputs();
         }
 
-        /// <summary>
-        /// <para>Method called on input updated event.</para>
-        /// <para>Send Form validation to prevent unwanted save.</para>
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Data transfer event arguments</param>
-        private void Input_Updated(object sender, DataTransferEventArgs e)
-        {
-            Button_Save.IsEnabled = IsSaveEnabled;
-        }
+        #endregion
 
-        /// <summary>
-        /// <para>Method called on input name text changed event.</para>
-        /// <para>Send Form validation to prevent unwanted save.</para>
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Text changed event arguments.</param>
-        private void InputName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            Button_Save.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
-        }
 
-        /// <summary>
-        /// <para>Method called on input name text source changed event.</para>
-        /// <para>Send Form validation to prevent unwanted save.</para>
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Text changed event arguments.</param>
-        private void InputName_SourceUpdated(object sender, DataTransferEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            Button_Save.IsEnabled = tb.Text.IsNullOrWhiteSpace() ? false : IsSaveEnabled;
-        }
 
-        /// <summary>
-        /// <para>Method called on input Password text changed event.</para>
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Text changed event arguments.</param>
-        private void InputPassword_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            if (tb.Text.IsNullOrWhiteSpace())
-            {
-                NewForm.Password = OldForm.Password;
-            }
-        }
-
-        /// <summary>
-        /// <para>Method called on input Password text source updated event.</para>
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Text changed event arguments.</param>
-        private void InputPassword_SourceUpdated(object sender, DataTransferEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            if (tb.Text.IsNullOrWhiteSpace())
-            {
-                NewForm.Password = OldForm.Password;
-            }
-        }
+        #region Methods Events CheckBox AclGroup
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
-        private void InputEmail_Changed(object sender, TextChangedEventArgs e)
-        {
-            NewForm.Email = InputEmail.Text;
-            ValidateForm();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="e">Routed event arguments.</param>
         private void CheckBoxAclGroup_Checked(object sender, RoutedEventArgs e)
         {
-            AclGroupEntity entity = (AclGroupEntity)((CheckBox)sender).Tag;
-            NewForm.LinkAclGroup(entity.PrimaryKey);
-
-            ValidateForm();
+            NewForm.LinkAclGroup(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
+            IsSaveEnabled = IsValidInputs();
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="e">Routed event arguments.</param>
         private void CheckBoxAclGroup_UnChecked(object sender, RoutedEventArgs e)
         {
-            AclGroupEntity entity = (AclGroupEntity)((CheckBox)sender).Tag;
-            NewForm.UnLinkAclGroup(entity.PrimaryKey);
-
-            ValidateForm();
-        }
-
-        /// <summary>
-        /// Method called on data grid selection changed.
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Selection changed event arguments.</param>
-        private void DataGridCollectionItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            NewForm.UnLinkAclGroup(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
+            IsSaveEnabled = NewForm.UsersInAclGroups.Count == 0 ? false : IsValidInputs();
         }
 
         #endregion
