@@ -164,6 +164,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms
             if (InputName.Text.IsNullOrWhiteSpace())
             {
                 InputName.Text = ((TextBox)sender).Text;
+                OnInputStringRequired_SourceUpdated(InputName, e);
             }
 
             OnInputStringRequired_SourceUpdated(sender, e);

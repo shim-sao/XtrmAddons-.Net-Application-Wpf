@@ -15,9 +15,86 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// Class XtrmAddons Fotootof Libraries SQLite AclGroup table entity.
     /// </summary>
     [Table("AclGroups")]
+    [JsonObject(MemberSerialization.OptIn)]
     public partial class AclGroupEntity : EntityBase
     {
         #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        [JsonIgnore]
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
+        /// Variable name of the item.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private string name = "";
+
+        /// <summary>
+        /// Variable name of the item.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private string alias = "";
+
+        /// <summary>
+        /// Variable name of the item.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private int parentId = 0;
+
+        /// <summary>
+        /// Variable is default of the item.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private bool isDefault = false;
+
+        /// <summary>
+        /// Variable ordering of the item.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private int ordering = 0;
+
+        /// <summary>
+        /// Variable created date.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private string comment = "";
+
+        #endregion
+
+
+
+        #region Variables : Dependencies
+
+        /// <summary>
+        /// Variable AclAction id (required for entity dependency).
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        public int aclActionId = 0;
+
+        /// <summary>
+        /// Variable Section primary key (required for entity dependency).
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        public int sectionId = 0;
+
+        /// <summary>
+        /// Variable primary key (required for entity dependency).
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        public int userId = 0;
 
         /// <summary>
         /// Variable list of AclAction associated to the item.
@@ -51,6 +128,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [Key]
         [Column(Order = 0)]
+        [JsonIgnore]
         public int AclGroupId
         {
             get { return primaryKey; }
@@ -68,41 +146,113 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property name of the item.
         /// </summary>
         [Column(Order = 1)]
-        public string Name { get; set; }
+        [JsonProperty]
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                if (value != name)
+                {
+                    name = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property name of the item.
         /// </summary>
         [Column(Order = 2)]
-        public string Alias { get; set; }
+        [JsonProperty]
+        public string Alias
+        {
+            get { return name; }
+            set
+            {
+                if (value != name)
+                {
+                    name = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property name of the item.
         /// </summary>
         [Column(Order = 3)]
-        public int ParentId { get; set; }
+        [JsonProperty]
+        public int ParentId
+        {
+            get { return parentId; }
+            set
+            {
+                if (value != parentId)
+                {
+                    parentId = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property is default of the item.
         /// </summary>
         [Column(Order = 4)]
-        public bool IsDefault { get; set; }
+        [JsonProperty]
+        public bool IsDefault
+        {
+            get { return isDefault; }
+            set
+            {
+                if (value != isDefault)
+                {
+                    isDefault = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property ordering of the item.
         /// </summary>
         [Column(Order = 5)]
-        public int Ordering { get; set; }
+        [JsonProperty]
+        public int Ordering
+        {
+            get { return ordering; }
+            set
+            {
+                if (value != ordering)
+                {
+                    ordering = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property created date.
         /// </summary>
         [Column(Order = 6)]
-        public string Comment { get; set; }
+        [JsonProperty]
+        public string Comment
+        {
+            get { return comment; }
+            set
+            {
+                if (value != comment)
+                {
+                    comment = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         #endregion
 
-        
+
 
         #region Properties : Dependencies
 
@@ -113,12 +263,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         [JsonIgnore]
         public int AclActionId
         {
-            get { return primaryKey; }
+            get { return aclActionId; }
             set
             {
-                if (value != primaryKey)
+                if (value != aclActionId)
                 {
-                    primaryKey = value;
+                    aclActionId = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -129,14 +279,36 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [NotMapped]
         [JsonIgnore]
-        public int SectionId { get; set; }
+        public int SectionId
+        {
+            get { return sectionId; }
+            set
+            {
+                if (value != sectionId)
+                {
+                    sectionId = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property to access to the User primary key (required for entity dependency).
         /// </summary>
         [NotMapped]
         [JsonIgnore]
-        public int UserId { get; set; }
+        public int UserId
+        {
+            get { return userId; }
+            set
+            {
+                if (value != userId)
+                {
+                    userId = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Property to access to the list of AclAction associated to the item.

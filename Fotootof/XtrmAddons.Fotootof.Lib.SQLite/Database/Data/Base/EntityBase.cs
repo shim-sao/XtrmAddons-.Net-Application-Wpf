@@ -13,6 +13,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries SQLite Database Data Base Entity.
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public abstract class EntityBase : IEntityBaseInterface, INotifyPropertyChanged
     {
         #region Variables
@@ -20,11 +21,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// <summary>
         /// Variable database connector.
         /// </summary>
+        [JsonIgnore]
         private static DatabaseCore db;
 
         /// <summary>
         /// Variable primary key auto incremented.
         /// </summary>
+        [JsonIgnore]
         protected int primaryKey = 0;
 
         #endregion
@@ -47,8 +50,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// <summary>
         /// Property to access to the application database connector.
         /// </summary>
-        [JsonIgnore]
         [NotMapped]
+        [JsonIgnore]
         public static DatabaseCore Db
         {
             get => db;
@@ -59,6 +62,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// Property alias to access to the primary key of the entity.
         /// </summary>
         [NotMapped]
+        [JsonProperty]
         public int PrimaryKey
         {
             get { return primaryKey; }
@@ -78,9 +82,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
 
         #region Methods
 
-        // This method is called by the Set accessor of each property.
-        // The CallerMemberName attribute that is applied to the optional propertyName
-        // parameter causes the property name of the caller to be substituted as an argument.
+        /// <summary>
+        /// This method is called by the Set accessor of each property.
+        /// The CallerMemberName attribute that is applied to the optional propertyName
+        /// parameter causes the property name of the caller to be substituted as an argument.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to raise notify changes event.</param>
         protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
