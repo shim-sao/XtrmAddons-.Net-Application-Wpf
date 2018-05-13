@@ -15,6 +15,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// Class XtrmAddons Fotootof Server SQLite User table entity.
     /// </summary>
     [Table("InfosTypes")]
+    [JsonObject(MemberSerialization.OptIn)]
     public partial class InfoTypeEntity : EntityBase
     {
         #region Variables

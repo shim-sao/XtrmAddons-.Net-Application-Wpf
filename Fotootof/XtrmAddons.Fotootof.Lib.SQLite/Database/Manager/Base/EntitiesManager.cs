@@ -63,7 +63,19 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
         /// <returns>An entity or null if not found.</returns>
         public T SingleIdOrNull<T>(IQueryable<T> query, Expression<Func<T, bool>> exp) where T : class
         {
-            T item = query.SingleOrDefault(exp);
+            T item = null;
+
+            try
+            {
+                item = query.SingleOrDefault(exp);
+            }
+            catch(Exception e)
+            {
+                log.Debug(e.Output());
+                log.Debug(exp);
+
+                return null;
+            }
 
             // Check if item is found, return null instead of default.
             if (item != null && (int)item.GetPropertyValue("PrimaryKey") == 0)
@@ -189,7 +201,17 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
         /// <returns>An entity or default or null if not found.</returns>
         public T SingleDefaultOrNull<T>(IQueryable<T> query, bool nullable = false) where T : class
         {
-            T item = query.SingleOrDefault();
+            T item = null;
+
+            try
+            {
+                item = query.SingleOrDefault();
+            }
+            catch (Exception e)
+            {
+                log.Debug(e.Output());
+                return null;
+            }
 
             // Check if user is found, return null instead of default.
             if ((int)item.GetPropertyValue("PrimaryKey") == 0 && nullable)
@@ -207,7 +229,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
         /// <param name="entityPK">The id of the entity.</param>
         /// <param name="depdenciesPK">The list of id of another entity.</param>
         /// <returns>Async task int query result.</returns>
-        public async Task<int> DeleteDependencyAsync(EntityManagerDeleteDependency definition, int entityPK, List<int> depdenciesPK)
+        public async Task<int> DeleteDependencyAsync(EntityManagerDeleteDependency definition, int entityPK, IEnumerable<int> depdenciesPK)
         {
             string pks = string.Join(",", depdenciesPK);
             string query = "DELETE FROM " + definition.Name
@@ -227,7 +249,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
         /// <param name="entityPK">The id of the entity.</param>
         /// <param name="depdenciesPK">The list of id of another entity.</param>
         /// <returns>Async task int query result.</returns>
-        public async Task<int> CleanDependencyAsync(EntityManagerDeleteDependency definition, int entityPK, List<int> depdenciesPK)
+        public async Task<int> CleanDependencyAsync(EntityManagerDeleteDependency definition, int entityPK, IEnumerable<int> depdenciesPK)
         {
             string pks = string.Join(",", depdenciesPK);
             string query = "DELETE FROM " + definition.Name

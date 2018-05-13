@@ -16,23 +16,71 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// Class XtrmAddons Fotootof Server SQLite User Entity.
     /// </summary>
     [Table("Infos")]
+    [JsonObject(MemberSerialization.OptIn)]
     public partial class InfoEntity : EntityBase
     {
         #region Variables
 
         /// <summary>
+        /// Variable logger.
+        /// </summary>
+        [NotMapped]
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
+        /// Variable associated InfoType primary key.
+        /// </summary>
+        [NotMapped]
+        public int infoTypeId = 0;
+
+        /// <summary>
+        /// Variable Name of the Info.
+        /// </summary>
+        [NotMapped]
+        public string name = "";
+
+        /// <summary>
+        /// Variable Alias of the Info.
+        /// </summary>
+        [NotMapped]
+        public string alias = "";
+
+        /// <summary>
+        /// Variable Description of the Info.
+        /// </summary>
+        [NotMapped]
+        public string description = "";
+
+        /// <summary>
+        /// Variable is default.
+        /// </summary>
+        [NotMapped]
+        public bool isDefault = false;
+
+        /// <summary>
+        /// Variable ordering.
+        /// </summary>
+        [NotMapped]
+        public int ordering = 0;
+
+        #endregion
+
+
+
+        #region Variables Dependencies
+
+        /// <summary>
         /// Variable list of Album associated to the Info.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
-        private List<AlbumEntity> albums;
+        private IEnumerable<AlbumEntity> albums;
 
         /// <summary>
         /// Variable list of Picture associated to the Info.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
-        private List<PictureEntity> pictures;
+        private IEnumerable<PictureEntity> pictures;
 
         #endregion
 
@@ -41,13 +89,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Properties
 
         /// <summary>
-        /// Propmerty primary key auto incremented.
+        /// Propmerty to access to the primary key auto incremented.
         /// </summary>
         [Key]
         [Column(Order = 0)]
         public int InfoId
         {
-            get { return primaryKey; }
+            get => primaryKey;
             set
             {
                 if (value != primaryKey)
@@ -59,40 +107,112 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property assaciated InfoType primary key.
+        /// Propertyto access to the associated InfoType primary key.
         /// </summary>
         [Column(Order = 1)]
-        public int InfoTypeId { get; set; }
+        [JsonProperty]
+        public int InfoTypeId
+        {
+            get { return infoTypeId; }
+            set
+            {
+                if (value != infoTypeId)
+                {
+                    infoTypeId = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property Name of the Info.
+        /// Property to access to the Name of the Info.
         /// </summary>
         [Column(Order = 2)]
-        public string Name { get; set; }
+        [JsonProperty]
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                if (value != name)
+                {
+                    name = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property Alias of the Info.
+        /// Property to access to the Alias of the Info.
         /// </summary>
         [Column(Order = 3)]
-        public string Alias { get; set; }
+        [JsonProperty]
+        public string Alias
+        {
+            get { return alias; }
+            set
+            {
+                if (value != alias)
+                {
+                    alias = value.Sanitize().RemoveDiacritics().ToLower();
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property Description of the Info.
+        /// Property to access to the description of the Info.
         /// </summary>
         [Column(Order = 4)]
-        public string Description { get; set; }
+        [JsonProperty]
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                if (value != description)
+                {
+                    description = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property is default.
+        /// Property to check if the Info is default.
         /// </summary>
         [Column(Order = 5)]
-        public bool IsDefault { get; set; }
+        [JsonProperty]
+        public bool IsDefault
+        {
+            get { return isDefault; }
+            set
+            {
+                if (value != isDefault)
+                {
+                    isDefault = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property ordering.
+        /// Property to acces to the ordering.
         /// </summary>
         [Column(Order = 6)]
-        public int Ordering { get; set; }
+        [JsonProperty]
+        public int Ordering
+        {
+            get { return ordering; }
+            set
+            {
+                if (value != ordering)
+                {
+                    ordering = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         #endregion
 
@@ -118,7 +238,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Album associated to the Info.
         /// </summary>
         [NotMapped]
-        public List<AlbumEntity> Albums
+        public IEnumerable<AlbumEntity> Albums
         {
             get => ListAlbums();
             set => albums = value;
@@ -128,7 +248,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Picture associated to the Info.
         /// </summary>
         [NotMapped]
-        public List<PictureEntity> Pictures
+        public IEnumerable<PictureEntity> Pictures
         {
             get => ListPictures();
             set => pictures = value;
@@ -138,13 +258,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Album dependencies primary key.
         /// </summary>
         [NotMapped]
-        public List<int> AlbumsPK => ListOfPrimaryKeys(InfosInAlbums.ToList(), "AlbumId");
+        public IEnumerable<int> AlbumsPK => ListOfPrimaryKeys(InfosInAlbums.ToList(), "AlbumId");
 
         /// <summary>
         /// Property to access to the list of Picture dependencies primary key.
         /// </summary>
         [NotMapped]
-        public List<int> PicturesPK => ListOfPrimaryKeys(InfosInPictures.ToList(), "PictureId");
+        public IEnumerable<int> PicturesPK => ListOfPrimaryKeys(InfosInPictures.ToList(), "PictureId");
 
         /// <summary>
         /// Property collection of relationship Infos in Albums.
@@ -200,7 +320,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Method to get list of associated Album.
         /// </summary>
-        private List<AlbumEntity> ListAlbums()
+        private IEnumerable<AlbumEntity> ListAlbums()
         {
             if (albums == null)
             {
@@ -218,7 +338,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Method to get list of associated Picture.
         /// </summary>
-        private List<PictureEntity> ListPictures()
+        private IEnumerable<PictureEntity> ListPictures()
         {
             if (pictures == null)
             {

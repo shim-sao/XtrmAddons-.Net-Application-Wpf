@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
@@ -94,13 +95,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         }
 
         /// <summary>
-        /// Method to get a list of primaries keys.
+        /// Method to get an observable collection of primaries keys.
         /// </summary>
         /// <typeparam name="T">The Class of dependencies.</typeparam>
         /// <param name="dependencies">A list of Entity dependencies.</param>
         /// <param name="keyName">The associated key name of the dependencies.</param>
         /// <returns>A list of dependencies primary keys.</returns>
-        public List<int> ListOfPrimaryKeys<T>(List<T> dependencies, string keyName) where T : class
+        public IEnumerable<int> ListOfPrimaryKeys<T>(IEnumerable<T> dependencies, string keyName) where T : class
         {
             List<int> ids = new List<int>();
 

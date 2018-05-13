@@ -117,57 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Datas" xml:space="preserve">
-    <value>Données</value>
-  </data>
-  <data name="Default" xml:space="preserve">
-    <value>Défaut</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Supprimer</value>
-  </data>
-  <data name="DeletePictures" xml:space="preserve">
-    <value>Supprimer les Images</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="DialogBoxTitle_PictureFileSelector" xml:space="preserve">
-    <value>XtrmAddons Fotootof Server : Sélecteur d'image</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Editer</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="End" xml:space="preserve">
-    <value>Fin</value>
-  </data>
-  <data name="File" xml:space="preserve">
-    <value>Fichier</value>
-  </data>
-  <data name="Files" xml:space="preserve">
-    <value>Fichiers</value>
-  </data>
-  <data name="Folder" xml:space="preserve">
-    <value>Répertoire</value>
-  </data>
-  <data name="Folders" xml:space="preserve">
-    <value>Répertoires</value>
-  </data>
-  <data name="General" xml:space="preserve">
-    <value>Général</value>
-  </data>
-  <data name="Group" xml:space="preserve">
-    <value>Groupe</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
-  </data>
-  <data name="Host" xml:space="preserve">
-    <value>Host</value>
-  </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>

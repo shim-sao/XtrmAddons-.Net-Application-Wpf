@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
+using XtrmAddons.Fotootof.Libraries.Common.Collections;
+using System.Linq;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
 {
@@ -22,12 +24,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         /// <summary>
         /// Variable observable collection of AclActions
         /// </summary>
-        private ObservableCollection<AclActionEntity> aclActions;
+        private AclActionEntityCollection aclActions;
 
         /// <summary>
         /// Variable observable collection of Users.
         /// </summary>
-        private ObservableCollection<UserEntity> users;
+        private UserEntityCollection users;
 
         #endregion
 
@@ -43,34 +45,57 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
             get => aclGroup;
             set
             {
-                aclGroup = value;
-                NotifyPropertyChanged();
+                if (aclGroup != value)
+                {
+                    aclGroup = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
         /// <summary>
         /// Property to access to the observable collection of AclActions.
         /// </summary>
-        public ObservableCollection<AclActionEntity> AclActions
+        public AclActionEntityCollection AclActions
         {
-            get => aclActions;
+            get
+            {
+                if (aclActions == null)
+                {
+                    aclActions = new AclActionEntityCollection(true); ;
+                }
+                return aclActions;
+            }
             set
             {
-                aclActions = value;
-                NotifyPropertyChanged();
+                if (aclActions != value)
+                {
+                    aclActions = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
         /// <summary>
         /// Property to access to the observable collection of Users.
         /// </summary>
-        public ObservableCollection<UserEntity> Users
+        public UserEntityCollection Users
         {
-            get => users;
+            get
+            {
+                if (users == null)
+                {
+                    users = new UserEntityCollection(true); ;
+                }
+                return users;
+            }
             set
             {
-                users = value;
-                NotifyPropertyChanged();
+                if (users != value)
+                {
+                    users = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -97,14 +122,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         /// </summary>
         /// <param name="action">The action to find.</param>
         /// <returns>The AclAction according to the action.</returns>
-        public async Task<AclActionEntity> AclAction_FindActionAsync(string action)
+        public AclActionEntity AclAction_FindAction(string action)
         {
-            if(AclActions == null)
-            {
-                AclActions = await MainWindow.Database.AclActions.ListAsync();
-            }
-
-            return new List<AclActionEntity>(AclActions).Find(x => x.Action == action);
+            return AclActions.ToList().Find(x => x.Action == action);
         }
 
         /// <summary>
@@ -116,7 +136,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         {
             if (AclGroup != null)
             {
-                if ((new List<AclGroupsInAclActions>(AclGroup.AclGroupsInAclActions).Exists(x => x.AclActionId == aclActionId)))
+                if (AclGroup.AclGroupsInAclActions.ToList().Exists(x => x.AclActionId == aclActionId))
                 {
                     return true;
                 }
@@ -143,7 +163,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm
         {
             if (AclGroup != null && AclGroup_CanDoAclAction(aclActionId))
             {
-                AclGroup.AclGroupsInAclActions.Remove(new List<AclGroupsInAclActions>(AclGroup.AclGroupsInAclActions).Find(x => x.AclActionId == aclActionId));
+                AclGroup.AclGroupsInAclActions.Remove(AclGroup.AclGroupsInAclActions.ToList().Find(x => x.AclActionId == aclActionId));
             }
         }
 

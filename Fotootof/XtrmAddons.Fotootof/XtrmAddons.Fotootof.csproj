@@ -25,7 +25,8 @@
     <AssemblyFileVersionSettings>None.None.DateStamp.TimeStamp</AssemblyFileVersionSettings>
     <AssemblyInfoVersionSettings>None.None.DateStamp.TimeStamp</AssemblyInfoVersionSettings>
     <TargetFrameworkProfile />
-    <PublishUrl>ftp://home191827562.1and1-data.host/public_html/xtrmaddons/download/download/fotootof/</PublishUrl>
+    <PublishUrl>
+    </PublishUrl>
     <Install>false</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -35,9 +36,12 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://download.xtrmaddons.com/fotootof/</InstallUrl>
-    <SupportUrl>http://www.xtrmaddons.com/</SupportUrl>
-    <ErrorReportUrl>http://www.xtrmaddons.com/</ErrorReportUrl>
+    <InstallUrl>
+    </InstallUrl>
+    <SupportUrl>
+    </SupportUrl>
+    <ErrorReportUrl>
+    </ErrorReportUrl>
     <ProductName>Fotootof</ProductName>
     <PublisherName>XtrmAddons</PublisherName>
     <SuiteName>XtrmAddons</SuiteName>
@@ -235,10 +239,10 @@
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Picture.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SQLiteBundle">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
+      <HintPath>packages\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SystemIO">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SystemIO.dll</HintPath>
+      <HintPath>packages\XtrmAddons.Net.SystemIO.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Windows">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Windows.dll</HintPath>
@@ -274,6 +278,7 @@
       <DependentUpon>PageUsers.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\ServerSide\ViewUsers\PageUsersModel.cs" />
+    <Compile Include="Libraries\Common\Collections\AclActionEntityCollection.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroups.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsersModel.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroupsModel.cs" />
@@ -287,6 +292,7 @@
     <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClientModel.cs" />
     <Compile Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml.cs">
       <DependentUpon>WindowSlideshow.xaml</DependentUpon>
     </Compile>
@@ -369,7 +375,6 @@
       <DependentUpon>UCAlbumsDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionModel.cs" />
-    <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClientModel.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\UserForm\WindowFormUserModel.cs" />
     <Compile Include="Libraries\Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbumsModel.cs" />
     <Compile Include="Libraries\Common\HttpHelpers\HttpServer\ServerInfosModel.cs" />
@@ -462,19 +467,19 @@
     </Page>
     <Page Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewPicturesServer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -494,7 +499,7 @@
     </Page>
     <Page Include="Libraries\Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Libraries\Common\Windows\Settings\WindowSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -610,6 +615,7 @@
     <Content Include="Assets\Images\Default\album-thumbnail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="XtrmAddons.Fotootof_TemporaryKey.pfx" />
     <SplashScreen Include="Assets\Images\Default\splashscreen.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </SplashScreen>
@@ -741,7 +747,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Public\index.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Uninstall.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

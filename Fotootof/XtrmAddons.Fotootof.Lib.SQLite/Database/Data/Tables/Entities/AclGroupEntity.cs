@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Observables;
 using XtrmAddons.Net.Common.Extensions;
 
 
@@ -23,7 +24,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Variable logger.
         /// </summary>
-        [JsonIgnore]
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -31,43 +31,67 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable name of the item.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private string name = "";
 
         /// <summary>
-        /// Variable name of the item.
+        /// Variable alias of the item.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private string alias = "";
 
         /// <summary>
-        /// Variable name of the item.
+        /// Variable parent id of the item.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private int parentId = 0;
 
         /// <summary>
         /// Variable is default of the item.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private bool isDefault = false;
 
         /// <summary>
         /// Variable ordering of the item.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private int ordering = 0;
 
         /// <summary>
-        /// Variable created date.
+        /// Variable comment.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private string comment = "";
+
+        #endregion
+
+
+
+        #region Variables Dependencies AclAction
+
+        /// <summary>
+        /// Variable AclAction id (required for entity dependency).
+        /// </summary>
+        [NotMapped]
+        private int aclActionId = 0;
+        /// <summary>
+        /// Variable AclAction dependencies id or primary key.
+        /// </summary>
+        [NotMapped]
+        private IEnumerable<int> aclActionsPK = null;
+
+        /// <summary>
+        /// Variable AclAction associated to the item.
+        /// </summary>
+        [NotMapped]
+        private IEnumerable<AclActionEntity> aclActions = null;
+
+        #endregion
+
+
+
+        #region Variables : Dependencies
+
 
         #endregion
 
@@ -76,32 +100,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Variables : Dependencies
 
         /// <summary>
-        /// Variable AclAction id (required for entity dependency).
-        /// </summary>
-        [NotMapped]
-        [JsonIgnore]
-        public int aclActionId = 0;
-
-        /// <summary>
         /// Variable Section primary key (required for entity dependency).
         /// </summary>
         [NotMapped]
         [JsonIgnore]
-        public int sectionId = 0;
+        private int sectionId = 0;
 
         /// <summary>
         /// Variable primary key (required for entity dependency).
         /// </summary>
         [NotMapped]
         [JsonIgnore]
-        public int userId = 0;
-
-        /// <summary>
-        /// Variable list of AclAction associated to the item.
-        /// </summary>
-        [NotMapped]
-        [JsonIgnore]
-        private List<AclActionEntity> aclActions;
+        private int userId = 0;
 
         /// <summary>
         /// Variable list of Sections associated to the item.
@@ -118,17 +128,16 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         private List<UserEntity> users;
 
         #endregion
-        
+
 
 
         #region Properties
 
         /// <summary>
-        /// Property primary key auto incremented.
+        /// Property to access to the id or primary key auto incremented.
         /// </summary>
         [Key]
         [Column(Order = 0)]
-        [JsonIgnore]
         public int AclGroupId
         {
             get { return primaryKey; }
@@ -143,7 +152,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property name of the item.
+        /// Property to access to the name of the item.
         /// </summary>
         [Column(Order = 1)]
         [JsonProperty]
@@ -161,25 +170,25 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property name of the item.
+        /// Property to access to the alias of the item.
         /// </summary>
         [Column(Order = 2)]
         [JsonProperty]
         public string Alias
         {
-            get { return name; }
+            get { return alias; }
             set
             {
-                if (value != name)
+                if (value != alias)
                 {
-                    name = value;
+                    alias = value;
                     NotifyPropertyChanged();
                 }
             }
         }
 
         /// <summary>
-        /// Property name of the item.
+        /// Property to access to the parent id or primary key of the item.
         /// </summary>
         [Column(Order = 3)]
         [JsonProperty]
@@ -197,7 +206,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property is default of the item.
+        /// Property to access to the is default of the item.
         /// </summary>
         [Column(Order = 4)]
         [JsonProperty]
@@ -215,7 +224,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property ordering of the item.
+        /// Property to access to the ordering of the item.
         /// </summary>
         [Column(Order = 5)]
         [JsonProperty]
@@ -233,7 +242,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property created date.
+        /// Property to access to the created date.
         /// </summary>
         [Column(Order = 6)]
         [JsonProperty]
@@ -254,13 +263,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
 
 
-        #region Properties : Dependencies
+        #region Properties :  Dependencies AclAction
+
+        /// <summary>
+        /// Property to access to the collection of relationship AclGroups in AclActions.
+        /// </summary>
+        public ObservableAclGroupsInAclActions AclGroupsInAclActions { get; set; }
+            = new ObservableAclGroupsInAclActions("AclActionId");
 
         /// <summary>
         /// Property to access to the AclAction id (required for entity dependency).
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         public int AclActionId
         {
             get { return aclActionId; }
@@ -273,6 +287,64 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                 }
             }
         }
+
+        /// <summary>
+        /// Property to access to the list of AclAction dependencies primary key.
+        /// </summary>
+        [NotMapped]
+        [JsonProperty]
+        public IEnumerable<int> AclActionsPK
+        {
+            get
+            {
+                if (aclActionsPK == null)
+                {
+                    aclActionsPK = ListOfPrimaryKeys(AclGroupsInAclActions, "AclActionId");
+                }
+                return ListOfPrimaryKeys(AclGroupsInAclActions, "AclActionId");
+            }
+
+            private set
+            {
+                if (aclActionsPK != value)
+                {
+                    aclActionsPK = value;
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the list of AclAction associated to the item.
+        /// </summary>
+        [NotMapped]
+        public IEnumerable<AclActionEntity> AclActions
+        {
+            get
+            {
+                if (aclActions == null || aclActions.Count() != AclGroupsInAclActions?.Count)
+                {
+                    aclActions = ListEntities<AclActionEntity>(AclGroupsInAclActions);
+                }
+
+                return aclActions;
+            }
+
+            private set
+            {
+                if (aclActions != value)
+                {
+                    aclActions = value;
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+        #endregion
+
+
+
+        #region Properties : Dependencies Section
 
         /// <summary>
         /// Property to access to the Section primary key (required for entity dependency).
@@ -293,6 +365,37 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
+        /// Propertiy to access to the list of Section dependencies primary key.
+        /// </summary>
+        [NotMapped]
+        public IEnumerable<int> SectionsPK
+            => ListOfPrimaryKeys(SectionsInAclGroups.ToList(), "SectionId");
+
+        /// <summary>
+        /// Property to access to the list of Sections associated to the item.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        public List<SectionEntity> Sections
+        {
+            get => ListSections();
+            set => sections = value;
+        }
+
+        /// <summary>
+        /// Property to access to the collection of relationship Sections in AclGroups.
+        /// </summary>
+        [JsonIgnore]
+        public ObservableCollection<SectionsInAclGroups> SectionsInAclGroups { get; set; }
+            = new ObservableCollection<SectionsInAclGroups>();
+
+        #endregion
+
+
+
+        #region Properties : Dependencies User
+
+        /// <summary>
         /// Property to access to the User primary key (required for entity dependency).
         /// </summary>
         [NotMapped]
@@ -311,36 +414,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property to access to the list of AclAction associated to the item.
+        /// Propertiy to access to the list of User dependencies primary key.
         /// </summary>
         [NotMapped]
-        public List<AclActionEntity> AclActions
-        {
-            get => ListAclActions();
-            set => aclActions = value;
-        }
-
-        /// <summary>
-        /// Propertiy to access to the list of AclAction dependencies primary key.
-        /// </summary>
-        [NotMapped]
-        public List<int> AclActionsPK => ListOfPrimaryKeys(AclGroupsInAclActions.ToList(), "AclActionId");
-
-        /// <summary>
-        /// Property to access to the list of Sections associated to the item.
-        /// </summary>
-        [NotMapped]
-        public List<SectionEntity> Sections
-        {
-            get => ListSections();
-            set => sections = value;
-        }
-
-        /// <summary>
-        /// Propertiy to access to the list of Section dependencies primary key.
-        /// </summary>
-        [NotMapped]
-        public List<int> SectionsPK => ListOfPrimaryKeys(SectionsInAclGroups.ToList(), "SectionId");
+        public IEnumerable<int> UsersPK
+            => ListOfPrimaryKeys(UsersInAclGroups.ToList(), "UserId");
 
         /// <summary>
         /// Property to access to the list of Users associated to the item.
@@ -353,29 +431,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Propertiy to access to the list of User dependencies primary key.
+        /// Property to access to the collection of relationship Users in AclGroups.
         /// </summary>
-        [NotMapped]
-        public List<int> UsersPK => ListOfPrimaryKeys(UsersInAclGroups.ToList(), "UserId");
-
-        /// <summary>
-        /// Property collection of relationship AclGroups in AclActions.
-        /// </summary>
-        [JsonIgnore]
-        public ObservableCollection<AclGroupsInAclActions> AclGroupsInAclActions { get; set; }
-            = new ObservableCollection<AclGroupsInAclActions>();
-
-        /// <summary>
-        /// Property collection of relationship Sections in AclGroups.
-        /// </summary>
-        [JsonIgnore]
-        public ObservableCollection<SectionsInAclGroups> SectionsInAclGroups { get; set; }
-            = new ObservableCollection<SectionsInAclGroups>();
-
-        /// <summary>
-        /// Property collection of relationship Users in AclGroups.
-        /// </summary>
-        [JsonIgnore]
         public ObservableCollection<UsersInAclGroups> UsersInAclGroups { get; set; }
             = new ObservableCollection<UsersInAclGroups>();
         
@@ -390,8 +447,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         public AclGroupEntity()
         {
-            Initialize();
-
             AclGroupsInAclActions.CollectionChanged += (s, e) => { aclActions = null; };
             SectionsInAclGroups.CollectionChanged += (s, e) => { sections = null; };
             UsersInAclGroups.CollectionChanged += (s, e) => { users = null; };
@@ -399,41 +454,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
         #endregion
 
-        
 
-        #region Methods
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Initialize()
-        {
-            if (PrimaryKey <= 0)
-            {
-                PrimaryKey = 0;
-            }
-
-            this.InitializeNulls();
-        }
-
-        /// <summary>
-        /// Method to get the list of associated AclAction to the item.
-        /// </summary>
-        /// <returns></returns>
-        private List<AclActionEntity> ListAclActions()
-        {
-            if (aclActions == null || aclActions.Count == 0)
-            {
-                aclActions = new List<AclActionEntity>();
-
-                if (AclGroupsInAclActions != null)
-                {
-                    aclActions = ListEntities<AclActionEntity>(AclGroupsInAclActions);
-                }
-            }
-
-            return aclActions;
-        }
+        #region Methods AclAction
 
         /// <summary>
         /// 
@@ -466,57 +489,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             }
             catch { }
         }
+        
 
-        /// <summary>
-        /// Method to get the list of associated Users to the item.
-        /// </summary>
-        /// <returns>A list of associated Users.</returns>
-        private List<UserEntity> ListUsers()
-        {
-            if (users == null)
-            {
-                users = new List<UserEntity>();
+        #endregion
 
-                if (UsersInAclGroups != null)
-                {
-                    users = ListEntities<UserEntity>(UsersInAclGroups);
-                }
-            }
 
-            return users;
-        }
 
-        /// <summary>
-        /// Method to link User to the AclGroup.
-        /// </summary>
-        /// <param name="sectionId">A User primary key.</param>
-        public void LinkUser(int userId)
-        {
-            try
-            {
-                int index = UsersInAclGroups.ToList().FindIndex(o => o.UserId == userId);
-
-                if (index < 0)
-                {
-                    UsersInAclGroups.Add(new UsersInAclGroups { UserId = userId });
-                }
-            }
-            catch { }
-        }
-
-        /// <summary>
-        /// Method to unlink User of the AclGroup.
-        /// </summary>
-        /// <param name="sectionId">A User primary key.</param>
-        public void UnLinkUser(int userId)
-        {
-            try
-            {
-                int index = UsersInAclGroups.ToList().FindIndex(o => o.UserId == userId);
-                UsersInAclGroups.RemoveAt(index);
-            }
-            catch { }
-        }
+        #region Methods Section
 
         /// <summary>
         /// Method to get the list of associated Sections to the item.
@@ -565,6 +544,63 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             {
                 int index = SectionsInAclGroups.ToList().FindIndex(o => o.SectionId == sectionId);
                 SectionsInAclGroups.RemoveAt(index);
+            }
+            catch { }
+        }
+
+        #endregion
+
+
+
+        #region Methods User
+
+        /// <summary>
+        /// Method to get the list of associated Users to the item.
+        /// </summary>
+        /// <returns>A list of associated Users.</returns>
+        private List<UserEntity> ListUsers()
+        {
+            if (users == null)
+            {
+                users = new List<UserEntity>();
+
+                if (UsersInAclGroups != null)
+                {
+                    users = ListEntities<UserEntity>(UsersInAclGroups);
+                }
+            }
+
+            return users;
+        }
+
+        /// <summary>
+        /// Method to link User to the AclGroup.
+        /// </summary>
+        /// <param name="sectionId">A User primary key.</param>
+        public void LinkUser(int userId)
+        {
+            try
+            {
+                int index = UsersInAclGroups.ToList().FindIndex(o => o.UserId == userId);
+
+                if (index < 0)
+                {
+                    UsersInAclGroups.Add(new UsersInAclGroups { UserId = userId });
+                }
+            }
+            catch { }
+        }
+
+        /// <summary>
+        /// Method to unlink User of the AclGroup.
+        /// </summary>
+        /// <param name="sectionId">A User primary key.</param>
+        public void UnLinkUser(int userId)
+        {
+            try
+            {
+                int index = UsersInAclGroups.ToList().FindIndex(o => o.UserId == userId);
+                UsersInAclGroups.RemoveAt(index);
             }
             catch { }
         }

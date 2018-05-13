@@ -15,53 +15,91 @@ using XtrmAddons.Net.Common.Extensions;
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite Album Entity.
+    /// <para>Class XtrmAddons Fotootof Libraries SQLite Album Entity.</para>
     /// </summary>
     [Table("Albums")]
+    [JsonObject(MemberSerialization.OptIn)]
     public partial class AlbumEntity : EntityBase
     {
         #region Variables
 
         /// <summary>
+        /// Variable logger.
+        /// </summary>
+        [NotMapped]
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
         /// Variable name of the Album.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private string name = "";
 
         /// <summary>
         /// Variable alias of the Album.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private string alias = "";
 
         /// <summary>
         /// Variable description of the Album.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
-        public string description = "";
+        private string description = "";
+
+        /// <summary>
+        /// Variable order place of the item.
+        /// </summary>
+        [NotMapped]
+        private int ordering = 0;
+
+        /// <summary>
+        /// Variable created date.
+        /// </summary>
+        [NotMapped]
+        private DateTime created = DateTime.Now;
+
+        /// <summary>
+        /// Variable modified date.
+        /// </summary>
+        [NotMapped]
+        private DateTime modified = DateTime.Now;
+
+        /// <summary>
+        /// Variable first picture captured date.
+        /// </summary>
+        [NotMapped]
+        private DateTime dateStart = DateTime.Now;
+
+        /// <summary>
+        /// Variable last picture captured date.
+        /// </summary>
+        [NotMapped]
+        private DateTime dateEnd = DateTime.Now;
+
+        #endregion
+
+
+
+        #region Variables Dependencies
 
         /// <summary>
         /// Variable list of Section associated to the Album.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private List<SectionEntity> sections;
 
         /// <summary>
         /// Variable list of Picture associated to the Album.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private List<PictureEntity> pictures;
 
         /// <summary>
         /// Variable list of Info associated to the Album.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private List<InfoEntity> infos;
 
         #endregion
@@ -71,7 +109,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Properties
 
         /// <summary>
-        /// Property primary key auto incremented.
+        /// Property to access to the id or primary key auto incremented.
         /// </summary>
         [Key]
         [Column(Order = 0)]
@@ -89,9 +127,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property name of the item.
+        /// Property to access to the name of the item.
         /// </summary>
         [Column(Order = 1)]
+        [JsonProperty]
         public string Name
         {
             get { return name; }
@@ -109,6 +148,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the alias of the Album.
         /// </summary>
         [Column(Order = 2)]
+        [JsonProperty]
         public string Alias
         {
             get { return alias; }
@@ -116,66 +156,137 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             {
                 if (value != alias)
                 {
-                    alias = value;
+                    alias = value.Sanitize().RemoveDiacritics().ToLower();
                     NotifyPropertyChanged();
                 }
             }
         }
 
         /// <summary>
-        /// Property description of the item.
+        /// Property to access to the description of the item.
         /// </summary>
         [Column(Order = 3)]
-        public string Description { get; set; }
-        
+        [JsonProperty]
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                if (value != description)
+                {
+                    description = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         /// <summary>
-        /// Property order place of the item.
+        /// Property to access to the order place of the item.
         /// </summary>
         [Column(Order = 4)]
-        public int Ordering { get; set; }
-
+        [JsonProperty]
+        public int Ordering
+        {
+            get { return ordering; }
+            set
+            {
+                if (value != ordering)
+                {
+                    ordering = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
         
         /// <summary>
-        /// Property created date.
+        /// Property to access to the created date.
         /// </summary>
         [Column(Order = 5)]
-        public DateTime Created { get; set; }
+        [JsonProperty]
+        public DateTime Created
+        {
+            get { return created; }
+            set
+            {
+                if (value != created)
+                {
+                    created = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property modified date.
+        /// Property to access to the modified date.
         /// </summary>
         [Column(Order = 6)]
-        public DateTime Modified { get; set; }
-        
+        [JsonProperty]
+        public DateTime Modified
+        {
+            get { return modified; }
+            set
+            {
+                if (value != modified)
+                {
+                    modified = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         /// <summary>
-        /// Property first picture captured date.
+        /// Property to access to the first picture captured date.
         /// </summary>
         [Column(Order = 7)]
-        public DateTime DateStart { get; set; }
+        [JsonProperty]
+        public DateTime DateStart
+        {
+            get { return dateStart; }
+            set
+            {
+                if (value != dateStart)
+                {
+                    dateStart = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property last picture captured date.
+        /// Property to access to the last picture captured date.
         /// </summary>
         [Column(Order = 8)]
-        public DateTime DateEnd { get; set; }
+        [JsonProperty]
+        public DateTime DateEnd
+        {
+            get { return dateEnd; }
+            set
+            {
+                if (value != dateEnd)
+                {
+                    dateEnd = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
 
         /// <summary>
-        /// Property the original path.
+        /// Property to access to the the original path.
         /// </summary>
         [Column(Order = 9)]
         [JsonIgnore]
         public string OriginalPath { get; set; }
 
         /// <summary>
-        /// Property the original width.
+        /// Property to access to the the original width.
         /// </summary>
         [Column(Order = 10)]
         [JsonIgnore]
         public int OriginalWidth { get; set; }
 
         /// <summary>
-        /// Property the original height.
+        /// Property to access to the the original height.
         /// </summary>
         [Column(Order = 11)]
         [JsonIgnore]
@@ -293,19 +404,19 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Propertiy to access to the list of Section dependencies primary key.
         /// </summary>
         [NotMapped]
-        public List<int> SectionsPK => ListOfPrimaryKeys(AlbumsInSections.ToList(), "SectionId");
+        public IEnumerable<int> SectionsPK => ListOfPrimaryKeys(AlbumsInSections.ToList(), "SectionId");
 
         /// <summary>
         /// Propertiy to access to the list of Picture dependencies primary key.
         /// </summary>
         [NotMapped]
-        public List<int> PicturesPK => ListOfPrimaryKeys(PicturesInAlbums.ToList(), "PictureId");
+        public IEnumerable<int> PicturesPK => ListOfPrimaryKeys(PicturesInAlbums.ToList(), "PictureId");
 
         /// <summary>
         /// Propertiy to access to the list of Info dependencies primary key.
         /// </summary>
         [NotMapped]
-        public List<int> InfosPK => ListOfPrimaryKeys(InfosInAlbums.ToList(), "InfoId");
+        public IEnumerable<int> InfosPK => ListOfPrimaryKeys(InfosInAlbums.ToList(), "InfoId");
 
         /// <summary>
         /// Property to access to the collection of relationship Albums in Sections.

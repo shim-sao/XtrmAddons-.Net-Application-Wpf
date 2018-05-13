@@ -61,6 +61,14 @@
     <Compile Include="Database\Data\Base\EntityBase.cs" />
     <Compile Include="Database\Data\Base\EntityBaseExtension.cs" />
     <Compile Include="Database\Data\Base\IEntityBaseInterface.cs" />
+    <Compile Include="Database\Data\Base\ObservableDependenciesBase.cs" />
+    <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableUsersInAclGroups.cs" />
+    <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableSectionsInAclGroups.cs" />
+    <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservablePicturesInAlbums.cs" />
+    <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableInfosInPictures.cs" />
+    <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableInfosInAlbums.cs" />
+    <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableAlbumsInSections.cs" />
+    <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableAclGroupsInAclActions.cs" />
     <Compile Include="Database\Data\Tables\Entities\AlbumEntity.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\AclGroupsInAclActions.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\AlbumsInSections.cs" />
@@ -68,7 +76,7 @@
     <Compile Include="Database\Data\Tables\Dependencies\InfosInPictures.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\PicturesInAlbums.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\SectionsInAclGroups.cs" />
-    <Compile Include="Database\Data\Tables\Dependencies\UsersInACLGroups.cs" />
+    <Compile Include="Database\Data\Tables\Dependencies\UsersInAclGroups.cs" />
     <Compile Include="Database\Data\Tables\Entities\InfoEntity.cs" />
     <Compile Include="Database\Data\Tables\Entities\InfoTypeEntity.cs" />
     <Compile Include="Database\Data\Tables\Entities\PictureEntity.cs" />

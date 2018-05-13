@@ -16,6 +16,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// Class XtrmAddons Fotootof Server SQLite User entity.
     /// </summary>
     [Table("Users")]
+    [JsonObject(MemberSerialization.OptIn)]
     public partial class UserEntity : EntityBase
     {
         #region Variables
@@ -30,62 +31,55 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable name of the User.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private string name = "";
 
         /// <summary>
         /// Variable password of the User.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private string password = "";
 
         /// <summary>
         /// Variable email of the User.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private string email = "";
 
         /// <summary>
         /// Variable server owner.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private string server = "";
 
         /// <summary>
         /// Variable date of creation of the User
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private DateTime created = DateTime.Now;
 
         /// <summary>
         /// Variable date of modification of the User
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private DateTime modified = DateTime.Now;
-
-        /// <summary>
-        /// Variable list of AclGroup associated to the User.
-        /// </summary>
-        [NotMapped]
-        [JsonIgnore]
-        private List<AclGroupEntity> aclGroups;
 
         #endregion
 
 
 
         #region Variables Dependencies
+        
+        /// <summary>
+        /// Variable collection of relationship Users in AclGroups.
+        /// </summary>
+        [NotMapped]
+        ObservableCollection<UsersInAclGroups> usersInAclGroups
+            = new ObservableCollection<UsersInAclGroups>();
 
         /// <summary>
         /// Variable AclGroup id (required for entity dependency).
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private int aclGroupId = 0;
 
         /// <summary>
@@ -93,16 +87,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [NotMapped]
         [JsonIgnore]
-        private List<int> aclGroupsPK = new List<int>();
-
+        private IEnumerable<int> aclGroupsPK = null;
 
         /// <summary>
-        /// Variable collection of relationship Users in AclGroups.
+        /// Variable list of AclGroup associated to the User.
         /// </summary>
         [NotMapped]
         [JsonIgnore]
-        ObservableCollection<UsersInAclGroups> usersInAclGroups
-            = new ObservableCollection<UsersInAclGroups>();
+        private IEnumerable<AclGroupEntity> aclGroups = null;
 
         #endregion
 
@@ -267,10 +259,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <para>Notify on property changes.</para>
         /// </summary>
         [NotMapped]
-        public List<AclGroupEntity> AclGroups
+        public IEnumerable<AclGroupEntity> AclGroups
         {
-            get => ListAclGroups();
-            set
+            get
+            {
+                if (aclGroups == null || aclGroups.Count() != UsersInAclGroups?.Count)
+                {
+                    aclGroups = ListEntities<AclGroupEntity>(UsersInAclGroups);
+                }
+                return aclGroups;
+            }
+
+            private set
             {
                 if (value != aclGroups)
                 {
@@ -284,7 +284,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of AclGroup dependencies primary key.
         /// </summary>
         [NotMapped]
-        public List<int> AclGroupsPK
+        public IEnumerable<int> AclGroupsPK
             => ListOfPrimaryKeys(UsersInAclGroups.ToList(), "AclGroupId");
 
         /// <summary>
@@ -316,9 +316,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         public UserEntity()
         {
-            //Initialize();
-
-            //UsersInAclGroups.CollectionChanged += (s, e) => { aclGroups = null; };
             UsersInAclGroups.CollectionChanged += UsersInAclGroups_CollectionChanged;
         }
 
@@ -329,20 +326,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Methods
 
         /// <summary>
-        /// Method to initialize a User entity.
-        /// </summary>
-        [Obsolete()]
-        public void Initialize()
-        {
-            if (PrimaryKey <= 0)
-            {
-                PrimaryKey = 0;
-            }
-
-            this.InitializeNulls();
-        }
-
-        /// <summary>
         /// Method called on Users InA clGroups collection changed event.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
@@ -350,24 +333,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         private void UsersInAclGroups_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             aclGroups = null;
-        }
-
-        /// <summary>
-        /// Method to get list of associated AclGroup to the User.
-        /// </summary>
-        private List<AclGroupEntity> ListAclGroups()
-        {
-            if (aclGroups == null)
-            {
-                aclGroups = new List<AclGroupEntity>();
-
-                if (UsersInAclGroups != null)
-                {
-                    aclGroups = ListEntities<AclGroupEntity>(UsersInAclGroups);
-                }
-            }
-
-            return aclGroups;
+            NotifyPropertyChanged();
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies
@@ -7,6 +8,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies
     /// Class XtrmAddons Fotootof Libraries SQLite Albums in Sections Entity Object.
     /// </summary>
     [Table("AlbumsInSections")]
+    [JsonObject(MemberSerialization.OptIn)]
     public class AlbumsInSections
     {
         #region Properties
@@ -15,18 +17,21 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies
         /// Property the id of the Album entity.
         /// </summary>
         [Column(Order = 0)]
+        [JsonProperty]
         public int AlbumId { get; set; }
 
         /// <summary>
         /// Property the id of the Section entity.
         /// </summary>
         [Column(Order = 1)]
+        [JsonProperty]
         public int SectionId { get; set; }
 
         /// <summary>
         /// Property order place of the item.
         /// </summary>
         [Column(Order = 3)]
+        [JsonProperty]
         public int Ordering { get; set; }
 
 

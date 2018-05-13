@@ -353,26 +353,15 @@
 							VerticalAlignment="center"
 							Height="30">
 
-                    <Button x:Name="Button_Save"
-							IsDefault="True"
-							Click="DialogSave_Click"
-							Margin="0,0,15,0"
+					<Button x:Name="Button_Save"
 							Content="{x:Static p:Resources.Save}"
-							MinWidth="80"
-							Style="{StaticResource RoundCorner}"
-							Background="{StaticResource ResourceKey=MediumGrey}"
-							Foreground="{StaticResource ResourceKey=RoundedButton}"
-							IsEnabled="{Binding IsSaveEnabled, UpdateSourceTrigger=Explicit, Mode=TwoWay, IsAsync=True}"/>
-
+							Style="{StaticResource Button_Save}"
+							IsEnabled="{Binding IsSaveEnabled, UpdateSourceTrigger=Explicit, Mode=TwoWay, IsAsync=True}"
+							Click="DialogSave_Click"/>
 
 					<Button x:Name="Button_Cancel"
-							IsCancel="True"
-							Margin="15,0,0,0"
 							Content="{x:Static p:Resources.Cancel}"
-							Width="80"							
-							Style="{StaticResource RoundCorner}"
-							Background="{StaticResource ResourceKey=MediumGrey}"
-							Foreground="{StaticResource ResourceKey=RoundedButton}"/>
+							Style="{StaticResource Button_Cancel}"/>
 
                 </StackPanel>
             </Grid>

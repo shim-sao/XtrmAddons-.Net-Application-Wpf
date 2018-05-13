@@ -148,8 +148,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             }
 
             Trace.WriteLine("All inputs have been verified !");
-            IsSaveEnabled = true;
-            return base.IsValidInputs();
+            return IsSaveEnabled = base.IsValidInputs();
         }
 
         #endregion
