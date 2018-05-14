@@ -1,4 +1,5 @@
 ﻿<base:WindowBaseForm 
+	x:Name="UCWindowFormAlbum"
     x:Class="XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm.WindowFormAlbum"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -238,7 +239,7 @@
 
                         <Image 
                             x:Name="ImageThumbnail"
-                            Source="{Binding Album.ThumbnailPath,
+                            Source="{Binding Album.thumbnailPicture.ThumbnailPath,
                             Converter={StaticResource CvPictureBase},
                             ConverterParameter={StaticResource Icon256String}}"
                             Width="160"
@@ -262,7 +263,7 @@
 
                         <Image 
                             Name="ImagePicture"
-                            Source="{Binding Album.PicturePath,
+                            Source="{Binding Album.PreviewPicture.PicturePath,
                             Converter={StaticResource CvPictureBase},
                             ConverterParameter={StaticResource Icon512String}}"
                             Width="285"

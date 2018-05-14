@@ -87,7 +87,7 @@ namespace XtrmAddons.Fotootof
             ApplicationBase.Debug();
 
             // Initialize application preferences.
-            InitializePreferencesAsync();
+            InitializePreferences();
 
             // Initialize application options.
             InitializeOPtions();
@@ -152,16 +152,16 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Method example of custom preferences settings adding.
         /// </summary>
-        public async void InitializePreferencesAsync()
+        public void InitializePreferences()
         {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
             // Add application storage directories.
-            await SettingsPreferences.InitializeStorage();
+            SettingsPreferences.InitializeStorage();
 
             // Copy program files to My Documents user folder.
             Trace.WriteLine((string)Translation.DLogs.CopyingProgramFiles);
-            await ApplicationBase.CopyConfigFiles(true);
+            ApplicationBase.CopyConfigFiles(true);
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }

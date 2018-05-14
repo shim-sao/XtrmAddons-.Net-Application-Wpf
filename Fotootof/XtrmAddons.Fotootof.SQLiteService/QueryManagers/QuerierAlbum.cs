@@ -83,7 +83,6 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         {
             using (Db.Context)
             {
-                entity.Initialize();
                 return AlbumManager.Add(entity);
             }
         }

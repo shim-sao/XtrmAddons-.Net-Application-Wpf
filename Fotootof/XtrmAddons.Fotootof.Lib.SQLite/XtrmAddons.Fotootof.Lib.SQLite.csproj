@@ -69,6 +69,7 @@
     <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableInfosInAlbums.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableAlbumsInSections.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableAclGroupsInAclActions.cs" />
+    <Compile Include="Database\Data\Tables\Entities\CommonEntity.cs" />
     <Compile Include="Database\Data\Tables\Entities\AlbumEntity.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\AclGroupsInAclActions.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\AlbumsInSections.cs" />

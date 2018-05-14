@@ -57,15 +57,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [NotMapped]
         public int ordering = 0;
-
-
+        
         /// <summary>
         /// Variable the background picture id.
         /// </summary>
         [NotMapped]
         public int backgroundPictureId = 0;
-
-
+        
         /// <summary>
         /// Variable the preview picture id.
         /// </summary>
@@ -77,15 +75,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [NotMapped]
         public int thumbnailPictureId = 0;
-
-
+        
         /// <summary>
         /// Variable comment for the item.
         /// </summary>
         [NotMapped]
         public string comment = "";
-
-
+        
         /// <summary>
         /// Variable parameters for the item.
         /// </summary>
@@ -254,8 +250,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                 }
             }
         }
-
-
+        
         /// <summary>
         /// Property to access to the background picture id.
         /// </summary>

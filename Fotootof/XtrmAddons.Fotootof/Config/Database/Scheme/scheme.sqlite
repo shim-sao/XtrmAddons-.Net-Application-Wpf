@@ -1,5 +1,5 @@
 /** ********************************************************************
- * ACLACTIONS
+ * ACLACTIONS => Sections Actions | Albums Actions
  */
 CREATE TABLE IF NOT EXISTS [AclActions] (
 	[AclActionId] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -21,7 +21,7 @@ VALUES
 
 
 /** ********************************************************************
- * ACLGROUPS
+ * ACLGROUPS => Users Groups
  */
 CREATE TABLE IF NOT EXISTS [AclGroups] (
 	[AclGroupId] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -66,19 +66,12 @@ CREATE TABLE IF NOT EXISTS [Albums] (
 	[DateStart] TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	[DateEnd] TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 
-	[OriginalPath] VARCHAR(256) NOT NULL DEFAULT '' NOT NULL,
-	[OriginalWidth] INTEGER DEFAULT '0' NOT NULL,
-	[OriginalHeight] INTEGER DEFAULT '0' NOT NULL,
+	[backgroundPictureId] INTEGER DEFAULT '0' NOT NULL,
+	[previewPictureId] INTEGER DEFAULT '0' NOT NULL,
+	[thumbnailPictureId] INTEGER DEFAULT '0' NOT NULL,
 
-	[PicturePath] VARCHAR(256) NOT NULL DEFAULT '' NOT NULL,
-	[PictureWidth] INTEGER DEFAULT '0' NOT NULL,
-	[PictureHeight] INTEGER DEFAULT '0' NOT NULL,
-
-	[ThumbnailPath] VARCHAR(256) DEFAULT '' NOT NULL,
-	[ThumbnailWidth] INTEGER DEFAULT '0' NOT NULL,
-	[ThumbnailHeight] INTEGER DEFAULT '0' NOT NULL,
-
-	[Comment] TEXT DEFAULT '' NOT NULL
+	[Comment] TEXT DEFAULT '' NOT NULL,
+	[Parameters] TEXT DEFAULT '' NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS [AlbumsInSections] (
@@ -278,5 +271,6 @@ CREATE TABLE IF NOT EXISTS `Versions` (
 REPLACE INTO [Versions]
 (VersionId, AssemblyVersionMin, AssemblyVersionMax, Comment)
 VALUES
-(1, '1.0.18123.2149', '', 'Database first create.');
+(1, '1.0.18123.2149', '', 'Database first create.'),
+(2, '1.0.18134.1044', '', 'Database Albums shema changed. Albums pictures are associated by Primary Keys.');
 

@@ -75,7 +75,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         {
             // Initialize window component.
             InitializeComponent();
-            Name = "UCWindowFormAlbum";
 
             // Initialize window data model.
             InitializeModel(entity);
@@ -112,11 +111,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
 
             // Initialize User first.
             entity = entity ?? new AlbumEntity();
-
-            if (entity.PrimaryKey > 0)
-            {
-                entity.Initialize();
-            }
 
             // Store data in new entity.
             OldForm = entity.Clone();
@@ -264,14 +258,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
 
             if (dlg != null && dlg.FileName != "")
             {
-                NewForm.ThumbnailPath = dlg.FileName;
+               /* NewForm.ThumbnailPath = dlg.FileName;
 
                 BitmapImage bmp = new BitmapImage();
                 bmp.BeginInit();
                 bmp.UriSource = new System.Uri(NewForm.ThumbnailPath);
                 bmp.EndInit();
 
-                ImageThumbnail.Source = bmp;
+                ImageThumbnail.Source = bmp;*/
             }
         }
 
@@ -286,14 +280,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
 
             if (dlg != null && dlg.FileName != "")
             {
-                NewForm.PicturePath = dlg.FileName;
+               /* NewForm.PicturePath = dlg.FileName;
 
                 BitmapImage bmp = new BitmapImage();
                 bmp.BeginInit();
                 bmp.UriSource = new System.Uri(NewForm.PicturePath);
                 bmp.EndInit();
 
-                ImagePicture.Source = bmp;
+                ImagePicture.Source = bmp;*/
             }
         }
 

@@ -123,7 +123,11 @@ namespace XtrmAddons.Fotootof.Settings
                     {
                         log.Info("Database connection ready.");
 
-                        Version current = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                        database.Version = database.Version ?? "1.0.18123.2149";
+                        Version current = new Version(database.Version);
+
+                        //Version current = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+
                         log.Info(string.Format(CultureInfo.InvariantCulture, "Current Assembly Version : {0}", current));
 
                         Version old = new Version("1.0.18123.2149");
@@ -137,6 +141,25 @@ namespace XtrmAddons.Fotootof.Settings
                                 command.CommandText = @query;
                                 command.ExecuteNonQuery();
                             }
+
+                            database.Version = old.ToString();
+                            ApplicationBase.Save();
+                        }
+
+                        old = new Version("1.0.18134.1044");
+                        if (current < old)
+                        {
+                            log.Info(string.Format(CultureInfo.InvariantCulture, "Updating Assembly Minimum Version : {0}", old));
+                            string query = File.ReadAllText(Path.Combine(ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath, "update." + old.ToString() + ".sqlite"));
+                            using (TransactionScope tran = new TransactionScope())
+                            {
+                                SQLiteCommand command = db.CreateCommand();
+                                command.CommandText = @query;
+                                command.ExecuteNonQuery();
+                            }
+
+                            database.Version = old.ToString();
+                            ApplicationBase.Save();
                         }
                     }
                 }
