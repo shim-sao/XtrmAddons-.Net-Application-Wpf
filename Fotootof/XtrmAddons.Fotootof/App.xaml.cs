@@ -1,6 +1,4 @@
-﻿
-using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -10,7 +8,7 @@ using XtrmAddons.Net.Application;
 
 namespace XtrmAddons.Fotootof
 {
-    public partial class App : System.Windows.Application
+    public partial class App : Application
     {
         #region Variables
 

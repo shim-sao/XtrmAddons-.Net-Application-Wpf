@@ -273,9 +273,6 @@
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
-  <data name="MainWindowTitle" xml:space="preserve">
-    <value>XtrmAddons Fotootof Server Administration</value>
-  </data>
   <data name="MessageBox_Acceptation_DeleteGeneric" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir supprimer le groupe {0} : {1} ?</value>
   </data>

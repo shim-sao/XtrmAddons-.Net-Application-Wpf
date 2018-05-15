@@ -82,9 +82,17 @@ namespace XtrmAddons.Fotootof
         /// </summary>
         public MainWindow()
         {
+            // Merge application culture translation resources.
+            Resources.MergedDictionaries.Add(Culture.Translation.Words);
+            Resources.MergedDictionaries.Add(Culture.Translation.Logs);
+
+            //var a = Properties;
+
+
             // Initialize window component.
             InitializeComponent();
-            log.Info(Translation.DLogs.InitializingApplicationWindowComponentDone);
+
+            //log.Info(Translation.DLogs.InitializingApplicationWindowComponentDone);
 
             // Main Window to application session.
             ApplicationSession.Properties.MainWindow = this;

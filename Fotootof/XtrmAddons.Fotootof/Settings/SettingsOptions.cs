@@ -89,9 +89,9 @@ namespace XtrmAddons.Fotootof.Settings
         [SuppressMessage("Microsoft.Security", "CA2100", Justification = "Do not to fix it !", Scope = "Not supported by DLL")]
         public void InitializeDatabase()
         {
-            // Get the default database in preferences if exists.
-            log.Info("Initializing database connection. Please wait...");
+            log.Info((string)Translation.DLogs.InitializingDatabaseConnection);
 
+            // Get the default database in preferences if exists.
             Database database = ApplicationBase.Options.Data.Databases.FindDefault();
 
             // Create default database parameters if not exists.
@@ -108,6 +108,7 @@ namespace XtrmAddons.Fotootof.Settings
 
                 };
 
+                log.Info("dAdding new default database parameters to preferences");
                 ApplicationBase.Options.Data.Databases.Add(database);
             }
 
@@ -117,16 +118,14 @@ namespace XtrmAddons.Fotootof.Settings
                 // Check if default database exists, if not...
                 if (File.Exists(database.Source))
                 {
-                    log.Info("Database file founded.");
+                    log.Info((string)Translation.DLogs.DatabaseFileFound);
 
                     using (SQLiteConnection db = SQLiteManager.Instance(database.Source).Db)
                     {
-                        log.Info("Database connection ready.");
+                        log.Info((string)Translation.DLogs.DatabaseConnectionReady);
 
                         database.Version = database.Version ?? "1.0.18123.2149";
                         Version current = new Version(database.Version);
-
-                        //Version current = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
                         log.Info(string.Format(CultureInfo.InvariantCulture, "Current Assembly Version : {0}", current));
 
@@ -167,6 +166,8 @@ namespace XtrmAddons.Fotootof.Settings
                 // ... create new database from scheme.
                 else
                 {
+                    log.Info((string)Translation.DLogs.DatabaseNotFileFound);
+
                     using (
                         SQLiteConnection db =
                             SQLiteManager.Instance(
@@ -176,14 +177,14 @@ namespace XtrmAddons.Fotootof.Settings
                             ).Db
                     )
                     {
-                        log.Info("Database new connection ready.");
+                        log.Info((string)Translation.DLogs.DatabaseConnectionReady);
                     }
                 }
 
                 // Add connection to SQLite Service.
                 SQLiteSvc.Db = new DatabaseCore(database.Source);
 
-                // Add SQLite Service to the main window | application session for depencies..
+                // Add SQLite Service to the main window | application session for dependencies..
                 MainWindow.Database = new SQLiteSvc();
             }
 

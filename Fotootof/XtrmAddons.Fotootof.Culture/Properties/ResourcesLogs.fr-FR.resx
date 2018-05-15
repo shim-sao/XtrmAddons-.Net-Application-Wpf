@@ -129,6 +129,15 @@
   <data name="CopyingProgramFiles" xml:space="preserve">
     <value>Copie des fichiers du programme dans le dossier utilisateur Mes documents. Patientez, s'il vous plaît...</value>
   </data>
+  <data name="DatabaseConnectionReady" xml:space="preserve">
+    <value>Connexion à la base de données prête.</value>
+  </data>
+  <data name="DatabaseFileFound" xml:space="preserve">
+    <value>Fichier de base de données trouvé.</value>
+  </data>
+  <data name="DatabaseNotFileFound" xml:space="preserve">
+    <value>Fichier de base de données non trouvé.</value>
+  </data>
   <data name="DeletingOptionsWaiting" xml:space="preserve">
     <value>Suppression des options et des paramètres de l'application. Patientez, s'il vous plaît...</value>
   </data>
@@ -137,6 +146,9 @@
   </data>
   <data name="InitializingApplicationWindowComponentDone" xml:space="preserve">
     <value>Initialisation du composant de la fenêtre d'application. Terminé !</value>
+  </data>
+  <data name="InitializingDatabaseConnection" xml:space="preserve">
+    <value>Initialisation de la connexion à la base de données. Patientez, s'il vous plaît...</value>
   </data>
   <data name="ItemDeleted" xml:space="preserve">
     <value>{0} supprimé !</value>

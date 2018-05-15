@@ -636,7 +636,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\Icons\Buttons\button-folder-plus-24.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\Icons\Buttons\button-folder-select-24.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -823,7 +823,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>call "$(ProjectDir)autoexec.debug.bat"
-:: call "$(ProjectDir)autoexec.release.bat"</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == "Debug" ( call "$(ProjectDir)autoexec.debug.bat" )
+if $(ConfigurationName) == "Release" ( call "$(ProjectDir)autoexec.release.bat" )
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

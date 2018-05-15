@@ -28,7 +28,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// </summary>
         public WindowBase() : base()
         {
-            // Merge application resources.
+            // Merge application culture translation resources.
             Resources.MergedDictionaries.Add(Culture.Translation.Words);
             Resources.MergedDictionaries.Add(Culture.Translation.Logs);
         }

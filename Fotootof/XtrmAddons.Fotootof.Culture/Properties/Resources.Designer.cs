@@ -907,15 +907,6 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fotootof Server Administration.
-        /// </summary>
-        public static string MainWindowTitle {
-            get {
-                return ResourceManager.GetString("MainWindowTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Are you sure you want to delete the {0} : {1} ?.
         /// </summary>
         public static string MessageBox_Acceptation_DeleteGeneric {
