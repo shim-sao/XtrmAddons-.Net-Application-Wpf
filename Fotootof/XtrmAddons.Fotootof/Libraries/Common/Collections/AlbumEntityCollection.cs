@@ -50,21 +50,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         #region Methods
 
         /// <summary>
-        /// Class method to load a list of Album from database.
-        /// </summary>
-        /// <param name="options">Options for query filters.</param>
-        //protected override void LoadOptions(AlbumOptionsList options = default(AlbumOptionsList))
-        //{
-        //    base.LoadOptions(options);
-
-        //    string defaultImg = Path.Combine(ApplicationBase.AssetsImagesDefaultDirectory, "album-default.png");
-        //    foreach (AlbumEntity entity in Items)
-        //    {
-        //        entity.InitializeImages();
-        //    }
-        //}
-
-        /// <summary>
         /// Method to insert a list of Album entities into the database.
         /// </summary>
         /// <param name="newItems">Thee list of items to add.</param>
@@ -81,7 +66,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                 {
                     foreach (AlbumEntity entity in newItems)
                     {
-                        MainWindow.Database.Albums.Add(entity);
+                        Database.Albums.Add(entity);
                         log.Info(string.Format("Album [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
                 }

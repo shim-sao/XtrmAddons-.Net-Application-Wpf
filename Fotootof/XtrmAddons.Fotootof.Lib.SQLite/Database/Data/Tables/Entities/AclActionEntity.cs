@@ -133,7 +133,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the collection of relationship AclGroup in AclAction.
         /// </summary>
         public ObservableAclGroupsInAclActions AclGroupsInAclActions { get; set; }
-            = new ObservableAclGroupsInAclActions("AclActionId");
+            = new ObservableAclGroupsInAclActions("AclGroupId");
 
         /// <summary>
         /// Property to access to the AclGroup id (required for entity dependency).
@@ -158,25 +158,26 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         [NotMapped]
         [JsonProperty]
         public IEnumerable<int> AclGroupsPK
-        {
-            get
-            {
-                if(aclGroupsPK == null)
-                {
-                    aclGroupsPK = ListOfPrimaryKeys(AclGroupsInAclActions, "AclGroupId");
-                }
-                return aclGroupsPK;
-            }
+            => AclGroupsInAclActions.DependenciesPrimaryKeys;
+        //{
+        //    get
+        //    {
+        //        if(aclGroupsPK == null)
+        //        {
+        //            aclGroupsPK = ListOfPrimaryKeys(AclGroupsInAclActions, "AclGroupId");
+        //        }
+        //        return aclGroupsPK;
+        //    }
 
-            private set
-            {
-                if (aclGroupsPK != value)
-                {
-                    aclGroupsPK = value;
-                }
-                NotifyPropertyChanged();
-            }
-        }
+        //    private set
+        //    {
+        //        if (aclGroupsPK != value)
+        //        {
+        //            aclGroupsPK = value;
+        //        }
+        //        NotifyPropertyChanged();
+        //    }
+        //}
 
         /// <summary>
         /// Property to access to the list of AclGroup associated to the AclAction.

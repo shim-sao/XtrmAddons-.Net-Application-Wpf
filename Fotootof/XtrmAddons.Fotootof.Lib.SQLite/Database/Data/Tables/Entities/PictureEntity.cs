@@ -232,7 +232,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             {
                 if (value != alias)
                 {
-                    alias = value;
+                    alias = value.Sanitize().RemoveDiacritics().ToLower();
                     NotifyPropertyChanged();
                 }
             }
@@ -327,13 +327,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                 }
             }
         }
-
-
+        
         /// <summary>
         /// Property to access to the the original path.
         /// </summary>
         [Column(Order = 8)]
-        [JsonIgnore]
         [JsonProperty]
         public string OriginalPath
         {

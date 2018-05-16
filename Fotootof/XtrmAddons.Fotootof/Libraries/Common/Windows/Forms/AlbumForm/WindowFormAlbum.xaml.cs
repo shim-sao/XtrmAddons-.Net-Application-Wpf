@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
@@ -14,7 +15,8 @@ using XtrmAddons.Net.Common.Extensions;
 namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries Common Window Form Album.
+    /// <para>Class XtrmAddons Fotootof Libraries Common Window Form Album.</para>
+    /// <para>The window provides the tools to create and edit an Album.</para>
     /// </summary>
     public partial class WindowFormAlbum : WindowBaseForm
     {
@@ -35,7 +37,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <summary>
         /// Property to access to the Window model.
         /// </summary>
-        public new WindowFormAlbumModel<WindowFormAlbum> Model { get; private set; }
+        public new WindowFormAlbumModel<WindowFormAlbum> Model
+        {
+            get => (WindowFormAlbumModel<WindowFormAlbum>)model;
+            protected set { model = value; }
+        }
 
         /// <summary>
         /// Variable old Album informations backup.
@@ -70,7 +76,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Common Window Form Album Constructor.
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">An Album entity to edit or new Album entity to add.</param>
         public WindowFormAlbum(AlbumEntity entity = default(AlbumEntity)) : base()
         {
             // Initialize window component.
@@ -94,11 +100,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         protected void Window_Load(object sender, RoutedEventArgs e)
         {
             DataContext = Model;
-
-            InputName.TextChanged += InputName_TextChanged;
-            InputAlias.TextChanged += InputAlias_TextChanged;
-            InputDescription.TextChanged += InputDescription_TextChanged;
-            InputComment.TextChanged += InputComment_TextChanged;
         }
 
         /// <summary>
@@ -122,108 +123,73 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             Model.Sections = new SectionEntityCollection(true);
         }
 
-        /// <summary>
-        /// Method called on input description text changes event.
-        /// </summary>
-        /// <param name="sender">The object sender.</param>
-        /// <param name="routedEventArgs">Text changed event arguments.</param>
-        private void InputDescription_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            NewForm.Description = InputDescription.Text;
+        #endregion
 
-            Button_Save.IsEnabled = IsSaveEnabled;
-        }
+
+
+        #region Methods Validate Inputs
 
         /// <summary>
-        /// Method called on input comment text changes event.
+        /// Method to validate the window form inputs.
         /// </summary>
-        /// <param name="sender">The object sender.</param>
-        /// <param name="routedEventArgs">Text changed event arguments.</param>
-        private void InputComment_TextChanged(object sender, TextChangedEventArgs e)
+        protected override bool IsValidInputs()
         {
-            NewForm.Comment = InputComment.Text;
-
-            Button_Save.IsEnabled = IsSaveEnabled;
-        }
-
-        /// <summary>
-        /// Method called on input name text changes event.
-        /// </summary>
-        /// <param name="sender">The object sender.</param>
-        /// <param name="routedEventArgs">Text changed event arguments.</param>
-        private void InputName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string oldName = NewForm.Name;
-            NewForm.Name = InputName.Text;
-
-            if (!oldName.IsNullOrWhiteSpace())
+            // Check if the name is not empty.
+            Trace.WriteLine("Checking if the name is not empty...");
+            if (!IsValidInput(InputName))
             {
-                if (NewForm.Alias.IsNullOrWhiteSpace() || NewForm.Alias.Sanitize().RemoveDiacritics().ToLower() == oldName.Sanitize().RemoveDiacritics().ToLower())
-                {
-                    InputAlias.Text = InputName.Text;
-                }
+                return false;
             }
 
-            Button_Save.IsEnabled = IsSaveEnabled;
+            Trace.WriteLine("All inputs have been verified !");
+            return IsSaveEnabled = base.IsValidInputs();
         }
 
+        #endregion
+
+
+
+        #region Methods Validate Form
+
         /// <summary>
-        /// Method called on input alias text changes event.
+        /// Method to validate the Form Data.
         /// </summary>
-        /// <param name="sender">The object sender.</param>
-        /// <param name="routedEventArgs">Text changed event arguments.</param>
-        private void InputAlias_TextChanged(object sender, TextChangedEventArgs e)
+        private new bool IsValidForm()
         {
-            if(InputAlias.Text != "" && InputAlias.Text != InputAlias.Text.Sanitize().RemoveDiacritics().ToLower())
+            if (NewForm.Name.IsNullOrWhiteSpace())
             {
-                InputAlias.Text = InputAlias.Text.Sanitize().RemoveDiacritics().ToLower();
+                return false;
             }
 
-            NewForm.Alias = InputAlias.Text;
-
-            Button_Save.IsEnabled = IsSaveEnabled;
+            return true;
         }
 
+        #endregion
+
+
+
+        #region Methods Pictures
+
         /// <summary>
-        /// Method to check if saving is enabled.
+        /// Method to change thumbnail of an album.
         /// </summary>
-        //[Obsolete()]
-        //public override bool IsSaveEnabled
-        //{
-        //    get
-        //    {
-        //        bool save = true;
+        /// <param name="sender">The object sender.</param>
+        /// <param name="routedEventArgs">Routed event arguments.</param>
+        private void OnAlbumPicture_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = Net.Picture.PictureFileDialogBox.Show();
 
-        //        if (NewForm != null)
-        //        {
-        //            if (NewForm.Name.IsNullOrWhiteSpace())
-        //            {
-        //                save = false;
-        //                InputName.BorderBrush = BorderStyleError;
-        //            }
-        //            else
-        //            {
-        //                InputName.BorderBrush = BorderStyleReady;
-        //            }
+            if (dlg != null && dlg.FileName != "")
+            {
+                Model.UpdateAlbumPictureProperty((string)((Button)sender).Tag, dlg.FileName);
+            }
+        }
 
-        //            if (NewForm.Alias.IsNullOrWhiteSpace())
-        //            {
-        //                save = false;
-        //                InputAlias.BorderBrush = BorderStyleError;
-        //            }
-        //            else
-        //            {
-        //                InputAlias.BorderBrush = BorderStyleReady;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            save = false;
-        //        }
+        #endregion
 
-        //        return save;
-        //    }
-        //}
+
+
+        #region Methods Section
 
         /// <summary>
         /// Method called on section check box checked event.
@@ -232,8 +198,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <param name="routedEventArgs">Routed event arguments.</param>
         private void CheckBoxSection_Checked(object sender, RoutedEventArgs e)
         {
-            SectionEntity entity = (SectionEntity)((CheckBox)sender).Tag;
-            NewForm.LinkSection(entity.PrimaryKey);
+            NewForm.LinkSection(Tag2Object<SectionEntity>(sender).PrimaryKey);
         }
 
         /// <summary>
@@ -243,59 +208,20 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// <param name="routedEventArgs">Routed event arguments.</param>
         private void CheckBoxSection_UnChecked(object sender, RoutedEventArgs e)
         {
-            SectionEntity entity = (SectionEntity)((CheckBox)sender).Tag;
-            NewForm.UnLinkSection(entity.PrimaryKey);
+            NewForm.UnlinkSection(Tag2Object<SectionEntity>(sender).PrimaryKey);
         }
 
-        /// <summary>
-        /// Method to change thumbnail of an album.
-        /// </summary>
-        /// <param name="sender">The object sender.</param>
-        /// <param name="routedEventArgs">Routed event arguments.</param>
-        private void OnThumbnail_Click(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog dlg = Net.Picture.PictureFileDialogBox.Show();
+        #endregion
 
-            if (dlg != null && dlg.FileName != "")
-            {
-               /* NewForm.ThumbnailPath = dlg.FileName;
 
-                BitmapImage bmp = new BitmapImage();
-                bmp.BeginInit();
-                bmp.UriSource = new System.Uri(NewForm.ThumbnailPath);
-                bmp.EndInit();
 
-                ImageThumbnail.Source = bmp;*/
-            }
-        }
+        #region Methods Filters
 
         /// <summary>
-        /// Method to change picture of an album.
-        /// </summary>
-        /// <param name="sender">The object sender.</param>
-        /// <param name="routedEventArgs">Routed event arguments.</param>
-        private void OnPicture_Click(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog dlg = Net.Picture.PictureFileDialogBox.Show();
-
-            if (dlg != null && dlg.FileName != "")
-            {
-               /* NewForm.PicturePath = dlg.FileName;
-
-                BitmapImage bmp = new BitmapImage();
-                bmp.BeginInit();
-                bmp.UriSource = new System.Uri(NewForm.PicturePath);
-                bmp.EndInit();
-
-                ImagePicture.Source = bmp;*/
-            }
-        }
-
-        /// <summary>
-        /// 
+        /// Method called on filters selection changed event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="e">The selection changed event arguments</param>
         private void Filters_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cb = (ComboBox)sender;
@@ -335,10 +261,16 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             {
                 try
                 {
-                    InfosInAlbums info = Model.Album.InfosInAlbums.Single(x => x.InfoId == inf.InfoId);
-                    FiltersColorSelector.SelectedItem = inf;
+                    Func<InfosInAlbums, bool> f = new Func<InfosInAlbums, bool>(x => x.InfoId == inf.InfoId);
+                    if (Model.Album.InfosInAlbums.Exists(f))
+                    {
+                        FiltersColorSelector.SelectedItem = inf;
+                    }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    log.Error(ex.Output());
+                }
             }
         }
 
@@ -353,10 +285,16 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             {
                 try
                 {
-                    InfosInAlbums info = Model.Album.InfosInAlbums.Single(x => x.InfoId == inf.InfoId);
-                    FiltersQualitySelector.SelectedItem = inf;
+                    Func<InfosInAlbums, bool> f = new Func<InfosInAlbums, bool>(x => x.InfoId == inf.InfoId);
+                    if(Model.Album.InfosInAlbums.Exists(f))
+                    {
+                        FiltersQualitySelector.SelectedItem = inf;
+                    }
                 }
-                catch { }
+                catch(Exception ex)
+                {
+                    log.Error(ex.Output());
+                }
             }
         }
 

@@ -23,8 +23,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// </summary>
         protected object model;
 
-        //protected Dictionary<string, bool> inputsValidation = new Dictionary<string, bool>();
-
         #endregion
 
 
@@ -32,7 +30,8 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         #region Properties
 
         /// <summary>
-        /// Property to access to the data model of the Window Form.
+        /// <para>Property to access to the data model of the Window Form.</para>
+        /// <para>Child classes must implement their own accessibility based on the type of their model.</para>
         /// </summary>
         public virtual object Model
         {
@@ -335,11 +334,11 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
 
         #region Obsolete
 
-        [Obsolete("Use template Xaml")]
+        [Obsolete("Use template Xaml", true)]
         protected System.Windows.Media.Brush BorderStyleError
             = (System.Windows.Media.Brush)Application.Current.Resources["Error"];
 
-        [Obsolete("Use template Xaml")]
+        [Obsolete("Use template Xaml", true)]
         protected System.Windows.Media.Brush BorderStyleReady
             = (System.Windows.Media.Brush)Application.Current.Resources["Ready"];
 

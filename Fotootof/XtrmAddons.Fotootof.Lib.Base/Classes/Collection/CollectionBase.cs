@@ -17,10 +17,26 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
         protected static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        #endregion
+
+
+
+        #region Variables
+
         /// <summary>
         /// Property to define if the default items of the collection can be loaded.
         /// </summary>
         public abstract bool IsAutoloadEnabled { get; }
+
+        /// <summary>
+        /// Property alias to access to the dynamic translation words.
+        /// </summary>
+        public dynamic DWords => Culture.Translation.DWords;
+
+        /// <summary>
+        /// Property alias to access to the dynamic translation logs.
+        /// </summary>
+        public dynamic DLogs => Culture.Translation.DLogs;
 
         #endregion
 

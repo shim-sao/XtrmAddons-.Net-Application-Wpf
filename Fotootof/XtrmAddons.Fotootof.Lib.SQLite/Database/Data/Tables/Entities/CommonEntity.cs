@@ -25,15 +25,17 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             {
                 pe = new PictureEntity()
                 {
-                    OriginalPath = (string)Application.Current.Resources["ImageAlbumDefaultOriginal"],
-                    OriginalWidth = 512,
-                    OriginalHeight = 512,
-                    PicturePath = (string)Application.Current.Resources["ImageAlbumDefaultPicture"],
-                    PictureWidth = 256,
-                    PictureHeight = 256,
+                    OriginalPath = (string)Application.Current.Resources["ImageAlbumDefaultBackground"],
+                    OriginalWidth = 1920,
+                    OriginalHeight = 1080,
+
+                    PicturePath = (string)Application.Current.Resources["ImageAlbumDefaultPreview"],
+                    PictureWidth = 1920,
+                    PictureHeight = 720,
+
                     ThumbnailPath = (string)Application.Current.Resources["ImageAlbumDefaultThumbnail"],
-                    ThumbnailWidth = 128,
-                    ThumbnailHeight = 128
+                    ThumbnailWidth = 512,
+                    ThumbnailHeight = 512
                 };
             }
 

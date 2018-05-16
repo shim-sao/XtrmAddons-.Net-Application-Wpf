@@ -1330,6 +1330,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Undefine.
+        /// </summary>
+        public static string Undefine {
+            get {
+                return ResourceManager.GetString("Undefine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Unselect All.
         /// </summary>
         public static string UnselectAll {
@@ -1398,6 +1407,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string UsersGroups {
             get {
                 return ResourceManager.GetString("UsersGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Various.
+        /// </summary>
+        public static string Various {
+            get {
+                return ResourceManager.GetString("Various", resourceCulture);
             }
         }
         

@@ -14,7 +14,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
 {
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Libraries Common Windows Form Section.</para>
-    /// <para>Provides form to add or edit a Section.</para>
+    /// <para>The window provides the tools to create and edit a Section.</para>
     /// </summary>
     public partial class WindowFormSection : WindowBaseForm, IWindowForm<SectionEntity>
     {

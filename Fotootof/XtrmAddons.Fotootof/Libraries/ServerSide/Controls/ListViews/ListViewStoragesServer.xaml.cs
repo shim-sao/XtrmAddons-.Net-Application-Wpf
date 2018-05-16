@@ -187,7 +187,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
                     // Check if storage information is and return a picture information.
                     if (picture != null)
                     {
-                        // Add Picture to the list for Pictures final saving.
+                        // Add Picture to the list for Pictures.
                         pictures.Add(picture);
                     }
                 }

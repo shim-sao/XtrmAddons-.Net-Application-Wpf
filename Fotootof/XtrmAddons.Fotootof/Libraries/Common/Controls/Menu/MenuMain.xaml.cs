@@ -118,7 +118,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.Menu
             {
                 if(ctrl.JsonContext != null)
                 {
-                    ctrl.ToControl(MenuItem_Display_LogsWindow);
+                    MenuItem_Display_LogsWindow = ctrl.ToControl(MenuItem_Display_LogsWindow);
                 }
 
                 if (MenuItem_Display_LogsWindow.IsChecked)

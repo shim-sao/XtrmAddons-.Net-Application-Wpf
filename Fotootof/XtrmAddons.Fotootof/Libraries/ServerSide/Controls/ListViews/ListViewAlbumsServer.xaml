@@ -253,7 +253,7 @@
 										</ContextMenu>
 									</Grid.ContextMenu>
 
-									<Image Source="{Binding PreviewPicture.ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}, IsAsync=True, Mode=OneWay}"
+									<Image Source="{Binding ThumbnailPicture.ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}, IsAsync=True, Mode=OneWay}"
 										   Width="{StaticResource Icon256Double}"
 										   Stretch="UniformToFill"
 										   MouseEnter="OnAlbum_MouseEnter"

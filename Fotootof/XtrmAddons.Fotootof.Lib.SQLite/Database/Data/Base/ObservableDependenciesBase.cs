@@ -19,17 +19,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// <summary>
         /// 
         /// </summary>
-        private bool isCollectionWritable = true;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private bool isdepPKsWritable = true;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private ObservableCollection<int> depPKs = new ObservableCollection<int>();
+        private List<int> depPKs = new List<int>();
 
         #endregion
 
@@ -45,46 +35,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// <summary>
         /// 
         /// </summary>
-        public IList<int> DependenciesPrimaryKeys
+        public IEnumerable<int> DependenciesPrimaryKeys
         {
             get { return depPKs; }
-            set
+            private set
             {
                 if (value != depPKs)
                 {
-                    depPKs = new ObservableCollection<int>(value);
-                    NotifyPropertyChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool IsCollectionWritable
-        {
-            get { return isCollectionWritable; }
-            private set
-            {
-                if (value != isCollectionWritable)
-                {
-                    isCollectionWritable = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool IsdepPKsWritable
-        {
-            get { return isdepPKsWritable; }
-            private set
-            {
-                if (value != isdepPKsWritable)
-                {
-                    isdepPKsWritable = value;
+                    depPKs = new List<int>(value);
                     NotifyPropertyChanged();
                 }
             }
@@ -120,19 +78,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
             DepPKName = dependenciesPrimaryKeysName;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dependenciesPrimaryKeysName"></param>
-        //public ObservableDependenciesBase(string dependenciesPrimaryKeysName) : base()
-        //{
-        //    if(dependenciesPrimaryKeysName.IsNullOrWhiteSpace())
-        //    {
-        //        throw new ArgumentNullException(nameof(dependenciesPrimaryKeysName));
-        //    }
-        //    DepPKName = dependenciesPrimaryKeysName;
-        //}
-
         #endregion
 
 
@@ -161,8 +106,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                 return;
             }
 
-            IsCollectionWritable = false;
-
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add :
@@ -172,9 +115,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                         if (!(depPKs.ToList().FindIndex(x => x == id) > 0))
                         {
                             depPKs.Add((int)item.GetPropertyValue(DepPKName));
-                            NotifyPropertyChanged();
                         }
                     }
+                    NotifyPropertyChanged("DependenciesPrimaryKeys");
                     break;
 
                 case NotifyCollectionChangedAction.Move :
@@ -187,9 +130,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                         if (!(depPKs.ToList().FindIndex(x => x == id) > 0))
                         {
                             depPKs.Remove((int)item.GetPropertyValue(DepPKName));
-                            NotifyPropertyChanged();
                         }
                     }
+                    NotifyPropertyChanged("DependenciesPrimaryKeys");
                     break;
 
                 case NotifyCollectionChangedAction.Replace :
@@ -199,67 +142,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     if (depPKs.Count > 0)
                     {
                         depPKs.Clear();
-                        NotifyPropertyChanged();
                     }
+                    NotifyPropertyChanged("DependenciesPrimaryKeys");
                     break;
             }
-
-            IsCollectionWritable = true;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
-        protected void OndepPKsCollectionChanged(NotifyCollectionChangedEventArgs e)
-        {
-            if (DepPKName.IsNullOrWhiteSpace())
-            {
-                return;
-            }
-
-            IsdepPKsWritable = false;
-
-            switch (e.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    foreach (int item in e.NewItems)
-                    {
-                        if (!(Items.ToList().FindIndex(x => (int)x.GetPropertyValue(DepPKName) == item) >= 0))
-                        {
-                            T newItem = (T)Activator.CreateInstance(typeof(T));
-                            newItem.SetPropertyValue(DepPKName, item);
-                            Add(newItem);
-                        }
-                    }
-                    break;
-
-                case NotifyCollectionChangedAction.Move:
-                    break;
-
-                case NotifyCollectionChangedAction.Remove:
-                    foreach (int item in e.NewItems)
-                    {
-                        int index = Items.ToList().FindIndex(x => (int)x.GetPropertyValue(DepPKName) == item);
-                        if (index >= 0)
-                        {
-                            RemoveAt(index);
-                        }
-                    }
-                    break;
-
-                case NotifyCollectionChangedAction.Replace:
-                    break;
-
-                case NotifyCollectionChangedAction.Reset:
-                    if (Count > 0)
-                    {
-                        Clear();
-                    }
-                    break;
-            }
-
-            IsdepPKsWritable = true;
         }
 
         #endregion

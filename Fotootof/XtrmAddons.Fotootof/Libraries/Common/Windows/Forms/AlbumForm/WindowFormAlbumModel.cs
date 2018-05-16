@@ -1,6 +1,9 @@
 ﻿using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
+using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
+using System.IO;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
 {
@@ -30,7 +33,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         /// Variable observable collection of color filters.
         /// </summary>
         private InfoEntityCollection colorFilters;
-
 
         #endregion
 
@@ -104,6 +106,35 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
         {
             FiltersQuality = InfoEntityCollection.TypesQuality();
             FiltersColor = InfoEntityCollection.TypesColor();
+        }
+
+        #endregion
+
+
+
+        #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filename"></param>
+        public void UpdateAlbumPictureProperty(string propertyName, string filename)
+        {
+
+
+            // Check if Album has a Picture associated.
+            if ((int)Album.GetPropertyValue(propertyName+"Id") <= 0)
+            {
+                PictureEntity entity = new PictureEntity();
+                entity = Db.Pictures.Add(entity);
+                Album.SetPropertyValue(propertyName, entity);
+            }
+
+            // Bind new image properties.
+            Album.GetPropertyValue<PictureEntity>(propertyName).Bind((new StorageInfoModel(new FileInfo(filename))).ToPicture(), new string[] { "PrimaryKey", "PictureId" });
+
+            // Update image properties in database.
+            Album.SetPropertyValue(propertyName, Db.Pictures.Update(Album.GetPropertyValue<PictureEntity>(propertyName)));
         }
 
         #endregion

@@ -340,7 +340,6 @@
     <Compile Include="Libraries\Common\Controls\Menu\MenuMain.xaml.cs">
       <DependentUpon>MenuMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Libraries\Common\Interfaces\Windows\IWindowForm.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAlbumsModel.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\ListViewAlbumsModel.cs" />
     <Compile Include="Libraries\Common\Windows\Settings\WindowSettingsModel.cs" />
@@ -597,6 +596,12 @@
     </EmbeddedResource>
     <None Include="autoexec.release.bat" />
     <None Include="autoexec.debug.bat" />
+    <Content Include="Assets\Images\Default\album-background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Default\album-preview.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Config\Database\Scheme\update.1.0.18123.2149.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -805,6 +810,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Libraries\Common\Converters\" />
+    <Folder Include="Libraries\Common\Interfaces\" />
     <Folder Include="Libraries\Common\Windows\About\" />
   </ItemGroup>
   <ItemGroup>
@@ -823,8 +829,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == "Debug" ( call "$(ProjectDir)autoexec.debug.bat" )
-if $(ConfigurationName) == "Release" ( call "$(ProjectDir)autoexec.release.bat" )
+    <PostBuildEvent>if $(ConfigurationName) == Debug ( call "$(ProjectDir)autoexec.debug.bat" )
+if $(ConfigurationName) == Release ( call "$(ProjectDir)autoexec.release.bat" )
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

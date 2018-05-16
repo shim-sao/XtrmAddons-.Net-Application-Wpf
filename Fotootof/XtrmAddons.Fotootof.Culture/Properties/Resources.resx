@@ -594,4 +594,10 @@
   <data name="_AutoStart" xml:space="preserve">
     <value>A_uto start</value>
   </data>
+  <data name="Undefine" xml:space="preserve">
+    <value>Undefine</value>
+  </data>
+  <data name="Various" xml:space="preserve">
+    <value>Various</value>
+  </data>
 </root>

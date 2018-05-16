@@ -588,4 +588,10 @@
   <data name="_AutoStart" xml:space="preserve">
     <value>Démarrage a_utomatique</value>
   </data>
+  <data name="Undefine" xml:space="preserve">
+    <value>Non définie</value>
+  </data>
+  <data name="Various" xml:space="preserve">
+    <value>Variées</value>
+  </data>
 </root>

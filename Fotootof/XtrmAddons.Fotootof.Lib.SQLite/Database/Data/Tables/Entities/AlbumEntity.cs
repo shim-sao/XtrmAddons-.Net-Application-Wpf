@@ -94,6 +94,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         [NotMapped]
         public int thumbnailPictureId = 0;
 
+        /// <summary>
+        /// Variable comment for the item.
+        /// </summary>
+        [NotMapped]
+        public string comment = "";
+
+        /// <summary>
+        /// Variable parameters for the item.
+        /// </summary>
+        [NotMapped]
+        public string parameters = "";
+
         #endregion
 
 
@@ -375,18 +387,40 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property comment for the item.
+        /// Property to access to the comment for the item.
         /// </summary>
         [Column(Order = 12)]
         [JsonProperty]
-        public string Comment { get; set; }
+        public string Comment
+        {
+            get { return comment; }
+            set
+            {
+                if (value != comment)
+                {
+                    comment = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property parameters for the item.
+        /// Property to access to the parameters for the item.
         /// </summary>
         [Column(Order = 13)]
         [JsonProperty]
-        public string Parameters { get; set; }
+        public string Parameters
+        {
+            get { return parameters; }
+            set
+            {
+                if (value != parameters)
+                {
+                    parameters = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         #endregion
 
@@ -479,13 +513,42 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
 
 
-        #region Properties : Dependencies
+        #region Properties Dependencies Section
 
         /// <summary>
         /// Property Section id.
         /// </summary>
         [NotMapped]
         public int SectionId { get; set; }
+
+        /// <summary>
+        /// Property to access to the list of Sections associated to the Album.
+        /// </summary>
+        [NotMapped]
+        public List<SectionEntity> Sections
+        {
+            get => ListSections();
+            set => sections = value;
+        }
+
+        /// <summary>
+        /// Propertiy to access to the list of Section dependencies primary key.
+        /// </summary>
+        [NotMapped]
+        public IEnumerable<int> SectionsPK
+            => ListOfPrimaryKeys(AlbumsInSections.ToList(), "SectionId");
+
+        /// <summary>
+        /// Property to access to the collection of relationship Albums in Sections.
+        /// </summary>
+        public ObservableCollection<AlbumsInSections> AlbumsInSections { get; set; }
+            = new ObservableCollection<AlbumsInSections>();
+
+        #endregion
+
+
+
+        #region Properties : Dependencies
 
         /// <summary>
         /// Property Picture id.
@@ -498,16 +561,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [NotMapped]
         public int InfoId { get; set; }
-
-        /// <summary>
-        /// Property to access to the list of Sections associated to the Album.
-        /// </summary>
-        [NotMapped]
-        public List<SectionEntity> Sections
-        {
-            get => ListSections();
-            set => sections = value;
-        }
 
         /// <summary>
         /// Property to access to the list of Pictures associated to the Album.
@@ -530,12 +583,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Propertiy to access to the list of Section dependencies primary key.
-        /// </summary>
-        [NotMapped]
-        public IEnumerable<int> SectionsPK => ListOfPrimaryKeys(AlbumsInSections.ToList(), "SectionId");
-
-        /// <summary>
         /// Propertiy to access to the list of Picture dependencies primary key.
         /// </summary>
         [NotMapped]
@@ -546,13 +593,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [NotMapped]
         public IEnumerable<int> InfosPK => ListOfPrimaryKeys(InfosInAlbums.ToList(), "InfoId");
-
-        /// <summary>
-        /// Property to access to the collection of relationship Albums in Sections.
-        /// </summary>
-        [JsonIgnore]
-        public ObservableCollection<AlbumsInSections> AlbumsInSections { get; set; }
-            = new ObservableCollection<AlbumsInSections>();
 
         /// <summary>
         /// Property to access to the collection of relationship Pictures In Albums entities.
@@ -583,7 +623,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         #endregion
-
 
 
         #region Methods
@@ -680,7 +719,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// 
         /// </summary>
         /// <param name="sectionId"></param>
-        public void UnLinkSection(int sectionId)
+        public void UnlinkSection(int sectionId)
         {
             try
             {
