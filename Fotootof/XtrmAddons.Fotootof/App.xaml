@@ -23,9 +23,11 @@
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Grids.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/ListViews.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Pages.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/PasswordBoxs.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/StackPanels.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TextBlocks.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TextBoxs.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TabControls.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TreeViews.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Windows.xaml"/>
 

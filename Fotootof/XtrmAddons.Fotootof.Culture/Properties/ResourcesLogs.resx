@@ -129,6 +129,15 @@
   <data name="CopyingProgramFiles" xml:space="preserve">
     <value>Copying program files to My Documents user folder. Please wait...</value>
   </data>
+  <data name="DatabaseConnectionReady" xml:space="preserve">
+    <value>Database connection ready.</value>
+  </data>
+  <data name="DatabaseFileFound" xml:space="preserve">
+    <value>Database file found.</value>
+  </data>
+  <data name="DatabaseNotFileFound" xml:space="preserve">
+    <value>Database not file found.</value>
+  </data>
   <data name="DeletingOptionsWaiting" xml:space="preserve">
     <value>Deleting the application options and parameters. Please wait...</value>
   </data>
@@ -137,6 +146,9 @@
   </data>
   <data name="InitializingApplicationWindowComponentDone" xml:space="preserve">
     <value>Initializing application window component. Done !</value>
+  </data>
+  <data name="InitializingDatabaseConnection" xml:space="preserve">
+    <value>Initializing database connection. Please wait...</value>
   </data>
   <data name="ItemDeleted" xml:space="preserve">
     <value>{0} deleted !</value>

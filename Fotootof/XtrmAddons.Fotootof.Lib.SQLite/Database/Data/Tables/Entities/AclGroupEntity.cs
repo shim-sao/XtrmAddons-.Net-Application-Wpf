@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Observables;
 using XtrmAddons.Net.Common.Extensions;
 
 
@@ -15,16 +16,102 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// Class XtrmAddons Fotootof Libraries SQLite AclGroup table entity.
     /// </summary>
     [Table("AclGroups")]
+    [JsonObject(MemberSerialization.OptIn)]
     public partial class AclGroupEntity : EntityBase
     {
         #region Variables
 
         /// <summary>
-        /// Variable list of AclAction associated to the item.
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
+        /// Variable name of the item.
+        /// </summary>
+        [NotMapped]
+        private string name = "";
+
+        /// <summary>
+        /// Variable alias of the item.
+        /// </summary>
+        [NotMapped]
+        private string alias = "";
+
+        /// <summary>
+        /// Variable parent id of the item.
+        /// </summary>
+        [NotMapped]
+        private int parentId = 0;
+
+        /// <summary>
+        /// Variable is default of the item.
+        /// </summary>
+        [NotMapped]
+        private bool isDefault = false;
+
+        /// <summary>
+        /// Variable ordering of the item.
+        /// </summary>
+        [NotMapped]
+        private int ordering = 0;
+
+        /// <summary>
+        /// Variable comment.
+        /// </summary>
+        [NotMapped]
+        private string comment = "";
+
+        #endregion
+
+
+
+        #region Variables Dependencies AclAction
+
+        /// <summary>
+        /// Variable AclAction id (required for entity dependency).
+        /// </summary>
+        [NotMapped]
+        private int aclActionId = 0;
+        /// <summary>
+        /// Variable AclAction dependencies id or primary key.
+        /// </summary>
+        [NotMapped]
+        private IEnumerable<int> aclActionsPK = null;
+
+        /// <summary>
+        /// Variable AclAction associated to the item.
+        /// </summary>
+        [NotMapped]
+        private IEnumerable<AclActionEntity> aclActions = null;
+
+        #endregion
+
+
+
+        #region Variables : Dependencies
+
+
+        #endregion
+
+
+
+        #region Variables : Dependencies
+
+        /// <summary>
+        /// Variable Section primary key (required for entity dependency).
         /// </summary>
         [NotMapped]
         [JsonIgnore]
-        private List<AclActionEntity> aclActions;
+        private int sectionId = 0;
+
+        /// <summary>
+        /// Variable primary key (required for entity dependency).
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private int userId = 0;
 
         /// <summary>
         /// Variable list of Sections associated to the item.
@@ -41,13 +128,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         private List<UserEntity> users;
 
         #endregion
-        
+
 
 
         #region Properties
 
         /// <summary>
-        /// Property primary key auto incremented.
+        /// Property to access to the id or primary key auto incremented.
         /// </summary>
         [Key]
         [Column(Order = 0)]
@@ -65,99 +152,230 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property name of the item.
+        /// Property to access to the name of the item.
         /// </summary>
         [Column(Order = 1)]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Property name of the item.
-        /// </summary>
-        [Column(Order = 2)]
-        public string Alias { get; set; }
-
-        /// <summary>
-        /// Property name of the item.
-        /// </summary>
-        [Column(Order = 3)]
-        public int ParentId { get; set; }
-
-        /// <summary>
-        /// Property is default of the item.
-        /// </summary>
-        [Column(Order = 4)]
-        public bool IsDefault { get; set; }
-
-        /// <summary>
-        /// Property ordering of the item.
-        /// </summary>
-        [Column(Order = 5)]
-        public int Ordering { get; set; }
-
-        /// <summary>
-        /// Property created date.
-        /// </summary>
-        [Column(Order = 6)]
-        public string Comment { get; set; }
-
-        #endregion
-
-        
-
-        #region Properties : Dependencies
-
-        /// <summary>
-        /// Property to access to the AclAction id (required for entity dependency).
-        /// </summary>
-        [NotMapped]
-        [JsonIgnore]
-        public int AclActionId
+        [JsonProperty]
+        public string Name
         {
-            get { return primaryKey; }
+            get { return name; }
             set
             {
-                if (value != primaryKey)
+                if (value != name)
                 {
-                    primaryKey = value;
+                    name = value;
                     NotifyPropertyChanged();
                 }
             }
         }
 
         /// <summary>
-        /// Property to access to the Section primary key (required for entity dependency).
+        /// Property to access to the alias of the item.
         /// </summary>
-        [NotMapped]
-        [JsonIgnore]
-        public int SectionId { get; set; }
+        [Column(Order = 2)]
+        [JsonProperty]
+        public string Alias
+        {
+            get { return alias; }
+            set
+            {
+                if (value != alias)
+                {
+                    alias = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property to access to the User primary key (required for entity dependency).
+        /// Property to access to the parent id or primary key of the item.
+        /// </summary>
+        [Column(Order = 3)]
+        [JsonProperty]
+        public int ParentId
+        {
+            get { return parentId; }
+            set
+            {
+                if (value != parentId)
+                {
+                    parentId = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the is default of the item.
+        /// </summary>
+        [Column(Order = 4)]
+        [JsonProperty]
+        public bool IsDefault
+        {
+            get { return isDefault; }
+            set
+            {
+                if (value != isDefault)
+                {
+                    isDefault = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the ordering of the item.
+        /// </summary>
+        [Column(Order = 5)]
+        [JsonProperty]
+        public int Ordering
+        {
+            get { return ordering; }
+            set
+            {
+                if (value != ordering)
+                {
+                    ordering = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the created date.
+        /// </summary>
+        [Column(Order = 6)]
+        [JsonProperty]
+        public string Comment
+        {
+            get { return comment; }
+            set
+            {
+                if (value != comment)
+                {
+                    comment = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        #endregion
+
+
+
+        #region Properties :  Dependencies AclAction
+
+        /// <summary>
+        /// Property to access to the collection of relationship AclGroups in AclActions.
+        /// </summary>
+        public ObservableAclGroupsInAclActions AclGroupsInAclActions { get; set; }
+            = new ObservableAclGroupsInAclActions("AclActionId");
+
+        /// <summary>
+        /// Property to access to the AclAction id (required for entity dependency).
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
-        public int UserId { get; set; }
+        public int AclActionId
+        {
+            get { return aclActionId; }
+            set
+            {
+                if (value != aclActionId)
+                {
+                    aclActionId = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the list of AclAction dependencies primary key.
+        /// </summary>
+        [NotMapped]
+        [JsonProperty]
+        public IEnumerable<int> AclActionsPK
+        {
+            get
+            {
+                if (aclActionsPK == null)
+                {
+                    aclActionsPK = ListOfPrimaryKeys(AclGroupsInAclActions, "AclActionId");
+                }
+                return ListOfPrimaryKeys(AclGroupsInAclActions, "AclActionId");
+            }
+
+            private set
+            {
+                if (aclActionsPK != value)
+                {
+                    aclActionsPK = value;
+                }
+                NotifyPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Property to access to the list of AclAction associated to the item.
         /// </summary>
         [NotMapped]
-        public List<AclActionEntity> AclActions
+        public IEnumerable<AclActionEntity> AclActions
         {
-            get => ListAclActions();
-            set => aclActions = value;
+            get
+            {
+                if (aclActions == null || aclActions.Count() != AclGroupsInAclActions?.Count)
+                {
+                    aclActions = ListEntities<AclActionEntity>(AclGroupsInAclActions);
+                }
+
+                return aclActions;
+            }
+
+            private set
+            {
+                if (aclActions != value)
+                {
+                    aclActions = value;
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+        #endregion
+
+
+
+        #region Properties : Dependencies Section
+
+        /// <summary>
+        /// Property to access to the Section primary key (required for entity dependency).
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        public int SectionId
+        {
+            get { return sectionId; }
+            set
+            {
+                if (value != sectionId)
+                {
+                    sectionId = value;
+                    NotifyPropertyChanged();
+                }
+            }
         }
 
         /// <summary>
-        /// Propertiy to access to the list of AclAction dependencies primary key.
+        /// Propertiy to access to the list of Section dependencies primary key.
         /// </summary>
         [NotMapped]
-        public List<int> AclActionsPK => ListOfPrimaryKeys(AclGroupsInAclActions.ToList(), "AclActionId");
+        public IEnumerable<int> SectionsPK
+            => ListOfPrimaryKeys(SectionsInAclGroups.ToList(), "SectionId");
 
         /// <summary>
         /// Property to access to the list of Sections associated to the item.
         /// </summary>
         [NotMapped]
+        [JsonIgnore]
         public List<SectionEntity> Sections
         {
             get => ListSections();
@@ -165,10 +383,42 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Propertiy to access to the list of Section dependencies primary key.
+        /// Property to access to the collection of relationship Sections in AclGroups.
+        /// </summary>
+        [JsonIgnore]
+        public ObservableCollection<SectionsInAclGroups> SectionsInAclGroups { get; set; }
+            = new ObservableCollection<SectionsInAclGroups>();
+
+        #endregion
+
+
+
+        #region Properties : Dependencies User
+
+        /// <summary>
+        /// Property to access to the User primary key (required for entity dependency).
         /// </summary>
         [NotMapped]
-        public List<int> SectionsPK => ListOfPrimaryKeys(SectionsInAclGroups.ToList(), "SectionId");
+        [JsonIgnore]
+        public int UserId
+        {
+            get { return userId; }
+            set
+            {
+                if (value != userId)
+                {
+                    userId = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Propertiy to access to the list of User dependencies primary key.
+        /// </summary>
+        [NotMapped]
+        public IEnumerable<int> UsersPK
+            => ListOfPrimaryKeys(UsersInAclGroups.ToList(), "UserId");
 
         /// <summary>
         /// Property to access to the list of Users associated to the item.
@@ -181,29 +431,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Propertiy to access to the list of User dependencies primary key.
+        /// Property to access to the collection of relationship Users in AclGroups.
         /// </summary>
-        [NotMapped]
-        public List<int> UsersPK => ListOfPrimaryKeys(UsersInAclGroups.ToList(), "UserId");
-
-        /// <summary>
-        /// Property collection of relationship AclGroups in AclActions.
-        /// </summary>
-        [JsonIgnore]
-        public ObservableCollection<AclGroupsInAclActions> AclGroupsInAclActions { get; set; }
-            = new ObservableCollection<AclGroupsInAclActions>();
-
-        /// <summary>
-        /// Property collection of relationship Sections in AclGroups.
-        /// </summary>
-        [JsonIgnore]
-        public ObservableCollection<SectionsInAclGroups> SectionsInAclGroups { get; set; }
-            = new ObservableCollection<SectionsInAclGroups>();
-
-        /// <summary>
-        /// Property collection of relationship Users in AclGroups.
-        /// </summary>
-        [JsonIgnore]
         public ObservableCollection<UsersInAclGroups> UsersInAclGroups { get; set; }
             = new ObservableCollection<UsersInAclGroups>();
         
@@ -218,8 +447,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         public AclGroupEntity()
         {
-            Initialize();
-
             AclGroupsInAclActions.CollectionChanged += (s, e) => { aclActions = null; };
             SectionsInAclGroups.CollectionChanged += (s, e) => { sections = null; };
             UsersInAclGroups.CollectionChanged += (s, e) => { users = null; };
@@ -227,41 +454,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
         #endregion
 
-        
 
-        #region Methods
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Initialize()
-        {
-            if (PrimaryKey <= 0)
-            {
-                PrimaryKey = 0;
-            }
-
-            this.InitializeNulls();
-        }
-
-        /// <summary>
-        /// Method to get the list of associated AclAction to the item.
-        /// </summary>
-        /// <returns></returns>
-        private List<AclActionEntity> ListAclActions()
-        {
-            if (aclActions == null || aclActions.Count == 0)
-            {
-                aclActions = new List<AclActionEntity>();
-
-                if (AclGroupsInAclActions != null)
-                {
-                    aclActions = ListEntities<AclActionEntity>(AclGroupsInAclActions);
-                }
-            }
-
-            return aclActions;
-        }
+        #region Methods AclAction
 
         /// <summary>
         /// 
@@ -294,57 +489,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             }
             catch { }
         }
+        
 
-        /// <summary>
-        /// Method to get the list of associated Users to the item.
-        /// </summary>
-        /// <returns>A list of associated Users.</returns>
-        private List<UserEntity> ListUsers()
-        {
-            if (users == null)
-            {
-                users = new List<UserEntity>();
+        #endregion
 
-                if (UsersInAclGroups != null)
-                {
-                    users = ListEntities<UserEntity>(UsersInAclGroups);
-                }
-            }
 
-            return users;
-        }
 
-        /// <summary>
-        /// Method to link User to the AclGroup.
-        /// </summary>
-        /// <param name="sectionId">A User primary key.</param>
-        public void LinkUser(int userId)
-        {
-            try
-            {
-                int index = UsersInAclGroups.ToList().FindIndex(o => o.UserId == userId);
-
-                if (index < 0)
-                {
-                    UsersInAclGroups.Add(new UsersInAclGroups { UserId = userId });
-                }
-            }
-            catch { }
-        }
-
-        /// <summary>
-        /// Method to unlink User of the AclGroup.
-        /// </summary>
-        /// <param name="sectionId">A User primary key.</param>
-        public void UnLinkUser(int userId)
-        {
-            try
-            {
-                int index = UsersInAclGroups.ToList().FindIndex(o => o.UserId == userId);
-                UsersInAclGroups.RemoveAt(index);
-            }
-            catch { }
-        }
+        #region Methods Section
 
         /// <summary>
         /// Method to get the list of associated Sections to the item.
@@ -393,6 +544,63 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             {
                 int index = SectionsInAclGroups.ToList().FindIndex(o => o.SectionId == sectionId);
                 SectionsInAclGroups.RemoveAt(index);
+            }
+            catch { }
+        }
+
+        #endregion
+
+
+
+        #region Methods User
+
+        /// <summary>
+        /// Method to get the list of associated Users to the item.
+        /// </summary>
+        /// <returns>A list of associated Users.</returns>
+        private List<UserEntity> ListUsers()
+        {
+            if (users == null)
+            {
+                users = new List<UserEntity>();
+
+                if (UsersInAclGroups != null)
+                {
+                    users = ListEntities<UserEntity>(UsersInAclGroups);
+                }
+            }
+
+            return users;
+        }
+
+        /// <summary>
+        /// Method to link User to the AclGroup.
+        /// </summary>
+        /// <param name="sectionId">A User primary key.</param>
+        public void LinkUser(int userId)
+        {
+            try
+            {
+                int index = UsersInAclGroups.ToList().FindIndex(o => o.UserId == userId);
+
+                if (index < 0)
+                {
+                    UsersInAclGroups.Add(new UsersInAclGroups { UserId = userId });
+                }
+            }
+            catch { }
+        }
+
+        /// <summary>
+        /// Method to unlink User of the AclGroup.
+        /// </summary>
+        /// <param name="sectionId">A User primary key.</param>
+        public void UnLinkUser(int userId)
+        {
+            try
+            {
+                int index = UsersInAclGroups.ToList().FindIndex(o => o.UserId == userId);
+                UsersInAclGroups.RemoveAt(index);
             }
             catch { }
         }

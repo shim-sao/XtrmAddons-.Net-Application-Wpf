@@ -16,7 +16,11 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
     {
         #region Properties
 
-        public static SQLiteSvc Database => (SQLiteSvc)ApplicationSession.Properties.Database;
+        /// <summary>
+        /// Property wrapper to access to the main database connector.
+        /// </summary>
+        public static SQLiteSvc Database
+            => (SQLiteSvc)ApplicationSession.Properties.Database;
 
         /// <summary>
         /// Property to access to the collection options filters.

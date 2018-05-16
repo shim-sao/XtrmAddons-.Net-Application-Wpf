@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies
@@ -7,6 +8,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies
     /// Class XtrmAddons Fotootof Libraries Users in AclGroups Entity Object.
     /// </summary>
     [Table("UsersInAclGroups")]
+    [JsonObject(MemberSerialization.OptIn)]
     public class UsersInAclGroups
     {
         #region Properties
@@ -15,12 +17,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies
         /// Property the id of the User entity.
         /// </summary>
         [Column(Order = 0)]
+        [JsonProperty]
         public int UserId { get; set; }
 
         /// <summary>
         /// Property the id of the AclGroup entity.
         /// </summary>
         [Column(Order = 1)]
+        [JsonProperty]
         public int AclGroupId { get; set; }
 
 

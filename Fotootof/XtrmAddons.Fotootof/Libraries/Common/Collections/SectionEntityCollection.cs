@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using XtrmAddons.Fotootof.Lib.Api.Models.Json;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Collections
 {
@@ -102,28 +104,51 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
 
             try
             {
+                // Get all Section to check some properties before inserting new item.
                 var items = MainWindow.Database.Sections.List(GetOptionsDefault());
-                bool newItem = true;
 
+                // Define if it is first item insertion.
+                bool firstItem = true;
+
+                // Check if we have new items list to insert.
                 if (newItems != null && newItems.Count > 0)
                 {
+                    int i = 0;
                     foreach (SectionEntity entity in newItems)
                     {
-                        // todo : delete when Class Entity update NotifyPropertyChanged
-                        entity.Initialize();
-                        
-                        if(items.Count == 0 && newItem)
+                        // Check it is the first entity to set IsDefault if required.
+                        if(items.Count == 0 && firstItem)
                         {
                             entity.IsDefault = true;
-                            newItem = false;
+                            firstItem = false;
                         }
 
+                        // Check if the alias is empty. Set name if required.
+                        if(entity.Alias.IsNullOrWhiteSpace())
+                        {
+                            entity.Alias = entity.Name;
+                        }
+
+                        //SectionEntity se = MainWindow.Database.Sections.SingleOrNull(new SectionOptionsSelect { Alias = entity.Alias }); // Working but calling Db for nothing !
+                        //if (se != null && se.PrimaryKey != entity.PrimaryKey)
+
+                        // Check if another entity with the same alias is in database.
+                        items.ToList().FindIndex(x => x.Alias == entity.Alias && x.PrimaryKey != entity.PrimaryKey);
+                        if ((items.ToList().FindIndex(x => x.Alias == entity.Alias && x.PrimaryKey != entity.PrimaryKey) >= 0) == false)
+                        {
+                            DateTime d = DateTime.Now;
+                            entity.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss") + "-" + i;
+                        }
+
+                        // Finally add the entity into the database.
                         MainWindow.Database.Sections.Add(entity);
+                        i++;
 
                         log.Info(string.Format("Section [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
+                // Clear navigation cache.
                 AppNavigator.Clear();
                 log.Info("Adding Section(s). Done !");
             }

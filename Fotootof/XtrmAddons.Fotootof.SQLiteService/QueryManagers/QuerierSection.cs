@@ -240,7 +240,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// <param name="sectionId"></param>
         /// <param name="dependenciesPKs"></param>
         /// <returns></returns>
-        public async Task<int> CleanDependenciesAsync(string dependencyName, string dependencyPKName, int sectionId, List<int> dependenciesPKs)
+        public async Task<int> CleanDependenciesAsync(string dependencyName, string dependencyPKName, int sectionId, IEnumerable<int> dependenciesPKs)
         {
             using (Db.Context)
             {

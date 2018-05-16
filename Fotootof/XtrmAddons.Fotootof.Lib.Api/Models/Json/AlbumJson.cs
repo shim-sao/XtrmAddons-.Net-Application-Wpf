@@ -67,39 +67,19 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
         public DateTime LastAdded { get; set; }
 
         /// <summary>
-        /// Variable the picture path.
+        /// Property to access to the background picture id.
         /// </summary>
-        public string PicturePath { get; set; }
+        public int BackgroundPictureId { get; set; }
 
         /// <summary>
-        /// Variable the picture width.
+        /// Property to access to the preview picture id.
         /// </summary>
-        public int PictureWidth { get; set; }
+        public int PreviewPictureId { get; set; }
 
         /// <summary>
-        /// Variable the picture height.
+        /// Property to access to the thumbnail picture id.
         /// </summary>
-        public int PictureHeight { get; set; }
-
-        /// <summary>
-        /// Variable the picture length.
-        /// </summary>
-        //public long PictureLength { get; set; }
-
-        /// <summary>
-        /// Variable the thumbnail picture path.
-        /// </summary>
-        public string ThumbnailPath { get; set; }
-
-        /// <summary>
-        /// Variable the thumbnail width.
-        /// </summary>
-        public int ThumbnailWidth { get; set; }
-
-        /// <summary>
-        /// Variable the thumbnail height.
-        /// </summary>
-        public int ThumbnailHeight { get; set; }
+        public int ThumbnailPictureId { get; set; }
 
         /// <summary>
         /// Variable the thumbnail length.
@@ -110,6 +90,11 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
         /// Variable the comment.
         /// </summary>
         public string Comment { get; set; }
+
+        /// <summary>
+        /// Property parameters for the item.
+        /// </summary>
+        public string Parameters { get; set; }
 
         /// <summary>
         /// Variable list of categories in folder.
@@ -170,20 +155,12 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
             Created = entity.Created;
             Modified = entity.Modified;
 
-            PicturePath = entity.PicturePath;
-            PictureWidth = entity.PictureWidth;
-            PictureHeight = entity.PictureHeight;
-            //PictureLength = entity.PictureLength;
-
-            ThumbnailPath = entity.ThumbnailPath;
-            ThumbnailWidth = entity.ThumbnailWidth;
-            ThumbnailHeight = entity.ThumbnailHeight;
-            //ThumbnailHeight = entity.ThumbnailLength;
-
             if (auth)
             {
                 Comment = entity.Comment;
             }
+
+            Parameters = entity.Parameters;
         }
 
         /// <summary>
@@ -201,16 +178,10 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
             entity.DateStart = DateStart;
             entity.DateEnd = DateEnd;
             entity.Created = Created;
-            Modified = entity.Modified;
+            entity.Modified = Modified;
 
-            entity.PicturePath = PicturePath;
-            entity.PictureWidth = PictureWidth;
-            entity.PictureHeight = PictureHeight;
-
-            entity.ThumbnailPath = ThumbnailPath;
-            entity.ThumbnailWidth = ThumbnailWidth;
-            entity.ThumbnailHeight = ThumbnailHeight;
             entity.Comment = Comment;
+            entity.Parameters = Parameters;
 
             return entity;
         }

@@ -1,6 +1,4 @@
-﻿
-using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -10,7 +8,7 @@ using XtrmAddons.Net.Application;
 
 namespace XtrmAddons.Fotootof
 {
-    public partial class App : System.Windows.Application
+    public partial class App : Application
     {
         #region Variables
 
@@ -87,7 +85,7 @@ namespace XtrmAddons.Fotootof
             ApplicationBase.Debug();
 
             // Initialize application preferences.
-            InitializePreferencesAsync();
+            InitializePreferences();
 
             // Initialize application options.
             InitializeOPtions();
@@ -152,16 +150,16 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Method example of custom preferences settings adding.
         /// </summary>
-        public async void InitializePreferencesAsync()
+        public void InitializePreferences()
         {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
             // Add application storage directories.
-            await SettingsPreferences.InitializeStorage();
+            SettingsPreferences.InitializeStorage();
 
             // Copy program files to My Documents user folder.
             Trace.WriteLine((string)Translation.DLogs.CopyingProgramFiles);
-            await ApplicationBase.CopyConfigFiles(true);
+            ApplicationBase.CopyConfigFiles(true);
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }

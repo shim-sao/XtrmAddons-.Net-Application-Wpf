@@ -136,7 +136,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             Trace.WriteLine("-------------------------------------------------------------");
             Trace.WriteLine("Input_Error Name => " + tb.Name);
             Trace.WriteLine("Input_Error Text => " + tb.Text);
-            Trace.WriteLine("ButtonSave.IsEnabled = " + ButtonSave.IsEnabled);
+            Trace.WriteLine("Button_Save.IsEnabled = " + Button_Save.IsEnabled);
             Trace.WriteLine("-------------------------------------------------------------");
         }
 
@@ -173,11 +173,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
 
             if (tb.Text.IsNullOrWhiteSpace())
             {
-                ButtonSave.IsEnabled = false;
+                Button_Save.IsEnabled = false;
             }
             else
             {
-                ButtonSave.IsEnabled = IsSaveEnabled;
+                Button_Save.IsEnabled = IsSaveEnabled;
             }
             
             previewAlias = tb.Text.Sanitize().RemoveDiacritics().ToLower();
@@ -188,7 +188,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             Trace.WriteLine("NewForm.Name = " + NewForm.Name);
             Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
 
-            Trace.WriteLine("ButtonSave.IsEnabled = " + ButtonSave.IsEnabled);
+            Trace.WriteLine("Button_Save.IsEnabled = " + Button_Save.IsEnabled);
             Trace.WriteLine("-------------------------------------------------------------");
         }
 
@@ -224,11 +224,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
 
             if (tb.Text.IsNullOrWhiteSpace())
             {
-                ButtonSave.IsEnabled = false;
+                Button_Save.IsEnabled = false;
             }
             else
             {
-                ButtonSave.IsEnabled = IsSaveEnabled;
+                Button_Save.IsEnabled = IsSaveEnabled;
             }
 
             Trace.WriteLine("InputName.Text = " + InputName.Text);
@@ -236,7 +236,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             Trace.WriteLine("NewForm.Name = " + NewForm.Name);
             Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
 
-            Trace.WriteLine("ButtonSave.IsEnabled = " + IsSaveEnabled);
+            Trace.WriteLine("Button_Save.IsEnabled = " + IsSaveEnabled);
             Trace.WriteLine("-------------------------------------------------------------");
         }
 
@@ -251,11 +251,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
 
             if (tb.Text.IsNullOrWhiteSpace())
             {
-                ButtonSave.IsEnabled = false;
+                Button_Save.IsEnabled = false;
             }
             else
             {
-                ButtonSave.IsEnabled = IsSaveEnabled;
+                Button_Save.IsEnabled = IsSaveEnabled;
             }
 
             Trace.WriteLine("-------------------------------------------------------------");
@@ -267,7 +267,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             Trace.WriteLine("NewForm.Name = " + NewForm.Name);
             Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
 
-            Trace.WriteLine("ButtonSave.IsEnabled = " + IsSaveEnabled);
+            Trace.WriteLine("Button_Save.IsEnabled = " + IsSaveEnabled);
             Trace.WriteLine("-------------------------------------------------------------");
         }
 
@@ -295,11 +295,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
 
             if(tb.Text.IsNullOrWhiteSpace())
             {
-                ButtonSave.IsEnabled = false;
+                Button_Save.IsEnabled = false;
             }
             else
             {
-                ButtonSave.IsEnabled = IsSaveEnabled;
+                Button_Save.IsEnabled = IsSaveEnabled;
             }
 
             Trace.WriteLine("InputName.Text = " + InputName.Text);
@@ -307,7 +307,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             Trace.WriteLine("NewForm.Name = " + NewForm.Name);
             Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
 
-            Trace.WriteLine("ButtonSave.IsEnabled = " + ButtonSave.IsEnabled);
+            Trace.WriteLine("Button_Save.IsEnabled = " + Button_Save.IsEnabled);
             Trace.WriteLine("-------------------------------------------------------------");
         }
 
@@ -323,11 +323,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
 
             if (tb.Text.IsNullOrWhiteSpace())
             {
-                ButtonSave.IsEnabled = false;
+                Button_Save.IsEnabled = false;
             }
             else
             {
-                ButtonSave.IsEnabled = IsSaveEnabled;
+                Button_Save.IsEnabled = IsSaveEnabled;
             }
 
             Trace.WriteLine("-------------------------------------------------------------");
@@ -339,7 +339,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             Trace.WriteLine("NewForm.Name = " + NewForm.Name);
             Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
 
-            Trace.WriteLine("ButtonSave.IsEnabled = " + IsSaveEnabled);
+            Trace.WriteLine("Button_Save.IsEnabled = " + IsSaveEnabled);
             Trace.WriteLine("-------------------------------------------------------------");
         }
 
@@ -354,11 +354,11 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
 
             if (tb.Text.IsNullOrWhiteSpace())
             {
-                ButtonSave.IsEnabled = false;
+                Button_Save.IsEnabled = false;
             }
             else
             {
-                ButtonSave.IsEnabled = IsSaveEnabled;
+                Button_Save.IsEnabled = IsSaveEnabled;
             }
 
             Trace.WriteLine("-------------------------------------------------------------");
@@ -370,7 +370,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
             Trace.WriteLine("NewForm.Name = " + NewForm.Name);
             Trace.WriteLine("NewForm.Alias = " + NewForm.Alias);
 
-            Trace.WriteLine("ButtonSave.IsEnabled = " + IsSaveEnabled);
+            Trace.WriteLine("Button_Save.IsEnabled = " + IsSaveEnabled);
             Trace.WriteLine("-------------------------------------------------------------");
         }
 
@@ -403,7 +403,8 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">The text changed event arguments.</param>
-        protected override bool IsSaveEnabled => ValidateForm();
+        public override bool IsSaveEnabled
+            => IsValidInputs();
 
         /// <summary>
         /// 

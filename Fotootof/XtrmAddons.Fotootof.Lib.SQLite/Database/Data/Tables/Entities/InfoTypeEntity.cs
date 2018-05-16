@@ -1,23 +1,57 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server SQLite User table entity.
+    /// Class XtrmAddons Fotootof Server SQLite Info Type Entity.
     /// </summary>
     [Table("InfosTypes")]
+    [JsonObject(MemberSerialization.OptIn)]
     public partial class InfoTypeEntity : EntityBase
     {
         #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        [NotMapped]
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
+        /// Variable name of the Info Type.
+        /// </summary>
+        [NotMapped]
+        private string name = "";
+
+        /// <summary>
+        /// Variable alias of the Info Type.
+        /// </summary>
+        [NotMapped]
+        private string alias = "";
+
+        /// <summary>
+        /// Variable description of the Info Type.
+        /// </summary>
+        [NotMapped]
+        private string description = "";
+
+        /// <summary>
+        /// Variable to define if the Info Type is a default item.
+        /// </summary>
+        [NotMapped]
+        private bool isDefault = false;
+
+        /// <summary>
+        /// Variable order place of the Info Type.
+        /// </summary>
+        [NotMapped]
+        private int ordering = 0;
+
         #endregion
 
 
@@ -25,7 +59,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Properties
 
         /// <summary>
-        /// Propmerty primary key auto incremented.
+        /// Property to access to the primary key auto incremented.
         /// </summary>
         [Key]
         [Column(Order = 0)]
@@ -43,34 +77,95 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property Name of the Info.
+        /// Property to access to the name of the Section.
         /// </summary>
         [Column(Order = 1)]
-        public string Name { get; set; }
+        [JsonProperty]
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                if (value != name)
+                {
+                    name = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property Alias of the Info.
+        /// <para>Property to access to the alias of the Section.</para>
+        /// <para>The alias is automaticaly formated when it is changed.</para>
         /// </summary>
         [Column(Order = 2)]
-        public string Alias { get; set; }
+        [JsonProperty]
+        public string Alias
+        {
+            get { return alias; }
+            set
+            {
+                if (value != alias)
+                {
+                    alias = value.Sanitize().RemoveDiacritics().ToLower();
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property Description of the Info.
+        /// Property to access to the description of the item.
         /// </summary>
         [Column(Order = 3)]
-        public string Description { get; set; }
+        [JsonProperty]
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                if (value != description)
+                {
+                    description = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property is default of the item.
+        /// Property to access to the is default item.
         /// </summary>
         [Column(Order = 4)]
-        public bool IsDefault { get; set; }
-        
+        [JsonProperty]
+        public bool IsDefault
+        {
+            get { return isDefault; }
+            set
+            {
+                if (value != isDefault)
+                {
+                    isDefault = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         /// <summary>
-        /// Property order place of the item.
+        /// Property to access to the order place of the item.
         /// </summary>
         [Column(Order = 5)]
-        public int Ordering { get; set; }
+        [JsonProperty]
+        public int Ordering
+        {
+            get { return ordering; }
+            set
+            {
+                if (value != ordering)
+                {
+                    ordering = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         #endregion
 
@@ -78,30 +173,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
         #region Constructor
 
-        public InfoTypeEntity()
-        {
-            Initialize();
-        }
-
-        #endregion
-
-
-
-        #region Methods
-
         /// <summary>
-        /// 
+        /// Class XtrmAddons Fotootof Server SQLite Info Type Entity Constructor.
         /// </summary>
-        public void Initialize()
-        {
-            if (PrimaryKey <= 0)
-            {
-                PrimaryKey = 0;
-            }
-
-            this.InitializeNulls();
-            Alias = Alias.RemoveDiacritics().Sanitize();
-        }
+        public InfoTypeEntity() { }
 
         #endregion
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Data;
 using XtrmAddons.Net.Common.Extensions;
@@ -19,7 +20,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters
         public static T Entity { get; set; }
 
         /// <summary>
-        /// Property to access to the entity dependencies primry key name..
+        /// Property to access to the entity dependencies primary key name..
         /// </summary>
         public abstract string DependenciesPKName { get; }
 
@@ -37,7 +38,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters
         {
             if (Entity != null)
             {
-                return ((List<int>)(Entity).GetPropertyValue(DependenciesPKName, false))?.Contains((int)value);
+                return ((ObservableCollection<int>)(Entity).GetPropertyValue(DependenciesPKName, false))?.Contains((int)value);
             }
 
             return false;

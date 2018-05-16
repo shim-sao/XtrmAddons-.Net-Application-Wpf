@@ -276,9 +276,6 @@
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
-  <data name="MainWindowTitle" xml:space="preserve">
-    <value>Fotootof Server Administration</value>
-  </data>
   <data name="MessageBox_Acceptation_DeleteGeneric" xml:space="preserve">
     <value>Are you sure you want to delete the {0} : {1} ?</value>
   </data>
@@ -469,7 +466,7 @@
     <value>_About XtrmAddons Fotootof Server</value>
   </data>
   <data name="_AddSection" xml:space="preserve">
-    <value>Add Section</value>
+    <value>Add _Section</value>
   </data>
   <data name="_AddToFirewall" xml:space="preserve">
     <value>_Add to Firewall</value>
@@ -590,5 +587,17 @@
   </data>
   <data name="RefreshPictures" xml:space="preserve">
     <value>Refresh pictures.</value>
+  </data>
+  <data name="FormFieldRequired" xml:space="preserve">
+    <value>The field {0} is required and must be not empty.</value>
+  </data>
+  <data name="_AutoStart" xml:space="preserve">
+    <value>A_uto start</value>
+  </data>
+  <data name="Undefine" xml:space="preserve">
+    <value>Undefine</value>
+  </data>
+  <data name="Various" xml:space="preserve">
+    <value>Various</value>
   </data>
 </root>

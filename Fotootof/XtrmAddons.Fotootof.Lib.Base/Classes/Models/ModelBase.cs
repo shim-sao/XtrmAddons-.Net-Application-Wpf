@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 
@@ -18,7 +19,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
         /// Variable logger.
         /// </summary>
         protected static readonly log4net.ILog log =
-        log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 
@@ -27,19 +28,25 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
         #region Properties
 
         /// <summary>
-        /// Accessors owner base associated to the model.
+        /// Property alias to access to the main database connector.
+        /// </summary>
+        public static SQLiteSvc Db
+            => (SQLiteSvc)ApplicationSession.Properties.Database;
+
+        /// <summary>
+        /// Property to access to the owner object associated to the model.
         /// </summary>
         public T OwnerBase { get; protected set; }
 
         /// <summary>
-        /// Property to access to the dynamic translation words.
+        /// Property alias to access to the dynamic translation words.
         /// </summary>
-        public dynamic TranslationWords => Culture.Translation.Words;
+        public dynamic DWords => Culture.Translation.DWords;
 
         /// <summary>
-        /// Property to access to the dynamic translation logs.
+        /// Property alias to access to the dynamic translation logs.
         /// </summary>
-        public dynamic TranslationLogs => Culture.Translation.Logs;
+        public dynamic DLogs => Culture.Translation.DLogs;
 
         #endregion
 
@@ -93,7 +100,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
         /// <para>Send property changed event</para>
         /// </summary>
         /// <param name="propertyName">The name of the property.</param>
-        [Obsolete("Use NotifyPropertyChanged() instead.", false)]
+        [Obsolete("Use NotifyPropertyChanged() instead.", true)]
         protected void RaisePropertyChanged(string propertyName)
         {
             NotifyPropertyChanged(propertyName);

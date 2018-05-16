@@ -1,5 +1,5 @@
 ﻿<base:WindowBaseForm 
-    x:Name="WindowSectionForm"
+	x:Name="UCWindowSectionForm"
     x:Class="XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.SectionForm.WindowFormSection"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -15,7 +15,10 @@
     Title="{x:Static p:Resources.WindowSectionFormTitle}"
     Background="{StaticResource ResourceKey=DarkGrey}"
     ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen">
+    WindowStartupLocation="CenterScreen"
+    FocusManager.FocusedElement="{Binding ElementName=InputName}"
+	Loaded="Window_Load"
+	Closing="Window_Closing">
 	
 	<Grid Margin="2"
 		  Background="{StaticResource ResourceKey=LightGrey}">
@@ -52,31 +55,26 @@
 								<TextBox x:Name="InputName"
 										 Style="{StaticResource Textbox_FieldInput_Required}"
 										 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
-										 Validation.Error="Input_Error"
-										 SourceUpdated="InputName_SourceUpdated"
-										 TargetUpdated="Input_Updated"
-										 TextChanged="InputName_TextChanged"
+										 Validation.Error="OnInput_ValidationError"
+										 SourceUpdated="OnInputStringRequired_SourceUpdated"
+										 TargetUpdated="OnInput_TargetUpdated"
+										 TextChanged="OnInputStringRequired_TextChanged"
 										 Width="310">
 
 									<TextBox.Text>
 										<Binding Path="Section.Name"
-												 Mode="TwoWay"
-												 UpdateSourceTrigger="LostFocus"
-												 IsAsync="True"
-												 ValidatesOnDataErrors="True"
-												 ValidatesOnExceptions="True">
+											 Mode="TwoWay"
+											 UpdateSourceTrigger="LostFocus"
+											 IsAsync="True"
+											 ValidatesOnDataErrors="True"
+											 ValidatesOnExceptions="True"
+											 NotifyOnValidationError="True"
+											 NotifyOnSourceUpdated="True"
+											 NotifyOnTargetUpdated="True">
+
 											<Binding.ValidationRules>
 												<rrString:StringRequired />
 											</Binding.ValidationRules>
-											<Binding.NotifyOnValidationError>
-												True
-											</Binding.NotifyOnValidationError>
-											<Binding.NotifyOnSourceUpdated>
-												True
-											</Binding.NotifyOnSourceUpdated>
-											<Binding.NotifyOnTargetUpdated>
-												True
-											</Binding.NotifyOnTargetUpdated>
 										</Binding>
 									</TextBox.Text>
 								</TextBox>
@@ -84,6 +82,7 @@
 							</StackPanel>
                             <!-- #endregion : Field Name -->
 
+							
                             <!-- #region : Field Alias -->
                             <StackPanel Orientation="Horizontal"
 										Style="{StaticResource Field}">
@@ -92,54 +91,29 @@
 										   Style="{StaticResource FieldLabel}"/>
 
 								<TextBox x:Name="InputAlias"
-										 Style="{StaticResource Textbox_FieldInput_Required}"
-										 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
-										 Validation.Error="Input_Error"
-										 SourceUpdated="InputAlias_SourceUpdated"
-										 TargetUpdated="Input_Updated"
-										 TextChanged="InputAlias_TextChanged"
-										 Width="310">
-
-									<TextBox.Text>
-										<Binding Path="Section.Alias"
-												 Mode="TwoWay"
-												 UpdateSourceTrigger="LostFocus"
-												 IsAsync="True"
-												 ValidatesOnDataErrors="True"
-												 ValidatesOnExceptions="True">
-											<Binding.ValidationRules>
-												<rrString:StringRequired />
-											</Binding.ValidationRules>
-											<Binding.NotifyOnValidationError>
-												True
-											</Binding.NotifyOnValidationError>
-											<Binding.NotifyOnSourceUpdated>
-												True
-											</Binding.NotifyOnSourceUpdated>
-											<Binding.NotifyOnTargetUpdated>
-												True
-											</Binding.NotifyOnTargetUpdated>
-										</Binding>
-									</TextBox.Text>
-								</TextBox>
+										 Style="{StaticResource Textbox_FieldInput}"
+										 Text="{Binding Path=Section.Alias, Mode=TwoWay, IsAsync=True}"
+										 Width="310"/>
 
 							</StackPanel>
                             <!-- #endregion : Field Alias -->
 
-                            <!-- #region : Field Default -->
+							
+							<!-- #region : Field IsDefault -->
                             <StackPanel Orientation="Horizontal"
 										Style="{StaticResource Field}">
 
                                 <TextBlock Text="{x:Static p:Resources.Default}"
 										   Style="{StaticResource FieldLabel}"/>
 
-                                <CheckBox x:Name="InputDefault"
+								<CheckBox x:Name="InputIsDefault"
 										  IsChecked="{Binding Path=Section.IsDefault, Mode=TwoWay}"/>
 
                             </StackPanel>
-                            <!-- #endregion : Field Default -->
+							<!-- #endregion : Field IsDefault -->
 
-                            <!-- #region : Field Alias -->
+							
+							<!-- #region : Field Description -->
                             <StackPanel Orientation="Horizontal"
 										Style="{StaticResource Field}">
 
@@ -151,8 +125,9 @@
 										 Width="310"/>
 
                             </StackPanel>
-                            <!-- #endregion : Field Alias -->
+							<!-- #endregion : Field Description -->
 
+							
                             <!-- #region : Field Comment -->
                             <StackPanel Orientation="Horizontal"
 										Style="{StaticResource Field}">
@@ -200,7 +175,6 @@
 							  Height="260"
 							  Width="430"
 							  SelectionUnit="FullRow"
-							  SelectionChanged="DataGridCollectionAlbum_SelectionChanged"
 							  Cursor="Hand"
 							  CanUserReorderColumns="False"
 							  CanUserResizeColumns="False"
@@ -300,7 +274,6 @@
 							  Height="260"
 							  Width="430"
 							  SelectionUnit="FullRow"
-							  SelectionChanged="DataGridCollectionAclGroup_SelectionChanged"
 							  Cursor="Hand"
 							  CanUserReorderColumns="False"
 							  CanUserResizeColumns="False"
@@ -380,25 +353,15 @@
 							VerticalAlignment="center"
 							Height="30">
 
-                    <Button x:Name="ButtonSave"
-							IsEnabled="False"
-							IsDefault="True"
-							Click="DialogSave_Click"
-							Margin="0,0,15,0"
+					<Button x:Name="Button_Save"
 							Content="{x:Static p:Resources.Save}"
-							MinWidth="80"
-							Style="{StaticResource RoundCorner}"
-							Background="{StaticResource ResourceKey=MediumGrey}"
-							Foreground="{StaticResource ResourceKey=RoundedButton}"/>
+							Style="{StaticResource Button_Save}"
+							IsEnabled="{Binding IsSaveEnabled, UpdateSourceTrigger=Explicit, Mode=TwoWay, IsAsync=True}"
+							Click="DialogSave_Click"/>
 
-                    <Button x:Name="Button_Cancel"
-							IsCancel="True"
-							Margin="15,0,0,0"
+					<Button x:Name="Button_Cancel"
 							Content="{x:Static p:Resources.Cancel}"
-							Width="80"							
-							Style="{StaticResource RoundCorner}"
-							Background="{StaticResource ResourceKey=MediumGrey}"
-							Foreground="{StaticResource ResourceKey=RoundedButton}"/>
+							Style="{StaticResource Button_Cancel}"/>
 
                 </StackPanel>
             </Grid>

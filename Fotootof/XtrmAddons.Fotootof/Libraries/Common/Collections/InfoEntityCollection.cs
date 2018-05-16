@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Libraries.Common.Collections
 {
@@ -45,6 +47,49 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
 
 
         #region Methods
+
+        /// <summary>
+        /// Class method to load a list of entities from database.
+        /// </summary>
+        /// <param name="options">Options for query filters.</param>
+        public override void Load()
+        {
+            base.Load();
+
+            int i = 0;
+            foreach (InfoEntity entity in this)
+            {
+                try
+                {
+                    Trace.WriteLine(entity.Name.RemoveWhitespace().RemoveDiacritics());
+                    this[i].Name = DWords.GetPropertyValue(entity.Name.RemoveWhitespace().RemoveDiacritics());
+
+                }
+                catch { }
+                i++;
+            }
+        }
+
+        /// <summary>
+        /// Class method to load a list of entities from database.
+        /// </summary>
+        /// <param name="options">Options for query filters.</param>
+        public new void Load(InfoOptionsList options)
+        {
+            base.Load(options);
+
+            int i = 0;
+            foreach (InfoEntity entity in this)
+            {
+                try
+                {
+                    this[i].Name = DWords[entity.Name.RemoveWhitespace().RemoveDiacritics()];
+
+                }
+                catch { }
+            }
+            i++;
+        }
 
         /// <summary>
         /// Method to insert a list of Info entities into the database.

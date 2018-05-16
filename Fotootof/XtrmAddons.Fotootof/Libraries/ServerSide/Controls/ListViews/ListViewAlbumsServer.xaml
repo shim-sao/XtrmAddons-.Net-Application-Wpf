@@ -253,7 +253,7 @@
 										</ContextMenu>
 									</Grid.ContextMenu>
 
-									<Image Source="{Binding ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}, IsAsync=True, Mode=OneWay}"
+									<Image Source="{Binding ThumbnailPicture.ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}, IsAsync=True, Mode=OneWay}"
 										   Width="{StaticResource Icon256Double}"
 										   Stretch="UniformToFill"
 										   MouseEnter="OnAlbum_MouseEnter"
@@ -262,7 +262,7 @@
 										<Image.ToolTip>
 											<Grid Style="{StaticResource Grid_ImageToolTip}">
 
-												<Image Source="{Binding PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon512String}, IsAsync=True, Mode=OneWay}"
+												<Image Source="{Binding PreviewPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon512String}, IsAsync=True, Mode=OneWay}"
 													   Stretch="Uniform"
 													   Panel.ZIndex="0" />
 

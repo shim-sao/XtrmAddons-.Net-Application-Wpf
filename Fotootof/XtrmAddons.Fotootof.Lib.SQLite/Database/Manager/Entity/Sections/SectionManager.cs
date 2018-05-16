@@ -96,7 +96,17 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
                 query = query.Where(x => x.Alias == op.Alias);
             }
             
-            return SingleDefaultOrNull(query, nullable);
+            if(query.Count() > 0)
+            {
+                return SingleDefaultOrNull(query, nullable);
+            }
+
+            if(nullable)
+            {
+                return null;
+            }
+
+            return default(SectionEntity);
         }
 
         #endregion

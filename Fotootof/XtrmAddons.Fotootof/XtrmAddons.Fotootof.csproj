@@ -25,7 +25,8 @@
     <AssemblyFileVersionSettings>None.None.DateStamp.TimeStamp</AssemblyFileVersionSettings>
     <AssemblyInfoVersionSettings>None.None.DateStamp.TimeStamp</AssemblyInfoVersionSettings>
     <TargetFrameworkProfile />
-    <PublishUrl>ftp://home191827562.1and1-data.host/public_html/xtrmaddons/download/download/fotootof/</PublishUrl>
+    <PublishUrl>
+    </PublishUrl>
     <Install>false</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -35,9 +36,12 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://download.xtrmaddons.com/fotootof/</InstallUrl>
-    <SupportUrl>http://www.xtrmaddons.com/</SupportUrl>
-    <ErrorReportUrl>http://www.xtrmaddons.com/</ErrorReportUrl>
+    <InstallUrl>
+    </InstallUrl>
+    <SupportUrl>
+    </SupportUrl>
+    <ErrorReportUrl>
+    </ErrorReportUrl>
     <ProductName>Fotootof</ProductName>
     <PublisherName>XtrmAddons</PublisherName>
     <SuiteName>XtrmAddons</SuiteName>
@@ -223,22 +227,22 @@
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.HttpWebServer.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Memory">
-      <HintPath>packages\XtrmAddons.Net.Memory.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Memory.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Network">
-      <HintPath>packages\XtrmAddons.Net.Network.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Network.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.NotifyIcons">
-      <HintPath>packages\XtrmAddons.Net.NotifyIcons.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.NotifyIcons.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Picture">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Picture.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SQLiteBundle">
-      <HintPath>packages\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SystemIO">
-      <HintPath>packages\XtrmAddons.Net.SystemIO.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SystemIO.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Windows">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Windows.dll</HintPath>
@@ -274,6 +278,7 @@
       <DependentUpon>PageUsers.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\ServerSide\ViewUsers\PageUsersModel.cs" />
+    <Compile Include="Libraries\Common\Collections\AclActionEntityCollection.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroups.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsersModel.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroupsModel.cs" />
@@ -287,9 +292,7 @@
     <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionTest.xaml.cs">
-      <DependentUpon>WindowFormSectionTest.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClientModel.cs" />
     <Compile Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml.cs">
       <DependentUpon>WindowSlideshow.xaml</DependentUpon>
     </Compile>
@@ -337,7 +340,6 @@
     <Compile Include="Libraries\Common\Controls\Menu\MenuMain.xaml.cs">
       <DependentUpon>MenuMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Libraries\Common\Interfaces\Windows\IWindowForm.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAlbumsModel.cs" />
     <Compile Include="Libraries\Common\Controls\ListViews\ListViewAlbumsModel.cs" />
     <Compile Include="Libraries\Common\Windows\Settings\WindowSettingsModel.cs" />
@@ -372,7 +374,6 @@
       <DependentUpon>UCAlbumsDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionModel.cs" />
-    <Compile Include="Libraries\Common\Windows\Forms\ClientForm\WindowClientFormModel.cs" />
     <Compile Include="Libraries\Common\Windows\Forms\UserForm\WindowFormUserModel.cs" />
     <Compile Include="Libraries\Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbumsModel.cs" />
     <Compile Include="Libraries\Common\HttpHelpers\HttpServer\ServerInfosModel.cs" />
@@ -464,24 +465,20 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Libraries\Common\Windows\Forms\ClientForm\WindowFormClient.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
-    </Page>
-    <Page Include="Libraries\Common\Windows\Forms\SectionForm\WindowFormSectionTest.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Libraries\Common\Windows\Slideshow\WindowSlideshow.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Libraries\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Libraries\ServerSide\Controls\ListViews\ListViewPicturesServer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -500,8 +497,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Libraries\Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Libraries\Common\Windows\Settings\WindowSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -599,9 +596,18 @@
     </EmbeddedResource>
     <None Include="autoexec.release.bat" />
     <None Include="autoexec.debug.bat" />
+    <Content Include="Assets\Images\Default\album-background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Default\album-preview.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Config\Database\Scheme\update.1.0.18123.2149.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Config\Database\Scheme\update.1.0.18134.1044.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="postbuild.bat" />
     <None Include="prebuild.bat" />
     <None Include="Properties\Settings.settings">
@@ -617,7 +623,6 @@
     <Content Include="Assets\Images\Default\album-thumbnail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="XtrmAddons.Fotootof_TemporaryKey.pfx" />
     <SplashScreen Include="Assets\Images\Default\splashscreen.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </SplashScreen>
@@ -636,7 +641,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\Icons\Buttons\button-folder-plus-24.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\Icons\Buttons\button-folder-select-24.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -749,10 +754,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Public\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Uninstall.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -808,6 +810,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Libraries\Common\Converters\" />
+    <Folder Include="Libraries\Common\Interfaces\" />
     <Folder Include="Libraries\Common\Windows\About\" />
   </ItemGroup>
   <ItemGroup>
@@ -826,7 +829,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>call "$(ProjectDir)autoexec.debug.bat"
-:: call "$(ProjectDir)autoexec.release.bat"</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Debug ( call "$(ProjectDir)autoexec.debug.bat" )
+if $(ConfigurationName) == Release ( call "$(ProjectDir)autoexec.release.bat" )
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

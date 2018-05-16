@@ -50,26 +50,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         #region Methods
 
         /// <summary>
-        /// Class method to load a list of Album from database.
-        /// </summary>
-        /// <param name="options">Options for query filters.</param>
-        protected override void LoadOptions(AlbumOptionsList options = default(AlbumOptionsList))
-        {
-            base.LoadOptions(options);
-
-            string defaultImg = Path.Combine(ApplicationBase.AssetsImagesDefaultDirectory, "album-default.png");
-            foreach (AlbumEntity entity in Items)
-            {
-                entity.InitializeImages();
-            }
-        }
-
-        /// <summary>
         /// Method to insert a list of Album entities into the database.
         /// </summary>
         /// <param name="newItems">Thee list of items to add.</param>
         public static void DbInsert(List<AlbumEntity> newItems)
         {
+            AppOverwork.IsBusy = true;
+            log.Info("Adding Album(s). Please wait...");
+
             try
             {
                 log.Info("Adding Album(s). Please wait...");
@@ -78,8 +66,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                 {
                     foreach (AlbumEntity entity in newItems)
                     {
-                        MainWindow.Database.Albums.Add(entity);
-
+                        Database.Albums.Add(entity);
                         log.Info(string.Format("Album [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
                 }
@@ -104,6 +91,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <param name="newItems">The list of items to remove.</param>
         public static void DbDelete(List<AlbumEntity> oldItems)
         {
+            AppOverwork.IsBusy = true;
+            log.Info("Deleting Album(s). Please wait...");
+
             // Check for Removing items.
             try
             {
@@ -114,7 +104,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     foreach (AlbumEntity entity in oldItems)
                     {
                         MainWindow.Database.Albums.Delete(entity);
-
                         log.Info(string.Format("Album [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
                     }
                 }
@@ -149,8 +138,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     foreach (AlbumEntity entity in newItems)
                     {
                         await MainWindow.Database.Albums.UpdateAsync(entity);
-                        //await MainWindow.Database.Album_CleanDependencies_Async("AlbumsInACLGroups", "AclGroupId", entity.PrimaryKey, entity.AclGroupsPK);
-
                         log.Info(string.Format("Album [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
                     }
                 }

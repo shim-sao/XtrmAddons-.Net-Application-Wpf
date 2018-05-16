@@ -83,7 +83,6 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         {
             using (Db.Context)
             {
-                entity.Initialize();
                 return AlbumManager.Add(entity);
             }
         }
@@ -177,7 +176,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// <param name="aclGroupId"></param>
         /// <param name="dependenciesPKs"></param>
         /// <returns></returns>
-        public async Task<int> CleanDependenciesAsync(string dependencyName, string dependencyPKName, int albumId, List<int> dependenciesPKs)
+        public async Task<int> CleanDependenciesAsync(string dependencyName, string dependencyPKName, int albumId, IEnumerable<int> dependenciesPKs)
         {
             using (Db.Context)
             {

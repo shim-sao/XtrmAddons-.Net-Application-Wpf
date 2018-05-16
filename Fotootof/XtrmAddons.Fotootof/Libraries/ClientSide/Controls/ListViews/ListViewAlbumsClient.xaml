@@ -282,7 +282,7 @@
                                     </Grid.ContextMenu>
 
                                     <Image 
-                                        Source="{Binding ThumbnailPath,
+                                        Source="{Binding ThumbnailPicture.ThumbnailPath,
                                         Converter={StaticResource CvPictureBase},
                                         ConverterParameter={StaticResource Icon256String},
                                         IsAsync=True,
@@ -304,7 +304,7 @@
                                                     Background="Black">
 
                                                 <Image 
-                                                    Source="{Binding PicturePath,
+                                                    Source="{Binding PreviewPicture.PicturePath,
                                                     Converter={StaticResource CvPictureBase},
                                                     ConverterParameter={StaticResource Icon512String},
                                                     IsAsync=True,

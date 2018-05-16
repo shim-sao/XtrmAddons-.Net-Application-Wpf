@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,16 +16,85 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// Class XtrmAddons Fotootof Server SQLite User entity.
     /// </summary>
     [Table("Users")]
+    [JsonObject(MemberSerialization.OptIn)]
     public partial class UserEntity : EntityBase
     {
         #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
+        /// Variable name of the User.
+        /// </summary>
+        [NotMapped]
+        private string name = "";
+
+        /// <summary>
+        /// Variable password of the User.
+        /// </summary>
+        [NotMapped]
+        private string password = "";
+
+        /// <summary>
+        /// Variable email of the User.
+        /// </summary>
+        [NotMapped]
+        private string email = "";
+
+        /// <summary>
+        /// Variable server owner.
+        /// </summary>
+        [NotMapped]
+        private string server = "";
+
+        /// <summary>
+        /// Variable date of creation of the User
+        /// </summary>
+        [NotMapped]
+        private DateTime created = DateTime.Now;
+
+        /// <summary>
+        /// Variable date of modification of the User
+        /// </summary>
+        [NotMapped]
+        private DateTime modified = DateTime.Now;
+
+        #endregion
+
+
+
+        #region Variables Dependencies
+        
+        /// <summary>
+        /// Variable collection of relationship Users in AclGroups.
+        /// </summary>
+        [NotMapped]
+        ObservableCollection<UsersInAclGroups> usersInAclGroups
+            = new ObservableCollection<UsersInAclGroups>();
+
+        /// <summary>
+        /// Variable AclGroup id (required for entity dependency).
+        /// </summary>
+        [NotMapped]
+        private int aclGroupId = 0;
+
+        /// <summary>
+        /// Variable associated AclGroups primary keys list.
+        /// </summary>
+        [NotMapped]
+        [JsonIgnore]
+        private IEnumerable<int> aclGroupsPK = null;
 
         /// <summary>
         /// Variable list of AclGroup associated to the User.
         /// </summary>
         [NotMapped]
         [JsonIgnore]
-        private List<AclGroupEntity> aclGroups;
+        private IEnumerable<AclGroupEntity> aclGroups = null;
 
         #endregion
 
@@ -33,13 +103,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Properties
 
         /// <summary>
-        /// Propmerty primary key auto incremented.
+        /// <para>Propmerty primary key auto incremented.</para>
+        /// <para>Notify on property changed.</para>
         /// </summary>
         [Key]
         [Column(Order = 0)]
         public int UserId
         {
-            get { return primaryKey; }
+            get => primaryKey;
             set
             {
                 if (value != primaryKey)
@@ -51,40 +122,112 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property name of the user.
+        /// <para>Property to access to the name of the user.</para>
+        /// <para>Notify on property changed.</para>
         /// </summary>
         [Column(Order = 1)]
-        public string Name { get; set; }
+        public string Name
+        {
+            get => name;
+            set
+            {
+                if (value != name)
+                {
+                    name = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property password of the user.
+        /// <para>Property to access to the password of the user.</para>
+        /// <para>Notify on property changed.</para>
         /// </summary>
         [Column(Order = 2)]
-        public string Password { get; set; }
+        public string Password
+        {
+            get => password;
+            set
+            {
+                if (value != password)
+                {
+                    password = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property email of the user.
+        /// <para>Property to access to the email of the user.</para>
+        /// <para>Notify on property changed.</para>
         /// </summary>
         [Column(Order = 3)]
-        public string Email { get; set; }
+        public string Email
+        {
+            get => email;
+            set
+            {
+                if (value != email)
+                {
+                    email = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property server owner.
+        /// <para>Property to access to the server owner.</para>
+        /// <para>Notify on property changed.</para>
         /// </summary>
         [Column(Order = 4)]
-        public string Server { get; set; }
+        public string Server
+        {
+            get => server;
+            set
+            {
+                if (value != server)
+                {
+                    server = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Variable created date.
+        /// <para>Property to access to the date of creation of the User.</para>
+        /// <para>Notify on property changed.</para>
         /// </summary>
         [Column(Order = 5)]
-        public DateTime Created { get; set; }
+        public DateTime Created
+        {
+            get => created;
+            set
+            {
+                if (value != created)
+                {
+                    created = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Variable modified date.
+        /// <para>Property to access to the date of modification of the User.</para>
+        /// <para>Notify on property changed.</para>
         /// </summary>
         [Column(Order = 6)]
-        public DateTime Modified { get; set; }
+        public DateTime Modified
+        {
+            get => modified;
+            set
+            {
+                if (value != modified)
+                {
+                    modified = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         #endregion
 
@@ -93,34 +236,74 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Properties : Dependencies
 
         /// <summary>
-        /// Variable AclGroup id (required for entity dependency).
+        /// <para>Property to access to the AclGroup id (required for entity dependency).</para>
+        /// <para>Notify on property changes.</para>
         /// </summary>
         [NotMapped]
         [JsonIgnore]
-        public int AclGroupId { get; set; }
-
-        /// <summary>
-        /// Property to access to the list of AclGroup associated to the User.
-        /// </summary>
-        [NotMapped]
-        public List<AclGroupEntity> AclGroups
+        public int AclGroupId
         {
-            get => ListAclGroups();
-            set => aclGroups = value;
+            get => aclGroupId;
+            set
+            {
+                if (value != aclGroupId)
+                {
+                    aclGroupId = value;
+                    NotifyPropertyChanged();
+                }
+            }
         }
 
         /// <summary>
-        /// Propertiy to access to the list of AclGroup dependencies primary key.
+        /// <para>Property to access to the list of AclGroup associated to the User.</para>
+        /// <para>Notify on property changes.</para>
         /// </summary>
         [NotMapped]
-        public List<int> AclGroupsPK => ListOfPrimaryKeys(UsersInAclGroups.ToList(), "AclGroupId");
+        public IEnumerable<AclGroupEntity> AclGroups
+        {
+            get
+            {
+                if (aclGroups == null || aclGroups.Count() != UsersInAclGroups?.Count)
+                {
+                    aclGroups = ListEntities<AclGroupEntity>(UsersInAclGroups);
+                }
+                return aclGroups;
+            }
+
+            private set
+            {
+                if (value != aclGroups)
+                {
+                    aclGroups = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Variables collection of relationship Users in AclGroups.
+        /// Property to access to the list of AclGroup dependencies primary key.
+        /// </summary>
+        [NotMapped]
+        public IEnumerable<int> AclGroupsPK
+            => ListOfPrimaryKeys(UsersInAclGroups.ToList(), "AclGroupId");
+
+        /// <summary>
+        /// <para>Property to access to the collection of relationship Users in AclGroups.</para>
+        /// <para>Notify on property changes.</para>
         /// </summary>
         [JsonIgnore]
-        public ObservableCollection<UsersInAclGroups> UsersInAclGroups { get; set; }
-            = new ObservableCollection<UsersInAclGroups>();
+        public ObservableCollection<UsersInAclGroups> UsersInAclGroups
+        {
+            get => usersInAclGroups;
+            set
+            {
+                if (value != usersInAclGroups)
+                {
+                    usersInAclGroups = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         #endregion
 
@@ -133,10 +316,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         public UserEntity()
         {
-            Initialize();
-
-            UsersInAclGroups.CollectionChanged += (s, e) => { aclGroups = null; };
-
+            UsersInAclGroups.CollectionChanged += UsersInAclGroups_CollectionChanged;
         }
 
         #endregion
@@ -146,34 +326,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Methods
 
         /// <summary>
-        /// Method to initialize a User entity.
+        /// Method called on Users InA clGroups collection changed event.
         /// </summary>
-        public void Initialize()
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Notify collection changed event arguments.</param>
+        private void UsersInAclGroups_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (PrimaryKey <= 0)
-            {
-                PrimaryKey = 0;
-            }
-
-            this.InitializeNulls();
-        }
-
-        /// <summary>
-        /// Method to get list of associated AclGroup to the User.
-        /// </summary>
-        private List<AclGroupEntity> ListAclGroups()
-        {
-            if (aclGroups == null)
-            {
-                aclGroups = new List<AclGroupEntity>();
-
-                if (UsersInAclGroups != null)
-                {
-                    aclGroups = ListEntities<AclGroupEntity>(UsersInAclGroups);
-                }
-            }
-
-            return aclGroups;
+            aclGroups = null;
+            NotifyPropertyChanged();
         }
 
         /// <summary>

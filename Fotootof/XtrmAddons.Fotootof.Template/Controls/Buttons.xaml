@@ -161,10 +161,44 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
-	
-	
-	
+
+	<Style x:Key="Button_Save"
+		   TargetType="{x:Type Button}">
+		<Setter Property="FontSize"
+				Value="{StaticResource FontSizeNormal}" />
+		<Setter Property="IsDefault"
+				Value="True" />
+		<Setter Property="Margin"
+				Value="0,0,15,0" />
+		<Setter Property="MinWidth"
+				Value="80" />
+	</Style>
+
+	<Style x:Key="Button_Cancel"
+		   TargetType="{x:Type Button}">
+		<Setter Property="FontSize"
+				Value="{StaticResource FontSizeNormal}" />
+		<Setter Property="IsCancel"
+				Value="True" />
+		<Setter Property="Margin"
+				Value="15,0,0,0" />
+		<Setter Property="MinWidth"
+				Value="80" />
+	</Style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<Style x:Key="Btn"
 		   TargetType="{x:Type Button}">
@@ -177,7 +211,7 @@
 		<Setter Property="Height"
 				Value="25" />
 	</Style>
-
+	
 	<Style x:Key="RoundCorner" TargetType="{x:Type Button}">
 		<Setter Property="HorizontalContentAlignment" Value="Center"/>
 		<Setter Property="VerticalContentAlignment" Value="Center"/>

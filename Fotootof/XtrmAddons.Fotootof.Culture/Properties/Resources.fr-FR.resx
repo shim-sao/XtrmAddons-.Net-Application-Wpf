@@ -273,9 +273,6 @@
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
-  <data name="MainWindowTitle" xml:space="preserve">
-    <value>XtrmAddons Fotootof Server Administration</value>
-  </data>
   <data name="MessageBox_Acceptation_DeleteGeneric" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir supprimer le groupe {0} : {1} ?</value>
   </data>
@@ -584,5 +581,17 @@
   </data>
   <data name="RefreshPictures" xml:space="preserve">
     <value>Rafraichir les images.</value>
+  </data>
+  <data name="FormFieldRequired" xml:space="preserve">
+    <value>Le champ {0} est requis et ne doit pas être vide.</value>
+  </data>
+  <data name="_AutoStart" xml:space="preserve">
+    <value>Démarrage a_utomatique</value>
+  </data>
+  <data name="Undefine" xml:space="preserve">
+    <value>Non définie</value>
+  </data>
+  <data name="Various" xml:space="preserve">
+    <value>Variées</value>
   </data>
 </root>

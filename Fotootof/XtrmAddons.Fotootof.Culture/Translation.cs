@@ -7,12 +7,15 @@ using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Culture
 {
+    /// <summary>
+    /// Class XtrmAddons Fotootof Culture Translation.
+    /// </summary>
     public static class Translation
     {
         #region Variables
 
         /// <summary>
-        /// Variable resources manager for generic words translations.
+        /// Variable dictionary of resources manager for culture translations.
         /// </summary>
         private static Dictionary<string, ResourceManager> rms 
             = new Dictionary<string, ResourceManager>()
@@ -22,7 +25,7 @@ namespace XtrmAddons.Fotootof.Culture
             };
 
         /// <summary>
-        /// Variable resources manager for generic words translations.
+        /// Variable dictionary of resources dictionary of culture translations.
         /// </summary>
         private static Dictionary<string, ResourceDictionary> rds 
             = new Dictionary<string, ResourceDictionary>()
@@ -38,7 +41,7 @@ namespace XtrmAddons.Fotootof.Culture
         #region Properties
 
         /// <summary>
-        /// 
+        /// Property to access to the logs culture translation as resource dictionary.
         /// </summary>
         public static ResourceDictionary Logs
         {
@@ -54,7 +57,7 @@ namespace XtrmAddons.Fotootof.Culture
         }
 
         /// <summary>
-        /// 
+        /// Property to access to the generic words culture translation as resource dictionary.
         /// </summary>
         public static ResourceDictionary Words
         {
@@ -70,13 +73,13 @@ namespace XtrmAddons.Fotootof.Culture
         }
 
         /// <summary>
-        /// 
+        /// Property to access to the logs culture translation as object with dynamic properties.
         /// </summary>
         public static dynamic DLogs
             => Logs.ToExpando();
 
         /// <summary>
-        /// 
+        /// Property to access to the generic words culture translation as object with dynamic properties.
         /// </summary>
         public static dynamic DWords
             => Words.ToExpando();
@@ -88,8 +91,9 @@ namespace XtrmAddons.Fotootof.Culture
         #region Methods
 
         /// <summary>
-        /// 
+        /// Method to get a given source translation.
         /// </summary>
+        /// <param name="name">The name of the resources file to load.</param>
         private static void Translate(string name)
         {
             rds[name] = new ResourceDictionary();

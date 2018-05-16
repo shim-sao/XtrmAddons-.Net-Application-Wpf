@@ -36,7 +36,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <summary>
         /// 
         /// </summary>
-        public static object AppWindow = ApplicationSession.Properties.MainWindow;
+        public static object AppWindow= ApplicationSession.Properties.MainWindow;
 
         #endregion
 

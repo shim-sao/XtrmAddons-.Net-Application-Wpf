@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
@@ -55,7 +56,7 @@ namespace XtrmAddons.Fotootof.Settings
                 {
                     Key = "default",
                     Name = "Default Server",
-                    Default = true
+                    IsDefault = true
                 };
 
                 ApplicationBase.Options.Remote.Servers.AddDefaultUnique(server);
@@ -85,11 +86,12 @@ namespace XtrmAddons.Fotootof.Settings
         /// <summary>
         /// Method to initialize application database.
         /// </summary>
+        [SuppressMessage("Microsoft.Security", "CA2100", Justification = "Do not to fix it !", Scope = "Not supported by DLL")]
         public void InitializeDatabase()
         {
-            // Get the default database in preferences if exists.
-            log.Info("Initializing database connection. Please wait...");
+            log.Info((string)Translation.DLogs.InitializingDatabaseConnection);
 
+            // Get the default database in preferences if exists.
             Database database = ApplicationBase.Options.Data.Databases.FindDefault();
 
             // Create default database parameters if not exists.
@@ -101,33 +103,36 @@ namespace XtrmAddons.Fotootof.Settings
                     Name = "default.db3",
                     Type = DatabaseType.SQLite,
                     Source = Path.Combine(ApplicationBase.DataDirectory, "default.db3"),
-                    Default = true,
+                    IsDefault = true,
                     Comment = "Default SQLite installed database."
 
                 };
 
+                log.Info("dAdding new default database parameters to preferences");
                 ApplicationBase.Options.Data.Databases.Add(database);
             }
 
             // Try to connect to the database.
             try
             {
-                // Check if default database exists.
+                // Check if default database exists, if not...
                 if (File.Exists(database.Source))
                 {
+                    log.Info((string)Translation.DLogs.DatabaseFileFound);
+
                     using (SQLiteConnection db = SQLiteManager.Instance(database.Source).Db)
                     {
-                        log.Info("Database already exists. Connection ready.");
+                        log.Info((string)Translation.DLogs.DatabaseConnectionReady);
 
-                        Version current = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                        database.Version = database.Version ?? "1.0.18123.2149";
+                        Version current = new Version(database.Version);
+
+                        log.Info(string.Format(CultureInfo.InvariantCulture, "Current Assembly Version : {0}", current));
+
                         Version old = new Version("1.0.18123.2149");
-
-                        log.Info(string.Format(CultureInfo.InvariantCulture, "{0} ({1})", old, current));
-
                         if (current < old)
                         {
-                            log.Info("Updating database 1.0.18123.0000 to 1.0.18123.2149");
-
+                            log.Info(string.Format(CultureInfo.InvariantCulture, "Updating Assembly Minimum Version : {0}", old));
                             string query = File.ReadAllText(Path.Combine(ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath, "update.1.0.18123.2149.sqlite"));
                             using (TransactionScope tran = new TransactionScope())
                             {
@@ -135,13 +140,34 @@ namespace XtrmAddons.Fotootof.Settings
                                 command.CommandText = @query;
                                 command.ExecuteNonQuery();
                             }
+
+                            database.Version = old.ToString();
+                            ApplicationBase.Save();
+                        }
+
+                        old = new Version("1.0.18134.1044");
+                        if (current < old)
+                        {
+                            log.Info(string.Format(CultureInfo.InvariantCulture, "Updating Assembly Minimum Version : {0}", old));
+                            string query = File.ReadAllText(Path.Combine(ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath, "update." + old.ToString() + ".sqlite"));
+                            using (TransactionScope tran = new TransactionScope())
+                            {
+                                SQLiteCommand command = db.CreateCommand();
+                                command.CommandText = @query;
+                                command.ExecuteNonQuery();
+                            }
+
+                            database.Version = old.ToString();
+                            ApplicationBase.Save();
                         }
                     }
                 }
 
-                // Create new database from scheme.
+                // ... create new database from scheme.
                 else
                 {
+                    log.Info((string)Translation.DLogs.DatabaseNotFileFound);
+
                     using (
                         SQLiteConnection db =
                             SQLiteManager.Instance(
@@ -151,22 +177,22 @@ namespace XtrmAddons.Fotootof.Settings
                             ).Db
                     )
                     {
-                        log.Info("New database connection ready.");
+                        log.Info((string)Translation.DLogs.DatabaseConnectionReady);
                     }
                 }
 
                 // Add connection to SQLite Service.
                 SQLiteSvc.Db = new DatabaseCore(database.Source);
 
-                // Add SQLite Service to the main window | application session for depencies..
+                // Add SQLite Service to the main window | application session for dependencies..
                 MainWindow.Database = new SQLiteSvc();
             }
 
             // Catch connection to the database exceptions.
             catch (Exception e)
             {
-                log.Fatal("Connecting to the database failed !", e);
-                MessageBox.Show("Connecting to the database failed !", Translation.DWords.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
+                log.Fatal("Connecting to the database. Fail !", e);
+                MessageBox.Show("Connecting to the database. Fail !", Translation.DWords.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             //Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, UpdateDatabaseDelegate());

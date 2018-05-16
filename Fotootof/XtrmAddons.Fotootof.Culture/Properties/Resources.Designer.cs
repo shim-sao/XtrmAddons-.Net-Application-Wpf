@@ -70,7 +70,7 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Add Section.
+        ///   Recherche une chaîne localisée semblable à Add _Section.
         /// </summary>
         public static string _AddSection {
             get {
@@ -111,6 +111,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string _AlbumsNew {
             get {
                 return ResourceManager.GetString("_AlbumsNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à A_uto start.
+        /// </summary>
+        public static string _AutoStart {
+            get {
+                return ResourceManager.GetString("_AutoStart", resourceCulture);
             }
         }
         
@@ -790,6 +799,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à The field {0} is required and must be not empty..
+        /// </summary>
+        public static string FormFieldRequired {
+            get {
+                return ResourceManager.GetString("FormFieldRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à French.
         /// </summary>
         public static string French {
@@ -885,15 +903,6 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string Login {
             get {
                 return ResourceManager.GetString("Login", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fotootof Server Administration.
-        /// </summary>
-        public static string MainWindowTitle {
-            get {
-                return ResourceManager.GetString("MainWindowTitle", resourceCulture);
             }
         }
         
@@ -1321,6 +1330,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Undefine.
+        /// </summary>
+        public static string Undefine {
+            get {
+                return ResourceManager.GetString("Undefine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Unselect All.
         /// </summary>
         public static string UnselectAll {
@@ -1389,6 +1407,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string UsersGroups {
             get {
                 return ResourceManager.GetString("UsersGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Various.
+        /// </summary>
+        public static string Various {
+            get {
+                return ResourceManager.GetString("Various", resourceCulture);
             }
         }
         

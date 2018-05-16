@@ -19,6 +19,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         #endregion
 
 
+
         #region Constructor
 
         /// <summary>
@@ -45,6 +46,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         public UserEntityCollection(IEnumerable<UserEntity> collection) : base(collection) { }
 
         #endregion
+
 
 
         #region Methods
@@ -80,6 +82,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <param name="newItems">Thee list of items to add.</param>
         public static void DbInsert(List<UserEntity> newItems)
         {
+            AppOverwork.IsBusy = true;
+            log.Info("Adding User(s). Please wait...");
+
             try
             {
                 log.Info("Adding User(s). Please wait...");
@@ -88,7 +93,6 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                 {
                     foreach (UserEntity entity in newItems)
                     {
-                        entity.Initialize();
                         MainWindow.Database.Users.Add(entity);
 
                         log.Info(string.Format("User [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
@@ -115,6 +119,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <param name="newItems">The list of items to remove.</param>
         public static void DbDelete(List<UserEntity> oldItems)
         {
+            AppOverwork.IsBusy = true;
+            log.Info("Deleting User(s). Please wait...");
+
             try
             {
                 log.Info("Deleting User(s). Please wait...");
@@ -149,6 +156,9 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         /// <param name="newItems">Thee list of items to update.</param>
         public async static void DbUpdate(List<UserEntity> newItems, List<UserEntity> oldItems)
         {
+            AppOverwork.IsBusy = true;
+            log.Info("Updating User(s). Please wait...");
+
             // Check for Replace | Edit items.
             try
             {
@@ -165,12 +175,12 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                 }
 
                 AppNavigator.Clear();
-                log.Info("Replacing User(s). Done !");
+                log.Info("Updating User(s). Done !");
             }
             catch (Exception e)
             {
                 log.Error(e);
-                AppLogger.Fatal("Replacing User(s) failed !", e);
+                AppLogger.Fatal("Updating User(s) failed !", e);
             }
             finally
             {

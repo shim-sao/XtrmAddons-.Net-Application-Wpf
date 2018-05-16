@@ -230,7 +230,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// <param name="aclGroupId"></param>
         /// <param name="dependenciesPKs"></param>
         /// <returns></returns>
-        public async Task<int> CleanDependencies_Async(string dependencyName, string dependencyPKName, int aclGroupId, List<int> dependenciesPKs)
+        public async Task<int> CleanDependencies_Async(string dependencyName, string dependencyPKName, int aclGroupId, IEnumerable<int> dependenciesPKs)
         {
             using (Db.Context)
             {

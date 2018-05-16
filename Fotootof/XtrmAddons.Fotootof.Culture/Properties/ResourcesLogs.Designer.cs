@@ -97,6 +97,33 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Database connection ready..
+        /// </summary>
+        public static string DatabaseConnectionReady {
+            get {
+                return ResourceManager.GetString("DatabaseConnectionReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Database file found..
+        /// </summary>
+        public static string DatabaseFileFound {
+            get {
+                return ResourceManager.GetString("DatabaseFileFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Database not file found..
+        /// </summary>
+        public static string DatabaseNotFileFound {
+            get {
+                return ResourceManager.GetString("DatabaseNotFileFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Deleting the application options and parameters. Please wait....
         /// </summary>
         public static string DeletingOptionsWaiting {
@@ -120,6 +147,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string InitializingApplicationWindowComponentDone {
             get {
                 return ResourceManager.GetString("InitializingApplicationWindowComponentDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Initializing database connection. Please wait....
+        /// </summary>
+        public static string InitializingDatabaseConnection {
+            get {
+                return ResourceManager.GetString("InitializingDatabaseConnection", resourceCulture);
             }
         }
         

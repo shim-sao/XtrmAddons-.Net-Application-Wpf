@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System;
+using XtrmAddons.Net.Application;
+using XtrmAddons.Fotootof.SQLiteService;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
 {
@@ -9,13 +11,35 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
     /// </summary>
     public abstract partial class WindowBase : Window
     {
-        #region Variable
+        #region Variables
 
         /// <summary>
         /// Variable logger.
         /// </summary>
-        protected static readonly log4net.ILog log =
+        private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
+        #region Properties
+
+        /// <summary>
+        /// Property alias to access to the main database connector.
+        /// </summary>
+        public static SQLiteSvc Db
+            => (SQLiteSvc)ApplicationSession.Properties.Database;
+
+        /// <summary>
+        /// Property alias to access to the dynamic translation words.
+        /// </summary>
+        public dynamic DWords => Culture.Translation.DWords;
+
+        /// <summary>
+        /// Property alias to access to the dynamic translation logs.
+        /// </summary>
+        public dynamic DLogs => Culture.Translation.DLogs;
 
         #endregion
 
@@ -28,7 +52,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// </summary>
         public WindowBase() : base()
         {
-            // Merge application resources.
+            // Merge application culture translation resources.
             Resources.MergedDictionaries.Add(Culture.Translation.Words);
             Resources.MergedDictionaries.Add(Culture.Translation.Logs);
         }

@@ -52,9 +52,9 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="XtrmAddons.Net.Common, Version=1.0.18067.933, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="XtrmAddons.Net.Common, Version=1.0.18120.1714, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\XtrmAddons.Fotootof\packages\XtrmAddons.Net.Common.dll</HintPath>
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

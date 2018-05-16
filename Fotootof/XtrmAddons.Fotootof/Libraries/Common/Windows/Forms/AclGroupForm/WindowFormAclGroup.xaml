@@ -1,5 +1,5 @@
 ﻿<base:WindowBaseForm 
-    x:Name="WindowAclGroupFormName"
+	x:Name="UCWindowBaseForm"
     x:Class="XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AclGroupForm.WindowFormAclGroup"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,16 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Windows;assembly=XtrmAddons.Fotootof.Lib.Base"
+    xmlns:rrString="clr-namespace:XtrmAddons.Net.Windows.ValidationRules;assembly=XtrmAddons.Net.Windows"
     mc:Ignorable="d"
     Width="480"
     Height="380"
     Title="{x:Static p:Resources.WindowAclGroupFormTitle}"
     Background="{StaticResource ResourceKey=DarkGrey}"
     ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen">
+    WindowStartupLocation="CenterScreen"
+	Loaded="Window_Load"
+	Closing="Window_Closing">
 
-	<Grid Margin="2"
-		  Background="{StaticResource ResourceKey=LightGrey}">
+	<Grid Background="{StaticResource ResourceKey=LightGrey}">
 
 		<Grid.RowDefinitions>
 			<RowDefinition Height="1*"/>
@@ -40,13 +42,37 @@
 								   Style="{StaticResource FieldLabel}"/>
 
 						<TextBox x:Name="InputName"
-								 Style="{StaticResource FieldInput}"
-								 Text="{Binding Path=AclGroup.Name, Mode=TwoWay}"
-								 TextChanged="InputText_Changed"/>
+										 Style="{StaticResource Textbox_FieldInput_Required}"
+										 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+										 Validation.Error="OnInput_ValidationError"
+										 SourceUpdated="OnInputStringRequired_SourceUpdated"
+										 TargetUpdated="OnInput_TargetUpdated"
+										 TextChanged="OnInputStringRequired_TextChanged"
+										 Width="310">
+
+							<TextBox.Text>
+								<Binding Path="AclGroup.Name"
+											 Mode="TwoWay"
+											 UpdateSourceTrigger="LostFocus"
+											 IsAsync="True"
+											 ValidatesOnDataErrors="True"
+											 ValidatesOnExceptions="True"
+											 NotifyOnValidationError="True"
+											 NotifyOnSourceUpdated="True"
+											 NotifyOnTargetUpdated="True">
+
+									<Binding.ValidationRules>
+										<rrString:StringRequired />
+									</Binding.ValidationRules>
+								</Binding>
+							</TextBox.Text>
+						</TextBox>
+
 
 					</StackPanel>
 					<!-- #endregion : Field Name -->
 
+					
 					<!-- #region : Field Alias -->
 					<StackPanel Orientation="Horizontal"
 								Style="{StaticResource Field}">
@@ -56,9 +82,12 @@
 
 						<TextBox x:Name="InputAlias"
 								 Style="{StaticResource FieldInput}"
-								 Text="{Binding Path=AclGroup.Alias, Mode=TwoWay}"/>
+								 Text="{Binding Path=AclGroup.Alias, Mode=TwoWay, IsAsync=True}"/>
 					</StackPanel>
+					<!-- #endregion : Field Alias -->
 
+
+					<!-- #region : Field IsDefault -->
 					<StackPanel Orientation="Horizontal"
 								Style="{StaticResource Field}">
 
@@ -66,10 +95,10 @@
 								   Text="{x:Static p:Resources.Default}"/>
 
 						<CheckBox Style="{StaticResource FieldInputCb}"
-								  IsChecked="{Binding Path=AclGroup.IsDefault, Mode=TwoWay}"/>
-
+								  IsChecked="{Binding Path=AclGroup.IsDefault, Mode=TwoWay, IsAsync=True}"/>
 					</StackPanel>
-
+					<!-- #endregion : Field IsDefault -->
+					
 					<StackPanel Orientation="Horizontal"
 								Style="{StaticResource Field}">
 
@@ -77,7 +106,7 @@
 								   Text="{x:Static p:Resources.Comment}"/>
 
 						<TextBox Style="{StaticResource FieldInputArea}"
-								 Text="{Binding Path=AclGroup.Comment, Mode=TwoWay}"/>
+								 Text="{Binding Path=AclGroup.Comment, Mode=TwoWay, IsAsync=True}"/>
 					</StackPanel>
 
 				</StackPanel>
@@ -118,7 +147,8 @@
 								<CheckBox x:Name="CheckBoxSectionAdd"
 										  Style="{StaticResource FieldInputCb}"
 										  IsChecked="False"
-										  Click="CheckBoxSection_Click"/>
+										  Checked="CheckBoxAclAction_Checked"
+										  Unchecked="CheckBoxAclAction_UnChecked"/>
 							</StackPanel>
 
 							<StackPanel Orientation="Horizontal"
@@ -130,7 +160,8 @@
 								<CheckBox x:Name="CheckBoxSectionEdit"
 										  Style="{StaticResource FieldInputCb}"
 										  IsChecked="False"
-										  Click="CheckBoxSection_Click"/>
+										  Checked="CheckBoxAclAction_Checked"
+										  Unchecked="CheckBoxAclAction_UnChecked"/>
 							</StackPanel>
 
 							<StackPanel Orientation="Horizontal"
@@ -142,7 +173,8 @@
 								<CheckBox x:Name="CheckBoxSectionDelete"
 										  Style="{StaticResource FieldInputCb}"
 										  IsChecked="False"
-										  Click="CheckBoxSection_Click"/>
+										  Checked="CheckBoxAclAction_Checked"
+										  Unchecked="CheckBoxAclAction_UnChecked"/>
 							</StackPanel>
 
 							<StackPanel Orientation="Horizontal"
@@ -154,7 +186,8 @@
 								<CheckBox x:Name="CheckBoxSectionView"
 										  Style="{StaticResource FieldInputCb}"
 										  IsChecked="False"
-										  Click="CheckBoxSection_Click"/>
+										  Checked="CheckBoxAclAction_Checked"
+										  Unchecked="CheckBoxAclAction_UnChecked"/>
 							</StackPanel>
 
 						</StackPanel>
@@ -191,7 +224,7 @@
 							  CanUserAddRows="False"
 							  SelectionMode="Extended"
 							  ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}"
-							  DataContext="{Binding DataContext, ElementName=WindowAclGroupFormName}"
+							  DataContext="{Binding DataContext, ElementName=UCWindowBaseForm, IsAsync=True}"
 							  RowHeight="22"
 							  HorizontalAlignment="Stretch"
 							  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
@@ -243,6 +276,24 @@
 							</DataGridTemplateColumn>
 							<!-- #endregion : Column Name -->
 
+							<!-- #region : Column Email -->
+							<DataGridTemplateColumn IsReadOnly="True"
+													Width="1*"
+													CanUserSort="True"
+													Header="{x:Static p:Resources.Email}"
+													SortMemberPath="Email">
+
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+
+										<TextBlock Margin="5,0"
+												   Text="{Binding Email, Mode=TwoWay}"/>
+
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<!-- #endregion : Column Email -->
+
 							<!-- #region : Column CheckBox -->
 							<DataGridTemplateColumn IsReadOnly="True"
 													Width="20"
@@ -253,7 +304,8 @@
 
 										<CheckBox Tag="{Binding}"
 												  IsChecked="{Binding PrimaryKey, Converter={StaticResource IsUserInAclGroup}}"
-												  Click="CheckBoxUser_Click"/>
+												  Checked="CheckBoxUser_Checked"
+												  Unchecked="CheckBoxUser_UnChecked"/>
 
 									</DataTemplate>
 								</DataGridTemplateColumn.CellTemplate>
@@ -278,26 +330,15 @@
 							VerticalAlignment="center"
 							Height="30">
 
-					<Button x:Name="ButtonSave"
-							IsEnabled="False"
-							IsDefault="True"
-							Click="DialogSave_Click"
-							Margin="0,0,15,0"
+					<Button x:Name="Button_Save"
 							Content="{x:Static p:Resources.Save}"
-							MinWidth="80"
-							Style="{StaticResource RoundCorner}"
-							Background="{StaticResource ResourceKey=MediumGrey}"
-							Foreground="{StaticResource ResourceKey=RoundedButton}"/>
+							Style="{StaticResource Button_Save}"
+							IsEnabled="{Binding IsSaveEnabled, UpdateSourceTrigger=Explicit, Mode=TwoWay, IsAsync=True}"
+							Click="DialogSave_Click"/>
 
 					<Button x:Name="Button_Cancel"
-							IsCancel="True"
-							Margin="15,0,0,0"
 							Content="{x:Static p:Resources.Cancel}"
-							MinWidth="80"
-							Style="{StaticResource RoundCorner}"
-							Background="{StaticResource ResourceKey=MediumGrey}"
-							Foreground="{StaticResource ResourceKey=RoundedButton}" />
-
+							Style="{StaticResource Button_Cancel}"/>
 				</StackPanel>
 			</Grid>
 		</Border>

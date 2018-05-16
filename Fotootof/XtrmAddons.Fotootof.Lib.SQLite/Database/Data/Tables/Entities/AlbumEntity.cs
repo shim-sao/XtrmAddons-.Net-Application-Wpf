@@ -4,64 +4,155 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.IO;
 using System.Linq;
-using System.Windows;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
-using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
+using System.Windows;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite Album Entity.
+    /// <para>Class XtrmAddons Fotootof Libraries SQLite Album Entity.</para>
     /// </summary>
     [Table("Albums")]
-    public partial class AlbumEntity : EntityBase
+    [JsonObject(MemberSerialization.OptIn)]
+    public partial class AlbumEntity : CommonEntity
     {
         #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        [NotMapped]
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Variable name of the Album.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private string name = "";
 
         /// <summary>
         /// Variable alias of the Album.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private string alias = "";
 
         /// <summary>
         /// Variable description of the Album.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
-        public string description = "";
+        private string description = "";
+
+        /// <summary>
+        /// Variable order place of the item.
+        /// </summary>
+        [NotMapped]
+        private int ordering = 0;
+
+        /// <summary>
+        /// Variable created date.
+        /// </summary>
+        [NotMapped]
+        private DateTime created = DateTime.Now;
+
+        /// <summary>
+        /// Variable modified date.
+        /// </summary>
+        [NotMapped]
+        private DateTime modified = DateTime.Now;
+
+        /// <summary>
+        /// Variable first picture captured date.
+        /// </summary>
+        [NotMapped]
+        private DateTime dateStart = DateTime.Now;
+
+        /// <summary>
+        /// Variable last picture captured date.
+        /// </summary>
+        [NotMapped]
+        private DateTime dateEnd = DateTime.Now;
+
+        /// <summary>
+        /// Variable the background picture id.
+        /// </summary>
+        [NotMapped]
+        public int backgroundPictureId = 0;
+
+        /// <summary>
+        /// Variable the preview picture id.
+        /// </summary>
+        [NotMapped]
+        public int previewPictureId = 0;
+
+        /// <summary>
+        /// Variable the thumbnail picture id.
+        /// </summary>
+        [NotMapped]
+        public int thumbnailPictureId = 0;
+
+        /// <summary>
+        /// Variable comment for the item.
+        /// </summary>
+        [NotMapped]
+        public string comment = "";
+
+        /// <summary>
+        /// Variable parameters for the item.
+        /// </summary>
+        [NotMapped]
+        public string parameters = "";
+
+        #endregion
+
+
+
+        #region Variables Associated Pictures
+
+        /// <summary>
+        /// Variable background picture.
+        /// </summary>
+        [NotMapped]
+        public PictureEntity backgroundPicture;
+
+        /// <summary>
+        /// Variable preview picture.
+        /// </summary>
+        [NotMapped]
+        public PictureEntity previewPicture;
+
+        /// <summary>
+        /// Variable thumbnail picture.
+        /// </summary>
+        [NotMapped]
+        public PictureEntity thumbnailPicture;
+
+
+        #endregion
+
+
+
+        #region Variables Dependencies
 
         /// <summary>
         /// Variable list of Section associated to the Album.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private List<SectionEntity> sections;
 
         /// <summary>
         /// Variable list of Picture associated to the Album.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private List<PictureEntity> pictures;
 
         /// <summary>
         /// Variable list of Info associated to the Album.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private List<InfoEntity> infos;
 
         #endregion
@@ -71,7 +162,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Properties
 
         /// <summary>
-        /// Property primary key auto incremented.
+        /// Property to access to the id or primary key auto incremented.
         /// </summary>
         [Key]
         [Column(Order = 0)]
@@ -89,9 +180,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property name of the item.
+        /// Property to access to the name of the item.
         /// </summary>
         [Column(Order = 1)]
+        [JsonProperty]
         public string Name
         {
             get { return name; }
@@ -109,6 +201,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the alias of the Album.
         /// </summary>
         [Column(Order = 2)]
+        [JsonProperty]
         public string Alias
         {
             get { return alias; }
@@ -116,148 +209,317 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             {
                 if (value != alias)
                 {
-                    alias = value;
+                    alias = value.Sanitize().RemoveDiacritics().ToLower();
                     NotifyPropertyChanged();
                 }
             }
         }
 
         /// <summary>
-        /// Property description of the item.
+        /// Property to access to the description of the item.
         /// </summary>
         [Column(Order = 3)]
-        public string Description { get; set; }
-        
+        [JsonProperty]
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                if (value != description)
+                {
+                    description = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         /// <summary>
-        /// Property order place of the item.
+        /// Property to access to the order place of the item.
         /// </summary>
         [Column(Order = 4)]
-        public int Ordering { get; set; }
-
+        [JsonProperty]
+        public int Ordering
+        {
+            get { return ordering; }
+            set
+            {
+                if (value != ordering)
+                {
+                    ordering = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
         
         /// <summary>
-        /// Property created date.
+        /// Property to access to the created date.
         /// </summary>
         [Column(Order = 5)]
-        public DateTime Created { get; set; }
+        [JsonProperty]
+        public DateTime Created
+        {
+            get { return created; }
+            set
+            {
+                if (value != created)
+                {
+                    created = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property modified date.
+        /// Property to access to the modified date.
         /// </summary>
         [Column(Order = 6)]
-        public DateTime Modified { get; set; }
-        
+        [JsonProperty]
+        public DateTime Modified
+        {
+            get { return modified; }
+            set
+            {
+                if (value != modified)
+                {
+                    modified = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         /// <summary>
-        /// Property first picture captured date.
+        /// Property to access to the first picture captured date.
         /// </summary>
         [Column(Order = 7)]
-        public DateTime DateStart { get; set; }
+        [JsonProperty]
+        public DateTime DateStart
+        {
+            get { return dateStart; }
+            set
+            {
+                if (value != dateStart)
+                {
+                    dateStart = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property last picture captured date.
+        /// Property to access to the last picture captured date.
         /// </summary>
         [Column(Order = 8)]
-        public DateTime DateEnd { get; set; }
-
+        [JsonProperty]
+        public DateTime DateEnd
+        {
+            get { return dateEnd; }
+            set
+            {
+                if (value != dateEnd)
+                {
+                    dateEnd = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property the original path.
+        /// Property to access to the background picture id.
         /// </summary>
         [Column(Order = 9)]
-        [JsonIgnore]
-        public string OriginalPath { get; set; }
+        [JsonProperty]
+        public int BackgroundPictureId
+        {
+            get { return backgroundPictureId; }
+            set
+            {
+                if (value != backgroundPictureId)
+                {
+                    backgroundPictureId = value;
+                    NotifyPropertyChanged();
+
+                    // Update property to null will raise Background Picture changed event with new Picture entity.
+                    BackgroundPicture = null;
+                }
+            }
+        }
 
         /// <summary>
-        /// Property the original width.
+        /// Property to access to the preview picture id.
         /// </summary>
         [Column(Order = 10)]
-        [JsonIgnore]
-        public int OriginalWidth { get; set; }
+        [JsonProperty]
+        public int PreviewPictureId
+        {
+            get { return previewPictureId; }
+            set
+            {
+                if (value != previewPictureId)
+                {
+                    previewPictureId = value;
+                    NotifyPropertyChanged();
+
+                    // Update property to null will raise Preview Picture changed event with new Picture entity.
+                    PreviewPicture = null;
+                }
+            }
+        }
 
         /// <summary>
-        /// Property the original height.
+        /// Property to access to the thumbnail picture id.
         /// </summary>
         [Column(Order = 11)]
-        [JsonIgnore]
-        public int OriginalHeight { get; set; }
+        [JsonProperty]
+        public int ThumbnailPictureId
+        {
+            get { return thumbnailPictureId; }
+            set
+            {
+                if (value != thumbnailPictureId)
+                {
+                    thumbnailPictureId = value;
+                    NotifyPropertyChanged();
 
+                    // Update property to null will raise Thumbnail Picture changed event with new Picture entity.
+                    ThumbnailPicture = null;
+                }
+            }
+        }
 
         /// <summary>
-        /// Property the picture path.
+        /// Property to access to the comment for the item.
         /// </summary>
         [Column(Order = 12)]
-        [JsonIgnore]
-        public string PicturePath { get; set; }
+        [JsonProperty]
+        public string Comment
+        {
+            get { return comment; }
+            set
+            {
+                if (value != comment)
+                {
+                    comment = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
-        /// Property the picture width.
+        /// Property to access to the parameters for the item.
         /// </summary>
         [Column(Order = 13)]
-        [JsonIgnore]
-        public int PictureWidth { get; set; }
-
-        /// <summary>
-        /// Property the picture height.
-        /// </summary>
-        [Column(Order = 14)]
-        [JsonIgnore]
-        public int PictureHeight { get; set; }
-
-
-        /// <summary>
-        /// Property the thumbnail picture path.
-        /// </summary>
-        [Column(Order = 15)]
-        [JsonIgnore]
-        public string ThumbnailPath { get; set; }
-
-        /// <summary>
-        /// Property the thumbnail width.
-        /// </summary>
-        [Column(Order = 16)]
-        [JsonIgnore]
-        public int ThumbnailWidth { get; set; }
-
-        /// <summary>
-        /// Property the thumbnail height.
-        /// </summary>
-        [Column(Order = 17)]
-        [JsonIgnore]
-        public int ThumbnailHeight { get; set; }
-
-
-        /// <summary>
-        /// Property comment for the item.
-        /// </summary>
-        [Column(Order = 18)]
-        public string Comment { get; set; }
+        [JsonProperty]
+        public string Parameters
+        {
+            get { return parameters; }
+            set
+            {
+                if (value != parameters)
+                {
+                    parameters = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         #endregion
 
 
 
-        #region Properties : Dependencies
+        #region Properties Associated Pictures
+
+        /// <summary>
+        /// Property to access to the background picture entity.
+        /// </summary>
+        [NotMapped]
+        public PictureEntity BackgroundPicture
+        {
+            get
+            {
+                if(backgroundPicture == null)
+                {
+                    backgroundPicture = GetPicture(BackgroundPictureId);
+                }
+                return backgroundPicture;
+            }
+            set
+            {
+                if (value != backgroundPicture)
+                {
+                    backgroundPicture = value;
+                    NotifyPropertyChanged();
+
+                    // Update the Background Picture Id property.
+                    BackgroundPictureId = backgroundPicture.PrimaryKey;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the preview picture entity.
+        /// </summary>
+        [NotMapped]
+        public PictureEntity PreviewPicture
+        {
+            get
+            {
+                if (previewPicture == null)
+                {
+                    previewPicture = GetPicture(PreviewPictureId);
+                }
+                return previewPicture;
+            }
+            set
+            {
+                if (value != previewPicture)
+                {
+                    previewPicture = value;
+                    NotifyPropertyChanged();
+
+                    // Update the Preview Picture Id property.
+                    PreviewPictureId = previewPicture.PrimaryKey;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the thumbnail picture entity.
+        /// </summary>
+        [NotMapped]
+        public PictureEntity ThumbnailPicture
+        {
+            get
+            {
+                if (thumbnailPicture == null)
+                {
+                    thumbnailPicture = GetPicture(ThumbnailPictureId);
+                }
+                return thumbnailPicture;
+            }
+            set
+            {
+                if (value != thumbnailPicture)
+                {
+                    thumbnailPicture = value;
+                    NotifyPropertyChanged();
+
+                    // Update the Thumbnail Picture Id property.
+                    ThumbnailPictureId = thumbnailPicture.PrimaryKey;
+                }
+            }
+        }
+
+        #endregion
+
+
+
+        #region Properties Dependencies Section
 
         /// <summary>
         /// Property Section id.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         public int SectionId { get; set; }
-
-        /// <summary>
-        /// Property Picture id.
-        /// </summary>
-        [NotMapped]
-        [JsonIgnore]
-        public int PictureId { get; set; }
-
-        /// <summary>
-        /// Property Info id.
-        /// </summary>
-        [NotMapped]
-        [JsonIgnore]
-        public int InfoId { get; set; }
 
         /// <summary>
         /// Property to access to the list of Sections associated to the Album.
@@ -268,6 +530,37 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             get => ListSections();
             set => sections = value;
         }
+
+        /// <summary>
+        /// Propertiy to access to the list of Section dependencies primary key.
+        /// </summary>
+        [NotMapped]
+        public IEnumerable<int> SectionsPK
+            => ListOfPrimaryKeys(AlbumsInSections.ToList(), "SectionId");
+
+        /// <summary>
+        /// Property to access to the collection of relationship Albums in Sections.
+        /// </summary>
+        public ObservableCollection<AlbumsInSections> AlbumsInSections { get; set; }
+            = new ObservableCollection<AlbumsInSections>();
+
+        #endregion
+
+
+
+        #region Properties : Dependencies
+
+        /// <summary>
+        /// Property Picture id.
+        /// </summary>
+        [NotMapped]
+        public int PictureId { get; set; }
+
+        /// <summary>
+        /// Property Info id.
+        /// </summary>
+        [NotMapped]
+        public int InfoId { get; set; }
 
         /// <summary>
         /// Property to access to the list of Pictures associated to the Album.
@@ -290,29 +583,16 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Propertiy to access to the list of Section dependencies primary key.
-        /// </summary>
-        [NotMapped]
-        public List<int> SectionsPK => ListOfPrimaryKeys(AlbumsInSections.ToList(), "SectionId");
-
-        /// <summary>
         /// Propertiy to access to the list of Picture dependencies primary key.
         /// </summary>
         [NotMapped]
-        public List<int> PicturesPK => ListOfPrimaryKeys(PicturesInAlbums.ToList(), "PictureId");
+        public IEnumerable<int> PicturesPK => ListOfPrimaryKeys(PicturesInAlbums.ToList(), "PictureId");
 
         /// <summary>
         /// Propertiy to access to the list of Info dependencies primary key.
         /// </summary>
         [NotMapped]
-        public List<int> InfosPK => ListOfPrimaryKeys(InfosInAlbums.ToList(), "InfoId");
-
-        /// <summary>
-        /// Property to access to the collection of relationship Albums in Sections.
-        /// </summary>
-        [JsonIgnore]
-        public ObservableCollection<AlbumsInSections> AlbumsInSections { get; set; }
-            = new ObservableCollection<AlbumsInSections>();
+        public IEnumerable<int> InfosPK => ListOfPrimaryKeys(InfosInAlbums.ToList(), "InfoId");
 
         /// <summary>
         /// Property to access to the collection of relationship Pictures In Albums entities.
@@ -337,8 +617,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         public AlbumEntity()
         {
-            Initialize();
-
             AlbumsInSections.CollectionChanged += (s, e) => { sections = null; };
             PicturesInAlbums.CollectionChanged += (s, e) => { pictures = null; };
             InfosInAlbums.CollectionChanged += (s, e) => { infos = null; };
@@ -347,50 +625,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #endregion
 
 
-
         #region Methods
-
-        /// <summary>
-        /// Method to initialize an Album.
-        /// </summary>
-        public void Initialize()
-        {
-            if (PrimaryKey <= 0)
-            {
-                PrimaryKey = 0;
-            }
-
-            this.InitializeNulls();
-            InitializeImages();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entity"></param>
-        public void InitializeImages()
-        {
-            if (OriginalPath.IsNullOrWhiteSpace())
-            {
-                OriginalPath = (string)Application.Current.Resources["ImageAlbumDefaultOriginal"];
-                OriginalWidth = 512;
-                OriginalHeight = 512;
-            }
-
-            if (PicturePath.IsNullOrWhiteSpace())
-            {
-                PicturePath = (string)Application.Current.Resources["ImageAlbumDefaultPicture"];
-                PictureWidth = 256;
-                PictureHeight = 256;
-            }
-
-            if (ThumbnailPath.IsNullOrWhiteSpace())
-            {
-                ThumbnailPath = (string)Application.Current.Resources["ImageAlbumDefaultThumbnail"];
-                ThumbnailWidth = 128;
-                ThumbnailHeight = 128;
-            }
-        }
 
         /// <summary>
         /// Method to get a list of associated Picture.
@@ -484,7 +719,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// 
         /// </summary>
         /// <param name="sectionId"></param>
-        public void UnLinkSection(int sectionId)
+        public void UnlinkSection(int sectionId)
         {
             try
             {

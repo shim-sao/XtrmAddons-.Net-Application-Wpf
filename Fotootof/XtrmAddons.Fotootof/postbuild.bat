@@ -16,9 +16,9 @@ set count=0
 for %%x in ("%DestDir%*.dll") do set /a count+=1
 if %count% GTR 0 ( move /y "%DestDir%*.dll" "%DestDirBin%" )
 
-set count=0
-for %%x in ("%DestDir%*.xml") do set /a count+=1
-if %count% GTR 0 ( move /y "%DestDir%*.xml" "%DestDirBin%" )
+:: set count=0
+:: for %%x in ("%DestDir%*.xml") do set /a count+=1
+:: if %count% GTR 0 ( move /y "%DestDir%*.xml" "%DestDirBin%" )
 
 
 :: Operation create Local directory
