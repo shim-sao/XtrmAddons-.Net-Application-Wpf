@@ -454,7 +454,7 @@
     <value>FotootoF Administration : Utilisateurs</value>
   </data>
   <data name="XLarge" xml:space="preserve">
-    <value>X-Large</value>
+    <value>Extra-Large</value>
   </data>
   <data name="_About" xml:space="preserve">
     <value>_À propos de XtrmAddons PhotoAlbum Server</value>
@@ -593,5 +593,17 @@
   </data>
   <data name="Various" xml:space="preserve">
     <value>Variées</value>
+  </data>
+  <data name="BlackWhite" xml:space="preserve">
+    <value>Noir &amp; Blanc</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Basse</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Moyenne</value>
+  </data>
+  <data name="TrueColor" xml:space="preserve">
+    <value>Couleur Vraies</value>
   </data>
 </root>

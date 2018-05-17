@@ -76,9 +76,11 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <param name="e">Size changed event arguments.</param>
         protected void PageBase_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            // Get main window page container dimensions.
             Border win = AppWindow.GetPropertyValue<Border>("BlockContent");
             TraceSize(win);
 
+            // Resize page to fit container.
             Width = Math.Max(win.ActualWidth - MargingWidth, 0);
             Height = Math.Max(win.ActualHeight - MargingHeight, 0);
             TraceSize(this);
@@ -140,11 +142,11 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         [Conditional("DEBUG")]
         protected void TraceSize(FrameworkElement fe)
         {
-            Trace.WriteLine(string.Format("----> Class({0}) : Object({1}) : Name({2})", GetType().Name, fe.GetType().Name, fe.Name));
-            Trace.WriteLine("ActualSize = [" + fe.ActualWidth + "," + fe.ActualHeight + "]");
-            Trace.WriteLine("Size = [" + fe.Width + "," + fe.Height + "]");
-            Trace.WriteLine("RenderSize = [" + fe.RenderSize.Width + "," + fe.RenderSize.Height + "]");
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            //Trace.WriteLine(string.Format("----> Class({0}) : Object({1}) : Name({2})", GetType().Name, fe.GetType().Name, fe.Name));
+            //Trace.WriteLine("ActualSize = [" + fe.ActualWidth + "," + fe.ActualHeight + "]");
+            //Trace.WriteLine("Size = [" + fe.Width + "," + fe.Height + "]");
+            //Trace.WriteLine("RenderSize = [" + fe.RenderSize.Width + "," + fe.RenderSize.Height + "]");
+            //Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }
 
         #endregion

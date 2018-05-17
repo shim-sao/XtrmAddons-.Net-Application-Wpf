@@ -556,6 +556,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Black &amp; White.
+        /// </summary>
+        public static string BlackWhite {
+            get {
+                return ResourceManager.GetString("BlackWhite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Browser.
         /// </summary>
         public static string Browser {
@@ -835,6 +844,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à High.
+        /// </summary>
+        public static string High {
+            get {
+                return ResourceManager.GetString("High", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Home.
         /// </summary>
         public static string Home {
@@ -903,6 +921,24 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string Login {
             get {
                 return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Low.
+        /// </summary>
+        public static string Low {
+            get {
+                return ResourceManager.GetString("Low", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Medium.
+        /// </summary>
+        public static string Medium {
+            get {
+                return ResourceManager.GetString("Medium", resourceCulture);
             }
         }
         
@@ -1326,6 +1362,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string ToolTip_SelectAlbumQuality {
             get {
                 return ResourceManager.GetString("ToolTip_SelectAlbumQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à True Color.
+        /// </summary>
+        public static string TrueColor {
+            get {
+                return ResourceManager.GetString("TrueColor", resourceCulture);
             }
         }
         

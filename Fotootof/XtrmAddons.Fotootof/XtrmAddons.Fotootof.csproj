@@ -605,6 +605,9 @@
     <Content Include="Config\Database\Scheme\update.1.0.18123.2149.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Config\Database\Scheme\update.1.0.18137.1050.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Config\Database\Scheme\update.1.0.18134.1044.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

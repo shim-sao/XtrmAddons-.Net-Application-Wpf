@@ -10,11 +10,11 @@
     Height="480"
     WindowStartupLocation="CenterScreen"
     Title="{x:Static p:Resources.WindowSettingsTitle}"
-    Background="{StaticResource ResourceKey=DarkGrey}">
+    Background="{StaticResource DarkGrey}">
 
     <Grid
         Margin="2"
-        Background="{StaticResource ResourceKey=LightGrey}">
+        Background="{StaticResource LightGrey}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>

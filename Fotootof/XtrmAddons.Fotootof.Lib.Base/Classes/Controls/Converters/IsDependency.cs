@@ -38,7 +38,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters
         {
             if (Entity != null)
             {
-                return ((ObservableCollection<int>)(Entity).GetPropertyValue(DependenciesPKName, false))?.Contains((int)value);
+                return ((IList<int>)(Entity).GetPropertyValue(DependenciesPKName, false))?.Contains((int)value);
             }
 
             return false;

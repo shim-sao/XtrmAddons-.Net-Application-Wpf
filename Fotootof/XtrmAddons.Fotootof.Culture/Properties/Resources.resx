@@ -600,4 +600,19 @@
   <data name="Various" xml:space="preserve">
     <value>Various</value>
   </data>
+  <data name="BlackWhite" xml:space="preserve">
+    <value>Black &amp; White</value>
+  </data>
+  <data name="High" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="TrueColor" xml:space="preserve">
+    <value>True Color</value>
+  </data>
 </root>

@@ -100,7 +100,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
         public static void DbInsert(List<SectionEntity> newItems)
         {
             AppOverwork.IsBusy = true;
-            log.Info("Adding Section(s). Please wait...");
+            log.Info("Adding Section(s) to database. Please wait...");
 
             try
             {
@@ -117,50 +117,62 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     foreach (SectionEntity entity in newItems)
                     {
                         // Check it is the first entity to set IsDefault if required.
-                        if(items.Count == 0 && firstItem)
+                        if (items.Count == 0 && firstItem)
                         {
                             entity.IsDefault = true;
                             firstItem = false;
                         }
 
-                        // Check if the alias is empty. Set name if required.
-                        if(entity.Alias.IsNullOrWhiteSpace())
-                        {
-                            entity.Alias = entity.Name;
-                        }
-
-                        //SectionEntity se = MainWindow.Database.Sections.SingleOrNull(new SectionOptionsSelect { Alias = entity.Alias }); // Working but calling Db for nothing !
-                        //if (se != null && se.PrimaryKey != entity.PrimaryKey)
-
-                        // Check if another entity with the same alias is in database.
-                        items.ToList().FindIndex(x => x.Alias == entity.Alias && x.PrimaryKey != entity.PrimaryKey);
-                        if ((items.ToList().FindIndex(x => x.Alias == entity.Alias && x.PrimaryKey != entity.PrimaryKey) >= 0) == false)
-                        {
-                            DateTime d = DateTime.Now;
-                            entity.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss") + "-" + i;
-                        }
+                        FormatAlias(entity, items);
 
                         // Finally add the entity into the database.
                         MainWindow.Database.Sections.Add(entity);
                         i++;
 
-                        log.Info(string.Format("Section [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
+                        log.Info(string.Format("Section [{0}:{1}] added to database.", entity.PrimaryKey, entity.Name));
                     }
                 }
 
                 // Clear navigation cache.
                 AppNavigator.Clear();
-                log.Info("Adding Section(s). Done !");
+                log.Info("Adding Section(s) to database. Done !");
             }
             catch (Exception e)
             {
                 log.Error(e);
-                AppLogger.Fatal("Adding Section(s) failed !", e);
+                AppLogger.Fatal("Adding Section(s) to database. Fail !", e);
             }
             finally
             {
                 AppOverwork.IsBusy = false;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        private static SectionEntity FormatAlias(SectionEntity entity, IList<SectionEntity> items = null)
+        {
+            items = items ?? MainWindow.Database.Sections.List(GetOptionsDefault());
+
+            // Check if the alias is empty. Set name if required.
+            if (entity.Alias.IsNullOrWhiteSpace())
+            {
+                entity.Alias = entity.Name;
+            }
+
+            // Check if another entity with the same alias is in database.
+            int index = items.ToList().FindIndex(x => x.Alias.IsNotNullOrWhiteSpace() && x.Alias == entity.Alias && x.PrimaryKey != entity.PrimaryKey);
+            if (index >= 0 || entity.Alias.IsNullOrWhiteSpace())
+            {
+                DateTime d = DateTime.Now;
+                entity.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss-fff");
+            }
+
+            return entity;
         }
 
         /// <summary>
@@ -213,7 +225,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                 {
                     foreach (SectionEntity entity in newItems)
                     {
+                        FormatAlias(entity);
+
                         await MainWindow.Database.Sections.UpdateAsync(entity);
+
                         log.Info(string.Format("Section [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
                     }
                 }
