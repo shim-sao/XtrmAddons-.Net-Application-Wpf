@@ -129,36 +129,33 @@ namespace XtrmAddons.Fotootof.Settings
 
                         log.Info(string.Format(CultureInfo.InvariantCulture, "Current Assembly Version : {0}", current));
 
-                        Version old = new Version("1.0.18123.2149");
-                        if (current < old)
+                        string[] versions = new string[] { "1.0.18123.2149", "1.0.18134.1044", "1.0.18137.1050" };
+                        Version old;
+
+                        foreach (string ver in versions)
                         {
-                            log.Info(string.Format(CultureInfo.InvariantCulture, "Updating Assembly Minimum Version : {0}", old));
-                            string query = File.ReadAllText(Path.Combine(ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath, "update.1.0.18123.2149.sqlite"));
-                            using (TransactionScope tran = new TransactionScope())
+                            old = new Version(ver);
+                            if (current < old)
                             {
-                                SQLiteCommand command = db.CreateCommand();
-                                command.CommandText = @query;
-                                command.ExecuteNonQuery();
+                                log.Info(string.Format(CultureInfo.InvariantCulture, "Updating Assembly Minimum Version : {0}", old));
+
+                                string query = File.ReadAllText(Path.Combine(ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath, "update." + old.ToString() + ".sqlite"));
+                                using (TransactionScope tran = new TransactionScope())
+                                {
+                                    SQLiteCommand command = db.CreateCommand();
+                                    command.CommandText = @query;
+                                    command.ExecuteNonQuery();
+                                }
+
+                                database.Version = old.ToString();
+                                ApplicationBase.Save();
+
+                                log.Info(string.Format(CultureInfo.InvariantCulture, "Updating Assembly Minimum Version : {0}. Done !", old));
                             }
-
-                            database.Version = old.ToString();
-                            ApplicationBase.Save();
-                        }
-
-                        old = new Version("1.0.18134.1044");
-                        if (current < old)
-                        {
-                            log.Info(string.Format(CultureInfo.InvariantCulture, "Updating Assembly Minimum Version : {0}", old));
-                            string query = File.ReadAllText(Path.Combine(ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath, "update." + old.ToString() + ".sqlite"));
-                            using (TransactionScope tran = new TransactionScope())
+                            else
                             {
-                                SQLiteCommand command = db.CreateCommand();
-                                command.CommandText = @query;
-                                command.ExecuteNonQuery();
+                                log.Info(string.Format(CultureInfo.InvariantCulture, "Updating Assembly Minimum Version : {0}. Skipped !", old));
                             }
-
-                            database.Version = old.ToString();
-                            ApplicationBase.Save();
                         }
                     }
                 }

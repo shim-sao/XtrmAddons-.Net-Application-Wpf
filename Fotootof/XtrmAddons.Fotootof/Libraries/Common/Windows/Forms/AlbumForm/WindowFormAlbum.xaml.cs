@@ -236,14 +236,14 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Windows.Forms.AlbumForm
             }
 
             // Get color filter.
-            InfoEntity color = FiltersColorSelector.SelectedItem as InfoEntity;
+            InfoEntity color = (InfoEntity)FiltersColorSelector.SelectedItem;
             if(color != null && color.PrimaryKey != 0)
             {
                 NewForm.LinkInfo(color.PrimaryKey);
             }
 
             // Get quality filter.
-            InfoEntity quality = FiltersQualitySelector.SelectedItem as InfoEntity;
+            InfoEntity quality = (InfoEntity)FiltersQualitySelector.SelectedItem;
             if (quality != null && quality.PrimaryKey != 0)
             {
                 NewForm.LinkInfo(quality.PrimaryKey);

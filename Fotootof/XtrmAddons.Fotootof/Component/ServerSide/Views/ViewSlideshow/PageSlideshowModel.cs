@@ -2,7 +2,7 @@
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewSlideshow
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
 {
     /// <summary>
     /// 

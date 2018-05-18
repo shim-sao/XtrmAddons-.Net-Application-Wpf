@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewLogs
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Component Views Logs Page.

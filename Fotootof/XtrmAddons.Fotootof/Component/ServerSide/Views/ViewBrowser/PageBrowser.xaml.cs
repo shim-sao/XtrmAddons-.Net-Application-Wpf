@@ -16,7 +16,7 @@ using XtrmAddons.Net.Picture;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 using XtrmAddons.Net.Windows.Converter.Picture;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
 {
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Server Side Component Browser View.</para>

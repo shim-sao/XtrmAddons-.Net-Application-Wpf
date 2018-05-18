@@ -1,10 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
+﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Models List Users.

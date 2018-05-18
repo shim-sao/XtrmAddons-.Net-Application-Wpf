@@ -61,11 +61,19 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
             {
                 try
                 {
-                    Trace.WriteLine(entity.Name.RemoveWhitespace().RemoveDiacritics());
-                    this[i].Name = DWords.GetPropertyValue(entity.Name.RemoveWhitespace().RemoveDiacritics());
+                    string key = entity.Name.RemoveWhitespace().RemoveDiacritics();
+                    Trace.WriteLine(key);
+
+                    if(Culture.Translation.Words.Contains(key))
+                    {
+                        this[i].Name = (string)Culture.Translation.Words[key];
+                    }
 
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    log.Error(ex.Output());
+                }
                 i++;
             }
         }
@@ -86,7 +94,10 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Collections
                     this[i].Name = DWords[entity.Name.RemoveWhitespace().RemoveDiacritics()];
 
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    log.Error(ex.Output());
+                }
             }
             i++;
         }
