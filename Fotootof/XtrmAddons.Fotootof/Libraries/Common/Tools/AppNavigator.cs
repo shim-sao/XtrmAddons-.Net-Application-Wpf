@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog;
-using XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser;
+using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewServer;
 using XtrmAddons.Fotootof.Component.ServerSide.ViewUsers;

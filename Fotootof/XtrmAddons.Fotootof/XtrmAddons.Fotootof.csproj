@@ -257,8 +257,8 @@
     <Compile Include="Component\ClientSide\ViewCatalog\PageCatalogClient.xaml.cs">
       <DependentUpon>PageCatalogClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\ViewBrowser\PageBrowserController.cs" />
-    <Compile Include="Component\ServerSide\ViewBrowser\PageBrowserModel.cs" />
+    <Compile Include="Component\ServerSide\Views\ViewBrowser\PageBrowserController.cs" />
+    <Compile Include="Component\ServerSide\Views\ViewBrowser\PageBrowserModel.cs" />
     <Compile Include="Component\ServerSide\ViewCatalog\PageCatalog.xaml.cs">
       <DependentUpon>PageCatalog.xaml</DependentUpon>
     </Compile>
@@ -324,7 +324,7 @@
     <Compile Include="Libraries\Common\HttpHelpers\HttpClient\Responses\ServerResponse.cs" />
     <Compile Include="Libraries\Common\HttpHelpers\HttpClient\Responses\ServerResponseBase.cs" />
     <Compile Include="Libraries\Common\Collections\StorageCollection.cs" />
-    <Compile Include="Component\ServerSide\ViewBrowser\PageBrowser.xaml.cs">
+    <Compile Include="Component\ServerSide\Views\ViewBrowser\PageBrowser.xaml.cs">
       <DependentUpon>PageBrowser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\ServerSide\ViewAlbum\PageAlbumModel.cs" />
@@ -420,7 +420,7 @@
     <Compile Include="UI\Forms\About\FormAbout.Designer.cs">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </Compile>
-    <Page Include="Component\ServerSide\ViewBrowser\PageBrowser.xaml">
+    <Page Include="Component\ServerSide\Views\ViewBrowser\PageBrowser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

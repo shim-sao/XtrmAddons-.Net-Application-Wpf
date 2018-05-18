@@ -2,7 +2,7 @@
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using ServerData = XtrmAddons.Net.Application.Serializable.Elements.XmlRemote.Server;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewServer
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
 {
     /// <summary>
     /// 

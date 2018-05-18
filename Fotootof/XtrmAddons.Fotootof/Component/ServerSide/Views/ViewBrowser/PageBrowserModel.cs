@@ -4,7 +4,7 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
 using ImgSize = XtrmAddons.Fotootof.Lib.Base.Classes.Images.ImageSize;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewBrowser
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
 {
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Server Side Component Browser View Model.</para>
