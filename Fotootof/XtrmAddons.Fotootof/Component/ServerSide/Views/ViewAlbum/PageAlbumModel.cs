@@ -2,7 +2,7 @@
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Page Album Model.
@@ -10,6 +10,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
     public class PageAlbumModel<PageAlbum> : PageBaseModel<PageAlbum>
     {
         #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static new readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// 

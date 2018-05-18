@@ -9,10 +9,23 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
     /// </summary>
     public class PageServerModel<PageServer> : PageBaseModel<PageServer>
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static new readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// 
         /// </summary>
         private ServerData server;
+
+        #endregion
+
+
+
 
         /// <summary>
         /// 

@@ -6,24 +6,37 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Pages Album.
+    /// <para>Class XtrmAddons Fotootof Component Views Server Page Album.</para>
+    /// <para>This page provides the entire display for server administration of an image album.</para>
     /// </summary>
     public partial class PageAlbum : PageBase
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
-        /// Property to access to the page album model.
+        /// Property to access to the data model of the page.
         /// </summary>
-        public PageAlbumModel<PageAlbum> Model { get; private set; }
+        public PageAlbumModel<PageAlbum> Model { get; }
 
         /// <summary>
-        /// Property to access to the album id.
+        /// Property to access to the album's id or primary key.
         /// </summary>
-        private int ItemId { get; }
+        public int ItemId { get; }
 
         #endregion
 
@@ -32,12 +45,20 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
         #region constructor
 
         /// <summary>
-        /// 
+        /// Class XtrmAddons Fotootof Component Views Server Page Album Constructor.
         /// </summary>
         public PageAlbum(int albumId = 0)
         {
-            InitializeComponent();
+            // Store Album primary key.
             ItemId = albumId;
+
+            // Initialize the component of the page.
+            InitializeComponent();
+
+            // Initialize associated data model of the page.
+            Model = new PageAlbumModel<PageAlbum>(this);
+
+            // 
             AfterInitializedComponent();
         }
 
@@ -50,18 +71,17 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewAlbum
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void InitializeContent()
+        public override void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeContentAsync();
+            Page_Loaded_Async(sender, e);
         }
 
         /// <summary>
         /// Method to initialize page content asynchronously.
         /// </summary>
-        public async override void InitializeContentAsync()
+        public async override void Page_Loaded_Async(object sender, RoutedEventArgs e)
         {
-            // Initialize associated view model of the page.
-            Model = new PageAlbumModel<PageAlbum>(this);
+            
 
             // Set busy indicator
             AppOverwork.IsBusy = true;

@@ -11,7 +11,7 @@ using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient.Responses;
 using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 
-namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
+namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
 {
     /// <summary>
     /// Logique d'interaction pour PageClient.xaml
@@ -19,6 +19,12 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
     public partial class PageCatalogClient : PageBase
     {
         #region Variable
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Variable client http server.
@@ -53,15 +59,19 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void InitializeContent()
+        public override void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeContentAsync();
+            AppOverwork.IsBusy = true;
+
+            Page_Loaded_Async(sender, e);
+
+            AppOverwork.IsBusy = false;
         }
 
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void InitializeContentAsync()
+        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
         {
             // Paste page to the model & child elements.
             Model = new PageCatalogClientModel<PageCatalogClient>(this)
@@ -74,8 +84,6 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
 
             Model.Server.Authentication();
             Model.Server.ListSections();
-
-            AppOverwork.IsBusy = false;
         }
 
         #endregion

@@ -15,6 +15,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
         #region Variables
 
         /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
         /// Variable to store the constructor collection argument.
         /// </summary>
         private PictureEntityCollection pictures;
@@ -79,15 +85,15 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void InitializeContent()
+        public override void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeContentAsync();
+            Page_Loaded_Async(sender, e);
         }
 
         /// <summary>
         /// Method to initialize page content asynchronously.
         /// </summary>
-        public override async void InitializeContentAsync()
+        public override async void Page_Loaded_Async(object sender, RoutedEventArgs e)
         {
 
             Model = new PageSlideshowModel<PageSlideshow>(this)

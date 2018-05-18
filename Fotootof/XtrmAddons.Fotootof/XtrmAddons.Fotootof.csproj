@@ -253,8 +253,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Component\ClientSide\ViewCatalog\PageCatalogClientModel.cs" />
-    <Compile Include="Component\ClientSide\ViewCatalog\PageCatalogClient.xaml.cs">
+    <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClientModel.cs" />
+    <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClient.xaml.cs">
       <DependentUpon>PageCatalogClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\ServerSide\Views\ViewBrowser\PageBrowserModel.cs" />
@@ -326,12 +326,12 @@
     <Compile Include="Component\ServerSide\Views\ViewBrowser\PageBrowser.xaml.cs">
       <DependentUpon>PageBrowser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\ViewAlbum\PageAlbumModel.cs" />
-    <Compile Include="Component\ServerSide\ViewAlbum\PageAlbum.xaml.cs">
+    <Compile Include="Component\ServerSide\Views\ViewAlbum\PageAlbumModel.cs" />
+    <Compile Include="Component\ServerSide\Views\ViewAlbum\PageAlbum.xaml.cs">
       <DependentUpon>PageAlbum.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\HttpHelpers\HttpServer\HttpServerBase.cs" />
-    <Compile Include="Libraries\ClientSide\Controls\ListViews\ListViewAlbumsClient.xaml.cs">
+    <Compile Include="Component\ClientSide\Controls\ListViews\ListViewAlbumsClient.xaml.cs">
       <DependentUpon>ListViewAlbumsClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsers.cs" />
@@ -388,7 +388,7 @@
     <Compile Include="Libraries\Common\Windows\Forms\UserForm\WindowFormUser.xaml.cs">
       <DependentUpon>WindowFormUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Libraries\ClientSide\Controls\DataGrids\DataGridSectionsClient.xaml.cs">
+    <Compile Include="Component\ClientSide\Controls\DataGrids\DataGridSectionsClient.xaml.cs">
       <DependentUpon>DataGridSectionsClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewAlbumsServer.xaml.cs">
@@ -423,11 +423,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ClientSide\ViewCatalog\PageCatalogClient.xaml">
+    <Page Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Component\ServerSide\ViewAlbum\PageAlbum.xaml">
+    <Page Include="Component\ServerSide\Views\ViewAlbum\PageAlbum.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -455,7 +455,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Libraries\ClientSide\Controls\ListViews\ListViewAlbumsClient.xaml">
+    <Page Include="Component\ClientSide\Controls\ListViews\ListViewAlbumsClient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -535,7 +535,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Libraries\ClientSide\Controls\DataGrids\DataGridSectionsClient.xaml">
+    <Page Include="Component\ClientSide\Controls\DataGrids\DataGridSectionsClient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

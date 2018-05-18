@@ -222,11 +222,11 @@
 														  IsEnabled="true" />
 
 												<!--<MenuItem Header="{x:Static p:Resources.Edit}"
-														  Click="OnEdit_Click"
+														  Click="OnEditItem_Click"
 														  IsEnabled="False" />
 
 												<MenuItem Header="{x:Static p:Resources.Delete}"
-														  Click="OnDelete_Click"
+														  Click="OnDeleteItems_Click"
 														  IsEnabled="False" />-->
 											</ContextMenu>
 										</Grid.ContextMenu>

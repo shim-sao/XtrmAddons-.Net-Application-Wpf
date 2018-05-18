@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog;
+using XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer;
+using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
 using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient;
@@ -98,7 +99,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// Method to navigate to the Album page.
         /// </summary>
         public static void NavigateToPageAlbumServer(int albumId) 
-            => Navigate(new Component.ServerSide.ViewAlbum.PageAlbum(albumId));
+            => Navigate(new Component.ServerSide.Views.ViewAlbum.PageAlbum(albumId));
 
         /// <summary>
         /// Method to navigate to Album page.
@@ -134,13 +135,13 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Tools
         /// Method to navigate to the Slideshow Server page.
         /// </summary>
         public static void NavigateToPageSlideshowServer(PictureEntityCollection collection)
-            => Navigate(new Component.ServerSide.ViewSlideshow.PageSlideshow(collection));
+            => Navigate(new PageSlideshow(collection));
 
         /// <summary>
         /// Method to navigate to the Slideshow Server page.
         /// </summary>
         public static void NavigateToPageSlideshowServer(int albumPk)
-            => Navigate(new Component.ServerSide.ViewSlideshow.PageSlideshow(albumPk));
+            => Navigate(new PageSlideshow(albumPk));
 
         #endregion Methods
     }

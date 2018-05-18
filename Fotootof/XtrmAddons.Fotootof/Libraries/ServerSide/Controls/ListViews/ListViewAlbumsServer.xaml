@@ -86,14 +86,14 @@
 							<Button x:Name="Button_Add"
 									Content="{StaticResource Icon24FolderPlus}"
 									Style="{StaticResource Button_Icon24Default}"
-									PreviewMouseLeftButtonUp="OnAdd_Click"
+									PreviewMouseLeftButtonUp="OnAddNewItem_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.AddNewAlbum}"/>
 
 							<Button x:Name="Button_Edit"
 									Grid.Column="1"
 									Content="{StaticResource Icon24FolderEdit}"
 									Style="{StaticResource Button_Icon24Default}"
-									PreviewMouseLeftButtonUp="OnEdit_Click"
+									PreviewMouseLeftButtonUp="OnEditItem_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
 									IsEnabled="False"/>
 
@@ -101,7 +101,7 @@
 									Grid.Column="2"
 									Content="{StaticResource Icon24FolderDelete}"
 									Style="{StaticResource Button_Icon24Default}"
-									PreviewMouseLeftButtonUp="OnDelete_Click"
+									PreviewMouseLeftButtonUp="OnDeleteItems_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
 									IsEnabled="False"/>
 						</Grid>
@@ -190,7 +190,7 @@
 					<ListView.ContextMenu>
 						<ContextMenu>
 							<MenuItem Header="{x:Static p:Resources.AddNewAlbum}"
-									  Click="OnAdd_Click" />
+									  Click="OnAddNewItem_Click" />
 
 							<Separator />
 
@@ -234,13 +234,13 @@
 									<Grid.ContextMenu>
 										<ContextMenu>
 											<MenuItem Header="{x:Static p:Resources.AddNewAlbum }"
-													  Click="OnAdd_Click" />
+													  Click="OnAddNewItem_Click" />
 
 											<MenuItem Header="{x:Static p:Resources.Edit}"
-													  Click="OnEdit_Click" />
+													  Click="OnEditItem_Click" />
 
 											<MenuItem Header="{x:Static p:Resources.Delete}"
-													  Click="OnDelete_Click" />
+													  Click="OnDeleteItems_Click" />
 
 											<Separator />
 

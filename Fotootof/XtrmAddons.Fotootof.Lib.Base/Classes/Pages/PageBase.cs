@@ -20,7 +20,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <summary>
         /// Variable logger.
         /// </summary>
-        protected static readonly log4net.ILog log =
+        private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
@@ -36,7 +36,8 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <summary>
         /// 
         /// </summary>
-        public static object AppWindow= ApplicationSession.Properties.MainWindow;
+        public static object AppWindow 
+            = ApplicationSession.Properties.MainWindow;
 
         #endregion
 
@@ -49,7 +50,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// </summary>
         public void AfterInitializedComponent()
         {
-            Loaded += (s, e) => InitializeContent();
+            Loaded += Page_Loaded;
 
             // Initialize for the window size changed event.
             SizeChanged += PageBase_SizeChanged;
@@ -62,12 +63,12 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <summary>
         /// Method to initialize and display data context.
         /// </summary>
-        public abstract void InitializeContent();
+        public abstract void Page_Loaded(object sender, RoutedEventArgs e);
 
         /// <summary>
         /// Method to initialize and display data context.
         /// </summary>
-        public abstract void InitializeContentAsync();
+        public abstract void Page_Loaded_Async(object sender, RoutedEventArgs e);
 
         /// <summary>
         /// Method called on window sized changed.
@@ -79,7 +80,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
             // Get main window page container dimensions.
             Border win = AppWindow.GetPropertyValue<Border>("BlockContent");
             TraceSize(win);
-
+            
             // Resize page to fit container.
             Width = Math.Max(win.ActualWidth - MargingWidth, 0);
             Height = Math.Max(win.ActualHeight - MargingHeight, 0);

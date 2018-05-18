@@ -104,25 +104,25 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         }
 
         /// <summary>
-        /// Method called on add click event.
+        /// Method called on add new item click event.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public virtual void OnAdd_Click(object sender, RoutedEventArgs e) { throw new NotImplementedException(); }
+        public virtual void OnAddNewItem_Click(object sender, RoutedEventArgs e) { throw new NotImplementedException(); }
 
         /// <summary>
-        /// Method called on edit click event.
+        /// Method called on edit item click event.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public virtual void OnEdit_Click(object sender, RoutedEventArgs e) { throw new NotImplementedException(); }
+        public virtual void OnEditItem_Click(object sender, RoutedEventArgs e) { throw new NotImplementedException(); }
 
         /// <summary>
-        /// Method called on delete click event.
+        /// Method called on delete items click event.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public virtual void OnDelete_Click(object sender, RoutedEventArgs e) { throw new NotImplementedException(); }
+        public virtual void OnDeleteItems_Click(object sender, RoutedEventArgs e) { throw new NotImplementedException(); }
 
         /// <summary>
         /// Method called on items collection selection changed.

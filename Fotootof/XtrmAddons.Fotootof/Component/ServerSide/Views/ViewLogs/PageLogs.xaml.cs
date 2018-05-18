@@ -9,7 +9,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs
     /// </summary>
     public partial class PageLogs : Page
     {
-        #region Properties
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Variable page width marging for content adjustement on size changed.
@@ -24,13 +30,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs
         /// <summary>
         /// Accessors to the application main window.
         /// </summary>
-        protected MainWindow AppWindow
-        {
-            get
-            {
-                return (MainWindow)Application.Current.MainWindow;
-            }
-        }
+        protected MainWindow AppWindow =>
+            (MainWindow)Application.Current.MainWindow;
 
         #endregion
 

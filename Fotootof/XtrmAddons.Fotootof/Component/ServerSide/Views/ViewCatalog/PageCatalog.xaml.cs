@@ -24,6 +24,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         #region Variables
 
         /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
         /// Variable model associated to the page.
         /// </summary>
         private PageCatalogModel<PageCatalog> model;
@@ -31,7 +37,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <summary>
         /// 
         /// </summary>
-        private Dictionary<string, int> filters = new Dictionary<string, int>();
+        private Dictionary<string, int> filters =
+            new Dictionary<string, int>();
 
         #endregion
 
@@ -101,15 +108,15 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <summary>
         /// Method to initialize and display data context.
         /// </summary>
-        public override void InitializeContent()
+        public override void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeContentAsync();
+            Page_Loaded_Async(sender, e);
         }
 
         /// <summary>
         /// Method to initialize and display data context.
         /// </summary>
-        public override void InitializeContentAsync()
+        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
         {
             // Paste page to the model & child elements.
             DataContext = model = new PageCatalogModel<PageCatalog>(this)
@@ -131,7 +138,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             UcDataGridSections.OnCancel += SectionsDataGrid_OnCancel;
             UcDataGridSections.OnDelete += SectionsDataGrid_OnDelete;
             UcDataGridSections.DefaultChanged += SectionsDataGrid_OnDefaultChange;
-            UcDataGridSections.SelectionChanged += (s, e) => { RefreshAlbums(); };
+            UcDataGridSections.SelectionChanged += (s, es) => { RefreshAlbums(); };
 
             UcListViewAlbums.OnAdd += AlbumsListView_OnAdd;
             UcListViewAlbums.OnChange += AlbumsListView_OnChange;

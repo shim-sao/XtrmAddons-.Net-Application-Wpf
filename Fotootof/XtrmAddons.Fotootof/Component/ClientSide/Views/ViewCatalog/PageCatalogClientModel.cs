@@ -9,7 +9,7 @@ using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient;
 using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient.Responses;
 using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
 
-namespace XtrmAddons.Fotootof.Component.ClientSide.ViewCatalog
+namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
 {
     public class PageCatalogClientModel<PageCatalogClient> : PageBaseModel<PageCatalogClient>
     {

@@ -13,21 +13,21 @@ namespace XtrmAddons.Fotootof.Lib.Base.Interfaces
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        void OnAdd_Click(object sender, System.Windows.RoutedEventArgs e);
+        void OnAddNewItem_Click(object sender, System.Windows.RoutedEventArgs e);
 
         /// <summary>
         /// Method called on edit click event.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        void OnEdit_Click(object sender, System.Windows.RoutedEventArgs e);
+        void OnEditItem_Click(object sender, System.Windows.RoutedEventArgs e);
 
         /// <summary>
         /// Method called on delete click event.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        void OnDelete_Click(object sender, System.Windows.RoutedEventArgs e);
+        void OnDeleteItems_Click(object sender, System.Windows.RoutedEventArgs e);
 
         /// <summary>
         /// Method called on items collection selection changed.
