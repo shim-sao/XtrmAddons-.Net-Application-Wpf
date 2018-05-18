@@ -5,7 +5,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Libraries.Common.Collections;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewSlideshow
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Component ServerSide View Slideshow.

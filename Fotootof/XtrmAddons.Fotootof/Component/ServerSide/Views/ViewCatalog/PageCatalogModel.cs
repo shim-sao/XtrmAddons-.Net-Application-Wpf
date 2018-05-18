@@ -4,7 +4,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Server Side View Catalog Model.

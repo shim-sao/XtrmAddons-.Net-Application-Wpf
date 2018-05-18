@@ -13,7 +13,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Net.Common.Extensions;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Pages Users View Users List.

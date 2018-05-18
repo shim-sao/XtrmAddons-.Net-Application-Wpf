@@ -6,7 +6,7 @@ using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Windows.Tools;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewServer
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Page Server.

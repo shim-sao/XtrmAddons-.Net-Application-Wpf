@@ -257,27 +257,26 @@
     <Compile Include="Component\ClientSide\ViewCatalog\PageCatalogClient.xaml.cs">
       <DependentUpon>PageCatalogClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Views\ViewBrowser\PageBrowserController.cs" />
     <Compile Include="Component\ServerSide\Views\ViewBrowser\PageBrowserModel.cs" />
-    <Compile Include="Component\ServerSide\ViewCatalog\PageCatalog.xaml.cs">
+    <Compile Include="Component\ServerSide\Views\ViewCatalog\PageCatalog.xaml.cs">
       <DependentUpon>PageCatalog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\ViewCatalog\PageCatalogModel.cs" />
-    <Compile Include="Component\ServerSide\ViewLogs\PageLogs.xaml.cs">
+    <Compile Include="Component\ServerSide\Views\ViewCatalog\PageCatalogModel.cs" />
+    <Compile Include="Component\ServerSide\Views\ViewLogs\PageLogs.xaml.cs">
       <DependentUpon>PageLogs.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\ViewServer\PageServer.xaml.cs">
+    <Compile Include="Component\ServerSide\Views\ViewServer\PageServer.xaml.cs">
       <DependentUpon>PageServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\ViewServer\PageServerModel.cs" />
-    <Compile Include="Component\ServerSide\ViewSlideshow\PageSlideshow.xaml.cs">
+    <Compile Include="Component\ServerSide\Views\ViewServer\PageServerModel.cs" />
+    <Compile Include="Component\ServerSide\Views\ViewSlideshow\PageSlideshow.xaml.cs">
       <DependentUpon>PageSlideshow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\ViewSlideshow\PageSlideshowModel.cs" />
-    <Compile Include="Component\ServerSide\ViewUsers\PageUsers.xaml.cs">
+    <Compile Include="Component\ServerSide\Views\ViewSlideshow\PageSlideshowModel.cs" />
+    <Compile Include="Component\ServerSide\Views\ViewUsers\PageUsers.xaml.cs">
       <DependentUpon>PageUsers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\ViewUsers\PageUsersModel.cs" />
+    <Compile Include="Component\ServerSide\Views\ViewUsers\PageUsersModel.cs" />
     <Compile Include="Libraries\Common\Collections\AclActionEntityCollection.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridAclGroups.cs" />
     <Compile Include="Libraries\Common\Controls\DataGrids\DataGridUsersModel.cs" />
@@ -432,23 +431,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\ViewCatalog\PageCatalog.xaml">
+    <Page Include="Component\ServerSide\Views\ViewCatalog\PageCatalog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\ViewLogs\PageLogs.xaml">
+    <Page Include="Component\ServerSide\Views\ViewLogs\PageLogs.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\ViewServer\PageServer.xaml">
+    <Page Include="Component\ServerSide\Views\ViewServer\PageServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\ViewSlideshow\PageSlideshow.xaml">
+    <Page Include="Component\ServerSide\Views\ViewSlideshow\PageSlideshow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\ViewUsers\PageUsers.xaml">
+    <Page Include="Component\ServerSide\Views\ViewUsers\PageUsers.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
