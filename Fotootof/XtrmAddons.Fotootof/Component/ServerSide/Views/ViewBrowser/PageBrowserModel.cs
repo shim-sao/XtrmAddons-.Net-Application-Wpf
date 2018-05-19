@@ -14,9 +14,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
         #region Variables
 
         /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static new readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
         /// Variable image size to display.
         /// </summary>
-        public Size imageSize = new Size { Height = ImgSize.Vignette.ToDouble(), Width = ImgSize.Vignette.ToDouble() };
+        public Size imageSize
+            = new Size { Height = ImgSize.Vignette.ToDouble(), Width = ImgSize.Vignette.ToDouble() };
 
         /// <summary>
         /// Variable collection of directories and files informations.

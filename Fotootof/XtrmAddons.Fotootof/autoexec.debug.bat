@@ -1,10 +1,10 @@
 @echo off
 
 :: IMPORTANT : Replace here the path of the root directory of the project.
-set SourceDirName=G:\projects-visualstudio-git\XtrmAddons-.Net-Application-Wpf\Fotootof\XtrmAddons.Fotootof
+set SourceDirName=G:\projects-visualstudio-git\XtrmAddons-.Net-Fotootof-Wpf\Fotootof\XtrmAddons.Fotootof
 :: set SourceDirName=%cd%
 
-echo %cd%
+:: @echo %cd% > intall.log
 
 set AssetsSourceDirName=%SourceDirName%\..\XtrmAddons.Fotootof.Lib.Assets
 

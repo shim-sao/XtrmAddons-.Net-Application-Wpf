@@ -7,7 +7,7 @@
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Properties"
     xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.Menu"
-    xmlns:ucsubmenu="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Menu"
+    xmlns:ucsubmenu="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.Menu"
     mc:Ignorable="d"
     Title="{x:Static p:Resources.ApplicationName}"
     Style="{StaticResource ResourceKey=ApplicationWindow}"
@@ -36,7 +36,7 @@
 
         <!-- #region Second menu navigation -->
         <Border x:Name="Block_MainSubmenu"  Grid.Row="1">
-            <ucsubmenu:MenuServerMain x:Name="AppMainSubmenu" />
+            <ucsubmenu:MenuMainServer x:Name="AppMainSubmenu" />
         </Border>
         <!-- #endegion Second menu navigation -->
 

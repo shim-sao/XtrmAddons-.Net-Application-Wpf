@@ -13,7 +13,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Net.Common.Extensions;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Pages Users View Users List.
@@ -21,6 +21,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
     public partial class PageUsers : PageBase
     {
         #region Variable
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// 
@@ -84,15 +90,15 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void InitializeContent()
+        public override void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeContentAsync();
+            Page_Loaded_Async(sender, e);
         }
 
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void InitializeContentAsync()
+        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
         {
             // Paste page to User list.
             model = model ?? new PageUsersModel<PageUsers>(this)
@@ -111,7 +117,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewUsers
             UcDataGridAclGroups.OnCancel += UcDataGridAclGroups_AclGroupCanceled;
             UcDataGridAclGroups.OnDelete += UcDataGridAclGroups_AclGroupDeleted;
             UcDataGridAclGroups.DefaultChanged += UcDataGridAclGroups_DefaultChanged;
-            UcDataGridAclGroups.SelectionChanged += (s, e) => { LoadUsers(); };
+            UcDataGridAclGroups.SelectionChanged += (s, ec) => { LoadUsers(); };
 
             UcDataGridUsers.OnAdd += UcDataGridUsers_UserAdded;
             UcDataGridUsers.OnChange += UcDataGridUsers_UserChanged;

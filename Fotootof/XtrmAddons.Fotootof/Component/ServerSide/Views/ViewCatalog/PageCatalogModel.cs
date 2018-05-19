@@ -4,7 +4,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
 
-namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
+namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Server Side View Catalog Model.
@@ -12,6 +12,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.ViewCatalog
     public class PageCatalogModel<PageCatalog> : PageBaseModel<PageCatalog>
     {
         #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static new readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Variable observable collection of Sections.

@@ -39,7 +39,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public override void OnAdd_Click(object sender, RoutedEventArgs e)
+        public override void OnAddNewItem_Click(object sender, RoutedEventArgs e)
         {
             WindowFormUser dlg = new WindowFormUser();
             bool? result = dlg.ShowDialog();
@@ -60,7 +60,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public override void OnEdit_Click(object sender, RoutedEventArgs e)
+        public override void OnEditItem_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedItem != null)
             {
@@ -91,7 +91,7 @@ namespace XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public override void OnDelete_Click(object sender, RoutedEventArgs e)
+        public override void OnDeleteItems_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedItem != null)
             {

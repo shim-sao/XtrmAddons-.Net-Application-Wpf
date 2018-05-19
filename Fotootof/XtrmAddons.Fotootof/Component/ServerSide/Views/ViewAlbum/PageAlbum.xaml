@@ -1,0 +1,31 @@
+﻿<base:PageBase 
+	x:Class="XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum.PageAlbum"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
+    xmlns:pictures="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews"
+    mc:Ignorable="d"
+	ShowsNavigationUI="False"
+	Title="{x:Static p:Resources.Album}"
+	Style="{StaticResource ResourceKey=PageContent}"
+	SizeChanged="Control_SizeChanged">
+
+	<Grid x:Name="Block_Root"
+		  Style="{StaticResource Root}">
+		<StackPanel x:Name="Block_RootPanel"
+					Style="{StaticResource FieldsetVertical}">
+
+			<Grid x:Name="Block_MiddleContents"
+				  Style="{StaticResource MiddleContents}">
+				<pictures:ListViewPicturesServer x:Name="PicturesCollection"
+												 Grid.Row="0"
+												 Grid.Column="0"
+												 DataContext="{Binding}"/>
+			</Grid>
+
+		</StackPanel>
+	</Grid>
+</base:PageBase>

@@ -1,4 +1,6 @@
-﻿namespace XtrmAddons.Fotootof.Lib.Base.Interfaces
+﻿using System.Windows;
+
+namespace XtrmAddons.Fotootof.Lib.Base.Interfaces
 {
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Server Libraries Base Interface Page Base.</para>
@@ -7,13 +9,13 @@
     public interface IContentInit
     {
         /// <summary>
-        /// Method to initialize and display data context.
+        /// Method called on page loaded to initialize and display data context.
         /// </summary>
-        void InitializeContent();
+        void Page_Loaded(object sender, RoutedEventArgs e);
 
         /// <summary>
-        /// Method to initialize and display data context asynchronous.
+        /// Method called on page loaded to initialize and display data context asynchronously.
         /// </summary>
-        void InitializeContentAsync();
+        void Page_Loaded_Async(object sender, RoutedEventArgs e);
     }
 }
