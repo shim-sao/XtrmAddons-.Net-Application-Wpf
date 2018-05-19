@@ -311,8 +311,8 @@
       <DependentUpon>ListViewStoragesServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\ServerSide\Controls\ListViews\ListViewStoragesServerModel.cs" />
-    <Compile Include="Libraries\ServerSide\Controls\Menu\MenuServerMain.xaml.cs">
-      <DependentUpon>MenuServerMain.xaml</DependentUpon>
+    <Compile Include="Component\ServerSide\Controls\Menu\MenuMainServer.xaml.cs">
+      <DependentUpon>MenuMainServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\ServerSide\Controls\Servers\ServerInfos.xaml.cs">
       <DependentUpon>ServerInfos.xaml</DependentUpon>
@@ -395,7 +395,7 @@
       <DependentUpon>ListViewAlbumsServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Libraries\ServerSide\Controls\Servers\ServerInfosModel.cs" />
-    <Compile Include="Libraries\ServerSide\Controls\TreeViews\TreeViewSystemStorage.xaml.cs">
+    <Compile Include="Component\ServerSide\Controls\TreeViews\TreeViewSystemStorage.xaml.cs">
       <DependentUpon>TreeViewSystemStorage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.en-GB.Designer.cs">
@@ -487,7 +487,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Libraries\ServerSide\Controls\Menu\MenuServerMain.xaml">
+    <Page Include="Component\ServerSide\Controls\Menu\MenuMainServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -543,7 +543,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Libraries\ServerSide\Controls\TreeViews\TreeViewSystemStorage.xaml">
+    <Page Include="Component\ServerSide\Controls\TreeViews\TreeViewSystemStorage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -811,6 +811,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Libraries\Common\AddIns\" />
     <Folder Include="Libraries\Common\Converters\" />
     <Folder Include="Libraries\Common\Interfaces\" />
     <Folder Include="Libraries\Common\Windows\About\" />

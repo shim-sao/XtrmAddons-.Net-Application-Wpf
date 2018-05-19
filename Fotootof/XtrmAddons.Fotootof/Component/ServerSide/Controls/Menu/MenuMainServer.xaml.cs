@@ -5,12 +5,12 @@ using System.Windows.Media;
 using XtrmAddons.Fotootof.Lib.Base.Enums;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 
-namespace XtrmAddons.Fotootof.Libraries.ServerSide.Menu
+namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Menu
 {
     /// <summary>
     /// Class XtrmAddons PhotoAlbum Client UI Control Main Menu Navigation.
     /// </summary>
-    public partial class MenuServerMain : UserControl
+    public partial class MenuMainServer : UserControl
     {
         /// <summary>
         /// 
@@ -21,7 +21,7 @@ namespace XtrmAddons.Fotootof.Libraries.ServerSide.Menu
         /// <summary>
         /// 
         /// </summary>
-        public MenuServerMain()
+        public MenuMainServer()
         {
             InitializeComponent();
         }

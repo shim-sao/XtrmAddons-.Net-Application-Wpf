@@ -6,7 +6,7 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Controls;
 using XtrmAddons.Net.Picture.Classes;
 using XtrmAddons.Net.Picture.Extensions;
 
-namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.TreeViews
+namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.TreeViews
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server UI Control Browser Tree View Directory.

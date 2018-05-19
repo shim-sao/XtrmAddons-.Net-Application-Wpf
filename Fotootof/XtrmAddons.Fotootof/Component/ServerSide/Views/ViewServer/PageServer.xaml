@@ -8,7 +8,7 @@
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:ucclient="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids"
     xmlns:ucserver="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.Servers"
-    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Menu"
+    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.Menu"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Server}"
