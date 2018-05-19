@@ -5,7 +5,7 @@ using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Net.Application;
 
-namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.Servers
+namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Servers
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server UI Control Server Infos User Control.

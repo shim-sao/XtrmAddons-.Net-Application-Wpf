@@ -6,7 +6,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 
-namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
+namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries Server Side Controls Albums List View.

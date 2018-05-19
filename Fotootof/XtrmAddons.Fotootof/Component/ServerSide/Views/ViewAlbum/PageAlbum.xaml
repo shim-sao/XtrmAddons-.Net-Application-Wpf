@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
-    xmlns:pictures="clr-namespace:XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews"
+    xmlns:pictures="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews"
     mc:Ignorable="d"
 	ShowsNavigationUI="False"
 	Title="{x:Static p:Resources.Album}"

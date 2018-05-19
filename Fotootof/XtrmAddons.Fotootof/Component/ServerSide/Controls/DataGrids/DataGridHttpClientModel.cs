@@ -3,7 +3,7 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
 
-namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids
+namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Libraries Common Models DataGrids Sections.

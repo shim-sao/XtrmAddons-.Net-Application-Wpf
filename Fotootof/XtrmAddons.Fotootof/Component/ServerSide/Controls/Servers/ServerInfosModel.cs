@@ -2,7 +2,7 @@
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
 
-namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.Servers
+namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Servers
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries Server Side Server Infos Model.

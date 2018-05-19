@@ -15,7 +15,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Fotootof.Libraries.Common.Windows.Slideshow;
 using XtrmAddons.Net.Common.Extensions;
 
-namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
+namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Common Controls Pictures List View.

@@ -5,7 +5,7 @@ using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient;
 using XtrmAddons.Fotootof.Libraries.Common.Tools;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
 
-namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids
+namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids
 {
     /// <summary>
     /// Logique d'interaction pour DatagridHttpClient.xaml

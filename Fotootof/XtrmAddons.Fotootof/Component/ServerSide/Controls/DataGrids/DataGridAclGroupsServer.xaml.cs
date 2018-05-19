@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
 
-namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids
+namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Libraries Common Controls DataGrid AclGroups.

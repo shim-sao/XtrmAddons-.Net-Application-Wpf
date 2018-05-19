@@ -13,7 +13,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 
-namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
+namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Server Controls Albums List View.

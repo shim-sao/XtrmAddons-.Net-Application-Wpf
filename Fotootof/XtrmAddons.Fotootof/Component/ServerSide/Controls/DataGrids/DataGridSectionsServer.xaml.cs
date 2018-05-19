@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
 
-namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.DataGrids
+namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Libraries Common Control DataGrid Sections List.

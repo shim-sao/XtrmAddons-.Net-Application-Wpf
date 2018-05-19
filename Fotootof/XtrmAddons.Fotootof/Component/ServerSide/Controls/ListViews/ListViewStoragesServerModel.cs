@@ -3,7 +3,7 @@ using XtrmAddons.Fotootof.Libraries.Common.Collections;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 
-namespace XtrmAddons.Fotootof.Libraries.ServerSide.Controls.ListViews
+namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
 {
     public class ListViewStoragesServerModel : ListViewBaseModel<ListViewStoragesServer, StorageCollection>
     {
