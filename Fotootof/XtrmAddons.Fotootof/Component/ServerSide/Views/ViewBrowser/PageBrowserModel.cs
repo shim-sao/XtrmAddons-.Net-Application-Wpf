@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Images;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
-using XtrmAddons.Fotootof.Libraries.Common.Collections;
+using XtrmAddons.Fotootof.Common.Collections;
 using ImgSize = XtrmAddons.Fotootof.Lib.Base.Classes.Images.ImageSize;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser

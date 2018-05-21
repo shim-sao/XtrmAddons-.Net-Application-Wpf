@@ -7,7 +7,7 @@
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:dg2="clr-namespace:XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids"
-    xmlns:lv="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews"
+    xmlns:lv="clr-namespace:XtrmAddons.Fotootof.Common.Controls.ListViews"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     MinWidth="800"

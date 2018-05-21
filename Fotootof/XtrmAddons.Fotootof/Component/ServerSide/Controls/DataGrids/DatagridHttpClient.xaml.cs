@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls;
-using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient;
-using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient;
+using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids

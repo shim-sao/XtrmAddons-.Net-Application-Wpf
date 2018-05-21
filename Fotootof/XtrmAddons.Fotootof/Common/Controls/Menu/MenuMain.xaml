@@ -1,0 +1,178 @@
+﻿<UserControl
+    x:Class="XtrmAddons.Fotootof.Common.Controls.Menu.MenuMain"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+	mc:Ignorable="d"
+	Loaded="UserControl_Loaded">
+
+    <DockPanel HorizontalAlignment="Stretch"
+			   VerticalAlignment="Top"
+			   Background="{StaticResource Panton_3}"
+			   Height="24">
+
+        <Menu DockPanel.Dock="Top" Margin="2">
+			
+			<!-- #region File -->
+            <MenuItem Header="{x:Static p:Resources._File}">
+
+                <MenuItem
+                    Name="MenuItemFileExit"
+                    Header="{x:Static p:Resources._Exit}"
+                    Click="OnFileExit_Click">
+
+                    <MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24Exit}}" />
+					</MenuItem.Icon>
+                </MenuItem>
+
+            </MenuItem>
+			<!-- #endregion File -->
+			
+			
+			<!-- #region Edition -->
+			<MenuItem Header="{x:Static p:Resources._Edition}">
+				<MenuItem Header="{x:Static p:Resources._Preferences}"
+						  Name="MenuItem_EditionPreferences"
+						  Click="OnEditionPreferences_Click"/>
+			</MenuItem>
+			<!-- #endregion Edition -->
+			
+			
+			<!-- #region Server -->
+			<MenuItem Header="{x:Static p:Resources._Server}">
+
+                <MenuItem Header="{x:Static p:Resources._ClientNew}"
+						  Name="MenuItem_ServerAddClient"
+						  Click="OnServerAddClient_Click">
+				</MenuItem>
+
+                <Separator />
+
+                <MenuItem Name="MenuItem_Server_Start"
+						  Header="{x:Static p:Resources._Start}"
+						  Click="OnServerStart_Click"
+						  ToolTip="Start Http server.">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ServerStart}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+
+				<MenuItem Name="MenuItem_Server_Stop"
+						  Header="{x:Static p:Resources._Stop}"
+						  ToolTip="{x:Static p:Resources.Tooltip_MenuItem_Server_Stop}"
+						  Click="OnServerStop_Click">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ServerStop}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+
+				<MenuItem Name="MenuItem_ServerRestart"
+						  Header="{x:Static p:Resources._Restart}"
+						  Click="OnServerRestart_Click"
+						  ToolTip="Restart Http server.">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ServerRestart}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+
+                <Separator />
+
+                <MenuItem Name="MenuItem_ServerAddFireWall"
+						  Header="{x:Static p:Resources._AddToFirewall}"
+						  Click="OnServerAddToFirewall_Click"
+						  ToolTip="Add Http server URL to the firewall rules. Enable external access."/>
+
+                <MenuItem Name="MenuItem_ServerRemoveFireWall"
+						  Header="{x:Static p:Resources._RemoveFromFirewall}"
+						  Click="OnServerRemoveFromFirewall_Click"
+						  ToolTip="Remove Http server URL to the firewall rules. Disable external access."/>
+				
+            </MenuItem>
+			<!-- #endregion Server -->
+
+
+			
+			<!-- #region Users -->
+			<MenuItem Header="{x:Static p:Resources._Users}">
+				<MenuItem Name="UI_MI_Users"
+						  Header="{x:Static p:Resources._UsersList}"
+						  Click="OnUsersListClick">
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24UsersSetting}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+
+                <MenuItem
+                    Name="MenuItem_AddUser"
+                    Header="{x:Static p:Resources._UsersNew}"
+                    Click="OnAddUser_Click">
+
+					<MenuItem.Icon>
+							<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24UserPlus}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+			<!-- #endregion Users -->
+			
+			<MenuItem Header="{x:Static p:Resources._Sections}">
+				<MenuItem Header="{x:Static p:Resources._AddSection}"
+						  x:Name="MenuItem_AddSection"
+						  Click="OnAddSection_Click">
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ListPlus}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+			
+			
+			<MenuItem Header="{x:Static p:Resources._Display}">
+				<MenuItem x:Uid="MenuItem_ShowLogsWindow"
+						  Name="MenuItem_ShowLogsWindow"
+						  Header="{x:Static p:Resources._LogsWindow}"
+						  Click="OnDisplayLogsWindowClick"
+						  IsCheckable="True"/>
+
+				<MenuItem Header="{x:Static p:Resources._Language}"
+						  Name="MenuItemDisplayLanguage">
+
+					<MenuItem Header="{x:Static p:Resources.French}"
+							  Name="MenuItemDisplayLanguageFr"
+							  Click="LanguageChanged_Click"
+							  IsChecked="False"
+							  Tag="fr-FR"/>
+
+					<MenuItem Header="{x:Static p:Resources.English}"
+							  Name="MenuItem_LanguageEn"
+							  Click="LanguageChanged_Click"
+							  IsChecked="False"
+							  Tag="en-GB" />
+
+				</MenuItem>
+            </MenuItem>
+
+
+			<!-- #region Plugins -->
+			<MenuItem x:Name="MenuItem_Plugins"
+					  Header="Plugins">
+				
+			</MenuItem>
+			<!-- #endregion Plugins -->
+			
+
+			<!-- #region Help -->
+			<MenuItem Header="{x:Static p:Resources._Help}">
+				<MenuItem Header="{x:Static p:Resources._About}"
+						  Name="MenuItemHelpAboutList"
+						  Click="OnDisplayHelpAboutClick"/>
+            </MenuItem>
+			<!-- #endregion Help -->
+			
+        </Menu>
+    </DockPanel>
+</UserControl>

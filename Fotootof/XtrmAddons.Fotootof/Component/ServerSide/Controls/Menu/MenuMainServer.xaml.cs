@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using XtrmAddons.Fotootof.Lib.Base.Enums;
-using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Fotootof.Common.Tools;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Menu
 {

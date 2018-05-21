@@ -6,6 +6,7 @@ using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Settings;
 using XtrmAddons.Net.Application;
 
+
 namespace XtrmAddons.Fotootof
 {
     public partial class App : Application
@@ -63,6 +64,7 @@ namespace XtrmAddons.Fotootof
             //{
             //    Source = new Uri("/../XtrmAddons.Fotootof.Template;component/Generic.xaml", UriKind.RelativeOrAbsolute)
             //});
+
         }
 
         #endregion

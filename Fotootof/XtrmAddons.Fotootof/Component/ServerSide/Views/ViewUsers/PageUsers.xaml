@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
-    xmlns:dg="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids"
+    xmlns:dg="clr-namespace:XtrmAddons.Fotootof.Common.Controls.DataGrids"
     xmlns:dgserver="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids"
     xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.UI.Control.Menu"
     mc:Ignorable="d"

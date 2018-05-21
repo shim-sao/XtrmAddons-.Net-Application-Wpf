@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls;
 using XtrmAddons.Fotootof.Lib.HttpServer;
-using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer;
-using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
+using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Application;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Servers

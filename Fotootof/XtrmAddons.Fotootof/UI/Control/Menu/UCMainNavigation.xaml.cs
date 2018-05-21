@@ -1,14 +1,14 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Enums;
-using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Fotootof.Common.Tools;
 
 namespace XtrmAddons.Fotootof.UI.Control.Menu
 {
     /// <summary>
     /// Class XtrmAddons PhotoAlbum Client UI Control Main Menu Navigation.
     /// </summary>
-    [System.Obsolete("to move or delete")]
+    [System.Obsolete("to move or delete", true)]
     public partial class UCMainNavigation : UserControl
     {
         /// <summary>

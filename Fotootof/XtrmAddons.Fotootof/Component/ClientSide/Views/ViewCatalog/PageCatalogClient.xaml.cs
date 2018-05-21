@@ -4,12 +4,12 @@ using System.Windows;
 using XtrmAddons.Fotootof.Lib.Api.Models.Json;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Libraries.Common.Collections;
-using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
-using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient;
-using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpClient.Responses;
-using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
-using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Fotootof.Common.Collections;
+using XtrmAddons.Fotootof.Common.Controls.DataGrids;
+using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient;
+using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient.Responses;
+using XtrmAddons.Fotootof.Common.Models.DataGrids;
+using XtrmAddons.Fotootof.Common.Tools;
 
 namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
 {

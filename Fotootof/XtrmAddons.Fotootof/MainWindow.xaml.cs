@@ -8,7 +8,7 @@ using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Log4net;
-using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.NotifyIcons;
@@ -29,14 +29,14 @@ namespace XtrmAddons.Fotootof
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// Variable logs page.
+        /// Variable memory log watcher.
         /// </summary>
-        private PageLogs pageLogs = new PageLogs();
+        private static readonly MemoryLogWatcher logWatcher = new MemoryLogWatcher();
 
         /// <summary>
-        /// Property log watcher.
+        /// Variable logs page.
         /// </summary>
-        private MemoryLogWatcher logWatcher = new MemoryLogWatcher();
+        private static readonly PageLogs pageLogs = new PageLogs();
 
         #endregion
 
@@ -47,20 +47,12 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Property to access to the logs page.
         /// </summary>
-        public PageLogs PageLogs
-            => pageLogs;
+        public PageLogs BlockLogs { get; } = pageLogs;
 
         /// <summary>
         /// Property alias to access to the text block container of logs stack.
         /// </summary>
-        public TextBlock LogsStack
-            => PageLogs.TextBlockLogsStack;
-
-        /// <summary>
-        /// Property alias to access to the text block container of logs stack.
-        /// </summary>
-        public Border BlockContent
-            => this.Block_Content;
+        public Border BlockContent => Block_Content;
 
         /// <summary>
         /// Property to access to the SQLite Service.
@@ -120,7 +112,7 @@ namespace XtrmAddons.Fotootof
             // Add application log watcher event handler.
             AppLogger.UpdateLogTextbox(logWatcher.LogContent);
             logWatcher.LogContent = "";
-            logWatcher.Updated += logWatcher_Updated;
+            logWatcher.Updated += LogWatcher_Updated;
 
             // Initialize window content.
             await InitializeContentAsync();
@@ -133,7 +125,7 @@ namespace XtrmAddons.Fotootof
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
-        public void logWatcher_Updated(object sender, EventArgs e)
+        public void LogWatcher_Updated(object sender, EventArgs e)
         {
             AppLogger.UpdateLogTextbox(logWatcher.LogContent);
             logWatcher.LogContent = "";
@@ -147,14 +139,14 @@ namespace XtrmAddons.Fotootof
             await Task.Delay(10);
 
             // Assigned page frames.
-            Frame_Logs.Navigate(pageLogs);
+            Frame_Logs.Navigate(BlockLogs);
             Frame_Content.Navigate(new PageBrowser());
 
             // Initialize items of Server Menu.
             AppMainMenu.InitializeMenuItemsServer();
 
             // Adjust frame logs content on resize. 
-            SizeChanged += pageLogs.Page_SizeChanged;
+            SizeChanged += BlockLogs.Page_SizeChanged;
         }
 
         /// <summary>
@@ -191,12 +183,16 @@ namespace XtrmAddons.Fotootof
         /// <param name="e"></param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            #if DEBUG_SIZE
+
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
             Trace.WriteLine("MainWindow.ActualSize = [" + ActualWidth + "," + ActualHeight + "]");
             Trace.WriteLine("Block_Content.ActualSize = [" + Block_Content.ActualWidth + "," + Block_Content.ActualHeight + "]");
             Trace.WriteLine("Frame_Content.ActualSize = [" + Frame_Content.ActualWidth + "," + Frame_Content.ActualHeight + "]");
             Trace.WriteLine("RowGridMain.Height = [" + RowGridMain.Height + "]");
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+
+            #endif
         }
 
         #endregion

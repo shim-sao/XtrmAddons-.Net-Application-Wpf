@@ -6,10 +6,10 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Libraries.Common.Collections;
-using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
-using XtrmAddons.Fotootof.Libraries.Common.Tools;
-using XtrmAddons.Fotootof.Libraries.Common.Windows.DataGrids.AlbumsDataGrid;
+using XtrmAddons.Fotootof.Common.Collections;
+using XtrmAddons.Fotootof.Common.Controls.ListViews;
+using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Common.Windows.DataGrids.AlbumsDataGrid;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 

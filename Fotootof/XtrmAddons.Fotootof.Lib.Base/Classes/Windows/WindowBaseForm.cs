@@ -334,21 +334,13 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
 
         #region Obsolete
 
-        [Obsolete("Use template Xaml", true)]
-        protected System.Windows.Media.Brush BorderStyleError
-            = (System.Windows.Media.Brush)Application.Current.Resources["Error"];
-
-        [Obsolete("Use template Xaml", true)]
-        protected System.Windows.Media.Brush BorderStyleReady
-            = (System.Windows.Media.Brush)Application.Current.Resources["Ready"];
-
         /// <summary>
         /// Method to set TextBlock text changes to an object property.
         /// </summary>
         /// <param name="tb">A TextBox to get value.</param>
         /// <param name="obj">An object to bind text box value.</param>
         /// <param name="propertyName">The name of the property of the object.</param>
-        [Obsolete("Use Xaml validationError")]
+        [Obsolete("Use Xaml validationError", true)]
         protected virtual void TextBox_TextChanged(TextBox tb, object obj, string propertyName = null, bool validate = true)
         {
 

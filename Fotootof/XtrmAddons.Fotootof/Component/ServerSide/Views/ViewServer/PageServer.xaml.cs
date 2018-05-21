@@ -2,7 +2,7 @@
 using System.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.HttpServer;
-using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer;
+using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Windows.Tools;
 
