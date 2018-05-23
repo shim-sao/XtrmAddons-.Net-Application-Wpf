@@ -8,11 +8,12 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Event;
-using XtrmAddons.Fotootof.Libraries.Common.Collections;
-using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
-using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
-using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
-using XtrmAddons.Fotootof.Libraries.Common.Tools;
+using XtrmAddons.Fotootof.Common.Collections;
+using XtrmAddons.Fotootof.Common.Controls.DataGrids;
+using XtrmAddons.Fotootof.Common.Controls.ListViews;
+using XtrmAddons.Fotootof.Common.Models.DataGrids;
+using XtrmAddons.Fotootof.Common.Tools;
+using System.Globalization;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
 {
@@ -30,11 +31,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// Variable model associated to the page.
-        /// </summary>
-        private PageCatalogModel<PageCatalog> model;
-
-        /// <summary>
         /// 
         /// </summary>
         private Dictionary<string, int> filters =
@@ -49,12 +45,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <summary>
         /// Property to access to the page model.
         /// </summary>
-        public PageCatalogModel<PageCatalog> Model
-        {
-            get => model;
-            private set { model = value; }
-
-        }
+        public PageCatalogModel Model { get; private set; }
 
         /// <summary>
         /// Accessors to page user model.
@@ -95,8 +86,18 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// </summary>
         public PageCatalog()
         {
+            AppOverwork.IsBusy = true;
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Browser"));
+
+            // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
+
+            // Construct page data model.
+            InitializeModel();
+
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Browser"));
+            AppOverwork.IsBusy = false;
         }
 
         #endregion
@@ -108,30 +109,28 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <summary>
         /// Method to initialize and display data context.
         /// </summary>
-        public override void Page_Loaded(object sender, RoutedEventArgs e)
+        public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
-            Page_Loaded_Async(sender, e);
+            DataContext = Model;
         }
 
         /// <summary>
         /// Method to initialize and display data context.
         /// </summary>
-        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
+        public override void InitializeModel()
         {
             // Paste page to the model & child elements.
-            DataContext = model = new PageCatalogModel<PageCatalog>(this)
+            Model = new PageCatalogModel(this)
             {
                 Sections = new DataGridSectionsModel<DataGridSections>(UcDataGridSections),
                 Albums = new ListViewAlbumsModel<ListViewAlbums>(UcListViewAlbums)
             };
-
-            AppOverwork.IsBusy = true;
             
             LoadSections();
             LoadAlbums();
 
-            model.FiltersQuality = InfoEntityCollection.TypesQuality();
-            model.FiltersColor = InfoEntityCollection.TypesColor();
+            Model.FiltersQuality = InfoEntityCollection.TypesQuality();
+            Model.FiltersColor = InfoEntityCollection.TypesColor();
 
             UcDataGridSections.OnAdd += SectionsDataGrid_OnAdd;
             UcDataGridSections.OnChange += SectionsDataGrid_OnChange;
@@ -144,27 +143,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             UcListViewAlbums.OnChange += AlbumsListView_OnChange;
             UcListViewAlbums.OnCancel += AlbumsListView_OnCancel;
             UcListViewAlbums.OnDelete += AlbumsListView_OnDelete;
-
-            AppOverwork.IsBusy = false;
-        }
-        
-        /// <summary>
-        /// Method called on page size changed event.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Size changed event arguments.</param>
-        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
-
-            this.Width = fe.ActualWidth;
-            this.Height = fe.ActualHeight;
-
-            Block_MiddleContents.Width = this.Width;
-            Block_MiddleContents.Height = this.Height - Block_TopControls.RenderSize.Height;
-
-            UcDataGridSections.Height = this.Height - Block_TopControls.RenderSize.Height;
-            UcListViewAlbums.Height = this.Height - Block_TopControls.RenderSize.Height;
         }
 
         #endregion
@@ -183,7 +161,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
 
             try
             {
-                model.Sections.Items = new SectionEntityCollection(true);
+                Model.Sections.Items = new SectionEntityCollection(true);
                 log.Info("Loading Sections list. Done.");
             }
             catch (Exception e)
@@ -223,7 +201,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             log.Info("Saving new Section informations. Please wait...");
 
             SectionEntity item = (SectionEntity)e.NewEntity;
-            model.Sections.Items.Add(item);
+            Model.Sections.Items.Add(item);
             SectionEntityCollection.DbInsert(new List<SectionEntity> { item });
 
             log.Info("Saving new Section informations. Done.");
@@ -241,7 +219,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             log.Info("Saving Section informations. Please wait...");
 
             SectionEntity newEntity = (SectionEntity)e.NewEntity;
-            SectionEntity old = model.Sections.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
+            SectionEntity old = Model.Sections.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
             /*int index = model.Sections.Items.IndexOf(old);
             model.Sections.Items[index] = newEntity;*/
             SectionEntityCollection.DbUpdateAsync(new List<SectionEntity> { newEntity }, new List<SectionEntity> { old });
@@ -263,7 +241,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             
             // Remove item from list.
             SectionEntity item = (SectionEntity)e.NewEntity;
-            model.Sections.Items.Remove(item);
+            Model.Sections.Items.Remove(item);
 
             // Delete item from database.
             SectionEntityCollection.DbDelete(new List<SectionEntity> { item });
@@ -306,7 +284,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
 
             try
             {
-                model.Albums.Items = new AlbumEntityCollection(true, AlbumOptionsListFilters);
+                Model.Albums.Items = new AlbumEntityCollection(true, AlbumOptionsListFilters);
                 log.Info("Loading Albums list. Done.");
             }
             catch (Exception e)
@@ -357,7 +335,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             log.Info("Saving new Album informations. Please wait...");
 
             AlbumEntity item = (AlbumEntity)e.NewEntity;
-            model.Albums.Items.Add(item);
+            Model.Albums.Items.Add(item);
             AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
 
             log.Info("Saving new Album informations. Done.");
@@ -375,7 +353,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             log.Info("Saving Album informations. Please wait...");
 
             AlbumEntity newEntity = (AlbumEntity)e.NewEntity;
-            AlbumEntity old = model.Albums.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
+            AlbumEntity old = Model.Albums.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
             /*int index = model.Albums.Items.IndexOf(old);
             model.Albums.Items[index] = newEntity;*/
             AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
@@ -397,7 +375,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
 
             // Remove item from list.
             AlbumEntity item = (AlbumEntity)e.NewEntity;
-            if(model.Albums.Items.Remove(item))
+            if(Model.Albums.Items.Remove(item))
             {
                 // Delete item from database.
                 AlbumEntityCollection.DbDelete(new List<AlbumEntity> { item });
@@ -463,6 +441,46 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             }
 
             RefreshAlbums();
+        }
+
+        #endregion
+
+
+
+        #region Methods Size Changed
+
+        /// <summary>
+        /// Method called on page size changed event.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
+
+            this.Width = fe.ActualWidth;
+            this.Height = fe.ActualHeight;
+
+            Block_MiddleContents.Width = this.Width;
+            Block_MiddleContents.Height = this.Height - Block_TopControls.RenderSize.Height;
+
+            UcDataGridSections.Height = this.Height - Block_TopControls.RenderSize.Height;
+            UcListViewAlbums.Height = this.Height - Block_TopControls.RenderSize.Height;
+        }
+
+        #endregion
+
+
+
+        #region Obsoletes
+
+        /// <summary>
+        /// Method to initialize and display data context.
+        /// </summary>
+        [Obsolete("Will be remove. None sense...")]
+        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion

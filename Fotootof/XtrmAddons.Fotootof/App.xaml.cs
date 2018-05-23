@@ -6,8 +6,16 @@ using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Settings;
 using XtrmAddons.Net.Application;
 
+/// <summary>
+/// Globals Conditionals :
+/// - DEBUG_SIZE => Use this variable to enable some size trace in DEBUG mode.
+/// </summary>
 namespace XtrmAddons.Fotootof
 {
+    /// <summary>
+    /// <para>Class XtrmAddons Fotootof Application.</para>
+    /// <para>This class defines the entire application</para>
+    /// </summary>
     public partial class App : Application
     {
         #region Variables
@@ -30,7 +38,7 @@ namespace XtrmAddons.Fotootof
         SettingsOptionsInitializer options = new SettingsOptionsInitializer();
 
         #endregion
-
+        
 
 
         #region Constructor
@@ -41,8 +49,7 @@ namespace XtrmAddons.Fotootof
         public App()
         {
             // Must be placed at the top start of the application.
-            // todo : check why no log if place elsewhere.
-            log4net.Config.XmlConfigurator.Configure();
+            InitializeLog4Net();
 
             // Reset application
             // delete user my documents application folder.
@@ -63,6 +70,7 @@ namespace XtrmAddons.Fotootof
             //{
             //    Source = new Uri("/../XtrmAddons.Fotootof.Template;component/Generic.xaml", UriKind.RelativeOrAbsolute)
             //});
+
         }
 
         #endregion
@@ -70,6 +78,25 @@ namespace XtrmAddons.Fotootof
 
 
         #region Methods
+
+        /// <summary>
+        /// <para>Method to initialize log4net debugger on application contructor.</para>
+        /// <para>Log4net configuration must be placed on top of the constructor instructions.</para>
+        /// </summary>
+        private static void InitializeLog4Net()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+
+            #if !DEBUG
+
+            // Disable using DEBUG mode in Release mode.
+            foreach (ILoggerRepository repository in log4net.LogManager.GetAllRepositories())
+            {
+                repository.Threshold = log4net.Core.Level.Warn;
+            }
+
+            #endif
+        }
 
         /// <summary>
         /// 
@@ -88,7 +115,7 @@ namespace XtrmAddons.Fotootof
             InitializePreferences();
 
             // Initialize application options.
-            InitializeOPtions();
+            InitializeOptions();
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
@@ -117,7 +144,7 @@ namespace XtrmAddons.Fotootof
         /// </summary>
         /// <param name="sender">The object sender of the event</param>
         /// <param name="e">Exit event arguments.</param>
-        private void App_Exit(object sender, System.Windows.ExitEventArgs e)
+        private void App_Exit(object sender, ExitEventArgs e)
         {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
             Trace.WriteLine((string)Translation.DLogs.SavingApplicationWaiting);
@@ -167,9 +194,9 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Method example of custom options settings adding.
         /// </summary>
-        public void InitializeOPtions()
+        public void InitializeOptions()
         {
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            Trace.WriteLine("Initializing Options ----------------------------------------------------------------------------------");
             
             options.InitializeDatabase();
             options.InitializeServer();

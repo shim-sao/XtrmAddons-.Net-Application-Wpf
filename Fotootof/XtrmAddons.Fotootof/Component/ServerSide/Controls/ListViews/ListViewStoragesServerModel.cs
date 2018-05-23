@@ -1,5 +1,5 @@
 ﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
-using XtrmAddons.Fotootof.Libraries.Common.Collections;
+using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 

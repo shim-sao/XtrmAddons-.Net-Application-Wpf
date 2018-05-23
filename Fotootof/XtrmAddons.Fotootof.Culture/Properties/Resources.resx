@@ -439,28 +439,28 @@
     <value>Vignette</value>
   </data>
   <data name="WindowAclGroupFormTitle" xml:space="preserve">
-    <value>FotootoF Administration : Users group</value>
+    <value>FotootoF Users group</value>
   </data>
   <data name="WindowAlbumFormTitle" xml:space="preserve">
-    <value>FotootoF Administration : Album</value>
+    <value>FotootoF Album</value>
   </data>
   <data name="WindowClientFormTitle" xml:space="preserve">
-    <value>FotootoF Administration : Client</value>
+    <value>FotootoF Client</value>
   </data>
   <data name="WindowSectionFormTitle" xml:space="preserve">
-    <value>FotootoF Administration : Section</value>
+    <value>FotootoF Section</value>
   </data>
   <data name="WindowServerFormTitle" xml:space="preserve">
-    <value>FotootoF Administration : Server</value>
+    <value>FotootoF Server</value>
   </data>
   <data name="WindowSettingsTitle" xml:space="preserve">
-    <value>FotootoF Préférences</value>
+    <value>FotootoF Preferences</value>
   </data>
   <data name="WindowUserFormTitle" xml:space="preserve">
-    <value>FotootoF Administration : User</value>
+    <value>FotootoF User</value>
   </data>
   <data name="XLarge" xml:space="preserve">
-    <value>X-Large</value>
+    <value>Extra-Large</value>
   </data>
   <data name="_About" xml:space="preserve">
     <value>_About XtrmAddons Fotootof Server</value>
@@ -614,5 +614,23 @@
   </data>
   <data name="TrueColor" xml:space="preserve">
     <value>True Color</value>
+  </data>
+  <data name="WindowAboutTitle" xml:space="preserve">
+    <value>FotootoF About</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Product name</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="WindowsDataGridAlbumsTitle" xml:space="preserve">
+    <value>Fotootof Albums</value>
   </data>
 </root>

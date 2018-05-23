@@ -1,15 +1,15 @@
 ﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
-using XtrmAddons.Fotootof.Libraries.Common.Collections;
-using XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids;
-using XtrmAddons.Fotootof.Libraries.Common.Controls.ListViews;
-using XtrmAddons.Fotootof.Libraries.Common.Models.DataGrids;
+using XtrmAddons.Fotootof.Common.Collections;
+using XtrmAddons.Fotootof.Common.Controls.DataGrids;
+using XtrmAddons.Fotootof.Common.Controls.ListViews;
+using XtrmAddons.Fotootof.Common.Models.DataGrids;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Server Side View Catalog Model.
     /// </summary>
-    public class PageCatalogModel<PageCatalog> : PageBaseModel<PageCatalog>
+    public class PageCatalogModel : PageBaseModel<PageCatalog>
     {
         #region Variables
 
@@ -50,11 +50,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// </summary>
         public DataGridSectionsModel<DataGridSections> Sections
         {
-            get { return sections; }
+            get => sections;
             set
             {
-                sections = value;
-                NotifyPropertyChanged();
+                if (sections != value)
+                {
+                    sections = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -63,11 +66,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// </summary>
         public ListViewAlbumsModel<ListViewAlbums> Albums
         {
-            get { return albums; }
+            get => albums;
             set
             {
-                albums = value;
-                NotifyPropertyChanged();
+                if (albums != value)
+                {
+                    albums = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -76,11 +82,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// </summary>
         public InfoEntityCollection FiltersQuality
         {
-            get { return qualityFilters; }
+            get => qualityFilters;
             set
             {
-                qualityFilters = value;
-                NotifyPropertyChanged();
+                if (qualityFilters != value)
+                {
+                    qualityFilters = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -89,11 +98,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// </summary>
         public InfoEntityCollection FiltersColor
         {
-            get { return colorFilters; }
+            get => colorFilters;
             set
             {
-                colorFilters = value;
-                NotifyPropertyChanged();
+                if (colorFilters != value)
+                {
+                    colorFilters = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -106,8 +118,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Models List Sections Constructor.
         /// </summary>
-        /// <param name="pageBase">The page associated to the model.</param>
-        public PageCatalogModel(PageCatalog pageBase) : base(pageBase) { }
+        /// <param name="page">The page associated to the model.</param>
+        public PageCatalogModel(PageCatalog page) : base(page: page) { }
 
         #endregion
     }

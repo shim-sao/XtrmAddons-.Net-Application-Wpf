@@ -1,13 +1,13 @@
 ﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Libraries.Common.Collections;
+using XtrmAddons.Fotootof.Common.Collections;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
 {
     /// <summary>
     /// 
     /// </summary>
-    public class PageSlideshowModel<PageSlideshow> : PageBaseModel<PageSlideshow>
+    public class PageSlideshowModel : PageBaseModel<PageSlideshow>
     {
         #region Variables
 
@@ -78,9 +78,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
         /// <summary>
         /// Class XtrmAddons Fotootof Component Page Slideshow Model Constructor.
         /// </summary>
-        /// <param name="pageBase"></param>
-        public PageSlideshowModel(PageSlideshow pageBase)
-            : base(pageBase) { }
+        /// <param name="page"></param>
+        public PageSlideshowModel(PageSlideshow page) : base(page: page) { }
 
         #endregion
     }

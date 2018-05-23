@@ -5,9 +5,9 @@ using ServerData = XtrmAddons.Net.Application.Serializable.Elements.XmlRemote.Se
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
 {
     /// <summary>
-    /// 
+    /// Class XtrmAddons Fotootof Component ServerSide Views Page Server Model.
     /// </summary>
-    public class PageServerModel<PageServer> : PageBaseModel<PageServer>
+    public class PageServerModel : PageBaseModel<PageServer>
     {
         #region Variables
 
@@ -18,7 +18,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// 
+        /// Variable Server preferences.
         /// </summary>
         private ServerData server;
 
@@ -26,9 +26,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
 
 
 
-
+        #region Properties
+        
         /// <summary>
-        /// 
+        /// Property to access to the Server preferences.
         /// </summary>
         public ServerData Server
         {
@@ -40,10 +41,18 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
             }
         }
 
+        #endregion
+
+
+
+        #region Constructor
+
         /// <summary>
-        /// 
+        /// Class XtrmAddons Fotootof Component ServerSide Views Page Server Model Constructor.
         /// </summary>
-        /// <param name="pageBase"></param>
-        public PageServerModel(PageServer pageBase) : base(pageBase) { }
+        /// <param name="page"></param>
+        public PageServerModel(PageServer page) : base(page) { }
+
+        #endregion
     }
 }

@@ -3,34 +3,38 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <!-- Grid -->
-	<Style x:Key="Grid_Fieldset_Menu"
-		   TargetType="{x:Type Grid}">
-		<Setter Property="HorizontalAlignment"
-				Value="Stretch" />
-		<Setter Property="VerticalAlignment"
-				Value="Bottom" />
-		<Setter Property="Background"
-				Value="{StaticResource Panton_3}" />
-		<Setter Property="Height"
-				Value="30" />
+	<!-- Grid -->
+	<Style x:Key="Grid_Root" TargetType="{x:Type Grid}">
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+	</Style>
+	
+	<Style x:Key="Grid_Fieldset_Menu" TargetType="{x:Type Grid}">
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="VerticalAlignment" Value="Bottom" />
+		<Setter Property="Background" Value="{StaticResource Panton_3}" />
+		<Setter Property="Height" Value="30" />
 	</Style>
 
-    <Style x:Key="MiddleContents" TargetType="{x:Type Grid}">
-        <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="Background" Value="Red"/>
-    </Style>
+	<Style x:Key="Grid_MiddleContents" TargetType="{x:Type Grid}" BasedOn="{StaticResource Grid_Root}">
+		<Setter Property="Background" Value="Transparent"/>
+	</Style>
 
-    <Style x:Key="Root" TargetType="{x:Type Grid}">
-        <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-    </Style>
+	<Style x:Key="Grid_WindowDefault" TargetType="{x:Type Grid}" BasedOn="{StaticResource Grid_Root}">
+		<Setter Property="Background" Value="{StaticResource Panton_3}" />
+	</Style>
 
     <Style x:Key="Grid_ImageToolTip" TargetType="{x:Type Grid}">
         <Setter Property="Width" Value="512"/>
         <Setter Property="Height" Value="512"/>
-        <Setter Property="Background" Value="Black"/>
+		<Setter Property="Background" Value="{StaticResource Panton_4}"/>
     </Style>
+
+
+
+
+	<!-- Obsolete -->
+	<Style x:Key="MiddleContents" TargetType="{x:Type Grid}" BasedOn="{StaticResource Grid_MiddleContents}"></Style>
+	<Style x:Key="Root" TargetType="{x:Type Grid}" BasedOn="{StaticResource Grid_Root}"></Style>
 
 </ResourceDictionary>

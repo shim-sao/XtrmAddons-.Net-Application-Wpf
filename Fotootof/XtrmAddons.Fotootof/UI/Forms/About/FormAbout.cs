@@ -122,5 +122,20 @@ namespace XtrmAddons.Fotootof.Forms.About
             this.Close();
             this.Dispose();
         }
+
+        private void FormAbout_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelCopyright_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabelSmashicons_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }

@@ -25,6 +25,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs
         #endregion
 
 
+
         #region Properties
 
         /// <summary>
@@ -34,6 +35,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs
             (MainWindow)Application.Current.MainWindow;
 
         #endregion
+
 
 
         #region Constructor
@@ -47,6 +49,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs
         }
 
         #endregion
+
 
 
         #region Methods

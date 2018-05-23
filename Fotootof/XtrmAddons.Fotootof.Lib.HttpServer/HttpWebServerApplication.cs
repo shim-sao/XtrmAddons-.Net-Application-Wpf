@@ -25,7 +25,7 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
         #endregion Variables
 
 
-        #region Property
+        #region Properties
 
         /// <summary>
         /// Property is server started.

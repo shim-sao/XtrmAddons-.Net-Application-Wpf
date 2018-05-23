@@ -49,11 +49,15 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         [Conditional("DEBUG")]
         protected void TraceSize(FrameworkElement fe)
         {
-            //Trace.WriteLine(string.Format("----> Class({0}) : Object({1}) : Name({2})", GetType().Name, fe.GetType().Name, fe.Name));
-            //Trace.WriteLine("ActualSize = [" + fe.ActualWidth + "," + fe.ActualHeight + "]");
-            //Trace.WriteLine("Size = [" + fe.Width + "," + fe.Height + "]");
-            //Trace.WriteLine("RenderSize = [" + fe.RenderSize.Width + "," + fe.RenderSize.Height + "]");
-            //Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            #if DEBUG_SIZE
+
+            Trace.WriteLine(string.Format("----> Class({0}) : Object({1}) : Name({2})", GetType().Name, fe.GetType().Name, fe.Name));
+            Trace.WriteLine("ActualSize = [" + fe.ActualWidth + "," + fe.ActualHeight + "]");
+            Trace.WriteLine("Size = [" + fe.Width + "," + fe.Height + "]");
+            Trace.WriteLine("RenderSize = [" + fe.RenderSize.Width + "," + fe.RenderSize.Height + "]");
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+
+            #endif
         }
 
         /// <summary>
@@ -63,6 +67,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         /// <param name="e">Size changed event arguments.</param>
         public abstract void Control_SizeChanged(object sender, SizeChangedEventArgs e);
 
-        #endregion
+#endregion
     }
 }

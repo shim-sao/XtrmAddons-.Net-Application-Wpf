@@ -4,11 +4,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dgserver="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
-    xmlns:dg="clr-namespace:XtrmAddons.Fotootof.Libraries.Common.Controls.DataGrids"
-    xmlns:dgserver="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids"
-    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.UI.Control.Menu"
+    xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Users}"
@@ -33,7 +32,7 @@
 				</Grid.RowDefinitions>
 
 				<dgserver:DataGridAclGroupsServer x:Name="UcDataGridAclGroups"
-												  DataContext="{Binding AclGroups}"/>
+												  DataContext="{Binding AclGroups, diag:PresentationTraceSources.TraceLevel=High}"/>
 
 				<GridSplitter Grid.Column="1"
 							  HorizontalAlignment="Stretch"
@@ -41,7 +40,7 @@
 
 				<dgserver:DataGridUsersServer Grid.Column="2"
 											  x:Name="UcDataGridUsers"
-											  DataContext="{Binding Users}"/>
+											  DataContext="{Binding Users, diag:PresentationTraceSources.TraceLevel=High}"/>
 
 			</Grid>
 

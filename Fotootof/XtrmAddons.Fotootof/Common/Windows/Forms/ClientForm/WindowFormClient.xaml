@@ -1,0 +1,255 @@
+﻿<base:WindowBaseForm
+	x:Name="UCWindowClientForm"
+    x:Class="XtrmAddons.Fotootof.Common.Windows.Forms.WindowClientForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Windows;assembly=XtrmAddons.Fotootof.Lib.Base"
+    xmlns:rrString="clr-namespace:XtrmAddons.Net.Windows.ValidationRules;assembly=XtrmAddons.Net.Windows"
+    mc:Ignorable="d"
+    Width="480"
+    Height="480"
+    Title="{x:Static p:Resources.WindowServerFormTitle}"
+    Background="{StaticResource ResourceKey=DarkGrey}"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    FocusManager.FocusedElement="{Binding ElementName=InputName}"
+	Loaded="Window_Load"
+	Closing="Window_Closing">
+
+    <Grid Margin="2"
+		  Background="{StaticResource ResourceKey=LightGrey}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <TabControl x:Name="TabControlContent">
+
+            <!-- #region : Tabs Informations -->
+            <TabItem Header="{x:Static p:Resources.Informations}">
+
+                <Grid>
+
+                    <StackPanel Style="{StaticResource Form}"
+								Background="White">
+
+						<!-- #region : Field Name -->
+						<StackPanel Style="{StaticResource StackPanel_FormField}">
+
+							<TextBlock Text="{x:Static p:Resources.Name}"
+									   Style="{StaticResource FieldLabel}"/>
+
+							<TextBox x:Name="InputName"
+									 Style="{StaticResource Textbox_FieldInput_Required}"
+									 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+									 Validation.Error="OnInput_ValidationError"
+									 SourceUpdated="OnInputStringRequired_SourceUpdated"
+									 TargetUpdated="OnInput_TargetUpdated"
+									 TextChanged="OnInputStringRequired_TextChanged"
+									 Width="310">
+
+								<TextBox.Text>
+									<Binding Path="Client.Name"
+											 Mode="TwoWay"
+											 UpdateSourceTrigger="LostFocus"
+											 IsAsync="True"
+											 ValidatesOnDataErrors="True"
+											 ValidatesOnExceptions="True"
+											 NotifyOnValidationError="True"
+											 NotifyOnSourceUpdated="True"
+											 NotifyOnTargetUpdated="True">
+
+										<Binding.ValidationRules>
+											<rrString:StringRequired />
+										</Binding.ValidationRules>
+									</Binding>
+								</TextBox.Text>
+							</TextBox>
+
+						</StackPanel>
+						<!-- #endregion : Field Name -->
+
+
+						<!-- #region : Field Host -->
+						<StackPanel Orientation="Horizontal"
+									Style="{StaticResource Field}">
+
+							<TextBlock Text="{x:Static p:Resources.Host}"
+									   Style="{StaticResource FieldLabel}"/>
+
+							<TextBox x:Name="InputHost"
+									 Style="{StaticResource Textbox_FieldInput_Required}"
+									 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+									 Validation.Error="OnInput_ValidationError"
+									 SourceUpdated="OnInputHost_SourceChanged"
+									 TargetUpdated="OnInput_TargetUpdated"
+									 TextChanged="OnInputStringRequired_TextChanged"
+									 Width="310">
+
+								<TextBox.Text>
+									<Binding Path="Client.Host"
+											 Mode="TwoWay"
+											 UpdateSourceTrigger="LostFocus"
+											 IsAsync="True"
+											 ValidatesOnDataErrors="True"
+											 ValidatesOnExceptions="True"
+											 NotifyOnValidationError="True"
+											 NotifyOnSourceUpdated="True"
+											 NotifyOnTargetUpdated="True">
+
+										<Binding.ValidationRules>
+											<rrString:StringRequired />
+										</Binding.ValidationRules>
+									</Binding>
+								</TextBox.Text>
+							</TextBox>
+
+						</StackPanel>
+						<!-- #endregion : Field Host -->
+
+
+						<!-- #region : Field Port -->
+						<StackPanel Style="{StaticResource StackPanel_FormField}">
+
+							<TextBlock Text="{x:Static p:Resources.Port}"
+									   Style="{StaticResource FieldLabel}"/>
+
+							<TextBox x:Name="InputPort"
+									 Style="{StaticResource Textbox_FieldInput_Required}"
+									 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+									 Validation.Error="OnInput_ValidationError"
+									 SourceUpdated="OnInputStringRequired_SourceUpdated"
+									 TargetUpdated="OnInput_TargetUpdated"
+									 TextChanged="OnInputStringRequired_TextChanged"
+									 Width="310">
+
+								<TextBox.Text>
+									<Binding Path="Client.Port"
+											 Mode="TwoWay"
+											 UpdateSourceTrigger="LostFocus"
+											 IsAsync="True"
+											 ValidatesOnDataErrors="True"
+											 ValidatesOnExceptions="True"
+											 NotifyOnValidationError="True"
+											 NotifyOnSourceUpdated="True"
+											 NotifyOnTargetUpdated="True">
+
+										<Binding.ValidationRules>
+											<rrString:StringRequired />
+										</Binding.ValidationRules>
+									</Binding>
+								</TextBox.Text>
+							</TextBox>
+
+						</StackPanel>
+						<!-- #endregion : Field Port -->
+
+
+                        <!-- #region : Field UserName -->
+						<StackPanel Style="{StaticResource StackPanel_FormField}">
+
+							<TextBlock Text="{x:Static p:Resources.User}"
+									   Style="{StaticResource FieldLabel}"/>
+
+                            <TextBox x:Name="InputUserName"
+									 Style="{StaticResource FieldInput}"
+									 Text="{Binding Path=Client.UserName, Mode=TwoWay, IsAsync=True}"
+									 Tag="UserName"/>
+
+                        </StackPanel>
+                        <!-- #endregion : Field UserName -->
+
+
+                        <!-- #region : Field Email -->
+						<StackPanel Style="{StaticResource StackPanel_FormField}">
+
+							<TextBlock Text="{x:Static p:Resources.Email}"
+									   Style="{StaticResource FieldLabel}"/>
+
+							<TextBox x:Name="InputEmail"
+									 Style="{StaticResource FieldInput}"
+									 Text="{Binding Path=Client.Email, Mode=TwoWay, IsAsync=True}"
+									 Tag="Email"/>
+
+                        </StackPanel>
+						<!-- #endregion : Field Email -->
+
+
+
+                        <!-- #region : Field Password -->
+						<StackPanel Style="{StaticResource StackPanel_FormField}">
+							
+							<TextBlock Text="{x:Static p:Resources.Password}"
+									   Style="{StaticResource FieldLabel}"/>
+
+							<PasswordBox x:Name="InputPassword"
+										 Style="{StaticResource PasswordBox_FieldInput_Required}"
+										 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+										 PasswordChanged="OnInputPassword_PasswordChanged"
+										 Validation.Error="OnInput_ValidationError"
+										 MaxLength="64"
+										 Width="310">
+
+							</PasswordBox>
+						</StackPanel>
+                        <!-- #endregion : Field Password -->
+
+						
+                        <!-- #region : Field Comment -->
+						<StackPanel Style="{StaticResource StackPanel_FormField}">
+							
+							<TextBlock Style="{StaticResource FieldLabelArea}"
+									   Text="{x:Static p:Resources.Comment}"/>
+
+                            <TextBox x:Name="InputComment"
+									 Style="{StaticResource FieldInputArea}"
+									 Text="{Binding Path=Client.Comment, Mode=TwoWay, IsAsync=True}"
+									 Width="320"
+									 MinHeight="60"
+									 MaxHeight="60"
+									 Tag="Comment"/>
+                        </StackPanel>
+                        <!-- #endregion : Field Comment -->
+
+                    </StackPanel>
+
+                </Grid>
+
+            </TabItem>
+            <!-- #endregion : Tabs Informations -->
+
+        </TabControl>
+
+
+        
+        <!-- #region Saving -->
+		<Border Grid.Row="1"
+				Grid.RowSpan="2">
+
+			<Grid>
+				<StackPanel Orientation="Horizontal"
+							HorizontalAlignment="Center"
+							VerticalAlignment="center"
+							Height="30">
+
+					<Button x:Name="Button_Save"
+							Content="{x:Static p:Resources.Save}"
+							Style="{StaticResource Button_Save}"
+							IsEnabled="{Binding IsSaveEnabled, UpdateSourceTrigger=Explicit, Mode=TwoWay, IsAsync=True}"
+							Click="DialogSave_Click"/>
+
+					<Button x:Name="Button_Cancel"
+							Content="{x:Static p:Resources.Cancel}"
+							Style="{StaticResource Button_Cancel}"/>
+
+				</StackPanel>
+			</Grid>
+		</Border>
+		<!-- #endregion Saving -->
+
+    </Grid>
+</base:WindowBaseForm>

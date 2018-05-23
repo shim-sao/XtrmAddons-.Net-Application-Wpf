@@ -15,7 +15,7 @@ using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Fotootof.Lib.SQLite;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
-using XtrmAddons.Fotootof.Libraries.Common.HttpHelpers.HttpServer;
+using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlData;
