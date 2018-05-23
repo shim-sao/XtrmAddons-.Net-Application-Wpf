@@ -13,13 +13,12 @@
     VerticalAlignment="Stretch"
     Background="White">
     
-    <Grid
-        x:Name="MainContainer"
-        Background="DarkGray"
-        HorizontalAlignment="Stretch"
-        Height="auto"
-        Margin="2"
-        Tag="{Binding}">
+    <Grid x:Name="MainContainer"
+		  Background="DarkGray"
+		  HorizontalAlignment="Stretch"
+		  Height="auto"
+		  Margin="2"
+		  Tag="{Binding}">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -50,7 +49,7 @@
                         Text="{x:Static p:Resources.Host}"
                         FontSize="{StaticResource ResourceKey=Text-Big}"
                         Style="{StaticResource FieldLabel}"
-                        Foreground="{StaticResource ResourceKey=DarkGrey}"
+                        Foreground="{StaticResource Panton_0}"
                         Width="auto"/>
 
                     <TextBlock
@@ -58,7 +57,7 @@
                         Grid.Column="1"
                         Text=":"
                         FontSize="{StaticResource ResourceKey=Text-Big}"
-                        Foreground="{StaticResource ResourceKey=DarkGrey}"
+                        Foreground="{StaticResource Panton_0}"
                         Margin="5,0"/>
 
                     <TextBlock
@@ -68,7 +67,7 @@
                         Text="{Binding Server.Host}"
                         FontSize="{StaticResource ResourceKey=Text-Big}"
                         Style="{StaticResource FieldLabel}"
-                        Foreground="{StaticResource ResourceKey=DarkGrey}"
+                        Foreground="{StaticResource Panton_0}"
                         Width="auto" />
                 </StackPanel>
                 <!-- #endregion Host -->
@@ -81,7 +80,7 @@
                         Text="{x:Static p:Resources.Port}"
                         FontSize="{StaticResource ResourceKey=Text-Big}"
                         Style="{StaticResource FieldLabel}"
-                        Foreground="{StaticResource ResourceKey=DarkGrey}"
+                        Foreground="{StaticResource Panton_0}"
                         Width="auto"/>
 
                     <TextBlock
@@ -89,7 +88,7 @@
                         Grid.Column="1"
                         Text=":"
                         FontSize="{StaticResource ResourceKey=Text-Big}"
-                        Foreground="{StaticResource ResourceKey=DarkGrey}"
+                        Foreground="{StaticResource Panton_0}"
                         Margin="5,0"/>
 
                     <TextBlock
@@ -99,7 +98,7 @@
                         Text="{Binding Server.Port}"
                         FontSize="{StaticResource ResourceKey=Text-Big}"
                         Style="{StaticResource FieldLabel}"
-                        Foreground="{StaticResource ResourceKey=DarkGrey}"
+                        Foreground="{StaticResource Panton_0}"
                         Width="auto" />
                 </StackPanel>
                 <!-- #endregion Port -->

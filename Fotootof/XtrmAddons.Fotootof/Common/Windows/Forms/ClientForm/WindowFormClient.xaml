@@ -38,7 +38,7 @@
 								Background="White">
 
 						<!-- #region : Field Name -->
-						<StackPanel Style="{StaticResource StackPanel_Field}">
+						<StackPanel Style="{StaticResource StackPanel_FormField}">
 
 							<TextBlock Text="{x:Static p:Resources.Name}"
 									   Style="{StaticResource FieldLabel}"/>
@@ -113,7 +113,7 @@
 
 
 						<!-- #region : Field Port -->
-						<StackPanel Style="{StaticResource StackPanel_Field}">
+						<StackPanel Style="{StaticResource StackPanel_FormField}">
 
 							<TextBlock Text="{x:Static p:Resources.Port}"
 									   Style="{StaticResource FieldLabel}"/>
@@ -150,7 +150,7 @@
 
 
                         <!-- #region : Field UserName -->
-						<StackPanel Style="{StaticResource StackPanel_Field}">
+						<StackPanel Style="{StaticResource StackPanel_FormField}">
 
 							<TextBlock Text="{x:Static p:Resources.User}"
 									   Style="{StaticResource FieldLabel}"/>
@@ -165,7 +165,7 @@
 
 
                         <!-- #region : Field Email -->
-						<StackPanel Style="{StaticResource StackPanel_Field}">
+						<StackPanel Style="{StaticResource StackPanel_FormField}">
 
 							<TextBlock Text="{x:Static p:Resources.Email}"
 									   Style="{StaticResource FieldLabel}"/>
@@ -181,7 +181,7 @@
 
 
                         <!-- #region : Field Password -->
-						<StackPanel Style="{StaticResource StackPanel_Field}">
+						<StackPanel Style="{StaticResource StackPanel_FormField}">
 							
 							<TextBlock Text="{x:Static p:Resources.Password}"
 									   Style="{StaticResource FieldLabel}"/>
@@ -200,7 +200,7 @@
 
 						
                         <!-- #region : Field Comment -->
-						<StackPanel Style="{StaticResource StackPanel_Field}">
+						<StackPanel Style="{StaticResource StackPanel_FormField}">
 							
 							<TextBlock Style="{StaticResource FieldLabelArea}"
 									   Text="{x:Static p:Resources.Comment}"/>

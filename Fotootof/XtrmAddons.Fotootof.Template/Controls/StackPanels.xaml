@@ -3,24 +3,36 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-
-	<Style x:Key="StackPanel_TopControls"
-		   TargetType="{x:Type StackPanel}">
-		<Setter Property="Orientation"
-				Value="Vertical" />
-		<Setter Property="HorizontalAlignment"
-				Value="Stretch" />
-		<Setter Property="VerticalAlignment"
-				Value="Top" />
-		<Setter Property="Height"
-				Value="30" />
-		<Setter Property="Background"
-				Value="{StaticResource ResourceKey=Panton_3}" />
+	<Style x:Key="StackPanel_Field" TargetType="{x:Type StackPanel}">
+		<Setter Property="Orientation" Value="Horizontal"/>
+		<Setter Property="VerticalAlignment" Value="Top" />
+		<Setter Property="MinHeight" Value="24"/>
+		<Setter Property="Margin" Value="10,0"/>
 	</Style>
 
 
+	<Style x:Key="StackPanel_FormField" TargetType="{x:Type StackPanel}" BasedOn="{StaticResource StackPanel_Field}">
+		<Setter Property="Margin" Value="10"/>
+	</Style>
 	
-	
+	<Style x:Key="StackPanel_FormValidator" TargetType="{x:Type StackPanel}">
+		<Setter Property="Orientation" Value="Horizontal" />
+		<Setter Property="HorizontalAlignment" Value="Center" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="Height" Value="30" />
+	</Style>
+
+	<Style x:Key="StackPanel_TopControls" TargetType="{x:Type StackPanel}">
+		<Setter Property="Orientation" Value="Vertical" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="VerticalAlignment" Value="Top" />
+		<Setter Property="Height" Value="30" />
+		<Setter Property="Background" Value="{StaticResource ResourceKey=Panton_3}" />
+	</Style>
+
+
+
+
 
 	<!-- Generic Fieldset -->
     <Style x:Key="FieldsetVertical" TargetType="{x:Type StackPanel}">
@@ -50,11 +62,6 @@
     </Style>
 
     <!-- Field -->
-	<Style x:Key="StackPanel_Field" TargetType="{x:Type StackPanel}">
-		<Setter Property="Orientation" Value="Horizontal"/>
-		<Setter Property="Margin" Value="10"/>
-        <Setter Property="MinHeight" Value="24"/>
-    </Style>
 
 	<Style x:Key="FieldsetHeader"
 		   TargetType="{x:Type StackPanel}"
@@ -66,14 +73,6 @@
 		<Setter Property="Background"
 				Value="{StaticResource Panton_4}" />
 	</Style>
-    
-    <!-- Validator -->
-    <Style x:Key="Validator" TargetType="{x:Type StackPanel}">
-        <Setter Property="Orientation" Value="Horizontal" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Height" Value="30" />
-    </Style>
 
 
 
@@ -81,7 +80,7 @@
 
 
 
-	
+
 
 	<Style x:Key="Field" TargetType="{x:Type StackPanel}">
 		<Setter Property="Margin" Value="10"/>

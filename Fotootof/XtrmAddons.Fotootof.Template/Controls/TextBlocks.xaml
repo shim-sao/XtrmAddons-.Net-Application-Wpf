@@ -3,34 +3,37 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-	<Style x:Key="TextBlock_Tooltip"
-		   TargetType="{x:Type TextBlock}">
-		<Setter Property="VerticalAlignment"
-				Value="Center" />
-		<Setter Property="Foreground"
-				Value="{StaticResource Panton_2}" />
-		<Setter Property="TextAlignment"
-				Value="Center" />
-		<Setter Property="FontSize"
-				Value="{StaticResource FontSizeNormal}" />
+	<Style x:Key="TextBlock_Tooltip" TargetType="{x:Type TextBlock}">
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="Foreground" Value="{StaticResource Panton_2}" />
+		<Setter Property="TextAlignment" Value="Center" />
+		<Setter Property="FontSize" Value="{StaticResource FontSizeNormal}" />
 	</Style>
 
-
-	<!-- TextBlock -->
-	<Style x:Key="FieldLabel" TargetType="{x:Type TextBlock}">
+	<Style x:Key="TextBlock_Field" TargetType="{x:Type TextBlock}">
 		<Setter Property="VerticalAlignment" Value="Center"/>
 		<Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSizeNormal}" />
+	</Style>
+
+	<Style x:Key="TextBlock_FieldLabel" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlock_Field}">
 		<Setter Property="Width" Value="100"/>
 	</Style>
 
-	<Style x:Key="FieldLabelShort" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ResourceKey=FieldLabel}">
-		<Setter Property="Width" Value="60"/>
+	<Style x:Key="TextBlock_FieldLabelLong" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlock_Field}">
+		<Setter Property="Width" Value="160"/>
 	</Style>
 
-	<Style x:Key="FieldLabelLong" TargetType="{x:Type TextBlock}">
-		<Setter Property="VerticalAlignment" Value="Center"/>
-		<Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSizeNormal}" />
-		<Setter Property="Width" Value="160"/>
+
+	<Style x:Key="TextBlock_FieldText" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlock_Field}">
+		<Setter Property="Width" Value="auto"/>
+	</Style>
+
+
+
+	
+	<!-- TextBlock -->
+	<Style x:Key="FieldLabelShort" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ResourceKey=FieldLabel}">
+		<Setter Property="Width" Value="60"/>
 	</Style>
 
 	<Style x:Key="FieldLabelCb" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource FieldLabel}">
@@ -49,6 +52,17 @@
 		<Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSizeBig}" />
 		<Setter Property="Margin" Value="5" />
 		<Setter Property="Foreground" Value="{StaticResource ResourceKey=LightGrey}" />
+	</Style>
+
+
+	
+	<!-- Obsolete -->
+	<Style x:Key="FieldLabel" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlock_FieldLabel}"></Style>
+
+	<Style x:Key="FieldLabelLong" TargetType="{x:Type TextBlock}">
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSizeNormal}" />
+		<Setter Property="Width" Value="160"/>
 	</Style>
 
 </ResourceDictionary>

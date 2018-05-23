@@ -398,6 +398,10 @@
     <Compile Include="Component\ServerSide\Controls\TreeViews\TreeViewSystemStorage.xaml.cs">
       <DependentUpon>TreeViewSystemStorage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Layouts\Windows\About\WindowAbout.xaml.cs">
+      <DependentUpon>WindowAbout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Windows\About\WindowAboutModel.cs" />
     <Compile Include="Properties\Resources.en-GB.Designer.cs">
       <DependentUpon>Resources.en-GB.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -410,15 +414,6 @@
     </Compile>
     <Compile Include="Settings\SettingsOptions.cs" />
     <Compile Include="Settings\SettingsPreferences.cs" />
-    <Compile Include="UI\Control\Menu\UCMainNavigation.xaml.cs">
-      <DependentUpon>UCMainNavigation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Forms\About\FormAbout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Forms\About\FormAbout.Designer.cs">
-      <DependentUpon>FormAbout.cs</DependentUpon>
-    </Compile>
     <Page Include="Component\ServerSide\Views\ViewBrowser\PageBrowser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -547,6 +542,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Layouts\Windows\About\WindowAbout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -559,10 +558,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UI\Control\Menu\UCMainNavigation.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -590,11 +585,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Forms\About\FormAbout.resx">
-      <DependentUpon>FormAbout.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="autoexec.release.bat" />
     <None Include="autoexec.debug.bat" />
+    <Content Include="Assets\Images\Default\about.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Images\Default\album-background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -817,7 +812,7 @@
   <ItemGroup>
     <Folder Include="Common\Converters\" />
     <Folder Include="Common\Interfaces\" />
-    <Folder Include="Common\Windows\About\" />
+    <Folder Include="UI\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Shell32">

@@ -66,7 +66,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 {
                     foreach (AlbumEntity entity in newItems)
                     {
-                        Database.Albums.Add(entity);
+                        Db.Albums.Add(entity);
                         log.Info(string.Format("Album [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
                     }
                 }

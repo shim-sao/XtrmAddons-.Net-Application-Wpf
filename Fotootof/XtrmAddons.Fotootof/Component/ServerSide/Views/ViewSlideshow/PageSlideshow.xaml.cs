@@ -4,6 +4,9 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Common.Collections;
+using XtrmAddons.Fotootof.Common.Tools;
+using System.Globalization;
+using System;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
 {
@@ -44,7 +47,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
         /// <summary>
         /// Property to access to the page model.
         /// </summary>
-        public PageSlideshowModel<PageSlideshow> Model { get; private set; }
+        public PageSlideshowModel Model { get; private set; }
 
         #endregion
 
@@ -58,10 +61,21 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
         /// <param name="collection">A pictures entities Collection.</param>
         public PageSlideshow(PictureEntityCollection collection, PictureEntity picture = null)
         {
-            InitializeComponent();
+            AppOverwork.IsBusy = true;
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Slideshow"));
+
             pictures = collection;
             currentPicture = picture;
+
+            // Constuct page component.
+            InitializeComponent();
             AfterInitializedComponent();
+
+            // Construct page data model.
+            InitializeModel();
+
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Slideshow"));
+            AppOverwork.IsBusy = false;
         }
 
         /// <summary>
@@ -70,10 +84,21 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
         /// <param name="collection">An album primary key.</param>
         public PageSlideshow(int albumPk, PictureEntity picture = null)
         {
-            InitializeComponent();
+            AppOverwork.IsBusy = true;
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Slideshow"));
+
             this.albumPk = albumPk;
             currentPicture = picture;
+
+            // Constuct page component.
+            InitializeComponent();
             AfterInitializedComponent();
+
+            // Construct page data model.
+            InitializeModel();
+
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Slideshow"));
+            AppOverwork.IsBusy = false;
         }
 
         #endregion
@@ -85,18 +110,18 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void Page_Loaded(object sender, RoutedEventArgs e)
+        public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
-            Page_Loaded_Async(sender, e);
+            DataContext = Model;
         }
 
         /// <summary>
         /// Method to initialize page content asynchronously.
         /// </summary>
-        public override async void Page_Loaded_Async(object sender, RoutedEventArgs e)
+        public override async void InitializeModel()
         {
 
-            Model = new PageSlideshowModel<PageSlideshow>(this)
+            Model = new PageSlideshowModel(this)
             {
                 Pictures = pictures
             };
@@ -126,18 +151,34 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
             {
                 Model.CurrentPicture = Model.Pictures[0];
             }
-
-            DataContext = Model;
         }
 
+        #endregion
+
+
+
+        #region Methods Size Changed
+
         /// <summary>
-        /// Method called on user control size changed event.
+        /// 
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Size changed event arguments.</param>
-        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        /// <param name="e"></param>
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e) { }
+
+        #endregion
+
+
+
+        #region Obsoletes
+
+        /// <summary>
+        /// Method to initialize and display data context.
+        /// </summary>
+        [Obsolete("Will be remove. None sense...")]
+        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
         {
-            
+            throw new System.NotImplementedException();
         }
 
         #endregion

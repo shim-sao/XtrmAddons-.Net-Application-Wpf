@@ -628,6 +628,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Company.
+        /// </summary>
+        public static string Company {
+            get {
+                return ResourceManager.GetString("Company", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Configuration file.
         /// </summary>
         public static string ConfigurationFile {
@@ -642,6 +651,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string Connect {
             get {
                 return ResourceManager.GetString("Connect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Copyright.
+        /// </summary>
+        public static string Copyright {
+            get {
+                return ResourceManager.GetString("Copyright", resourceCulture);
             }
         }
         
@@ -1132,6 +1150,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Product name.
+        /// </summary>
+        public static string ProductName {
+            get {
+                return ResourceManager.GetString("ProductName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Quality.
         /// </summary>
         public static string Quality {
@@ -1465,6 +1492,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Version.
+        /// </summary>
+        public static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à View.
         /// </summary>
         public static string View {
@@ -1483,7 +1519,16 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à FotootoF Administration : Users group.
+        ///   Recherche une chaîne localisée semblable à FotootoF About.
+        /// </summary>
+        public static string WindowAboutTitle {
+            get {
+                return ResourceManager.GetString("WindowAboutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à FotootoF Users group.
         /// </summary>
         public static string WindowAclGroupFormTitle {
             get {
@@ -1492,7 +1537,7 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à FotootoF Administration : Album.
+        ///   Recherche une chaîne localisée semblable à FotootoF Album.
         /// </summary>
         public static string WindowAlbumFormTitle {
             get {
@@ -1501,7 +1546,7 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à FotootoF Administration : Client.
+        ///   Recherche une chaîne localisée semblable à FotootoF Client.
         /// </summary>
         public static string WindowClientFormTitle {
             get {
@@ -1510,7 +1555,16 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à FotootoF Administration : Section.
+        ///   Recherche une chaîne localisée semblable à Fotootof Albums.
+        /// </summary>
+        public static string WindowsDataGridAlbumsTitle {
+            get {
+                return ResourceManager.GetString("WindowsDataGridAlbumsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à FotootoF Section.
         /// </summary>
         public static string WindowSectionFormTitle {
             get {
@@ -1519,7 +1573,7 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à FotootoF Administration : Server.
+        ///   Recherche une chaîne localisée semblable à FotootoF Server.
         /// </summary>
         public static string WindowServerFormTitle {
             get {
@@ -1528,7 +1582,7 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à FotootoF Préférences.
+        ///   Recherche une chaîne localisée semblable à FotootoF Preferences.
         /// </summary>
         public static string WindowSettingsTitle {
             get {
@@ -1537,7 +1591,7 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à FotootoF Administration : User.
+        ///   Recherche une chaîne localisée semblable à FotootoF User.
         /// </summary>
         public static string WindowUserFormTitle {
             get {
@@ -1546,7 +1600,7 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à X-Large.
+        ///   Recherche une chaîne localisée semblable à Extra-Large.
         /// </summary>
         public static string XLarge {
             get {

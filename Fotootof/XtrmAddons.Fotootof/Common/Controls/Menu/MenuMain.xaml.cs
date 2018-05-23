@@ -6,11 +6,6 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Builders.AddInsContracts;
-using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers;
-using XtrmAddons.Fotootof.Forms.About;
-using XtrmAddons.Fotootof.Interfaces.AddInsContracts;
-using XtrmAddons.Fotootof.Lib.HttpServer;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.Common.Tools;
@@ -18,6 +13,11 @@ using XtrmAddons.Fotootof.Common.Windows.Forms;
 using XtrmAddons.Fotootof.Common.Windows.Forms.SectionForm;
 using XtrmAddons.Fotootof.Common.Windows.Forms.UserForm;
 using XtrmAddons.Fotootof.Common.Windows.Settings;
+using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers;
+using XtrmAddons.Fotootof.Interfaces.AddInsContracts;
+using XtrmAddons.Fotootof.Layouts.Windows.About;
+using XtrmAddons.Fotootof.Lib.HttpServer;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
@@ -248,7 +248,10 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         /// <param name="e"></param>
         private void OnDisplayHelpAboutClick(object sender, RoutedEventArgs e)
         {
-            FormAbout about = new FormAbout();
+            //FormAbout about = new FormAbout();
+            //about.Show();
+
+            WindowAbout about = new WindowAbout();
             about.Show();
         }
 

@@ -5,6 +5,9 @@ using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Windows.Tools;
+using System.Threading.Tasks;
+using XtrmAddons.Fotootof.Common.Tools;
+using System.Globalization;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
 {
@@ -28,7 +31,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
         /// <summary>
         /// Property to access to the page browser model.
         /// </summary>
-        public PageServerModel<PageServer> Model { get; private set; }
+        public PageServerModel Model { get; private set; }
 
 
 
@@ -38,27 +41,44 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
         /// </summary>
         public PageServer()
         {
+            AppOverwork.IsBusy = true;
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Server"));
+
+            // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
-        }
 
+            // Construct page data model.
+            InitializeModel();
 
-
-        /// <summary>
-        /// Method to initialize page content.
-        /// </summary>
-        public override void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            Page_Loaded_Async(sender, e);
-        }
-
-        /// <summary>
-        /// Method to initialize page content.
-        /// </summary>
-        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
-        {
-            // Try to get server informations
+            // Add Server envents handlers.
             InitializeServer();
+
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Server"));
+            AppOverwork.IsBusy = false;
+        }
+
+
+
+        /// <summary>
+        /// Method to initialize page content.
+        /// </summary>
+        public override void Control_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = Model;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void InitializeModel()
+        {
+            Model = new PageServerModel(this)
+            {
+                Server = ApplicationBase.Options.Remote.Servers.FindDefault()
+            };
+
+            DataContext = Model;
         }
 
         /// <summary>
@@ -66,10 +86,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
         /// </summary>
         public void InitializeServer()
         {
-            Model = new PageServerModel<PageServer>(this);
-            Model.Server = ApplicationBase.Options.Remote.Servers.FindDefault();
-            DataContext = Model;
-
             if (HttpWebServerApplication.IsStarted)
             {
                 OnServerStart();
@@ -105,14 +121,32 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
             UCServer.RefreshServerMenu();
         }
 
+
+
+        #region Methods Size Changed
+
         /// <summary>
-        /// 
+        /// Method called on window sized changed.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
-        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        /// <param name="e">Size changed event arguments.</param>
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e) { }
+
+        #endregion
+
+
+
+        #region Obsoletes
+
+        /// <summary>
+        /// Method to initialize and display data context.
+        /// </summary>
+        [Obsolete("Will be remove. None sense...")]
+        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
         {
-            
+            throw new System.NotImplementedException();
         }
+
+        #endregion
     }
 }

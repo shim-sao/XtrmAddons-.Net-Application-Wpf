@@ -15,6 +15,7 @@ using XtrmAddons.Net.Memory;
 using XtrmAddons.Net.Picture;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 using XtrmAddons.Net.Windows.Converter.Picture;
+using System.Globalization;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
 {
@@ -41,7 +42,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
         /// <summary>
         /// Property to access to the page browser model.
         /// </summary>
-        public PageBrowserModel<PageBrowser> Model { get; private set; }
+        public PageBrowserModel Model { get; private set; }
 
         /// <summary>
         /// Property to access to the preview directory system informations.
@@ -52,11 +53,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
         /// Property to access to the preview directory system informations.
         /// </summary>
         public Stack<object> NextStack { get; set; } = new Stack<object>();
-
-        /// <summary>
-        /// Property to access to the preview directory system informations.
-        /// </summary>
-        //public List<object> UserStack { get; set; } = new List<object>();
 
         /// <summary>
         /// Property to access to the current drive system informations.
@@ -75,8 +71,18 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
         /// </summary>
         public PageBrowser()
         {
+            AppOverwork.IsBusy = true;
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Browser"));
+
+            // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
+
+            // Construct page data model.
+            InitializeModel();
+
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Browser"));
+            AppOverwork.IsBusy = false;
         }
 
         #endregion
@@ -88,22 +94,18 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void Page_Loaded(object sender, RoutedEventArgs e)
+        public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
-            Page_Loaded_Async(sender, e);
+            DataContext = Model;
         }
         
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
+        public override void InitializeModel()
         {
-            // Set busy indicator
-            AppOverwork.IsBusy = true;
-            log.Info("Initializing page content. Please wait...");
-
             // Initialize associated view model of the page.
-            Model = new PageBrowserModel<PageBrowser>(this)
+            Model = new PageBrowserModel(this)
             {
                 FilesCollection = new StorageCollection()
             };
@@ -111,13 +113,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
             // Add action to the tree view item event handler.
             UcTreeViewDirectories.DirectoriesTreeView.SelectedItemChanged += TreeViewDirectories_SelectedItemChanged;
             UcListViewStoragesServer.ImageSize_SelectionChanged += ImageSize_SelectionChanged;
-
-            // Reinitialize datacontext.
-            DataContext = Model;
-
-            // End of busy indicator.
-            log.Info("Initializing page content. Done.");
-            AppOverwork.IsBusy = false;
         }
 
         /// <summary>
@@ -474,6 +469,21 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
             TraceSize(Block_MiddleContents);
             TraceSize(UcTreeViewDirectories);
             TraceSize(UcListViewStoragesServer);
+        }
+
+        #endregion
+
+
+
+        #region Obsoletes
+
+        /// <summary>
+        /// Method to initialize and display data context.
+        /// </summary>
+        [Obsolete("Will be remove. None sense...")]
+        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion

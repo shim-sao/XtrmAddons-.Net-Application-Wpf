@@ -5,6 +5,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Common.Tools;
+using System.Globalization;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
 {
@@ -31,7 +32,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         /// <summary>
         /// Property to access to the data model of the page.
         /// </summary>
-        public PageAlbumModel<PageAlbum> Model { get; }
+        public PageAlbumModel Model { get; private set; }
 
         /// <summary>
         /// Property to access to the album's id or primary key.
@@ -49,17 +50,21 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         /// </summary>
         public PageAlbum(int albumId = 0)
         {
+            AppOverwork.IsBusy = true;
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Album"));
+
             // Store Album primary key.
             ItemId = albumId;
 
-            // Initialize the component of the page.
+            // Constuct page component.
             InitializeComponent();
-
-            // Initialize associated data model of the page.
-            Model = new PageAlbumModel<PageAlbum>(this);
-
-            // 
             AfterInitializedComponent();
+
+            // Construct page data model.
+            InitializeModel();
+
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Album"));
+            AppOverwork.IsBusy = false;
         }
 
         #endregion
@@ -71,22 +76,18 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void Page_Loaded(object sender, RoutedEventArgs e)
+        public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
-            Page_Loaded_Async(sender, e);
+            DataContext = Model;
+
+            PicturesCollection.Title_Text.Text = Model.Album.Name;
         }
 
         /// <summary>
         /// Method to initialize page content asynchronously.
         /// </summary>
-        public async override void Page_Loaded_Async(object sender, RoutedEventArgs e)
+        public override async void InitializeModel()
         {
-            
-
-            // Set busy indicator
-            AppOverwork.IsBusy = true;
-            log.Info("Initializing page content. Please wait...");
-
             AlbumEntity album = new AlbumEntity();
 
             if (ItemId > 0)
@@ -97,22 +98,20 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
                     PrimaryKey = ItemId
                 };
                 album = await MainWindow.Database.Albums.SingleOrNullAsync(options);
-
-                if(album == null)
-                {
-                    album = new AlbumEntity();
-                }
+                album = album ?? new AlbumEntity();
             }
 
-            Model.Album = album;
-            DataContext = Model;
-
-            PicturesCollection.Title_Text.Text = Model.Album.Name;
-
-            // End of busy indicator.
-            log.Info("Initializing page content. Done.");
-            AppOverwork.IsBusy = false;
+            Model = new PageAlbumModel(this)
+            {
+                Album = album
+            };
         }
+
+        #endregion
+
+
+
+        #region Methods Size Changed
 
         /// <summary>
         /// Method called on user control size changed event.
@@ -135,6 +134,21 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
             TraceSize(this);
             TraceSize(Block_MiddleContents);
             TraceSize(PicturesCollection);
+        }
+
+        #endregion
+
+
+
+        #region Obsoletes
+
+        /// <summary>
+        /// Method to initialize and display data context.
+        /// </summary>
+        [Obsolete("Will be remove. None sense...")]
+        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion

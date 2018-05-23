@@ -118,6 +118,7 @@ namespace XtrmAddons.Fotootof.Forms.About
             this.labelCopyright.TabIndex = 21;
             this.labelCopyright.Text = "Copyright";
             this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelCopyright.Click += new System.EventHandler(this.labelCopyright_Click);
             // 
             // labelCompanyName
             // 
@@ -166,6 +167,7 @@ namespace XtrmAddons.Fotootof.Forms.About
             this.linkLabelSmashicons.TabStop = true;
             this.linkLabelSmashicons.Text = "Icon By Smashicons for FlatIcon";
             this.linkLabelSmashicons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.linkLabelSmashicons.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSmashicons_LinkClicked);
             // 
             // FormAbout
             // 
@@ -183,6 +185,7 @@ namespace XtrmAddons.Fotootof.Forms.About
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AboutBox";
+            this.Load += new System.EventHandler(this.FormAbout_Load);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();

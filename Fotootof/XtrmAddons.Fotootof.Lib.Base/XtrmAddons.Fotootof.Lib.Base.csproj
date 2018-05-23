@@ -100,7 +100,7 @@
     <Compile Include="Interfaces\ILoadCollection.cs" />
     <Compile Include="Interfaces\IControlCollection.cs" />
     <Compile Include="Interfaces\IListItems.cs" />
-    <Compile Include="Interfaces\IContentInit.cs" />
+    <Compile Include="Interfaces\IContentInitializer.cs" />
     <Compile Include="Interfaces\IWindowForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

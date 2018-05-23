@@ -139,16 +139,22 @@
     <value>Fichier de base de données non trouvé.</value>
   </data>
   <data name="DeletingOptionsWaiting" xml:space="preserve">
-    <value>Suppression des options et des paramètres de l'application. Patientez, s'il vous plaît...</value>
+    <value>Suppression des options et des paramètres de l'application. Veuillez patienter, s'il vous plaît...</value>
   </data>
   <data name="DeletingUserOptionsWaiting" xml:space="preserve">
-    <value>Suppression des options et des paramètres de l'utilisateur. Patientez, s'il vous plaît...</value>
+    <value>Suppression des options et des paramètres de l'utilisateur. Veuillez patienter, s'il vous plaît...</value>
   </data>
   <data name="InitializingApplicationWindowComponentDone" xml:space="preserve">
     <value>Initialisation du composant de la fenêtre d'application. Terminé !</value>
   </data>
   <data name="InitializingDatabaseConnection" xml:space="preserve">
-    <value>Initialisation de la connexion à la base de données. Patientez, s'il vous plaît...</value>
+    <value>Initialisation de la connexion à la base de données. Veuillez patienter, s'il vous plaît...</value>
+  </data>
+  <data name="InitializingPageDone" xml:space="preserve">
+    <value>Initialisation du contenu de la Page {0}. Terminé !</value>
+  </data>
+  <data name="InitializingPageWaiting" xml:space="preserve">
+    <value>Initialisation du contenu de la Page {0}. Veuillez patienter, s'il vous plaît...</value>
   </data>
   <data name="ItemDeleted" xml:space="preserve">
     <value>{0} supprimé !</value>
@@ -157,7 +163,7 @@
     <value>Patientez, s'il vous plaît...</value>
   </data>
   <data name="SavingApplicationWaiting" xml:space="preserve">
-    <value>Sauvegarde des options et paramètres de l'application avant de quitter. Patientez, s'il vous plaît...</value>
+    <value>Sauvegarde des options et paramètres de l'application avant de quitter. Veuillez patienter, s'il vous plaît...</value>
   </data>
   <data name="SendingAlbumsCommand" xml:space="preserve">
     <value>Envoi de la commande ListAlbums au serveur {0}:{1}</value>
@@ -190,13 +196,13 @@
     <value>Envoi de la commande ListSections au serveur fin !</value>
   </data>
   <data name="SendingListSectionsCommandException" xml:space="preserve">
-    <value>Envoi de la commande ListSections : failed exception !</value>
+    <value>Envoi de la commande ListSections : échec exception !</value>
   </data>
   <data name="SendingListSectionsCommandResponseFailed" xml:space="preserve">
-    <value>Envoi de la commande ListSections : failed from server !</value>
+    <value>Envoi de la commande ListSections : échec depuis le serveur !</value>
   </data>
   <data name="SendingListSectionsCommandResponseOk" xml:space="preserve">
-    <value>Envoi de la commande ListSections : success !</value>
+    <value>Envoi de la commande ListSections : succés !</value>
   </data>
   <data name="SendingListSectionsCommandUnauthorized" xml:space="preserve">
     <value>Envoi de la commande ListSections : user unauthorized !</value>

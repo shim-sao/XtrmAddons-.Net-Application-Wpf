@@ -7,6 +7,7 @@ using XtrmAddons.Fotootof.Lib.HttpClient;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient.Responses;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
+using System.Threading.Tasks;
 
 namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
 {
@@ -177,7 +178,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
         /// <para>Method to send ping command to a server asynchronously.</para>
         /// <para>Command to check if the server is running.</para>
         /// </summary>
-        public async void Ping()
+        public async Task Ping()
         {
             log.Info(string.Format(Translation.Logs["SendingPingCommand"].ToString(), Server.Host, Server.Port));
 
@@ -228,7 +229,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
         /// <para>Method to send authentication command to a server asynchronously.</para>
         /// <para>Command to authenticate a user on a server.</para>
         /// </summary>
-        public async void Authentication()
+        public async Task<bool> Authentication()
         {
             log.Info(string.Format(Translation.Logs["SendingAuthenticationCommand"].ToString(), Server.Host, Server.Port));
 
@@ -267,6 +268,10 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
 
                     RaiseAuthenticationFailed(Server, serverResponse);
                 }
+
+                log.Info(Translation.Logs["SendingAuthenticationCommandDone"]);
+
+                return true;
             }
 
             // Catch all exceptions.
@@ -276,16 +281,16 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
                 log.Fatal(e);
 
                 RaiseAuthenticationFailed(Server, serverResponse);
-            }
 
-            log.Info(Translation.Logs["SendingAuthenticationCommandDone"]);
+                return false;
+            }
         }
 
 
         /// <summary>
         /// 
         /// </summary>
-        public async void ListSections()
+        public async Task<bool> ListSections()
         {
             log.Info(string.Format(Translation.Logs["SendingListSectionsCommand"].ToString(), Server.Host, Server.Port));
 
@@ -324,6 +329,10 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
 
                     RaiseListSectionsFailed(Server, serverResponse);
                 }
+
+                log.Info(Translation.Logs["SendingListSectionsCommandDone"]);
+
+                return true;
             }
 
             // Catch all exceptions.
@@ -333,16 +342,16 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
                 log.Fatal(e);
 
                 RaiseListSectionsFailed(Server, serverResponse);
-            }
 
-            log.Info(Translation.Logs["SendingListSectionsCommandDone"]);
+                return false;
+            }
         }
 
 
         /// <summary>
         /// 
         /// </summary>
-        public async void ListAlbums()
+        public async Task ListAlbums()
         {
             log.Info(string.Format(Translation.DLogs.SendingAlbumsCommand.ToString(), Server.Host, Server.Port));
 
@@ -388,7 +397,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
         /// <summary>
         /// 
         /// </summary>
-        public async void SingleSection(int pk)
+        public async Task SingleSection(int pk)
         {
             log.Info("Initializing server single section.");
             ServerResponseSections serverResponse = null;

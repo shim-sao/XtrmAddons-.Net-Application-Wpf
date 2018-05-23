@@ -211,7 +211,7 @@
     <value>Description</value>
   </data>
   <data name="DialogBoxTitle_PictureFileSelector" xml:space="preserve">
-    <value>XtrmAddons Fotootof Server : Image Selector</value>
+    <value>XtrmAddons Fotootof : Image Selector</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
@@ -442,7 +442,7 @@
     <value>FotootoF Album</value>
   </data>
   <data name="WindowClientFormTitle" xml:space="preserve">
-    <value>FotootoF Administration : Client</value>
+    <value>FotootoF Client</value>
   </data>
   <data name="WindowSectionFormTitle" xml:space="preserve">
     <value>FotootoF Section</value>
@@ -457,7 +457,7 @@
     <value>FotootoF User</value>
   </data>
   <data name="XLarge" xml:space="preserve">
-    <value>X-Large</value>
+    <value>Extra-Large</value>
   </data>
   <data name="_About" xml:space="preserve">
     <value>_About XtrmAddons PhotoAlbum Server</value>
@@ -502,7 +502,7 @@
     <value>_Edit</value>
   </data>
   <data name="_Edition" xml:space="preserve">
-    <value>Edition</value>
+    <value>_Edition</value>
   </data>
   <data name="_Exit" xml:space="preserve">
     <value>_Exit</value>
@@ -611,5 +611,23 @@
   </data>
   <data name="TrueColor" xml:space="preserve">
     <value>True Color</value>
+  </data>
+  <data name="WindowAboutTitle" xml:space="preserve">
+    <value>FotootoF About</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Product name</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="WindowsDataGridAlbumsTitle" xml:space="preserve">
+    <value>Fotootof Albums</value>
   </data>
 </root>

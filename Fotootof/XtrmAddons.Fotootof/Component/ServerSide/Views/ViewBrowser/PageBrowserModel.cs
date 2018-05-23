@@ -9,7 +9,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Server Side Component Browser View Model.</para>
     /// </summary>
-    public class PageBrowserModel<PageBrowser> : PageBaseModel<PageBrowser>
+    public class PageBrowserModel : PageBaseModel<PageBrowser>
     {
         #region Variables
 
@@ -44,8 +44,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
             get => imageSize;
             set
             {
-                imageSize = value;
-                NotifyPropertyChanged();
+                if (imageSize != value)
+                {
+                    imageSize = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -57,8 +60,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
             get => filesCollection;
             set
             {
-                filesCollection = value;
-                NotifyPropertyChanged();
+                if (filesCollection != value)
+                {
+                    filesCollection = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 

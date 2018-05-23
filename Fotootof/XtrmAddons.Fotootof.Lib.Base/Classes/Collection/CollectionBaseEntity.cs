@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
@@ -19,7 +22,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
         /// <summary>
         /// Property wrapper to access to the main database connector.
         /// </summary>
-        public static SQLiteSvc Database
+        public static SQLiteSvc Db
             => (SQLiteSvc)ApplicationSession.Properties.Database;
 
         /// <summary>
@@ -112,12 +115,13 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
         /// <param name="options">Options for query filters.</param>
         protected virtual void LoadOptions(U options = default(U))
         {
+            Trace.WriteLine("Loading Collection");
             options = options == null || options.Equals(default(U)) ? Options : options;
             options = options == null || options.Equals(default(U)) ? OptionsDefault : options;
 
             string managerName = GetType().Name.Replace("EntityCollection", "") + "s";
 
-            var manager = Database.GetPropertyValue(ManagerName);
+            var manager = Db.GetPropertyValue(ManagerName);
             MethodInfo methodInfo = manager.GetMethod("List");
             IList items = methodInfo.Invoke(manager, new object[] { options }) as IList;
 
@@ -125,6 +129,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
             {
                 Add(entity);
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pk"></param>
+        /// <returns></returns>
+        public T FindPrimaryKey(int pk)
+        {
+            return Items.ToList().Single(x => (int)x.GetPropertyValue("PrimaryKey") == pk);
         }
 
         #endregion

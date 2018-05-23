@@ -8,10 +8,11 @@ using XtrmAddons.Fotootof.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient.Responses;
 using XtrmAddons.Fotootof.Common.Models.DataGrids;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
 {
-    public class PageCatalogClientModel<PageCatalogClient> : PageBaseModel<PageCatalogClient>
+    public class PageCatalogClientModel : PageBaseModel<PageCatalogClient>
     {
         #region Variables
 
@@ -41,11 +42,14 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// </summary>
         public DataGridSectionsModel<DataGridSections> Sections
         {
-            get { return sections; }
+            get => sections;
             set
             {
-                sections = value;
-                NotifyPropertyChanged();
+                if (sections != value)
+                {
+                    sections = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -54,11 +58,14 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// </summary>
         public ListViewAlbumsModel<ListViewAlbums> Albums
         {
-            get { return albums; }
+            get => albums;
             set
             {
-                albums = value;
-                NotifyPropertyChanged();
+                if (albums != value)
+                {
+                    albums = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -67,12 +74,15 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// </summary>
         public ClientHttp Server
         {
-            get { return server; }
+            get => server;
             set
             {
-                server = value;
-                AddClientHttp();
-                NotifyPropertyChanged();
+                if (server != value)
+                {
+                    server = value;
+                    AddClientHttp();
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -86,10 +96,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// Class XtrmAddons Fotootof Server Component Models List Sections Constructor.
         /// </summary>
         /// <param name="pageBase">The page associated to the model.</param>
-        public PageCatalogClientModel(PageCatalogClient pageBase) : base(pageBase)
-        {
-
-        }
+        public PageCatalogClientModel(PageCatalogClient pageBase) : base(pageBase) { }
 
         #endregion
 
@@ -103,28 +110,53 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// <param name="pageBase">The page associated to the model.</param>
         private void AddClientHttp()
         {
-            server.OnAuthenticationFailed += Svr_OnAuthenticationFailed;
-            server.OnListSectionsSuccess += Svr_OnListSectionsSuccess;
-            server.OnListSectionsFailed += Svr_OnListSectionsFailed;
+            if (server == null)
+            {
+                log.Warn(new ArgumentNullException(nameof(server)));
+            }
+            else
+            { 
+                // Add authentication failed event handler.
+                server.OnAuthenticationFailed -= Svr_OnAuthenticationFailed;
+                server.OnAuthenticationFailed += Svr_OnAuthenticationFailed;
+
+                // Add list sections success event handler.
+                server.OnListSectionsSuccess -= Svr_OnListSectionsSuccess;
+                server.OnListSectionsSuccess += Svr_OnListSectionsSuccess;
+
+                // Add list sections failed event handler.
+                server.OnListSectionsFailed -= Svr_OnListSectionsFailed;
+                server.OnListSectionsFailed += Svr_OnListSectionsFailed;
+            }
         }
 
         /// <summary>
-        /// 
+        /// Method called on server command authentication failed.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="e">The event arguments.param>
         private void Svr_OnAuthenticationFailed(object sender, EventArgs e)
         {
             ClientHttpEventArgs<ServerResponse> serverResponse = e as ClientHttpEventArgs<ServerResponse>;
             
-            System.Windows.MessageBox.Show("Authentication to the server failed : " + serverResponse.Response.Error);
+            try
+            {
+                log.Debug(serverResponse.Response.Error);
+                System.Windows.MessageBox.Show("Authentication to the server failed : " + serverResponse.Response.Error, "Authentication error");
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex);
+                log.Error(serverResponse);
+                System.Windows.MessageBox.Show("Authentication to the server failed : " + ex.Output(), "Authentication error");
+            }
         }
 
         /// <summary>
-        /// 
+        /// Method called on server command list sections success.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="e">The event arguments.param>
         private void Svr_OnListSectionsSuccess(object sender, EventArgs e)
         {
 
@@ -135,15 +167,25 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         }
 
         /// <summary>
-        /// 
+        /// Method called on server command list sections failed.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="e">The event arguments.param>
         private void Svr_OnListSectionsFailed(object sender, EventArgs e)
         {
             ClientHttpEventArgs<ServerResponseSections> serverResponse = e as ClientHttpEventArgs<ServerResponseSections>;
 
-            System.Windows.MessageBox.Show("List sections on the server failed : " + serverResponse.Response.Error);
+            try
+            {
+                log.Debug(serverResponse.Response.Error);
+                System.Windows.MessageBox.Show("List sections from the server failed : " + serverResponse.Response.Error, "Sections list");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+                log.Error(serverResponse);
+                System.Windows.MessageBox.Show("List sections from the server failed : " + ex.Output(), "Sections list");
+            }
         }
 
         #endregion

@@ -1,29 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Models;
 
-namespace XtrmAddons.Fotootof.Forms.About
+namespace XtrmAddons.Fotootof.Layouts.Windows.About
 {
-    partial class FormAbout : Form
+    /// <summary>
+    /// 
+    /// </summary>
+    public class WindowAboutModel : ModelBase<WindowAbout>
     {
-        public FormAbout()
-        {
-            InitializeComponent();
-            this.Text = String.Format("À propos de {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = AssemblyDescription;
-        }
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static new readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
 
         #region Accesseurs d'attribut de l'assembly
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string AssemblyTitle
         {
             get
@@ -100,42 +105,20 @@ namespace XtrmAddons.Fotootof.Forms.About
                 return ((AssemblyCompanyAttribute)attributes[0]).Company;
             }
         }
+
         #endregion
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
-        private void labelProductName_Click(object sender, EventArgs e)
-        {
-            
-        }
+
+
+        #region Constructor
 
         /// <summary>
-        /// 
+        /// Class XtrmAddons Fotootof Layouts Windows About Model Constructor.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
-        private void OnFormCloseClick(object sender, EventArgs e)
-        {
-            this.Close();
-            this.Dispose();
-        }
+        /// <param name="windowBase">The associated window form base.</param>
+        public WindowAboutModel(WindowAbout windowBase) : base(windowBase) { }
 
-        private void FormAbout_Load(object sender, EventArgs e)
-        {
+        #endregion
 
-        }
-
-        private void labelCopyright_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void linkLabelSmashicons_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
     }
 }

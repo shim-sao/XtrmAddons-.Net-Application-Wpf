@@ -150,6 +150,12 @@
   <data name="InitializingDatabaseConnection" xml:space="preserve">
     <value>Initializing database connection. Please wait...</value>
   </data>
+  <data name="InitializingPageDone" xml:space="preserve">
+    <value>Initializing Page {0} content. Done !</value>
+  </data>
+  <data name="InitializingPageWaiting" xml:space="preserve">
+    <value>Initializing Page {0} content. Please wait...</value>
+  </data>
   <data name="ItemDeleted" xml:space="preserve">
     <value>{0} deleted !</value>
   </data>

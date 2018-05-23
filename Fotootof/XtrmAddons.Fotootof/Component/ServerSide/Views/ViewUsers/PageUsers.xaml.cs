@@ -12,6 +12,7 @@ using XtrmAddons.Fotootof.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Common.Extensions;
+using System.Globalization;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 {
@@ -28,11 +29,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private PageUsersModel<PageUsers> model;
-
         #endregion
 
 
@@ -42,12 +38,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// <summary>
         /// Accessors to page user model.
         /// </summary>
-        public PageUsersModel<PageUsers> Model
-        {
-            get => model;
-            private set { model = value; }
-
-        }
+        public PageUsersModel Model { get; private set; }
 
         /// <summary>
         /// Accessors to page user model.
@@ -83,25 +74,35 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// </summary>
         public PageUsers()
         {
+            AppOverwork.IsBusy = true;
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Users"));
+
+            // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
+
+            // Construct page data model.
+            InitializeModel();
+
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Users"));
+            AppOverwork.IsBusy = false;
         }
 
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void Page_Loaded(object sender, RoutedEventArgs e)
+        public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
-            Page_Loaded_Async(sender, e);
+            DataContext = Model;
         }
 
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
+        public override void InitializeModel()
         {
             // Paste page to User list.
-            model = model ?? new PageUsersModel<PageUsers>(this)
+            Model = Model ?? new PageUsersModel(this)
             {
                 AclGroups = new DataGridAclGroupsModel<DataGridAclGroups>(),
                 Users = new DataGridUsersModel<DataGridUsers>()
@@ -110,7 +111,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 
             LoadAclGroups();
             LoadUsers();
-            DataContext = model;
+            
+
 
             UcDataGridAclGroups.OnAdd += UcDataGridAclGroups_AclGroupAdded;
             UcDataGridAclGroups.OnChange += UcDataGridAclGroups_AclGroupChanged;
@@ -151,7 +153,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             try
             {
 
-                model.AclGroups.Items = new AclGroupEntityCollection(true);
+                Model.AclGroups.Items = new AclGroupEntityCollection(true);
             }
             catch (Exception e)
             {
@@ -191,7 +193,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             log.Info("Saving new AclGroup informations. Please wait...");
 
             AclGroupEntity item = (AclGroupEntity)e.NewEntity;
-            model.AclGroups.Items.Add(item);
+            Model.AclGroups.Items.Add(item);
             AclGroupEntityCollection.DbInsert(new List<AclGroupEntity> { item });
 
             Refresh();
@@ -209,9 +211,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             log.Info("Saving AclGroup informations. Please wait...");
 
             AclGroupEntity newEntity = (AclGroupEntity)e.NewEntity;
-            AclGroupEntity old = model.AclGroups.Items.Single(x => x.AclGroupId == newEntity.AclGroupId);
-            int index = model.AclGroups.Items.IndexOf(old);
-            model.AclGroups.Items[index] = newEntity;
+            AclGroupEntity old = Model.AclGroups.Items.Single(x => x.AclGroupId == newEntity.AclGroupId);
+            int index = Model.AclGroups.Items.IndexOf(old);
+            Model.AclGroups.Items[index] = newEntity;
             AclGroupEntityCollection.DbUpdateAsync(new List<AclGroupEntity> { newEntity }, new List<AclGroupEntity> { old });
 
             Refresh();
@@ -231,7 +233,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             AclGroupEntity item = (AclGroupEntity)e.NewEntity;
 
             // Remove item from list.
-            model.AclGroups.Items.Remove(item);
+            Model.AclGroups.Items.Remove(item);
 
             // Delete item from database.
             AclGroupEntityCollection.DbDelete(new List<AclGroupEntity> { item });
@@ -274,7 +276,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             {
                 UserEntityCollection Users = new UserEntityCollection(UserOptionsList, false);
                 Users.Load();
-                model.Users.Items = Users;
+                Model.Users.Items = Users;
 
                 log.Info("Loading Users list. Done.");
             }
@@ -309,7 +311,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             log.Info("Adding or editing User informations. Please wait...");
 
             UserEntity entity = (UserEntity)e.NewEntity;
-            model.Users.Items.Add(entity);
+            Model.Users.Items.Add(entity);
             UserEntityCollection.DbInsert(new List<UserEntity> { entity });
             Refresh();
 
@@ -327,9 +329,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 
             UserEntity entity = (UserEntity)e.NewEntity;
 
-            UserEntity old = model.Users.Items.Single(x => x.PrimaryKey == entity.PrimaryKey);
-            int index = model.Users.Items.IndexOf(old);
-            model.Users.Items[index] = entity;
+            UserEntity old = Model.Users.Items.Single(x => x.PrimaryKey == entity.PrimaryKey);
+            int index = Model.Users.Items.IndexOf(old);
+            Model.Users.Items[index] = entity;
             UserEntityCollection.DbUpdate(new List<UserEntity> { entity }, new List<UserEntity> { old });
 
             Refresh();
@@ -348,7 +350,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 
             // Remove item from list.
             UserEntity item = (UserEntity)e.NewEntity;
-            model.Users.Items.Remove(item);
+            Model.Users.Items.Remove(item);
 
             // Delete item from database.
             UserEntityCollection.DbDelete(new List<UserEntity> { item });
@@ -404,6 +406,21 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 
             TraceSize(UcDataGridAclGroups);
             TraceSize(UcDataGridUsers);
+        }
+
+        #endregion
+
+
+
+        #region Obsoletes
+
+        /// <summary>
+        /// Method to initialize and display data context.
+        /// </summary>
+        [Obsolete("Will be remove. None sense...")]
+        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion

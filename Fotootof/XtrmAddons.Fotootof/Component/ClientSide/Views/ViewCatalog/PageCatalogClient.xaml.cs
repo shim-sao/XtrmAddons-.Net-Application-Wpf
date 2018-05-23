@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
-using XtrmAddons.Fotootof.Lib.Api.Models.Json;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient;
-using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient.Responses;
 using XtrmAddons.Fotootof.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 
 namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
 {
@@ -40,7 +36,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// <summary>
         /// Property to access to the page model.
         /// </summary>
-        public PageCatalogClientModel<PageCatalogClient> Model { get; protected set; }
+        public PageCatalogClientModel Model { get; protected set; }
 
         #endregion
 
@@ -48,42 +44,58 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
 
         #region Constructor
 
-        public PageCatalogClient(ClientHttp server)
-        {
-            svr = server;
-
-            InitializeComponent();
-            AfterInitializedComponent();
-        }
-
         /// <summary>
-        /// Method to initialize page content.
+        /// 
         /// </summary>
-        public override void Page_Loaded(object sender, RoutedEventArgs e)
+        /// <param name="server"></param>
+        public PageCatalogClient(ClientHttp server)
         {
             AppOverwork.IsBusy = true;
 
-            Page_Loaded_Async(sender, e);
+            // Set page variables and properties.
+            svr = server;
+
+            // Constuct page component.
+            InitializeComponent();
+            AfterInitializedComponent();
+
+            // Construct page data model.
+            InitializeModel();
 
             AppOverwork.IsBusy = false;
         }
 
+        #endregion
+
+
+
+        #region Methods
+
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
+        public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
-            // Paste page to the model & child elements.
-            Model = new PageCatalogClientModel<PageCatalogClient>(this)
+            DataContext = Model;
+        }
+
+        /// <summary>
+        /// Method to initialize page content.
+        /// </summary>
+        public override async void InitializeModel()
+        {
+            Model = new PageCatalogClientModel(this)
             {
                 Server = svr,
                 Sections = new DataGridSectionsModel<DataGridSections>(UcDataGridSections)
             };
+            
+            bool command = await Model.Server.Authentication();
+            if(command)
+            {
 
-            DataContext = Model;
-
-            Model.Server.Authentication();
-            Model.Server.ListSections();
+                command = await Model.Server.ListSections();
+            }
         }
 
         #endregion
@@ -126,9 +138,26 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
 
         #region Methods Size Changed
 
-        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
+        /// <summary>
+        /// Method called on window sized changed.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e) { }
 
+        #endregion
+
+
+
+        #region Obsoletes
+
+        /// <summary>
+        /// Method to initialize and display data context.
+        /// </summary>
+        [Obsolete("Will be remove. None sense...")]
+        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion

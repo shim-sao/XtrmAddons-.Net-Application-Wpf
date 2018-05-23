@@ -2,9 +2,11 @@
 using System;
 using System.Diagnostics;
 using System.Drawing.Imaging;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
+using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
 
@@ -13,7 +15,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
     /// <summary>
     /// Class XtrmAddons Fotootof Server Libraries Base Page.
     /// </summary>
-    public abstract partial class PageBase : Page, IContentInit, ISizeChanged
+    public abstract partial class PageBase : Page, IContentInitializer, ISizeChanged
     {
         #region Variables
 
@@ -43,14 +45,65 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
 
 
 
+        #region Properties
+
+        /// <summary>
+        /// Property alias to access to the main database connector.
+        /// </summary>
+        public static SQLiteSvc Db
+            => (SQLiteSvc)ApplicationSession.Properties.Database;
+
+        /// <summary>
+        /// Property alias to access to the dynamic translation words.
+        /// </summary>
+        public dynamic DWords => Culture.Translation.DWords;
+
+        /// <summary>
+        /// Property alias to access to the dynamic translation logs.
+        /// </summary>
+        public dynamic DLogs => Culture.Translation.DLogs;
+
+        #endregion
+
+
+
+        #region Methods Abstracts
+
+        /// <summary>
+        /// Method to initialize page data model.
+        /// </summary>
+        public abstract void InitializeModel();
+
+        /// <summary>
+        /// Method to initialize and display data context.
+        /// </summary>
+        public abstract void Control_Loaded(object sender, RoutedEventArgs e);
+
+        /// <summary>
+        /// Method called on page size changed event.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
+        public abstract void Control_SizeChanged(object sender, SizeChangedEventArgs e);
+
+        /// <summary>
+        /// Method to initialize and display data context.
+        /// </summary>
+        [Obsolete("Will be remove. None sense...")]
+        public abstract void Page_Loaded_Async(object sender, RoutedEventArgs e);
+
+        #endregion
+
+
+
         #region Methods
 
         /// <summary>
         /// Method called after required component initialized.
         /// </summary>
-        public void AfterInitializedComponent()
+        protected virtual void AfterInitializedComponent()
         {
-            Loaded += Page_Loaded;
+            Loaded += Control_Loaded;
 
             // Initialize for the window size changed event.
             SizeChanged += PageBase_SizeChanged;
@@ -59,16 +112,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
             // Merge main resources.
             Resources.MergedDictionaries.Add(((Window)AppWindow).Resources);
         }
-
-        /// <summary>
-        /// Method to initialize and display data context.
-        /// </summary>
-        public abstract void Page_Loaded(object sender, RoutedEventArgs e);
-
-        /// <summary>
-        /// Method to initialize and display data context.
-        /// </summary>
-        public abstract void Page_Loaded_Async(object sender, RoutedEventArgs e);
 
         /// <summary>
         /// Method called on window sized changed.
@@ -128,12 +171,11 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
             return null;
         }
 
-        /// <summary>
-        /// Method called on page size changed event.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Size changed event arguments.</param>
-        public abstract void Control_SizeChanged(object sender, SizeChangedEventArgs e);
+        #endregion
+
+
+
+        #region Methods Debug
 
         /// <summary>
         /// Method called on window sized changed.

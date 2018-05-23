@@ -7,7 +7,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
     /// <summary>
     /// Class XtrmAddons Fotootof Component Server Models List Users.
     /// </summary>
-    public class PageUsersModel<PageUsers> : PageBaseModel<PageUsers>
+    public class PageUsersModel : PageBaseModel<PageUsers>
     {
         #region Variables
 
@@ -41,8 +41,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             get { return aclGroups; }
             set
             {
-                aclGroups = value;
-                NotifyPropertyChanged();
+                if (aclGroups == value)
+                {
+                    aclGroups = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -54,8 +57,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             get { return users; }
             set
             {
-                users = value;
-                NotifyPropertyChanged();
+                if (users == value)
+                {
+                    users = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -68,8 +74,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// <summary>
         /// Class XtrmAddons Fotootof Component Server Models List Users Constructor.
         /// </summary>
-        /// <param name="pageBase">The page associated to the model.</param>
-        public PageUsersModel(PageUsers pageBase) : base(pageBase) { }
+        /// <param name="page">The page associated to the model.</param>
+        public PageUsersModel(PageUsers page) : base(page) { }
 
         #endregion
     }

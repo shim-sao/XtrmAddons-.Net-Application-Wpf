@@ -1,0 +1,91 @@
+﻿<Window x:Class="XtrmAddons.Fotootof.Layouts.Windows.About.WindowAbout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+        xmlns:local="clr-namespace:XtrmAddons.Fotootof.Layouts.Windows.About"
+        mc:Ignorable="d"
+		Title="{x:Static p:Resources.WindowAboutTitle}"
+		Width="480"
+		Height="340"
+		Background="{StaticResource Panton_0}"
+		Loaded="Window_Load">
+	
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="160" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<Image Source="{StaticResource BitmapImageAbout}" />
+
+		<StackPanel Grid.Row="1">
+
+			<!-- #region : Field Product Name -->
+			<StackPanel Style="{StaticResource StackPanel_FormField}"
+						Margin="10,1">
+
+				<TextBlock Text="{x:Static p:Resources.ProductName}"
+						   Style="{StaticResource TextBlock_FieldLabel}"/>
+
+				<TextBlock Text="{Binding AssemblyTitle}"
+						   Style="{StaticResource TextBlock_FieldText}"/>
+
+			</StackPanel>
+			<!-- #endregion : Product Name -->
+
+
+			<!-- #region : Field Version -->
+			<StackPanel Style="{StaticResource StackPanel_Field}">
+
+				<TextBlock Text="{x:Static p:Resources.Version}"
+						   Style="{StaticResource TextBlock_FieldLabel}"/>
+
+				<TextBlock Text="{Binding AssemblyVersion}"
+						   Style="{StaticResource TextBlock_FieldText}"/>
+
+			</StackPanel>
+			<!-- #endregion : Version -->
+
+
+			<!-- #region : Field Copyright -->
+			<StackPanel Style="{StaticResource StackPanel_Field}">
+
+				<TextBlock Text="{x:Static p:Resources.Copyright}"
+						   Style="{StaticResource TextBlock_FieldLabel}"/>
+
+				<TextBlock Text="{Binding AssemblyCopyright}"
+						   Style="{StaticResource TextBlock_FieldText}"/>
+
+			</StackPanel>
+			<!-- #endregion : Copyright -->
+
+
+			<!-- #region : Field Company Name -->
+			<StackPanel Style="{StaticResource StackPanel_Field}">
+
+				<TextBlock Text="{x:Static p:Resources.Company}"
+						   Style="{StaticResource TextBlock_FieldLabel}"/>
+
+				<TextBlock Text="{Binding AssemblyCompany}"
+						   Style="{StaticResource TextBlock_FieldText}"/>
+
+			</StackPanel>
+			<!-- #endregion : Company Name -->
+
+
+			<!-- #region : Field Smashicons -->
+			<StackPanel Style="{StaticResource StackPanel_Field}">
+
+				<TextBlock Style="{StaticResource TextBlock_FieldText}">           
+					<Hyperlink NavigateUri="https://www.flaticon.com/authors/smashicons/">
+						Icon By Smashicons for FlatIcon
+					</Hyperlink>
+				</TextBlock>
+			</StackPanel>
+			<!-- #endregion : Smashicons -->
+
+		</StackPanel>
+	</Grid>
+</Window>

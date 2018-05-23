@@ -8,7 +8,6 @@
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Windows;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:rrString="clr-namespace:XtrmAddons.Net.Windows.ValidationRules;assembly=XtrmAddons.Net.Windows"
-    xmlns:local="clr-namespace:XtrmAddons.Fotootof.Common.Windows.Forms.SectionForm"
     mc:Ignorable="d"
     Width="480"
     Height="480"
@@ -20,8 +19,7 @@
 	Loaded="Window_Load"
 	Closing="Window_Closing">
 	
-	<Grid Margin="2"
-		  Background="{StaticResource ResourceKey=LightGrey}">
+	<Grid Background="{StaticResource LightGrey}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -46,8 +44,7 @@
 									Background="White" Grid.ColumnSpan="2">
 
                             <!-- #region : Field Name -->
-                            <StackPanel Orientation="Horizontal"
-										Style="{StaticResource Field}">
+                            <StackPanel Style="{StaticResource StackPanel_FormField}">
 
 								<TextBlock Text="{x:Static p:Resources.Name}"
 										   Style="{StaticResource FieldLabel}"/>
@@ -348,10 +345,7 @@
 				Grid.RowSpan="2">
 
             <Grid>
-                <StackPanel Orientation="Horizontal"
-							HorizontalAlignment="Center"
-							VerticalAlignment="center"
-							Height="30">
+				<StackPanel Style="{StaticResource StackPanel_FormValidator}">
 
 					<Button x:Name="Button_Save"
 							Content="{x:Static p:Resources.Save}"

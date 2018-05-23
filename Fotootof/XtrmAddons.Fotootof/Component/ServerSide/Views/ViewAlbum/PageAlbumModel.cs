@@ -7,7 +7,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Page Album Model.
     /// </summary>
-    public class PageAlbumModel<PageAlbum> : PageBaseModel<PageAlbum>
+    public class PageAlbumModel : PageBaseModel<PageAlbum>
     {
         #region Variables
 
@@ -18,7 +18,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// 
+        /// Variable Album data entity.
         /// </summary>
         private AlbumEntity album;
 
@@ -28,26 +28,26 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         #region Properties
 
         /// <summary>
-        /// 
+        /// Property to access to the Album data entity.
         /// </summary>
         public AlbumEntity Album
         {
             get => album;
             set
             {
-                album = value;
-                NotifyPropertyChanged("Album");
-                NotifyPropertyChanged("Pictures");
+                if(album != value)
+                {
+                    album = value;
+                    NotifyPropertyChanged("Album");
+                    NotifyPropertyChanged("Pictures");
+                }
             }
         }
 
         /// <summary>
-        /// 
+        /// Property accessors to the Album content Pictures list.
         /// </summary>
-        public List<PictureEntity> Pictures
-        {
-            get => Album.Pictures;
-        }
+        public List<PictureEntity> Pictures => Album.Pictures;
 
         #endregion
 
@@ -57,8 +57,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Page Album Model Constructor.
         /// </summary>
-        /// <param name="pageBase"></param>
-        public PageAlbumModel(PageAlbum pageBase) : base(pageBase) { }
+        /// <param name="page">The page associated to the model.</param>
+        public PageAlbumModel(PageAlbum page) : base(page) { }
 
         #endregion
     }

@@ -8,34 +8,29 @@
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Windows;assembly=XtrmAddons.Fotootof.Lib.Base"
     mc:Ignorable="d"
-    Title="WindowAlbums"
+    Title="{StaticResource WindowsDataGridAlbumsTitle}"
+	ResizeMode="NoResize"
     Width="480"
-    Height="480"
-    MaxWidth="480"
-    MaxHeight="480">
+    Height="480">
 
     <!-- #region : List Album -->
-    <Grid
-        Margin="2"
-        Background="{StaticResource ResourceKey=LightGrey}">
+	<Grid Background="{StaticResource Panton_3}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <TabControl 
-            x:Name="TabControlContent"
-            Grid.Row="0">
+        <TabControl x:Name="TabControlContent"
+					Grid.Row="0">
 
             <!-- #region : Tabs Informations -->
             <TabItem Header="{x:Static p:Resources.Albums}">
 
-                <dg:UCAlbumsDataGrid
-                    x:Name="UCAlbumsContainer"
-                    DataContext="{Binding}"
-                    HorizontalAlignment="Stretch"
-                    Grid.Row="0"/>
+                <dg:UCAlbumsDataGrid x:Name="UCAlbumsContainer"
+									 DataContext="{Binding}"
+									 HorizontalAlignment="Stretch"
+									 Grid.Row="0"/>
 
             </TabItem>
             <!-- #rendegion : Tabs Sections -->
@@ -48,35 +43,24 @@
             Grid.RowSpan="2">
 
             <Grid>
-                <StackPanel
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="center"
-                    Height="30">
+				<StackPanel Style="{StaticResource StackPanel_FormValidator}">
 
-                    <Button
-                        x:Name="Button_Save"
-                        IsEnabled="False"
-                        IsDefault="True"
-                        Click="DialogSave_Click"
-                        Margin="0,0,15,0"
-                        Content="{x:Static p:Resources.Save}"
-                        MinWidth="80"
-                        Style="{StaticResource RoundCorner}"
-                        Background="{StaticResource ResourceKey=MediumGrey}"
-                        Foreground="{StaticResource ResourceKey=RoundedButton}"/>
+					<Button x:Name="Button_Save"
+							IsEnabled="False"
+							IsDefault="True"
+							Click="DialogSave_Click"
+							Margin="0,0,15,0"
+							Content="{x:Static p:Resources.Save}"
+							MinWidth="80"
+							Style="{StaticResource RoundCorner}"
+							Background="{StaticResource ResourceKey=MediumGrey}"
+							Foreground="{StaticResource ResourceKey=RoundedButton}"/>
 
-                    <Button
-                        x:Name="Button_Cancel"
-                        IsCancel="True"
-                        Margin="15,0,0,0"
-                        Content="{x:Static p:Resources.Cancel}"
-                        Width="80"
-                        Style="{StaticResource RoundCorner}"
-                        Background="{StaticResource ResourceKey=MediumGrey}"
-                        Foreground="{StaticResource ResourceKey=RoundedButton}" />
+					<Button x:Name="Button_Cancel"
+							Content="{x:Static p:Resources.Cancel}"
+							Style="{StaticResource Button_Cancel}"/>
 
-                </StackPanel>
+				</StackPanel>
             </Grid>
         </Border>
 
