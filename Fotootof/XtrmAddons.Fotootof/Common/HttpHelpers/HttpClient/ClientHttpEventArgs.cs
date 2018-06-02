@@ -11,11 +11,12 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Base Client Http Event Arguments Constructor.
         /// </summary>
-        /// <param name="args">Event Arguments.</param>
-        public ClientHttpEventArgs(object server, T response)
+        /// <param name="server"></param>
+        /// <param name="result"></param>
+        public ClientHttpEventArgs(object server, T result)
         {
             Server = server;
-            Response = response;
+            Result = result;
         }
 
         /// <summary>
@@ -26,6 +27,6 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
         /// <summary>
         /// Property to access to the  Response arguments.
         /// </summary>
-        public T Response { get; set; }
+        public T Result { get; set; }
     }
 }

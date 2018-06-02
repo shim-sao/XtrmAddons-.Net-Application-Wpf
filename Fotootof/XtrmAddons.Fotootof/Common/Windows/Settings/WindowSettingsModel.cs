@@ -1,5 +1,6 @@
 ﻿using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlStorage;
+using XtrmAddons.Net.Application.Serializable.Elements.Storage;
+using XtrmAddons.Net.Application.Helpers;
 
 namespace XtrmAddons.Fotootof.Common.Windows.Settings
 {
@@ -8,33 +9,33 @@ namespace XtrmAddons.Fotootof.Common.Windows.Settings
         /// <summary>
         /// Property to access to the application base directory.
         /// </summary>
-        public static string BaseDirectory => ApplicationBase.BaseDirectory;
+        public static string BaseDirectory => ApplicationBase.Directories.Base;
 
         /// <summary>
         /// Property to access to the application preferences directory file absolute path.
         /// </summary>
-        public static string FilePreferencesXml => ApplicationBase.FilePreferencesXml;
+        public static string FilePreferencesXml => ((Net.Application.Helpers.SerializerHelper)ApplicationBase.SerializerHelper).FileName_Preferences;
 
         /// <summary>
         /// Property to access to the application options directory file absolute path.
         /// </summary>
-        public static string FileOptionsXml => ApplicationBase.FileOptionsXml;
+        public static string FileOptionsXml => ((SerializerHelper)ApplicationBase.SerializerHelper).FileName_Options;
 
         /// <summary>
         /// Property to access to the application user interface directory file absolute path.
         /// </summary>
-        public static string FileUiXml => ApplicationBase.FileUiXml;
+        public static string FileUiXml => ((SerializerHelper)ApplicationBase.SerializerHelper).FileName_Ui;
 
 
-        public string BinDirectory => ApplicationBase.BinDirectory;
+        public string BinDirectory => ApplicationBase.Directories.Bin;
 
-        public string CacheDirectory => ApplicationBase.CacheDirectory;
+        public string CacheDirectory => ApplicationBase.Directories.Cache;
 
-        public string ConfigDirectory => ApplicationBase.ConfigDirectory;
+        public string ConfigDirectory => ApplicationBase.Directories.Config;
 
-        public string DataDirectory => ApplicationBase.ConfigDirectory;
+        public string DataDirectory => ApplicationBase.Directories.Config;
 
-        public string ThemeDirectory => ApplicationBase.ThemeDirectory;
+        public string ThemeDirectory => ApplicationBase.Directories.Theme;
 
         public StorageOptions Storage => ApplicationBase.Storage;
 

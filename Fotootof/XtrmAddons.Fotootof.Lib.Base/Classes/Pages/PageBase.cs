@@ -2,7 +2,6 @@
 using System;
 using System.Diagnostics;
 using System.Drawing.Imaging;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
@@ -101,7 +100,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <summary>
         /// Method called after required component initialized.
         /// </summary>
-        protected virtual void AfterInitializedComponent()
+        protected void AfterInitializedComponent()
         {
             Loaded += Control_Loaded;
 
@@ -152,7 +151,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
                 dlg.Filter = string.Format("{0}{1}{2} ({3})|{3}", dlg.Filter, sep, codecName, c.FilenameExtension);
                 sep = "|";
             }
-            var a = Resources;
+            
             dlg.Filter = string.Format("{0}{1}{2} ({3})|{3}", dlg.Filter, sep, "All Files", "*.*");
             dlg.DefaultExt = ".JPG"; // Default file extension 
             dlg.FilterIndex = 2;

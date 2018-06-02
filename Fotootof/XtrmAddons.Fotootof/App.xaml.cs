@@ -5,6 +5,7 @@ using System.Windows;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Settings;
 using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Application.Helpers;
 
 /// <summary>
 /// Globals Conditionals :
@@ -35,7 +36,7 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Variable application settings options initilizer. 
         /// </summary>
-        SettingsOptionsInitializer options = new SettingsOptionsInitializer();
+        SettingsOptions options = new SettingsOptions();
 
         #endregion
         
@@ -158,17 +159,17 @@ namespace XtrmAddons.Fotootof
         /// </summary>
         private void App_Reset()
         {
-            if (Reset && System.IO.Directory.Exists(ApplicationBase.UserMyDocumentsDirectory))
+            if (Reset && System.IO.Directory.Exists(DirectoryHelper.UserMyDocuments))
             {
                 Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
                 Trace.WriteLine((string)Translation.DLogs.DeletingOptionsWaiting);
-                System.IO.Directory.Delete(ApplicationBase.UserAppDataDirectory, true);
-                Trace.WriteLine(string.Format((string)Translation.DLogs.ItemDeleted, ApplicationBase.UserAppDataDirectory));
+                System.IO.Directory.Delete(DirectoryHelper.UserAppData, true);
+                Trace.WriteLine(string.Format((string)Translation.DLogs.ItemDeleted, DirectoryHelper.UserAppData));
 
                 Trace.WriteLine((string)Translation.DLogs.DeletingUserOptionsWaiting);
-                System.IO.Directory.Delete(ApplicationBase.UserMyDocumentsDirectory, true);
-                Trace.WriteLine(string.Format((string)Translation.DLogs.ItemDeleted, ApplicationBase.UserMyDocumentsDirectory));
+                System.IO.Directory.Delete(DirectoryHelper.UserMyDocuments, true);
+                Trace.WriteLine(string.Format((string)Translation.DLogs.ItemDeleted, DirectoryHelper.UserMyDocuments));
 
                 Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
             }
@@ -186,7 +187,7 @@ namespace XtrmAddons.Fotootof
 
             // Copy program files to My Documents user folder.
             Trace.WriteLine((string)Translation.DLogs.CopyingProgramFiles);
-            ApplicationBase.CopyConfigFiles(true);
+            ApplicationBase.Directories.CopyConfigFiles(true);
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }

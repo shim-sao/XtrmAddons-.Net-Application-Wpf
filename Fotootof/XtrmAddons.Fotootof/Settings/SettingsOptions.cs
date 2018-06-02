@@ -1,35 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows;
-using System.Windows.Threading;
+using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Fotootof.Lib.SQLite;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
-using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlData;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
+using XtrmAddons.Net.Application.Serializable.Elements.Remote;
+using XtrmAddons.Net.Application.Serializable.Elements.Data;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Network;
-using XtrmAddons.Net.SQLiteBundle;
 
 namespace XtrmAddons.Fotootof.Settings
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Settings Preferences.
     /// </summary>
-    public class SettingsOptionsInitializer
+    public class SettingsOptions
     {
         #region Variables
 
@@ -47,7 +41,7 @@ namespace XtrmAddons.Fotootof.Settings
         /// </summary>
         public Server InitializeServer()
         {
-            Server server = ApplicationBase.Options.Remote.Servers.FindDefault();
+            Server server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
 
             // Create default server parameters if not exists.
             if (server == null || server.Key == null)
@@ -59,7 +53,7 @@ namespace XtrmAddons.Fotootof.Settings
                     IsDefault = true
                 };
 
-                ApplicationBase.Options.Remote.Servers.AddDefaultUnique(server);
+                ApplicationBase.Options.Remote.Servers.AddDefaultSingle(server);
             }
 
 
@@ -67,17 +61,17 @@ namespace XtrmAddons.Fotootof.Settings
             if (server.Host.IsNullOrWhiteSpace())
             {
                 server.Host = NetworkInformations.GetLocalHostIp();
-                ApplicationBase.Options.Remote.Servers.ReplaceKeyDefaultUnique(server);
+                ApplicationBase.Options.Remote.Servers.AddKeySingle(server);
             }
 
             // Initialize web server port.
             if (server.Port.IsNullOrWhiteSpace())
             {
                 server.Port = NetworkInformations.GetAvailablePort(9293).ToString();
-                ApplicationBase.Options.Remote.Servers.ReplaceKeyDefaultUnique(server);
+                ApplicationBase.Options.Remote.Servers.AddKeySingle(server);
             }
 
-            server = ApplicationBase.Options.Remote.Servers.FindDefault();
+            server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
             Trace.WriteLine("Server address : http://" + server.Host + ":" + server.Host);
 
             return server;
@@ -92,7 +86,7 @@ namespace XtrmAddons.Fotootof.Settings
             log.Info((string)Translation.DLogs.InitializingDatabaseConnection);
 
             // Get the default database in preferences if exists.
-            Database database = ApplicationBase.Options.Data.Databases.FindDefault();
+            Database database = ApplicationBase.Options.Data.Databases.FindDefaultFirst();
 
             // Create default database parameters if not exists.
             if (database == null || database.Key == null)
@@ -102,7 +96,7 @@ namespace XtrmAddons.Fotootof.Settings
                     Key = "default",
                     Name = "default.db3",
                     Type = DatabaseType.SQLite,
-                    Source = Path.Combine(ApplicationBase.DataDirectory, "default.db3"),
+                    Source = Path.Combine(ApplicationBase.Directories.Data, "default.db3"),
                     IsDefault = true,
                     Comment = "Default SQLite installed database."
 
@@ -139,7 +133,7 @@ namespace XtrmAddons.Fotootof.Settings
                             {
                                 log.Info(string.Format(CultureInfo.InvariantCulture, "Updating Assembly Minimum Version : {0}", old));
 
-                                string query = File.ReadAllText(Path.Combine(ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath, "update." + old.ToString() + ".sqlite"));
+                                string query = File.ReadAllText(Path.Combine(ApplicationBase.Storage.Directories.FindKeyFirst("config.database.scheme").AbsolutePath, "update." + old.ToString() + ".sqlite"));
                                 using (TransactionScope tran = new TransactionScope())
                                 {
                                     SQLiteCommand command = db.CreateCommand();
@@ -170,7 +164,7 @@ namespace XtrmAddons.Fotootof.Settings
                             SQLiteManager.Instance(
                                 database: database.Source,
                                 createFile: true,
-                                scheme: Path.Combine(ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath, "scheme.sqlite")
+                                scheme: Path.Combine(ApplicationBase.Storage.Directories.FindKeyFirst("config.database.scheme").AbsolutePath, "scheme.sqlite")
                             ).Db
                     )
                     {
@@ -294,7 +288,7 @@ namespace XtrmAddons.Fotootof.Settings
             // Add API mapping to server.
             HttpMapping.Load(
                 Path.Combine(
-                    ApplicationBase.Storage.Directories.FindKey("config.server").AbsolutePath,
+                    ApplicationBase.Storage.Directories.FindKeyFirst("config.server").AbsolutePath,
                     "server-mapping.xml"
                 )
             );

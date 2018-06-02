@@ -19,8 +19,8 @@ using XtrmAddons.Fotootof.Layouts.Windows.About;
 using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
+using XtrmAddons.Net.Application.Serializable.Elements.Remote;
+using XtrmAddons.Net.Application.Serializable.Elements.Ui;
 
 namespace XtrmAddons.Fotootof.Common.Controls.Menu
 {
@@ -130,18 +130,20 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         /// </summary>
         public void InitializeLogsWindow()
         {
-            var ctrl = Model.ShowLogsWindow;
+            UiElement<object> settings = Model.GetControlSettings(MenuItem_ShowLogsWindow);
 
-            if (ctrl == null)
+            if (settings == null)
             {
-                Model.ShowLogsWindow = new UiElement(MenuItem_ShowLogsWindow);
+                settings = new UiElement<object>(MenuItem_ShowLogsWindow, "IsChecked", MenuItem_ShowLogsWindow.IsChecked);
+                Model.SetControlSettings(settings);
                 ApplicationBase.Save();
             }
             else
             {
-                if(ctrl.JsonContext != null)
+                BindingProperty<object> isCheckedProp = settings.FindBindingProperty("IsChecked");
+                if (isCheckedProp != null)
                 {
-                    MenuItem_ShowLogsWindow = ctrl.ToControl(MenuItem_ShowLogsWindow);
+                    MenuItem_ShowLogsWindow.IsChecked = (bool)isCheckedProp.Value;
                 }
 
                 if (MenuItem_ShowLogsWindow.IsChecked)
@@ -237,7 +239,8 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         private void OnDisplayLogsWindowClick(object sender, RoutedEventArgs e)
         {
             AppNavigator.MainWindow.LogsToggle();
-            Model.ShowLogsWindow = new UiElement(MenuItem_ShowLogsWindow);
+            
+            Model.GetControlSettings(MenuItem_ShowLogsWindow).FindBindingProperty("IsChecked").Value = MenuItem_ShowLogsWindow.IsChecked;
             ApplicationBase.Save();
         }
 
@@ -336,7 +339,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
             {
                 AppOverwork.IsBusy = true;
 
-                ApplicationBase.Options.Remote.Clients.ReplaceKeyUnique(dlg.NewForm);
+                ApplicationBase.Options.Remote.Clients.AddKeySingle(dlg.NewForm);
                 ApplicationBase.Save();
                 RaiseClientAdded(this, e.RoutedEvent);
 

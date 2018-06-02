@@ -26,7 +26,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Images
         /// <returns>The absolute path to the directory.</returns>
         public static async Task<string> GetDirectoryAsync(string relativeUrl)
         {
-            return await SysDirectory.CreateAsync(ApplicationBase.CacheDirectory, relativeUrl);
+            return await SysDirectory.CreateAsync(ApplicationBase.Directories.Cache, relativeUrl);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Images
         /// <returns>The absolute path to the directory.</returns>
         public static string GetDirectory(string relativeUrl)
         {
-            return SysDirectory.Create(ApplicationBase.CacheDirectory, relativeUrl);
+            return SysDirectory.Create(ApplicationBase.Directories.Cache, relativeUrl);
         }
 
         /// <summary>
@@ -194,6 +194,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Images
             return null;
         }
 
-        #endregion Album
+        #endregion
     }
 }

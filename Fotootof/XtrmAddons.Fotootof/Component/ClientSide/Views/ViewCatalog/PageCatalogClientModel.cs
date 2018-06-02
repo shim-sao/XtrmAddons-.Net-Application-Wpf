@@ -118,15 +118,15 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
             { 
                 // Add authentication failed event handler.
                 server.OnAuthenticationFailed -= Svr_OnAuthenticationFailed;
-                server.OnAuthenticationFailed += Svr_OnAuthenticationFailed;
+                server.OnAuthenticationFailed += new EventHandler(Svr_OnAuthenticationFailed);
 
                 // Add list sections success event handler.
                 server.OnListSectionsSuccess -= Svr_OnListSectionsSuccess;
-                server.OnListSectionsSuccess += Svr_OnListSectionsSuccess;
+                server.OnListSectionsSuccess += new EventHandler(Svr_OnListSectionsSuccess);
 
                 // Add list sections failed event handler.
                 server.OnListSectionsFailed -= Svr_OnListSectionsFailed;
-                server.OnListSectionsFailed += Svr_OnListSectionsFailed;
+                server.OnListSectionsFailed += new EventHandler(Svr_OnListSectionsFailed);
             }
         }
 
@@ -137,12 +137,18 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// <param name="e">The event arguments.param>
         private void Svr_OnAuthenticationFailed(object sender, EventArgs e)
         {
-            ClientHttpEventArgs<ServerResponse> serverResponse = e as ClientHttpEventArgs<ServerResponse>;
-            
+            // Get and check the server response to verify if the server is connected.
+            // Prevent bad response for the user.
+            if (!(e is ClientHttpEventArgs<ServerResponse> serverResponse) || serverResponse.Result == null)
+            {
+                System.Windows.MessageBox.Show("Authentication to the server failed : The server does not respond !", "Authentication error");
+                return;
+            }
+
             try
             {
-                log.Debug(serverResponse.Response.Error);
-                System.Windows.MessageBox.Show("Authentication to the server failed : " + serverResponse.Response.Error, "Authentication error");
+                log.Debug(serverResponse.Result.Error);
+                System.Windows.MessageBox.Show("Authentication to the server failed : " + serverResponse.Result.Error, "Authentication error");
             }
             catch(Exception ex)
             {
@@ -159,10 +165,16 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// <param name="e">The event arguments.param>
         private void Svr_OnListSectionsSuccess(object sender, EventArgs e)
         {
-
+            // Get and check the server response to verify if the server is connected.
+            // Prevent bad response for the user.
             ClientHttpEventArgs<ServerResponseSections> serverResponse = e as ClientHttpEventArgs<ServerResponseSections>;
-            
-            List<SectionJson> list = serverResponse.Response.Response ?? new List<SectionJson>();
+            if (serverResponse == null || serverResponse.Result == null)
+            {
+                System.Windows.MessageBox.Show("List sections from the server failed : The server does not respond !", "Authentication error");
+                return;
+            }
+
+            List<SectionJson> list = serverResponse.Result.Response ?? new List<SectionJson>();
             Sections.Items = new SectionEntityCollection(list);
         }
 
@@ -173,18 +185,25 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// <param name="e">The event arguments.param>
         private void Svr_OnListSectionsFailed(object sender, EventArgs e)
         {
+            // Get and check the server response to verify if the server is connected.
+            // Prevent bad response for the user.
             ClientHttpEventArgs<ServerResponseSections> serverResponse = e as ClientHttpEventArgs<ServerResponseSections>;
+            if (serverResponse == null || serverResponse.Result == null)
+            {
+                System.Windows.MessageBox.Show("List sections from the server failed : The server does not respond !", "Sections list error");
+                return;
+            }
 
             try
             {
-                log.Debug(serverResponse.Response.Error);
-                System.Windows.MessageBox.Show("List sections from the server failed : " + serverResponse.Response.Error, "Sections list");
+                log.Debug(serverResponse.Result.Error);
+                System.Windows.MessageBox.Show("List sections from the server failed : " + serverResponse.Result.Error, "Sections list error");
             }
             catch (Exception ex)
             {
                 log.Error(ex);
                 log.Error(serverResponse);
-                System.Windows.MessageBox.Show("List sections from the server failed : " + ex.Output(), "Sections list");
+                System.Windows.MessageBox.Show("List sections from the server failed : " + ex.Output(), "Sections list error");
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Models;
 using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
+using XtrmAddons.Net.Application.Serializable.Elements.Remote;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Servers
 {
@@ -70,7 +70,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Servers
         /// </summary>
         protected void InitializeModel()
         {
-            Server = ApplicationBase.Options.Remote.Servers.FindDefault();
+            Server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
         }
 
         #endregion

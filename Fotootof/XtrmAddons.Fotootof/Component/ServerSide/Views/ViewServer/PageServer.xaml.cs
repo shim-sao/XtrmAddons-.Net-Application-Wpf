@@ -75,7 +75,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
         {
             Model = new PageServerModel(this)
             {
-                Server = ApplicationBase.Options.Remote.Servers.FindDefault()
+                Server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst()
             };
 
             DataContext = Model;

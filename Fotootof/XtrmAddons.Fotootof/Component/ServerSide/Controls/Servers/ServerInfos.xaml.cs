@@ -1,8 +1,7 @@
 ﻿using System.Windows;
+using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls;
 using XtrmAddons.Fotootof.Lib.HttpServer;
-using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
-using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Application;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Servers
@@ -48,7 +47,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Servers
         public void RefreshServerData()
         {
             // Try to get server informations
-            Model.Server = ApplicationBase.Options.Remote.Servers.FindDefault();
+            Model.Server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
 
             if (Model.server != null)
             {

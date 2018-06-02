@@ -1,10 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Windows;
-using System.Windows.Threading;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Models;
-using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
+﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Models;
 
 namespace XtrmAddons.Fotootof.Common.Controls.Menu
 {
@@ -13,25 +7,6 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
     /// </summary>
     public class MenuMainModel<MenuMain> : ModelBase<MenuMain>
     {
-        #region Properties
-
-        /// <summary>
-        /// Class XtrmAddons Fotootof Libraries Common Controls Menu Main Controller.
-        /// </summary>
-        public UiElement ShowLogsWindow
-        {
-            get => GetOptionsControl("ShowLogsWindow");
-            set
-            {
-                SetOptionsControl("ShowLogsWindow", value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        #endregion
-
-
-
         #region Constructor
 
         /// <summary>

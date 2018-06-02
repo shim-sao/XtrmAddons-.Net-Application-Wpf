@@ -4,7 +4,7 @@ using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Network;
-using ServerData = XtrmAddons.Net.Application.Serializable.Elements.XmlRemote.Server;
+using ServerData = XtrmAddons.Net.Application.Serializable.Elements.Remote.Server;
 
 namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer
 {
@@ -67,7 +67,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer
             if (!HttpWebServerApplication.IsStarted)
             {
                 // Try to get server informations
-                ServerData server = ApplicationBase.Options.Remote.Servers.FindDefault();
+                ServerData server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
 
                 if (server != null)
                 {
@@ -106,7 +106,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer
             Task.Run(() =>
             {
                 // Try to get server informations
-                ServerData server = ApplicationBase.Options.Remote.Servers.FindDefault();
+                ServerData server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
 
                 if (server != null)
                 {
@@ -129,7 +129,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer
             Task.Run(() =>
             {
                 // Try to get server informations
-                ServerData server = ApplicationBase.Options.Remote.Servers.FindDefault();
+                ServerData server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
 
                 if (server != null)
                 {

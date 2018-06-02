@@ -1,7 +1,7 @@
 ﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
+using XtrmAddons.Net.Application.Serializable.Elements.Ui;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
 {
@@ -12,15 +12,15 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Common Controls Menu Main Controller.
         /// </summary>
-        public UiElement ListViewStoragesServerImageSize
-        {
-            get => GetOptionsControl("ListViewStoragesServerImageSize");
-            set
-            {
-                SetOptionsControl("ListViewStoragesServerImageSize", value);
-                NotifyPropertyChanged();
-            }
-        }
+        //public UiElement ListViewStoragesServerImageSize
+        //{
+        //    get => GetOptionsControl("ListViewStoragesServerImageSize");
+        //    set
+        //    {
+        //        SetOptionsControl("ListViewStoragesServerImageSize", value);
+        //        NotifyPropertyChanged();
+        //    }
+        //}
 
         #endregion
 
@@ -35,13 +35,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         public ListViewStoragesServerModel(ListViewStoragesServer control) : base(control) { }
 
         #endregion
-
-
-
-        #region Methods
-
-        #endregion
-
 
     }
 }
