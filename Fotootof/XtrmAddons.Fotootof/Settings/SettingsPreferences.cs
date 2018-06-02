@@ -1,11 +1,6 @@
 ﻿using System.Diagnostics;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Markup;
 using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlStorage;
+using XtrmAddons.Net.Application.Serializable.Elements.Storage;
 
 namespace XtrmAddons.Fotootof.Settings
 {
@@ -27,9 +22,9 @@ namespace XtrmAddons.Fotootof.Settings
                 IsRelative = true,
                 Root = SpecialDirectoriesExtensions.RootDirectory(SpecialDirectoriesName.Cache)
             };
-            ApplicationBase.Storage.Directories.ReplaceKey(temp);
+            ApplicationBase.Storage.Directories.AddKeySingle(temp);
             temp.Create();
-            Trace.WriteLine("cache.filestypes = " + ApplicationBase.Storage.Directories.FindKey("cache.filestypes").AbsolutePath);
+            Trace.WriteLine("cache.filestypes = " + ApplicationBase.Storage.Directories.FindKeyFirst("cache.filestypes").AbsolutePath);
 
             // Create path to configuration server directory. 
             temp = new Directory
@@ -39,9 +34,9 @@ namespace XtrmAddons.Fotootof.Settings
                 IsRelative = true,
                 Root = SpecialDirectoriesExtensions.RootDirectory(SpecialDirectoriesName.Config)
             };
-            ApplicationBase.Storage.Directories.ReplaceKey(temp);
+            ApplicationBase.Storage.Directories.AddKeySingle(temp);
             temp.Create();
-            Trace.WriteLine("config.server = " + ApplicationBase.Storage.Directories.FindKey("config.server").AbsolutePath);
+            Trace.WriteLine("config.server = " + ApplicationBase.Storage.Directories.FindKeyFirst("config.server").AbsolutePath);
 
             // Create path to configuration database directory
             temp = new Directory
@@ -51,9 +46,9 @@ namespace XtrmAddons.Fotootof.Settings
                 IsRelative = true,
                 Root = SpecialDirectoriesExtensions.RootDirectory(SpecialDirectoriesName.Config)
             };
-            ApplicationBase.Storage.Directories.ReplaceKey(temp);
+            ApplicationBase.Storage.Directories.AddKeySingle(temp);
             temp.Create();
-            Trace.WriteLine("config.database = " + ApplicationBase.Storage.Directories.FindKey("config.database").AbsolutePath);
+            Trace.WriteLine("config.database = " + ApplicationBase.Storage.Directories.FindKeyFirst("config.database").AbsolutePath);
 
             // Create path  configuration database scheme directory
             temp = new Directory
@@ -63,9 +58,9 @@ namespace XtrmAddons.Fotootof.Settings
                 IsRelative = true,
                 Root = SpecialDirectoriesExtensions.RootDirectory(SpecialDirectoriesName.Config)
             };
-            ApplicationBase.Storage.Directories.ReplaceKey(temp);
+            ApplicationBase.Storage.Directories.AddKeySingle(temp);
             temp.Create();
-            Trace.WriteLine("config.database.scheme = " + ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath);
+            Trace.WriteLine("config.database.scheme = " + ApplicationBase.Storage.Directories.FindKeyFirst("config.database.scheme").AbsolutePath);
         }
     }
 }

@@ -6,7 +6,7 @@ using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.HttpClient;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient.Responses;
 using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
+using XtrmAddons.Net.Application.Serializable.Elements.Remote;
 using System.Threading.Tasks;
 
 namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
@@ -14,7 +14,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
     //[System.Obsolete("use => XtrmAddons.Fotootof.Lib.Base.Classes.HttpClient.ClientHttp")]
     public class ClientHttp
     {
-        #region Variable
+        #region Variables
 
         /// <summary>
         /// Variable logger.
@@ -44,11 +44,16 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
 
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Client Server { get; private set; }
         
         public HttpWebClientApplication WebClient { get; private set; }
 
-        public event EventHandler OnAuthenticationSuccess = delegate { };
+        public delegate void OnAuthenticationSuccessEventHandler<T>(object Sender);
+
+        public event EventHandler OnAuthenticationSuccess;
 
         public event EventHandler OnAuthenticationFailed = delegate { };
 

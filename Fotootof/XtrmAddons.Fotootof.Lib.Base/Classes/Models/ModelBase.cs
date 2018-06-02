@@ -2,9 +2,10 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
+using XtrmAddons.Net.Application.Serializable.Elements.Ui;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
 {
@@ -95,18 +96,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        /// <summary>
-        /// <para>Method to raise property changed.</para>
-        /// <para>Send property changed event</para>
-        /// </summary>
-        /// <param name="propertyName">The name of the property.</param>
-        [Obsolete("Use NotifyPropertyChanged() instead.", true)]
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            NotifyPropertyChanged(propertyName);
-            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         #endregion
 
 
@@ -118,27 +107,20 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static UiElement GetOptionsControl(string key)
+        public UiElement<object> GetControlSettings(Control ctrl)
         {
-            return ApplicationBase.UI.Controls.FindKey(key);
+            return ApplicationBase.UI.Controls.FindControl(ctrl);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="value"></param>
-        public static void SetOptionsControl(string key, UiElement value)
+        /// <param name="element"></param>
+        public void SetControlSettings(UiElement<object> element)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                if (ApplicationBase.UI.Controls.FindKey(key) != null)
-                {
-                    ApplicationBase.UI.Controls.ReplaceKeyUnique(value);
-                }
-                else
-                {
-                    ApplicationBase.UI.Controls.Add(value);
-                }
+                ApplicationBase.UI.Controls.AddKeySingle(element);
             }));
         }
 

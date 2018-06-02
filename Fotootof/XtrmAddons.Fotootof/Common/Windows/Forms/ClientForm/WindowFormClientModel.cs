@@ -1,5 +1,5 @@
 ﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
+using XtrmAddons.Net.Application.Serializable.Elements.Remote;
 
 namespace XtrmAddons.Fotootof.Common.Windows.Forms
 {

@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient;
 using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
+using XtrmAddons.Net.Application.Serializable.Elements.Remote;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids
 {

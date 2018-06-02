@@ -10,7 +10,7 @@ using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Common.Windows.DataGrids.AlbumsDataGrid;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
+using XtrmAddons.Net.Application.Serializable.Elements.Ui;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
@@ -112,19 +112,18 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 Items = ItemsCollection.ItemsSource as StorageCollection
             };
 
-            var ctrl = Model.ListViewStoragesServerImageSize;
+            UiElement<object> settings = Model.GetControlSettings(ComboBox_ImageSize);
 
-            if (ctrl == null)
+            if (settings == null)
             {
-                ctrl = new UiElement(ComboBox_ImageSize);
+                settings = new UiElement<object>(ComboBox_ImageSize, "SelectedIndex", ComboBox_ImageSize.SelectedIndex);
+                Model.SetControlSettings(settings);
             }
             else
-            { 
-                if (ctrl.JsonContext != null)
-                {
-                    //ComboBox_ImageSize = (ComboBox)Model.ListViewStoragesServerImageSize.ToControl();
-                    Model.ListViewStoragesServerImageSize.ToControl(ComboBox_ImageSize);
-                }
+            {
+                BindingProperty<object> selectedIndexProp = settings.FindBindingProperty("SelectedIndex");
+                var a = selectedIndexProp.Value;
+                ComboBox_ImageSize.SelectedIndex = (int)((long)selectedIndexProp.Value);
             }
         }
 
@@ -241,7 +240,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         {
             if (Model != null)
             {
-                Model.ListViewStoragesServerImageSize = new UiElement(ComboBox_ImageSize);
+                Model.GetControlSettings(ComboBox_ImageSize).FindBindingProperty("SelectedIndex").Value
+                    = ComboBox_ImageSize.SelectedIndex;
             }
         }
 
