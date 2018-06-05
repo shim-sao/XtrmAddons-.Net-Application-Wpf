@@ -16,6 +16,7 @@ using XtrmAddons.Fotootof.Common.Windows.Settings;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers;
 using XtrmAddons.Fotootof.Interfaces.AddInsContracts;
 using XtrmAddons.Fotootof.Layouts.Windows.About;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Net.Application;
@@ -130,26 +131,10 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         /// </summary>
         public void InitializeLogsWindow()
         {
-            UiElement<object> settings = Model.GetControlSettings(MenuItem_ShowLogsWindow);
-
-            if (settings == null)
+            MenuItem_ShowLogsWindow.IsChecked = SettingsBase.GetBool(MenuItem_ShowLogsWindow, "IsChecked", MenuItem_ShowLogsWindow.IsChecked);
+            if (MenuItem_ShowLogsWindow.IsChecked)
             {
-                settings = new UiElement<object>(MenuItem_ShowLogsWindow, "IsChecked", MenuItem_ShowLogsWindow.IsChecked);
-                Model.SetControlSettings(settings);
-                ApplicationBase.Save();
-            }
-            else
-            {
-                BindingProperty<object> isCheckedProp = settings.FindBindingProperty("IsChecked");
-                if (isCheckedProp != null)
-                {
-                    MenuItem_ShowLogsWindow.IsChecked = (bool)isCheckedProp.Value;
-                }
-
-                if (MenuItem_ShowLogsWindow.IsChecked)
-                {
-                    AppNavigator.MainWindow.LogsToggle();
-                }
+                AppNavigator.MainWindow.LogsToggle();
             }
         }
 
@@ -240,7 +225,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         {
             AppNavigator.MainWindow.LogsToggle();
             
-            Model.GetControlSettings(MenuItem_ShowLogsWindow).FindBindingProperty("IsChecked").Value = MenuItem_ShowLogsWindow.IsChecked;
+            Model.GetSettings(MenuItem_ShowLogsWindow).FindBindingProperty("IsChecked").Value = MenuItem_ShowLogsWindow.IsChecked;
             ApplicationBase.Save();
         }
 

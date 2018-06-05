@@ -17,6 +17,12 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         #region Variables
 
         /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
         /// Variable observable collection of Sections.
         /// </summary>
         private DataGridSectionsModel<DataGridSections> sections;

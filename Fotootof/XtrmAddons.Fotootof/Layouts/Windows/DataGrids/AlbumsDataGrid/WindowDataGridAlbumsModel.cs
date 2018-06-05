@@ -1,7 +1,7 @@
 ﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Common.Collections;
 
-namespace XtrmAddons.Fotootof.Common.Windows.DataGrids.AlbumsDataGrid
+namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Libraries Common Window Albums DataGrid Model.

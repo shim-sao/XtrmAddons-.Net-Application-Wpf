@@ -384,10 +384,11 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
         }
 
         // TODO: remplacer un finaliseur seulement si la fonction Dispose(bool disposing) ci-dessus a du code pour libérer les ressources non managées.
-        // ~HttpWebClient() {
-        //   // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.
-        //   Dispose(false);
-        // }
+        // ~HttpWebClient()
+        //{
+        //    // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.
+        //    Dispose(false);
+        //}
 
         // Ce code est ajouté pour implémenter correctement le modèle supprimable.
         public void Dispose()

@@ -3,9 +3,8 @@ using log4net.Appender;
 using log4net.Core;
 using System;
 using System.Text;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Log4net;
 
-namespace XtrmAddons.Fotootof.Lib.Base.Classes.Log4net
+namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems.Log4net
 {
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Libraries Common.Tools Application Log Watcher.</para>
@@ -36,6 +35,11 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Log4net
             // Get the memory appender
             memoryAppender = (MemoryAppenderWithEvents)Array.Find(LogManager.GetRepository().GetAppenders(), GetMemoryAppender);
 
+            if(memoryAppender == null)
+            {
+                throw new NullReferenceException("Log4net memory appender not found !");
+            }
+            
             // Read in the log content
             LogContent = GetEvents(memoryAppender);
 

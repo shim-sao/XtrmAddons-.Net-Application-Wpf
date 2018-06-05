@@ -1,25 +1,26 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Application.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.Ui;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Libraries Base Model.
     /// </summary>
-    public class ModelBase<T> : INotifyPropertyChanged
+    public class ModelBase<T> : ObjectBaseNotifier //INotifyPropertyChanged
     {
         #region Variable
 
         /// <summary>
         /// Variable logger.
         /// </summary>
-        protected static readonly log4net.ILog log =
+        private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
@@ -52,16 +53,26 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
         #endregion
 
 
-
+/*
         #region Events Handlers
-
+        
         /// <summary>
         /// Delegate property changed event handler of the model.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        #endregion
+        /// <summary>
+        /// <para>This method is called by the Set accessor of each property.</para>
+        /// <para>The CallerMemberName attribute that is applied to the optional propertyName</para>
+        /// </summary>
+        /// <param name="propertyName">Parameter causes the property name of the caller to be substituted as an argument.</param>
+        protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
+        #endregion
+*/
 
 
         #region Constructor
@@ -86,36 +97,85 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
 
         #region Methods
 
-        /// <summary>
-        /// <para>This method is called by the Set accessor of each property.</para>
-        /// <para>The CallerMemberName attribute that is applied to the optional propertyName</para>
-        /// </summary>
-        /// <param name="propertyName">Parameter causes the property name of the caller to be substituted as an argument.</param>
-        protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         #endregion
 
 
 
-        #region Methods
+        #region Obsolete
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public UiElement<object> GetControlSettings(Control ctrl)
+        [Obsolete("Use SettingsBase")]
+        public UiElement<object> GetSettings(Control ctrl)
         {
-            return ApplicationBase.UI.Controls.FindControl(ctrl);
+            if(ctrl == null)
+            {
+                ArgumentNullException ane = new ArgumentNullException("The argument object System.Windows.Control is required not null : " + nameof(ctrl));
+                log.Error(ane.Output());
+                throw ane;
+            }
+
+            return ApplicationBase.UI.Controls.FindControl(ctrl) ?? new UiElement<object>(ctrl);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        [Obsolete("Use SettingsBase")]
+        public V GetSettingsValue<V>(Control ctrl, string propertyName, V defaultValue = null) where V : class
+        {
+            if (ctrl == null)
+            {
+                ArgumentNullException ane = new ArgumentNullException("The argument object System.Windows.Control is required not null : " + nameof(ctrl));
+                log.Error(ane.Output());
+                throw ane;
+            }
+
+            if (propertyName == null)
+            {
+                ArgumentNullException ane = new ArgumentNullException("The argument string Property Name is required not null : " + nameof(propertyName));
+                log.Error(ane.Output());
+                throw ane;
+            }
+
+            return GetBindingProperty(ctrl, propertyName, defaultValue) as V;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        [Obsolete("Use SettingsBase")]
+        public BindingProperty<object> GetBindingProperty(Control ctrl, string propertyName, object defaultValue = null)
+        {
+            if (ctrl == null)
+            {
+                ArgumentNullException ane = new ArgumentNullException("The argument object System.Windows.Control is required not null : " + nameof(ctrl));
+                log.Error(ane.Output());
+                throw ane;
+            }
+
+            if (propertyName == null)
+            {
+                ArgumentNullException ane = new ArgumentNullException("The argument string Property Name is required not null : " + nameof(propertyName));
+                log.Error(ane.Output());
+                throw ane;
+            }
+
+            return GetSettings(ctrl).FindBindingProperty(propertyName) ?? new BindingProperty<object>() { Name = propertyName, Value = defaultValue };
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="element"></param>
+        [Obsolete("Use SettingsBase")]
         public void SetControlSettings(UiElement<object> element)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>

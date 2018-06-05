@@ -75,7 +75,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
         /// Method to initialize the collection.
         /// </summary>
         /// <param name="autoLoad">Auto load default items of the collection.</param>
-        public virtual void Initialize(bool autoLoad = false)
+        public void Initialize(bool autoLoad = false)
         {
             if (IsAutoloadEnabled && autoLoad)
             {

@@ -4,13 +4,12 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
-using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Fotootof.Common.Windows.DataGrids.AlbumsDataGrid;
-using XtrmAddons.Net.Application.Serializable.Elements.Ui;
+using XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
@@ -112,19 +111,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 Items = ItemsCollection.ItemsSource as StorageCollection
             };
 
-            UiElement<object> settings = Model.GetControlSettings(ComboBox_ImageSize);
-
-            if (settings == null)
-            {
-                settings = new UiElement<object>(ComboBox_ImageSize, "SelectedIndex", ComboBox_ImageSize.SelectedIndex);
-                Model.SetControlSettings(settings);
-            }
-            else
-            {
-                BindingProperty<object> selectedIndexProp = settings.FindBindingProperty("SelectedIndex");
-                var a = selectedIndexProp.Value;
-                ComboBox_ImageSize.SelectedIndex = (int)((long)selectedIndexProp.Value);
-            }
+            ComboBox_ImageSize.SelectedIndex = SettingsBase.GetInt(ComboBox_ImageSize, "SelectedIndex", ComboBox_ImageSize.SelectedIndex);
         }
 
         /// <summary>
@@ -238,10 +225,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// <param name="e">Selection changed event arguments.</param>
         private void ComboBox_ImageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Model != null)
+            if (ComboBox_ImageSize != null)
             {
-                Model.GetControlSettings(ComboBox_ImageSize).FindBindingProperty("SelectedIndex").Value
-                    = ComboBox_ImageSize.SelectedIndex;
+                SettingsBase.SaveInt(ComboBox_ImageSize, "SelectedIndex", ComboBox_ImageSize.SelectedIndex);
             }
         }
 
