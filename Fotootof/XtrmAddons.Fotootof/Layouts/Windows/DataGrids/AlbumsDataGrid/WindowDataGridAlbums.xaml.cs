@@ -9,7 +9,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Event;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Tools;
 
-namespace XtrmAddons.Fotootof.Common.Windows.DataGrids.AlbumsDataGrid
+namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Browser Window Albums.

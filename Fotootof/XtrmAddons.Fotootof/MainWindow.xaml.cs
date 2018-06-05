@@ -1,14 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs;
 using XtrmAddons.Fotootof.Culture;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Log4net;
-using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems.Log4net;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.NotifyIcons;

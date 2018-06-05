@@ -3,14 +3,14 @@
     /// <summary>
     /// Class XtrmAddons Fotootof Lib Base Window Form Model.
     /// </summary>
-    public class WindowBaseFormModel<WindowBase> : WindowBaseModel<WindowBase>
+    public class WindowBaseFormModel<T> : WindowBaseModel<T>
     {
         #region Variables
 
         /// <summary>
         /// Variable logger.
         /// </summary>
-        private new static readonly log4net.ILog log =
+        private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
@@ -48,12 +48,8 @@
         /// Class XtrmAddons Fotootof Server Libraries Window Base Model Constructor.
         /// </summary>
         /// <param name="pageBase">The page associated to the model.</param>
-        public WindowBaseFormModel(WindowBase owner) : base(owner) { }
+        public WindowBaseFormModel(T owner) : base(owner) { }
 
-        #endregion
-
-
-        #region Methods
         #endregion
     }
 }

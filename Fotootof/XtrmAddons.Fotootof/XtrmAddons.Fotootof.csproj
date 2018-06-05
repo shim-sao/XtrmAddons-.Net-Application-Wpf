@@ -342,7 +342,7 @@
     <Compile Include="Common\Controls\DataGrids\DataGridAlbumsModel.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewAlbumsModel.cs" />
     <Compile Include="Common\Windows\Settings\WindowSettingsModel.cs" />
-    <Compile Include="Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml.cs">
+    <Compile Include="Layouts\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml.cs">
       <DependentUpon>WindowDataGridAlbums.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\Windows\Settings\WindowSettings.xaml.cs">
@@ -374,7 +374,7 @@
     </Compile>
     <Compile Include="Common\Windows\Forms\SectionForm\WindowFormSectionModel.cs" />
     <Compile Include="Common\Windows\Forms\UserForm\WindowFormUserModel.cs" />
-    <Compile Include="Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbumsModel.cs" />
+    <Compile Include="Layouts\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbumsModel.cs" />
     <Compile Include="Common\HttpHelpers\HttpServer\ServerInfosModel.cs" />
     <Compile Include="Common\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml.cs">
       <DependentUpon>WindowFormAclGroup.xaml</DependentUpon>
@@ -490,7 +490,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Common\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml">
+    <Page Include="Layouts\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
