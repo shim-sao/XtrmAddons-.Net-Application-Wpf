@@ -9,6 +9,18 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
     /// </summary>
     public class IndexRoute : Router
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         /// <summary>
         /// XtrmAddons PhotoAlbum Server Api Router Index Route constructor.
         /// </summary>

@@ -13,6 +13,8 @@ namespace XtrmAddons.Fotootof.PluginTest.PluginContracts
         private void Initialize()
         {
             Trace.WriteLine("Initializing Plugin Test Module");
+
+            InterfaceControl = InterfaceControl ?? new MenuItem();
             InterfaceControl.Header = "Plugin Test";
             InterfaceControl.Click += new RoutedEventHandler(InterfaceControl_Click);
         }
@@ -44,7 +46,6 @@ namespace XtrmAddons.Fotootof.PluginTest.PluginContracts
         {
             Trace.WriteLine("Getting interface object Plugin Test Module");
 
-            InterfaceControl = InterfaceControl ?? new MenuItem();
             Initialize();
 
             return InterfaceControl;

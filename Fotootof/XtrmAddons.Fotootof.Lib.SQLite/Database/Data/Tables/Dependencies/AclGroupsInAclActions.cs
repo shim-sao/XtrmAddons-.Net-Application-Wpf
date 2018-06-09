@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies
@@ -7,8 +9,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries ACLGroups in ACLActions Entity Object.
     /// </summary>
+    [Serializable]
     [Table("AclGroupsInAclActions")]
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptIn, Title = "AclGroups_AclActions")]
+    [XmlType(TypeName = "AclGroups_AclActions")]
     public class AclGroupsInAclActions
     {
         #region Properties
@@ -17,14 +21,16 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies
         /// Property the id of the AclGroup entity.
         /// </summary>
         [Column(Order = 0)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "AclGroupId")]
+        [XmlAttribute(DataType = "int", AttributeName = "AclGroupId")]
         public int AclGroupId { get; set; }
 
         /// <summary>
         /// Property the id of the AclAction entity.
         /// </summary>
         [Column(Order = 1)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "AclActionId")]
+        [XmlAttribute(DataType = "int", AttributeName = "AclActionId")]
         public int AclActionId { get; set; }
 
 
@@ -33,12 +39,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies
         /// Property to access to the AclAction entity.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         public AclActionEntity AclActionEntity { get; set; }
 
         /// <summary>
         /// Property to access to the AclGroup entity.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         public AclGroupEntity AclGroupEntity { get; set; }
 
         #endregion

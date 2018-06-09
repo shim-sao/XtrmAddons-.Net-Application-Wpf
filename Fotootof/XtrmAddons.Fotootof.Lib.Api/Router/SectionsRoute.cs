@@ -13,6 +13,18 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
     /// </summary>
     public class SectionsRoute : Router
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Api Router Sections.
         /// </summary>

@@ -1,7 +1,7 @@
 ﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Net.Application.Serializable.Elements.Remote;
 
-namespace XtrmAddons.Fotootof.Common.Windows.Forms
+namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.ClientForm
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Window Client Form Model.

@@ -13,6 +13,12 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
         #region Variables
 
         /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
         /// Variable Http Web Server instance.
         /// </summary>
         private static HttpWebServer _ws = null;
@@ -71,18 +77,21 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
         /// </summary>
         /// <param name="host"></param>
         /// <param name="port"></param>
-        public static void Start(string host, string port )
+        public static void Start(string host, string port)
         {
-            _prefixes = "http://" + host + ":" + port + "/";
+            _prefixes = $"http://{host}:{port}/";
+            log.Debug($"Server Start : {_prefixes}");
+
             _ws = new HttpWebServer(_prefixes);
             _ws.Run();
         }
 
         /// <summary>
-        /// 
+        /// Method to stop the application server.
         /// </summary>
         public static void Stop()
         {
+            log.Debug($"Server Stop : {_prefixes}");
             _ws.Stop();
         }
 
@@ -93,6 +102,7 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
         /// <returns></returns>
         private static string SendResponse(HttpListenerRequest request)
         {
+            log.Debug($"Server Send Response : {DateTime.Now}");
             return string.Format("<HTML><BODY>My web page.<br>{0}</BODY></HTML>", DateTime.Now);
         }
 

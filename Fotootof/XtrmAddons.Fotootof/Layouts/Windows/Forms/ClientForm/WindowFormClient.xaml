@@ -1,6 +1,6 @@
 ﻿<base:WindowBaseForm
 	x:Name="UCWindowClientForm"
-    x:Class="XtrmAddons.Fotootof.Common.Windows.Forms.WindowClientForm"
+    x:Class="XtrmAddons.Fotootof.Layouts.Windows.Forms.ClientForm.WindowClientForm"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -185,6 +185,33 @@
 							
 							<TextBlock Text="{x:Static p:Resources.Password}"
 									   Style="{StaticResource FieldLabel}"/>
+
+							<!--<TextBox x:Name="InputPassword"
+									 Style="{StaticResource Textbox_FieldInput_Required}"
+									 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+									 Validation.Error="OnInput_ValidationError"
+									 SourceUpdated="OnInputStringRequired_SourceUpdated"
+									 TargetUpdated="OnInput_TargetUpdated"
+									 TextChanged="OnInputStringRequired_TextChanged"
+									 Width="310">
+
+								<TextBox.Text>
+									<Binding Path="Client.Password"
+											 Mode="TwoWay"
+											 UpdateSourceTrigger="LostFocus"
+											 IsAsync="True"
+											 ValidatesOnDataErrors="True"
+											 ValidatesOnExceptions="True"
+											 NotifyOnValidationError="True"
+											 NotifyOnSourceUpdated="True"
+											 NotifyOnTargetUpdated="True">
+
+										<Binding.ValidationRules>
+											<rrString:StringRequired />
+										</Binding.ValidationRules>
+									</Binding>
+								</TextBox.Text>
+							</TextBox>-->
 
 							<PasswordBox x:Name="InputPassword"
 										 Style="{StaticResource PasswordBox_FieldInput_Required}"

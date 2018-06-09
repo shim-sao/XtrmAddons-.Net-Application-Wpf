@@ -87,7 +87,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [NotMapped]
         [JsonIgnore]
+#pragma warning disable CS0414 // Le champ 'UserEntity.aclGroupsPK' est assigné, mais sa valeur n'est jamais utilisée
         private IEnumerable<int> aclGroupsPK = null;
+#pragma warning restore CS0414 // Le champ 'UserEntity.aclGroupsPK' est assigné, mais sa valeur n'est jamais utilisée
 
         /// <summary>
         /// Variable list of AclGroup associated to the User.

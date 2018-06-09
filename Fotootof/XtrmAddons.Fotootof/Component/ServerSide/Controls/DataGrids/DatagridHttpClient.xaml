@@ -49,7 +49,7 @@
                 <!-- #region Column Host -->
                 <DataGridTemplateColumn 
                         IsReadOnly="True"
-                        MinWidth="160"
+                        Width="1*"
                         CanUserSort="True"
                         Header="{x:Static p:Resources.Host}"
                         SortMemberPath="Host">
@@ -65,23 +65,61 @@
                 <!-- #endregion Column Host -->
 
 
-                <!-- #region Column User Name -->
+				<!-- #region Column Port -->
                 <DataGridTemplateColumn 
                         IsReadOnly="True"
-                        MinWidth="160"
+                        Width="1*"
                         CanUserSort="True"
-                        Header="{x:Static p:Resources.User}"
-                        SortMemberPath="Host">
+                        Header="{x:Static p:Resources.Port}"
+                        SortMemberPath="Port">
 
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
 
-                            <TextBlock Margin="5,0" Text="{Binding User, Mode=TwoWay}"/>
+							<TextBlock Margin="5,0" Text="{Binding Port, Mode=TwoWay}"/>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+				<!-- #endregion Column Port -->
+
+
+                <!-- #region Column User Name -->
+                <DataGridTemplateColumn 
+                        IsReadOnly="True"
+                        Width="1*"
+                        CanUserSort="True"
+                        Header="{x:Static p:Resources.User}"
+                        SortMemberPath="UserName">
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+							<TextBlock Margin="5,0" Text="{Binding UserName, Mode=TwoWay}"/>
 
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <!-- #endregion Column User Name -->
+
+
+                <!-- #region Column Email -->
+                <DataGridTemplateColumn 
+                        IsReadOnly="True"
+                        Width="1*"
+                        CanUserSort="True"
+                        Header="{x:Static p:Resources.Email}"
+                        SortMemberPath="Email">
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+							<TextBlock Margin="5,0" Text="{Binding Email, Mode=TwoWay}"/>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+				<!-- #endregion Column Email -->
 
 
                 <!-- #region Column Button Edit -->

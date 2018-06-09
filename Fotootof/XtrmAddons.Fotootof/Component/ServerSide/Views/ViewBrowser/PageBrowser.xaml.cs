@@ -16,6 +16,7 @@ using XtrmAddons.Net.Picture;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 using XtrmAddons.Net.Windows.Converter.Picture;
 using System.Globalization;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
 {
@@ -78,9 +79,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
             InitializeComponent();
             AfterInitializedComponent();
 
-            // Construct page data model.
-            InitializeModel();
-
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Browser"));
             AppOverwork.IsBusy = false;
         }
@@ -133,7 +131,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
                 catch (Exception e)
                 {
                     log.Error(e);
-                    AppLogger.Error(e);
+                    MessageBase.Error(e);
                 }
             }
 
@@ -158,7 +156,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
                 catch(Exception e)
                 {
                     log.Error(e);
-                    AppLogger.Error(e);
+                    MessageBase.Error(e);
                 }
             }
 

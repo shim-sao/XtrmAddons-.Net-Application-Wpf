@@ -6,7 +6,8 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Fotootof.Common.Windows.Forms.AlbumForm;
+using XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Common.Controls.ListViews
 {
@@ -85,7 +86,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
             {
                 string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
                 log.Warn(message);
-                AppLogger.Warning(message);
+                MessageBase.Warning(message);
             }
         }
 
@@ -117,7 +118,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
             {
                 string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
                 log.Warn(message);
-                AppLogger.Warning(message);
+                MessageBase.Warning(message);
             }
         }
 

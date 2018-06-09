@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
+using XtrmAddons.Fotootof.Common.Collections;
+using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Event;
-using XtrmAddons.Fotootof.Common.Collections;
-using XtrmAddons.Fotootof.Common.Controls.DataGrids;
-using XtrmAddons.Fotootof.Common.Models.DataGrids;
-using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Common.Extensions;
-using System.Globalization;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 {
@@ -71,7 +70,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 
         /// <summary>
         /// Class XtrmAddons PhotoAlbum Server Views Users Page constructor.
-        /// </summary>
+        /// </summary
         public PageUsers()
         {
             AppOverwork.IsBusy = true;
@@ -80,9 +79,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
-
-            // Construct page data model.
-            InitializeModel();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Users"));
             AppOverwork.IsBusy = false;
@@ -94,26 +90,30 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = Model;
+            InitializeEvents();
         }
 
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
+        /*[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage",
+            "CA2202:Ne pas supprimer d'objets plusieurs fois", Scope = "member",
+            Target = "XtrmAddons.Fotootof.Forms.About.FormAbout.#OnFormCloseClick(System.Object,System.EventArgs)")]*/
         public override void InitializeModel()
         {
             // Paste page to User list.
-            Model = Model ?? new PageUsersModel(this)
-            {
-                AclGroups = new DataGridAclGroupsModel<DataGridAclGroups>(),
-                Users = new DataGridUsersModel<DataGridUsers>()
-            };
+            Model = new PageUsersModel(this);
             UcDataGridAclGroups.Tag = this;
 
             LoadAclGroups();
             LoadUsers();
-            
+        }
 
-
+        /// <summary>
+        /// Method to initialize events handlers.
+        /// </summary>
+        private void InitializeEvents()
+        {
             UcDataGridAclGroups.OnAdd += UcDataGridAclGroups_AclGroupAdded;
             UcDataGridAclGroups.OnChange += UcDataGridAclGroups_AclGroupChanged;
             UcDataGridAclGroups.OnCancel += UcDataGridAclGroups_AclGroupCanceled;
@@ -157,10 +157,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             }
             catch (Exception e)
             {
-                string message = "Loading Acl Groups list. failed !" + e.Message;
-                log.Error(message);
-                log.Error(e.Output());
-                AppLogger.Fatal(message, e);
+                string message = "Loading Acl Groups list. failed !";
+                log.Fatal(message, e);
+                MessageBase.Fatal(e, message);
             }
             finally
             {
@@ -270,7 +269,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// </summary>
         private void LoadUsers()
         {
-            log.Info("Loading Users list. Please wait...");
+            AppOverwork.IsBusy = true;
+            log.Info(AppOverwork.BusyContent = "Loading Users list. Please wait...");
 
             try
             {
@@ -278,12 +278,18 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
                 Users.Load();
                 Model.Users.Items = Users;
 
-                log.Info("Loading Users list. Done.");
+                log.Info(AppOverwork.BusyContent = "Loading Users list. Done.");
             }
             catch (Exception e)
             {
-                log.Error(e);
-                AppLogger.Fatal("Loading Users list. Failed !", e);
+                AppOverwork.BusyContent = "Loading Users list. failed !";
+                log.Fatal(AppOverwork.BusyContent, e);
+                MessageBase.Fatal(e, (string)AppOverwork.BusyContent);
+            }
+            finally
+            {
+                log.Info(AppOverwork.BusyContent = "Loading Users list. Done.");
+                AppOverwork.IsBusy = false;
             }
         }
 

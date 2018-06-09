@@ -7,8 +7,9 @@ namespace XtrmAddons.Fotootof.PluginTest.PluginContracts
     [Export(typeof(IProcess))]
     public class Processor : IProcess
     {
-
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void Run()
         {
             Trace.WriteLine("Running process Plugin Test Module");

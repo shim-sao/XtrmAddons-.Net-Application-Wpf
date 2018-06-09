@@ -14,6 +14,8 @@ using XtrmAddons.Fotootof.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Common.Tools;
 using System.Globalization;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
 {
@@ -93,9 +95,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             InitializeComponent();
             AfterInitializedComponent();
 
-            // Construct page data model.
-            InitializeModel();
-
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Browser"));
             AppOverwork.IsBusy = false;
         }
@@ -164,9 +163,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
                 Model.Sections.Items = new SectionEntityCollection(true);
                 log.Info("Loading Sections list. Done.");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                AppLogger.Fatal("Loading Sections list. Failed !", e);
+                log.Error(ex.Output(), ex);
+                MessageBase.Fatal(ex, "Loading Sections list. Failed !");
             }
             finally
             {
@@ -287,10 +287,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
                 Model.Albums.Items = new AlbumEntityCollection(true, AlbumOptionsListFilters);
                 log.Info("Loading Albums list. Done.");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                log.Error(e);
-                AppLogger.Fatal("Loading Albums list. Failed !", e);
+                log.Error(ex.Output(), ex);
+                MessageBase.Fatal(ex, "Loading Albums list. Failed !");
             }
             finally
             {
@@ -477,7 +477,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <summary>
         /// Method to initialize and display data context.
         /// </summary>
-        [Obsolete("Will be remove. None sense...")]
+        [Obsolete("Will be remove. None sense...", true)]
         public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
         {
             throw new System.NotImplementedException();

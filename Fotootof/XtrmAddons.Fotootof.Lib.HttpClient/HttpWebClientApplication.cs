@@ -16,7 +16,7 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient
         /// <summary>
         /// 
         /// </summary>
-        public HttpWebClient Client { get; }
+        public HttpWebClient Client { get; private set; }
 
         #endregion
 
@@ -61,7 +61,11 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient
                 // TODO: définir les champs de grande taille avec la valeur Null.
 
                 disposedValue = true;
+
+                Client = null;
             }
+
+            Client.Dispose();
         }
 
         // TODO: remplacer un finaliseur seulement si la fonction Dispose(bool disposing) ci-dessus a du code pour libérer les ressources non managées.

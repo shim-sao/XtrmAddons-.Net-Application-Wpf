@@ -71,9 +71,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
             InitializeComponent();
             AfterInitializedComponent();
 
-            // Construct page data model.
-            InitializeModel();
-
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Slideshow"));
             AppOverwork.IsBusy = false;
         }
@@ -93,9 +90,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
-
-            // Construct page data model.
-            InitializeModel();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Slideshow"));
             AppOverwork.IsBusy = false;

@@ -7,6 +7,9 @@ namespace XtrmAddons.Fotootof.Builders.AddInsContracts
     public class InterfaceBuilder
     {
         [ImportMany(typeof(IModule))]
-        public IEnumerable<IModule> Attachers { get; set; }
+        public IEnumerable<IModule> Modules { get; set; }
+
+        //[ImportMany(typeof(IModule))]
+        //public IEnumerable<IModule> Attachers { get; set; }
     }
 }

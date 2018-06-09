@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
@@ -150,14 +151,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         {
             // Initialize query.
             IQueryable<UserEntity> query = Context.Users;
-
+            
             // Load AclGroups dependencies if required.
             if (op.IsDependOn(EnumEntitiesDependencies.UsersInAclGroups))
             {
                 query = query.Include(x => x.UsersInAclGroups);
             }
-
-            // Initialize
+                
             if (op.PrimaryKey > 0)
             {
                 return SingleIdOrNull(query, op);
@@ -182,7 +182,22 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// <returns>An User entity or null if not found.</returns>
         public UserEntity SingleIdOrNull(IQueryable<UserEntity> query, UserOptionsSelect op)
         {
-            UserEntity item = query.SingleOrDefault(x => x.UserId == op.PrimaryKey);
+            UserEntity item = null;
+
+            try
+            {
+                item = query.SingleOrDefault(x => x.UserId == op.PrimaryKey);
+            }
+            catch (ArgumentNullException e)
+            {
+                log.Error("User single ID not found !", e);
+                return null;
+            }
+            catch (Exception e)
+            {
+                log.Fatal("User single ID not found !", e);
+                return null;
+            }
 
             // Check if user is found, return null instead of default.
             if (item != null && item.UserId == 0)
@@ -205,9 +220,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             {
                 item = query.SingleOrDefault(x => x.Name == op.Name);
             }
-            catch(Exception e)
+            catch (ArgumentNullException e)
             {
-                log.Error("User single name not found !", e);
+                log.Error("User single NAME not found !", e);
+                return null;
+            }
+            catch (Exception e)
+            {
+                log.Fatal("User single NAME not found !", e);
                 return null;
             }
 
@@ -238,14 +258,25 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             {
                 item = query.SingleOrDefault(x => x.Email == op.Email);
             }
+            catch (ArgumentNullException e)
+            {
+                log.Error("User single EMAIL not found !", e);
+                return null;
+            }
             catch (Exception e)
             {
-                log.Error("User single email not found !", e);
+                log.Fatal("User single EMAIL not found !", e);
+                return null;
+            }
+
+            // Check if user is null.
+            if (item == null)
+            {
                 return null;
             }
 
             // Check if user is found, return null instead of default.
-            if (item != null && item.UserId == 0)
+            if (item.UserId == 0)
             {
                 return null;
             }

@@ -2,7 +2,7 @@
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 
-namespace XtrmAddons.Fotootof.Common.Windows.Forms.SectionForm
+namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries Common Window Section Form Model.

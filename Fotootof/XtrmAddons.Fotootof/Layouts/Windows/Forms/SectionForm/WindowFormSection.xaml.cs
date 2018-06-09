@@ -2,15 +2,15 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using XtrmAddons.Fotootof.Common.Collections;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Common.Collections;
-using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Common.Extensions;
 
-namespace XtrmAddons.Fotootof.Common.Windows.Forms.SectionForm
+namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
 {
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Libraries Common Windows Form Section.</para>
@@ -190,7 +190,7 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms.SectionForm
             catch (Exception ex)
             {
                 log.Error(ex);
-                AppLogger.Error(ex);
+                MessageBase.Error(ex);
             }
         }
 
@@ -208,7 +208,7 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms.SectionForm
             catch (Exception ex)
             {
                 log.Error(ex);
-                AppLogger.Error(ex);
+                MessageBase.Error(ex);
             }
         }
 
@@ -232,7 +232,7 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms.SectionForm
             catch (Exception ex)
             {
                 log.Error(ex);
-                AppLogger.Error(ex);
+                MessageBase.Error(ex);
             }
         }
 
@@ -250,7 +250,7 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms.SectionForm
             catch (Exception ex)
             {
                 log.Error(ex);
-                AppLogger.Error(ex);
+                MessageBase.Error(ex);
             }
         }
 

@@ -7,6 +7,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Common.Collections
 {
@@ -137,10 +138,10 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 AppNavigator.Clear();
                 log.Info("Adding Section(s) to database. Done !");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                log.Error(e);
-                AppLogger.Fatal("Adding Section(s) to database. Fail !", e);
+                log.Error(ex);
+                MessageBase.Fatal(ex, "Adding Section(s) to database. Fail !");
             }
             finally
             {
@@ -201,7 +202,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
             }
             catch (Exception ex)
             {
-                AppLogger.Fatal("Deleting Section(s) list failed !", ex);
+                MessageBase.Fatal(ex, "Deleting Section(s) list failed !");
             }
             finally
             {
@@ -238,7 +239,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
             catch (Exception ex)
             {
                 log.Error(ex);
-                AppLogger.Fatal("Replacing Section(s) failed !", ex);
+                MessageBase.Fatal(ex, "Replacing Section(s) failed !");
             }
             finally
             {
@@ -269,7 +270,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
             catch (Exception ex)
             {
                 log.Error(ex);
-                AppLogger.Fatal("Setting default Section. Failed !", ex);
+                MessageBase.Fatal(ex, "Setting default Section. Failed !");
             }
             finally
             {

@@ -1,13 +1,12 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows;
+using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
+using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.HttpServer;
-using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Windows.Tools;
-using System.Threading.Tasks;
-using XtrmAddons.Fotootof.Common.Tools;
-using System.Globalization;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
 {
@@ -48,12 +47,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
             InitializeComponent();
             AfterInitializedComponent();
 
-            // Construct page data model.
-            InitializeModel();
-
-            // Add Server envents handlers.
-            InitializeServer();
-
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Server"));
             AppOverwork.IsBusy = false;
         }
@@ -66,6 +59,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
         public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = Model;
+
+            // Add Server envents handlers.
+            InitializeServer();
         }
 
         /// <summary>
@@ -77,8 +73,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
             {
                 Server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst()
             };
-
-            DataContext = Model;
         }
 
         /// <summary>
@@ -141,7 +135,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
         /// <summary>
         /// Method to initialize and display data context.
         /// </summary>
-        [Obsolete("Will be remove. None sense...")]
+        [Obsolete("Will be remove. None sense...", true)]
         public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
         {
             throw new System.NotImplementedException();

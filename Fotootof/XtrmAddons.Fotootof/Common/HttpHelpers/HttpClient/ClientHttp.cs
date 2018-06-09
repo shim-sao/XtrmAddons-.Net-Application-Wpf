@@ -8,6 +8,8 @@ using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient.Responses;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Application.Serializable.Elements.Remote;
 using System.Threading.Tasks;
+using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
 {
@@ -53,7 +55,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
 
         public delegate void OnAuthenticationSuccessEventHandler<T>(object Sender);
 
-        public event EventHandler OnAuthenticationSuccess;
+        public event EventHandler OnAuthenticationSuccess = delegate { };
 
         public event EventHandler OnAuthenticationFailed = delegate { };
 
@@ -279,11 +281,22 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
                 return true;
             }
 
+            // Catch Web exceptions.
+            catch (WebException e)
+            {
+                log.Error(Translation.Logs["SendingAuthenticationCommandException"]);
+                log.Fatal(e.Output());
+
+                RaiseAuthenticationFailed(Server, serverResponse);
+
+                return false;
+            }
+
             // Catch all exceptions.
             catch (Exception e)
             {
                 log.Error(Translation.Logs["SendingAuthenticationCommandException"]);
-                log.Fatal(e);
+                log.Fatal(e.Output());
 
                 RaiseAuthenticationFailed(Server, serverResponse);
 
@@ -380,19 +393,13 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
                 else
                 {
                     RaiseListSectionsFailed(Server, serverResponse);
-                    AppLogger.Error(
-                        string.Format(
-                            "Server list sections {0}:{1} failed !\n\r {2} : {3}",
-                            Server.Host, Server.Port,
-                            response.StatusCode.ToString(), serverResponse.Error
-                        )
-                    );
+                    MessageBase.Error($"Server list sections {Server.Host}:{Server.Port} failed !\n\r {response.StatusCode.ToString()} : {serverResponse.Error}");
                 }
             }
             catch (Exception e)
             {
                 RaiseListSectionsFailed(Server, serverResponse);
-                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e);
+                MessageBase.Fatal(e, $"Server list sections {Server.Host}:{Server.Port} failed !");
             }
 
             log.Info(Translation.DLogs.SendingAlbumsCommandDone);
@@ -424,19 +431,13 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
                 else
                 {
                     RaiseSingleSectionFailed(Server, serverResponse);
-                    AppLogger.Error(
-                        string.Format(
-                            "Server list albums {0}:{1} failed !\n\r {2} : {3}",
-                            Server.Host, Server.Port,
-                            response.StatusCode.ToString(), serverResponse.Error
-                        )
-                    );
+                    MessageBase.Error($"Server single section {Server.Host}:{Server.Port} failed !\n\r {response.StatusCode.ToString()} : {serverResponse.Error}");
                 }
             }
             catch (Exception e)
             {
                 RaiseSingleSectionFailed(Server, serverResponse);
-                AppLogger.Fatal(string.Format("Server list sections {0}:{1} failed !", Server.Host, Server.Port), e);
+                MessageBase.Fatal(e, $"Server single section {Server.Host}:{Server.Port} failed !");
             }
         }
     }

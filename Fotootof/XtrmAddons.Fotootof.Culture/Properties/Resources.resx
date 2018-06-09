@@ -633,4 +633,7 @@
   <data name="WindowsDataGridAlbumsTitle" xml:space="preserve">
     <value>Fotootof Albums</value>
   </data>
+  <data name="FunctionalitiesCurrentlyUnavailable" xml:space="preserve">
+    <value>Functionalities currently unavailable</value>
+  </data>
 </root>

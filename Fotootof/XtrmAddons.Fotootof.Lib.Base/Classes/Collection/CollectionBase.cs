@@ -29,9 +29,19 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
         public abstract bool IsAutoloadEnabled { get; }
 
         /// <summary>
+        /// Property alias to access to the translation words.
+        /// </summary>
+        public dynamic Words => Culture.Translation.Words;
+
+        /// <summary>
         /// Property alias to access to the dynamic translation words.
         /// </summary>
         public dynamic DWords => Culture.Translation.DWords;
+
+        /// <summary>
+        /// Property alias to access to the translation logs.
+        /// </summary>
+        public dynamic Logs => Culture.Translation.Logs;
 
         /// <summary>
         /// Property alias to access to the dynamic translation logs.
@@ -48,6 +58,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
         /// Class XtrmAddons Fotootof Libraries Base Classes Collections Base Constructor.
         /// </summary>
         /// <param name="autoLoad">Auto load data from database ?</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CollectionBase(bool autoLoad = false) : base()
         {
             Initialize(autoLoad);

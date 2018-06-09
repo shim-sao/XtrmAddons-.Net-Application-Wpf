@@ -5,7 +5,7 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Fotootof.Common.Windows.Forms.AclGroupForm;
+using XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm;
 
 namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
 {

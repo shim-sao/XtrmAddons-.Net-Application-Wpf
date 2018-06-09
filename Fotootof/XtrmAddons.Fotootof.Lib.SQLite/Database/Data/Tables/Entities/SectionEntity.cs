@@ -128,7 +128,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable associated AclGroups primary keys list.
         /// </summary>
         [NotMapped]
+#pragma warning disable CS0169 // Le champ 'SectionEntity.aclGroupsPK' n'est jamais utilisé
         private IEnumerable<int> aclGroupsPK;
+#pragma warning restore CS0169 // Le champ 'SectionEntity.aclGroupsPK' n'est jamais utilisé
 
         /// <summary>
         /// Variable list of AclGroups associated to the Section.

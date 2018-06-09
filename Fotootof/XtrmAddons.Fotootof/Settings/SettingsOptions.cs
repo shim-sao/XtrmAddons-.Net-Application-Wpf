@@ -72,7 +72,7 @@ namespace XtrmAddons.Fotootof.Settings
             }
 
             server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
-            Trace.WriteLine("Server address : http://" + server.Host + ":" + server.Host);
+            Trace.TraceInformation("Server address : http://" + server.Host + ":" + server.Host);
 
             return server;
         }

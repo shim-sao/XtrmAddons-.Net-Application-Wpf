@@ -1,6 +1,6 @@
 ﻿<base:WindowBaseForm 
 	x:Name="UCWindowFormAlbum"
-    x:Class="XtrmAddons.Fotootof.Common.Windows.Forms.AlbumForm.WindowFormAlbum"
+    x:Class="XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm.WindowFormAlbum"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

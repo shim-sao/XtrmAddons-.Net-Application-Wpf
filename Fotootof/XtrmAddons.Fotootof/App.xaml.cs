@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using log4net.Repository;
+using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -93,7 +94,7 @@ namespace XtrmAddons.Fotootof
             // Disable using DEBUG mode in Release mode.
             foreach (ILoggerRepository repository in log4net.LogManager.GetAllRepositories())
             {
-                repository.Threshold = log4net.Core.Level.Warn;
+                repository.Threshold = log4net.Core.Level.Info;
             }
 
             #endif
@@ -107,7 +108,7 @@ namespace XtrmAddons.Fotootof
         private void App_Startup(object sender, StartupEventArgs e)
         {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-            Trace.WriteLine((string)Translation.DLogs.StartingApplicationWaiting);
+            Trace.TraceInformation((string)Translation.DLogs.StartingApplicationWaiting);
 
             // Start application base manager.
             ApplicationBase.Debug();
@@ -148,7 +149,7 @@ namespace XtrmAddons.Fotootof
         private void App_Exit(object sender, ExitEventArgs e)
         {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-            Trace.WriteLine((string)Translation.DLogs.SavingApplicationWaiting);
+            Trace.TraceInformation((string)Translation.DLogs.SavingApplicationWaiting);
             ApplicationBase.Save();
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }
@@ -163,13 +164,13 @@ namespace XtrmAddons.Fotootof
             {
                 Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
-                Trace.WriteLine((string)Translation.DLogs.DeletingOptionsWaiting);
+                Trace.TraceInformation((string)Translation.DLogs.DeletingOptionsWaiting);
                 System.IO.Directory.Delete(DirectoryHelper.UserAppData, true);
-                Trace.WriteLine(string.Format((string)Translation.DLogs.ItemDeleted, DirectoryHelper.UserAppData));
+                Trace.TraceInformation(string.Format(CultureInfo.CurrentCulture, (string)Translation.DLogs.ItemDeleted, DirectoryHelper.UserAppData));
 
-                Trace.WriteLine((string)Translation.DLogs.DeletingUserOptionsWaiting);
+                Trace.TraceInformation((string)Translation.DLogs.DeletingUserOptionsWaiting);
                 System.IO.Directory.Delete(DirectoryHelper.UserMyDocuments, true);
-                Trace.WriteLine(string.Format((string)Translation.DLogs.ItemDeleted, DirectoryHelper.UserMyDocuments));
+                Trace.TraceInformation(string.Format(CultureInfo.CurrentCulture, (string)Translation.DLogs.ItemDeleted, DirectoryHelper.UserMyDocuments));
 
                 Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
             }

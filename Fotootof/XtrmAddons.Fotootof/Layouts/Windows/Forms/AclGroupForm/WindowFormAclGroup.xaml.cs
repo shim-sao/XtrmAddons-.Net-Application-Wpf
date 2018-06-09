@@ -12,8 +12,9 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
-namespace XtrmAddons.Fotootof.Common.Windows.Forms.AclGroupForm
+namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Users AclGroup Window.
@@ -198,7 +199,7 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms.AclGroupForm
             catch (Exception ex)
             {
                 log.Error(ex);
-                AppLogger.Error(ex);
+                MessageBase.Error(ex);
             }
         }
 
@@ -216,7 +217,7 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms.AclGroupForm
             catch (Exception ex)
             {
                 log.Error(ex);
-                AppLogger.Error(ex);
+                MessageBase.Error(ex);
             }
         }
 
@@ -240,7 +241,7 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms.AclGroupForm
             catch (Exception ex)
             {
                 log.Error(ex);
-                AppLogger.Error(ex);
+                MessageBase.Error(ex);
             }
         }
 
@@ -258,7 +259,7 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms.AclGroupForm
             catch (Exception ex)
             {
                 log.Error(ex);
-                AppLogger.Error(ex);
+                MessageBase.Error(ex);
             }
         }
 
