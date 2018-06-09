@@ -7,7 +7,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
     /// Class XtrmAddons Fotootof Libraries Common Models List View Albums Constructor.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ListViewAlbumsModel<T> : ListViewBaseModel<T, AlbumEntityCollection>
+    public class ListViewAlbumsModel<ListViewAlbums> : ListViewBaseModel<ListViewAlbums, AlbumEntityCollection>
     {
         #region Variables
 
@@ -63,17 +63,24 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
         /// Class XtrmAddons Fotootof Libraries Common Models List View Albums Constructor.
         /// </summary>
         /// <param name="control">A Data Grid Base User Control.</param>
-        public ListViewAlbumsModel() : base()
-        {
-            FiltersQuality = InfoEntityCollection.TypesQuality();
-            FiltersColor = InfoEntityCollection.TypesColor();
-        }
+        public ListViewAlbumsModel() : base() { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Common Models List View Albums Constructor.
         /// </summary>
         /// <param name="control">A Data Grid Base User Control.</param>
-        public ListViewAlbumsModel(T owner) : base(owner)
+        public ListViewAlbumsModel(ListViewAlbums owner) : base(owner) { }
+
+        #endregion
+
+
+
+        #region Methods
+
+        /// <summary>
+        /// Method to initialize model.
+        /// </summary>
+        protected override void InitializeModel()
         {
             FiltersQuality = InfoEntityCollection.TypesQuality();
             FiltersColor = InfoEntityCollection.TypesColor();

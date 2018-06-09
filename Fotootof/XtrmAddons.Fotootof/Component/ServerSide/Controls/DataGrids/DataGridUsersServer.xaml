@@ -138,7 +138,7 @@
 						  CanUserDeleteRows="True"
 						  CanUserAddRows="False"
 						  SelectionMode="Extended"
-						  ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+						  ItemsSource="{Binding Items, Mode=OneWay, IsAsync=True}"
 						  RowHeight="22"
 						  HorizontalAlignment="Stretch"
 						  MouseDoubleClick="OnEditItem_Click"

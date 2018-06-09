@@ -84,28 +84,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids
         }
 
         /// <summary>
-        /// Method called on click event to add a new Section.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Routed event arguments.</param>
-        /*public void OnAdd_Click<W>(object sender, RoutedEventArgs e) where W : class
-        {
-            // Show open file dialog box 
-            W dlg = (W)Activator.CreateInstance(typeof(W));
-            bool? result = ((WindowBaseForm<U>)dlg).ShowDialog();
-
-            // Process open file dialog box results 
-            if (result == true)
-            {
-                RaiseOnAdd(dlg.NewEntity);
-            }
-            else
-            {
-                RaiseOnCancel(dlg.NewEntity);
-            }
-        }*/
-
-        /// <summary>
         /// Method called on items collection selection changed.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>

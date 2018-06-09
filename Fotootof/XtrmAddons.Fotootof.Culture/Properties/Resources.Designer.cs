@@ -844,6 +844,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Functionalities currently unavailable.
+        /// </summary>
+        public static string FunctionalitiesCurrentlyUnavailable {
+            get {
+                return ResourceManager.GetString("FunctionalitiesCurrentlyUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à General.
         /// </summary>
         public static string General {

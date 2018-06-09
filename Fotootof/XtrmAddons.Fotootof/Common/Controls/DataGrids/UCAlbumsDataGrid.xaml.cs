@@ -7,7 +7,8 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Controls;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Fotootof.Common.Windows.Forms.AlbumForm;
+using XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
 {
@@ -131,7 +132,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
             {
                 string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
                 log.Warn(message);
-                AppLogger.Warning(message);
+                MessageBase.Warning(message);
             }
         }
 
@@ -165,7 +166,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
             {
                 string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
                 log.Warn(message);
-                AppLogger.Warning(message);
+                MessageBase.Warning(message);
             }
         }
 
@@ -203,7 +204,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
 
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageBase.NotImplemented();
         }
 
         #endregion

@@ -18,10 +18,28 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
     /// </summary>
     public class UserRoute : Router
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
+        #region Constructor
+
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Api Router User Constructor.
         /// </summary>
         public UserRoute() : base() { }
+
+        #endregion
+
+
 
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Api Router User Constructor.
@@ -35,16 +53,19 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
         /// <returns>A formated web server data response.</returns>
         public WebServerResponseData Authentication(string post)
         {
-            log.Info(string.Format("Api User Authentication : post = {0}.", post));
+            log.Info($"Api WebServer Authentication : post => {post}.");
 
             try
             {
                 NameValueCollection nvc = HttpUtility.ParseQueryString(post);
-                
+
+                log.Debug($"Api WebServer Authentication : Email => {nvc["email"]}.");
+                log.Debug($"Api WebServer Authentication : Password => {nvc["email"].MD5Hash()}.");
+
                 UserOptionsSelect options = new UserOptionsSelect
                 {
                     Email = nvc["email"],
-                    Password = nvc["password"],
+                    Password = nvc["password"].MD5Hash(),
                     CheckPassword = true,
                     Dependencies = new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All }
                 };

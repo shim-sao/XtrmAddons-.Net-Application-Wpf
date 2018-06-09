@@ -24,7 +24,7 @@ namespace XtrmAddons.Fotootof.Settings
             };
             ApplicationBase.Storage.Directories.AddKeySingle(temp);
             temp.Create();
-            Trace.WriteLine("cache.filestypes = " + ApplicationBase.Storage.Directories.FindKeyFirst("cache.filestypes").AbsolutePath);
+            Trace.TraceInformation($"cache.filestypes => {ApplicationBase.Storage.Directories.FindKeyFirst("cache.filestypes").AbsolutePath}");
 
             // Create path to configuration server directory. 
             temp = new Directory
@@ -36,7 +36,7 @@ namespace XtrmAddons.Fotootof.Settings
             };
             ApplicationBase.Storage.Directories.AddKeySingle(temp);
             temp.Create();
-            Trace.WriteLine("config.server = " + ApplicationBase.Storage.Directories.FindKeyFirst("config.server").AbsolutePath);
+            Trace.TraceInformation($"config.server => {ApplicationBase.Storage.Directories.FindKeyFirst("config.server").AbsolutePath}");
 
             // Create path to configuration database directory
             temp = new Directory
@@ -48,7 +48,7 @@ namespace XtrmAddons.Fotootof.Settings
             };
             ApplicationBase.Storage.Directories.AddKeySingle(temp);
             temp.Create();
-            Trace.WriteLine("config.database = " + ApplicationBase.Storage.Directories.FindKeyFirst("config.database").AbsolutePath);
+            Trace.TraceInformation($"config.database => {ApplicationBase.Storage.Directories.FindKeyFirst("config.database").AbsolutePath}");
 
             // Create path  configuration database scheme directory
             temp = new Directory
@@ -60,7 +60,7 @@ namespace XtrmAddons.Fotootof.Settings
             };
             ApplicationBase.Storage.Directories.AddKeySingle(temp);
             temp.Create();
-            Trace.WriteLine("config.database.scheme = " + ApplicationBase.Storage.Directories.FindKeyFirst("config.database.scheme").AbsolutePath);
+            Trace.TraceInformation($"config.database.scheme => {ApplicationBase.Storage.Directories.FindKeyFirst("config.database.scheme").AbsolutePath}");
         }
     }
 }

@@ -127,7 +127,7 @@
 						  CanUserDeleteRows="True"
 						  CanUserAddRows="False"
 						  SelectionMode="Extended"
-						  ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+						  ItemsSource="{Binding Items, Mode=OneWay, IsAsync=true}"
 						  RowHeight="22"
 						  HorizontalAlignment="Stretch"
 						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Reflection;
 using System.Windows.Controls;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.Ui;
@@ -24,13 +24,13 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         /// <summary>
         /// Variable argument null exception message for empty Control.
         /// </summary>
-        private static string cNE = 
+        private static readonly string cNE = 
             "The argument object System.Windows.Control is required not null : ctrl";
 
         /// <summary>
         /// Variable argument null exception message for empty property name.
         /// </summary>
-        private static string pNNE = "The argument string Property Name is required not null : propertyName";
+        private static readonly string pNNE = "The argument string Property Name is required not null : propertyName";
 
         #endregion
 
@@ -48,8 +48,9 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             return ApplicationBase.UI.Controls.FindControl(ctrl) ?? new UiElement<object>(ctrl);
@@ -68,14 +69,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             return GetBindingProperty(ctrl, propertyName, defaultValue).Value as V;
@@ -91,14 +94,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             return GetBindingProperty(ctrl, propertyName, defaultValue).Value;
@@ -113,14 +118,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             return (bool)GetBindingProperty(ctrl, propertyName, defaultValue).Value;
@@ -135,22 +142,24 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
-            log.Debug("GetInt : " + ctrl.Uid + "." + ctrl.Name + "." + propertyName);
+            log.Debug($"{MethodBase.GetCurrentMethod().Name} : {ctrl.Uid}.{ctrl.Name}.{propertyName}");
 
             var val = GetBindingProperty(ctrl, propertyName, defaultValue).Value;
 
-            log.Debug($"GetInt : " + val.GetType() + " => " + val);
-            
+            log.Debug($"{MethodBase.GetCurrentMethod().Name} : {val.GetType()} => {val}");
+
             // Value is int so return it.
             if (val is int)
             {
@@ -173,8 +182,10 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
             }
 
             // Invalid object to convert as long.
-            log.Error(new InvalidCastException("Invalid cast conversion type : " + val.GetType() + " => int"));
-            throw new InvalidCastException("Invalid cast conversion type : " + val.GetType() + " => int");
+            InvalidCastException e = new InvalidCastException($"Invalid cast conversion type : {val.GetType()} => int");
+            log.Error(e.Output());
+            MessageBase.DebugFatal(e);
+            throw e;
         }
 
         /// <summary>
@@ -186,14 +197,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             return (string)GetBindingProperty(ctrl, propertyName, defaultValue).Value;
@@ -208,21 +221,23 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
-            log.Debug("GetLong : " + ctrl.Uid + "." + ctrl.Name + "." + propertyName);
+            log.Debug($"{MethodBase.GetCurrentMethod().Name} : {ctrl.Uid}.{ctrl.Name}.{propertyName}");
 
             var val = GetBindingProperty(ctrl, propertyName, defaultValue).Value;
-            
-            log.Debug("GetLong : " + val.GetType() + " => " + val);
+
+            log.Debug($"{MethodBase.GetCurrentMethod().Name} : {val.GetType()} => {val}");
             
             // Value is long so return it.
             if(val.GetType() == typeof(long))
@@ -244,10 +259,13 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
                 return long.Parse(val.ToString());
 
             }
-
+            
             // Invalid object to convert as long.
-            log.Error(new InvalidCastException("Invalid cast conversion type : " + val.GetType() + " => long"));
-            throw new InvalidCastException("Invalid cast conversion type : " + val.GetType() + " => long");
+            InvalidCastException e = new InvalidCastException($"Invalid cast conversion type : {val.GetType()} => long");
+            log.Error(e.Output());
+            log.Error($"{MethodBase.GetCurrentMethod().Name} : {ctrl.Uid}.{ctrl.Name}.{propertyName} => {val.GetType()}");
+            MessageBase.DebugFatal(e);
+            throw e;
         }
 
         /// <summary>
@@ -261,14 +279,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             return GetUiElement(ctrl).FindBindingProperty(propertyName) ?? new BindingProperty<object>() { Name = propertyName, Value = defaultValue };
@@ -282,8 +302,9 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             ApplicationBase.UI.Controls.AddKeySingle(new UiElement<object>(ctrl));
@@ -299,8 +320,9 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             ApplicationBase.UI.Controls.AddKeySingle(new UiElement<object>(ctrl, propertyName, propertyValue));
@@ -334,14 +356,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             BindingProperty<object> bp = GetBindingProperty(ctrl, propertyName, propertyValue);
@@ -377,14 +401,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             BindingProperty<object> bp = GetBindingProperty(ctrl, propertyName, propertyValue);
@@ -404,14 +430,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             BindingProperty<object> bp = GetBindingProperty(ctrl, propertyName, propertyValue);
@@ -461,14 +489,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             BindingProperty<object> bp = GetBindingProperty(ctrl, propertyName, propertyValue);
@@ -503,14 +533,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             BindingProperty<object> bp = GetBindingProperty(ctrl, propertyName, propertyValue);
@@ -545,14 +577,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         {
             if (ctrl == null)
             {
-                log.Error(new ArgumentNullException(cNE).Output());
-                throw new ArgumentNullException(cNE);
+                ArgumentNullException ane = new ArgumentNullException(cNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             if (propertyName.IsNullOrWhiteSpace())
             {
-                log.Error(new ArgumentNullException(pNNE).Output());
-                throw new ArgumentNullException(pNNE);
+                ArgumentNullException ane = new ArgumentNullException(pNNE);
+                log.Error(ane.Output());
+                throw ane;
             }
 
             BindingProperty<object> bp = GetBindingProperty(ctrl, propertyName, propertyValue);

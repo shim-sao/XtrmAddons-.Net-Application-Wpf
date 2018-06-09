@@ -6,68 +6,64 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
-    xmlns:dg2="clr-namespace:XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids"
-    xmlns:lv="clr-namespace:XtrmAddons.Fotootof.Common.Controls.ListViews"
+    xmlns:sections="clr-namespace:XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
-    MinWidth="800"
-    MinHeight="985"
-    HorizontalAlignment="Stretch"
-    VerticalAlignment="Stretch"
     Title="{x:Static p:Resources.Sections}"
-    Background="{StaticResource ResourceKey=LightGrey}">
+    Style="{StaticResource PageContent}"
+    SizeChanged="Control_SizeChanged"
+	Loaded="Control_Loaded">
 
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="1*" />
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="60" />
-			<RowDefinition Height="30" />
-			<RowDefinition Height="1*" />
-		</Grid.RowDefinitions>
+	<Grid x:Name="Block_Root"
+		  Style="{StaticResource Root}">
+
+		<StackPanel x:Name="Block_RootPanel"
+					Style="{StaticResource FieldsetVertical}">
+
+			<StackPanel x:Name="Block_TopControls"
+						Style="{StaticResource StackPanel_TopControls}">
+				<Border Background="{StaticResource LightGrey}">
+					<TextBlock x:Name="Breadcrumbs"
+							   Margin="5"
+							   Padding="10,0"
+							   FontSize="{StaticResource FontSizeTitle}"
+							   Text="{Binding SelectedSection.Name}"/>
+				</Border>
+			</StackPanel>
 
 
-		<!-- #region Content -->
-		<Grid Grid.Row="2">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*" />
-				<ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
-				<ColumnDefinition Width="3*" />
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="1*" />
-			</Grid.RowDefinitions>
+			<Grid x:Name="Block_MiddleContents"
+				  Style="{StaticResource ResourceKey=MiddleContents}">
 
-			<dg2:DataGridSectionsClient x:Name="UcDataGridSections"
-										Grid.Row="0"
-										Grid.Column="0"
-										DataContext="{Binding Sections}"
-										HorizontalAlignment="Left"/>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" MinWidth="240" x:Name="ColSections"/>
+					<ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
+					<ColumnDefinition Width="3*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="1*" />
+				</Grid.RowDefinitions>
 
-			<GridSplitter
-                x:Name="GridSplitter_SplitterContent"
-                Grid.Row="0"
-                Grid.Column="1"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch" />
+				<sections:DataGridSectionsClient x:Name="UcDataGridSections"
+												 DataContext="{Binding Sections}" />
 
-			<Grid x:Name="Grid_AlbumsCollectionContainer"
-				  Grid.Row="0"
-				  Grid.Column="2">
+				<GridSplitter Grid.Row="0"
+							  Grid.Column="1"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch" />
 
-				<!--<lv:UCAlbumsListView
-                    x:Name="UCAlbumsListView_Container"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    DataContext="{Binding}"
-                    HorizontalAlignment="Stretch"/>-->
+				<Grid Grid.Row="0"
+					  Grid.Column="2"
+					  x:Name="GridAlbums">
 
+					<!--<albums:ListViewAlbumsClient x:Name="UcListViewAlbums"
+												 DataContext="{Binding Albums}"
+												 FilterColorChanged="FiltersColor_SelectionChanged"
+												 FilterQualityChanged="FiltersQuality_SelectionChanged" />-->
+				</Grid>
 			</Grid>
-			
-		</Grid>
-		<!-- #endregion : Content -->
 
+		</StackPanel>
 	</Grid>
-	
+
 </base:PageBase>

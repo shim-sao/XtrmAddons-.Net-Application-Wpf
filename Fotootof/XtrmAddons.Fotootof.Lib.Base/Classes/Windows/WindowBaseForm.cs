@@ -19,6 +19,12 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         #region Variables
 
         /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
         /// Variable data model of the Window Form.
         /// </summary>
         protected object model;
@@ -216,7 +222,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// </summary>
         protected virtual bool IsValidForm()
         {
-            Trace.WriteLine("Validate Form Result : True");
+            log.Debug("Validate Form Result : True");
             return true;
         }
 
@@ -228,7 +234,10 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
             // Validate the form field name.
             if (form.GetPropertyValue<string>(propertyName).IsNullOrWhiteSpace())
             {
-                throw new ArgumentNullException(string.Format(CultureInfo.CurrentUICulture, Translation.DWords.FormFieldRequired, Translation.DWords.propertyName));
+                ArgumentNullException e = new ArgumentNullException(string.Format(CultureInfo.CurrentUICulture, Translation.DWords.FormFieldRequired, Translation.Words[propertyName]));
+                log.Debug(e.Output());
+                log.Debug($"{propertyName} => {form.GetPropertyValue<string>(propertyName)}");
+                throw e;
             }
         }
 
@@ -240,7 +249,10 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
             // Validate the form field email.
             if (!form.GetPropertyValue<string>(propertyName).IsValidEmail())
             {
-                throw new ArgumentNullException(string.Format(CultureInfo.CurrentUICulture, Translation.DWords.FormFieldRequired, Translation.DWords.propertyName));
+                ArgumentNullException e = new ArgumentNullException(string.Format(CultureInfo.CurrentUICulture, Translation.DWords.FormFieldRequired, Translation.Words[propertyName]));
+                log.Debug(e.Output());
+                log.Debug($"{propertyName} => {form.GetPropertyValue<string>(propertyName)}");
+                throw e;
             }
         }
 

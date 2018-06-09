@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Observables;
@@ -15,8 +16,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries SQLite Acl Action Entity.
     /// </summary>
+    [Serializable]
     [Table("AclActions")]
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptIn, Title = "AclAction")]
+    [XmlType(TypeName = "AclAction")]
     public partial class AclActionEntity : EntityBase
     {
         #region Variables
@@ -31,12 +34,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable action of the item.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private string action = "";
 
         /// <summary>
         /// Variable parameters of the item.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private string parameters = "";
 
         #endregion
@@ -49,18 +54,21 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable AclGroup id (required for entity dependency).
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private int aclGroupId = 0;
 
         /// <summary>
         /// Variable list of AclGroup dependencies primary key.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         public IEnumerable<int> aclGroupsPK = null;
 
         /// <summary>
         /// Variable list of AclGroup associated to the AclAction.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private IEnumerable<AclGroupEntity> aclGroups = null;
 
         #endregion
@@ -74,6 +82,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [Key]
         [Column(Order = 0)]
+        [JsonProperty(PropertyName = "Id")]
+        [XmlAttribute(DataType = "int", AttributeName = "Id")]
         public int AclActionId
         {
             get { return primaryKey; }

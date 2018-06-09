@@ -28,7 +28,7 @@
 						</Grid.ColumnDefinitions>
 
 						<TextBlock x:Name="Title_Text"
-								   Text="{x:Static p:Resources.Pictures}"
+								   Text="{Binding Album.Name, Mode=OneWay, IsAsync=True}"
 								   FontSize="{StaticResource FontSizeHeader}"
 								   Foreground="{StaticResource Panton_3}"
 								   FontWeight="SemiBold"

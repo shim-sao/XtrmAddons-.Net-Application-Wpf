@@ -4,6 +4,7 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Common.Collections
 {
@@ -77,7 +78,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
             catch (Exception e)
             {
                 log.Error(e);
-                AppLogger.Fatal("Adding AclAction(s) failed !", e);
+                MessageBase.Fatal(e, "Adding AclAction(s) failed !");
             }
             finally
             {
@@ -112,7 +113,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
             catch (Exception ex)
             {
                 log.Error(ex);
-                AppLogger.Fatal("Deleting AclAction(s) list failed !", ex);
+                MessageBase.Fatal(ex, "Deleting AclAction(s) list failed !");
             }
             finally
             {
@@ -139,7 +140,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
                         //MainWindow.SQLiteService.CleanAclActionDependenciesAclAction(entity);
                         //await MainWindow.Database.AclActions.Update(entity);
 
-                        AppLogger.NotImplemented();
+                        MessageBase.NotImplemented();
 
                         log.Info(string.Format("AclAction [{0}:{1}] updated.", entity.PrimaryKey, entity.Action));
                     }
@@ -151,7 +152,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
             catch (Exception ex)
             {
                 log.Error(ex);
-                AppLogger.Fatal("Replacing AclAction(s) failed !", ex);
+                MessageBase.Fatal(ex, "Replacing AclAction(s) failed !");
             }
             finally
             {

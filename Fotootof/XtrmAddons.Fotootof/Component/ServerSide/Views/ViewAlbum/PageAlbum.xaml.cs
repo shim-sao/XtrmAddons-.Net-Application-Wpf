@@ -6,6 +6,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Common.Tools;
 using System.Globalization;
+using System.ComponentModel;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
 {
@@ -48,7 +49,17 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         /// <summary>
         /// Class XtrmAddons Fotootof Component Views Server Page Album Constructor.
         /// </summary>
-        public PageAlbum(int albumId = 0)
+        public PageAlbum()
+        {
+            NotSupportedException e = new NotSupportedException("An Album Primary Key must be specify as argument. Uses PageAlbum.PageAlbum(int albumId)");
+            log.Fatal(e);
+            throw e;
+        }
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Component Views Server Page Album Constructor.
+        /// </summary>
+        public PageAlbum(int albumId)
         {
             AppOverwork.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Album"));
@@ -59,9 +70,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
-
-            // Construct page data model.
-            InitializeModel();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Album"));
             AppOverwork.IsBusy = false;
@@ -79,8 +87,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = Model;
-
-            PicturesCollection.Title_Text.Text = Model.Album.Name;
         }
 
         /// <summary>
@@ -88,8 +94,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         /// </summary>
         public override async void InitializeModel()
         {
-            AlbumEntity album = new AlbumEntity();
+            Model = new PageAlbumModel(this);
 
+            AlbumEntity album = null;
             if (ItemId > 0)
             {
                 AlbumOptionsSelect options = new AlbumOptionsSelect
@@ -98,13 +105,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
                     PrimaryKey = ItemId
                 };
                 album = await MainWindow.Database.Albums.SingleOrNullAsync(options);
-                album = album ?? new AlbumEntity();
             }
 
-            Model = new PageAlbumModel(this)
-            {
-                Album = album
-            };
+            Model.Album = album ?? new AlbumEntity();
         }
 
         #endregion

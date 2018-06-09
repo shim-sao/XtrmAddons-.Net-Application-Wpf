@@ -29,7 +29,7 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
         /// <summary>
         /// Variable logger.
         /// </summary>
-        protected static readonly log4net.ILog log =
+        private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion

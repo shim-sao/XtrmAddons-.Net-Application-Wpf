@@ -253,6 +253,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\Controls\DataGrids\UCAlbumsDataGrid.xaml.cs">
+      <DependentUpon>UCAlbumsDataGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClientModel.cs" />
     <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClient.xaml.cs">
       <DependentUpon>PageCatalogClient.xaml</DependentUpon>
@@ -288,10 +291,10 @@
     <Compile Include="Common\Tools\AppLogger.cs" />
     <Compile Include="Common\Tools\AppOverwork.cs" />
     <Compile Include="Common\Tools\AppNavigator.cs" />
-    <Compile Include="Common\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
+    <Compile Include="Layouts\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\Windows\Forms\ClientForm\WindowFormClientModel.cs" />
+    <Compile Include="Layouts\Windows\Forms\ClientForm\WindowFormClientModel.cs" />
     <Compile Include="Common\Windows\Slideshow\WindowSlideshow.xaml.cs">
       <DependentUpon>WindowSlideshow.xaml</DependentUpon>
     </Compile>
@@ -363,29 +366,26 @@
       <DependentUpon>UCToolTipPicture.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\Controls\DataGrids\DataGridSectionsModel.cs" />
-    <Compile Include="Common\Windows\Forms\AclGroupForm\WindowFormAclGroupModel.cs" />
-    <Compile Include="Common\Windows\Forms\AlbumForm\WindowFormAlbumModel.cs" />
+    <Compile Include="Layouts\Windows\Forms\AclGroupForm\WindowFormAclGroupModel.cs" />
+    <Compile Include="Layouts\Windows\Forms\AlbumForm\WindowFormAlbumModel.cs" />
     <Compile Include="Common\Collections\UserEntityCollection.cs" />
     <Compile Include="Common\Collections\AclGroupEntityCollection.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Common\Collections\SectionEntityCollection.cs" />
-    <Compile Include="Common\Controls\DataGrids\UCAlbumsDataGrid.xaml.cs">
-      <DependentUpon>UCAlbumsDataGrid.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Common\Windows\Forms\SectionForm\WindowFormSectionModel.cs" />
-    <Compile Include="Common\Windows\Forms\UserForm\WindowFormUserModel.cs" />
+    <Compile Include="Layouts\Windows\Forms\SectionForm\WindowFormSectionModel.cs" />
+    <Compile Include="Layouts\Windows\Forms\UserForm\WindowFormUserModel.cs" />
     <Compile Include="Layouts\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbumsModel.cs" />
     <Compile Include="Common\HttpHelpers\HttpServer\ServerInfosModel.cs" />
-    <Compile Include="Common\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml.cs">
+    <Compile Include="Layouts\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml.cs">
       <DependentUpon>WindowFormAclGroup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\Windows\Forms\AlbumForm\WindowFormAlbum.xaml.cs">
+    <Compile Include="Layouts\Windows\Forms\AlbumForm\WindowFormAlbum.xaml.cs">
       <DependentUpon>WindowFormAlbum.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\Windows\Forms\SectionForm\WindowFormSection.xaml.cs">
+    <Compile Include="Layouts\Windows\Forms\SectionForm\WindowFormSection.xaml.cs">
       <DependentUpon>WindowFormSection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\Windows\Forms\UserForm\WindowFormUser.xaml.cs">
+    <Compile Include="Layouts\Windows\Forms\UserForm\WindowFormUser.xaml.cs">
       <DependentUpon>WindowFormUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\ClientSide\Controls\DataGrids\DataGridSectionsClient.xaml.cs">
@@ -414,6 +414,10 @@
     </Compile>
     <Compile Include="Settings\SettingsOptions.cs" />
     <Compile Include="Settings\SettingsPreferences.cs" />
+    <Page Include="Common\Controls\DataGrids\UCAlbumsDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="Component\ServerSide\Views\ViewBrowser\PageBrowser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -458,7 +462,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Common\Windows\Forms\ClientForm\WindowFormClient.xaml">
+    <Page Include="Layouts\Windows\Forms\ClientForm\WindowFormClient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -506,27 +510,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Common\Controls\DataGrids\UCAlbumsDataGrid.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Common\Controls\Tooltips\UCToolTipPicture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Common\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml">
+    <Page Include="Layouts\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Common\Windows\Forms\AlbumForm\WindowFormAlbum.xaml">
+    <Page Include="Layouts\Windows\Forms\AlbumForm\WindowFormAlbum.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Common\Windows\Forms\SectionForm\WindowFormSection.xaml">
+    <Page Include="Layouts\Windows\Forms\SectionForm\WindowFormSection.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Common\Windows\Forms\UserForm\WindowFormUser.xaml">
+    <Page Include="Layouts\Windows\Forms\UserForm\WindowFormUser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -535,16 +535,16 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Component\ServerSide\Controls\ListViews\ListViewAlbumsServer.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Component\ServerSide\Controls\TreeViews\TreeViewSystemStorage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Layouts\Windows\About\WindowAbout.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -828,7 +828,11 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\log4net.dll" />
+    <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\Newtonsoft.Json.dll" />
     <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Application.dll" />
+    <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Common.dll" />
+    <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SystemIO.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using XtrmAddons.Fotootof.Common.Controls.DataGrids;
@@ -38,6 +40,8 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// </summary>
         public PageCatalogClientModel Model { get; protected set; }
 
+
+
         #endregion
 
 
@@ -51,6 +55,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         public PageCatalogClient(ClientHttp server)
         {
             AppOverwork.IsBusy = true;
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "PageCatalogClient"));
 
             // Set page variables and properties.
             svr = server;
@@ -58,10 +63,8 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
-
-            // Construct page data model.
-            InitializeModel();
-
+            
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "PageCatalogClient"));
             AppOverwork.IsBusy = false;
         }
 
@@ -84,6 +87,8 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// </summary>
         public override async void InitializeModel()
         {
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
+
             Model = new PageCatalogClientModel(this)
             {
                 Server = svr,
@@ -91,11 +96,17 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
             };
             
             bool command = await Model.Server.Authentication();
-            if(command)
-            {
 
-                command = await Model.Server.ListSections();
+            log.Debug($"Sending command Authentication : {command}");
+            /*
+            if (command)
+            {
+                command = Model.Server.ListSections().IsCompleted;
+
+                log.Debug($"Sending command ListSections : {command}");
             }
+
+    */
         }
 
         #endregion
@@ -143,7 +154,19 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Size changed event arguments.</param>
-        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e) { }
+        public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
+
+            this.Width = fe.ActualWidth;
+            this.Height = fe.ActualHeight;
+
+            Block_MiddleContents.Width = this.Width;
+            Block_MiddleContents.Height = this.Height - Block_TopControls.RenderSize.Height;
+
+            UcDataGridSections.Height = this.Height - Block_TopControls.RenderSize.Height;
+            //UcListViewAlbums.Height = this.Height - Block_TopControls.RenderSize.Height;
+        }
 
         #endregion
 

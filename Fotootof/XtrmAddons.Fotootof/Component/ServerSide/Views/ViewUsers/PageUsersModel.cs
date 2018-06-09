@@ -20,12 +20,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// <summary>
         /// Variable data grid collection of AclGroups.
         /// </summary>
-        private DataGridAclGroupsModel<DataGridAclGroups> aclGroups;
+        private DataGridAclGroupsModel<DataGridAclGroups> aclGroups = new DataGridAclGroupsModel<DataGridAclGroups>();
         
         /// <summary>
         /// Variable data grid collection of Users.
         /// </summary>
-        private DataGridUsersModel<DataGridUsers> users;
+        private DataGridUsersModel<DataGridUsers> users = new DataGridUsersModel<DataGridUsers>();
 
         #endregion
 

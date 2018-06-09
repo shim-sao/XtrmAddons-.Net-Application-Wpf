@@ -8,6 +8,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Event;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
 {
@@ -128,7 +129,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
             catch (Exception e)
             {
                 log.Error(e);
-                AppLogger.Fatal("Loading Albums list. Failed !", e);
+                MessageBase.Fatal(e, "Loading Albums list. Failed !");
             }
             finally
             {

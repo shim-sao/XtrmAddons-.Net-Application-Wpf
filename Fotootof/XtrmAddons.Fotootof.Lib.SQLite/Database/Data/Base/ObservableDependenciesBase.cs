@@ -6,18 +6,26 @@ using XtrmAddons.Net.Common.Extensions;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries SQLite Database Data Base Observable Dependencies.
     /// </summary>
+    [JsonArray()]
     public class ObservableDependenciesBase<T> : ObservableCollection<T>
     {
         #region Variables
 
         /// <summary>
-        /// 
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
+        /// Variable list of dependency primary keys.
         /// </summary>
         private List<int> depPKs = new List<int>();
 
@@ -28,16 +36,16 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         #region Properties
 
         /// <summary>
-        /// 
+        /// Property to access to the dependency property primary key name.
         /// </summary>
-        public string DepPKName { get; set; } = "";
+        public string DepPKName { get; private set; } = "";
 
         /// <summary>
-        /// 
+        /// Property to access to a list of dependency items primary keys.
         /// </summary>
         public IEnumerable<int> DependenciesPrimaryKeys
         {
-            get { return depPKs; }
+            get => depPKs;
             private set
             {
                 if (value != depPKs)
@@ -73,8 +81,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         {
             if(dependenciesPrimaryKeysName.IsNullOrWhiteSpace())
             {
-                throw new ArgumentNullException(nameof(dependenciesPrimaryKeysName));
+                ArgumentNullException e = ArgumentNullException(nameof(dependenciesPrimaryKeysName));
+                log.Fatal(e.Output());
+                throw e;
             }
+
             DepPKName = dependenciesPrimaryKeysName;
         }
 
@@ -96,6 +107,17 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         }
 
         /// <summary>
+        /// Method to find an element by a property value.
+        /// </summary>
+        /// <param name="propertyName">The property name.</param>
+        /// <param name="value">The property value to search.</param>
+        /// <returns>The first founded element otherwise, default value of type T, or null if type T is nullable.</returns>
+        protected int FindIndexInDepPks(int primaryKey)
+        {
+            return depPKs.ToList().FindIndex(x => x == primaryKey);
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="e"></param>
@@ -105,14 +127,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
             {
                 return;
             }
-
+            
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add :
                     foreach(var item in e.NewItems)
                     {
                         int id = (int)item.GetPropertyValue(DepPKName);
-                        if (!(depPKs.ToList().FindIndex(x => x == id) > 0))
+                        if (FindIndexInDepPks(id) == -1)
                         {
                             depPKs.Add((int)item.GetPropertyValue(DepPKName));
                         }
@@ -127,7 +149,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     foreach (var item in e.NewItems)
                     {
                         int id = (int)item.GetPropertyValue(DepPKName);
-                        if (!(depPKs.ToList().FindIndex(x => x == id) > 0))
+                        if (FindIndexInDepPks(id) == -1)
                         {
                             depPKs.Remove((int)item.GetPropertyValue(DepPKName));
                         }
@@ -146,6 +168,21 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     NotifyPropertyChanged("DependenciesPrimaryKeys");
                     break;
             }
+        }
+
+        #endregion
+
+
+
+        #region Methods Exceptions
+
+        /// <summary>
+        /// Method to get a formated argument null exception.
+        /// </summary>
+        /// <returns>A formated argument null exception.</returns>
+        protected static ArgumentNullException ArgumentNullException(string propertyName)
+        {
+            return new ArgumentNullException($"The argument {propertyName} must be not null, empty or whitespace !");
         }
 
         #endregion

@@ -8,7 +8,7 @@ using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Net.Application.Serializable.Elements.Remote;
 using XtrmAddons.Net.Common.Extensions;
 
-namespace XtrmAddons.Fotootof.Common.Windows.Forms
+namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.ClientForm
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries Common Windows Client Form.
@@ -124,7 +124,7 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms
             // 4 - Assign entity to the model.
             NewForm = svr;
 
-            if (NewForm.Key.IsNullOrWhiteSpace())
+            if (NewForm.Key.IsNotNullOrWhiteSpace())
             {
                 IsNewForm = false;
             }
@@ -183,18 +183,19 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms
         /// <returns>True if Password is valid otherwise false.</returns>
         protected bool IsValidPassword(PasswordBox pb)
         {
-            SecurePassWord = pb.Password.Length > 0 ? pb.Password.MD5Hash() : "";
+            // = pb.Password.Length > 0 ? pb.Password.MD5Hash() : "";
+            SecurePassWord = pb.Password.Length > 0 ? pb.Password : "";
 
-            Trace.WriteLine("pb.Password : " + pb.Password);
-            Trace.WriteLine("pb.Password.Length : " + pb.Password.Length);
-            Trace.WriteLine("SecurePassWord : " + SecurePassWord);
+            Debug.WriteLine("pb.Password : " + pb.Password);
+            Debug.WriteLine("pb.Password.Length : " + pb.Password.Length);
+            Debug.WriteLine("SecurePassWord : " + SecurePassWord);
 
             // Check if it is new form.
             if (IsNewForm)
             {
                 // We can set secure password to the form.
                 NewForm.Password = SecurePassWord;
-                Trace.WriteLine("SecurePassWord : " + SecurePassWord);
+                Debug.WriteLine("SecurePassWord : " + SecurePassWord);
 
                 // Check if new secure password is valid.
                 if (pb.Password.IsNullOrWhiteSpace() || pb.Password.Length < 8)
@@ -209,31 +210,31 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms
             // Empty imput doen't change old paswword.
             else
             {
-                Trace.WriteLine("Check if it is new form. : " + IsNewForm);
-                Trace.WriteLine("SecurePassWord : " + SecurePassWord);
+                Debug.WriteLine("Check if it is new form. : " + IsNewForm);
+                Debug.WriteLine("SecurePassWord : " + SecurePassWord);
 
                 if (pb.Password.IsNullOrWhiteSpace())
                 {
                     if (OldForm.Password.IsNullOrWhiteSpace())
                     {
-                        Trace.WriteLine("Old password is empty");
+                        Debug.WriteLine("Old password is empty");
                         return false;
                     }
 
                     // Keep old password back.
                     NewForm.Password = OldForm.Password;
-                    Trace.WriteLine("Keep old password back : " + OldForm.Password);
+                    Debug.WriteLine("Keep old password back : " + OldForm.Password);
                     return true;
                 }
 
                 // We can set secure password to the form.
                 NewForm.Password = SecurePassWord;
-                Trace.WriteLine("Secure password sended to new form");
+                Debug.WriteLine("Secure password sended to new form");
 
                 // Password is not already valid.
                 if (pb.Password.Length < 8)
                 {
-                    Trace.WriteLine("Secure password sended to new form");
+                    Debug.WriteLine("Secure password sended to new form");
                     return false;
                 }
             }
@@ -250,7 +251,7 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms
         /// <summary>
         /// Method to validate the new Form Data.
         /// </summary>
-        protected new bool IsValidForm()
+        protected override bool IsValidForm()
         {
             try
             {
@@ -271,7 +272,7 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms
 
 
 
-        #region Methods Events 
+        #region Methods Events Host
 
         /// <summary>
         /// Method to check and validate input server host text changes.
@@ -282,7 +283,7 @@ namespace XtrmAddons.Fotootof.Common.Windows.Forms
         {
             if (InputName.Text.IsNullOrWhiteSpace())
             {
-                InputName.Text = ((TextBox)sender).Text;
+                NewForm.Name = Tag2Object<TextBox>(sender).Text;
                 OnInputStringRequired_SourceUpdated(InputName, e);
             }
 

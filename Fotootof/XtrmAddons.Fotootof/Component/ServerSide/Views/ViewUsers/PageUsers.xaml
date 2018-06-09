@@ -7,15 +7,16 @@
     xmlns:dgserver="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
-    xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Users}"
     Background="{StaticResource ResourceKey=LightGrey}"
-    SizeChanged="Control_SizeChanged">
+    SizeChanged="Control_SizeChanged"
+	Loaded="Control_Loaded">
 
 	<Grid x:Name="Block_Root"
 		  Style="{StaticResource Root}">
+		
 		<StackPanel x:Name="Block_RootPanel"
 					Style="{StaticResource FieldsetVertical}">
 
@@ -32,15 +33,15 @@
 				</Grid.RowDefinitions>
 
 				<dgserver:DataGridAclGroupsServer x:Name="UcDataGridAclGroups"
-												  DataContext="{Binding AclGroups, diag:PresentationTraceSources.TraceLevel=High}"/>
+												  DataContext="{Binding AclGroups}"/>
 
 				<GridSplitter Grid.Column="1"
 							  HorizontalAlignment="Stretch"
 							  VerticalAlignment="Stretch" />
 
-				<dgserver:DataGridUsersServer Grid.Column="2"
-											  x:Name="UcDataGridUsers"
-											  DataContext="{Binding Users, diag:PresentationTraceSources.TraceLevel=High}"/>
+				<dgserver:DataGridUsersServer x:Name="UcDataGridUsers"
+											  Grid.Column="2"
+											  DataContext="{Binding Users}"/>
 
 			</Grid>
 

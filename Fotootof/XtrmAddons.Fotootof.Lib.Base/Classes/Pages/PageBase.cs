@@ -88,7 +88,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <summary>
         /// Method to initialize and display data context.
         /// </summary>
-        [Obsolete("Will be remove. None sense...")]
+        [Obsolete("Will be remove. None sense...", true)]
         public abstract void Page_Loaded_Async(object sender, RoutedEventArgs e);
 
         #endregion
@@ -102,10 +102,9 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// </summary>
         protected void AfterInitializedComponent()
         {
-            Loaded += Control_Loaded;
+            InitializeModel();
 
             // Initialize for the window size changed event.
-            SizeChanged += PageBase_SizeChanged;
             AppWindow.GetPropertyValue<Border>("BlockContent").SizeChanged += PageBase_SizeChanged;
 
             // Merge main resources.

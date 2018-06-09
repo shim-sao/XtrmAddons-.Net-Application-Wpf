@@ -10,7 +10,8 @@
 	ShowsNavigationUI="False"
 	Title="{x:Static p:Resources.Album}"
 	Style="{StaticResource PageContent}"
-	SizeChanged="Control_SizeChanged">
+    SizeChanged="Control_SizeChanged"
+	Loaded="Control_Loaded">
 
 	<Grid x:Name="Block_Root"
 		  Style="{StaticResource Root}"

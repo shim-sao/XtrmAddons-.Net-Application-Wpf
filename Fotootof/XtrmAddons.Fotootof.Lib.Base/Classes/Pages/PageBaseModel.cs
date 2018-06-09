@@ -6,7 +6,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Page Base Model.
     /// </summary>
-    public class PageBaseModel<PageBase> : ModelBase<PageBase>
+    public class PageBaseModel<T> : ModelBase<T>
     {
         #region Constructor
 
@@ -14,7 +14,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// Class XtrmAddons Fotootof Server Page Base Model Constructor.
         /// </summary>
         /// <param name="pageBase">The page associated to the model.</param>
-        public PageBaseModel(PageBase page) : base(page) { }
+        public PageBaseModel(T page) : base(page) { }
 
         #endregion
     }

@@ -11,7 +11,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Net.Common.Extensions;
 
-namespace XtrmAddons.Fotootof.Common.Windows.Forms.UserForm
+namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
 {
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Libraries Common Windows Form User.</para>

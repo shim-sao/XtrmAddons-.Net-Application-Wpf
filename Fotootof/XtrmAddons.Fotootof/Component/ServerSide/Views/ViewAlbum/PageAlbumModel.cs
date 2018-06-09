@@ -20,7 +20,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         /// <summary>
         /// Variable Album data entity.
         /// </summary>
-        private AlbumEntity album;
+        private AlbumEntity album = new AlbumEntity();
 
         #endregion
 

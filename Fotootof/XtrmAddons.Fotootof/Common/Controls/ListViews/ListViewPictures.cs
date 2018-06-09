@@ -4,6 +4,7 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Common.Controls.ListViews
 {
@@ -39,7 +40,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
         /// <param name="e">Routed event arguments.</param>
         public override void OnAddNewItem_Click(object sender, RoutedEventArgs e)
         {
-            AppLogger.NotImplemented();
+            MessageBase.NotImplemented();
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
         /// <param name="e">Routed event arguments.</param>
         public override void OnEditItem_Click(object sender, RoutedEventArgs e)
         {
-            AppLogger.NotImplemented();
+            MessageBase.NotImplemented();
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
         /// <param name="e">Routed event arguments.</param>
         public override void OnDeleteItems_Click(object sender, RoutedEventArgs e)
         {
-            AppLogger.NotImplemented();
+            MessageBase.NotImplemented();
         }
 
         /// <summary>

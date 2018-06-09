@@ -6,6 +6,8 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Application;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Common.Collections
 {
@@ -56,7 +58,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
         public static void DbInsert(List<AlbumEntity> newItems)
         {
             AppOverwork.IsBusy = true;
-            log.Info("Adding Album(s). Please wait...");
+            log.Info(AppOverwork.BusyContent = "Adding Album(s). Please wait...");
 
             try
             {
@@ -67,17 +69,17 @@ namespace XtrmAddons.Fotootof.Common.Collections
                     foreach (AlbumEntity entity in newItems)
                     {
                         Db.Albums.Add(entity);
-                        log.Info(string.Format("Album [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
+                        log.Info(AppOverwork.BusyContent =  $"Album [{entity.PrimaryKey}:{entity.Name}] added.");
                     }
                 }
 
                 AppNavigator.Clear();
-                log.Info("Adding Album(s). Done !");
+                log.Info(AppOverwork.BusyContent = "Adding Album(s). Done !");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                log.Error(e);
-                AppLogger.Fatal("Adding Album(s) failed !", e);
+                log.Error(AppOverwork.BusyContent = ex.Output(), ex);
+                MessageBase.Fatal(ex, "Adding Album(s) failed !");
             }
             finally
             {
@@ -92,29 +94,29 @@ namespace XtrmAddons.Fotootof.Common.Collections
         public static void DbDelete(List<AlbumEntity> oldItems)
         {
             AppOverwork.IsBusy = true;
-            log.Info("Deleting Album(s). Please wait...");
+            log.Info(AppOverwork.BusyContent = "Deleting Album(s). Please wait...");
 
             // Check for Removing items.
             try
             {
-                log.Info("Deleting Album(s). Please wait...");
+                log.Info(AppOverwork.BusyContent = "Deleting Album(s). Please wait...");
 
                 if (oldItems != null && oldItems.Count > 0)
                 {
                     foreach (AlbumEntity entity in oldItems)
                     {
                         MainWindow.Database.Albums.Delete(entity);
-                        log.Info(string.Format("Album [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
+                        log.Info(AppOverwork.BusyContent = $"Album [{entity.PrimaryKey}:{entity.Name}] deleted.");
                     }
                 }
 
                 AppNavigator.Clear();
-                log.Info("Adding Album(s). Done !");
+                log.Info(AppOverwork.BusyContent = "Adding Album(s). Done !");
             }
             catch (Exception ex)
             {
-                log.Error(ex);
-                AppLogger.Fatal("Deleting Album(s) list failed !", ex);
+                log.Error(AppOverwork.BusyContent = ex.Output(), ex);
+                MessageBase.Fatal(ex, "Deleting Album(s) list failed !");
             }
             finally
             {
@@ -129,7 +131,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
         public static async void DbUpdateAsync(List<AlbumEntity> newItems, List<AlbumEntity> oldItems)
         {
             AppOverwork.IsBusy = true;
-            log.Info("Replacing Album. Please wait...");
+            log.Info(AppOverwork.BusyContent = "Replacing Album. Please wait...");
 
             try
             {
@@ -138,17 +140,17 @@ namespace XtrmAddons.Fotootof.Common.Collections
                     foreach (AlbumEntity entity in newItems)
                     {
                         await MainWindow.Database.Albums.UpdateAsync(entity);
-                        log.Info(string.Format("Album [{0}:{1}] updated.", entity.PrimaryKey, entity.Name));
+                        log.Info(AppOverwork.BusyContent = $"Album [{entity.PrimaryKey}:{entity.Name}] updated.");
                     }
                 }
 
                 AppNavigator.Clear();
-                log.Info("Replacing Album(s). Done !");
+                log.Info(AppOverwork.BusyContent = "Replacing Album(s). Done !");
             }
             catch (Exception ex)
             {
-                log.Error(ex);
-                AppLogger.Fatal("Replacing Album(s) failed !", ex);
+                log.Error(AppOverwork.BusyContent = ex.Output(), ex);
+                MessageBase.Fatal(ex, "Replacing Album(s) failed !");
             }
             finally
             {

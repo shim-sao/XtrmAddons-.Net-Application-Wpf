@@ -4,7 +4,6 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 using XtrmAddons.Net.Common.Extensions;
-using XtrmAddons.Net.HttpWebServer;
 using XtrmAddons.Net.HttpWebServer.Requests;
 using XtrmAddons.Net.HttpWebServer.Responses;
 
@@ -51,35 +50,19 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
         /// <summary>
         /// 
         /// </summary>
-        public string Namespace
-        {
-            get
-            {
-                return _namespace;
-            }
-        }
+        public string Namespace => _namespace;
 
         /// <summary>
         /// 
         /// </summary>
-        public string ComponentPath
-        {
-            get
-            {
-                return string.Format(_namespace, Uri.RequestType.ToLower().UCFirst(), Uri.ComponentName.ToLower().UCFirst());
-            }
-        }
+        public string ComponentPath => 
+            string.Format(_namespace, Uri.RequestType.ToLower().UCFirst(), Uri.ComponentName.ToLower().UCFirst());
 
         /// <summary>
         /// 
         /// </summary>
-        public string Dll
-        {
-            get
-            {
-                return string.Format(_dll, Uri.RequestType.ToLower().UCFirst());
-            }
-        }
+        public string Dll =>
+            string.Format(_dll, Uri.RequestType.ToLower().UCFirst());
 
         /// <summary>
         /// Accessors Server Component.
@@ -152,14 +135,22 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private WebServerResponseData _getResponseData()
         {
-            //var a = Uri.RelativeUrl;
+            log.Info(MethodBase.GetCurrentMethod().Name);
+            log.Info(Uri.RelativeUrl);
+            
             WebServerResponseData response = null;
 
-            // Check for special request.
+            // Check for special ico request.
             if (Uri.ComponentName == "Index" && Uri.Extension == ".ico")
             {
+                log.Debug("Serving Http response for special ico request.");
+
                 response = new WebServerResponseData(Uri.RelativeUrl);
                 response.ServeFile(@"Assets\Images\Icons\Favicon.ico");
                 return response;
@@ -168,19 +159,27 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
             // Try to serve direct link.
             try
             {
+                log.Debug("Serving Http response for direct link.");
+
                 string filename = Uri.RelativeUrl;
                
                 if (Uri.RelativeUrl == "" || Uri.RelativeUrl == "/")
                 {
+                    log.Debug("Empty or / URL => /index.html");
+
                     filename = "/index.html";
                 }
 
                 if (Uri.Extension != "" || filename == "/index.html")
                 {
+                    log.Debug("Empty or / URL => [Public]/index.html");
+
                     response = new WebServerResponseData(Uri.RelativeUrl);
                     response.ServeFile(filename, "Public");
                     return response;
                 }
+
+                log.Info("Serving Http response for direct link => FileNotFoundException.");
 
                 throw new FileNotFoundException();
             }
@@ -189,6 +188,8 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
             #pragma warning disable CS0168
             catch (FileNotFoundException fe)
             {
+                log.Info("Serving Http response for generated URL document", fe);
+
                 try
                 {
                     object[] post = new object[] { };

@@ -14,6 +14,7 @@ using XtrmAddons.Fotootof.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Common.Windows.Slideshow;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
 {
@@ -295,7 +296,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
             catch (Exception e)
             {
                 log.Error(e);
-                AppLogger.Error(string.Format("Searching Picture {0} failed !\n {1}", propertyPathName, e.Message));
+                MessageBase.Error(string.Format("Searching Picture {0} failed !\n\r {1}", propertyPathName, e.Message));
             }
 
             return IsChanged;

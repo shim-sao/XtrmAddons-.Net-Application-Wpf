@@ -20,6 +20,35 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids
 
 
 
+        #region Properties
+
+        /// <summary>
+        /// Variable columns settings.
+        /// </summary>
+        public dynamic Columns { get; set; } = new ExpandoObject();
+
+        /// <summary>
+        /// Variable rows settings.
+        /// </summary>
+        public dynamic Rows { get; set; } = new ExpandoObject();
+        
+        /// <summary>
+        /// Property to access to the observable collection of items.
+        /// </summary>
+        public U Items
+        {
+            get { return items; }
+            set
+            {
+                items = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        #endregion
+
+
+
         #region Constructor
 
         /// <summary>
@@ -44,7 +73,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids
 
 
 
-        #region Properties
+        #region Method
 
         /// <summary>
         /// Method to initialize model.
@@ -53,29 +82,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids
         {
             Columns.Visibility = new ExpandoObject();
             Rows.IsEnabled = new ExpandoObject();
-        }
-
-        /// <summary>
-        /// Variable columns settings.
-        /// </summary>
-        public dynamic Columns { get; set; } = new ExpandoObject();
-
-        /// <summary>
-        /// Variable rows settings.
-        /// </summary>
-        public dynamic Rows { get; set; } = new ExpandoObject();
-        
-        /// <summary>
-        /// Property to access to the observable collection of items.
-        /// </summary>
-        public U Items
-        {
-            get { return items; }
-            set
-            {
-                items = value;
-                NotifyPropertyChanged();
-            }
         }
 
         #endregion

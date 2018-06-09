@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Reflection;
-using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
@@ -13,7 +11,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
     /// <summary>
     /// Class XtrmAddons Fotootof Server Libraries Base Model.
     /// </summary>
-    public class ModelBase<T> : ObjectBaseNotifier //INotifyPropertyChanged
+    public class ModelBase<T> : ObjectBaseNotifier // INotifyPropertyChanged
     {
         #region Variable
 
@@ -41,9 +39,19 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
         public T OwnerBase { get; protected set; }
 
         /// <summary>
+        /// Property alias to access to the translation words.
+        /// </summary>
+        public dynamic Words => Culture.Translation.Words;
+
+        /// <summary>
         /// Property alias to access to the dynamic translation words.
         /// </summary>
         public dynamic DWords => Culture.Translation.DWords;
+
+        /// <summary>
+        /// Property alias to access to the translation logs.
+        /// </summary>
+        public dynamic Logs => Culture.Translation.Logs;
 
         /// <summary>
         /// Property alias to access to the dynamic translation logs.
@@ -108,81 +116,81 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Models
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        [Obsolete("Use SettingsBase")]
-        public UiElement<object> GetSettings(Control ctrl)
-        {
-            if(ctrl == null)
-            {
-                ArgumentNullException ane = new ArgumentNullException("The argument object System.Windows.Control is required not null : " + nameof(ctrl));
-                log.Error(ane.Output());
-                throw ane;
-            }
+        //[Obsolete("Use SettingsBase", true)]
+        //public UiElement<object> GetSettings(Control ctrl)
+        //{
+        //    if(ctrl == null)
+        //    {
+        //        ArgumentNullException ane = new ArgumentNullException($"The argument object System.Windows.Control is required not null : {nameof(ctrl)}");
+        //        log.Error(ane.Output());
+        //        throw ane;
+        //    }
 
-            return ApplicationBase.UI.Controls.FindControl(ctrl) ?? new UiElement<object>(ctrl);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        [Obsolete("Use SettingsBase")]
-        public V GetSettingsValue<V>(Control ctrl, string propertyName, V defaultValue = null) where V : class
-        {
-            if (ctrl == null)
-            {
-                ArgumentNullException ane = new ArgumentNullException("The argument object System.Windows.Control is required not null : " + nameof(ctrl));
-                log.Error(ane.Output());
-                throw ane;
-            }
-
-            if (propertyName == null)
-            {
-                ArgumentNullException ane = new ArgumentNullException("The argument string Property Name is required not null : " + nameof(propertyName));
-                log.Error(ane.Output());
-                throw ane;
-            }
-
-            return GetBindingProperty(ctrl, propertyName, defaultValue) as V;
-        }
+        //    return ApplicationBase.UI.Controls.FindControl(ctrl) ?? new UiElement<object>(ctrl);
+        //}
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        [Obsolete("Use SettingsBase")]
-        public BindingProperty<object> GetBindingProperty(Control ctrl, string propertyName, object defaultValue = null)
-        {
-            if (ctrl == null)
-            {
-                ArgumentNullException ane = new ArgumentNullException("The argument object System.Windows.Control is required not null : " + nameof(ctrl));
-                log.Error(ane.Output());
-                throw ane;
-            }
+        //[Obsolete("Use SettingsBase")]
+        //public V GetSettingsValue<V>(Control ctrl, string propertyName, V defaultValue = null) where V : class
+        //{
+        //    if (ctrl == null)
+        //    {
+        //        ArgumentNullException ane = new ArgumentNullException("The argument object System.Windows.Control is required not null : " + nameof(ctrl));
+        //        log.Error(ane.Output());
+        //        throw ane;
+        //    }
 
-            if (propertyName == null)
-            {
-                ArgumentNullException ane = new ArgumentNullException("The argument string Property Name is required not null : " + nameof(propertyName));
-                log.Error(ane.Output());
-                throw ane;
-            }
+        //    if (propertyName == null)
+        //    {
+        //        ArgumentNullException ane = new ArgumentNullException("The argument string Property Name is required not null : " + nameof(propertyName));
+        //        log.Error(ane.Output());
+        //        throw ane;
+        //    }
 
-            return GetSettings(ctrl).FindBindingProperty(propertyName) ?? new BindingProperty<object>() { Name = propertyName, Value = defaultValue };
-        }
+        //    return GetBindingProperty(ctrl, propertyName, defaultValue) as V;
+        //}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        //[Obsolete("Use SettingsBase")]
+        //public BindingProperty<object> GetBindingProperty(Control ctrl, string propertyName, object defaultValue = null)
+        //{
+        //    if (ctrl == null)
+        //    {
+        //        ArgumentNullException ane = new ArgumentNullException("The argument object System.Windows.Control is required not null : " + nameof(ctrl));
+        //        log.Error(ane.Output());
+        //        throw ane;
+        //    }
+
+        //    if (propertyName == null)
+        //    {
+        //        ArgumentNullException ane = new ArgumentNullException("The argument string Property Name is required not null : " + nameof(propertyName));
+        //        log.Error(ane.Output());
+        //        throw ane;
+        //    }
+
+        //    return GetSettings(ctrl).FindBindingProperty(propertyName) ?? new BindingProperty<object>() { Name = propertyName, Value = defaultValue };
+        //}
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="element"></param>
-        [Obsolete("Use SettingsBase")]
-        public void SetControlSettings(UiElement<object> element)
-        {
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                ApplicationBase.UI.Controls.AddKeySingle(element);
-            }));
-        }
+        //[Obsolete("Use SettingsBase")]
+        //public void SetControlSettings(UiElement<object> element)
+        //{
+        //    ApplicationBase.BeginInvokeIfRequired(new Action(() =>
+        //    {
+        //        ApplicationBase.UI.Controls.AddKeySingle(element);
+        //    }));
+        //}
 
         #endregion
     }

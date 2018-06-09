@@ -12,7 +12,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Net.Common.Extensions;
 
-namespace XtrmAddons.Fotootof.Common.Windows.Forms.AlbumForm
+namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm
 {
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Libraries Common Window Form Album.</para>

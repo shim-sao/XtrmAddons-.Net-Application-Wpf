@@ -5,10 +5,12 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Lib.HttpClient.WebAuth;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
 {
@@ -28,7 +30,7 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
         /// <summary>
         /// Variable format encoding.
         /// </summary>
-        private Encoding _encoding = Encoding.UTF8;
+        private readonly Encoding _encoding = Encoding.UTF8;
 
         /// <summary>
         /// Variable url token.
@@ -118,24 +120,29 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
         /// <returns>An Http response message</returns>
         public HttpResponseMessage Ping()
         {
+            log.Debug(MethodBase.GetCurrentMethod().Name);
+
             try
             {
                 return Client.GetAsync("api").Result;
             }
             catch (ArgumentNullException e)
             {
-                log.Fatal("ArgumentNullException : Api web client server ping failed ArgumentNullException !", e);
-                throw new HttpRequestException(e.Message, e);
+                ArgumentNullException ex = new ArgumentNullException("Api web client server ping error.", e);
+                log.Error(ex.Output());
+                throw ex;
             }
             catch (HttpRequestException e)
             {
-                log.Fatal("ArgumentNullException : Api web client server ping failed ArgumentNullException !", e);
-                throw new HttpRequestException(e.Message, e);
+                HttpRequestException ex = new HttpRequestException("Api web client server ping error.", e);
+                log.Error(ex.Output());
+                throw ex;
             }
             catch (AggregateException e)
             {
-                log.Fatal("HttpRequestException : Api web client server ping failed HttpRequestException !", e);
-                throw new AggregateException(e.Message, e);
+                AggregateException ex = new AggregateException("Api web client server ping error.", e);
+                log.Error(ex.Output());
+                throw ex;
             }
         }
 
@@ -146,6 +153,8 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
         /// <returns>A response in String format.</returns>
         public async Task<string> Read(HttpResponseMessage response)
         {
+            log.Debug(MethodBase.GetCurrentMethod().Name);
+
             try
             {
                 HttpResponseHeaders header = response.Headers;
@@ -156,8 +165,9 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
             }
             catch (Exception e)
             {
-                log.Fatal("Api web client read response failed !", e);
-                throw new Exception(e.Message, e);
+                AggregateException ex = new AggregateException("Api web client read response error.", e);
+                log.Error(ex.Output());
+                throw ex;
             }
         }
 
@@ -168,11 +178,30 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
         /// </summary>
         private void SetSessionToken()
         {
+            log.Debug($"Http Client method : {MethodBase.GetCurrentMethod().Name}");
+            log.Debug($"Http Client Response.StatusCode : {Response.StatusCode}");
+
             if (Response.StatusCode == HttpStatusCode.OK)
             {
                 HttpResponseHeaders header = Response.Headers;
                 string[] cookieHeader = (string[])header.GetValues("Set-Cookie");
-                _urlToken = cookieHeader[0].Replace(", ", "&");
+
+                #if DEBUG
+                int i = 1;
+                foreach(string s in cookieHeader)
+                {
+                    log.Debug($"cookie #{i} = {s}");
+                    i++;
+                }
+                #endif
+
+                string[] parts = cookieHeader[0].Replace(", ", "&").Split(new char[] { ';' });
+                if(parts.Length > 1)
+                {
+                    _urlToken = parts[0];
+                }
+                
+                log.Debug($"Url Token : {_urlToken}");
             }
         }
 
@@ -182,8 +211,9 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
         /// <returns>An Http response message.</returns>
         public HttpResponseMessage Authentication()
         {
+            log.Debug($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}. Please wait...");
+
             Response = null;
-            
             try
             {
                 FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
@@ -191,16 +221,25 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
                     new KeyValuePair<string, string>("email", WebAuth.Email),
                     new KeyValuePair<string, string>("password", WebAuth.Password)
                 });
-                Response = Client.PostAsync("api/user/authentication", content).Result;
-                SetSessionToken();
+
+                using(Task<HttpResponseMessage> message = Client.PostAsync("api/user/authentication", content))
+                {
+                    Response = message.Result;
+                    SetSessionToken();
+
+                    return message.Result;
+                }
             }
             catch (Exception e)
             {
-                log.Fatal("FATAL : Http web client authentication exception !", e);
-                throw new Exception("FATAL : Http web client authentication exception !", e);
+                Exception ex = new Exception($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}. Exception in {e.TargetSite}", e);
+                log.Fatal(ex.Output(), e);
+                throw ex;
             }
-
-            return Response;
+            finally
+            {
+                log.Debug($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}. Done !");
+            }
         }
 
         #endregion
@@ -213,24 +252,37 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
         /// <returns>An Http response message.</returns>
         public HttpResponseMessage ListSections()
         {
+            log.Debug($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}. Please wait...");
+
+            Response = null;
             try
             {
-                return Client.GetAsync("api/sections?" + _urlToken).Result;
+                using (Task<HttpResponseMessage> message = Client.GetAsync("api/sections?" + _urlToken))
+                {
+                    return message.Result;
+                }
             }
             catch (ArgumentNullException e)
             {
-                log.Fatal("ArgumentNullException : Http web client list sections ArgumentNullException !", e);
-                throw new ArgumentNullException("ArgumentNullException : Http web client list sections ArgumentNullException !", e);
+                ArgumentNullException ex = new ArgumentNullException($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}. ArgumentNullException in {e.TargetSite}", e);
+                log.Fatal(ex.Output(), e);
+                throw ex;
             }
             catch (HttpRequestException e)
             {
-                log.Fatal("HttpRequestException : Http web client list sections HttpRequestException !", e);
-                throw new Exception("HttpRequestException : Http web client list sections HttpRequestException !", e);
+                HttpRequestException ex = new HttpRequestException($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}. HttpRequestException in {e.TargetSite}", e);
+                log.Fatal(ex.Output(), e);
+                throw ex;
             }
             catch (Exception e)
             {
-                log.Fatal("Exception : Http web client list sections Exception !", e);
-                throw new Exception("Exception : Http web client list sections Exception !", e);
+                Exception ex = new Exception($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}. Exception in {e.TargetSite}", e);
+                log.Fatal(ex.Output(), e);
+                throw ex;
+            }
+            finally
+            {
+                log.Debug($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}. Done !");
             }
         }
         
@@ -240,6 +292,8 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
         /// <returns>An Http response message.</returns>
         public HttpResponseMessage ListAlbums()
         {
+            log.Debug($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}");
+
             try
             {
                 return Client.GetAsync("api/albums?" + _urlToken).Result;
@@ -274,18 +328,21 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
             }
             catch (ArgumentNullException e)
             {
-                log.Fatal("ArgumentNullException : Http web client single section ArgumentNullException !", e);
-                throw new ArgumentNullException("ArgumentNullException : Http web client single section ArgumentNullException !", e);
+                ArgumentNullException ex = new ArgumentNullException("Http web client single section error.", e);
+                log.Error(ex);
+                throw ex;
             }
             catch (HttpRequestException e)
             {
-                log.Fatal("HttpRequestException : Http web client single section HttpRequestException !", e);
-                throw new Exception("HttpRequestException : Http web client single section HttpRequestException !", e);
+                HttpRequestException ex = new HttpRequestException("Http web client single section error.", e);
+                log.Error(ex);
+                throw ex;
             }
             catch (Exception e)
             {
-                log.Fatal("Exception : Http web client single section Exception !", e);
-                throw new Exception("Exception : Http web client single section Exception !", e);
+                Exception ex = new Exception("Http web client single section error.", e);
+                log.Error(ex);
+                throw ex;
             }
         }
 
@@ -361,6 +418,7 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
         /// Method to dispose the object.
         /// </summary>
         /// <param name="disposing">Dispose managed objects ?</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "<Handler>k__BackingField")]
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -370,8 +428,8 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
                     // Dispose managed objects.
                     Client.Dispose();
                     Handler.Dispose();
-                    handle.Dispose();
                     Response.Dispose();
+                    handle.Dispose();
                 }
 
                 // Dispose not managed objects & big size variables = null.

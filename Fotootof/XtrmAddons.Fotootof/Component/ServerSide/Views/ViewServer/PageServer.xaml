@@ -14,7 +14,8 @@
     Title="{x:Static p:Resources.Server}"
     Style="{StaticResource ResourceKey=PageContent}"
     Background="{StaticResource ResourceKey=LightGrey}"
-    SizeChanged="Control_SizeChanged">
+    SizeChanged="Control_SizeChanged"
+	Loaded="Control_Loaded">
 
     <Grid x:Name="Block_Root">
         

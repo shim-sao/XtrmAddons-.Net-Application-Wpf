@@ -9,19 +9,18 @@ using XtrmAddons.Fotootof.Builders.AddInsContracts;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Fotootof.Common.Windows.Forms;
-using XtrmAddons.Fotootof.Common.Windows.Forms.SectionForm;
-using XtrmAddons.Fotootof.Common.Windows.Forms.UserForm;
+using XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm;
+using XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm;
 using XtrmAddons.Fotootof.Common.Windows.Settings;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers;
 using XtrmAddons.Fotootof.Interfaces.AddInsContracts;
 using XtrmAddons.Fotootof.Layouts.Windows.About;
+using XtrmAddons.Fotootof.Layouts.Windows.Forms.ClientForm;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.Remote;
-using XtrmAddons.Net.Application.Serializable.Elements.Ui;
 
 namespace XtrmAddons.Fotootof.Common.Controls.Menu
 {
@@ -82,17 +81,18 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
 
             try
             {
-                DirectoryCatalog catalog = new DirectoryCatalog("Plugins");
+               /* DirectoryCatalog catalog = new DirectoryCatalog("Plugins");
 
                 InterfaceBuilder builder = new InterfaceBuilder();
                 CompositionContainer container = new CompositionContainer(catalog);
-                container.ComposeParts(builder);
-
-                foreach (IModule attacher in builder.Attachers)
+                container.ComposeParts(builder);*/
+                /*
+                foreach (IModule module in CatalogBase.Builder.Modules)
                 {
-                    MenuItem_Plugins.Items.Add(attacher.GetInterfaceObject());
+                    MenuItem_Plugins.Items.Add(module.GetInterfaceObject());
                     //attacher.Container = MenuItem_Plugins;
                 }
+                */
             }
             catch(CompositionException e)
             {
@@ -224,9 +224,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         private void OnDisplayLogsWindowClick(object sender, RoutedEventArgs e)
         {
             AppNavigator.MainWindow.LogsToggle();
-            
-            Model.GetSettings(MenuItem_ShowLogsWindow).FindBindingProperty("IsChecked").Value = MenuItem_ShowLogsWindow.IsChecked;
-            ApplicationBase.Save();
+            SettingsBase.SaveBool(MenuItem_ShowLogsWindow, "IsChecked", MenuItem_ShowLogsWindow.IsChecked);
         }
 
         /// <summary>
@@ -325,7 +323,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
                 AppOverwork.IsBusy = true;
 
                 ApplicationBase.Options.Remote.Clients.AddKeySingle(dlg.NewForm);
-                ApplicationBase.Save();
+                ApplicationBase.SaveOptions();
                 RaiseClientAdded(this, e.RoutedEvent);
 
                 AppOverwork.IsBusy = false;
