@@ -7,6 +7,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Common.Tools;
 using System.Globalization;
 using System.ComponentModel;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
 {
@@ -61,7 +62,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         /// </summary>
         public PageAlbum(int albumId)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Album"));
 
             // Store Album primary key.
@@ -72,7 +73,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Album"));
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         #endregion

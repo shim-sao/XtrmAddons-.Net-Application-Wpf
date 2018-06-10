@@ -73,7 +73,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// </summary
         public PageUsers()
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Users"));
 
             // Constuct page component.
@@ -81,7 +81,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Users"));
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>
@@ -147,8 +147,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// </summary>
         private void LoadAclGroups()
         {
-            AppOverwork.IsBusy = true;
-            log.Info("Loading Acl Groups list. Please wait...");
+            MessageBase.IsBusy = true;
+            log.Info("Loading Acl Groups list : Start. Please wait...");
 
             try
             {
@@ -157,14 +157,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             }
             catch (Exception e)
             {
-                string message = "Loading Acl Groups list. failed !";
+                string message = "Loading Acl Groups list failed !";
                 log.Fatal(message, e);
                 MessageBase.Fatal(e, message);
             }
             finally
             {
-                log.Info("Loading Acl Groups list. Done.");
-                AppOverwork.IsBusy = false;
+                log.Info("Loading Acl Groups list : End.");
+                MessageBase.IsBusy = false;
             }
         }
 
@@ -269,8 +269,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// </summary>
         private void LoadUsers()
         {
-            AppOverwork.IsBusy = true;
-            log.Info(AppOverwork.BusyContent = "Loading Users list. Please wait...");
+            MessageBase.IsBusy = true;
+            log.Info(MessageBase.BusyContent = "Loading Users list. Please wait...");
 
             try
             {
@@ -278,18 +278,18 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
                 Users.Load();
                 Model.Users.Items = Users;
 
-                log.Info(AppOverwork.BusyContent = "Loading Users list. Done.");
+                log.Info(MessageBase.BusyContent = "Loading Users list. Done.");
             }
             catch (Exception e)
             {
-                AppOverwork.BusyContent = "Loading Users list. failed !";
-                log.Fatal(AppOverwork.BusyContent, e);
-                MessageBase.Fatal(e, (string)AppOverwork.BusyContent);
+                MessageBase.BusyContent = "Loading Users list. failed !";
+                log.Fatal(MessageBase.BusyContent, e);
+                MessageBase.Fatal(e, (string)MessageBase.BusyContent);
             }
             finally
             {
-                log.Info(AppOverwork.BusyContent = "Loading Users list. Done.");
-                AppOverwork.IsBusy = false;
+                log.Info(MessageBase.BusyContent = "Loading Users list. Done.");
+                MessageBase.IsBusy = false;
             }
         }
 

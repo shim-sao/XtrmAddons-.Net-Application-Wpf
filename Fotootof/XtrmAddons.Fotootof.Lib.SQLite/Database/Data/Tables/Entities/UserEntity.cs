@@ -6,6 +6,7 @@ using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Net.Common.Extensions;
@@ -15,8 +16,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// <summary>
     /// Class XtrmAddons Fotootof Server SQLite User entity.
     /// </summary>
+    [Serializable]
     [Table("Users")]
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptIn, Title = "User")]
+    [XmlType(TypeName = "User")]
     public partial class UserEntity : EntityBase
     {
         #region Variables
@@ -24,6 +27,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Variable logger.
         /// </summary>
+        [NotMapped]
+        [XmlIgnore]
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -31,36 +36,42 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable name of the User.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private string name = "";
 
         /// <summary>
         /// Variable password of the User.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private string password = "";
 
         /// <summary>
         /// Variable email of the User.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private string email = "";
 
         /// <summary>
         /// Variable server owner.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private string server = "";
 
         /// <summary>
         /// Variable date of creation of the User
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private DateTime created = DateTime.Now;
 
         /// <summary>
         /// Variable date of modification of the User
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private DateTime modified = DateTime.Now;
 
         #endregion
@@ -73,6 +84,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable collection of relationship Users in AclGroups.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         ObservableCollection<UsersInAclGroups> usersInAclGroups
             = new ObservableCollection<UsersInAclGroups>();
 
@@ -80,13 +92,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable AclGroup id (required for entity dependency).
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private int aclGroupId = 0;
 
         /// <summary>
         /// Variable associated AclGroups primary keys list.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
+        [XmlIgnore]
 #pragma warning disable CS0414 // Le champ 'UserEntity.aclGroupsPK' est assigné, mais sa valeur n'est jamais utilisée
         private IEnumerable<int> aclGroupsPK = null;
 #pragma warning restore CS0414 // Le champ 'UserEntity.aclGroupsPK' est assigné, mais sa valeur n'est jamais utilisée
@@ -95,7 +108,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable list of AclGroup associated to the User.
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
+        [XmlIgnore]
         private IEnumerable<AclGroupEntity> aclGroups = null;
 
         #endregion
@@ -110,6 +123,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [Key]
         [Column(Order = 0)]
+        [XmlIgnore]
         public int UserId
         {
             get => primaryKey;
@@ -128,6 +142,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <para>Notify on property changed.</para>
         /// </summary>
         [Column(Order = 1)]
+        [JsonProperty(PropertyName = "Name")]
+        [XmlAttribute(DataType = "string", AttributeName = "Name")]
         public string Name
         {
             get => name;

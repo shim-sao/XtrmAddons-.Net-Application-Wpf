@@ -57,8 +57,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="newItems">Thee list of items to add.</param>
         public static void DbInsert(List<AclGroupEntity> newItems)
         {
-            AppOverwork.IsBusy = true;
-            log.Info(AppOverwork.BusyContent = "Adding AclGroup(s). Please wait...");
+            log.Info("Adding AclGroup(s). Please wait...");
 
             try
             {
@@ -69,21 +68,17 @@ namespace XtrmAddons.Fotootof.Common.Collections
                     {
                         MainWindow.Database.AclGroups.Add(entity);
 
-                        log.Info(AppOverwork.BusyContent = $"AclGroup [{entity.PrimaryKey}:{entity.Name}] added.");
+                        log.Info($"AclGroup [{entity.PrimaryKey}:{entity.Name}] added.");
                     }
                 }
 
                 AppNavigator.Clear();
-                log.Info(AppOverwork.BusyContent = "Adding AclGroup(s). Done !");
+                log.Info("Adding AclGroup(s). Done !");
             }
             catch (Exception e)
             {
-                log.Error(AppOverwork.BusyContent = e.Output(), e);
+                log.Error(e.Output(), e);
                 MessageBase.Fatal(e, "Adding AclGroup(s) failed !");
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
             }
         }
 
@@ -93,8 +88,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="oldItems">The list of items to remove.</param>
         public static void DbDelete(List<AclGroupEntity> oldItems)
         {
-            AppOverwork.IsBusy = true;
-            log.Info(AppOverwork.BusyContent = "Deleting AclGroup(s). Please wait...");
+            log.Info("Deleting AclGroup(s). Please wait...");
 
             try
             {
@@ -112,16 +106,12 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 }
 
                 AppNavigator.Clear();
-                log.Info(AppOverwork.BusyContent = "Deleting AclGroup(s). Done !");
+                log.Info("Deleting AclGroup(s). Done !");
             }
             catch (Exception ex)
             {
-                log.Error(AppOverwork.BusyContent = ex.Output(), ex);
+                log.Error(ex.Output(), ex);
                 MessageBase.Fatal(ex, "Deleting AclGroup(s) list failed !");
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
             }
         }
 
@@ -132,8 +122,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="oldItems"></param>
         public static async void DbUpdateAsync(List<AclGroupEntity> newItems, List<AclGroupEntity> oldItems)
         {
-            AppOverwork.IsBusy = true;
-            log.Info(AppOverwork.BusyContent = "Replacing AclGroup. Please wait...");
+            log.Info("Replacing AclGroup. Please wait...");
 
             try
             {
@@ -154,16 +143,12 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 }
 
                 AppNavigator.Clear();
-                log.Info(AppOverwork.BusyContent = "Replacing AclGroup(s). Done !");
+                log.Info("Replacing AclGroup(s). Done !");
             }
             catch (Exception ex)
             {
-                log.Error(AppOverwork.BusyContent = ex.Output(), ex);
+                log.Error(ex.Output(), ex);
                 MessageBase.Fatal(ex, "Replacing AclGroup(s) failed !");
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
             }
         }
 
@@ -174,8 +159,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="oldItems"></param>
         public static void SetDefault(AclGroupEntity newItem)
         {
-            AppOverwork.IsBusy = true;
-            log.Info(AppOverwork.BusyContent = "Setting default User Group. Please wait...");
+            log.Info("Setting default User Group. Please wait...");
 
             try
             {
@@ -185,16 +169,12 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 }
 
                 AppNavigator.Clear();
-                log.Info(AppOverwork.BusyContent = "Setting default User Group. Done !");
+                log.Info("Setting default User Group. Done !");
             }
             catch (Exception ex)
             {
-                log.Error(AppOverwork.BusyContent = ex.Output(), ex);
+                log.Error(ex.Output(), ex);
                 MessageBase.Fatal(ex, "Setting default User Group failed !");
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
             }
         }
 

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows;
+using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Common.Collections;
-using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm;
 
 namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
 {
@@ -49,7 +49,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
             {
                 string message = "Sections edit file dialog box is busy. Please try again.";
                 log.Warn(message);
-                AppLogger.Warning(message);
+                MessageBase.Warning(message);
                 dlg.Close();
             }
 
@@ -92,7 +92,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
             {
                 string message = string.Format("{0} not found !", nameof(SectionEntity));
                 log.Warn(message);
-                AppLogger.Warning(message);
+                MessageBase.Warning(message);
             }
         }
 
@@ -129,7 +129,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
             {
                 string message = string.Format("{0} not found !", nameof(SectionEntity));
                 log.Warn(message);
-                AppLogger.Warning(message);
+                MessageBase.Warning(message);
             }
         }
 

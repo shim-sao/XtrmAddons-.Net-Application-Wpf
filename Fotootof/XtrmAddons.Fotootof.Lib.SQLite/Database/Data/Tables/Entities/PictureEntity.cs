@@ -14,6 +14,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries SQLite Picture Entity.
     /// </summary>
+    [Serializable]
     [Table("Pictures")]
     [JsonObject(MemberSerialization.OptIn)]
     public class PictureEntity : EntityBase

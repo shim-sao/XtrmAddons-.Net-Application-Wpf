@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
+using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.HttpWebServer.Requests;
 using XtrmAddons.Net.HttpWebServer.Responses;
 
@@ -87,6 +88,10 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
                         }
                     }
                 }
+
+
+                var a = l.ToJson();
+                var b = a.ToString();
 
                 // Get list of folders associated to user.
                 Content["Authentication"] = true;

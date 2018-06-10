@@ -117,7 +117,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
         /// </summary>
         private void LoadAlbums()
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Loading Albums list. Please wait...");
 
             try
@@ -133,7 +133,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
             }
             finally
             {
-                AppOverwork.IsBusy = false;
+                MessageBase.IsBusy = false;
             }
         }
 
@@ -155,7 +155,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
         /// <param name="e">Event arguments.</param>
         private void UCAlbumsContainer_OnAdd(object sender, EntityChangesEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Saving new Album informations. Please wait...");
 
             AlbumEntity item = (AlbumEntity)e.NewEntity;
@@ -163,7 +163,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
             AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
 
             log.Info("Saving new Album informations. Done.");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
         /// <param name="e">Event arguments.</param>
         private void UCAlbumsContainer_OnChange(object sender, EntityChangesEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Saving Album informations. Please wait...");
 
             AlbumEntity newEntity = (AlbumEntity)e.NewEntity;
@@ -183,7 +183,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
             AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
 
             log.Info("Saving Album informations. Done.");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
 
         }
 
@@ -194,7 +194,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
         /// <param name="e">Event arguments.</param>
         private void UCAlbumsContainer_OnDelete(object sender, EntityChangesEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Deleting Album(s). Please wait...");
 
             // Remove item from list.
@@ -205,7 +205,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
             AlbumEntityCollection.DbDelete(new List<AlbumEntity> { item });
 
             log.Info("Deleting Album(s). Done.");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         #endregion

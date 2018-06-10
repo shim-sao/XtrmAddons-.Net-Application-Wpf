@@ -88,15 +88,15 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// </summary>
         public PageCatalog()
         {
-            AppOverwork.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Browser"));
+            MessageBase.IsBusy = true;
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "PageCatalog"));
 
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Browser"));
-            AppOverwork.IsBusy = false;
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "PageCatalog"));
+            MessageBase.IsBusy = false;
         }
 
         #endregion
@@ -155,22 +155,22 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// </summary>
         private void LoadSections()
         {
-            AppOverwork.IsBusy = true;
-            log.Info("Loading Sections list. Please wait...");
+            MessageBase.IsBusy = true;
+            log.Info("Loading Sections list : Start. Please wait...");
 
             try
             {
                 Model.Sections.Items = new SectionEntityCollection(true);
-                log.Info("Loading Sections list. Done.");
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Loading Sections list. Failed !");
+                MessageBase.Fatal(ex, "Loading Sections list failed !");
             }
             finally
             {
-                AppOverwork.IsBusy = false;
+                log.Info("Loading Sections list : End.");
+                MessageBase.IsBusy = false;
             }
         }
 
@@ -181,13 +181,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_OnCancel(object sender, EntityChangesEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Adding or editing Section operation canceled. Please wait...");
 
             LoadSections();
 
             log.Info("Adding or editing Section operation canceled. Done.");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_OnAdd(object sender, EntityChangesEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Saving new Section informations. Please wait...");
 
             SectionEntity item = (SectionEntity)e.NewEntity;
@@ -205,7 +205,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             SectionEntityCollection.DbInsert(new List<SectionEntity> { item });
 
             log.Info("Saving new Section informations. Done.");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_OnChange(object sender, EntityChangesEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Saving Section informations. Please wait...");
 
             SectionEntity newEntity = (SectionEntity)e.NewEntity;
@@ -226,7 +226,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             LoadSections();
 
             log.Info("Saving Section informations. Done.");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>
@@ -236,7 +236,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_OnDelete(object sender, EntityChangesEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Deleting Section(s). Please wait...");
             
             // Remove item from list.
@@ -247,7 +247,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             SectionEntityCollection.DbDelete(new List<SectionEntity> { item });
 
             log.Info("Deleting Section(s). Done.");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>
@@ -257,7 +257,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_OnDefaultChange(object sender, EntityChangesEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Setting default Section. Please wait...");
 
             SectionEntity newEntity = (SectionEntity)e.NewEntity;
@@ -265,7 +265,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             LoadSections();
 
             log.Info("Setting default Section. Done.");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         #endregion
@@ -279,7 +279,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// </summary>
         private void LoadAlbums()
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Loading Albums list. Please wait...");
 
             try
@@ -294,7 +294,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             }
             finally
             {
-                AppOverwork.IsBusy = false;
+                MessageBase.IsBusy = false;
             }
         }
 
@@ -315,13 +315,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <param name="e">Entity changes event arguments.</param>
         private void AlbumsListView_OnCancel(object sender, EntityChangesEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Adding or editing Album operation canceled. Please wait...");
 
             LoadAlbums();
 
             log.Info("Adding or editing Album operation canceled. Done.");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>
@@ -331,7 +331,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <param name="e">Event arguments.</param>
         private void AlbumsListView_OnAdd(object sender, EntityChangesEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Saving new Album informations. Please wait...");
 
             AlbumEntity item = (AlbumEntity)e.NewEntity;
@@ -339,7 +339,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
 
             log.Info("Saving new Album informations. Done.");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>
@@ -349,7 +349,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <param name="e">Event arguments.</param>
         private void AlbumsListView_OnChange(object sender, EntityChangesEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Saving Album informations. Please wait...");
 
             AlbumEntity newEntity = (AlbumEntity)e.NewEntity;
@@ -360,7 +360,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             LoadAlbums();
 
             log.Info("Saving Album informations. Done.");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>
@@ -370,7 +370,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <param name="e">Entity changes event arguments.</param>
         private void AlbumsListView_OnDelete(object sender, EntityChangesEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Deleting Album(s). Please wait...");
 
             // Remove item from list.
@@ -382,7 +382,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             }
 
             log.Info("Deleting Album(s). Done.");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         #endregion

@@ -12,22 +12,69 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
     /// </summary>
     public class MessageBase
     {
+        private static Xceed.Wpf.Toolkit.BusyIndicator busyIndicator;
+
+
+        public static Xceed.Wpf.Toolkit.BusyIndicator BusyIndicator
+        {
+            get
+            {
+                if(busyIndicator == null)
+                {
+                    ApplicationBase.BeginInvokeIfRequired(new Action(() =>
+                    {
+                        var a = Application.Current.MainWindow;
+                        var b = a.GetType();
+
+                        busyIndicator = Application.Current.MainWindow.GetPropertyValue<Xceed.Wpf.Toolkit.BusyIndicator>("BusyIndicator");
+                    }));
+                }
+
+                return busyIndicator;
+            }
+            set
+            {
+                busyIndicator = value;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static bool IsBusy
+        {
+            get => BusyIndicator.IsBusy;
+            set => ApplicationBase.BeginInvokeIfRequired(() => { BusyIndicator.IsBusy = value; });
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static object BusyContent
+        {
+            get => BusyIndicator.BusyContent;
+            set => ApplicationBase.BeginInvokeIfRequired(() => { BusyIndicator.BusyContent = value; });
+        }
+
         /// <summary>
         /// Method to display a simple message in a dialog box.
         /// </summary>
         /// <param name="s">The message to display.</param>
-        public static void Ok(string s, MessageBoxImage img = MessageBoxImage.None)
+        public static void Ok(string s, string title = "", MessageBoxImage img = MessageBoxImage.None)
         {
-            ApplicationBase.BeginInvokeIfRequired(MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, img));
+            ApplicationBase.BeginInvokeIfRequired(new Action(() =>
+            {
+                MessageBox.Show(s, $"{Translation.DWords.Application} - {title}", MessageBoxButton.OK, img);
+            }));
         }
 
         /// <summary>
         /// Method to display an error message in a dialog box.
         /// </summary>
         /// <param name="s">The message to display.</param>
-        public static void Error(string s)
+        public static void Error(string s, string title = "Error")
         {
-            ApplicationBase.BeginInvokeIfRequired(new Action(() => { MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error); }));
+            Ok(s, title, MessageBoxImage.Error);
         }
 
         /// <summary>
@@ -36,25 +83,25 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         /// <param name="e">The exception to add to the message box.</param>
         public static void Error(Exception e)
         {
-            ApplicationBase.BeginInvokeIfRequired(MessageBox.Show(e.Output(), Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error));
+            Ok(e.Output(), e.GetType().Name, MessageBoxImage.Error);
         }
 
         /// <summary>
         /// Method to display a warning message in a dialog box.
         /// </summary>
         /// <param name="s">The message to display.</param>
-        public static void Warning(string s)
+        public static void Warning(string s, string title = "Warning")
         {
-            ApplicationBase.BeginInvokeIfRequired(MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Warning));
+            Ok(s, title, MessageBoxImage.Warning);
         }
 
         /// <summary>
         /// Method to display a warning message in a dialog box.
         /// </summary>
         /// <param name="s">The message to display.</param>
-        public static void Info(string s)
+        public static void Info(string s, string title = "Information")
         {
-            ApplicationBase.BeginInvokeIfRequired(MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Information));
+            Ok(s, title, MessageBoxImage.Information);
         }
 
         /// <summary>
@@ -82,11 +129,11 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
                 s = e.Output();
             }
 
-            ApplicationBase.BeginInvokeIfRequired(() =>
+            ApplicationBase.BeginInvokeIfRequired(new Action(() =>
             {
                 MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Stop);
                 Application.Current.Shutdown();
-            });
+            }));
         }
 
 

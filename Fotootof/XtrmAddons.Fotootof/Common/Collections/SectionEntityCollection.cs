@@ -100,7 +100,6 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="newItems">Thee list of items to add.</param>
         public static void DbInsert(List<SectionEntity> newItems)
         {
-            AppOverwork.IsBusy = true;
             log.Info("Adding Section(s) to database. Please wait...");
 
             try
@@ -140,12 +139,8 @@ namespace XtrmAddons.Fotootof.Common.Collections
             }
             catch (Exception ex)
             {
-                log.Error(ex);
+                log.Error(ex.Output(), ex);
                 MessageBase.Fatal(ex, "Adding Section(s) to database. Fail !");
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
             }
         }
 
@@ -182,7 +177,6 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="newItems">The list of items to remove.</param>
         public static void DbDelete(List<SectionEntity> oldItems)
         {
-            AppOverwork.IsBusy = true;
             log.Info("Deleting Section(s). Please wait...");
 
             try
@@ -202,11 +196,8 @@ namespace XtrmAddons.Fotootof.Common.Collections
             }
             catch (Exception ex)
             {
+                log.Error(ex.Output(), ex);
                 MessageBase.Fatal(ex, "Deleting Section(s) list failed !");
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
             }
         }
 
@@ -217,7 +208,6 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="oldItems"></param>
         public static async void DbUpdateAsync(List<SectionEntity> newItems, List<SectionEntity> oldItems)
         {
-            AppOverwork.IsBusy = true;
             log.Info("Replacing Section. Please wait...");
 
             try
@@ -238,13 +228,8 @@ namespace XtrmAddons.Fotootof.Common.Collections
             }
             catch (Exception ex)
             {
-                log.Error(ex);
+                log.Error(ex.Output(), ex);
                 MessageBase.Fatal(ex, "Replacing Section(s) failed !");
-            }
-            finally
-            {
-                log.Info("Replacing Section(s). Done !");
-                AppOverwork.IsBusy = false;
             }
         }
 
@@ -255,7 +240,6 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="oldItems"></param>
         public static void SetDefault(SectionEntity newItem)
         {
-            AppOverwork.IsBusy = true;
             log.Info("Setting default Section. Please wait...");
 
             try
@@ -269,13 +253,8 @@ namespace XtrmAddons.Fotootof.Common.Collections
             }
             catch (Exception ex)
             {
-                log.Error(ex);
+                log.Error(ex.Output(), ex);
                 MessageBase.Fatal(ex, "Setting default Section. Failed !");
-            }
-            finally
-            {
-                log.Info("Setting default Section. Done !");
-                AppOverwork.IsBusy = false;
             }
         }
 

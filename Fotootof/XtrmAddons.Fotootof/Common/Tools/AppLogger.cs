@@ -33,7 +33,7 @@ namespace XtrmAddons.Fotootof.Common.Tools
         /// <summary>
         /// 
         /// </summary>
-        private static int maxLogsLinesLength = 100;
+        private static int maxLogsLinesLength = 150;
 
         #endregion Variables
 
@@ -81,10 +81,10 @@ namespace XtrmAddons.Fotootof.Common.Tools
 
             foreach (string str in logs.Cast<string>().Reverse())
             {
-                buffer += string.Format("[{0}]> {1}", index--, str);
+                buffer += $"({(index--).ToString().PadLeft(4, '0')}) {str}";
             }
 
-            ApplicationBase.BeginInvokeIfRequired(() => { AppOverwork.BusyContent = s; });
+            ApplicationBase.BeginInvokeIfRequired(() => { MessageBase.BusyContent = s; });
             ApplicationBase.BeginInvokeIfRequired(() => { AppNavigator.LogsStack.Text = buffer; });
         }
 

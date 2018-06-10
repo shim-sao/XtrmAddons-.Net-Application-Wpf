@@ -5,7 +5,7 @@ using System.Windows.Input;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 
-namespace XtrmAddons.Fotootof.Common.Windows.Slideshow
+namespace XtrmAddons.Fotootof.Layouts.Windows.Slideshow
 {
     /// <summary>
     /// Logique d'interaction pour SettingWindow.xaml

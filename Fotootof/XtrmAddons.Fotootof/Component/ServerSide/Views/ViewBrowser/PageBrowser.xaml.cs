@@ -72,7 +72,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
         /// </summary>
         public PageBrowser()
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Browser"));
 
             // Constuct page component.
@@ -80,7 +80,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Browser"));
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         #endregion

@@ -56,33 +56,27 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="newItems">Thee list of items to add.</param>
         public static void DbInsert(List<AclActionEntity> newItems)
         {
-            AppOverwork.IsBusy = true;
             log.Info("Adding AclAction(s). Please wait...");
 
             try
             {
-
                 if (newItems != null && newItems.Count > 0)
                 {
                     foreach (AclActionEntity entity in newItems)
                     {
                         MainWindow.Database.AclActions.Add(entity);
 
-                        log.Info(string.Format("AclAction [{0}:{1}] added.", entity.PrimaryKey, entity.Action));
+                        log.Info($"AclAction [{entity.PrimaryKey}:{entity.Action}] added.");
                     }
                 }
 
                 AppNavigator.Clear();
                 log.Info("Adding AclAction(s). Done !");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                log.Error(e);
-                MessageBase.Fatal(e, "Adding AclAction(s) failed !");
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
+                log.Error(ex);
+                MessageBase.Fatal(ex, "Adding AclAction(s) failed !");
             }
         }
 
@@ -92,7 +86,6 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="oldItems">The list of items to remove.</param>
         public static void DbDelete(List<AclActionEntity> oldItems)
         {
-            AppOverwork.IsBusy = true;
             log.Info("Deleting AclAction(s). Please wait...");
 
             try
@@ -103,7 +96,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
                     {
                         MainWindow.Database.AclActions.Delete(entity.PrimaryKey);
 
-                        log.Info(string.Format("AclAction [{0}:{1}] deleted.", entity.PrimaryKey, entity.Action));
+                        log.Info($"AclAction [{entity.PrimaryKey}:{entity.Action}] deleted.");
                     }
                 }
 
@@ -115,10 +108,6 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 log.Error(ex);
                 MessageBase.Fatal(ex, "Deleting AclAction(s) list failed !");
             }
-            finally
-            {
-                AppOverwork.IsBusy = false;
-            }
         }
 
         /// <summary>
@@ -128,7 +117,6 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="oldItems"></param>
         public static void DbUpdate(List<AclActionEntity> newItems, List<AclActionEntity> oldItems)
         {
-            AppOverwork.IsBusy = true;
             log.Info("Replacing AclAction. Please wait...");
 
             try
@@ -142,7 +130,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
 
                         MessageBase.NotImplemented();
 
-                        log.Info(string.Format("AclAction [{0}:{1}] updated.", entity.PrimaryKey, entity.Action));
+                        log.Info($"AclAction [{entity.PrimaryKey}:{entity.Action}] updated.");
                     }
                 }
 
@@ -153,10 +141,6 @@ namespace XtrmAddons.Fotootof.Common.Collections
             {
                 log.Error(ex);
                 MessageBase.Fatal(ex, "Replacing AclAction(s) failed !");
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
             }
         }
 

@@ -12,7 +12,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Fotootof.Common.Windows.Slideshow;
+using XtrmAddons.Fotootof.Layouts.Windows.Slideshow;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
@@ -144,7 +144,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 return;
             }
 
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Refreshing pictures list. Please wait...");
 
             await Task.Delay(3000);
@@ -209,7 +209,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
             ItemsCollection.ItemsSource = new PictureEntityCollection(newItems);
 
             log.Info("Saving pictures list. Done...");
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>

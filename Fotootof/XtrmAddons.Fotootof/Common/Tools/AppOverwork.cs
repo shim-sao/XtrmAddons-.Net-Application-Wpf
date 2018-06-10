@@ -1,10 +1,12 @@
-﻿using XtrmAddons.Net.Application;
+﻿using System;
+using XtrmAddons.Net.Application;
 
 namespace XtrmAddons.Fotootof.Common.Tools
 {
     /// <summary>
     /// Method XtrmAddons Fotootof Common Tools Application Overwork.
     /// </summary>
+    [Obsolete("Use MessageBase", true)]
     public static class AppOverwork
     {
         /// <summary>

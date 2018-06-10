@@ -6,6 +6,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
 {
@@ -83,7 +84,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
             else
             {
                 log.Error("Group not found !");
-                AppLogger.Warning("Group not found !");
+                MessageBase.Warning("Group not found !");
             }
         }
 
@@ -122,7 +123,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
             else
             {
                 log.Error("User not found !");
-                AppLogger.Warning("User not found !");
+                MessageBase.Warning("User not found !");
             }
         }
 

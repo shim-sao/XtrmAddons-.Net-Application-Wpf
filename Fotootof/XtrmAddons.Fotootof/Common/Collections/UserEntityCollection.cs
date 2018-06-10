@@ -4,6 +4,8 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Common.Collections
 {
@@ -82,7 +84,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="newItems">Thee list of items to add.</param>
         public static void DbInsert(List<UserEntity> newItems)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info("Adding User(s). Please wait...");
 
             try
@@ -105,11 +107,11 @@ namespace XtrmAddons.Fotootof.Common.Collections
             catch (Exception e)
             {
                 log.Error(e);
-                AppLogger.Fatal("Adding User(s) failed !", e);
+                MessageBase.Fatal(e, "Adding User(s) failed !");
             }
             finally
             {
-                AppOverwork.IsBusy = false;
+                MessageBase.IsBusy = false;
             }
         }
 
@@ -119,7 +121,6 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="newItems">The list of items to remove.</param>
         public static void DbDelete(List<UserEntity> oldItems)
         {
-            AppOverwork.IsBusy = true;
             log.Info("Deleting User(s). Please wait...");
 
             try
@@ -139,14 +140,10 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 AppNavigator.Clear();
                 log.Info("Adding User(s). Done !");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                log.Error(e);
-                AppLogger.Fatal("Deleting User(s) list failed !", e);
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
+                log.Error(ex.Output(), ex);
+                MessageBase.Fatal(ex, "Deleting User(s) list failed !");
             }
         }
 
@@ -156,7 +153,6 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="newItems">Thee list of items to update.</param>
         public async static void DbUpdate(List<UserEntity> newItems, List<UserEntity> oldItems)
         {
-            AppOverwork.IsBusy = true;
             log.Info("Updating User(s). Please wait...");
 
             // Check for Replace | Edit items.
@@ -177,14 +173,10 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 AppNavigator.Clear();
                 log.Info("Updating User(s). Done !");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                log.Error(e);
-                AppLogger.Fatal("Updating User(s) failed !", e);
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
+                log.Error(ex.Output(), ex);
+                MessageBase.Fatal(ex, "Updating User(s) failed !");
             }
         }
 

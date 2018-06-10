@@ -9,12 +9,14 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Net.Common.Extensions;
 using System.Windows;
+using System.Xml.Serialization;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 {
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Libraries SQLite Album Entity.</para>
     /// </summary>
+    [Serializable]
     [Table("Albums")]
     [JsonObject(MemberSerialization.OptIn)]
     public partial class AlbumEntity : CommonEntity
@@ -183,7 +185,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the name of the item.
         /// </summary>
         [Column(Order = 1)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Name")]
+        [XmlAttribute(DataType = "string", AttributeName = "Name")]
         public string Name
         {
             get { return name; }
@@ -201,7 +204,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the alias of the Album.
         /// </summary>
         [Column(Order = 2)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Alias")]
+        [XmlAttribute(DataType = "string", AttributeName = "Alias")]
         public string Alias
         {
             get { return alias; }
@@ -219,7 +223,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the description of the item.
         /// </summary>
         [Column(Order = 3)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Description")]
+        [XmlAttribute(DataType = "string", AttributeName = "Description")]
         public string Description
         {
             get { return description; }
@@ -237,7 +242,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the order place of the item.
         /// </summary>
         [Column(Order = 4)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Ordering")]
+        [XmlAttribute(DataType = "int", AttributeName = "Ordering")]
         public int Ordering
         {
             get { return ordering; }
@@ -255,7 +261,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the created date.
         /// </summary>
         [Column(Order = 5)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Created")]
+        [XmlAttribute(DataType = "string", AttributeName = "Created")]
         public DateTime Created
         {
             get { return created; }
@@ -273,7 +280,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the modified date.
         /// </summary>
         [Column(Order = 6)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Modified")]
+        [XmlAttribute(DataType = "string", AttributeName = "Modified")]
         public DateTime Modified
         {
             get { return modified; }
@@ -291,7 +299,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the first picture captured date.
         /// </summary>
         [Column(Order = 7)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "DateStart")]
+        [XmlAttribute(DataType = "string", AttributeName = "DateStart")]
         public DateTime DateStart
         {
             get { return dateStart; }
@@ -309,7 +318,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the last picture captured date.
         /// </summary>
         [Column(Order = 8)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "DateEnd")]
+        [XmlAttribute(DataType = "string", AttributeName = "DateEnd")]
         public DateTime DateEnd
         {
             get { return dateEnd; }
@@ -327,7 +337,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the background picture id.
         /// </summary>
         [Column(Order = 9)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "BackgroundPictureId")]
+        [XmlAttribute(DataType = "int", AttributeName = "BackgroundPictureId")]
         public int BackgroundPictureId
         {
             get { return backgroundPictureId; }
@@ -348,7 +359,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the preview picture id.
         /// </summary>
         [Column(Order = 10)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "PreviewPictureId")]
+        [XmlAttribute(DataType = "int", AttributeName = "PreviewPictureId")]
         public int PreviewPictureId
         {
             get { return previewPictureId; }
@@ -369,7 +381,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the thumbnail picture id.
         /// </summary>
         [Column(Order = 11)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "ThumbnailPictureId")]
+        [XmlAttribute(DataType = "int", AttributeName = "ThumbnailPictureId")]
         public int ThumbnailPictureId
         {
             get { return thumbnailPictureId; }
@@ -390,7 +403,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the comment for the item.
         /// </summary>
         [Column(Order = 12)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Comment")]
+        [XmlAttribute(DataType = "string", AttributeName = "Comment")]
         public string Comment
         {
             get { return comment; }
@@ -408,7 +422,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the parameters for the item.
         /// </summary>
         [Column(Order = 13)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Parameters")]
+        [XmlAttribute(DataType = "string", AttributeName = "Parameters")]
         public string Parameters
         {
             get { return parameters; }
@@ -432,6 +447,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the background picture entity.
         /// </summary>
         [NotMapped]
+        [JsonProperty(PropertyName = "BackgroundPicture")]
+        [XmlElement(ElementName = "BackgroundPicture")]
         public PictureEntity BackgroundPicture
         {
             get
@@ -459,6 +476,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the preview picture entity.
         /// </summary>
         [NotMapped]
+        [JsonProperty(PropertyName = "PreviewPicture")]
+        [XmlElement(ElementName = "PreviewPicture")]
         public PictureEntity PreviewPicture
         {
             get
@@ -486,6 +505,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the thumbnail picture entity.
         /// </summary>
         [NotMapped]
+        [JsonProperty(PropertyName = "ThumbnailPicture")]
+        [XmlElement(ElementName = "ThumbnailPicture")]
         public PictureEntity ThumbnailPicture
         {
             get
@@ -625,7 +646,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #endregion
 
 
-        #region Methods
+
+        #region Methods Picture
 
         /// <summary>
         /// Method to get a list of associated Picture.
@@ -678,6 +700,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             catch { }
         }
 
+        #endregion
+
+
+
+        #region Methods Section
+
         /// <summary>
         /// Method to get a list of associated Section.
         /// </summary>
@@ -728,6 +756,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             }
             catch { }
         }
+
+        #endregion
+
+
+
+        #region Methods Info
 
         /// <summary>
         /// Method to get a list of associated Info.

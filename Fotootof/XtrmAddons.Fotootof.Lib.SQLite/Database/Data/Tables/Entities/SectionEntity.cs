@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using System.Linq;
+using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Observables;
@@ -16,6 +17,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries SQLite Database Section Entity.
     /// </summary>
+    [Serializable]
     [Table("Sections")]
     [JsonObject(MemberSerialization.OptIn)]
     public partial class SectionEntity : EntityBase
@@ -166,7 +168,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the name of the Section.
         /// </summary>
         [Column(Order = 1)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Name")]
+        [XmlAttribute(DataType = "string", AttributeName = "Name")]
         public string Name
         {
             get { return name; }
@@ -185,7 +188,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <para>The alias is automaticaly formated when it is changed.</para>
         /// </summary>
         [Column(Order = 2)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Alias")]
+        [XmlAttribute(DataType = "string", AttributeName = "Alias")]
         public string Alias
         {
             get { return alias; }
@@ -203,7 +207,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the description of the item.
         /// </summary>
         [Column(Order = 3)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Description")]
+        [XmlAttribute(DataType = "string", AttributeName = "Description")]
         public string Description
         {
             get { return description; }
@@ -221,7 +226,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the is default item.
         /// </summary>
         [Column(Order = 4)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "IsDefault")]
+        [XmlAttribute(DataType = "boolean", AttributeName = "IsDefault")]
         public bool IsDefault
         {
             get { return isDefault; }
@@ -239,7 +245,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the order place of the item.
         /// </summary>
         [Column(Order = 5)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Ordering")]
+        [XmlAttribute(DataType = "int", AttributeName = "Ordering")]
         public int Ordering
         {
             get { return ordering; }
@@ -257,7 +264,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the background picture id.
         /// </summary>
         [Column(Order = 6)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "BackgroundPictureId")]
+        [XmlAttribute(DataType = "int", AttributeName = "BackgroundPictureId")]
         public int BackgroundPictureId
         {
             get { return backgroundPictureId; }
@@ -275,7 +283,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the preview picture id.
         /// </summary>
         [Column(Order = 7)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "PreviewPictureId")]
+        [XmlAttribute(DataType = "int", AttributeName = "PreviewPictureId")]
         public int PreviewPictureId
         {
             get { return previewPictureId; }
@@ -293,7 +302,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the thumbnail picture id.
         /// </summary>
         [Column(Order = 8)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "ThumbnailPictureId")]
+        [XmlAttribute(DataType = "int", AttributeName = "ThumbnailPictureId")]
         public int ThumbnailPictureId
         {
             get { return thumbnailPictureId; }
@@ -311,7 +321,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the comment for the item.
         /// </summary>
         [Column(Order = 9)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Comment")]
+        [XmlAttribute(DataType = "string", AttributeName = "Comment")]
         public string Comment
         {
             get { return comment; }
@@ -329,7 +340,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the parameters for the item.
         /// </summary>
         [Column(Order = 10)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Parameters")]
+        [XmlAttribute(DataType = "string", AttributeName = "Parameters")]
         public string Parameters
         {
             get { return parameters; }
@@ -352,7 +364,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Property to access to the collection of relationship Albums in Sections.
         /// </summary>
-        [JsonIgnore]
         public ObservableAlbumsInSections AlbumsInSections { get; set; }
             = new ObservableAlbumsInSections("SectionId");
 
@@ -377,7 +388,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Album dependencies primary key.
         /// </summary>
         [NotMapped]
-        public IEnumerable<int> AlbumsPK
+        public IEnumerable<int> AlbumsPKs
         //{
         //    get
         //    {
@@ -418,6 +429,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Albums associated to the Section.
         /// </summary>
         [NotMapped]
+        [JsonProperty(PropertyName = "Albums")]
+        [XmlElement(ElementName = "Albums")]
         public IEnumerable<AlbumEntity> Albums
         {
             get
@@ -447,6 +460,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Proprerties Dependencies AclGroup
 
         /// <summary>
+        /// Property to access to the collection of relationship Sections in AclGroups.
+        /// </summary>
+        public ObservableCollection<SectionsInAclGroups> SectionsInAclGroups { get; set; }
+            = new ObservableCollection<SectionsInAclGroups>();
+
+        /// <summary>
         /// Property AclGroup id (required for entity dependency).
         /// </summary>
         [NotMapped]
@@ -464,28 +483,23 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// Property to access to the collection of relationship Sections in AclGroups.
-        /// </summary>
-        [JsonIgnore]
-        public ObservableCollection<SectionsInAclGroups> SectionsInAclGroups { get; set; }
-            = new ObservableCollection<SectionsInAclGroups>();
-
-        /// <summary>
-        /// Property to access to the list of AclGroups associated to the Section.
-        /// </summary>
-        [NotMapped]
-        public IEnumerable<AclGroupEntity> AclGroups
-        {
-            get => ListAclGroups();
-            set => aclGroups = value;
-        }
-
-        /// <summary>
         /// Property to access to the list of AclGroup dependencies primary key.
         /// </summary>
         [NotMapped]
         public IEnumerable<int> AclGroupsPK
             => ListOfPrimaryKeys(SectionsInAclGroups.ToList(), "AclGroupId");
+
+        /// <summary>
+        /// Property to access to the list of AclGroups associated to the Section.
+        /// </summary>
+        [NotMapped]
+        [JsonProperty(PropertyName = "AclGroups")]
+        [XmlElement(ElementName = "AclGroups")]
+        public IEnumerable<AclGroupEntity> AclGroups
+        {
+            get => ListAclGroups();
+            set => aclGroups = value;
+        }
 
         #endregion
 

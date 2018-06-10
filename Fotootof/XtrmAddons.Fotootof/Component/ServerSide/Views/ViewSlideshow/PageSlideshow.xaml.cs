@@ -7,6 +7,7 @@ using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Tools;
 using System.Globalization;
 using System;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
 {
@@ -61,7 +62,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
         /// <param name="collection">A pictures entities Collection.</param>
         public PageSlideshow(PictureEntityCollection collection, PictureEntity picture = null)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Slideshow"));
 
             pictures = collection;
@@ -72,7 +73,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Slideshow"));
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
         /// <param name="collection">An album primary key.</param>
         public PageSlideshow(int albumPk, PictureEntity picture = null)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Slideshow"));
 
             this.albumPk = albumPk;
@@ -92,7 +93,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Slideshow"));
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         #endregion

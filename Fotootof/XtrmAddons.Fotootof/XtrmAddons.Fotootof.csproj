@@ -256,6 +256,7 @@
     <Compile Include="Common\Controls\DataGrids\UCAlbumsDataGrid.xaml.cs">
       <DependentUpon>UCAlbumsDataGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponseAlbums.cs" />
     <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClientModel.cs" />
     <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClient.xaml.cs">
       <DependentUpon>PageCatalogClient.xaml</DependentUpon>
@@ -295,11 +296,11 @@
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Layouts\Windows\Forms\ClientForm\WindowFormClientModel.cs" />
-    <Compile Include="Common\Windows\Slideshow\WindowSlideshow.xaml.cs">
+    <Compile Include="Layouts\Windows\Slideshow\WindowSlideshow.xaml.cs">
       <DependentUpon>WindowSlideshow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\Windows\Slideshow\WindowSlideshowModel.cs" />
-    <Compile Include="Common\Windows\Slideshow\ZoomBoder.cs" />
+    <Compile Include="Layouts\Windows\Slideshow\WindowSlideshowModel.cs" />
+    <Compile Include="Layouts\Windows\Slideshow\ZoomBoder.cs" />
     <Compile Include="Component\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml.cs">
       <DependentUpon>DataGridAclGroupsServer.xaml</DependentUpon>
     </Compile>
@@ -344,11 +345,11 @@
     </Compile>
     <Compile Include="Common\Controls\DataGrids\DataGridAlbumsModel.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewAlbumsModel.cs" />
-    <Compile Include="Common\Windows\Settings\WindowSettingsModel.cs" />
+    <Compile Include="Layouts\Windows\Settings\WindowSettingsModel.cs" />
     <Compile Include="Layouts\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml.cs">
       <DependentUpon>WindowDataGridAlbums.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\Windows\Settings\WindowSettings.xaml.cs">
+    <Compile Include="Layouts\Windows\Settings\WindowSettings.xaml.cs">
       <DependentUpon>WindowSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\ServerSide\Controls\DataGrids\DatagridHttpClient.xaml.cs">
@@ -466,7 +467,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Common\Windows\Slideshow\WindowSlideshow.xaml">
+    <Page Include="Layouts\Windows\Slideshow\WindowSlideshow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -498,7 +499,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Common\Windows\Settings\WindowSettings.xaml">
+    <Page Include="Layouts\Windows\Settings\WindowSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

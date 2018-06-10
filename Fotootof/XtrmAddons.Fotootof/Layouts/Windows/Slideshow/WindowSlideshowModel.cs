@@ -4,7 +4,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Net.Common.Extensions;
 
-namespace XtrmAddons.Fotootof.Common.Windows.Slideshow
+namespace XtrmAddons.Fotootof.Layouts.Windows.Slideshow
 {
     public class WindowSlideshowModel<WindowSlideshow> : WindowBaseModel<WindowSlideshow>
     {

@@ -176,8 +176,8 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
             }
             catch (Exception e)
             {
-                log.Error(e);
-                AppLogger.Fatal("Initializing server connection failed.", e);
+                log.Error("Initializing server connection failed.", e);
+                MessageBase.Fatal(e, "Initializing server connection failed.");
             }
         }
 
@@ -255,14 +255,14 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
                 // Raise authentication success event on HTTP OK response.
                 if (response.StatusCode == HttpStatusCode.OK && serverResponse.Authentication)
                 {
-                    log.Debug(Translation.Logs["SendingAuthenticationCommandResponseOk"]);
+                    log.Debug(Translation.DLogs.SendingAuthenticationCommandResponseOk);
                     RaiseAuthenticationSuccess(Server, serverResponse);
                 }
 
                 // Raise authentication unauthorized event unauthorized HTTP response.
                 else if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    log.Debug(Translation.Logs["SendingAuthenticationCommandResponseUnauthorized"]);
+                    log.Debug(Translation.DLogs.SendingAuthenticationCommandResponseUnauthorized);
                     RaiseAuthenticationUnauthorized(Server, serverResponse);
                 }
 
@@ -270,7 +270,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
                 // Todo : Adapt all http responses
                 else
                 {
-                    log.Error(Translation.Logs["SendingAuthenticationCommandResponseFailed"]);
+                    log.Error(Translation.DLogs.SendingAuthenticationCommandResponseFailed);
                     log.Error(response.StatusCode.ToString() + " : " + serverResponse.Error);
 
                     RaiseAuthenticationFailed(Server, serverResponse);
