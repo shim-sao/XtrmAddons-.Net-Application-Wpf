@@ -7,6 +7,7 @@ using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs;
 using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems.Log4net;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
@@ -28,7 +29,7 @@ namespace XtrmAddons.Fotootof
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// Variable memory log watcher.
+        /// Variable memory log watcher for log4net memory appender management.
         /// </summary>
         private static readonly MemoryLogWatcher logWatcher = new MemoryLogWatcher();
 
@@ -46,12 +47,17 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Property to access to the logs page.
         /// </summary>
-        public PageLogs BlockLogs { get; } = pageLogs;
+        public PageLogs BlockLogs => pageLogs;
 
         /// <summary>
         /// Property alias to access to the text block container of logs stack.
         /// </summary>
         public Border BlockContent => Block_Content;
+
+        /// <summary>
+        /// Property alias to access to the text block container of logs stack.
+        /// </summary>
+        public Xceed.Wpf.Toolkit.BusyIndicator BusyIndicator => XCTKBusyIndicator;
 
         /// <summary>
         /// Property to access to the SQLite Service.
@@ -101,7 +107,7 @@ namespace XtrmAddons.Fotootof
         /// <param name="e"></param>
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             await Task.Delay(10);
 
             // Add application to system tray.
@@ -116,7 +122,7 @@ namespace XtrmAddons.Fotootof
             // Initialize window content.
             await InitializeContentAsync();
 
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>

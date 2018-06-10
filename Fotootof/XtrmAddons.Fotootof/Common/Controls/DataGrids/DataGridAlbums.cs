@@ -6,6 +6,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
 {
@@ -45,7 +46,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
             if (!dlg.Activate())
             {
                 log.Warn("Albums edit file dialog boxn is busy. Please try again.");
-                AppLogger.Warning("Albums edit file dialog boxn is busy. Please try again.");
+                MessageBase.Warning("Albums edit file dialog boxn is busy. Please try again.");
                 dlg.Close();
             }
 
@@ -88,7 +89,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
             {
                 string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
                 log.Warn(message);
-                AppLogger.Warning(message);
+                MessageBase.Warning(message);
             }
         }
 
@@ -122,9 +123,9 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
             }
             else
             {
-                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                string message = $"{typeof(AlbumEntity).Name} not found !";
                 log.Warn(message);
-                AppLogger.Warning(message);
+                MessageBase.Warning(message);
             }
         }
 

@@ -8,6 +8,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Common.Collections
 {
@@ -118,7 +119,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
                     {
                         //entity.Initialize();
                         //MainWindow.Database.Info_Add(entity);
-
+                        
                         throw new NotImplementedException();
 
                         //Logger.Info(string.Format("Info [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
@@ -128,13 +129,10 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 AppNavigator.Clear();
                 log.Info("Adding Info(s). Done !");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                AppLogger.Fatal("Adding Info(s) failed !", e);
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
+                log.Error(ex.Output(), ex);
+                MessageBase.Fatal(ex, "Adding Info(s) failed !");
             }
         }
 
@@ -166,11 +164,8 @@ namespace XtrmAddons.Fotootof.Common.Collections
             }
             catch (Exception ex)
             {
-                AppLogger.Fatal("Deleting Section(s) list failed !", ex);
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
+                log.Error(ex.Output(), ex);
+                MessageBase.Fatal(ex, "Deleting Section(s) list failed !");
             }
         }
 
@@ -203,11 +198,8 @@ namespace XtrmAddons.Fotootof.Common.Collections
             }
             catch (Exception ex)
             {
-                AppLogger.Fatal("Replacing Info(s) failed !", ex);
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
+                log.Error(ex.Output(), ex);
+                MessageBase.Fatal(ex, "Replacing Info(s) failed !");
             }
         }
 

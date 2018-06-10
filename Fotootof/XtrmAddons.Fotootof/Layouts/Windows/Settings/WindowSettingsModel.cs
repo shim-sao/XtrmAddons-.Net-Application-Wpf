@@ -2,7 +2,7 @@
 using XtrmAddons.Net.Application.Serializable.Elements.Storage;
 using XtrmAddons.Net.Application.Helpers;
 
-namespace XtrmAddons.Fotootof.Common.Windows.Settings
+namespace XtrmAddons.Fotootof.Layouts.Windows.Settings
 {
     public class WindowSettingsModel
     {

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
-using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Common.Collections
 {
@@ -116,13 +118,10 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 AppNavigator.Clear();
                 log.Info("Adding Picture(s). Done !");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                AppLogger.Fatal("Adding Picture(s) failed !", e);
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
+                log.Error(ex.Output(), ex);
+                MessageBase.Fatal(ex, "Adding Picture(s) failed !");
             }
         }
 
@@ -152,11 +151,8 @@ namespace XtrmAddons.Fotootof.Common.Collections
             }
             catch (Exception ex)
             {
-                AppLogger.Fatal("Deleting Picture(s) list failed !", ex);
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
+                log.Error(ex.Output(), ex);
+                MessageBase.Fatal(ex, "Deleting Picture(s) list failed !");
             }
         }
 
@@ -186,11 +182,8 @@ namespace XtrmAddons.Fotootof.Common.Collections
             }
             catch (Exception ex)
             {
-                AppLogger.Fatal("Replacing Picture(s) failed !", ex);
-            }
-            finally
-            {
-                AppOverwork.IsBusy = false;
+                log.Error(ex.Output(), ex);
+                MessageBase.Fatal(ex, "Replacing Picture(s) failed !");
             }
         }
 

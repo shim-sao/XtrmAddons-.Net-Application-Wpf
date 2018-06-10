@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace XtrmAddons.Fotootof.Common.Windows.Settings
+namespace XtrmAddons.Fotootof.Layouts.Windows.Settings
 {
     /// <summary>
     /// Logique d'interaction pour WindowSettings.xaml

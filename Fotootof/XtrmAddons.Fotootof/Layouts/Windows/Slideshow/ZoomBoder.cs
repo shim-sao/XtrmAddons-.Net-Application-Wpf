@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace XtrmAddons.Fotootof.Common.Windows.Slideshow
+namespace XtrmAddons.Fotootof.Layouts.Windows.Slideshow
 {
     public class ZoomBorder : Border
     {

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
@@ -15,6 +16,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries SQLite AclGroup table entity.
     /// </summary>
+    [Serializable]
     [Table("AclGroups")]
     [JsonObject(MemberSerialization.OptIn)]
     public partial class AclGroupEntity : EntityBase

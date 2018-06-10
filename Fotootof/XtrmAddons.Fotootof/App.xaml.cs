@@ -89,15 +89,15 @@ namespace XtrmAddons.Fotootof
         {
             log4net.Config.XmlConfigurator.Configure();
 
-            #if !DEBUG
+#if !DEBUG
 
             // Disable using DEBUG mode in Release mode.
-            foreach (ILoggerRepository repository in log4net.LogManager.GetAllRepositories())
+            foreach (log4net.Repository.ILoggerRepository repository in log4net.LogManager.GetAllRepositories())
             {
-                repository.Threshold = log4net.Core.Level.Info;
+                repository.Threshold = log4net.Core.Level.Error;
             }
 
-            #endif
+#endif
         }
 
         /// <summary>

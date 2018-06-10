@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Net.Application;
@@ -40,7 +41,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
         /// </summary>
         public PageServer()
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Server"));
 
             // Constuct page component.
@@ -48,7 +49,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Server"));
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
 

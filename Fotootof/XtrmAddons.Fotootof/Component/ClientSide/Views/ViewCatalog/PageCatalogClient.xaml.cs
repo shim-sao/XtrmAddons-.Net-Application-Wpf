@@ -7,6 +7,7 @@ using XtrmAddons.Fotootof.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient;
 using XtrmAddons.Fotootof.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 
 namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
@@ -54,7 +55,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// <param name="server"></param>
         public PageCatalogClient(ClientHttp server)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "PageCatalogClient"));
 
             // Set page variables and properties.
@@ -65,7 +66,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
             AfterInitializedComponent();
             
             log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "PageCatalogClient"));
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         #endregion

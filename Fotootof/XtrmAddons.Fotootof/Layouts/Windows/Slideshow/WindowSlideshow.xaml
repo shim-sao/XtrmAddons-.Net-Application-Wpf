@@ -1,11 +1,11 @@
 ﻿<Window 
-    x:Class="XtrmAddons.Fotootof.Common.Windows.Slideshow.WindowSlideshow"
+    x:Class="XtrmAddons.Fotootof.Layouts.Windows.Slideshow.WindowSlideshow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
-    xmlns:local="clr-namespace:XtrmAddons.Fotootof.Common.Windows.Slideshow"
+    xmlns:local="clr-namespace:XtrmAddons.Fotootof.Layouts.Windows.Slideshow"
     mc:Ignorable="d"
     Title="Slideshow"
     ShowInTaskbar="False"

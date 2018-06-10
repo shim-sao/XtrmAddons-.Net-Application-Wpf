@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
@@ -13,6 +14,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// <summary>
     /// Class XtrmAddons Fotootof Server SQLite User Entity.
     /// </summary>
+    [Serializable]
     [Table("Infos")]
     [JsonObject(MemberSerialization.OptIn)]
     public partial class InfoEntity : EntityBase

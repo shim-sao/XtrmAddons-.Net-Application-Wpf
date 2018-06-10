@@ -11,7 +11,7 @@ using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm;
-using XtrmAddons.Fotootof.Common.Windows.Settings;
+using XtrmAddons.Fotootof.Layouts.Windows.Settings;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers;
 using XtrmAddons.Fotootof.Interfaces.AddInsContracts;
 using XtrmAddons.Fotootof.Layouts.Windows.About;
@@ -194,10 +194,10 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         /// <param name="e">The routed event arguments.</param>
         private void OnServerRestart_Click(object sender, RoutedEventArgs e)
         {
-            AppOverwork.IsBusy = true;
+            MessageBase.IsBusy = true;
             OnServerStop_Click(sender, e);
             OnServerStart_Click(sender, e);
-            AppOverwork.IsBusy = false;
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>
@@ -320,13 +320,13 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
             
             if (result == true)
             {
-                AppOverwork.IsBusy = true;
+                MessageBase.IsBusy = true;
 
                 ApplicationBase.Options.Remote.Clients.AddKeySingle(dlg.NewForm);
                 ApplicationBase.SaveOptions();
                 RaiseClientAdded(this, e.RoutedEvent);
 
-                AppOverwork.IsBusy = false;
+                MessageBase.IsBusy = false;
             }
         }
 
@@ -353,7 +353,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
                 }
 
                 log.Info("Adding or editing User informations. Done");
-                AppOverwork.IsBusy = false;
+                MessageBase.IsBusy = false;
             }
         }
 
@@ -376,7 +376,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
                 SectionEntityCollection.DbInsert(new List<SectionEntity> { dlg.NewForm });
 
                 log.Info("Adding or editing Section informations. Done");
-                AppOverwork.IsBusy = false;
+                MessageBase.IsBusy = false;
             }
         }
 
