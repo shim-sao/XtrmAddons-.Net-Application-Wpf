@@ -76,17 +76,35 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries SQLite Database Data Base Observable Dependencies Constructor.
         /// </summary>
-        /// <param name="dependenciesPrimaryKeysName"></param>
-        public ObservableDependenciesBase(string dependenciesPrimaryKeysName) : base()
+        /// <param name="dependencyPrimaryKeyName"></param>
+        public ObservableDependenciesBase(string dependencyPrimaryKeyName) : base()
         {
-            if(dependenciesPrimaryKeysName.IsNullOrWhiteSpace())
+            if(dependencyPrimaryKeyName.IsNullOrWhiteSpace())
             {
-                ArgumentNullException e = ArgumentNullException(nameof(dependenciesPrimaryKeysName));
+                ArgumentNullException e = ArgumentNullException(nameof(dependencyPrimaryKeyName));
                 log.Fatal(e.Output());
                 throw e;
             }
 
-            DepPKName = dependenciesPrimaryKeysName;
+            DepPKName = dependencyPrimaryKeyName;
+        }
+
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Libraries SQLite Database Data Base Observable Dependencies Constructor.
+        /// </summary>
+        /// <param name="dependencyPrimaryKeyName">The dependency primary key name.</param>
+        /// <param name="collection">An enumerable collection of items.</param>
+        public ObservableDependenciesBase(string dependencyPrimaryKeyName, IEnumerable<T> collection) : base(collection)
+        {
+            if (dependencyPrimaryKeyName.IsNullOrWhiteSpace())
+            {
+                ArgumentNullException e = ArgumentNullException(nameof(dependencyPrimaryKeyName));
+                log.Fatal(e.Output());
+                throw e;
+            }
+
+            DepPKName = dependencyPrimaryKeyName;
         }
 
         #endregion

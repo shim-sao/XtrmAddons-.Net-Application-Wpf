@@ -18,6 +18,7 @@
 
 	<Grid x:Name="Block_Root"
 		  Style="{StaticResource Root}">
+		
 		<StackPanel x:Name="Block_RootPanel"
 					Style="{StaticResource FieldsetVertical}">
 
@@ -90,28 +91,24 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <ucbrowser:TreeViewSystemStorage
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    x:Name="UcTreeViewDirectories"
-                    IsHeaderVisible="Visible"
-                    Background="{StaticResource ResourceKey=Panton_3}"/>
+                <ucbrowser:TreeViewSystemStorage Grid.Row="0"
+												 Grid.Column="0"
+												 x:Name="UcTreeViewDirectories"
+												 IsHeaderVisible="Visible"
+												 Background="{StaticResource ResourceKey=Panton_3}"/>
 
-                <GridSplitter
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch" />
+                <GridSplitter Grid.Row="0"
+							  Grid.Column="1"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch" />
 
-                <Grid
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    x:Name="GridFiles">
+                <Grid Grid.Row="0"
+					  Grid.Column="2"
+					  x:Name="GridFiles">
 
-                    <uclistviews:ListViewStoragesServer
-                        x:Name="UcListViewStoragesServer"
-                        ItemsCollection_MouseDoubleClick="UcListViewStoragesServer_ItemsCollection_MouseDoubleClick"
-                        Loaded="UcListViewStoragesServer_Loaded"/>
+                    <uclistviews:ListViewStoragesServer x:Name="UcListViewStoragesServer"
+														ItemsCollection_MouseDoubleClick="UcListViewStoragesServer_ItemsCollection_MouseDoubleClick"
+														Loaded="UcListViewStoragesServer_Loaded"/>
                 </Grid>
             </Grid>
 

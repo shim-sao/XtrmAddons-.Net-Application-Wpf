@@ -8,6 +8,7 @@ using XtrmAddons.Fotootof.Common.Tools;
 using System.Globalization;
 using System.ComponentModel;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
 {
@@ -53,7 +54,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         public PageAlbum()
         {
             NotSupportedException e = new NotSupportedException("An Album Primary Key must be specify as argument. Uses PageAlbum.PageAlbum(int albumId)");
-            log.Fatal(e);
+            log.Fatal(e.Output(), e);
             throw e;
         }
 
@@ -143,13 +144,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         #endregion
 
 
-
+        
         #region Obsoletes
 
         /// <summary>
         /// Method to initialize and display data context.
         /// </summary>
-        [Obsolete("Will be remove. None sense...")]
+        [Obsolete("Will be remove. None sense...", true)]
         public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
         {
             throw new System.NotImplementedException();

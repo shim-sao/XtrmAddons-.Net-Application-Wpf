@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Common.Collections;
@@ -140,14 +141,16 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
         /// </summary>
         protected override bool IsValidInputs()
         {
+            log.Info($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
+
             // Check if the name is not empty.
-            Trace.WriteLine("Checking if the name is not empty...");
             if (!IsValidInput(InputName))
             {
+                log.Warn($"The input name is invalid : {InputName}");
                 return false;
             }
 
-            Trace.WriteLine("All inputs have been verified !");
+            log.Info("All inputs have been verified !");
             return IsSaveEnabled = base.IsValidInputs();
         }
 
@@ -160,13 +163,18 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
         /// <summary>
         /// Method to validate the Form Data.
         /// </summary>
-        private new bool IsValidForm()
+        protected override bool IsValidForm()
         {
+            log.Info($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
+
+            // Check if the name is not empty.
             if (NewForm.Name.IsNullOrWhiteSpace())
             {
+                log.Warn($"The entity form name is invalid : {NewForm.Name}");
                 return false;
             }
 
+            log.Info("The entity form has been verified !");
             return true;
         }
 

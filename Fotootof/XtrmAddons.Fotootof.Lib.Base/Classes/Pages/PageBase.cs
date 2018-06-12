@@ -133,6 +133,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// </summary>
         /// <param name="multiselect">Multiple selection enabled ?. False by default. Optional.</param>
         /// <returns>A picture file dialog box selector, null if canceled.</returns>
+        [Obsolete("use DialogBase.PictureFileDialogBox(bool multiselect = false);")]
         protected OpenFileDialog PictureFileDialogBox(bool multiselect = false)
         {
             // Configure open file dialog box 

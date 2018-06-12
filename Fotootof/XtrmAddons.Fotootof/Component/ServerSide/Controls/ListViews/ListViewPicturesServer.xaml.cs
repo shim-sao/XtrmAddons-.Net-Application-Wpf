@@ -3,18 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Security.AccessControl;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
-using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Layouts.Windows.Slideshow;
-using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Win32;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
 {
@@ -70,6 +69,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         #region Methods
 
         /// <summary>
+        /// Method called on click event to add a new Album.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        public override void OnAddNewItem_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
@@ -101,43 +110,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="multiselect"></param>
-        /// <returns></returns>
-        protected CommonOpenFileDialog FolderDialogBox(bool multiselect = false, Environment.SpecialFolder folder = Environment.SpecialFolder.MyDocuments)
-        {
-            CommonOpenFileDialog dlg = new CommonOpenFileDialog
-            {
-                Title = "My Title",
-                IsFolderPicker = true,
-                InitialDirectory = folder.ToString(),
-
-                AddToMostRecentlyUsedList = false,
-                AllowNonFileSystemItems = false,
-                DefaultDirectory = Environment.SpecialFolder.DesktopDirectory.ToString(),
-                EnsureFileExists = true,
-                EnsurePathExists = true,
-                EnsureReadOnly = false,
-                EnsureValidNames = true,
-                Multiselect = multiselect,
-                ShowPlacesList = true
-            };
-
-            if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                return dlg;
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private async void OnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            CommonOpenFileDialog dlg = FolderDialogBox();
+            CommonOpenFileDialog dlg = DialogBase.FolderDialogBox();
 
             if(dlg == null)
             {
@@ -154,24 +131,24 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
 
             foreach(PictureEntity pe in Items)
             {
-                log.Info(string.Format("Processing on picture [{0}]{1}. Please wait...", pe.PrimaryKey, pe.Name));
+                log.Info($"Processing on picture [{pe.PrimaryKey}]{pe.Name}. Please wait...");
                 bool IsChanged = false;
 
                 if (!pe.OriginalPath.IsNullOrWhiteSpace() && !File.Exists(pe.OriginalPath))
                 {
-                    log.Info(string.Format("OriginalPath : {0}", pe.OriginalPath));
+                    log.Info($"OriginalPath : {pe.OriginalPath}");
                     IsChanged = DirSearch(pe, "OriginalPath", dlg.FileName);
                 }
 
                 if (!pe.PicturePath.IsNullOrWhiteSpace() && !File.Exists(pe.PicturePath))
                 {
-                    log.Info(string.Format("PicturePath : {0}", pe.PicturePath));
+                    log.Info($"PicturePath : {pe.PicturePath}");
                     IsChanged = DirSearch(pe, "PicturePath", dlg.FileName);
                 }
 
                 if (!pe.ThumbnailPath.IsNullOrWhiteSpace() && !File.Exists(pe.ThumbnailPath))
                 {
-                    log.Info(string.Format("ThumbnailPath : {0}", pe.ThumbnailPath));
+                    log.Info($"ThumbnailPath : {pe.ThumbnailPath}");
                     IsChanged = DirSearch(pe, "ThumbnailPath", dlg.FileName);
                 }
 

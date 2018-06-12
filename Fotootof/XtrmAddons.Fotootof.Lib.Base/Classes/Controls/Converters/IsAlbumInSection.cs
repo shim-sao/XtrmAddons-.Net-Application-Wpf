@@ -11,6 +11,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters
         /// <summary>
         /// Property to access to the name of Albums dependencies primary keys.
         /// </summary>
-        public override string DependenciesPKName => "AlbumsPK";
+        public override string DependenciesPKName => "AlbumsPKs";
     }
 }

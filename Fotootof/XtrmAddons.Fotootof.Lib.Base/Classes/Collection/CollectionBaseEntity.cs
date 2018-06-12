@@ -115,7 +115,8 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
         /// <param name="options">Options for query filters.</param>
         protected virtual void LoadOptions(U options = default(U))
         {
-            Trace.WriteLine("Loading Collection");
+            log.Debug($"Auto loading Collection : {GetType().Name}");
+
             options = options == null || options.Equals(default(U)) ? Options : options;
             options = options == null || options.Equals(default(U)) ? OptionsDefault : options;
 
@@ -125,6 +126,8 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
             MethodInfo methodInfo = manager.GetMethod("List");
             IList items = methodInfo.Invoke(manager, new object[] { options }) as IList;
 
+            log.Debug($"{items.Count} entity(ies) found !");
+
             foreach (T entity in items)
             {
                 Add(entity);
@@ -132,12 +135,19 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
         }
 
         /// <summary>
-        /// 
+        /// Method to find an item by its primary key.
         /// </summary>
-        /// <param name="pk"></param>
-        /// <returns></returns>
+        /// <param name="pk">The item primary key or item id to find.</param>
+        /// <returns>The item found or default if pk = 0.</returns>
+        /// <exception cref="InvalidOperationException">Occurs when multiple items are found.</exception>
         public T FindPrimaryKey(int pk)
         {
+            if(pk == 0)
+            {
+                log.Warn($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {pk} => 0");
+                return default(T);
+            }
+
             return Items.ToList().Single(x => (int)x.GetPropertyValue("PrimaryKey") == pk);
         }
 
