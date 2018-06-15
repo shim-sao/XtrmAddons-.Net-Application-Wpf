@@ -70,6 +70,7 @@
     <Compile Include="Models\Json\InfoJson.cs" />
     <Compile Include="Models\Json\PictureJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Router\SectionRoute.cs" />
     <Compile Include="Router\SectionsRoute.cs" />
     <Compile Include="Router\IndexRoute.cs" />
     <Compile Include="Router\Router.cs" />

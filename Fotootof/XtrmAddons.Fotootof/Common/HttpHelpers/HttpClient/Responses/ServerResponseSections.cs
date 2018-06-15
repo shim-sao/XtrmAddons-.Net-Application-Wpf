@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using XtrmAddons.Fotootof.Lib.Api.Models.Json;
+﻿using XtrmAddons.Fotootof.Lib.Api.Models.Json;
 
 namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient.Responses
 {
-    public class ServerResponseSections : ServerResponseBase<List<SectionJson>>
+    public class ServerResponseSection : ServerResponseBase<SectionJson>
     {
         /// <summary>
         /// 
         /// </summary>
-        //public List<SectionJson> Response { get; set; }
+        //public SectionJson Response { get; set; }
     }
 }

@@ -165,14 +165,8 @@
   <data name="SavingApplicationWaiting" xml:space="preserve">
     <value>Saving the application options &amp; parameters before exit. Please wait...</value>
   </data>
-  <data name="SendingAlbumsCommand" xml:space="preserve">
-    <value>Sending ListAlbums command to server {0}:{1}</value>
-  </data>
   <data name="SendingAlbumsCommandDone" xml:space="preserve">
     <value>Sending ListAlbums command to server done !</value>
-  </data>
-  <data name="SendingAuthenticationCommand" xml:space="preserve">
-    <value>Sending Authentication command to server {0}:{1}</value>
   </data>
   <data name="SendingAuthenticationCommandDone" xml:space="preserve">
     <value>Sending Authentication command to server done !</value>
@@ -189,8 +183,8 @@
   <data name="SendingAuthenticationCommandUnauthorized" xml:space="preserve">
     <value>Sending Authentication command : user unauthorized !</value>
   </data>
-  <data name="SendingListSectionsCommand" xml:space="preserve">
-    <value>Sending ListSections command to server {0}:{1}</value>
+  <data name="SendingClientCommand" xml:space="preserve">
+    <value>Sending {0} command to server {1}:{2}</value>
   </data>
   <data name="SendingListSectionsCommandDone" xml:space="preserve">
     <value>Sending ListSections command to server done !</value>
@@ -206,9 +200,6 @@
   </data>
   <data name="SendingListSectionsCommandUnauthorized" xml:space="preserve">
     <value>Sending ListSections command : user unauthorized !</value>
-  </data>
-  <data name="SendingPingCommand" xml:space="preserve">
-    <value>Sending Ping command to server {0}:{1}</value>
   </data>
   <data name="SendingPingCommandDone" xml:space="preserve">
     <value>Sending Ping command to server done !</value>

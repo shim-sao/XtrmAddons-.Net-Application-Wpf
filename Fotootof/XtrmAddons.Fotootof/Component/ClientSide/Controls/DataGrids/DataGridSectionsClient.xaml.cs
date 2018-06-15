@@ -34,6 +34,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids
         /// </summary>
         public override Control DeleteControl => Button_Delete;
 
+
         #endregion
 
 
@@ -98,7 +99,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids
 
 
 
-        #region Methods
+        #region Methods Resize
 
         /// <summary>
         /// Method called on user control size changed event.

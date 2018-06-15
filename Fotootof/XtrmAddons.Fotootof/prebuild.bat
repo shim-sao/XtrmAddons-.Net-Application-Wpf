@@ -1,49 +1,33 @@
 @echo off
 setlocal EnableDelayedExpansion
-set SourceDir=%SourceDirName%\
-set DestDir=%DestDirName%\
-set DestDirBin=%DestDir%Bin\
-set DestDirLocal=%DestDir%Local\
-set DestDirAssets=%DestDir%Assets\
-set DestDirBinName=%DestDirName%Bin
 
-:: Operation delete on Bin directory
-if exist %DestDirBin% (
-    :: Delete all files in directory.
-    set count=0
-    for %%x in (%DestDirBin%*.*) do set /a count+=1
-    if !count! GTR 0 ( del /s /q "%DestDirBin%*.*" )
+:: Prefix for logs
+set logger=BATCH PREBUILD #
 
-    :: Delete subdirectories in 2 level
-    :: Hack Bug : recursive /s failed like shit on non empty...
-    for /d %%x in ("%DestDirBin%*") do (
-        del /s /q %%x\*.*
-        for /d %%y in (%%x) do (
-            del /s /q %%y\*.*
-            rmdir /s /q %%y
-        )
-        rmdir /s /q %%x
-    )
-    rmdir /s /q %DestDirBin%
+echo %logger% # #######################################
+
+:: Process delete on [\Bin] directory
+if exist %DestDirectoryBin% (
+    rmdir /S /Q "%DestDirectoryBin%"
+
+	echo %logger% Process delete destination [\Bin] directory : Done.
+	echo %logger% Process delete destination [\Bin] directory : Done. >> %loggerFile%
+) else (
+	echo %logger% Process delete destination [\Bin] directory : Directory not found !
+	echo %logger% Process delete destination [\Bin] directory : Directory not found ! >> %loggerFile%
 )
 
-:: Operation delete on Local directory
-if exist %DestDirLocal% (
-    :: Delete all files in directory.
-    set count=0
-    for %%x in (%DestDirLocal%*.*) do set /a count+=1
-    if !count! GTR 0 ( del /s /q "%DestDirLocal%*.*" )
+:: Process delete on [\Local] directory
+if exist %DestDirectoryLocal% (
+    rmdir /S /Q "%DestDirectoryLocal%"
 
-    :: Delete subdirectories in 2 level
-    :: Hack Bug : recursive /s failed like shit on non empty...
-    for /d %%x in ("%DestDirLocal%*") do (
-        del /s /q %%x\*.*
-        for /d %%y in (%%x) do (
-            del /s /q %%y\*.*
-            rmdir /s /q %%y
-        )
-        rmdir /s /q %%x
-    )
-    rmdir /s /q %DestDirLocal%
+	echo %logger% Process delete destination [\Local] directory : Done.
+	echo %logger% Process delete destination [\Local] directory : Done. >> %loggerFile%
+) else (
+	echo %logger% Process delete destination [\Local] directory : Directory not found !
+	echo %logger% Process delete destination [\Local] directory : Directory not found ! >> %loggerFile%
 )
+
+echo %logger% # ####################################### END
+
 endlocal

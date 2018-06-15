@@ -10,6 +10,7 @@ using XtrmAddons.Net.Application.Serializable.Elements.Remote;
 using System.Threading.Tasks;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using System.Reflection;
 
 namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
 {
@@ -61,17 +62,21 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
 
         public event EventHandler OnAuthenticationUnauthorized = delegate { };
 
+        
         public event EventHandler OnListSectionsSuccess = delegate { };
 
         public event EventHandler OnListSectionsFailed = delegate { };
+
 
         public event EventHandler OnSingleSectionSuccess = delegate { };
 
         public event EventHandler OnSingleSectionFailed = delegate { };
 
+
         public event EventHandler OnPingSuccess = delegate { };
 
         public event EventHandler OnPingFailed = delegate { };
+
 
         public event EventHandler OnServerStop = delegate { };
 
@@ -187,7 +192,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
         /// </summary>
         public async Task Ping()
         {
-            log.Info(string.Format(Translation.Logs["SendingPingCommand"].ToString(), Server.Host, Server.Port));
+            log.Info(string.Format(Translation.Logs["SendingClientCommand"].ToString(), MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
 
             // Initialize server response.
             ServerResponse serverResponse = null;
@@ -238,7 +243,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
         /// </summary>
         public async Task<bool> Authentication()
         {
-            log.Info(string.Format(Translation.Logs["SendingAuthenticationCommand"].ToString(), Server.Host, Server.Port));
+            log.Info(string.Format(Translation.Logs["SendingClientCommand"].ToString(), MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
 
             // Initialize server response.
             ServerResponse serverResponse = null;
@@ -310,12 +315,11 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
         /// </summary>
         public async Task<bool> ListSections()
         {
-            log.Info(string.Format(Translation.Logs["SendingListSectionsCommand"].ToString(), Server.Host, Server.Port));
+            log.Info(string.Format(Translation.Logs["SendingClientCommand"].ToString(), MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
 
             // Initialize sections server response.
             ServerResponseSections serverResponse = null;
 
-            // Try to check if the user can access to server content.
             try
             {
                 // Send command ListSections to the server.
@@ -369,7 +373,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
         /// <summary>
         /// 
         /// </summary>
-        public async Task ListAlbums()
+        /*public async Task ListAlbums()
         {
             log.Info(string.Format(Translation.DLogs.SendingAlbumsCommand.ToString(), Server.Host, Server.Port));
 
@@ -403,7 +407,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
             }
 
             log.Info(Translation.DLogs.SendingAlbumsCommandDone);
-        }
+        }*/
 
 
         /// <summary>
@@ -411,11 +415,15 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
         /// </summary>
         public async Task SingleSection(int pk)
         {
-            log.Info("Initializing server single section.");
+            log.Info(string.Format(Translation.Logs["SendingClientCommand"].ToString(), MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
+
+            // Initialize sections server response.
             ServerResponseSections serverResponse = null;
 
             try
             {
+                // Send command SingleSection to the server.
+                // Decode response as JSon format to exploit sections list.
                 HttpResponseMessage response = WebClient.Client.SingleSection(pk);
                 string message = await WebClient.Client.Read(response);
                 serverResponse = JsonConvert.DeserializeObject<ServerResponseSections>(message);

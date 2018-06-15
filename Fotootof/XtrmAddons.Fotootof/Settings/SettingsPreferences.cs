@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Windows;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.Storage;
 
@@ -14,8 +16,36 @@ namespace XtrmAddons.Fotootof.Settings
         /// </summary>
         public static void InitializeStorage()
         {
-            // Create path to configuration server directory. 
+            #region application data
+            // Create path to data server directory. 
             Directory temp = new Directory
+            {
+                Key = "data.server",
+                RelativePath = "Data\\Server",
+                IsRelative = true,
+                Root = Environment.CurrentDirectory
+            };
+            ApplicationBase.Storage.Directories.AddKeySingle(temp);
+            temp.Create();
+            Trace.TraceInformation($"data.server => {ApplicationBase.Storage.Directories.FindKeyFirst("data.server").AbsolutePath}");
+
+            // Create path to configuration database directory
+            temp = new Directory
+            {
+                Key = "data.database",
+                RelativePath = "Data\\Database",
+                IsRelative = true,
+                Root = Environment.CurrentDirectory
+            };
+            ApplicationBase.Storage.Directories.AddKeySingle(temp);
+            temp.Create();
+            Trace.TraceInformation($"data.database => {ApplicationBase.Storage.Directories.FindKeyFirst("data.database").AbsolutePath}");
+            #endregion
+
+
+            #region user cache
+            // Create path to cache filestypes directory. 
+            temp = new Directory
             {
                 Key = "cache.filestypes",
                 RelativePath = "Files Types",
@@ -25,42 +55,7 @@ namespace XtrmAddons.Fotootof.Settings
             ApplicationBase.Storage.Directories.AddKeySingle(temp);
             temp.Create();
             Trace.TraceInformation($"cache.filestypes => {ApplicationBase.Storage.Directories.FindKeyFirst("cache.filestypes").AbsolutePath}");
-
-            // Create path to configuration server directory. 
-            temp = new Directory
-            {
-                Key = "config.server",
-                RelativePath = "Server",
-                IsRelative = true,
-                Root = SpecialDirectoriesExtensions.RootDirectory(SpecialDirectoriesName.Config)
-            };
-            ApplicationBase.Storage.Directories.AddKeySingle(temp);
-            temp.Create();
-            Trace.TraceInformation($"config.server => {ApplicationBase.Storage.Directories.FindKeyFirst("config.server").AbsolutePath}");
-
-            // Create path to configuration database directory
-            temp = new Directory
-            {
-                Key = "config.database",
-                RelativePath = "Database",
-                IsRelative = true,
-                Root = SpecialDirectoriesExtensions.RootDirectory(SpecialDirectoriesName.Config)
-            };
-            ApplicationBase.Storage.Directories.AddKeySingle(temp);
-            temp.Create();
-            Trace.TraceInformation($"config.database => {ApplicationBase.Storage.Directories.FindKeyFirst("config.database").AbsolutePath}");
-
-            // Create path  configuration database scheme directory
-            temp = new Directory
-            {
-                Key = "config.database.scheme",
-                RelativePath = "Database\\Scheme",
-                IsRelative = true,
-                Root = SpecialDirectoriesExtensions.RootDirectory(SpecialDirectoriesName.Config)
-            };
-            ApplicationBase.Storage.Directories.AddKeySingle(temp);
-            temp.Create();
-            Trace.TraceInformation($"config.database.scheme => {ApplicationBase.Storage.Directories.FindKeyFirst("config.database.scheme").AbsolutePath}");
+            #endregion
         }
     }
 }

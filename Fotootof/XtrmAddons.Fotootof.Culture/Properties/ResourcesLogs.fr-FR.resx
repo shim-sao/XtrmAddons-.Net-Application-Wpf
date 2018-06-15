@@ -165,14 +165,8 @@
   <data name="SavingApplicationWaiting" xml:space="preserve">
     <value>Sauvegarde des options et paramètres de l'application avant de quitter. Veuillez patienter, s'il vous plaît...</value>
   </data>
-  <data name="SendingAlbumsCommand" xml:space="preserve">
-    <value>Envoi de la commande ListAlbums au serveur {0}:{1}</value>
-  </data>
   <data name="SendingAlbumsCommandDone" xml:space="preserve">
     <value>Envoi de la commande ListAlbums au serveur fin !</value>
-  </data>
-  <data name="SendingAuthenticationCommand" xml:space="preserve">
-    <value>Envoi de la commande Authentication au serveur {0}:{1}</value>
   </data>
   <data name="SendingAuthenticationCommandDone" xml:space="preserve">
     <value>Envoi de la commande Authentication au serveur fin !</value>
@@ -189,8 +183,8 @@
   <data name="SendingAuthenticationCommandUnauthorized" xml:space="preserve">
     <value>Envoi de la commande Authentication : utilisateur non authentifié !</value>
   </data>
-  <data name="SendingListSectionsCommand" xml:space="preserve">
-    <value>Envoi de la commande ListSections au serveur {0}:{1}</value>
+  <data name="SendingClientCommand" xml:space="preserve">
+    <value>Envoi de la commande {0} au serveur {1}:{2}</value>
   </data>
   <data name="SendingListSectionsCommandDone" xml:space="preserve">
     <value>Envoi de la commande ListSections au serveur fin !</value>
@@ -206,9 +200,6 @@
   </data>
   <data name="SendingListSectionsCommandUnauthorized" xml:space="preserve">
     <value>Envoi de la commande ListSections : user unauthorized !</value>
-  </data>
-  <data name="SendingPingCommand" xml:space="preserve">
-    <value>Envoi de la commande Ping au serveur {0}:{1}</value>
   </data>
   <data name="SendingPingCommandDone" xml:space="preserve">
     <value>Envoi de la commande Ping au serveur fin !</value>

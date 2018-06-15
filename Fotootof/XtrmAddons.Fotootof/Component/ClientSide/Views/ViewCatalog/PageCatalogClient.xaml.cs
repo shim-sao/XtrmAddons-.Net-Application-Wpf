@@ -3,12 +3,15 @@ using System.Globalization;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using XtrmAddons.Fotootof.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient;
 using XtrmAddons.Fotootof.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Api.Models.Json;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 
 namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
 {
@@ -81,6 +84,8 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = Model;
+
+            UcDataGridSections.ItemsDataGrid.SelectionChanged += Sections_SelectionChangedAsync;
         }
 
         /// <summary>
@@ -99,15 +104,17 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
             bool command = await Model.Server.Authentication();
 
             log.Debug($"Sending command Authentication : {command}");
-            /*
-            if (command)
-            {
-                command = Model.Server.ListSections().IsCompleted;
+        }
 
-                log.Debug($"Sending command ListSections : {command}");
-            }
-
-    */
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void Sections_SelectionChangedAsync(object sender, SelectionChangedEventArgs e)
+        {
+            await Model.Server.SingleSection(((SectionEntity)UcDataGridSections.ItemsDataGrid.SelectedItem).PrimaryKey);
+            MessageBase.NotImplemented();
         }
 
         #endregion

@@ -205,29 +205,11 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sending ListAlbums command to server {0}:{1}.
-        /// </summary>
-        public static string SendingAlbumsCommand {
-            get {
-                return ResourceManager.GetString("SendingAlbumsCommand", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Sending ListAlbums command to server done !.
         /// </summary>
         public static string SendingAlbumsCommandDone {
             get {
                 return ResourceManager.GetString("SendingAlbumsCommandDone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sending Authentication command to server {0}:{1}.
-        /// </summary>
-        public static string SendingAuthenticationCommand {
-            get {
-                return ResourceManager.GetString("SendingAuthenticationCommand", resourceCulture);
             }
         }
         
@@ -277,11 +259,11 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sending ListSections command to server {0}:{1}.
+        ///   Recherche une chaîne localisée semblable à Sending {0} command to server {1}:{2}.
         /// </summary>
-        public static string SendingListSectionsCommand {
+        public static string SendingClientCommand {
             get {
-                return ResourceManager.GetString("SendingListSectionsCommand", resourceCulture);
+                return ResourceManager.GetString("SendingClientCommand", resourceCulture);
             }
         }
         
@@ -327,15 +309,6 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string SendingListSectionsCommandUnauthorized {
             get {
                 return ResourceManager.GetString("SendingListSectionsCommandUnauthorized", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sending Ping command to server {0}:{1}.
-        /// </summary>
-        public static string SendingPingCommand {
-            get {
-                return ResourceManager.GetString("SendingPingCommand", resourceCulture);
             }
         }
         

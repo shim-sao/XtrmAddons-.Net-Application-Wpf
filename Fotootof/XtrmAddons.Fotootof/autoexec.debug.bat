@@ -1,16 +1,25 @@
 @echo off
 
-:: IMPORTANT : Replace here the path of the root directory of the project.
-set SourceDirName=G:\projects-visualstudio-git\XtrmAddons-.Net-Fotootof-Wpf\Fotootof\XtrmAddons.Fotootof
-:: set SourceDirName=%cd%
+:: ----------------------------------------------------------------
+:: Set prefix for logs
+:: Set file name to append logs
+:: ----------------------------------------------------------------
+set logger=BATCH DEBUG #
+set loggerFile=compilation.log
 
-:: @echo %cd% > intall.log
+echo %logger% #######################################
 
-set AssetsSourceDirName=%SourceDirName%\..\XtrmAddons.Fotootof.Lib.Assets
+:: Set path to sources directory of the application.
+set SrcDirectory=%cd%\..\..
+echo %logger% Source Directory : %SrcDirectory%
+echo %logger% Source Directory : %SrcDirectory% > %loggerFile%
 
-set DestDirName=%SourceDirName%\bin\Debug
+:: Call scripts.
+echo %logger% Process calls of scripts
+echo %logger% Process calls of scripts >> %loggerFile%
 
-call %SourceDirName%\prebuild.bat
-call %SourceDirName%\postbuild.bat
+echo %logger% ####################################### END
 
-:: pause
+call %SrcDirectory%\build.bat
+call %SrcDirectory%\prebuild.bat
+call %SrcDirectory%\postbuild.bat

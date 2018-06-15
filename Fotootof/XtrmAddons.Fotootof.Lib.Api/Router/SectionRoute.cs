@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
@@ -13,7 +14,7 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries Api Router Sections.
     /// </summary>
-    public class SectionsRoute : Router
+    public class SectionRoute : Router
     {
         #region Variables
 
@@ -30,87 +31,19 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Api Router Sections.
         /// </summary>
-        public SectionsRoute() : base() { }
+        public SectionRoute() : base() { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Api Router Sections.
         /// </summary>
         /// <param name="uri">The Uri to parse.</param>
-        public SectionsRoute(WebServerRequestUrl uri) : base(uri) { }
+        public SectionRoute(WebServerRequestUrl uri) : base(uri) { }
 
         /// <summary>
         /// Method to get a list of associated Sections of an User.
         /// </summary>
         /// <returns>WPF Web Server response data of list of Sections.</returns>
         public override WebServerResponseData Index()
-        {
-            log.Info("Api : Serving sections request. Please wait...");
-            
-            if (!IsAuth())
-            {
-                log.Info("Api : Return response user not auth.");
-                return ResponseNotAuth();
-            }
-            
-            try
-            {
-                // Get user and dependencies.
-                UserEntity user = GetAuthUser();
-
-                List<SectionEntity> l = new List<SectionEntity>();
-
-                foreach (AclGroupEntity group in user.AclGroups)
-                {
-                    AclGroupEntity entity = Database.AclGroups.SingleOrDefault
-                        (
-                            new AclGroupOptionsSelect
-
-                            {
-                                PrimaryKey = group.PrimaryKey,
-                                Dependencies = new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All }
-                            }
-                        );
-
-                    
-                    foreach (SectionEntity sectionEntity in entity.Sections)
-                    {
-                        if(!l.Exists(x => x.PrimaryKey == sectionEntity.PrimaryKey))
-                        {
-                            l.Add(
-                                Database.Sections.SingleOrNull
-                                (
-                                    new SectionOptionsSelect
-                                    {
-                                        PrimaryKey = sectionEntity.PrimaryKey,
-                                        Dependencies = new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All }
-                                    }
-                                )
-                            );
-                        }
-                    }
-                }
-
-
-                var a = l.ToJson();
-                var b = a.ToString();
-
-                // Get list of folders associated to user.
-                Content["Authentication"] = true;
-                Content["Response"] = ConvertJsonAuthSections(l);
-                return ResponseContentToJson();
-            }
-            catch (Exception e)
-            {
-                log.Fatal("Api list sections failed", e);
-                return ResponseError500();
-            }
-        }
-
-        /// <summary>
-        ///  Method to get an associated section.
-        /// </summary>
-        /// <returns>>WPF Web Server response data of the selected folder.</returns>
-        public WebServerResponseData Get()
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
             log.Info($"{MethodBase.GetCurrentMethod().Name} : Serving section request. Please wait...");
@@ -123,13 +56,25 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
             
             try
             {
+                var a = Uri.QueryString;
+
                 // Check if request params are correct.
-                if(Uri.Params.Length == 0)
+                if(Uri.QueryString.Count == 0)
                 {
-                    log.Info($"{MethodBase.GetCurrentMethod().Name} : Params in the request are empty.");
-                    log.Info($"{MethodBase.GetCurrentMethod().Name} : Return response section not found or doesn't exists.");
+                    log.Info($"{MethodBase.GetCurrentMethod().Name} : Request empty.");
+                    log.Info($"{MethodBase.GetCurrentMethod().Name} : Return response => Section not found or doesn't exists.");
                     return ResponseError404("Section not found or doesn't exists.");
                 }
+
+                // Check if request params are correct.
+                if(!Uri.QueryString.Keys.Cast<string>().Contains("id"))
+                {
+                    log.Info($"{MethodBase.GetCurrentMethod().Name} : Request param [id] not fount.");
+                    log.Info($"{MethodBase.GetCurrentMethod().Name} : Return response => Section not found or doesn't exists.");
+                    return ResponseError404("Section not found or doesn't exists.");
+                }
+
+                int id = int.Parse(Uri.QueryString["id"]);
 
                 // Get user and dependencies.
                 UserEntity user = GetAuthUser();
@@ -147,7 +92,12 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
                             }
                         );
 
-                    entity = ag.Sections.Find(x => x.PrimaryKey == int.Parse(Uri.Params[0]));
+                    entity = ag.Sections.Find(x => x.PrimaryKey == id);
+
+                    if (entity != null)
+                    {
+                        break;
+                    }
                 }
 
                 // Check if folder is associated or not.

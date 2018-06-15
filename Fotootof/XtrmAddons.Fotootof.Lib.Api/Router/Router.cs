@@ -278,11 +278,23 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
         /// <returns></returns>
        protected SectionJson ConvertJsonAuthSection(SectionEntity entity, bool auth = true)
         {
+            if (entity == null)
+            {
+                return null;
+            }
+
+            if (entity.Albums == null)
+            {
+                return null;
+            }
+
+            /*
             foreach (AlbumEntity album in entity.Albums)
             {
                 //album.PicturePath = "http://" + Uri.Host + ":" + Uri.Port + "/api/picture/album/" + album.PrimaryKey + "/picture?sid=" + CookieString;
                 //album.ThumbnailPath = "http://" + Uri.Host + ":" + Uri.Port + "/api/picture/album/" + album.PrimaryKey + "/thumbnail?sid=" + CookieString;
             }
+            */
 
             return new SectionJson(entity, auth, true);
         }

@@ -133,7 +133,7 @@ namespace XtrmAddons.Fotootof.Settings
                             {
                                 log.Info(string.Format(CultureInfo.InvariantCulture, "Updating Assembly Minimum Version : {0}", old));
 
-                                string query = File.ReadAllText(Path.Combine(ApplicationBase.Storage.Directories.FindKeyFirst("config.database.scheme").AbsolutePath, "update." + old.ToString() + ".sqlite"));
+                                string query = File.ReadAllText(Path.Combine(ApplicationBase.Storage.Directories.FindKeyFirst("data.database").AbsolutePath, "update." + old.ToString() + ".sqlite"));
                                 using (TransactionScope tran = new TransactionScope())
                                 {
                                     SQLiteCommand command = db.CreateCommand();
@@ -164,7 +164,7 @@ namespace XtrmAddons.Fotootof.Settings
                             SQLiteManager.Instance(
                                 database: database.Source,
                                 createFile: true,
-                                scheme: Path.Combine(ApplicationBase.Storage.Directories.FindKeyFirst("config.database.scheme").AbsolutePath, "scheme.sqlite")
+                                scheme: Path.Combine(ApplicationBase.Storage.Directories.FindKeyFirst("data.database").AbsolutePath, "scheme.sqlite")
                             ).Db
                     )
                     {
@@ -214,7 +214,7 @@ namespace XtrmAddons.Fotootof.Settings
 
         //            if (databaseVersions == null || databaseVersions.Count == 0)
         //            {
-        //                updateFile = Path.Combine(ApplicationBase.Storage.Directories.FindKey("config.database.scheme").AbsolutePath, "update.1.0.18123.2149.sqlite");
+        //                updateFile = Path.Combine(ApplicationBase.Storage.Directories.FindKey("data.database").AbsolutePath, "update.1.0.18123.2149.sqlite");
         //                Application.Current.Dispatcher.BeginInvoke(
         //                new UpdateDatabaseDelegate(SQLiteManagerUpdateDatabase), new object[] { db, updateFile });
         //                //WpfSQLiteData.RunFile(db, updateFile);
@@ -281,6 +281,7 @@ namespace XtrmAddons.Fotootof.Settings
         /// <summary>
         /// Method to add server mapping of DLL. 
         /// </summary>
+        // Todo : write contract plugin for it.
         public void AddServerMap()
         {
             log.Info("Adding API mapping to server.");
@@ -288,7 +289,7 @@ namespace XtrmAddons.Fotootof.Settings
             // Add API mapping to server.
             HttpMapping.Load(
                 Path.Combine(
-                    ApplicationBase.Storage.Directories.FindKeyFirst("config.server").AbsolutePath,
+                    ApplicationBase.Storage.Directories.FindKeyFirst("data.server").AbsolutePath,
                     "server-mapping.xml"
                 )
             );
