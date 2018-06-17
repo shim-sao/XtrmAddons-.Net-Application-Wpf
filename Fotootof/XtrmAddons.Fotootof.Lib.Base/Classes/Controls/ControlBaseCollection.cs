@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
@@ -129,7 +130,10 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Selection changed arguments.</param>
-        public virtual void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e) { throw new NotImplementedException();  }
+        public virtual void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            throw new NotImplementedException($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
+        }
 
         #endregion
     }

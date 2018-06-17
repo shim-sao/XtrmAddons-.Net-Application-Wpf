@@ -45,7 +45,7 @@ if !count! GTR 0 (
 	echo %logger% Process delete %count% [.dll.config] into destination directory : Done. >> %loggerFile%
 )
 
-:: Delete all files .pdb in destination directory.
+:: Delete all files .xml in destination directory.
 :: Do not it recursively
 set count=0
 for %%x in (%DestDirectory%\*.xml) do set /a count+=1

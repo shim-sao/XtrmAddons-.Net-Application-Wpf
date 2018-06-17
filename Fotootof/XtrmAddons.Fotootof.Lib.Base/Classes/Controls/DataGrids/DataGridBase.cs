@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
@@ -90,6 +92,8 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids
         /// <param name="e">Selection changed arguments.</param>
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : SelectedItems Count = > {SelectedItems.Count}");
+
             if (SelectedItems.Count == 0)
             {
                 if (EditControl != null) EditControl.IsEnabled = false;

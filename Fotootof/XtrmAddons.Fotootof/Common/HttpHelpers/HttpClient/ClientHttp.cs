@@ -418,7 +418,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
             log.Info(string.Format(Translation.Logs["SendingClientCommand"].ToString(), MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
 
             // Initialize sections server response.
-            ServerResponseSections serverResponse = null;
+            ServerResponseSection serverResponse = null;
 
             try
             {
@@ -426,7 +426,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient
                 // Decode response as JSon format to exploit sections list.
                 HttpResponseMessage response = WebClient.Client.SingleSection(pk);
                 string message = await WebClient.Client.Read(response);
-                serverResponse = JsonConvert.DeserializeObject<ServerResponseSections>(message);
+                serverResponse = JsonConvert.DeserializeObject<ServerResponseSection>(message);
 
                 if (response.StatusCode == HttpStatusCode.OK && serverResponse.Authentication)
                 {

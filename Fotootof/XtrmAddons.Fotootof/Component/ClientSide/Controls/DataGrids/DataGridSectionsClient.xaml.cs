@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Common.Controls.DataGrids;
@@ -46,6 +48,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids
         /// </summary>
         public DataGridSectionsClient()
         {
+            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
             InitializeComponent();
         }
 
@@ -56,13 +59,23 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids
         #region Methods
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
+        }
+
+        /// <summary>
         /// Method called on click event to add a new Section.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
         public override void OnAddNewItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBase.NotImplemented();
+            MessageBase.NotImplemented($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
         }
 
         /// <summary>
@@ -72,7 +85,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids
         /// <param name="e">Routed event arguments.</param>
         public override void OnEditItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBase.NotImplemented();
+            MessageBase.NotImplemented($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
         }
 
         /// <summary>
@@ -82,7 +95,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids
         /// <param name="e">Routed event arguments.</param>
         public override void OnDeleteItems_Click(object sender, RoutedEventArgs e)
         {
-            MessageBase.NotImplemented();
+            MessageBase.NotImplemented($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
         }
 
         /// <summary>

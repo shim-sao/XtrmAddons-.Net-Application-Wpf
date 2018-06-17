@@ -165,6 +165,10 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
                 // Add list sections failed event handler.
                 server.OnListSectionsFailed -= Svr_OnListSectionsFailed;
                 server.OnListSectionsFailed += new EventHandler(Svr_OnListSectionsFailed);
+
+                // Add single section success event handler.
+                server.OnSingleSectionSuccess -= Svr_OnSingleSectionSuccess;
+                server.OnSingleSectionSuccess += new EventHandler(Svr_OnSingleSectionSuccess);
             }
         }
 
@@ -289,13 +293,55 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
             try
             {
                 log.Debug(serverResponse.Result.Error);
-                System.Windows.MessageBox.Show($"List sections from the server failed : {serverResponse.Result.Error}", "Sections list error");
+                MessageBase.Error($"List sections from the server failed : {serverResponse.Result.Error}");
             }
             catch (Exception ex)
             {
-                log.Error(ex.Output());
                 log.Error(serverResponse);
-                System.Windows.MessageBox.Show($"List sections from the server failed : {ex.Output()}", "Sections list error");
+                log.Error(ex.Output(), ex);
+                MessageBase.Error($"List sections from the server failed : {ex.Output()}");
+            }
+        }
+
+        /// <summary>
+        /// Method called on server command single section success.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">The event arguments.param>
+        private void Svr_OnSingleSectionSuccess(object sender, EventArgs e)
+        {
+            log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");
+
+            // Get and check the server response to verify if the server is connected.
+            // Prevent bad response for the user.
+            if (!(e is ClientHttpEventArgs<ServerResponseSection> svrResp) || svrResp.Result == null)
+            {
+                MessageBase.Error("Authentication to the server failed : The server does not respond !");
+                return;
+            }
+
+            if(Albums == null)
+            {
+                Albums = new ListViewAlbumsModel<ListViewAlbums>();
+            }
+
+            try
+            {
+
+                SectionJson section = svrResp.Result.Response;
+
+                var a = Albums.Items;
+
+                if (section != null && section.Albums != null)
+                {
+                    Albums.Items = new AlbumEntityCollection(section.Albums);
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(svrResp);
+                log.Error(ex.Output(), ex);
+                MessageBase.Error($"Single section from the server failed : {ex.Output()}");
             }
         }
 

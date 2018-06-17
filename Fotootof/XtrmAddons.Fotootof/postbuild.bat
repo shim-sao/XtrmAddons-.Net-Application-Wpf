@@ -7,6 +7,60 @@ set logger=BATCH POSTBUILD #
 echo %logger% # #######################################
 
 :: -------------------------------------------------------------------------------
+:: Processor for destination [\Packages] directory of the application 
+:: This directory contains all binaries assemblies necessaries for the application.
+:: -------------------------------------------------------------------------------
+
+set dirArray[0]=%DestDirectoryPackages%
+set dirArray[1]=%DestDirectoryPackagesInt%
+set dirArray[2]=%DestDirectoryPackagesExt%
+set dirArray[3]=%DestDirectoryPackagesExtMicrosoft%
+set dirArray[4]=%DestDirectoryPackagesExtSQLite%
+set dirArray[5]=%DestDirectoryPackagesExtSQLitePCLRaw%
+set dirArray[6]=%DestDirectoryPackagesExtSystem%
+set dirArray[7]=%DestDirectoryPackagesExtXceed%
+
+for /l %%n in (0,1,7) do (
+	if not exist !dirArray[%%n]! (
+		mkdir !dirArray[%%n]!
+		echo %logger% Process create [!dirArray[%%n]!] directory : Done.
+		echo %logger% Process create [!dirArray[%%n]!] directory : Done. >> %loggerFile%
+	) else (
+		echo %logger% Process create [!dirArray[%%n]!] directory : Directory already exists.
+		echo %logger% Process create [!dirArray[%%n]!] directory : Directory already exists. >> %loggerFile%
+	)
+)
+
+set assemblyArray[0]=%DestDirectoryPackagesInt%
+set assemblyArray[1]=%DestDirectoryPackagesExtMicrosoft%
+set assemblyArray[2]=%DestDirectoryPackagesExtSQLite%
+set assemblyArray[3]=%DestDirectoryPackagesExtSQLitePCLRaw%
+set assemblyArray[4]=%DestDirectoryPackagesExtSystem%
+set assemblyArray[5]=%DestDirectoryPackagesExtXceed%
+
+set assemblyDll[0]=XtrmAddons
+set assemblyDll[1]=Microsoft
+set assemblyDll[2]=SQLite
+set assemblyDll[3]=SQLitePCLRaw
+set assemblyDll[4]=System
+set assemblyDll[5]=Xceed
+
+
+for /l %%n in (0,1,5) do (
+	set /a count=0
+	for %%x in (%DestDirectory%\!assemblyDll[%%n]!.*.dll) do set /a count+=1
+	
+	echo %logger% !count! [!assemblyDll[%%n]!.*.dll] files found.
+	echo %logger% !count! [!assemblyDll[%%n]!.*.dll] files found. >> %loggerFile%
+
+	if !count! GTR 0 (
+		move /y "%DestDirectory%\!assemblyDll[%%n]!.*.dll" !assemblyArray[%%n]!
+		echo %logger% Process moving %count% [!assemblyDll[%%n]!.*.dll] into Bin directory : Done.
+		echo %logger% Process moving %count% [!assemblyDll[%%n]!.*.dll] into Bin directory : Done. >> %loggerFile%
+	)
+)
+
+:: -------------------------------------------------------------------------------
 :: Processor for destination [\Bin] directory of the application 
 :: This directory contains all binaries assemblies necessaries for the application.
 :: -------------------------------------------------------------------------------

@@ -8,6 +8,7 @@ using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Fotootof.Lib.Api.Models.Json;
 
 namespace XtrmAddons.Fotootof.Common.Collections
 {
@@ -29,22 +30,46 @@ namespace XtrmAddons.Fotootof.Common.Collections
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
+        /// Class XtrmAddons Fotootof Common Albums Collection Constructor.
         /// </summary>
         /// <param name="options">Options for query filters.</param>
         public AlbumEntityCollection(bool autoLoad = false, AlbumOptionsList options = null) : base(autoLoad, options) { }
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
+        /// Class XtrmAddons Fotootof Common Albums Collection Constructor.
         /// </summary>
         /// <param name="list">A list of Album to paste in.</param>
         public AlbumEntityCollection(List<AlbumEntity> list) : base(list) { }
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
+        /// Class XtrmAddons Fotootof Common Albums Collection Constructor.
         /// </summary>
         /// <param name="collection">>A collection of Album to paste in.</param>
         public AlbumEntityCollection(IEnumerable<AlbumEntity> collection) : base(collection) { }
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Common Albums Collection Constructor.
+        /// </summary>
+        /// <param name="list">A list of Album to paste in.</param>
+        public AlbumEntityCollection(List<AlbumJson> list) : base()
+        {
+            if (list == null)
+            {
+                ArgumentNullException ex = ExceptionBase.ObjArgNull(typeof(List<AlbumJson>), nameof(list));
+                log.Warn(ex.Output(), ex);
+                return;
+            }
+
+            if (list.Count == 0)
+            {
+                return;
+            }
+
+            foreach (AlbumJson item in list)
+            {
+                Add(item.ToEntity());
+            }
+        }
 
         #endregion
 

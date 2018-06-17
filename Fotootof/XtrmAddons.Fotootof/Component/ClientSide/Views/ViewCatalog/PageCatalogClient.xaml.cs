@@ -59,7 +59,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         public PageCatalogClient(ClientHttp server)
         {
             MessageBase.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "PageCatalogClient"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Catalog Client"));
 
             // Set page variables and properties.
             svr = server;
@@ -68,7 +68,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
             InitializeComponent();
             AfterInitializedComponent();
             
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "PageCatalogClient"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Catalog Client"));
             MessageBase.IsBusy = false;
         }
 
@@ -114,7 +114,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         private async void Sections_SelectionChangedAsync(object sender, SelectionChangedEventArgs e)
         {
             await Model.Server.SingleSection(((SectionEntity)UcDataGridSections.ItemsDataGrid.SelectedItem).PrimaryKey);
-            MessageBase.NotImplemented();
+            MessageBase.NotImplemented($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
         }
 
         #endregion

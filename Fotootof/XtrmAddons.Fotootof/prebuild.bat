@@ -28,6 +28,17 @@ if exist %DestDirectoryLocal% (
 	echo %logger% Process delete destination [\Local] directory : Directory not found ! >> %loggerFile%
 )
 
+:: Process delete on [\Packages] directory
+if exist %DestDirectoryPackages% (
+    rmdir /S /Q "%DestDirectoryPackages%"
+
+	echo %logger% Process delete destination [\Packages] directory : Done.
+	echo %logger% Process delete destination [\Packages] directory : Done. >> %loggerFile%
+) else (
+	echo %logger% Process delete destination [\Packages] directory : Directory not found !
+	echo %logger% Process delete destination [\Packages] directory : Directory not found ! >> %loggerFile%
+)
+
 echo %logger% # ####################################### END
 
 endlocal

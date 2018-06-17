@@ -113,6 +113,14 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         }
 
         /// <summary>
+        /// Method to add not implemented message to display in log frame.
+        /// </summary>
+        public static void NotImplemented(string title)
+        {
+            Error((string)Translation.DWords.FunctionalitiesCurrentlyUnavailable, title);
+        }
+
+        /// <summary>
         /// Method to display a warning message in a dialog box.
         /// Application will be shutdown.
         /// </summary>
