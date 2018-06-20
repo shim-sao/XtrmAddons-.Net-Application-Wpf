@@ -3,12 +3,15 @@ using System.Globalization;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using XtrmAddons.Fotootof.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient;
 using XtrmAddons.Fotootof.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Api.Models.Json;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 
 namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
 {
@@ -56,7 +59,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         public PageCatalogClient(ClientHttp server)
         {
             MessageBase.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "PageCatalogClient"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Catalog Client"));
 
             // Set page variables and properties.
             svr = server;
@@ -65,7 +68,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
             InitializeComponent();
             AfterInitializedComponent();
             
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "PageCatalogClient"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Catalog Client"));
             MessageBase.IsBusy = false;
         }
 
@@ -81,6 +84,8 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = Model;
+
+            UcDataGridSections.ItemsDataGrid.SelectionChanged += Sections_SelectionChangedAsync;
         }
 
         /// <summary>
@@ -99,15 +104,6 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
             bool command = await Model.Server.Authentication();
 
             log.Debug($"Sending command Authentication : {command}");
-            /*
-            if (command)
-            {
-                command = Model.Server.ListSections().IsCompleted;
-
-                log.Debug($"Sending command ListSections : {command}");
-            }
-
-    */
         }
 
         #endregion
@@ -117,32 +113,14 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         #region Methods Section
 
         /// <summary>
-        /// Method to load the list of Section from server.
+        /// 
         /// </summary>
-        //private void LoadSections(ClientHttpEventArgs<ServerResponseSections> serverResponse, bool reset = false)
-        //{
-        //    try
-        //    {
-        //        log.Info("Loading Sections list. Please wait...");
-
-        //        List<SectionEntity> l = new List<SectionEntity>();
-        //        foreach (SectionJson s in serverResponse.Response.Response)
-        //        {
-        //            l.Add(s.ToEntity());
-        //        }
-
-        //        if (reset || Model.Sections == null)
-        //        {
-        //            Model.Sections = new DataGridSectionsModel<DataGridSections>(UCDataGridSections);
-        //        }
-        //        Model.Sections.Items = new SectionEntityCollection(l);
-        //        AppLogger.InfoAndClose("Loading Sections list. Done.");
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        AppLogger.Fatal("Loading Sections list failed : " + e.Message, e);
-        //    }
-        //}
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void Sections_SelectionChangedAsync(object sender, SelectionChangedEventArgs e)
+        {
+            await Model.Server.SingleSection(((SectionEntity)UcDataGridSections.ItemsDataGrid.SelectedItem).PrimaryKey);
+        }
 
         #endregion
 
@@ -167,21 +145,6 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
 
             UcDataGridSections.Height = this.Height - Block_TopControls.RenderSize.Height;
             //UcListViewAlbums.Height = this.Height - Block_TopControls.RenderSize.Height;
-        }
-
-        #endregion
-
-
-
-        #region Obsoletes
-
-        /// <summary>
-        /// Method to initialize and display data context.
-        /// </summary>
-        [Obsolete("Will be remove. None sense...")]
-        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
 
         #endregion

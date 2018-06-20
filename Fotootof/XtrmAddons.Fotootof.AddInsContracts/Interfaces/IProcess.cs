@@ -6,7 +6,7 @@
     public interface IProcess
     {
         /// <summary>
-        /// Method to run AddIn process.
+        /// Method to run an AddIn process.
         /// </summary>
         void Run();
     }

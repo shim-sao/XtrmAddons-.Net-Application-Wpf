@@ -1,8 +1,11 @@
-﻿using System.Windows;
+﻿using System;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.ListViews
@@ -14,13 +17,35 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.ListViews
     {
         #region Properties
 
+        /// <summary>
+        /// Property to access to the main add to collection control.
+        /// </summary>
         public override Control AddControl => Button_Add;
 
+        /// <summary>
+        /// Property to access to the main edit item control.
+        /// </summary>
         public override Control EditControl => Button_Edit;
 
+        /// <summary>
+        /// Property to access to the main delete items control.
+        /// </summary>
         public override Control DeleteControl => Button_Delete;
 
-        public override ListView ItemsCollection { get => LvItemsCollection; set => LvItemsCollection = value; }
+        /// <summary>
+        /// Property to access to the items collection.
+        /// </summary>
+        public override ListView ItemsCollection
+        {
+            get => AlbumssCollection;
+            set => AlbumssCollection = value;
+        }
+
+        #endregion
+
+
+        
+        #region Properties Event Handler
 
         /// <summary>
         /// 
@@ -53,7 +78,6 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.ListViews
         {
             InitializeComponent();
             ItemsCollection.KeyDown += ItemsCollection.AddKeyDownSelectAllItems;
-            //ItemsCollection.Loaded += (s,e) => ControlHeaderTotal.Text = Albums.Count.ToString();
         }
 
         #endregion
@@ -69,7 +93,11 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.ListViews
         /// <param name="e"></param>
         private void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            AppNavigator.NavigateToPageAlbumServer(SelectedItem.PrimaryKey);
+            if (SelectedItem != null)
+            {
+                //AppNavigator.NavigateToPageAlbumServer(SelectedItem.PrimaryKey);
+                MessageBase.NotImplemented($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
+            }
         }
 
         /// <summary>
@@ -83,28 +111,90 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.ListViews
         }
 
         /// <summary>
-        /// Method called clear items selection click event.
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Routed event arguments.</param>
-        private void ClearItemsSelection_Click(object sender, RoutedEventArgs e)
-        {
-            ItemsCollection.SelectedItems.Clear();
-        }
-
-        /// <summary>
         /// Method called on select all click event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        private void SelectAllItems_Click(object sender, RoutedEventArgs e)
+        private void OnSelectAll_Click(object sender, RoutedEventArgs e)
         {
             ItemsCollection.SelectAll();
         }
 
+        /// <summary>
+        /// Method called on unselect all click event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        private void OnUnselectAll_Click(object sender, RoutedEventArgs e)
+        {
+            ItemsCollection.UnselectAll();
+        }
+
+        /// <summary>
+        /// Method called on items collection selection changed click event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Selection changed event arguments.</param>
+        public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
+
+            if (SelectedItems.Count > 0)
+            {
+                Button_Delete.IsEnabled = true;
+                Button_Edit.IsEnabled = true;
+            }
+            else
+            {
+                Button_Delete.IsEnabled = false;
+                Button_Edit.IsEnabled = false;
+            }
+        }
+
+        #endregion
+
+
+        #region Methods Size Changed
+
+        /// <summary>
+        /// Method called on user control size changed event.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            ArrangeBlockRoot();
+            ArrangeBlockItems();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ArrangeBlockRoot()
+        {
+            Block_Root.Arrange(new Rect(new Size(this.ActualWidth, this.ActualHeight)));
+            TraceSize(Block_Root);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ArrangeBlockItems()
+        {
+            double height = Math.Max(this.ActualHeight - Block_Header.RenderSize.Height, 0);
+            double width = Math.Max(this.ActualWidth, 0);
+
+            Block_Header.Width = width;
+
+            Block_Items.Width = width;
+            Block_Items.Height = height;
+
+            ItemsCollection.Width = width;
+            ItemsCollection.Height = height;
+
+            TraceSize(Block_Header);
+            TraceSize(Block_Items);
+            TraceSize(ItemsCollection);
         }
 
         #endregion

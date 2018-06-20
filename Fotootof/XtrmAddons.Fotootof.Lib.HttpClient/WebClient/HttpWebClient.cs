@@ -286,34 +286,47 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
             }
         }
         
+        /*
         /// <summary>
         /// Method to get http request list of albums
         /// </summary>
         /// <returns>An Http response message.</returns>
         public HttpResponseMessage ListAlbums()
         {
-            log.Debug($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}");
+            log.Debug($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}. Please wait...");
 
+            Response = null;
             try
             {
-                return Client.GetAsync("api/albums?" + _urlToken).Result;
+                using (Task<HttpResponseMessage> message = Client.GetAsync("api/albums?" + _urlToken))
+                {
+                    return message.Result;
+                }
             }
             catch (ArgumentNullException e)
             {
-                log.Fatal("ArgumentNullException : Http web client list albums ArgumentNullException !", e);
-                throw new ArgumentNullException("ArgumentNullException : Http web client list albums ArgumentNullException !", e);
+                ArgumentNullException ex = ArgumentNullException(MethodBase.GetCurrentMethod().Name, e);
+                log.Fatal(ex.Output(), e);
+                throw ex;
             }
             catch (HttpRequestException e)
             {
-                log.Fatal("HttpRequestException : Http web client list albums HttpRequestException !", e);
-                throw new Exception("HttpRequestException : Http web client list albums HttpRequestException !", e);
+                HttpRequestException ex = HttpRequestException(MethodBase.GetCurrentMethod().Name, e);
+                log.Fatal(ex.Output(), e);
+                throw ex;
             }
             catch (Exception e)
             {
-                log.Fatal("Exception : Http web client list albums Exception !", e);
-                throw new Exception("Exception : Http web client list albums Exception !", e);
+                Exception ex = Exception(MethodBase.GetCurrentMethod().Name, e);
+                log.Fatal(ex.Output(), e);
+                throw ex;
+            }
+            finally
+            {
+                log.Debug($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}. Done !");
             }
         }
+        */
 
         /// <summary>
         /// 
@@ -322,27 +335,37 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
         /// <returns>An Http response message.</returns>
         public HttpResponseMessage SingleSection(int pk)
         {
+            log.Debug($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}. Please wait...");
+
+            Response = null;
             try
             {
-                return Client.GetAsync("api/section/get/" + pk.ToString() + "?" + _urlToken).Result;
+                using (Task<HttpResponseMessage> message = Client.GetAsync($"api/section?id={pk.ToString()}&{_urlToken}"))
+                {
+                    return message.Result;
+                }
             }
             catch (ArgumentNullException e)
             {
-                ArgumentNullException ex = new ArgumentNullException("Http web client single section error.", e);
+                ArgumentNullException ex = ArgumentNullException(MethodBase.GetCurrentMethod().Name, e);
                 log.Error(ex);
                 throw ex;
             }
             catch (HttpRequestException e)
             {
-                HttpRequestException ex = new HttpRequestException("Http web client single section error.", e);
+                HttpRequestException ex = HttpRequestException(MethodBase.GetCurrentMethod().Name, e);
                 log.Error(ex);
                 throw ex;
             }
             catch (Exception e)
             {
-                Exception ex = new Exception("Http web client single section error.", e);
+                Exception ex = Exception(MethodBase.GetCurrentMethod().Name, e);
                 log.Error(ex);
                 throw ex;
+            }
+            finally
+            {
+                log.Debug($"Http Client sending command : {MethodBase.GetCurrentMethod().Name}. Done !");
             }
         }
 
@@ -455,6 +478,57 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
             Dispose(true);
             // TODO: supprimer les marques de commentaire pour la ligne suivante si le finaliseur est remplacé ci-dessus.
             GC.SuppressFinalize(this);
+        }
+
+        #endregion
+
+
+
+        #region Methods Exceptions
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="methodName"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        protected static ArgumentNullException ArgumentNullException(string methodName, ArgumentNullException e)
+        {
+            return new ArgumentNullException(NewExceptionMessage(methodName, e), e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="methodName"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        protected static HttpRequestException HttpRequestException(string methodName, HttpRequestException e)
+        {
+            return new HttpRequestException(NewExceptionMessage(methodName, e), e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="methodName"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        protected static Exception Exception(string methodName, Exception e)
+        {
+            return new Exception(NewExceptionMessage(methodName, e), e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="methodName"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        protected static string NewExceptionMessage<T>(string methodName, T e)
+        {
+            return $"Http Client sending command : {methodName}. {e.GetType().Name} in {(e as Exception).TargetSite}";
         }
 
         #endregion

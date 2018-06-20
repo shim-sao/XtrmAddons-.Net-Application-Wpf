@@ -1,15 +1,32 @@
 ﻿using System;
-using WPFXA.Net.HttpWebServer;
-using WPFXA.PhotoAlbum.Server.Api.Models.Json;
-using WPFXA.PhotoAlbum.Server.SQLite.Database.Entities;
+using System.Collections.Generic;
+using System.Reflection;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
+using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Net.HttpWebServer.Requests;
+using XtrmAddons.Net.HttpWebServer.Responses;
 
-namespace WPFXA.PhotoAlbum.Server.Api.Router
+namespace XtrmAddons.Fotootof.Lib.Api.Router
 {
     /// <summary>
     /// WPFXA PhotoAlbum Server Api Router Album Route.
     /// </summary>
     public class AlbumRoute : Router
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         /// <summary>
         /// WPFXA PhotoAlbum Server Api Router Album Route constructor.
         /// </summary>

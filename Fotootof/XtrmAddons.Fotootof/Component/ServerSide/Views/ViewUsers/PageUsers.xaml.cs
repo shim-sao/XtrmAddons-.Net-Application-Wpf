@@ -415,20 +415,5 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         }
 
         #endregion
-
-
-
-        #region Obsoletes
-
-        /// <summary>
-        /// Method to initialize and display data context.
-        /// </summary>
-        [Obsolete("Will be remove. None sense...")]
-        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        #endregion
     }
 }

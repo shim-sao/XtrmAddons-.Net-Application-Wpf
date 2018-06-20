@@ -1,16 +1,20 @@
 @echo off
 
-set SourceDirName=G:\projects-visualstudio-git\XtrmAddons-.Net-Application-Wpf\Fotootof\XtrmAddons.Fotootof
-:: set SourceDirName=%cd%
-set AssetsSourceDirName=%SourceDirName%\..\XtrmAddons.Fotootof.Lib.Assets
+:: ----------------------------------------------------------------
+:: Delete necessaries directories.
+:: ----------------------------------------------------------------
+if exist %TargetDir%Local (
+	rmdir /S /Q %TargetDir%Local
 
-set DestDirName=%SourceDirName%\bin\Debug
-call %SourceDirName%\prebuild.bat
-call %SourceDirName%\postbuild.bat
+	echo Delete %TargetDir%Local : Done.
+) else (
+	echo Delete %TargetDir%Local : Directory not found.
+)
 
+if exist %TargetDir%Packages (
+	rmdir /S /Q %TargetDir%Packages
 
-set DestDirName=%SourceDirName%\bin\Release
-::call %SourceDirName%\prebuild.bat
-::call %SourceDirName%\postbuild.bat
-
-:: pause
+	echo Delete %TargetDir%Packages : Done.
+) else (
+	echo Delete %TargetDir%Packages : Directory not found.
+)

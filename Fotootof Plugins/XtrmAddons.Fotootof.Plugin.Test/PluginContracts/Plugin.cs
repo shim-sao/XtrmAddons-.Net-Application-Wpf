@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.Composition;
 using System.Diagnostics;
+using System.Reflection;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Interfaces.AddInsContracts;
 
-namespace XtrmAddons.Fotootof.PluginTest.PluginContracts
+namespace XtrmAddons.Fotootof.Plugin.Test.PluginContracts
 {
     [Export(typeof(IPlugin))]
     public class Plugin : IPlugin
@@ -24,9 +25,12 @@ namespace XtrmAddons.Fotootof.PluginTest.PluginContracts
 
         #region Method
 
-        public void CreatePlugin()
+        /// <summary>
+        /// 
+        /// </summary>
+        public void InitializePlugin()
         {
-            Trace.WriteLine("Creating Plugin Test");
+            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Initializing Plugin Test...");
 
             MenuControl = new UcPluginTest();
 
@@ -39,7 +43,7 @@ namespace XtrmAddons.Fotootof.PluginTest.PluginContracts
 
             if (!IsPluginCreated)
             {
-                CreatePlugin();
+                InitializePlugin();
             }
 
             return MenuControl;

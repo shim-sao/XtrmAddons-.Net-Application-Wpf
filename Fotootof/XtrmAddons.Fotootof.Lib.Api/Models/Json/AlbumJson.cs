@@ -159,8 +159,6 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
             {
                 Comment = entity.Comment;
             }
-
-            Parameters = entity.Parameters;
         }
 
         /// <summary>
@@ -181,7 +179,6 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
             entity.Modified = Modified;
 
             entity.Comment = Comment;
-            entity.Parameters = Parameters;
 
             return entity;
         }

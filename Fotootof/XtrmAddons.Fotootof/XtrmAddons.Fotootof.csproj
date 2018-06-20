@@ -58,7 +58,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>true</Prefer32Bit>
@@ -81,7 +81,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -257,6 +257,7 @@
       <DependentUpon>UCAlbumsDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponseAlbums.cs" />
+    <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponseSection.cs" />
     <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClientModel.cs" />
     <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClient.xaml.cs">
       <DependentUpon>PageCatalogClient.xaml</DependentUpon>
@@ -586,8 +587,21 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="autoexec.release.bat" />
-    <None Include="autoexec.debug.bat" />
+    <Content Include="Data\Database\scheme.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Database\update.1.0.18123.2149.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Database\update.1.0.18134.1044.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Database\update.1.0.18137.1050.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Server\server-mapping.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Images\Default\about.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -597,17 +611,7 @@
     <Content Include="Assets\Images\Default\album-preview.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Config\Database\Scheme\update.1.0.18123.2149.sqlite">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Config\Database\Scheme\update.1.0.18137.1050.sqlite">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Config\Database\Scheme\update.1.0.18134.1044.sqlite">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="postbuild.bat" />
-    <None Include="prebuild.bat" />
+    <None Include="autoexec.bat" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -745,12 +749,6 @@
     <Content Include="Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\info.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Config\Database\Scheme\scheme.sqlite">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Config\Server\server-mapping.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Public\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -813,6 +811,7 @@
   <ItemGroup>
     <Folder Include="Common\Converters\" />
     <Folder Include="Common\Interfaces\" />
+    <Folder Include="Config\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Shell32">
@@ -829,16 +828,21 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\Newtonsoft.Json.dll" />
+  </ItemGroup>
+  <!-- <ItemGroup>
     <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\log4net.dll" />
     <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\Newtonsoft.Json.dll" />
     <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Application.dll" />
     <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Common.dll" />
     <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SystemIO.dll" />
-  </ItemGroup>
+  </ItemGroup> -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Debug ( call "$(ProjectDir)autoexec.debug.bat" )
-if $(ConfigurationName) == Release ( call "$(ProjectDir)autoexec.release.bat" )
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>call "$(ProjectDir)autoexec.bat"</PreBuildEvent>
   </PropertyGroup>
 </Project>

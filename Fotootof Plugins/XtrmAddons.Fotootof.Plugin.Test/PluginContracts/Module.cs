@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.Composition;
 using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Interfaces.AddInsContracts;
 
-namespace XtrmAddons.Fotootof.PluginTest.PluginContracts
+namespace XtrmAddons.Fotootof.Plugin.Test.PluginContracts
 {
     [Export(typeof(IModule))]
     public class Module : IModule
@@ -12,7 +13,7 @@ namespace XtrmAddons.Fotootof.PluginTest.PluginContracts
 
         private void Initialize()
         {
-            Trace.WriteLine("Initializing Plugin Test Module");
+            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Initializing Module 'Plugin Test'");
 
             InterfaceControl = InterfaceControl ?? new MenuItem();
             InterfaceControl.Header = "Plugin Test";
@@ -44,7 +45,7 @@ namespace XtrmAddons.Fotootof.PluginTest.PluginContracts
         /// <returns></returns>
         public MenuItem GetInterfaceObject()
         {
-            Trace.WriteLine("Getting interface object Plugin Test Module");
+            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Getting Object Interface.");
 
             Initialize();
 
@@ -58,12 +59,7 @@ namespace XtrmAddons.Fotootof.PluginTest.PluginContracts
         /// <param name="e"></param>
         void InterfaceControl_Click(object sender, RoutedEventArgs e)
         {
-            //if (Container == null)
-            //{
-            //    throw new ApplicationException("You cannot load a module without specifying the container");
-            //}
-
-            //Container.ContextMenu.Items.Add(Plugin.GetPlugin());
+            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Starting Process...");
 
             Process.Run();
         }

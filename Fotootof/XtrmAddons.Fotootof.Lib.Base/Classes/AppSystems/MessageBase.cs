@@ -23,9 +23,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
                 {
                     ApplicationBase.BeginInvokeIfRequired(new Action(() =>
                     {
-                        var a = Application.Current.MainWindow;
-                        var b = a.GetType();
-
                         busyIndicator = Application.Current.MainWindow.GetPropertyValue<Xceed.Wpf.Toolkit.BusyIndicator>("BusyIndicator");
                     }));
                 }
@@ -110,6 +107,14 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         public static void NotImplemented()
         {
             Error((string)Translation.DWords.FunctionalitiesCurrentlyUnavailable);
+        }
+
+        /// <summary>
+        /// Method to add not implemented message to display in log frame.
+        /// </summary>
+        public static void NotImplemented(string title)
+        {
+            Error((string)Translation.DWords.FunctionalitiesCurrentlyUnavailable, title);
         }
 
         /// <summary>

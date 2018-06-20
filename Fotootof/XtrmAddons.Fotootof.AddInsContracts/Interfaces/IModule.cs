@@ -2,6 +2,9 @@
 
 namespace XtrmAddons.Fotootof.Interfaces.AddInsContracts
 {
+    /// <summary>
+    /// Interface XtrmAddons Fotootof Interfaces AddInsContracts Module.
+    /// </summary>
     public interface IModule
     {
         #region Properties
@@ -33,7 +36,7 @@ namespace XtrmAddons.Fotootof.Interfaces.AddInsContracts
         #region Properties
 
         /// <summary>
-        /// 
+        /// Method to get the menu item of the Module.
         /// </summary>
         /// <returns></returns>
         MenuItem GetInterfaceObject();

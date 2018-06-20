@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
@@ -34,24 +35,28 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable name of the Section.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private string name = "";
 
         /// <summary>
         /// Variable alias of the Section.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private string alias = "";
 
         /// <summary>
         /// Variable description of the Section.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         public string description = "";
 
         /// <summary>
         /// Variable is default item.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         public bool isDefault = false;
 
         /// <summary>
@@ -64,30 +69,35 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable the background picture id.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         public int backgroundPictureId = 0;
         
         /// <summary>
         /// Variable the preview picture id.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         public int previewPictureId = 0;
 
         /// <summary>
         /// Variable the thumbnail picture id.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         public int thumbnailPictureId = 0;
         
         /// <summary>
         /// Variable comment for the item.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         public string comment = "";
         
         /// <summary>
         /// Variable parameters for the item.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         public string parameters = "";
 
         #endregion
@@ -100,19 +110,30 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable Album id (required for entity dependency).
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private int albumId = 0;
 
         /// <summary>
         /// Variable associated Albums primary keys list.
         /// </summary>
         [NotMapped]
-        private IEnumerable<int> albumsPK;
+        [XmlIgnore]
+        private IEnumerable<int> albumsPKs;
 
         /// <summary>
         /// Variable list of Albums associated to the Section.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private IEnumerable<AlbumEntity> albums;
+
+        /// <summary>
+        /// Variables collection of relationship Albums in Sections. Sections dependencies.
+        /// </summary>
+        [NotMapped]
+        [XmlIgnore]
+        private ObservableAlbumsInSections albumsDependencies =
+            new ObservableAlbumsInSections("SectionId");
 
         #endregion
 
@@ -124,12 +145,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable AclGroup id (required for entity dependency).
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private int aclGroupId = 0;
 
         /// <summary>
         /// Variable associated AclGroups primary keys list.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
 #pragma warning disable CS0169 // Le champ 'SectionEntity.aclGroupsPK' n'est jamais utilisé
         private IEnumerable<int> aclGroupsPK;
 #pragma warning restore CS0169 // Le champ 'SectionEntity.aclGroupsPK' n'est jamais utilisé
@@ -138,7 +161,16 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable list of AclGroups associated to the Section.
         /// </summary>
         [NotMapped]
+        [XmlIgnore]
         private IEnumerable<AclGroupEntity> aclGroups;
+
+        /// <summary>
+        /// Variables collection of relationship Albums in Sections. Sections dependencies.
+        /// </summary>
+        [NotMapped]
+        [XmlIgnore]
+        private ObservableSectionsInAclGroups aclGroupsDependencies =
+            new ObservableSectionsInAclGroups("SectionId");
 
         #endregion
 
@@ -364,8 +396,21 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Property to access to the collection of relationship Albums in Sections.
         /// </summary>
-        public ObservableAlbumsInSections AlbumsInSections { get; set; }
-            = new ObservableAlbumsInSections("SectionId");
+        //public ObservableAlbumsInSections AlbumsInSections { get; set; }
+        //    = new ObservableAlbumsInSections("SectionId");
+        public ObservableCollection<AlbumsInSections> AlbumsInSections
+        {
+            get => albumsDependencies;
+            set
+            {
+                if (value != albumsDependencies as ObservableCollection<AlbumsInSections>)
+                {
+                    albumsDependencies = new ObservableAlbumsInSections("SectionId", value);
+                    NotifyPropertyChanged();
+                }
+                
+            }
+        }
 
         /// <summary>
         /// Property Album id (required for entity dependency).
@@ -389,14 +434,30 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [NotMapped]
         public IEnumerable<int> AlbumsPKs
+        {
+            get
+            {
+                if (albumsPKs == null)
+                {
+                    albumsPKs = ListOfPrimaryKeys(AlbumsInSections, "AlbumId");
+                }
+                return ListOfPrimaryKeys(AlbumsInSections, "AlbumId");
+            }
+
+            private set
+            {
+                if (albumsPKs != value)
+                {
+                    albumsPKs = value;
+                }
+                NotifyPropertyChanged();
+            }
+        }
         //{
         //    get
         //    {
-        //        if (albumsPK == null)
-        //        {
-        //            albumsPK = ListOfPrimaryKeys(AlbumsInSections, "AlbumId");
-        //        }
-        //        return ListOfPrimaryKeys(AlbumsInSections, "AclGroupId");
+
+        //        return AlbumsInSections.DependenciesPrimaryKeys;
         //    }
 
         //    private set
@@ -408,22 +469,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         //        NotifyPropertyChanged();
         //    }
         //}
-        {
-            get
-            {
-                
-                return AlbumsInSections.DependenciesPrimaryKeys;
-            }
-
-            private set
-            {
-                if (albumsPK != value)
-                {
-                    albumsPK = value;
-                }
-                NotifyPropertyChanged();
-            }
-        }
 
         /// <summary>
         /// Property to access to the list of Albums associated to the Section.
@@ -460,10 +505,23 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Proprerties Dependencies AclGroup
 
         /// <summary>
-        /// Property to access to the collection of relationship Sections in AclGroups.
+        /// Property to access to the collection of relationship Albums in Sections.
         /// </summary>
-        public ObservableCollection<SectionsInAclGroups> SectionsInAclGroups { get; set; }
-            = new ObservableCollection<SectionsInAclGroups>();
+        //public ObservableCollection<SectionsInAclGroups> SectionsInAclGroups { get; set; }
+        //    = new ObservableCollection<SectionsInAclGroups>();
+        public ObservableCollection<SectionsInAclGroups> SectionsInAclGroups
+        {
+            get => aclGroupsDependencies;
+            set
+            {
+                if (value != aclGroupsDependencies as ObservableCollection<SectionsInAclGroups>)
+                {
+                    aclGroupsDependencies = new ObservableSectionsInAclGroups("SectionId", value);
+                    NotifyPropertyChanged();
+                }
+
+            }
+        }
 
         /// <summary>
         /// Property AclGroup id (required for entity dependency).
@@ -520,7 +578,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
 
 
-        #region Methods
+        #region Methods AclGroup
 
         /// <summary>
         /// Method to get the list of associated AclGroups to the Section.
@@ -547,11 +605,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <param name="aclGroupPk">An album id or primary key.</param>
         public bool LinkAclGroup(int aclGroupPk)
         {
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {aclGroupPk}");
+
             try
             {
                 int index = SectionsInAclGroups.ToList().FindIndex(o => o.AclGroupId == aclGroupPk);
-
-                if (index < 0)
+                if (index == -1)
                 {
                     SectionsInAclGroups.Add(new SectionsInAclGroups { AclGroupId = aclGroupPk });
                 }
@@ -559,7 +618,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             }
             catch(Exception e)
             {
-                log.Debug(e.Output());
+                log.Debug(e.Output(), e);
                 return false;
             }
         }
@@ -570,18 +629,29 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <param name="aclGroupPk">An album id or primary key.</param>
         public bool UnLinkAclGroup(int aclGroupPk)
         {
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {aclGroupPk}");
+
             try
             {
                 int index = SectionsInAclGroups.ToList().FindIndex(o => o.AclGroupId == aclGroupPk);
-                SectionsInAclGroups.RemoveAt(index);
+                if (index != -1)
+                {
+                    SectionsInAclGroups.RemoveAt(index);
+                }
                 return true;
             }
             catch (Exception e)
             {
-                log.Debug(e.Output());
+                log.Debug(e.Output(), e);
                 return false;
             }
         }
+
+        #endregion
+
+
+
+        #region Methods Album
 
         /// <summary>
         /// Method to get the list of associated Album to the Section.
@@ -608,11 +678,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <param name="albumPk">An album id or primary key.</param>
         public bool LinkAlbum(int albumPk)
         {
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {albumPk}");
+
             try
             {
                 int index = AlbumsInSections.ToList().FindIndex(o => o.AlbumId == albumPk);
-
-                if (index < 0)
+                if (index == -1)
                 {
                     AlbumsInSections.Add(new AlbumsInSections { AlbumId = albumPk });
                 }
@@ -620,7 +691,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             }
             catch (Exception e)
             {
-                log.Debug(e.Output());
+                log.Error(e.Output(), e);
                 return false;
             }
         }
@@ -631,15 +702,20 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <param name="albumPk">An album id or primary key.</param>
         public bool UnlinkAlbum(int albumPk)
         {
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {albumPk}");
+
             try
             {
                 int index = AlbumsInSections.ToList().FindIndex(o => o.AlbumId == albumPk);
-                AlbumsInSections.RemoveAt(index);
+                if (index != -1)
+                {
+                    AlbumsInSections.RemoveAt(index);
+                }
                 return true;
             }
             catch (Exception e)
             {
-                log.Debug(e.Output());
+                log.Error(e.Output(), e);
                 return false;
             }
         }

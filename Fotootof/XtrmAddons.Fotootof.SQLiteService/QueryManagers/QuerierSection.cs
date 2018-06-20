@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
 {
@@ -12,6 +14,18 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
     /// </summary>
     public partial class QuerierSection : Querier
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         #region Methods List
 
         /// <summary>
@@ -177,11 +191,20 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
             using (Db.Context)
             {
                 // Try to attach entity to the database context.
-                try { Db.Context.Attach(entity); } catch { throw new System.Exception("Error on database Context Attach Section Entity"); }
+                try
+                {
+                    Db.Context.Attach(entity);
+                }
+                catch (Exception e)
+                {
+                    log.Fatal(e.Output(), e);
+                    throw e;
+                }
 
                 // Update entity.
                 entity = SectionManager.Update(entity, save);
 
+                // Check if entity is set to default.
                 if (entity.IsDefault)
                 {
                     SetDefault(entity.PrimaryKey);

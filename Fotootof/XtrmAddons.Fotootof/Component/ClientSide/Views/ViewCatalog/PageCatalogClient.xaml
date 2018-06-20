@@ -7,6 +7,7 @@
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:sections="clr-namespace:XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids"
+    xmlns:albums="clr-namespace:XtrmAddons.Fotootof.Component.ClientSide.Controls.ListViews"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Sections}"
@@ -56,9 +57,9 @@
 					  Grid.Column="2"
 					  x:Name="GridAlbums">
 
-					<!--<albums:ListViewAlbumsClient x:Name="UcListViewAlbums"
-												 DataContext="{Binding Albums}"
-												 FilterColorChanged="FiltersColor_SelectionChanged"
+					<albums:ListViewAlbumsClient x:Name="UcListViewAlbums"
+												 DataContext="{Binding Albums}"/>
+					<!--FilterColorChanged="FiltersColor_SelectionChanged"
 												 FilterQualityChanged="FiltersQuality_SelectionChanged" />-->
 				</Grid>
 			</Grid>

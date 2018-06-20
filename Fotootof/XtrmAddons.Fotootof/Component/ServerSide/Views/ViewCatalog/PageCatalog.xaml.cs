@@ -89,13 +89,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         public PageCatalog()
         {
             MessageBase.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "PageCatalog"));
+            log.Warn(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Catalog"));
 
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "PageCatalog"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Catalog"));
             MessageBase.IsBusy = false;
         }
 
@@ -156,7 +156,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         private void LoadSections()
         {
             MessageBase.IsBusy = true;
-            log.Info("Loading Sections list : Start. Please wait...");
+            log.Warn("Loading Sections list : Start. Please wait...");
 
             try
             {
@@ -182,7 +182,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         private void SectionsDataGrid_OnCancel(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
-            log.Info("Adding or editing Section operation canceled. Please wait...");
+            log.Warn("Adding or editing Section operation canceled. Please wait...");
 
             LoadSections();
 
@@ -198,7 +198,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         private void SectionsDataGrid_OnAdd(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
-            log.Info("Saving new Section informations. Please wait...");
+            log.Warn("Saving new Section informations. Please wait...");
 
             SectionEntity item = (SectionEntity)e.NewEntity;
             Model.Sections.Items.Add(item);
@@ -216,7 +216,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         private void SectionsDataGrid_OnChange(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
-            log.Info("Saving Section informations. Please wait...");
+            log.Warn("Saving Section informations. Please wait...");
 
             SectionEntity newEntity = (SectionEntity)e.NewEntity;
             SectionEntity old = Model.Sections.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
@@ -237,7 +237,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         private void SectionsDataGrid_OnDelete(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
-            log.Info("Deleting Section(s). Please wait...");
+            log.Warn("Deleting Section(s). Please wait...");
             
             // Remove item from list.
             SectionEntity item = (SectionEntity)e.NewEntity;
@@ -258,7 +258,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         private void SectionsDataGrid_OnDefaultChange(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
-            log.Info("Setting default Section. Please wait...");
+            log.Warn("Setting default Section. Please wait...");
 
             SectionEntity newEntity = (SectionEntity)e.NewEntity;
             SectionEntityCollection.SetDefault(newEntity);
@@ -280,7 +280,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         private void LoadAlbums()
         {
             MessageBase.IsBusy = true;
-            log.Info("Loading Albums list. Please wait...");
+            log.Warn("Loading Albums list. Please wait...");
 
             try
             {
@@ -316,7 +316,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         private void AlbumsListView_OnCancel(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
-            log.Info("Adding or editing Album operation canceled. Please wait...");
+            log.Warn("Adding or editing Album operation canceled. Please wait...");
 
             LoadAlbums();
 
@@ -332,7 +332,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         private void AlbumsListView_OnAdd(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
-            log.Info("Saving new Album informations. Please wait...");
+            log.Warn("Saving new Album informations. Please wait...");
 
             AlbumEntity item = (AlbumEntity)e.NewEntity;
             Model.Albums.Items.Add(item);
@@ -350,7 +350,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         private void AlbumsListView_OnChange(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
-            log.Info("Saving Album informations. Please wait...");
+            log.Warn("Saving Album informations. Please wait...");
 
             AlbumEntity newEntity = (AlbumEntity)e.NewEntity;
             AlbumEntity old = Model.Albums.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
@@ -371,7 +371,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         private void AlbumsListView_OnDelete(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
-            log.Info("Deleting Album(s). Please wait...");
+            log.Warn("Deleting Album(s). Please wait...");
 
             // Remove item from list.
             AlbumEntity item = (AlbumEntity)e.NewEntity;
@@ -461,26 +461,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             this.Width = fe.ActualWidth;
             this.Height = fe.ActualHeight;
 
+            double height = Math.Max(Height - Block_TopControls.RenderSize.Height, 0);
+
             Block_MiddleContents.Width = this.Width;
-            Block_MiddleContents.Height = this.Height - Block_TopControls.RenderSize.Height;
+            Block_MiddleContents.Height = height;
 
-            UcDataGridSections.Height = this.Height - Block_TopControls.RenderSize.Height;
-            UcListViewAlbums.Height = this.Height - Block_TopControls.RenderSize.Height;
-        }
-
-        #endregion
-
-
-
-        #region Obsoletes
-
-        /// <summary>
-        /// Method to initialize and display data context.
-        /// </summary>
-        [Obsolete("Will be remove. None sense...", true)]
-        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
+            UcDataGridSections.Height = height;
+            UcListViewAlbums.Height = height;
         }
 
         #endregion

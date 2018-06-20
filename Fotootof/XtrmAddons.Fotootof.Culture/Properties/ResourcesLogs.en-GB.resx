@@ -120,11 +120,20 @@
   <data name="AddingApplicationToSystemTrayDone" xml:space="preserve">
     <value>Adding application to system tray. Done !</value>
   </data>
-  <data name="ApplicationClosed" xml:space="preserve">
+  <data name="AppClosed" xml:space="preserve">
     <value>Application closed.</value>
+  </data>
+  <data name="AppIntLanguage" xml:space="preserve">
+    <value>Initializing application language. Please wait...</value>
   </data>
   <data name="ApplicationSettingsSaved" xml:space="preserve">
     <value>Application settings saved.</value>
+  </data>
+  <data name="AppSaveWaiting" xml:space="preserve">
+    <value>Saving the application options &amp; parameters before exit. Please wait...</value>
+  </data>
+  <data name="AppStartWaiting" xml:space="preserve">
+    <value>Starting the application. Initialiazing options &amp; parameters. Please wait...</value>
   </data>
   <data name="CopyingProgramFiles" xml:space="preserve">
     <value>Copying program files to My Documents user folder. Please wait...</value>
@@ -162,17 +171,8 @@
   <data name="PleaseWait" xml:space="preserve">
     <value>Please wait...</value>
   </data>
-  <data name="SavingApplicationWaiting" xml:space="preserve">
-    <value>Saving the application options &amp; parameters before exit. Please wait...</value>
-  </data>
-  <data name="SendingAlbumsCommand" xml:space="preserve">
-    <value>Sending ListAlbums command to server {0}:{1}</value>
-  </data>
   <data name="SendingAlbumsCommandDone" xml:space="preserve">
     <value>Sending ListAlbums command to server done !</value>
-  </data>
-  <data name="SendingAuthenticationCommand" xml:space="preserve">
-    <value>Sending Authentication command to server {0}:{1}</value>
   </data>
   <data name="SendingAuthenticationCommandDone" xml:space="preserve">
     <value>Sending Authentication command to server done !</value>
@@ -189,8 +189,11 @@
   <data name="SendingAuthenticationCommandUnauthorized" xml:space="preserve">
     <value>Sending Authentication command : user unauthorized !</value>
   </data>
-  <data name="SendingListSectionsCommand" xml:space="preserve">
-    <value>Sending ListSections command to server {0}:{1}</value>
+  <data name="SendingClientCommand" xml:space="preserve">
+    <value>Sending {0} command to server {1}:{2} =&gt; Please wait...</value>
+  </data>
+  <data name="SendingClientCommandDone" xml:space="preserve">
+    <value>Sending {0} command to server {1}:{2} =&gt; Done !</value>
   </data>
   <data name="SendingListSectionsCommandDone" xml:space="preserve">
     <value>Sending ListSections command to server done !</value>
@@ -206,9 +209,6 @@
   </data>
   <data name="SendingListSectionsCommandUnauthorized" xml:space="preserve">
     <value>Sending ListSections command : user unauthorized !</value>
-  </data>
-  <data name="SendingPingCommand" xml:space="preserve">
-    <value>Sending Ping command to server {0}:{1}</value>
   </data>
   <data name="SendingPingCommandDone" xml:space="preserve">
     <value>Sending Ping command to server done !</value>
@@ -228,7 +228,7 @@
   <data name="ServerStopped" xml:space="preserve">
     <value>Server stopped.</value>
   </data>
-  <data name="StartingApplicationWaiting" xml:space="preserve">
-    <value>Starting the application. Initialiazing options &amp; parameters. Please wait...</value>
+  <data name="WindowClosing" xml:space="preserve">
+    <value>Closing window : {0}</value>
   </data>
 </root>

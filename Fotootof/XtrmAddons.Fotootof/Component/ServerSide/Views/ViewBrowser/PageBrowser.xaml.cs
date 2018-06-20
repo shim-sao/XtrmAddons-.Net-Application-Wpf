@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using XtrmAddons.Fotootof.Common.Collections;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Images;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
-using XtrmAddons.Fotootof.Common.Collections;
-using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Memory;
 using XtrmAddons.Net.Picture;
-using XtrmAddons.Net.Windows.Controls.Extensions;
 using XtrmAddons.Net.Windows.Converter.Picture;
-using System.Globalization;
-using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
 {
@@ -73,7 +69,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
         public PageBrowser()
         {
             MessageBase.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Browser"));
+            log.Warn(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Browser"));
 
             // Constuct page component.
             InitializeComponent();
@@ -467,21 +463,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
             TraceSize(Block_MiddleContents);
             TraceSize(UcTreeViewDirectories);
             TraceSize(UcListViewStoragesServer);
-        }
-
-        #endregion
-
-
-
-        #region Obsoletes
-
-        /// <summary>
-        /// Method to initialize and display data context.
-        /// </summary>
-        [Obsolete("Will be remove. None sense...")]
-        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
 
         #endregion

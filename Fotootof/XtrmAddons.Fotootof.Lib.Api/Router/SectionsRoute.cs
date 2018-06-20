@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
@@ -43,7 +44,7 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
         /// <returns>WPF Web Server response data of list of Sections.</returns>
         public override WebServerResponseData Index()
         {
-            log.Info("Api : Serving sections request. Please wait...");
+            log.Info("Api : Serving sections list request. Please wait...");
             
             if (!IsAuth())
             {
@@ -111,11 +112,12 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
         /// <returns>>WPF Web Server response data of the selected folder.</returns>
         public WebServerResponseData Get()
         {
-            log.Info("Api : Serving section request. Please wait !");
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
+            log.Info($"{MethodBase.GetCurrentMethod().Name} : Serving section request. Please wait...");
 
             if (!IsAuth())
             {
-                log.Info("Api : Return response user not auth.");
+                log.Info($"{MethodBase.GetCurrentMethod().Name} : Return response user not auth.");
                 return ResponseNotAuth();
             }
             
@@ -124,8 +126,8 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
                 // Check if request params are correct.
                 if(Uri.Params.Length == 0)
                 {
-                    log.Info("Api : Params in the request are empty.");
-                    log.Info("Api : Return response section not found or doesn't exists.");
+                    log.Info($"{MethodBase.GetCurrentMethod().Name} : Params in the request are empty.");
+                    log.Info($"{MethodBase.GetCurrentMethod().Name} : Return response section not found or doesn't exists.");
                     return ResponseError404("Section not found or doesn't exists.");
                 }
 
@@ -151,14 +153,14 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
                 // Check if folder is associated or not.
                 if (entity == null)
                 {
-                    log.Info("Api : Section not found in user association.");
-                    log.Info("Api : Return response Section not found or doesn't exists.");
+                    log.Info($"{MethodBase.GetCurrentMethod().Name} : Section not found in user association.");
+                    log.Info($"{MethodBase.GetCurrentMethod().Name} : Return response Section not found or doesn't exists.");
                     return ResponseError404("Section not found or doesn't exists.");
                 }
 
                 // Ensure to select dependencies.
                 log.Info("Api : Creating section informations. Please wait...");
-                entity = Database.Sections.SingleOrDefault
+                entity = Database.Sections.SingleOrNull
                     (
                         new SectionOptionsSelect
                         {
@@ -173,7 +175,7 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
             }
             catch (Exception e)
             {
-                log.Fatal("Api Error : Serving section request failed.", e);
+                log.Fatal($"{MethodBase.GetCurrentMethod().Name} : Serving section request failed.", e);
                 return ResponseError500();
             }
         }

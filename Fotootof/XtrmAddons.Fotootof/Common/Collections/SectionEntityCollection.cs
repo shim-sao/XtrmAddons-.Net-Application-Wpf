@@ -41,11 +41,15 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Section Collections.
         /// </summary>
+        /// <param name="collection">>A collection of Section to paste in.</param>
+        public SectionEntityCollection(IEnumerable<SectionEntity> collection) : base(collection) { }
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Server Component Section Collections.
+        /// </summary>
         /// <param name="list">A list of Section to paste in.</param>
         public SectionEntityCollection(List<SectionJson> list) : base()
         {
-            List<SectionEntity> entities = new List<SectionEntity>();
-            
             if(list == null)
             {
                 throw new ArgumentNullException(nameof(list));
@@ -56,12 +60,6 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 Add(sj.ToEntity());
             }
         }
-
-        /// <summary>
-        /// Class XtrmAddons Fotootof Server Component Section Collections.
-        /// </summary>
-        /// <param name="collection">>A collection of Section to paste in.</param>
-        public SectionEntityCollection(IEnumerable<SectionEntity> collection) : base(collection) { }
 
         #endregion
 

@@ -67,6 +67,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         /// <param name="e">Size changed event arguments.</param>
         public abstract void Control_SizeChanged(object sender, SizeChangedEventArgs e);
 
-#endregion
+        #endregion
     }
 }
