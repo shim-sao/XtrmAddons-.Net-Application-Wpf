@@ -23,9 +23,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
                 {
                     ApplicationBase.BeginInvokeIfRequired(new Action(() =>
                     {
-                        var a = Application.Current.MainWindow;
-                        var b = a.GetType();
-
                         busyIndicator = Application.Current.MainWindow.GetPropertyValue<Xceed.Wpf.Toolkit.BusyIndicator>("BusyIndicator");
                     }));
                 }

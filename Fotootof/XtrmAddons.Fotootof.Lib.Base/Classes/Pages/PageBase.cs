@@ -85,12 +85,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// <param name="e">Size changed event arguments.</param>
         public abstract void Control_SizeChanged(object sender, SizeChangedEventArgs e);
 
-        /// <summary>
-        /// Method to initialize and display data context.
-        /// </summary>
-        [Obsolete("Will be remove. None sense...", true)]
-        public abstract void Page_Loaded_Async(object sender, RoutedEventArgs e);
-
         #endregion
 
 
@@ -133,7 +127,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// </summary>
         /// <param name="multiselect">Multiple selection enabled ?. False by default. Optional.</param>
         /// <returns>A picture file dialog box selector, null if canceled.</returns>
-        [Obsolete("use DialogBase.PictureFileDialogBox(bool multiselect = false);")]
+        [Obsolete("use DialogBase.PictureFileDialogBox(bool multiselect = false);", true)]
         protected OpenFileDialog PictureFileDialogBox(bool multiselect = false)
         {
             // Configure open file dialog box 

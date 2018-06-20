@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Windows;
-using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
@@ -52,7 +50,7 @@ namespace XtrmAddons.Fotootof.Common.Tools
                 string[] buffer = value.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string s in buffer)
                 {
-                    Trace.TraceInformation(s);
+                    //Trace.WriteLine(s);
                     AddLog(s + "\r\n");
                 }
             }
@@ -81,7 +79,8 @@ namespace XtrmAddons.Fotootof.Common.Tools
 
             foreach (string str in logs.Cast<string>().Reverse())
             {
-                buffer += $"({(index--).ToString().PadLeft(4, '0')}) {str}";
+                //buffer += $"({(index--).ToString().PadLeft(4, '0')}) {str}";
+                buffer += $"- {str}";
             }
 
             ApplicationBase.BeginInvokeIfRequired(() => { MessageBase.BusyContent = s; });
@@ -93,57 +92,6 @@ namespace XtrmAddons.Fotootof.Common.Tools
         /// </summary>
         public static void Clear()
             => logs.Clear();
-
-        /// <summary>
-        /// Method to add Error message to display in a dialog box.
-        /// </summary>
-        /// <param name="s">The message to add to queue.</param>
-        [Obsolete("use MessageBase.Error(s)")]
-        public static void Error(string s)
-        {
-            MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-
-        /// <summary>
-        /// Method to add Error message to display in a dialog box.
-        /// </summary>
-        /// <param name="e">The exception to add to the message box.</param>
-        [Obsolete("use MessageBase.Error(s)")]
-        public static void Error(Exception e)
-        {
-            MessageBox.Show(e.Output(), Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-
-        /// <summary>
-        /// Method to add not implemented message to display in log frame.
-        /// </summary>
-        [Obsolete("use MessageBase.NotImplemented()")]
-        public static void NotImplemented()
-        {
-            MessageBase.NotImplemented();
-        }
-
-        /// <summary>
-        /// Method to add Warning message to display in log frame.
-        /// </summary>
-        /// <param name="s">The message to add to queue.</param>
-        [Obsolete("use MessageBase.Warning(s)")]
-        public static void Warning(string s)
-        {
-            MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Warning);
-        }
-
-        /// <summary>
-        /// Method to add fatal message to display in log frame.
-        /// </summary>
-        /// <param name="s">The message to add to queue.</param>
-        /// <param name="e">The Exception to add to queue.</param>
-        [Obsolete("use MessageBase.Fatal(e, s)")]
-        public static void Fatal(string s, Exception e)
-        {
-            s += "\n\r" + e.Output();
-            MessageBox.Show(s, Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Stop);
-        }
 
         #endregion Methods
     }

@@ -72,9 +72,18 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Application closed..
         /// </summary>
-        public static string ApplicationClosed {
+        public static string AppClosed {
             get {
-                return ResourceManager.GetString("ApplicationClosed", resourceCulture);
+                return ResourceManager.GetString("AppClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Initializing application language. Please wait....
+        /// </summary>
+        public static string AppIntLanguage {
+            get {
+                return ResourceManager.GetString("AppIntLanguage", resourceCulture);
             }
         }
         
@@ -84,6 +93,24 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string ApplicationSettingsSaved {
             get {
                 return ResourceManager.GetString("ApplicationSettingsSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Saving the application options &amp; parameters before exit. Please wait....
+        /// </summary>
+        public static string AppSaveWaiting {
+            get {
+                return ResourceManager.GetString("AppSaveWaiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Starting the application. Initialiazing the options &amp; parameters. Please wait....
+        /// </summary>
+        public static string AppStartWaiting {
+            get {
+                return ResourceManager.GetString("AppStartWaiting", resourceCulture);
             }
         }
         
@@ -196,15 +223,6 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Saving the application options &amp; parameters before exit. Please wait....
-        /// </summary>
-        public static string SavingApplicationWaiting {
-            get {
-                return ResourceManager.GetString("SavingApplicationWaiting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Sending ListAlbums command to server done !.
         /// </summary>
         public static string SendingAlbumsCommandDone {
@@ -259,11 +277,20 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sending {0} command to server {1}:{2}.
+        ///   Recherche une chaîne localisée semblable à Sending {0} command to server {1}:{2} =&gt; Please wait....
         /// </summary>
         public static string SendingClientCommand {
             get {
                 return ResourceManager.GetString("SendingClientCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sending {0} command to server {1}:{2} =&gt; Done !.
+        /// </summary>
+        public static string SendingClientCommandDone {
+            get {
+                return ResourceManager.GetString("SendingClientCommandDone", resourceCulture);
             }
         }
         
@@ -367,11 +394,11 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Starting the application. Initialiazing the options &amp; parameters. Please wait....
+        ///   Recherche une chaîne localisée semblable à Closing window : {0}.
         /// </summary>
-        public static string StartingApplicationWaiting {
+        public static string WindowClosing {
             get {
-                return ResourceManager.GetString("StartingApplicationWaiting", resourceCulture);
+                return ResourceManager.GetString("WindowClosing", resourceCulture);
             }
         }
     }

@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.Composition;
 using System.Diagnostics;
+using System.Windows;
 using XtrmAddons.Fotootof.Interfaces.AddInsContracts;
 
-namespace XtrmAddons.Fotootof.PluginTest.PluginContracts
+namespace XtrmAddons.Fotootof.Plugin.Test.PluginContracts
 {
     [Export(typeof(IProcess))]
     public class Processor : IProcess
@@ -12,9 +13,8 @@ namespace XtrmAddons.Fotootof.PluginTest.PluginContracts
         /// </summary>
         public void Run()
         {
-            Trace.WriteLine("Running process Plugin Test Module");
-
-            // MessageBox.Show("Hello! This is a Greetings from Plugin");
+            Trace.WriteLine("Running process Module Plugin Test.");
+            MessageBox.Show("Running process Module Plugins Test.");
         }
     }
 }

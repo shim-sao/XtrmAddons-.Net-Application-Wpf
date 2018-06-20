@@ -13,9 +13,14 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         /// Method to get a formated object argument null exception.
         /// </summary>
         /// <returns>A formated argument null exception.</returns>
-        public static ArgumentNullException ObjArgNull(Type type, string propertyName)
+        public static ArgumentNullException ArgNull(string propertyName, object argument)
         {
-            return new ArgumentNullException($"The argument Type {type.Name} must be not null : {propertyName}");
+            if(argument.GetType() == typeof(string))
+            {
+                return new ArgumentNullException($"The argument Type 'string' must be not null, empty or whitespace : '{propertyName}'");
+            }
+
+            return new ArgumentNullException($"The argument Type '{argument.GetType().Name}' must be not null : '{propertyName}'");
         }
 
         #endregion

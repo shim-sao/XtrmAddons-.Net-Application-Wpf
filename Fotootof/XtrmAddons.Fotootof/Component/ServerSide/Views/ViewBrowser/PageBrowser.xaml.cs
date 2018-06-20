@@ -69,7 +69,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
         public PageBrowser()
         {
             MessageBase.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Browser"));
+            log.Warn(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Browser"));
 
             // Constuct page component.
             InitializeComponent();
@@ -463,21 +463,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
             TraceSize(Block_MiddleContents);
             TraceSize(UcTreeViewDirectories);
             TraceSize(UcListViewStoragesServer);
-        }
-
-        #endregion
-
-
-
-        #region Obsoletes
-
-        /// <summary>
-        /// Method to initialize and display data context.
-        /// </summary>
-        [Obsolete("Will be remove. None sense...", true)]
-        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
 
         #endregion

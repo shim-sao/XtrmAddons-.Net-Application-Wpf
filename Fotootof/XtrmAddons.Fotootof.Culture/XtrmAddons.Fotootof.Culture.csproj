@@ -27,12 +27,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\XtrmAddons.Fotootof\bin\Release\</OutputPath>
+    <OutputPath>..\packages\XtrmAddons\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\XtrmAddons.Fotootof\bin\Release\XtrmAddons.Fotootof.Culture.xml</DocumentationFile>
+    <DocumentationFile>..\packages\XtrmAddons\Release\XtrmAddons.Fotootof.Culture.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>

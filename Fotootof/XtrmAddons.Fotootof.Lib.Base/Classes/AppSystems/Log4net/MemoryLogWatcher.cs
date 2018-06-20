@@ -2,6 +2,7 @@
 using log4net.Appender;
 using log4net.Core;
 using System;
+using System.Diagnostics;
 using System.Text;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems.Log4net
@@ -84,12 +85,22 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems.Log4net
                 // Iterate through each event
                 foreach (LoggingEvent ev in events)
                 {
-                    // Construct the line we want to log
-                    // string line = ev.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss,fff") + " [" + ev.ThreadName + "] " + ev.Level + " " + ev.LoggerName + ": " + ev.RenderedMessage + "\r\n";
-                    string line = ev.TimeStamp.ToString("HH:mm:ss,fff") + " " + ev.Level + " : " + ev.RenderedMessage + "\r\n";
+#if DEBUG
+                    // Construct the line we want to trace
+                    Trace.WriteLine($"{ev.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss,fff")} [{ev.ThreadName}] {ev.Level} {ev.LoggerName} : {ev.RenderedMessage}");
 
                     // Append to the StringBuilder
-                    output.Append(line);
+                    output.Append($"{ev.TimeStamp.ToString("HH:mm:ss,fff")} {ev.Level} : {ev.RenderedMessage}\r\n");
+#else
+                    if (ev.Level >= Level.Warn)
+                    {
+                        // Construct the line we want to trace
+                        Trace.WriteLine($"{ev.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss,fff")} [{ev.ThreadName}] {ev.Level} {ev.LoggerName} : {ev.RenderedMessage}");
+
+                        // Append to the StringBuilder
+                        output.Append($"{ev.RenderedMessage}\r\n");
+                    }
+#endif
                 }
             }
 

@@ -106,6 +106,12 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
             log.Debug($"Sending command Authentication : {command}");
         }
 
+        #endregion
+
+
+
+        #region Methods Section
+
         /// <summary>
         /// 
         /// </summary>
@@ -114,42 +120,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         private async void Sections_SelectionChangedAsync(object sender, SelectionChangedEventArgs e)
         {
             await Model.Server.SingleSection(((SectionEntity)UcDataGridSections.ItemsDataGrid.SelectedItem).PrimaryKey);
-            MessageBase.NotImplemented($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
         }
-
-        #endregion
-
-
-
-        #region Methods Section
-
-        /// <summary>
-        /// Method to load the list of Section from server.
-        /// </summary>
-        //private void LoadSections(ClientHttpEventArgs<ServerResponseSections> serverResponse, bool reset = false)
-        //{
-        //    try
-        //    {
-        //        log.Info("Loading Sections list. Please wait...");
-
-        //        List<SectionEntity> l = new List<SectionEntity>();
-        //        foreach (SectionJson s in serverResponse.Response.Response)
-        //        {
-        //            l.Add(s.ToEntity());
-        //        }
-
-        //        if (reset || Model.Sections == null)
-        //        {
-        //            Model.Sections = new DataGridSectionsModel<DataGridSections>(UCDataGridSections);
-        //        }
-        //        Model.Sections.Items = new SectionEntityCollection(l);
-        //        AppLogger.InfoAndClose("Loading Sections list. Done.");
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        AppLogger.Fatal("Loading Sections list failed : " + e.Message, e);
-        //    }
-        //}
 
         #endregion
 
@@ -174,21 +145,6 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
 
             UcDataGridSections.Height = this.Height - Block_TopControls.RenderSize.Height;
             //UcListViewAlbums.Height = this.Height - Block_TopControls.RenderSize.Height;
-        }
-
-        #endregion
-
-
-
-        #region Obsoletes
-
-        /// <summary>
-        /// Method to initialize and display data context.
-        /// </summary>
-        [Obsolete("Will be remove. None sense...")]
-        public override void Page_Loaded_Async(object sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
 
         #endregion

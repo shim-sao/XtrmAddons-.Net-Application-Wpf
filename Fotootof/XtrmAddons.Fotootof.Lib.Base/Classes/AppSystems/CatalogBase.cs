@@ -1,6 +1,10 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using XtrmAddons.Fotootof.Builders.AddInsContracts;
+using XtrmAddons.Fotootof.Interfaces.AddInsContracts;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
 {
@@ -20,17 +24,13 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         /// <summary>
         /// 
         /// </summary>
-        private static readonly DirectoryCatalog catalog = new DirectoryCatalog("Plugins");
+        public static IDictionary<string, DirectoryCatalog> Assemblies { get; }
+            = new Dictionary<string, DirectoryCatalog>();
 
         /// <summary>
         /// 
         /// </summary>
-        private static readonly CompositionContainer container = new CompositionContainer(catalog);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private static InterfaceBuilder builder;
+        private static IEnumerable<IModule> modules;
 
         #endregion
 
@@ -38,18 +38,47 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
 
         #region Properties
 
-        public static InterfaceBuilder Builder
+        public static IEnumerable<IModule> GetModules(string assemblyName)
         {
-            get
+            // Check if modules are already loaded.
+            if(modules != null)
             {
-                if(builder == null)
-                {
-                    Initialize();
-                }
-
-                return builder;
+                return modules;
             }
-            private set => builder = value;
+
+            // Initialize assemblies.
+            Initialize();
+
+            // Check if the assembly name is a valid string.
+            if (assemblyName.IsNullOrWhiteSpace())
+            {
+                ArgumentNullException ex = ExceptionBase.ArgNull(nameof(assemblyName), assemblyName);
+                log.Error(ex.Output(), ex);
+                return null;
+            }
+
+            // Check if an assembly with that name has been loaded.
+            if(!Assemblies.Keys.Contains(assemblyName))
+            {
+                NullReferenceException ex = new NullReferenceException(nameof(assemblyName));
+                log.Error(ex.Output(), ex);
+                return null;
+            }
+
+            try
+            {
+                InterfaceBuilder builder = new InterfaceBuilder();
+                CompositionContainer container = new CompositionContainer(Assemblies[assemblyName]);
+                container.ComposeParts(builder);
+
+                return modules = builder.Modules;
+            }
+            catch (Exception ex)
+            {
+                log.Fatal(ex.Output(), ex);
+            }
+
+            return null;
         }
 
         #endregion
@@ -63,9 +92,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         /// </summary>
         public static void Initialize()
         {
-            builder = new InterfaceBuilder();
-            container.ComposeParts(builder);
-
+            Assemblies.Add("Plugins", new DirectoryCatalog("Plugins"));
         }
 
         #endregion

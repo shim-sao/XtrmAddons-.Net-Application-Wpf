@@ -55,7 +55,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
         {
             if (list == null)
             {
-                ArgumentNullException ex = ExceptionBase.ObjArgNull(typeof(List<AlbumJson>), nameof(list));
+                ArgumentNullException ex = ExceptionBase.ArgNull(nameof(list), list);
                 log.Warn(ex.Output(), ex);
                 return;
             }

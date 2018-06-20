@@ -51,13 +51,14 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
         /// Method to authenticate an User.
         /// </summary>
         /// <returns>A formated web server data response.</returns>
-        public WebServerResponseData Authentication(string post)
+        public WebServerResponseData Authentication(NameValueCollection post)
         {
             log.Info($"Api WebServer Authentication : post => {post}.");
 
             try
             {
-                NameValueCollection nvc = HttpUtility.ParseQueryString(post);
+                //NameValueCollection nvc = HttpUtility.ParseQueryString(post);
+                NameValueCollection nvc = post;
 
                 log.Debug($"Api WebServer Authentication : Email => {nvc["email"]}.");
                 log.Debug($"Api WebServer Authentication : Password => {nvc["email"].MD5Hash()}.");

@@ -17,11 +17,5 @@ namespace XtrmAddons.Fotootof.Lib.Base.Interfaces
         /// Method called on page loaded to initialize and display data context.
         /// </summary>
         void Control_Loaded(object sender, RoutedEventArgs e);
-
-        /// <summary>
-        /// Method called on page loaded to initialize and display data context asynchronously.
-        /// </summary>
-        [System.Obsolete("Will be remove. None sense...")]
-        void Page_Loaded_Async(object sender, RoutedEventArgs e);
     }
 }

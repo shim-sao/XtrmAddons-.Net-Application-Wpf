@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows.Controls;
 
-namespace XtrmAddons.Fotootof.PluginTest
+namespace XtrmAddons.Fotootof.Plugin.Test
 {
     /// <summary>
     /// Logique d'interaction pour UcPluginTest.xaml

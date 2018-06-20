@@ -81,18 +81,12 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
 
             try
             {
-               /* DirectoryCatalog catalog = new DirectoryCatalog("Plugins");
-
-                InterfaceBuilder builder = new InterfaceBuilder();
-                CompositionContainer container = new CompositionContainer(catalog);
-                container.ComposeParts(builder);*/
-                /*
-                foreach (IModule module in CatalogBase.Builder.Modules)
+                foreach (IModule module in CatalogBase.GetModules("Plugins"))
                 {
                     MenuItem_Plugins.Items.Add(module.GetInterfaceObject());
                     //attacher.Container = MenuItem_Plugins;
                 }
-                */
+                
             }
             catch(CompositionException e)
             {

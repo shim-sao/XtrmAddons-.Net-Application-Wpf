@@ -43,6 +43,21 @@ namespace XtrmAddons.Fotootof.Settings
             #endregion
 
 
+            #region application roaming
+            // Create path to configuration server public html directory
+            temp = new Directory
+            {
+                Key = "roaming.public_html",
+                RelativePath = "Public_html",
+                IsRelative = true,
+                Root = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+            };
+            ApplicationBase.Storage.Directories.AddKeySingle(temp);
+            temp.Create();
+            Trace.TraceInformation($"roaming.public_html => {ApplicationBase.Storage.Directories.FindKeyFirst("roaming.public_html").AbsolutePath}");
+            #endregion
+
+            
             #region user cache
             // Create path to cache filestypes directory. 
             temp = new Directory

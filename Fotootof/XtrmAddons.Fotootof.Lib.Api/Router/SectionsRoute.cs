@@ -44,7 +44,7 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
         /// <returns>WPF Web Server response data of list of Sections.</returns>
         public override WebServerResponseData Index()
         {
-            log.Info("Api : Serving sections request. Please wait...");
+            log.Info("Api : Serving sections list request. Please wait...");
             
             if (!IsAuth())
             {

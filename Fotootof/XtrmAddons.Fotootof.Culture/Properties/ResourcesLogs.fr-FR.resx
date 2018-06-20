@@ -120,11 +120,20 @@
   <data name="AddingApplicationToSystemTrayDone" xml:space="preserve">
     <value>Ajout d'une application à la barre d'état système. Terminé !</value>
   </data>
-  <data name="ApplicationClosed" xml:space="preserve">
+  <data name="AppIntLanguage" xml:space="preserve">
+    <value>Initialisation du langage de l'application. Veuillez patienter, s'il vous plaît...</value>
+  </data>
+  <data name="AppClosed" xml:space="preserve">
     <value>Fermeture de l'application.</value>
   </data>
   <data name="ApplicationSettingsSaved" xml:space="preserve">
     <value>Paramètres de l'application enregistrés.</value>
+  </data>
+  <data name="AppSaveWaiting" xml:space="preserve">
+    <value>Sauvegarde des options et paramètres de l'application avant de quitter. Veuillez patienter, s'il vous plaît...</value>
+  </data>
+  <data name="AppStartWaiting" xml:space="preserve">
+    <value>Démarrage de l'application. Initialisation des options et des paramètres. Veuillez patienter, s'il vous plaît...</value>
   </data>
   <data name="CopyingProgramFiles" xml:space="preserve">
     <value>Copie des fichiers du programme dans le dossier utilisateur Mes documents. Patientez, s'il vous plaît...</value>
@@ -162,9 +171,6 @@
   <data name="PleaseWait" xml:space="preserve">
     <value>Patientez, s'il vous plaît...</value>
   </data>
-  <data name="SavingApplicationWaiting" xml:space="preserve">
-    <value>Sauvegarde des options et paramètres de l'application avant de quitter. Veuillez patienter, s'il vous plaît...</value>
-  </data>
   <data name="SendingAlbumsCommandDone" xml:space="preserve">
     <value>Envoi de la commande ListAlbums au serveur fin !</value>
   </data>
@@ -184,7 +190,10 @@
     <value>Envoi de la commande Authentication : utilisateur non authentifié !</value>
   </data>
   <data name="SendingClientCommand" xml:space="preserve">
-    <value>Envoi de la commande {0} au serveur {1}:{2}</value>
+    <value>Envoi de la commande {0} au serveur {1}:{2} =&gt; Veuillez patienter, s'il vous plaît...</value>
+  </data>
+  <data name="SendingClientCommandDone" xml:space="preserve">
+    <value>Envoi de la commande {0} au serveur {1}:{2} =&gt; Effectué !</value>
   </data>
   <data name="SendingListSectionsCommandDone" xml:space="preserve">
     <value>Envoi de la commande ListSections au serveur fin !</value>
@@ -219,7 +228,7 @@
   <data name="ServerStopped" xml:space="preserve">
     <value>Serveur processus arrêté.</value>
   </data>
-  <data name="StartingApplicationWaiting" xml:space="preserve">
-    <value>Démarrage de l'application. Initialisation des options et des paramètres. Patientez, s'il vous plaît...</value>
+  <data name="WindowClosing" xml:space="preserve">
+    <value>Fermeture de la fenêtre : {0}</value>
   </data>
 </root>

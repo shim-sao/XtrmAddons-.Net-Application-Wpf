@@ -1,8 +1,12 @@
 ﻿using log4net.Repository;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
+using XtrmAddons.Fotootof.Builders.AddInsContracts;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Settings;
 using XtrmAddons.Net.Application;
@@ -40,7 +44,7 @@ namespace XtrmAddons.Fotootof
         SettingsOptions options = new SettingsOptions();
 
         #endregion
-        
+
 
 
         #region Constructor
@@ -64,9 +68,12 @@ namespace XtrmAddons.Fotootof
 
             // Initialize language.
             // Must be placed in the top start of the application.
+            Trace.TraceInformation((string)Translation.DLogs.AppIntLanguage);
             CultureInfo ci = new CultureInfo(ApplicationBase.Language);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
+
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
             //Current.Resources.MergedDictionaries.Add(new ResourceDictionary()
             //{
@@ -84,31 +91,66 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// <para>Method to initialize log4net debugger on application contructor.</para>
         /// <para>Log4net configuration must be placed on top of the constructor instructions.</para>
+        /// <para><see href="https://logging.apache.org/log4net/release/manual/introduction.html"/></para>
         /// </summary>
         private static void InitializeLog4Net()
         {
+            Trace.TraceInformation("Initializing Log4Net Configurator. Please wait... ");
             log4net.Config.XmlConfigurator.Configure();
 
-#if !DEBUG
-
-            // Disable using DEBUG mode in Release mode.
+#if DEBUG
+            // Trace Log4net repositories for debug.
+            int i = 0;
             foreach (log4net.Repository.ILoggerRepository repository in log4net.LogManager.GetAllRepositories())
             {
-                repository.Threshold = log4net.Core.Level.Error;
-            }
 
+                Trace.TraceInformation($"{i} # Repository name : {repository.Name}");
+                Trace.TraceInformation($"{i} # Repository is configured : {repository.Configured}");
+                Trace.TraceInformation($"{i} # Repository levels map count : {repository.LevelMap.AllLevels.Count}");
+                Trace.TraceInformation($"{i} # Repository threshold : {repository.Threshold}");
+
+                Trace.TraceInformation($"{i} # Repository configuration messages : {repository.ConfigurationMessages.Count}");
+                int j = 0;
+                foreach (log4net.Util.LogLog message in repository.ConfigurationMessages)
+                {
+                    Trace.TraceInformation($"{i} # Repository message ({j}) : {message.Message}");
+                    j++;
+                }
+
+                Trace.TraceInformation($"{i} # Repository plugin map : {repository.PluginMap.AllPlugins.Count}");
+                j = 0;
+                foreach (log4net.Plugin.PluginCollection plgCollec in repository.PluginMap.AllPlugins)
+                {
+                    int k = 0;
+                    foreach (log4net.Plugin.PluginSkeleton plg in plgCollec)
+                    {
+                        Trace.TraceInformation($"{i} # Repository plugin ({j}:{k}) : {plg.Name}");
+                        k++;
+                    }
+                    j++;
+                }
+
+                i++;
+                repository.Threshold = log4net.Core.Level.Info;
+            }
+#else
+            // Disable logs under Info on release mode.
+            foreach (log4net.Repository.ILoggerRepository repository in log4net.LogManager.GetAllRepositories())
+            {
+                repository.Threshold = log4net.Core.Level.Info;
+            }
 #endif
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }
 
         /// <summary>
-        /// 
+        /// Method called at the start up of the application.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="e">Strart up event arguments.</param>
         private void App_Startup(object sender, StartupEventArgs e)
         {
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-            Trace.TraceInformation((string)Translation.DLogs.StartingApplicationWaiting);
+            Trace.TraceInformation((string)Translation.DLogs.AppStartWaiting);
 
             // Start application base manager.
             ApplicationBase.Debug();
@@ -118,8 +160,6 @@ namespace XtrmAddons.Fotootof
 
             // Initialize application options.
             InitializeOptions();
-
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
             // Application is running
             // Process command line args
@@ -149,9 +189,9 @@ namespace XtrmAddons.Fotootof
         private void App_Exit(object sender, ExitEventArgs e)
         {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-            Trace.TraceInformation((string)Translation.DLogs.SavingApplicationWaiting);
+            Trace.TraceInformation((string)Translation.DLogs.AppSaveWaiting);
             ApplicationBase.Save();
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            Trace.TraceInformation((string)Translation.DLogs.AppClosed);
         }
 
         /// <summary>
@@ -162,8 +202,6 @@ namespace XtrmAddons.Fotootof
         {
             if (Reset && System.IO.Directory.Exists(DirectoryHelper.UserMyDocuments))
             {
-                Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-
                 Trace.TraceInformation((string)Translation.DLogs.DeletingOptionsWaiting);
                 System.IO.Directory.Delete(DirectoryHelper.UserAppData, true);
                 Trace.TraceInformation(string.Format(CultureInfo.CurrentCulture, (string)Translation.DLogs.ItemDeleted, DirectoryHelper.UserAppData));
@@ -177,7 +215,7 @@ namespace XtrmAddons.Fotootof
         }
 
         /// <summary>
-        /// Method example of custom preferences settings adding.
+        /// Method to initialize application preferences before startup.
         /// </summary>
         public void InitializePreferences()
         {
@@ -186,15 +224,17 @@ namespace XtrmAddons.Fotootof
             // Add application storage directories.
             SettingsPreferences.InitializeStorage();
 
+            /*
             // Copy program files to My Documents user folder.
             Trace.WriteLine((string)Translation.DLogs.CopyingProgramFiles);
             ApplicationBase.Directories.CopyConfigFiles(true);
+            */
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }
 
         /// <summary>
-        /// Method example of custom options settings adding.
+        /// Method to initialize application options before startup.
         /// </summary>
         public void InitializeOptions()
         {

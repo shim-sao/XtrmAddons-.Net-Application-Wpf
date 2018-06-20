@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,7 +18,8 @@ using XtrmAddons.Net.NotifyIcons;
 namespace XtrmAddons.Fotootof
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Main Window.
+    /// <para>Class XtrmAddons Fotootof Server Main Window.</para>
+    /// <para>To access MainWindow without dependency, use : ApplicationSession.Properties.MainWindow</para>
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -83,9 +86,6 @@ namespace XtrmAddons.Fotootof
             Resources.MergedDictionaries.Add(Culture.Translation.Words);
             Resources.MergedDictionaries.Add(Culture.Translation.Logs);
 
-            //var a = Properties;
-
-
             // Initialize window component.
             InitializeComponent();
 
@@ -98,7 +98,32 @@ namespace XtrmAddons.Fotootof
         #endregion
 
 
+
         #region Methods
+
+        /// <summary>
+        /// Method to initialize application content.
+        /// </summary>
+        private async Task InitializeContentAsync()
+        {
+            await Task.Delay(10);
+
+            // Assigned page frames.
+            Frame_Logs.Navigate(BlockLogs);
+            Frame_Content.Navigate(new PageBrowser());
+
+            // Initialize items of Server Menu.
+            AppMainMenu.InitializeMenuItemsServer();
+
+            // Adjust frame logs content on resize. 
+            SizeChanged += BlockLogs.Page_SizeChanged;
+        }
+
+        #endregion
+
+
+
+        #region Methods Windows Events
 
         /// <summary>
         /// Method called on window load event.
@@ -126,43 +151,50 @@ namespace XtrmAddons.Fotootof
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
-        public void LogWatcher_Updated(object sender, EventArgs e)
-        {
-            AppLogger.UpdateLogTextbox(logWatcher.LogContent);
-            logWatcher.LogContent = "";
-        }
-
-        /// <summary>
-        /// Method to initialize application content.
-        /// </summary>
-        private async Task InitializeContentAsync()
-        {
-            await Task.Delay(10);
-
-            // Assigned page frames.
-            Frame_Logs.Navigate(BlockLogs);
-            Frame_Content.Navigate(new PageBrowser());
-
-            // Initialize items of Server Menu.
-            AppMainMenu.InitializeMenuItemsServer();
-
-            // Adjust frame logs content on resize. 
-            SizeChanged += BlockLogs.Page_SizeChanged;
-        }
-
-        /// <summary>
-        /// Method called on windows closing event.
+        /// Method called on window closing event.
         /// </summary>
         /// <param name="sender">The object sender.</param>
         /// <param name="e">The cancel event arguments.</param>
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             NotifyIconManager.Dispose();
-            log.Info(Translation.DLogs.ApplicationClosed);
+            log.Info(string.Format(Translation.DLogs.WindowClosing, GetType().Name));
+        }
+
+        /// <summary>
+        /// Method called on window size changed event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+#if DEBUG_SIZE
+
+            Trace.TraceInformation("-------------------------------------------------------------------------------------------------------");
+            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
+            Trace.TraceInformation("MainWindow.ActualSize = [" + ActualWidth + "," + ActualHeight + "]");
+            Trace.TraceInformation("Block_Content.ActualSize = [" + Block_Content.ActualWidth + "," + Block_Content.ActualHeight + "]");
+            Trace.TraceInformation("Frame_Content.ActualSize = [" + Frame_Content.ActualWidth + "," + Frame_Content.ActualHeight + "]");
+            Trace.TraceInformation("RowGridMain.Height = [" + RowGridMain.Height + "]");
+            Trace.TraceInformation("-------------------------------------------------------------------------------------------------------");
+
+#endif
+        }
+
+        #endregion
+
+
+        #region Methods Logs Watcher
+
+        /// <summary>
+        /// Method to watch logs for console & application page logs.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Event arguments.</param>
+        public void LogWatcher_Updated(object sender, EventArgs e)
+        {
+            AppLogger.UpdateLogTextbox(logWatcher.LogContent);
+            logWatcher.LogContent = "";
         }
 
         /// <summary>
@@ -180,26 +212,7 @@ namespace XtrmAddons.Fotootof
                 RowGridLogs.Height == new GridLength(0)
                 ? new GridLength(250) : new GridLength(0);
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            #if DEBUG_SIZE
-
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-            Trace.WriteLine("MainWindow.ActualSize = [" + ActualWidth + "," + ActualHeight + "]");
-            Trace.WriteLine("Block_Content.ActualSize = [" + Block_Content.ActualWidth + "," + Block_Content.ActualHeight + "]");
-            Trace.WriteLine("Frame_Content.ActualSize = [" + Frame_Content.ActualWidth + "," + Frame_Content.ActualHeight + "]");
-            Trace.WriteLine("RowGridMain.Height = [" + RowGridMain.Height + "]");
-            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-
-            #endif
-        }
-
+                
         #endregion
     }
 }

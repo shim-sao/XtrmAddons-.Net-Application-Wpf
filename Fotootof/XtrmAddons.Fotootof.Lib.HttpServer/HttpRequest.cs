@@ -136,27 +136,127 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
         }
 
         /// <summary>
+        /// Method to get the default response of the server.
+        /// </summary>
+        private WebServerResponseData GetDefaultResponse()
+        {
+            log.Warn("Trying to serve default Http response for default or special requests.");
+
+            WebServerResponseData response = null;
+
+            try
+            {
+                // Check for special ico request.
+                if (Uri.ComponentName == "Index" && Uri.Extension == ".ico")
+                {
+                    log.Debug("Serving Http response for special .ico request.");
+
+                    response = new WebServerResponseData(Uri.RelativeUrl);
+                    response.ServeFile(@"Assets\Images\Icons\Favicon.ico");
+                    return response;
+                }
+
+                // Create url filename.
+                string filename = Uri.RelativeUrl;
+
+                // Check valid url default format.
+                if (Uri.RelativeUrl == "" || Uri.RelativeUrl == "/")
+                {
+                    log.Debug($"Initialize default filename format.");
+                    filename = "/index.html";
+                }
+
+                // Serve direct link.
+                if (Uri.Extension != "" || filename == "/index.html")
+                {
+                    log.Debug("Serving Http response for default server link [Empty | / | index.html].");
+
+                    response = new WebServerResponseData(Uri.RelativeUrl);
+                    response.ServeFile(filename, "Public");
+                    return response;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                log.Info(ex.Output(), ex);
+                return null;
+            }
+
+            return response;
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         private WebServerResponseData _getResponseData()
         {
-            log.Info(MethodBase.GetCurrentMethod().Name);
-            log.Info(Uri.RelativeUrl);
-            
-            WebServerResponseData response = null;
+            log.Info($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {Uri.RelativeUrl}");
+            log.Debug($"Uri.ComponentName : {Uri.ComponentName}");;
+            log.Debug($"Uri.Extension : {Uri.Extension}");
 
-            // Check for special ico request.
-            if (Uri.ComponentName == "Index" && Uri.Extension == ".ico")
+            // Try to get default server response.
+            WebServerResponseData response = GetDefaultResponse();
+
+            if(response != null)
             {
-                log.Debug("Serving Http response for special ico request.");
-
-                response = new WebServerResponseData(Uri.RelativeUrl);
-                response.ServeFile(@"Assets\Images\Icons\Favicon.ico");
                 return response;
             }
-            
-            // Try to serve direct link.
+
+            log.Warn("Trying to serve Http response for generated URL document.");
+
+            try
+            {
+                object[] post = null;
+
+                if (IsPOST)
+                {
+                    post = new object[] { _POST };
+
+                    log.Info($"Http method invoke : {ComponentMethodRoute}, {Component}, {_POST.Count}, {post.Length}");
+                }
+                else
+                {
+                    log.Info($"Http method invoke : {ComponentMethodRoute}, {Component}");
+                }
+                
+                _router = ComponentMethodRoute.Invoke(Component, post);
+            }
+            catch (Exception e)
+            {
+                log.Debug("Invoke component method failed.");
+                log.Debug(e.Output(), e);
+                log.Debug($"URI AbsoluteUrl : {Uri.AbsoluteUrl}");
+                log.Debug($"URI ComponentName : {Uri.ComponentName}");
+                log.Debug($"Component : {Component}");
+                log.Debug($"ComponentMethodRoute : {ComponentMethodRoute}");
+
+                if (Uri.Params != null)
+                {
+                    log.Debug($"URI Params Length : {Uri.Params.Length}");
+                }
+                else
+                {
+                    log.Debug($"URI Params Length : 0");
+                }
+
+                log.Debug("End server request processed with error...");
+
+                throw new InvalidDataException(e.Message, e);
+            }
+
+            log.Debug("End server request process...");
+
+            response = (WebServerResponseData)_router;
+
+            return response;
+
+
+
+
+
+            /*
             try
             {
                 log.Debug("Serving Http response for direct link.");
@@ -234,8 +334,7 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
             {
                 return null;
             }
-
-            return (WebServerResponseData)_router;
+            */
         }
     }
 }
