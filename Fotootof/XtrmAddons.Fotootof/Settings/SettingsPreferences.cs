@@ -55,10 +55,22 @@ namespace XtrmAddons.Fotootof.Settings
             ApplicationBase.Storage.Directories.AddKeySingle(temp);
             temp.Create();
             Trace.TraceInformation($"roaming.public_html => {ApplicationBase.Storage.Directories.FindKeyFirst("roaming.public_html").AbsolutePath}");
+
+            // Create path to configuration server public html directory
+            temp = new Directory
+            {
+                Key = "roaming.plugins",
+                RelativePath = "Plugins",
+                IsRelative = true,
+                Root = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+            };
+            ApplicationBase.Storage.Directories.AddKeySingle(temp);
+            temp.Create();
+            Trace.TraceInformation($"roaming.plugins => {ApplicationBase.Storage.Directories.FindKeyFirst("roaming.plugins").AbsolutePath}");
             #endregion
 
             
-            #region user cache
+            #region user documents
             // Create path to cache filestypes directory. 
             temp = new Directory
             {
@@ -70,6 +82,7 @@ namespace XtrmAddons.Fotootof.Settings
             ApplicationBase.Storage.Directories.AddKeySingle(temp);
             temp.Create();
             Trace.TraceInformation($"cache.filestypes => {ApplicationBase.Storage.Directories.FindKeyFirst("cache.filestypes").AbsolutePath}");
+
             #endregion
         }
     }

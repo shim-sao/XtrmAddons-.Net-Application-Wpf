@@ -211,7 +211,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
                 }
 
                 // Hack to delete unassociated dependencies.
-                await CleanDependenciesAsync("SectionsInACLGroups", "AclGroupId", entity.PrimaryKey, entity.AclGroupsPK);
+                await CleanDependenciesAsync("SectionsInACLGroups", "AclGroupId", entity.PrimaryKey, entity.AclGroupsPKs);
                 await CleanDependenciesAsync("AlbumsInSections", "AlbumId", entity.PrimaryKey, entity.AlbumsPKs);
 
                 return entity;

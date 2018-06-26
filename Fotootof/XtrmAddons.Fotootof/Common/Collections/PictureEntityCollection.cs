@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
@@ -78,65 +79,94 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// Method to insert a list of Picture entities into the database.
         /// </summary>
         /// <param name="newItems">Thee list of items to add.</param>
-        public static void DbInsert(List<PictureEntity> newItems, List<AlbumEntity> albums = default(List<AlbumEntity>))
+        public static IList<PictureEntity> DbInsert(IEnumerable<PictureEntity> newItems, IEnumerable<AlbumEntity> albums = default(IEnumerable<AlbumEntity>))
         {
+            if (newItems == null)
+            {
+                ArgumentNullException e = ExceptionBase.ArgNull(nameof(newItems), newItems);
+                log.Error(e.Output());
+                return null;
+            }
+
+            if (albums == null)
+            {
+                ArgumentNullException e = ExceptionBase.ArgNull(nameof(albums), albums);
+                log.Error(e.Output());
+                return null;
+            }
+
+            IList<PictureEntity> itemsAdded = new List<PictureEntity>();
+
             try
             {
-                log.Info("Adding Picture(s). Please wait...");
+                log.Info($"Adding {newItems.Count()} picture{(newItems.Count() > 0 ? "s" : "")} : Please wait...");
 
-                if (newItems != null && newItems.Count > 0)
+                if (newItems != null && newItems.Count() > 0)
                 {
                     foreach (PictureEntity entity in newItems)
                     {
                         // Process association for each albums.
-                        foreach (AlbumEntity a in albums)
+                        if(albums != null)
                         {
-                            // Try to find Picture and Album dependency
-                            PicturesInAlbums dependency = (new List<PicturesInAlbums>(entity.PicturesInAlbums)).Find(p => p.AlbumId == a.AlbumId);
-
-                            // Associate Picture to the Album if not already set.
-                            if (dependency == null)
+                            foreach (AlbumEntity a in albums)
                             {
-                                entity.PicturesInAlbums.Add(
-                                    new PicturesInAlbums
-                                    {
-                                        AlbumId = a.AlbumId,
-                                        Ordering = entity.PicturesInAlbums.Count + 1
-                                    }
-                                );
+                                // Try to find Picture and Album dependency
+                                PicturesInAlbums dependency = (new List<PicturesInAlbums>(entity.PicturesInAlbums)).Find(p => p.AlbumId == a.AlbumId);
 
-                                log.Info(string.Format("Picture [{0}:{1}] associated to Album [{2}:{3}].", entity.PrimaryKey, entity.Name, a.PrimaryKey, a.Name));
+                                // Associate Picture to the Album if not already set.
+                                if (dependency == null)
+                                {
+                                    entity.PicturesInAlbums.Add(
+                                        new PicturesInAlbums
+                                        {
+                                            AlbumId = a.AlbumId,
+                                            Ordering = entity.PicturesInAlbums.Count + 1
+                                        }
+                                    );
+
+                                    log.Info(string.Format("Picture [{0}:{1}] associated to Album [{2}:{3}].", entity.PrimaryKey, entity.Name, a.PrimaryKey, a.Name));
+                                }
                             }
                         }
                         
-                        MainWindow.Database.Pictures.Add(entity);
+                        // Add picture strored in database to the return list.
+                        itemsAdded.Add(MainWindow.Database.Pictures.Add(entity));
 
-                        log.Info(string.Format("Picture [{0}:{1}] added.", entity.PrimaryKey, entity.Name));
+                        log.Info($"Picture [{entity.PrimaryKey}:{entity.Name}] added.");
                     }
                 }
 
                 AppNavigator.Clear();
-                log.Info("Adding Picture(s). Done !");
+                log.Debug("Application navigator cleared.");
+                log.Info($"Adding {newItems.Count()} picture{(newItems.Count() > 0 ? "s" : "")} : Done.");
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Adding Picture(s) failed !");
+                MessageBase.Fatal(ex, $"Adding {newItems.Count()} picture{(newItems.Count() > 0 ? "s" : "")} : Failed.");
             }
+
+            return itemsAdded;
         }
 
         /// <summary>
         /// Method to delete a list of Picture entities from the database.
         /// </summary>
         /// <param name="newItems">The list of items to remove.</param>
-        public static void DbDelete(List<PictureEntity> oldItems)
+        public static void DbDelete(IEnumerable<PictureEntity> oldItems)
         {
-            // Check for Removing items.
+            if(oldItems == null)
+            {
+                ArgumentNullException e = ExceptionBase.ArgNull(nameof(oldItems), oldItems);
+                log.Error(e.Output());
+                return;
+            }
+
             try
             {
-                log.Info("Deleting Picture(s). Please wait...");
+                log.Info($"Deleting {oldItems.Count()} picture{(oldItems.Count() > 0 ? "s" : "")} : Please wait...");
 
-                if (oldItems != null && oldItems.Count > 0)
+                if (oldItems != null && oldItems.Count() > 0)
                 {
                     foreach (PictureEntity entity in oldItems)
                     {
@@ -147,12 +177,12 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 }
 
                 AppNavigator.Clear();
-                log.Info("Adding Picture(s). Done !");
+                log.Info($"Deleting {oldItems.Count()} picture{(oldItems.Count() > 0 ? "s" : "")} : Done !");
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Deleting Picture(s) list failed !");
+                MessageBase.Fatal(ex, $"Deleting {oldItems.Count()} picture{(oldItems.Count() > 0 ? "s" : "")} : failed !");
             }
         }
 

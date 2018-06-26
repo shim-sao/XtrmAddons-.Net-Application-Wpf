@@ -9,6 +9,7 @@ using System.Globalization;
 using System.ComponentModel;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Fotootof.Culture;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
 {
@@ -64,7 +65,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         public PageAlbum(int albumId)
         {
             MessageBase.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Album"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Album"));
 
             // Store Album primary key.
             ItemId = albumId;
@@ -73,7 +74,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
             InitializeComponent();
             AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Album"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Album"));
             MessageBase.IsBusy = false;
         }
 

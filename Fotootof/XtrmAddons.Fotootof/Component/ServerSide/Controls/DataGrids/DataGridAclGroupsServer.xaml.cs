@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using XtrmAddons.Fotootof.Layouts.DataGrids.AclGroups;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Common.Controls.DataGrids;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids
 {

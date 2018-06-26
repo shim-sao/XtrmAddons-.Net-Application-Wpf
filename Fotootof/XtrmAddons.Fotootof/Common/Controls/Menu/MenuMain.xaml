@@ -13,7 +13,9 @@
 			   Background="{StaticResource Panton_3}"
 			   Height="24">
 
-        <Menu DockPanel.Dock="Top" Margin="2">
+		<Menu x:Name="MenuMain_Menu"
+			  DockPanel.Dock="Top"
+			  Margin="2">
 			
 			<!-- #region File -->
             <MenuItem Header="{x:Static p:Resources._File}">
@@ -158,7 +160,7 @@
 
 
 			<!-- #region Plugins -->
-			<MenuItem x:Name="MenuItem_Plugins"
+			<MenuItem x:Name="MenuMain_MenuItem_Plugins"
 					  Header="Plugins">
 				
 			</MenuItem>

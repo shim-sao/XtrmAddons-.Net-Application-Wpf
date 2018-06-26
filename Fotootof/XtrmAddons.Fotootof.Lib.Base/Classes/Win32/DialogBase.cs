@@ -12,6 +12,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Win32
         /// </summary>
         /// <param name="multiselect">Multiple selection enabled ?. False by default. Optional.</param>
         /// <returns>A picture file dialog box selector, null if canceled.</returns>
+        [System.Obsolete("XtrmAddons.Net.Picture", true)]
         public static OpenFileDialog PictureFileDialogBox(bool multiselect = false)
         {
             // Configure open file dialog box 

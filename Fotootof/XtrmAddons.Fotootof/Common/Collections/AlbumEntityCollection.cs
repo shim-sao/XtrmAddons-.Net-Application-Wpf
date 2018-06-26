@@ -9,6 +9,8 @@ using XtrmAddons.Net.Application;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Fotootof.Lib.Api.Models.Json;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace XtrmAddons.Fotootof.Common.Collections
 {
@@ -80,31 +82,47 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// Method to insert a list of Album entities into the database.
         /// </summary>
         /// <param name="newItems">Thee list of items to add.</param>
-        public static void DbInsert(List<AlbumEntity> newItems)
+        public static IEnumerable<AlbumEntity> DbInsert(List<AlbumEntity> newItems)
         {
-            log.Info("Adding Album(s). Please wait...");
+            if (newItems == null)
+            {
+                ArgumentNullException e = ExceptionBase.ArgNull(nameof(newItems), newItems);
+                log.Error(e.Output());
+                return null;
+            }
+
+            IList<AlbumEntity> itemsAdded = new List<AlbumEntity>();
 
             try
             {
-                log.Info("Adding Album(s). Please wait...");
+                log.Info($"Adding {newItems.Count()} album{(newItems.Count() > 0 ? "s" : "")} : Please wait...");
+
+                // Get all Album to check some properties before inserting new item.
+                var items = MainWindow.Database.Albums.List(GetOptionsDefault());
 
                 if (newItems != null && newItems.Count > 0)
                 {
                     foreach (AlbumEntity entity in newItems)
                     {
-                        Db.Albums.Add(entity);
+                        FormatAlias(entity, items);
+
+                        itemsAdded.Add(Db.Albums.Add(entity));
+
                         log.Info($"Album [{entity.PrimaryKey}:{entity.Name}] added.");
                     }
                 }
 
                 AppNavigator.Clear();
-                log.Info("Adding Album(s). Done !");
+                log.Debug("Application navigator cleared.");
+                log.Info($"Adding {newItems.Count()} album{(newItems.Count() > 0 ? "s" : "")} : Done.");
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Adding Album(s) failed !");
+                MessageBase.Fatal(ex, $"Adding {newItems.Count()} album{(newItems.Count() > 0 ? "s" : "")} : Failed.");
             }
+
+            return itemsAdded;
         }
 
         /// <summary>
@@ -143,29 +161,71 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// Method to update a list of Album entities into the database.
         /// </summary>
         /// <param name="newItems">Thee list of items to update.</param>
-        public static async void DbUpdateAsync(List<AlbumEntity> newItems, List<AlbumEntity> oldItems)
+        public static async Task<IList<AlbumEntity>> DbUpdateAsync(IEnumerable<AlbumEntity> newItems, IEnumerable<AlbumEntity> oldItems)
         {
-            log.Info("Replacing Album. Please wait...");
+            if (newItems == null)
+            {
+                ArgumentNullException e = ExceptionBase.ArgNull(nameof(newItems), newItems);
+                log.Error(e.Output());
+                return null;
+            }
+
+            IList<AlbumEntity> itemsUpdated = new List<AlbumEntity>();
 
             try
             {
-                if (newItems != null && newItems.Count > 0)
+                log.Info($"Updating {newItems.Count()} album{(newItems.Count() > 0 ? "s" : "")} : Please wait...");
+
+                // Get all Album to check some properties before inserting new item.
+                var items = MainWindow.Database.Albums.List(GetOptionsDefault());
+
+                if (newItems != null && newItems.Count() > 0)
                 {
                     foreach (AlbumEntity entity in newItems)
                     {
-                        await MainWindow.Database.Albums.UpdateAsync(entity);
+                        FormatAlias(entity, items);
+                        itemsUpdated.Add(await MainWindow.Database.Albums.UpdateAsync(entity));
                         log.Info($"Album [{entity.PrimaryKey}:{entity.Name}] updated.");
                     }
                 }
 
                 AppNavigator.Clear();
-                log.Info("Replacing Album(s). Done !");
+                log.Info($"Updating {newItems.Count()} album{(newItems.Count() > 0 ? "s" : "")} : Done !");
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Replacing Album(s) failed !");
+                MessageBase.Fatal(ex, $"Updating {newItems.Count()} album{(newItems.Count() > 0 ? "s" : "")} : Failed.");
             }
+
+            return itemsUpdated;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        private static AlbumEntity FormatAlias(AlbumEntity entity, IList<AlbumEntity> items = null)
+        {
+            items = items ?? MainWindow.Database.Albums.List(GetOptionsDefault());
+
+            // Check if the alias is empty. Set name if required.
+            if (entity.Alias.IsNullOrWhiteSpace())
+            {
+                entity.Alias = entity.Name;
+            }
+
+            // Check if another entity with the same alias is in database.
+            int index = items.ToList().FindIndex(x => x.Alias.IsNotNullOrWhiteSpace() && x.Alias == entity.Alias && x.PrimaryKey != entity.PrimaryKey);
+            if (index >= 0 || entity.Alias.IsNullOrWhiteSpace())
+            {
+                DateTime d = DateTime.Now;
+                entity.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss-fff");
+            }
+
+            return entity;
         }
 
         #endregion

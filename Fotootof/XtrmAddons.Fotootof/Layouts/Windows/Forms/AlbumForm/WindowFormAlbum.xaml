@@ -47,13 +47,13 @@
 										   Style="{StaticResource FieldLabel}"/>
 
 							<TextBox x:Name="InputName"
-										 Style="{StaticResource Textbox_FieldInput_Required}"
-										 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
-										 Validation.Error="OnInput_ValidationError"
-										 SourceUpdated="OnInputStringRequired_SourceUpdated"
-										 TargetUpdated="OnInput_TargetUpdated"
-										 TextChanged="OnInputStringRequired_TextChanged"
-										 Width="310">
+									Style="{StaticResource Textbox_FieldInput_Required}"
+									Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+									Validation.Error="OnInput_ValidationError"
+									SourceUpdated="OnInputStringRequired_SourceUpdated"
+									TargetUpdated="OnInput_TargetUpdated"
+									TextChanged="OnInputStringRequired_TextChanged"
+									Width="310">
 
 								<TextBox.Text>
 									<Binding Path="Album.Name"
@@ -216,8 +216,7 @@
 
 										<CheckBox 
                                             Tag="{Binding}"
-                                            IsChecked="{Binding PrimaryKey,
-                                            Converter={StaticResource IsAlbumInSection}}"
+                                            IsChecked="{Binding PrimaryKey, Converter={StaticResource IsSectionInAlbum}}"
                                             Checked="CheckBoxSection_Checked"
                                             Unchecked="CheckBoxSection_UnChecked"/>
 
@@ -236,94 +235,102 @@
 
 			<!-- #region : Tabs Pictures -->
 			<TabItem Header="{x:Static p:Resources.Cover}">
-				<StackPanel Orientation="Vertical">
+				<ScrollViewer VerticalScrollBarVisibility="Visible"
+							  HorizontalScrollBarVisibility="Hidden">
+					<StackPanel Orientation="Vertical">
 
-					<TextBox Text="Thumbnail"
-							 HorizontalAlignment="Center"
-							 VerticalAlignment="Top"
-							 Margin="0,15,0,5" />
+						<!-- #region : Tab Thumbnail -->
+						<TextBlock	Text="Thumbnail"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Top"
+									Margin="0,15,0,5" />
+
+						<Button x:Uid="Button_AlbumThumbnail"
+								x:Name="Button_AlbumThumbnail"
+								Background="Gray"
+								Click="OnAlbumPicture_Click"
+								Width="{StaticResource Icon160Double}"
+								Height="{StaticResource Icon160Double}"
+								MaxWidth="{StaticResource Icon160Double}"
+								MaxHeight="{StaticResource Icon160Double}"
+								Tag="ThumbnailPicture"
+								VerticalAlignment="Top">
+
+							<Image x:Uid="Image_AlbumThumbnail"
+								   x:Name="Image_AlbumThumbnail"
+								   Source="{Binding Album.ThumbnailPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon160String}}"
+								   Width="{StaticResource Icon160Double}"
+								   Height="{StaticResource Icon160Double}"
+								   MaxWidth="{StaticResource Icon160Double}"
+								   MaxHeight="{StaticResource Icon160Double}"
+								   VerticalAlignment="Top"
+								   HorizontalAlignment="Left"
+								   Stretch="UniformToFill"/>
+						</Button>
+						<!-- #endregion : Tab Thumbnail -->
+
+
+						<!-- #region : Tab Preview -->
+						<TextBlock	Text="Preview"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Top"
+									Margin="0,15,0,5" />
+
+						<Button x:Uid="Button_AlbumPreview"
+								x:Name="Button_AlbumPreview"
+								Background="Gray"
+								Click="OnAlbumPicture_Click"
+								Tag="PreviewPicture"
+								Width="{StaticResource Icon256Double}"
+								Height="96"
+								MaxWidth="{StaticResource Icon256Double}"
+								MaxHeight="96">
+
+							<Image x:Uid="Button_AlbumPreview"
+								   x:Name="Image_AlbumPreview"
+								   Source="{Binding Album.PreviewPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}}"
+								   Width="{StaticResource Icon256Double}"
+								   Height="96"
+								   MaxWidth="{StaticResource Icon256Double}"
+								   MaxHeight="96"
+								   VerticalAlignment="Top"
+								   HorizontalAlignment="Center"
+								   Stretch="UniformToFill"/>
+						</Button>
+						<!-- #endregion : Tab Preview -->
+
+
+						<!-- #region : Tab Background -->
+						<TextBlock	Text="Background"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Top"
+									Margin="0,15,0,5" />
+
+						<Button	x:Uid="Button_AlbumBackground"
+								x:Name="Button_AlbumBackground"
+								Background="Gray"
+								Click="OnAlbumPicture_Click"
+								Tag="BackgroundPicture"
+								Width="{StaticResource Icon256Double}"
+								Height="144"
+								MaxWidth="{StaticResource Icon256Double}"
+								MaxHeight="144">
+
+							<Image x:Uid="Button_AlbumBackground"
+								   x:Name="Image_AlbumBackground"
+								   Source="{Binding Album.BackgroundPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}}"
+								   Width="{StaticResource Icon256Double}"
+								   Height="144"
+								   MaxWidth="{StaticResource Icon256Double}"
+								   MaxHeight="144"
+								   VerticalAlignment="Top"
+								   HorizontalAlignment="Center"
+								   Stretch="UniformToFill"/>
+						</Button>
+						<!-- #endregion : Tab Background -->
+					</StackPanel>
+				</ScrollViewer>
 					
-					<Button x:Uid="Button_AlbumThumbnail"
-							x:Name="Button_AlbumThumbnail"
-							Background="Gray"
-							Click="OnAlbumPicture_Click"
-							Width="{StaticResource Icon160Double}"
-							Height="{StaticResource Icon160Double}"
-							MaxWidth="{StaticResource Icon160Double}"
-							MaxHeight="{StaticResource Icon160Double}"
-							Tag="ThumbnailPicture"
-							VerticalAlignment="Top">
-
-						<Image x:Uid="Image_AlbumThumbnail"
-							   x:Name="Image_Thumbnail"
-							   Source="{Binding Album.ThumbnailPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon160Double}}"
-							   Width="{StaticResource Icon160Double}"
-							   Height="{StaticResource Icon160Double}"
-							   MaxWidth="{StaticResource Icon160Double}"
-							   MaxHeight="{StaticResource Icon160Double}"
-							   VerticalAlignment="Top"
-							   HorizontalAlignment="Left"
-							   Stretch="UniformToFill"/>
-					</Button>
-
-
-
-					<TextBox Text="Preview"
-							 HorizontalAlignment="Center"
-							 VerticalAlignment="Top"
-							 Margin="0,15,0,5" />
-					
-					<Button x:Uid="Button_AlbumPreview"
-							x:Name="Button_AlbumPreview"
-							Background="Gray"
-							Click="OnAlbumPicture_Click"
-							Tag="PreviewPicture"
-							Width="{StaticResource Icon256Double}"
-							Height="96"
-							MaxWidth="{StaticResource Icon256Double}"
-							MaxHeight="96">
-
-						<Image x:Uid="Button_AlbumPreview"
-							   x:Name="Image_AlbumPreview"
-							   Source="{Binding Album.PreviewPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}}"
-							   Width="{StaticResource Icon256Double}"
-							   Height="96"
-							   MaxWidth="{StaticResource Icon256Double}"
-							   MaxHeight="96"
-							   VerticalAlignment="Top"
-							   HorizontalAlignment="Center"
-							   Stretch="UniformToFill"/>
-					</Button>
-
-					
-					
-					<TextBox Text="Background"
-							 HorizontalAlignment="Center"
-							 VerticalAlignment="Top"
-							 Margin="0,15,0,5" />
-					
-					<Button x:Uid="Button_AlbumBackground"
-							x:Name="Button_AlbumBackground"
-							Background="Gray"
-							Click="OnAlbumPicture_Click"
-							Tag="BackgroundPicture"
-							Width="{StaticResource Icon256Double}"
-							Height="144"
-							MaxWidth="{StaticResource Icon256Double}"
-							MaxHeight="144">
-
-						<Image x:Uid="Button_AlbumBackground"
-							   x:Name="Image_AlbumBackground"
-							   Source="{Binding Album.BackgroundPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}}"
-							   Width="{StaticResource Icon256Double}"
-							   Height="144"
-							   MaxWidth="{StaticResource Icon256Double}"
-							   MaxHeight="144"
-							   VerticalAlignment="Top"
-							   HorizontalAlignment="Center"
-							   Stretch="UniformToFill"/>
-					</Button>
-				</StackPanel>
 			</TabItem>
 			<!-- #endregion : Tabs Pictures -->
 

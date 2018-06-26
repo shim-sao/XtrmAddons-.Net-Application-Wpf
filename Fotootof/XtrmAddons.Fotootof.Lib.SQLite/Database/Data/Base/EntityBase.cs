@@ -17,7 +17,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
     /// </summary>
     [Serializable]
     [JsonObject(MemberSerialization.OptIn)]
-    public abstract class EntityBase : ObjectBaseNotifier, IEntityBaseInterface, INotifyPropertyChanged
+    public abstract class EntityBase : ObjectBaseNotifier, IEntityBaseInterface
     {
         #region Variables
 

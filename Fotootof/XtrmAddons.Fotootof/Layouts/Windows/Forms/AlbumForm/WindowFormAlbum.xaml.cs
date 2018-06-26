@@ -154,14 +154,19 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm
         /// <summary>
         /// Method to validate the Form Data.
         /// </summary>
-        private new bool IsValidForm()
+        protected override bool IsValidForm()
         {
-            if (NewForm.Name.IsNullOrWhiteSpace())
+            try
             {
-                return false;
-            }
+                IsValidFormNotNullOrWhiteSpace(NewForm, "Name");
 
-            return true;
+                return true;
+            }
+            catch (ArgumentNullException e)
+            {
+                log.Error(e);
+                throw new ArgumentNullException(e.Message);
+            }
         }
 
         #endregion

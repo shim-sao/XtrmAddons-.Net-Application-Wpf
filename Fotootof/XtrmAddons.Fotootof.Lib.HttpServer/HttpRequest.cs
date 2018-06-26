@@ -24,11 +24,6 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
         /// <summary>
         /// Variable path to get route.
         /// </summary>
-        private readonly string _namespace = "XtrmAddons.Fotootof.Lib.{0}.Router.{1}Route";
-
-        /// <summary>
-        /// Variable path to get route.
-        /// </summary>
         private readonly string _dll = "XtrmAddons.Fotootof.Lib.{0}";
 
         /// <summary>
@@ -50,13 +45,13 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
         /// <summary>
         /// 
         /// </summary>
-        public string Namespace => _namespace;
+        public string Namespace { get; } = "XtrmAddons.Fotootof.Lib.{0}.Router.{1}Route";
 
         /// <summary>
         /// 
         /// </summary>
         public string ComponentPath => 
-            string.Format(_namespace, Uri.RequestType.ToLower().UCFirst(), Uri.ComponentName.ToLower().UCFirst());
+            string.Format(Namespace, Uri.RequestType.ToLower().UCFirst(), Uri.ComponentName.ToLower().UCFirst());
 
         /// <summary>
         /// 
@@ -131,7 +126,7 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
         {
             get
             {
-                return _getResponseData();
+                return GetResponseData();
             }
         }
 
@@ -190,7 +185,7 @@ namespace XtrmAddons.Fotootof.Lib.HttpServer
         /// 
         /// </summary>
         /// <returns></returns>
-        private WebServerResponseData _getResponseData()
+        private WebServerResponseData GetResponseData()
         {
             log.Info($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {Uri.RelativeUrl}");
             log.Debug($"Uri.ComponentName : {Uri.ComponentName}");;

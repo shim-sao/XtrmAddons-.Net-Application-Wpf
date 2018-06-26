@@ -7,9 +7,9 @@ namespace XtrmAddons.Fotootof.Plugin.Test
     /// Logique d'interaction pour UcPluginTest.xaml
     /// </summary>
     [Export(typeof(UserControl))]
-    public partial class UcPluginTest : UserControl
+    public partial class UcPluginContext : UserControl
     {
-        public UcPluginTest()
+        public UcPluginContext()
         {
             InitializeComponent();
         }

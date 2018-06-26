@@ -18,26 +18,22 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// <summary>
         /// Property to access to the main add to collection control.
         /// </summary>
-        public override Control AddControl => Button_Add;
+        public override Control AddControl => (Control)FindName("Button_Add");
 
         /// <summary>
         /// Property to access to the main edit item control.
         /// </summary>
-        public override Control EditControl => Button_Edit;
+        public override Control EditControl => (Control)FindName("Button_Edit");
 
         /// <summary>
         /// Property to access to the main delete items control.
         /// </summary>
-        public override Control DeleteControl => Button_Delete;
+        public override Control DeleteControl => (Control)FindName("Button_Delete");
 
         /// <summary>
         /// Property to access to the items collection.
         /// </summary>
-        public override ListView ItemsCollection
-        {
-            get => AlbumssCollection;
-            set => AlbumssCollection = value;
-        }
+        public override ListView ItemsCollection => FindName<ListView>("AlbumsCollection");
 
         /// <summary>
         /// 

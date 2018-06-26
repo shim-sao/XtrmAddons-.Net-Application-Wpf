@@ -35,11 +35,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.ListViews
         /// <summary>
         /// Property to access to the items collection.
         /// </summary>
-        public override ListView ItemsCollection
-        {
-            get => AlbumssCollection;
-            set => AlbumssCollection = value;
-        }
+        public override ListView ItemsCollection => FindName<ListView>("AlbumsCollection");
 
         #endregion
 

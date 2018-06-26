@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Windows;
-using XtrmAddons.Net.Picture.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Images
 {
@@ -11,6 +10,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Images
         /// </summary>
         /// <param name="ext">The extension of the file.</param>
         /// <returns>The icon of the file extension type.</returns>
+        [System.Obsolete("Never been used... Try to find existing Windows APi for that...", true)]
         public static string DirectoryInfoIcon(DirectoryInfo di)
         {
             string icon = null;

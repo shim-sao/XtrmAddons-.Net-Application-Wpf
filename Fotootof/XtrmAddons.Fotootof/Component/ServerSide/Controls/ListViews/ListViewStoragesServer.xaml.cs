@@ -29,26 +29,22 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// <summary>
         /// Property to access to the main add to collection control.
         /// </summary>
-        public override Control AddControl => null;
+        public override Control AddControl => (Control)FindName("Button_Add");
 
         /// <summary>
         /// Property to access to the main edit item control.
         /// </summary>
-        public override Control EditControl => null;
+        public override Control EditControl => (Control)FindName("Button_Edit");
 
         /// <summary>
         /// Property to access to the main delete items control.
         /// </summary>
-        public override Control DeleteControl => null;
+        public override Control DeleteControl => (Control)FindName("Button_Delete");
 
         /// <summary>
         /// Property to access to the items collection.
         /// </summary>
-        public override ListView ItemsCollection
-        {
-            get => ItemsCollectionStorages;
-            set => ItemsCollectionStorages = value;
-        }
+        public override ListView ItemsCollection => FindName<ListView>("ItemsCollectionStorages");
 
         /// <summary>
         /// Property proxy to the combo box selection changed event handler.

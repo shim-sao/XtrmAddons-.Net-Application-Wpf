@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace XtrmAddons.Fotootof.Interfaces.AddInsContracts
+namespace XtrmAddons.Fotootof.AddInsContracts.Interfaces
 {
     /// <summary>
     /// Interface XtrmAddons Fotootof AddIns Contracts Plugin.

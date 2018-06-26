@@ -143,6 +143,12 @@ namespace XtrmAddons.Fotootof.Common.Tools
         public static void NavigateToPageSlideshowServer(int albumPk)
             => Navigate(new PageSlideshow(albumPk));
 
+        /// <summary>
+        /// Method to navigate to the Plugin Server page.
+        /// </summary>
+        public static void NavigateToPagePluginServer(UserControl uc)
+            => Navigate(new Component.ServerSide.Views.ViewPlugin.PagePlugin(uc));
+
         #endregion Methods
     }
 }

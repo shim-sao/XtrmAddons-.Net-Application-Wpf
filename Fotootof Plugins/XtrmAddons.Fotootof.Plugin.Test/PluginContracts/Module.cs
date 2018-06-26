@@ -1,67 +1,35 @@
 ﻿using System.ComponentModel.Composition;
-using System.Diagnostics;
-using System.Reflection;
-using System.Windows;
-using System.Windows.Controls;
-using XtrmAddons.Fotootof.Interfaces.AddInsContracts;
+using XtrmAddons.Fotootof.AddInsContracts.Base;
+using XtrmAddons.Fotootof.AddInsContracts.Interfaces;
 
 namespace XtrmAddons.Fotootof.Plugin.Test.PluginContracts
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Export(typeof(IModule))]
-    public class Module : IModule
+    public class Module : ModuleBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public override string Name { get => "Plugin test"; set => throw new System.NotImplementedException(); }
 
-        private void Initialize()
-        {
-            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Initializing Module 'Plugin Test'");
-
-            InterfaceControl = InterfaceControl ?? new MenuItem();
-            InterfaceControl.Header = "Plugin Test";
-            InterfaceControl.Click += new RoutedEventHandler(InterfaceControl_Click);
-        }
-
-        public MenuItem InterfaceControl { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public override string ParentName { get; set; } = "MenuMain_MenuItem_Plugins";
 
         /// <summary>
         /// We do not need to create object of it. As it is imported.
         /// </summary>
         [Import]
-        public IProcess Process { get; set; }
+        public override IProcess Process { get; set; }
 
         /// <summary>
-        /// Plugin object will be created automatically.
+        /// 
         /// </summary>
         [Import]
-        public IPlugin Plugin { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Control Container { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public MenuItem GetInterfaceObject()
-        {
-            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Getting Object Interface.");
-
-            Initialize();
-
-            return InterfaceControl;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void InterfaceControl_Click(object sender, RoutedEventArgs e)
-        {
-            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Starting Process...");
-
-            Process.Run();
-        }
+        public override IComponent Component { get; set; }// = new Component();
     }
 }

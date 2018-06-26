@@ -1,26 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using XtrmAddons.Fotootof.Builders.AddInsContracts;
+using XtrmAddons.Fotootof.AddInsContracts.Catalog;
+using XtrmAddons.Fotootof.AddInsContracts.Interfaces;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers;
+using XtrmAddons.Fotootof.Layouts.Windows.About;
+using XtrmAddons.Fotootof.Layouts.Windows.Forms.ClientForm;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm;
 using XtrmAddons.Fotootof.Layouts.Windows.Settings;
-using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers;
-using XtrmAddons.Fotootof.Interfaces.AddInsContracts;
-using XtrmAddons.Fotootof.Layouts.Windows.About;
-using XtrmAddons.Fotootof.Layouts.Windows.Forms.ClientForm;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.Remote;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Common.Controls.Menu
 {
@@ -61,7 +62,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         /// <summary>
         /// 
         /// </summary>
-        public MenuMainModel<MenuMain> Model { get; private set; }
+        public MenuMainModel Model { get; private set; }
 
         #endregion
 
@@ -77,20 +78,50 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
             InitializeComponent();
             HttpServerBase.AddStartHandlerOnce((s, e) => { InitializeMenuItemsServer(); });
             HttpServerBase.AddStopHandlerOnce((s, e) => { InitializeMenuItemsServer(); });
-            Model = new MenuMainModel<MenuMain>(this);
+            Model = new MenuMainModel(this);
 
             try
             {
-                foreach (IModule module in CatalogBase.GetModules("Plugins"))
+                var extensions = CatalogBase.Extensions;
+
+                if (extensions != null)
                 {
-                    MenuItem_Plugins.Items.Add(module.GetInterfaceObject());
-                    //attacher.Container = MenuItem_Plugins;
+                    foreach (IExtension ext in extensions)
+                    {
+                        var module = ext.Module;
+
+                        log.Info($"Loading main menu Module : {ext.GetType()}");
+                        var fe = FindName(module.ParentName);
+
+                        if(!(fe is MenuItem menuItem) || menuItem == null)
+                        {
+                            continue;
+                        }
+
+                        menuItem.Items.Add(module.MenuItem);
+                        module.MenuItem.Click += MenuControl_Click;
+                    }
                 }
-                
             }
             catch(CompositionException e)
             {
                 log.Error(e.Errors);
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuControl_Click(object sender, RoutedEventArgs e)
+        {
+            IComponent ic = ((IModule)((MenuItem)sender).Tag).Component;
+
+            if (ic != null && ic.Context != null)
+            {
+                AppNavigator.NavigateToPagePluginServer(ic.Context);
             }
         }
 
@@ -121,12 +152,15 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         }
 
         /// <summary>
-        /// Method to initialize server menu items.
+        /// Method to initialize log window menu item.
         /// </summary>
         public void InitializeLogsWindow()
         {
-            MenuItem_ShowLogsWindow.IsChecked = SettingsBase.GetBool(MenuItem_ShowLogsWindow, "IsChecked", MenuItem_ShowLogsWindow.IsChecked);
-            if (MenuItem_ShowLogsWindow.IsChecked)
+            MenuItem mi = (MenuItem)FindName("MenuItem_ShowLogsWindow");
+
+            mi.IsChecked = SettingsBase.GetBool(mi, "IsChecked", mi.IsChecked);
+
+            if (mi.IsChecked)
             {
                 AppNavigator.MainWindow.LogsToggle();
             }
@@ -139,15 +173,15 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         {
             if (HttpWebServerApplication.IsStarted)
             {
-                MenuItem_Server_Start.IsEnabled = false;
-                MenuItem_Server_Stop.IsEnabled = true;
-                MenuItem_ServerRestart.IsEnabled = true;
+                ((MenuItem)FindName("MenuItem_Server_Start")).IsEnabled = false;
+                ((MenuItem)FindName("MenuItem_Server_Stop")).IsEnabled = true;
+                ((MenuItem)FindName("MenuItem_ServerRestart")).IsEnabled = true;
             }
             else
             {
-                MenuItem_Server_Start.IsEnabled = true;
-                MenuItem_Server_Stop.IsEnabled = false;
-                MenuItem_ServerRestart.IsEnabled = false;
+                ((MenuItem)FindName("MenuItem_Server_Start")).IsEnabled = true;
+                ((MenuItem)FindName("MenuItem_Server_Stop")).IsEnabled = false;
+                ((MenuItem)FindName("MenuItem_ServerRestart")).IsEnabled = false;
             }
         }
 

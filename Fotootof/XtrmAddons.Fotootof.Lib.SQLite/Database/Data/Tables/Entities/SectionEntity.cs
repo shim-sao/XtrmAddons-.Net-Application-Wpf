@@ -18,9 +18,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries SQLite Database Section Entity.
     /// </summary>
-    [Serializable]
-    [Table("Sections")]
-    [JsonObject(MemberSerialization.OptIn)]
+    [Table("Sections"), Serializable, JsonObject(MemberSerialization.OptIn)]
     public partial class SectionEntity : EntityBase
     {
         #region Variables
@@ -28,76 +26,68 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Variable logger.
         /// </summary>
+        [NotMapped, XmlIgnore]
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Variable name of the Section.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         private string name = "";
 
         /// <summary>
         /// Variable alias of the Section.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         private string alias = "";
 
         /// <summary>
         /// Variable description of the Section.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         public string description = "";
 
         /// <summary>
         /// Variable is default item.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         public bool isDefault = false;
 
         /// <summary>
         /// Variable order place of the item.
         /// </summary>
-        [NotMapped]
+        [NotMapped, XmlIgnore]
         public int ordering = 0;
-        
+
         /// <summary>
         /// Variable the background picture id.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         public int backgroundPictureId = 0;
-        
+
         /// <summary>
         /// Variable the preview picture id.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         public int previewPictureId = 0;
 
         /// <summary>
         /// Variable the thumbnail picture id.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         public int thumbnailPictureId = 0;
-        
+
         /// <summary>
         /// Variable comment for the item.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         public string comment = "";
-        
+
         /// <summary>
         /// Variable parameters for the item.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         public string parameters = "";
 
         #endregion
@@ -109,29 +99,25 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Variable Album id (required for entity dependency).
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         private int albumId = 0;
 
         /// <summary>
         /// Variable associated Albums primary keys list.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         private IEnumerable<int> albumsPKs;
 
         /// <summary>
         /// Variable list of Albums associated to the Section.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         private IEnumerable<AlbumEntity> albums;
 
         /// <summary>
         /// Variables collection of relationship Albums in Sections. Sections dependencies.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore, NonSerialized]
         private ObservableAlbumsInSections albumsDependencies =
             new ObservableAlbumsInSections("SectionId");
 
@@ -144,15 +130,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Variable AclGroup id (required for entity dependency).
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         private int aclGroupId = 0;
 
         /// <summary>
         /// Variable associated AclGroups primary keys list.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
 #pragma warning disable CS0169 // Le champ 'SectionEntity.aclGroupsPK' n'est jamais utilisé
         private IEnumerable<int> aclGroupsPK;
 #pragma warning restore CS0169 // Le champ 'SectionEntity.aclGroupsPK' n'est jamais utilisé
@@ -160,15 +144,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Variable list of AclGroups associated to the Section.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         private IEnumerable<AclGroupEntity> aclGroups;
 
         /// <summary>
         /// Variables collection of relationship Albums in Sections. Sections dependencies.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore, NonSerialized]
         private ObservableSectionsInAclGroups aclGroupsDependencies =
             new ObservableSectionsInAclGroups("SectionId");
 
@@ -415,7 +397,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Property Album id (required for entity dependency).
         /// </summary>
-        [NotMapped]
+        [NotMapped, XmlIgnore]
         public int AlbumId
         {
             get => albumId;
@@ -433,6 +415,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Album dependencies primary key.
         /// </summary>
         [NotMapped]
+        [JsonProperty(PropertyName = "AlbumsPKs")]
+        [XmlElement(ElementName = "AlbumsPKs")]
         public IEnumerable<int> AlbumsPKs
         {
             get
@@ -449,8 +433,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                 if (albumsPKs != value)
                 {
                     albumsPKs = value;
+                    NotifyPropertyChanged();
                 }
-                NotifyPropertyChanged();
             }
         }
         //{
@@ -493,8 +477,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                 if (albums != value)
                 {
                     albums = value;
+                    NotifyPropertyChanged();
                 }
-                NotifyPropertyChanged();
             }
         }
 
@@ -544,7 +528,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of AclGroup dependencies primary key.
         /// </summary>
         [NotMapped]
-        public IEnumerable<int> AclGroupsPK
+        [JsonProperty(PropertyName = "AclGroupsPKs")]
+        [XmlElement(ElementName = "AclGroupsPKs")]
+        public IEnumerable<int> AclGroupsPKs
             => ListOfPrimaryKeys(SectionsInAclGroups.ToList(), "AclGroupId");
 
         /// <summary>

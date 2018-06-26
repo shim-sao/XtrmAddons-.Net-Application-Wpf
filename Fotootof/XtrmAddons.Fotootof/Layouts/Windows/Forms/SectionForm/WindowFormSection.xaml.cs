@@ -165,17 +165,29 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
         /// </summary>
         protected override bool IsValidForm()
         {
-            log.Info($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
-
-            // Check if the name is not empty.
-            if (NewForm.Name.IsNullOrWhiteSpace())
+            try
             {
-                log.Warn($"The entity form name is invalid : {NewForm.Name}");
-                return false;
-            }
+                IsValidFormNotNullOrWhiteSpace(NewForm, "Name");
 
-            log.Info("The entity form has been verified !");
-            return true;
+                return true;
+            }
+            catch (ArgumentNullException e)
+            {
+                log.Error(e);
+                throw new ArgumentNullException(e.Message);
+            }
+            
+            //log.Info($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
+
+            //// Check if the name is not empty.
+            //if (NewForm.Name.IsNullOrWhiteSpace())
+            //{
+            //    log.Warn($"The entity form name is invalid : {NewForm.Name}");
+            //    return false;
+            //}
+
+            //log.Info("The entity form has been verified !");
+            //return true;
         }
 
         #endregion

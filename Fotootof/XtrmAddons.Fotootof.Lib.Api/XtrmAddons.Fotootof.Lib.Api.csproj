@@ -52,15 +52,19 @@
     <Reference Include="System.Xml" />
     <Reference Include="XtrmAddons.Net.Application">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Application.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="XtrmAddons.Net.Common">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="XtrmAddons.Net.HttpWebServer">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.HttpWebServer.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="XtrmAddons.Net.Xml">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Xml.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -81,7 +85,7 @@
       <Version>2.0.8</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>2.0.2</Version>
+      <Version>2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
@@ -91,14 +95,17 @@
     <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.HttpServer\XtrmAddons.Fotootof.Lib.HttpServer.csproj">
       <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
       <Name>XtrmAddons.Fotootof.Lib.HttpServer</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.SQLite\XtrmAddons.Fotootof.Lib.SQLite.csproj">
       <Project>{C2740C1D-4580-4216-9CAC-18580C02A383}</Project>
       <Name>XtrmAddons.Fotootof.Lib.SQLite</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\XtrmAddons.Fotootof.SQLiteService\XtrmAddons.Fotootof.SQLiteService.csproj">
       <Project>{60688da2-55cf-4e8d-8619-9e230c03caeb}</Project>
       <Name>XtrmAddons.Fotootof.SQLiteService</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

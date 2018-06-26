@@ -1,13 +1,10 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Diagnostics;
-using System.Drawing.Imaging;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
 {
@@ -24,22 +21,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        /// <summary>
-        /// Variable page width marging for content adjustement on size changed.
-        /// </summary>
-        public double MargingWidth { get; set; } = 0; // SystemParameters.VerticalScrollBarWidth
-
-        /// <summary>
-        /// Variable page height marging for content adjustement on size changed.
-        /// </summary>
-        public double MargingHeight { get; set; } = 0; // SystemParameters.HorizontalScrollBarHeight
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static object AppWindow 
-            = ApplicationSession.Properties.MainWindow;
-
         #endregion
 
 
@@ -53,13 +34,37 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
             => (SQLiteSvc)ApplicationSession.Properties.Database;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public static object AppWindow 
+            => ApplicationSession.Properties.MainWindow;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static FrameworkElement MainBlockContent
+            => ((Window)AppWindow).FindName("Block_Content") as FrameworkElement;
+
+        /// <summary>
+        /// Variable page width marging for content adjustement on size changed.
+        /// </summary>
+        public double MargingWidth { get; set; } = 0; // SystemParameters.VerticalScrollBarWidth
+
+        /// <summary>
+        /// Variable page height marging for content adjustement on size changed.
+        /// </summary>
+        public double MargingHeight { get; set; } = 0; // SystemParameters.HorizontalScrollBarHeight
+
+        /// <summary>
         /// Property alias to access to the dynamic translation words.
         /// </summary>
+        [System.Obsolete("use Translation.", true)]
         public dynamic DWords => Culture.Translation.DWords;
 
         /// <summary>
         /// Property alias to access to the dynamic translation logs.
         /// </summary>
+        [System.Obsolete("use Translation.", true)]
         public dynamic DLogs => Culture.Translation.DLogs;
 
         #endregion
@@ -99,7 +104,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
             InitializeModel();
 
             // Initialize for the window size changed event.
-            AppWindow.GetPropertyValue<Border>("BlockContent").SizeChanged += PageBase_SizeChanged;
+            MainBlockContent.SizeChanged += PageBase_SizeChanged;
 
             // Merge main resources.
             Resources.MergedDictionaries.Add(((Window)AppWindow).Resources);
@@ -113,55 +118,12 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         protected void PageBase_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             // Get main window page container dimensions.
-            Border win = AppWindow.GetPropertyValue<Border>("BlockContent");
-            TraceSize(win);
+            TraceSize(MainBlockContent);
             
             // Resize page to fit container.
-            Width = Math.Max(win.ActualWidth - MargingWidth, 0);
-            Height = Math.Max(win.ActualHeight - MargingHeight, 0);
+            Width = Math.Max(MainBlockContent.ActualWidth - MargingWidth, 0);
+            Height = Math.Max(MainBlockContent.ActualHeight - MargingHeight, 0);
             TraceSize(this);
-        }
-
-        /// <summary>
-        /// Method to display picture file dialog box selector.
-        /// </summary>
-        /// <param name="multiselect">Multiple selection enabled ?. False by default. Optional.</param>
-        /// <returns>A picture file dialog box selector, null if canceled.</returns>
-        [Obsolete("use DialogBase.PictureFileDialogBox(bool multiselect = false);", true)]
-        protected OpenFileDialog PictureFileDialogBox(bool multiselect = false)
-        {
-            // Configure open file dialog box 
-            OpenFileDialog dlg = new OpenFileDialog
-            {
-                Filter = ""
-            };
-
-            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
-            string sep = string.Empty;
-
-            foreach (var c in codecs)
-            {
-                string codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim();
-                dlg.Filter = string.Format("{0}{1}{2} ({3})|{3}", dlg.Filter, sep, codecName, c.FilenameExtension);
-                sep = "|";
-            }
-            
-            dlg.Filter = string.Format("{0}{1}{2} ({3})|{3}", dlg.Filter, sep, "All Files", "*.*");
-            dlg.DefaultExt = ".JPG"; // Default file extension 
-            dlg.FilterIndex = 2;
-            dlg.Multiselect = multiselect;
-            dlg.Title = Culture.Translation.DWords.DialogBoxTitle_PictureFileSelector;
-            
-            // Show open file dialog box 
-            bool? result = dlg.ShowDialog();
-
-            // Process open file dialog box results 
-            if (result == true)
-            {
-                return dlg;
-            }
-
-            return null;
         }
 
         #endregion

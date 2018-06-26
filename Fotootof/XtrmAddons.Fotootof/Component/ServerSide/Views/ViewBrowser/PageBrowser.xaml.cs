@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Common.Collections;
+using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Images;
@@ -69,13 +70,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
         public PageBrowser()
         {
             MessageBase.IsBusy = true;
-            log.Warn(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Browser"));
+            log.Warn(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Browser"));
 
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
+            AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Browser"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Browser"));
             MessageBase.IsBusy = false;
         }
 
@@ -440,24 +442,27 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
         #region Methods Size Changed
 
         /// <summary>
-        /// 
+        /// Method called on page size changed event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
+            fe = MainBlockContent;
 
-            this.Width = Math.Max(fe.ActualWidth, 0);
-            this.Height = Math.Max(fe.ActualHeight, 0);
+            Width = Math.Max(MainBlockContent.ActualWidth, 0);
+            Height = Math.Max(MainBlockContent.ActualHeight, 0);
 
-            Block_MiddleContents.Width = Math.Max(this.Width, 0);
-            Block_MiddleContents.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
+            double TopCtrlHeight = ((FrameworkElement)FindName("Block_TopControls")).RenderSize.Height;
 
-            UcTreeViewDirectories.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
-            UcListViewStoragesServer.Height = Math.Max(this.Height - Block_TopControls.RenderSize.Height, 0);
+            Block_MiddleContents.Width = Math.Max(Width, 0);
+            Block_MiddleContents.Height = Math.Max(Height - TopCtrlHeight, 0);
 
-            TraceSize(fe);
+            UcTreeViewDirectories.Height = Math.Max(Height - TopCtrlHeight, 0);
+            UcListViewStoragesServer.Height = Math.Max(Height - TopCtrlHeight, 0);
+
+            TraceSize(MainBlockContent);
             TraceSize(this);
             TraceSize(Block_TopControls);
             TraceSize(Block_MiddleContents);

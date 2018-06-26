@@ -289,10 +289,5 @@ __pycache__/
 
 # Custom files
 *.Thumbs.db
-/Fotootof/XtrmAddons.Fotootof.zip
-/Fotootof/XtrmAddons.Fotootof/Assets/Images/Default/picture-default.tif
-Fotootof/XtrmAddons.Fotootof/Assets/Images/Icons/Buttons/Thumbs.db
-Fotootof/XtrmAddons.Fotootof/Assets/Images/Vendor/Flaticon/Smashicons/Essential Collection/Thumbs.db
-Fotootof/XtrmAddons.Fotootof/Assets/Images/Icons/Buttons/Thumbs.db
-Fotootof/XtrmAddons.Fotootof/Assets/Images/Icons/Buttons/Thumbs.db
-Fotootof/XtrmAddons.Fotootof/Assets/Images/Vendor/Flaticon/Smashicons/Essential Collection/Thumbs.db
+*/Thumbs.db
+**/Thumbs.db

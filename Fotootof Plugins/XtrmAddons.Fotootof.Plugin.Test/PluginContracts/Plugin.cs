@@ -32,7 +32,7 @@ namespace XtrmAddons.Fotootof.Plugin.Test.PluginContracts
         {
             Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Initializing Plugin Test...");
 
-            MenuControl = new UcPluginTest();
+            MenuControl = new UcPluginContext();
 
             IsPluginCreated = true;
         }

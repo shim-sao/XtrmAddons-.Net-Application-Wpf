@@ -42,6 +42,18 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         #region Methods
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fe"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public T FindName<T>(string name) where T : class
+        {
+            return (T)FindName(name);
+        }
+
+        /// <summary>
         /// Method called on window sized changed.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
