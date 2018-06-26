@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
@@ -74,13 +75,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         public PageUsers()
         {
             MessageBase.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Users"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Users"));
 
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Users"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Users"));
             MessageBase.IsBusy = false;
         }
 

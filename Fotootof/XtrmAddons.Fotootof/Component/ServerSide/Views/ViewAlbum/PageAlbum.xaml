@@ -16,12 +16,14 @@
 
 	<Grid x:Name="Block_Root"
 		  Style="{StaticResource Root}">
+		
 		<StackPanel x:Name="Block_RootPanel"
 					Style="{StaticResource FieldsetVertical}">
 
 			<Grid x:Name="Block_MiddleContents"
 				  Style="{StaticResource MiddleContents}">
-				<pictures:ListViewPicturesServer x:Name="PicturesCollection"
+				
+					<pictures:ListViewPicturesServer x:Name="PicturesCollection"
 												 Grid.Row="0"
 												 Grid.Column="0"
 												 DataContext="{Binding}"/>

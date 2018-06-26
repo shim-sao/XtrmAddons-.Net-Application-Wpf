@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Event;
 
@@ -109,21 +109,30 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public virtual void OnAddNewItem_Click(object sender, RoutedEventArgs e) { throw new NotImplementedException(); }
+        public virtual void OnAddNewItem_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBase.NotImplemented("Add new item.");
+        }
 
         /// <summary>
         /// Method called on edit item click event.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public virtual void OnEditItem_Click(object sender, RoutedEventArgs e) { throw new NotImplementedException(); }
+        public virtual void OnEditItem_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBase.NotImplemented("Edit an item.");
+        }
 
         /// <summary>
         /// Method called on delete items click event.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public virtual void OnDeleteItems_Click(object sender, RoutedEventArgs e) { throw new NotImplementedException(); }
+        public virtual void OnDeleteItems_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBase.NotImplemented("Delete items.");
+        }
 
         /// <summary>
         /// Method called on items collection selection changed.
@@ -132,7 +141,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         /// <param name="e">Selection changed arguments.</param>
         public virtual void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            throw new NotImplementedException($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
+            MessageBase.NotImplemented("Items selection changed.");
         }
 
         #endregion

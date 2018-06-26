@@ -86,10 +86,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         {
             string action = string.Join(",", aclGroupId);
 
-            int result = await Context.Database.ExecuteSqlCommandAsync
-                (
-                    "DELETE FROM UsersInAclGroups"
-                    + string.Format(" WHERE UserId = {0} AND AclGroupId IN ({1})", userId, action)
+            int result = await Context.Database.ExecuteSqlCommandAsync (
+                    $"DELETE FROM UsersInAclGroups WHERE UserId = {userId} AND AclGroupId IN ({action})"
                 );
 
             Save();
@@ -106,10 +104,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         {
             string ids = string.Join(",", entity.ListOfPrimaryKeys(entity.UsersInAclGroups.ToList(), "AclGroupId"));
 
-            int result = await Context.Database.ExecuteSqlCommandAsync
-                (
-                    "DELETE FROM UsersInAclGroups"
-                    + string.Format(" WHERE UserId = {0} AND AclGroupId NOT IN ({1})", entity.PrimaryKey, ids)
+            int result = await Context.Database.ExecuteSqlCommandAsync (
+                    $"DELETE FROM UsersInAclGroups WHERE UserId = {entity.PrimaryKey} AND AclGroupId NOT IN ({ids})"
                 );
 
             // Save changes on the database.

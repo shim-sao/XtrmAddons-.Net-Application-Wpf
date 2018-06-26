@@ -8,6 +8,7 @@ using XtrmAddons.Fotootof.Common.Tools;
 using System.Globalization;
 using System;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Culture;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
 {
@@ -63,7 +64,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
         public PageSlideshow(PictureEntityCollection collection, PictureEntity picture = null)
         {
             MessageBase.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Slideshow"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Slideshow"));
 
             pictures = collection;
             currentPicture = picture;
@@ -72,7 +73,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
             InitializeComponent();
             AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Slideshow"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Slideshow"));
             MessageBase.IsBusy = false;
         }
 
@@ -83,7 +84,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
         public PageSlideshow(int albumPk, PictureEntity picture = null)
         {
             MessageBase.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Slideshow"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Slideshow"));
 
             this.albumPk = albumPk;
             currentPicture = picture;
@@ -92,7 +93,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
             InitializeComponent();
             AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Slideshow"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Slideshow"));
             MessageBase.IsBusy = false;
         }
 

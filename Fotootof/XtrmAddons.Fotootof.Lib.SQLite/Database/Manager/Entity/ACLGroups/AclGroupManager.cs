@@ -85,10 +85,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         {
             string action = string.Join(",", aclActionId);
 
-            int result = await Context.Database.ExecuteSqlCommandAsync
-                (
-                    "DELETE FROM AclGroupsInAclActions"
-                    + string.Format(" WHERE AclGroupId = {0} AND AclActionId IN ({1})", aclGroupId, action)
+            int result = await Context.Database.ExecuteSqlCommandAsync (
+                    $"DELETE FROM AclGroupsInAclActions WHERE AclGroupId = {aclGroupId} AND AclActionId IN ({action})"
                 );
 
             Save();
@@ -106,10 +104,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         {
             string action = string.Join(",", entity.AclActionsPK);
 
-            int result = await Context.Database.ExecuteSqlCommandAsync
-                (
-                    "DELETE FROM AclGroupsInAclActions"
-                    + string.Format(" WHERE AclGroupId = {0} AND AclActionId NOT IN ({1})", entity.PrimaryKey, action)
+            int result = await Context.Database.ExecuteSqlCommandAsync (
+                    $"DELETE FROM AclGroupsInAclActions WHERE AclGroupId = {entity.PrimaryKey} AND AclActionId NOT IN ({action})"
                 );
 
             Save();
@@ -197,8 +193,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         public async Task<int> RemoveUserDependencyAsync(int aclGroupId, int userId, bool save = true)
         {
             int result = await Context.Database.ExecuteSqlCommandAsync(
-                "DELETE FROM UsersInAclGroups"
-                + string.Format(" WHERE AclGroupId = {0} AND UserId = {1}", aclGroupId, userId)
+                $"DELETE FROM UsersInAclGroups  WHERE AclGroupId = {aclGroupId} AND UserId = {userId}"
              );
 
             Save(save);

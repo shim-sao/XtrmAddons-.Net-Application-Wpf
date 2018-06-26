@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Net.Picture.Extensions;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
 {
@@ -167,8 +168,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
             if (extensions.Contains(ext.ToLower()))
             {
                 dynamic metadata = FullName.PictureMetadata();
-
-                DateTime date = metadata.DateTaken != null ? DateTime.Parse(metadata.DateTaken) : DateTime.Now;
+                DateTime date = ((string)metadata.DateTaken).IsNotNullOrWhiteSpace() ? DateTime.Parse(metadata.DateTaken) : DateTime.Now;
                 string Title = metadata.Title ?? "";
                 string Comment = metadata.Comment ?? "";
 

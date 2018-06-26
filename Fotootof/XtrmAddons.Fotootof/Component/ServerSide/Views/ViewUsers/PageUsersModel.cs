@@ -1,6 +1,7 @@
-﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
-using XtrmAddons.Fotootof.Common.Controls.DataGrids;
+﻿using XtrmAddons.Fotootof.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Common.Models.DataGrids;
+using XtrmAddons.Fotootof.Layouts.DataGrids.AclGroups;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 {

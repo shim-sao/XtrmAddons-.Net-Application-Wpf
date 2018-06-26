@@ -1,13 +1,15 @@
 ﻿using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Windows;
-using XtrmAddons.Fotootof.Interfaces.AddInsContracts;
+using XtrmAddons.Fotootof.AddInsContracts.Interfaces;
 
 namespace XtrmAddons.Fotootof.Plugin.Test.PluginContracts
 {
     [Export(typeof(IProcess))]
     public class Processor : IProcess
     {
+        public bool IsEnable { get => true; set => throw new System.NotImplementedException(); }
+
         /// <summary>
         /// 
         /// </summary>

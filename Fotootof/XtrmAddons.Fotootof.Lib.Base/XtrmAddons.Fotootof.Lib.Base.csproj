@@ -68,7 +68,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\AppSystems\CatalogBase.cs" />
     <Compile Include="Classes\AppSystems\ExceptionBase.cs" />
     <Compile Include="Classes\AppSystems\MessageBase.cs" />
     <Compile Include="Classes\Collection\CollectionBase.cs" />
@@ -114,10 +113,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.AddInsContracts\XtrmAddons.Fotootof.AddInsContracts.csproj">
-      <Project>{1F76A5EF-20AB-4782-BBF7-53E585955B4C}</Project>
-      <Name>XtrmAddons.Fotootof.AddInsContracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\XtrmAddons.Fotootof.Culture\XtrmAddons.Fotootof.Culture.csproj">
       <Project>{a0c828d6-9afa-48e6-b279-713869ee07ef}</Project>
       <Name>XtrmAddons.Fotootof.Culture</Name>

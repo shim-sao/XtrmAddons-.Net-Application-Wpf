@@ -13,7 +13,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ShouldCreateLogs>True</ShouldCreateLogs>
@@ -25,8 +25,7 @@
     <AssemblyFileVersionSettings>None.None.DateStamp.TimeStamp</AssemblyFileVersionSettings>
     <AssemblyInfoVersionSettings>None.None.DateStamp.TimeStamp</AssemblyInfoVersionSettings>
     <TargetFrameworkProfile />
-    <PublishUrl>
-    </PublishUrl>
+    <PublishUrl>publish\</PublishUrl>
     <Install>false</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -36,12 +35,6 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>
-    </InstallUrl>
-    <SupportUrl>
-    </SupportUrl>
-    <ErrorReportUrl>
-    </ErrorReportUrl>
     <ProductName>Fotootof</ProductName>
     <PublisherName>XtrmAddons</PublisherName>
     <SuiteName>XtrmAddons</SuiteName>
@@ -58,7 +51,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS;CODE_ANALYSIS</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>true</Prefer32Bit>
@@ -139,18 +132,18 @@
     <PackageReference Include="log4net">
       <Version>2.0.8</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.0.0" />
-    <PackageReference Include="Microsoft.NETCore.Platforms" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.1.1" />
+    <PackageReference Include="Microsoft.NETCore.Platforms" Version="2.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Remotion.Linq" Version="2.2.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
@@ -160,21 +153,20 @@
     <PackageReference Include="SQLite.Net.Async-PCL">
       <Version>3.1.1</Version>
     </PackageReference>
-    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.10" />
-    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.10" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.linux" Version="1.1.10" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.osx" Version="1.1.10" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.10" />
-    <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.10" />
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.11" />
+    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.11" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.linux" Version="1.1.11" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.11" />
+    <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.11" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
-    <PackageReference Include="System.Collections.Immutable" Version="1.4.0" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.108" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.108" />
     <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.108" />
     <PackageReference Include="System.Data.SQLite.Linq" Version="1.0.108" />
     <PackageReference Include="System.Diagnostics.Debug" Version="4.3.0" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.4.1" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.5.0" />
     <PackageReference Include="System.Interactive.Async" Version="3.1.1" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
     <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
@@ -184,14 +176,14 @@
     <PackageReference Include="System.Reflection" Version="4.3.0" />
     <PackageReference Include="System.Reflection.Extensions" Version="4.3.0" />
     <PackageReference Include="System.Runtime" Version="4.3.0" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.4.0" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.1" />
     <PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
     <PackageReference Include="System.Security.Cryptography.Encoding" Version="4.3.0" />
     <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
     <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.2" />
     <PackageReference Include="System.Threading" Version="4.3.0" />
-    <PackageReference Include="WindowsAPICodePack-Core" Version="1.1.1" />
+    <PackageReference Include="WindowsAPICodePack-Core" Version="1.1.2" />
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
@@ -244,7 +236,8 @@
     <Reference Include="XtrmAddons.Net.SystemIO">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SystemIO.dll</HintPath>
     </Reference>
-    <Reference Include="XtrmAddons.Net.Windows">
+    <Reference Include="XtrmAddons.Net.Windows, Version=1.0.18175.1423, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Windows.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -270,6 +263,11 @@
     <Compile Include="Component\ServerSide\Views\ViewLogs\PageLogs.xaml.cs">
       <DependentUpon>PageLogs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Component\ServerSide\Views\ViewPlugin\PagePlugin.xaml.cs">
+      <DependentUpon>PagePlugin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\ServerSide\Views\ViewPlugin\PagePluginModel.cs" />
     <Compile Include="Component\ServerSide\Views\ViewServer\PageServer.xaml.cs">
       <DependentUpon>PageServer.xaml</DependentUpon>
     </Compile>
@@ -283,9 +281,7 @@
     </Compile>
     <Compile Include="Component\ServerSide\Views\ViewUsers\PageUsersModel.cs" />
     <Compile Include="Common\Collections\AclActionEntityCollection.cs" />
-    <Compile Include="Common\Controls\DataGrids\DataGridAclGroups.cs" />
     <Compile Include="Common\Controls\DataGrids\DataGridUsersModel.cs" />
-    <Compile Include="Common\Controls\DataGrids\DataGridAclGroupsModel.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewPictures.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewPicturesModel.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewStorages.cs" />
@@ -293,6 +289,8 @@
     <Compile Include="Common\Tools\AppLogger.cs" />
     <Compile Include="Common\Tools\AppOverwork.cs" />
     <Compile Include="Common\Tools\AppNavigator.cs" />
+    <Compile Include="Layouts\DataGrids\AclGroups\DataGridAclGroups.cs" />
+    <Compile Include="Layouts\DataGrids\AclGroups\DataGridAclGroupsModel.cs" />
     <Compile Include="Layouts\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
@@ -439,6 +437,10 @@
     <Page Include="Component\ServerSide\Views\ViewLogs\PageLogs.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Component\ServerSide\Views\ViewPlugin\PagePlugin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Component\ServerSide\Views\ViewServer\PageServer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -811,6 +813,7 @@
   <ItemGroup>
     <Folder Include="Common\Converters\" />
     <Folder Include="Common\Interfaces\" />
+    <Folder Include="Component\ServerSide\Controls\ListViews\Albums\" />
     <Folder Include="Config\" />
   </ItemGroup>
   <ItemGroup>
@@ -830,14 +833,17 @@
   <ItemGroup>
     <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\Newtonsoft.Json.dll" />
   </ItemGroup>
-  <!-- <ItemGroup>
-    <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\log4net.dll" />
-    <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\Newtonsoft.Json.dll" />
-    <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Application.dll" />
-    <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Common.dll" />
-    <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SystemIO.dll" />
-  </ItemGroup> -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PackagesExternalSourceDirectory>.\</PackagesExternalSourceDirectory>
+    <PackagesExternalDestinationDirectory>.\TestBin</PackagesExternalDestinationDirectory>
+  </PropertyGroup>
+  <Target Name="BeforeBuild">
+    <CreateItem Include="$(PackagesExternalSourceDirectory)log4net.*">
+      <Output TaskParameter="Include" ItemName="YourFilesToCopy" />
+    </CreateItem>
+    <Copy SourceFiles="@(YourFilesToCopy)" DestinationFiles="@(YourFilesToCopy->'$(PackagesExternalDestinationDirectory)\%(Filename)%(Extension)')" />
+  </Target>
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>

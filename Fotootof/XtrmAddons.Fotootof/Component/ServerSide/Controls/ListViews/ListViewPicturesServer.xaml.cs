@@ -9,11 +9,16 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
+using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum;
+using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Layouts.Windows.Slideshow;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Win32;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Net.Picture;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
 {
@@ -25,27 +30,19 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         #region Properties
 
         /// <summary>
-        /// Property to access to the main add to collection control.
+        /// 
         /// </summary>
-        public override Control AddControl => Button_Add;
-
-        /// <summary>
-        /// Property to access to the main edit item control.
-        /// </summary>
-        public override Control EditControl => Button_Edit;
-
-        /// <summary>
-        /// Property to access to the main delete items control.
-        /// </summary>
-        public override Control DeleteControl => Button_Delete;
-
-        /// <summary>
-        /// Property to access to the items collection.
-        /// </summary>
-        public override ListView ItemsCollection
+        public PageAlbumModel Model
         {
-            get => PicturesCollection;
-            set => PicturesCollection = value;
+            get
+            {
+                if(!(DataContext is PageAlbumModel))
+                {
+                    return null;
+                }
+
+                return (PageAlbumModel)DataContext;
+            }
         }
 
         #endregion
@@ -73,9 +70,69 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public override void OnAddNewItem_Click(object sender, RoutedEventArgs e)
+        public override async void OnAddNewItem_Click(object sender, RoutedEventArgs e)
         {
-            
+            Microsoft.Win32.OpenFileDialog pfdb = PictureFileDialogBox.Show(true, Translation.DWords.DialogBoxTitle_PictureFileSelector);
+
+            if(Model.Album == null)
+            {
+                NullReferenceException ex = new NullReferenceException(nameof(Model.Album));
+                log.Error(ex.Output(), ex);
+                return;
+            }
+
+            if(pfdb != null)
+            {
+                List<PictureEntity> pictures = new List<PictureEntity>();
+
+                foreach (string s in pfdb.FileNames)
+                {
+                    PictureEntity item = (new StorageInfoModel(new FileInfo(s))).ToPicture();
+
+                    // Check if storage information is and return a picture information.
+                    if (item != null)
+                    {
+                        // Add Picture to the list for Pictures.
+                        pictures.Add(item);
+                        Model.Pictures.Add(item);
+                    }
+                }
+
+                // Create a list of Albums to update.
+                var albums = new AlbumEntity[] { Model.Album };
+
+                // Insert Pictures into the database.
+                var pictAdded = PictureEntityCollection.DbInsert(pictures, albums);
+
+                bool updateAlbum = false;
+
+                // Update Album informations.
+                if (Model.Album.ThumbnailPictureId == 0)
+                {
+                    Model.Album.ThumbnailPictureId = pictAdded[0].PrimaryKey;
+                    updateAlbum = true;
+                }
+                if (Model.Album.PreviewPictureId == 0)
+                {
+                    Model.Album.PreviewPictureId = pictAdded[0].PrimaryKey;
+                    updateAlbum = true;
+                }
+                if (Model.Album.BackgroundPictureId == 0)
+                {
+                    Model.Album.BackgroundPictureId = pictAdded[0].PrimaryKey;
+                    updateAlbum = true;
+                }
+
+                // Update the Album with new informations.
+                if (updateAlbum)
+                {
+                    await AlbumEntityCollection.DbUpdateAsync(albums, null);
+                }
+
+                // Reload page.
+                AppNavigator.NavigateToPageAlbumServer(Model.Album.PrimaryKey);
+            }
+
         }
 
         /// <summary>
@@ -326,7 +383,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// <param name="e">Selection changed event arguments.</param>
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
+            ((TextBlock)FindName("Counter_SelectedNumber")).Text = SelectedItems.Count.ToString();
         }
 
         #endregion
@@ -360,7 +417,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// </summary>
         private void ArrangeBlockItems()
         {
-            double height = Math.Max(this.ActualHeight - Block_Header.RenderSize.Height, 0);
+            double height = Math.Max(ActualHeight - Block_Header.RenderSize.Height, 0);
 
             Block_Items.Height = height;
             ItemsCollection.Height = height;

@@ -16,6 +16,7 @@ using XtrmAddons.Fotootof.Common.Tools;
 using System.Globalization;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Fotootof.Culture;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
 {
@@ -89,13 +90,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         public PageCatalog()
         {
             MessageBase.IsBusy = true;
-            log.Warn(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Catalog"));
+            log.Warn(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Catalog"));
 
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Catalog"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Catalog"));
             MessageBase.IsBusy = false;
         }
 
@@ -347,7 +348,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Event arguments.</param>
-        private void AlbumsListView_OnChange(object sender, EntityChangesEventArgs e)
+        private async void AlbumsListView_OnChange(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
             log.Warn("Saving Album informations. Please wait...");
@@ -356,7 +357,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             AlbumEntity old = Model.Albums.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
             /*int index = model.Albums.Items.IndexOf(old);
             model.Albums.Items[index] = newEntity;*/
-            AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
+            await AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
             LoadAlbums();
 
             log.Info("Saving Album informations. Done.");

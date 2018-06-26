@@ -101,9 +101,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// <returns>Asynchronous task with modified AclAction entity as result.</returns>
         public async Task<AclActionEntity> RemoveAclGroupDependenciesAsync(int aclActionId, int aclGroupId, bool save = true)
         {
-            int result = await Context.Database.ExecuteSqlCommandAsync(
-                "DELETE FROM AclGroupsInAclActions"
-                + string.Format(" WHERE AclActionId = {0} AND AclGroupId = {1}", aclActionId, aclGroupId)
+            int result = await Context.Database.ExecuteSqlCommandAsync (
+                $"DELETE FROM AclGroupsInAclActions WHERE AclActionId = {aclActionId} AND AclGroupId = {aclGroupId}"
              );
 
             if(save)

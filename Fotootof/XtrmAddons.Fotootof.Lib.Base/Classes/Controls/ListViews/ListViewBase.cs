@@ -38,6 +38,21 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
         #region Properties
 
         /// <summary>
+        /// Property to access to the main add to collection control.
+        /// </summary>
+        public override Control AddControl => (Control)FindName("Button_Add");
+
+        /// <summary>
+        /// Property to access to the main edit item control.
+        /// </summary>
+        public override Control EditControl => (Control)FindName("Button_Edit");
+
+        /// <summary>
+        /// Property to access to the main delete items control.
+        /// </summary>
+        public override Control DeleteControl => (Control)FindName("Button_Delete");
+
+        /// <summary>
         /// Property to access to the items collection.
         /// </summary>
         public T Items { get => (T)GetValue(PropertyItems); set => SetValue(PropertyItems, value); }
@@ -57,7 +72,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
         /// <summary>
         /// Property to access to the main items data grid.
         /// </summary>
-        public abstract ListView ItemsCollection { get; set; }
+        public virtual ListView ItemsCollection => (ListView)FindName("ListViewCollection");
 
         /// <summary>
         /// Property to access to the datagrid selected item.

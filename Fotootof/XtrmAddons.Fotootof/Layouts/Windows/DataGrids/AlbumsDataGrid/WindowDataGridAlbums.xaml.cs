@@ -171,7 +171,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Event arguments.</param>
-        private void UCAlbumsContainer_OnChange(object sender, EntityChangesEventArgs e)
+        private async void UCAlbumsContainer_OnChange(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
             log.Info("Saving Album informations. Please wait...");
@@ -180,7 +180,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid
             AlbumEntity old = Model.Albums.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
             int index = Model.Albums.IndexOf(old);
             Model.Albums[index] = newEntity;
-            AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
+            await AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
 
             log.Info("Saving Album informations. Done.");
             MessageBase.IsBusy = false;

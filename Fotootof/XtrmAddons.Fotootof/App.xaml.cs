@@ -1,12 +1,13 @@
 ﻿using log4net.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
-using XtrmAddons.Fotootof.Builders.AddInsContracts;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Settings;
 using XtrmAddons.Net.Application;
@@ -131,7 +132,7 @@ namespace XtrmAddons.Fotootof
                 }
 
                 i++;
-                repository.Threshold = log4net.Core.Level.Info;
+                repository.Threshold = log4net.Core.Level.All;
             }
 #else
             // Disable logs under Info on release mode.

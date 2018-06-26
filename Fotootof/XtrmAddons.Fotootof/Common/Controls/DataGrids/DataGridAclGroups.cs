@@ -13,6 +13,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries Common Controls DataGrid AclGroups.
     /// </summary>
+    [System.Obsolete("XtrmAddons.Fotootof.Layouts.DataGrids")]
     public abstract class DataGridAclGroups : DataGridBase<AclGroupEntityCollection, AclGroupEntity>
     {
         #region Properties

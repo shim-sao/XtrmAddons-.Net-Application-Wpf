@@ -259,8 +259,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         public async Task<AlbumEntity> RemovePictureDependenciesAsync(int albumId, int pictureId, bool save = true)
         {
             int result = await Context.Database.ExecuteSqlCommandAsync(
-                "DELETE FROM PicturesInAlbums"
-                + string.Format(" WHERE AlbumId = {0} AND PictureId = {1}", albumId, pictureId)
+                $"DELETE FROM PicturesInAlbums WHERE AlbumId = {albumId} AND PictureId = {pictureId}"
              );
 
             Save(save);
@@ -297,8 +296,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         public async Task<AlbumEntity> RemoveSectionDependenciesAsync(int albumId, int sectionId, bool save = true)
         {
             int result = await Context.Database.ExecuteSqlCommandAsync(
-                "DELETE FROM AlbumsInSections"
-                + string.Format(" WHERE AlbumId = {0} AND SectionId = {1}", albumId, sectionId)
+                $"DELETE FROM AlbumsInSections WHERE AlbumId = {albumId} AND SectionId = {sectionId}"
              );
 
             Save(save);

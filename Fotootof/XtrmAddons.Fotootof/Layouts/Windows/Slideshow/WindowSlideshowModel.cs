@@ -168,7 +168,14 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Slideshow
                 CurrentIndex++;
             }
 
-            CurrentPicture = Pictures[CurrentIndex];
+            if (CurrentIndex >= 0 && CurrentIndex < Pictures.Count)
+            {
+                CurrentPicture = Pictures[CurrentIndex];
+            }
+            else
+            {
+                CurrentIndex = 0;
+            }
 
             if (IsPlaying)
             {
@@ -195,7 +202,14 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Slideshow
                 CurrentIndex--;
             }
 
-            CurrentPicture = Pictures[CurrentIndex];
+            if (CurrentIndex >= 0 && CurrentIndex < Pictures.Count)
+            {
+                CurrentPicture = Pictures[CurrentIndex];
+            }
+            else
+            {
+                CurrentIndex = 0;
+            }
 
             if (IsPlaying)
             {

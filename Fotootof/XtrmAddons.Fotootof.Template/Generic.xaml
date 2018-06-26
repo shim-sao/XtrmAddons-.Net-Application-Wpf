@@ -60,6 +60,8 @@
 	<system:Double x:Key="Icon320Double">256</system:Double>
 	<system:Double x:Key="Icon512Double">512</system:Double>
 
+	
+	
 	<system:String x:Key="ImageAbout">Assets\Images\Default\about.jpg</system:String>
 	<BitmapImage x:Key="BitmapImageAbout" UriSource="\Assets\Images\Default\about.jpg"></BitmapImage>
 	<system:String x:Key="ImageAlbumDefaultBackground">Assets\Images\Default\album-background.png</system:String>

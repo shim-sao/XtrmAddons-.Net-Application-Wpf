@@ -8,6 +8,7 @@ using XtrmAddons.Fotootof.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient;
 using XtrmAddons.Fotootof.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.Api.Models.Json;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
@@ -59,7 +60,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         public PageCatalogClient(ClientHttp server)
         {
             MessageBase.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageWaiting, "Catalog Client"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Catalog Client"));
 
             // Set page variables and properties.
             svr = server;
@@ -68,7 +69,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
             InitializeComponent();
             AfterInitializedComponent();
             
-            log.Info(string.Format(CultureInfo.CurrentCulture, DLogs.InitializingPageDone, "Catalog Client"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Catalog Client"));
             MessageBase.IsBusy = false;
         }
 
