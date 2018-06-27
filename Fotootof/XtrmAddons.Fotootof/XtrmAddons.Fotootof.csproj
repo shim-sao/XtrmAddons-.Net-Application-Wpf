@@ -210,35 +210,38 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="XtrmAddons.Net.Application">
-      <HintPath>..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Application.dll</HintPath>
+      <HintPath>..\Packages\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Common">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Common.dll</HintPath>
+      <HintPath>..\Packages\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.HttpWebServer">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.HttpWebServer.dll</HintPath>
+      <HintPath>..\Packages\XtrmAddons.Net.HttpWebServer.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Memory">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Memory.dll</HintPath>
+      <HintPath>..\Packages\XtrmAddons.Net.Memory.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Network">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Network.dll</HintPath>
+      <HintPath>..\Packages\XtrmAddons.Net.Network.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.NotifyIcons">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.NotifyIcons.dll</HintPath>
+      <HintPath>..\Packages\XtrmAddons.Net.NotifyIcons.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Picture">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Picture.dll</HintPath>
+      <HintPath>..\Packages\XtrmAddons.Net.Picture.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SQLiteBundle">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
+      <HintPath>..\Packages\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SystemIO">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SystemIO.dll</HintPath>
+      <HintPath>..\Packages\XtrmAddons.Net.SystemIO.dll</HintPath>
     </Reference>
-    <Reference Include="XtrmAddons.Net.Windows, Version=1.0.18175.1423, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="XtrmAddons.Net.Windows">
+      <HintPath>..\Packages\XtrmAddons.Net.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Xml, Version=1.0.18019.2352, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Windows.dll</HintPath>
+      <HintPath>..\Packages\XtrmAddons.Net.Xml.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -362,9 +365,6 @@
     <Compile Include="Common\Collections\InfoEntityCollection.cs" />
     <Compile Include="Common\Controls\DataGrids\DataGridAlbums.cs" />
     <Compile Include="Common\Controls\DataGrids\DataGridSections.cs" />
-    <Compile Include="Common\Controls\Tooltips\UCToolTipPicture.xaml.cs">
-      <DependentUpon>UCToolTipPicture.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Common\Controls\DataGrids\DataGridSectionsModel.cs" />
     <Compile Include="Layouts\Windows\Forms\AclGroupForm\WindowFormAclGroupModel.cs" />
     <Compile Include="Layouts\Windows\Forms\AlbumForm\WindowFormAlbumModel.cs" />
@@ -513,10 +513,6 @@
     <Page Include="Component\ServerSide\Controls\DataGrids\DataGridSectionsServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Common\Controls\Tooltips\UCToolTipPicture.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Layouts\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -811,9 +807,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Common\Converters\" />
-    <Folder Include="Common\Interfaces\" />
-    <Folder Include="Component\ServerSide\Controls\ListViews\Albums\" />
     <Folder Include="Config\" />
   </ItemGroup>
   <ItemGroup>
