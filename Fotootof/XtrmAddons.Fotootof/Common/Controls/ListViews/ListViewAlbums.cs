@@ -97,29 +97,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
         /// <param name="e">Routed event arguments.</param>
         public override void OnDeleteItems_Click(object sender, RoutedEventArgs e)
         {
-            // Check if an AclGroup is founded. 
-            if (SelectedItem != null)
-            {
-                // Alert user for acceptation.
-                MessageBoxResult result = MessageBox.Show
-                (
-                    String.Format(Translation.DWords.MessageBox_Acceptation_DeleteGeneric, Translation.DWords.Album, SelectedItem.Name),
-                    Translation.DWords.ApplicationName,
-                    MessageBoxButton.YesNoCancel
-                );
-
-                // If accepted, try to update page model collection.
-                if (result == MessageBoxResult.Yes)
-                {
-                    RaiseOnDelete(SelectedItem);
-                }
-            }
-            else
-            {
-                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
-                log.Warn(message);
-                MessageBase.Warning(message);
-            }
+            MessageBase.NotImplemented();
         }
 
         /// <summary>

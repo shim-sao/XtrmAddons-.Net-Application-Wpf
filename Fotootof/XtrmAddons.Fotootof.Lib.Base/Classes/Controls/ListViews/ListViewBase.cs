@@ -15,7 +15,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
     /// <typeparam name="U">The item type.</typeparam>
     public abstract class ListViewBase<T, U> : ControlBaseCollection, IListItems<T>
     {
-        #region Events
+        #region Properties Events Handlers
 
         /// <summary>
         /// Delegate property event changes handler for an Section.
@@ -35,7 +35,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
 
 
 
-        #region Properties
+        #region Properties Controls
 
         /// <summary>
         /// Property to access to the main add to collection control.
@@ -52,10 +52,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
         /// </summary>
         public override Control DeleteControl => (Control)FindName("Button_Delete");
 
+        #endregion
+
+
+
+        #region Properties
+
         /// <summary>
         /// Property to access to the items collection.
         /// </summary>
-        public T Items { get => (T)GetValue(PropertyItems); set => SetValue(PropertyItems, value); }
+        public virtual T Items { get => (T)GetValue(PropertyItems); set => SetValue(PropertyItems, value); }
 
         /// <summary>
         /// Property Using a DependencyProperty as the backing store for Entities.
@@ -85,18 +91,24 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
         public List<U> SelectedItems => new List<U>(ItemsCollection.SelectedItems.Cast<U>());
 
         #endregion
-        
 
 
-        #region Methods
+
+        #region Methods Events Notifier
 
         /// <summary>
         /// Method to raise on default change event.
         /// </summary>
-        protected void RaiseDefaultChanged<V>(V item) where V : U
+        protected void NotifyDefaultChanged<V>(V item) where V : U
         {
             DefaultChanged?.Invoke(this, new EntityChangesEventArgs(item));
         }
+
+        #endregion
+
+
+
+        #region Methods
 
         /// <summary>
         /// Method called on items collection selection changed.
@@ -133,7 +145,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
         protected void CheckBoxDefault_Checked<V>(object sender, RoutedEventArgs e) where V : U
         {
             V entity = (V)((CheckBox)sender).Tag;
-            RaiseDefaultChanged(entity);
+            NotifyDefaultChanged(entity);
         }
 
         /// <summary>

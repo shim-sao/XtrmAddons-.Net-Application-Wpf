@@ -136,14 +136,92 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         }
 
         /// <summary>
+        /// Method called on delete click event to delete a list of Pictures.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        public async override void OnDeleteItems_Click(object sender, RoutedEventArgs e)
+        {
+            // Check if the selected items list is not null. 
+            if (SelectedItems == null)
+            {
+                NullReferenceException ex = ExceptionBase.RefNull(nameof(SelectedItems), SelectedItems);
+                log.Warn(ex.Output(), ex);
+                MessageBase.Warning(ex.Output());
+                return;
+            }
+
+            // Alert user for acceptation.
+            MessageBoxResult result = MessageBox.Show
+            (
+                String.Format(Translation.DWords.MessageBox_Acceptation_DeleteGeneric, Translation.DWords.Picture, SelectedItems.Count),
+                Translation.DWords.ApplicationName,
+                MessageBoxButton.YesNoCancel
+            );
+
+            // If not accept, do nothing at this moment.
+            if (result != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            // If accepted, try to update page model collection.
+            try
+            {
+                // Start to busy application.
+                MessageBase.IsBusy = true;
+                log.Warn("Starting deleting Picture(s). Please wait...");
+
+                // Delete item from database.
+                await PictureEntityCollection.DbDeleteAsync(SelectedItems);
+
+                // Important : Need to defer for list view items refresh.
+                log.Warn("Defering Picture(s) list view items refresh...");
+                using (var defer = ItemsCollection.Items.DeferRefresh())
+                {
+                    foreach (PictureEntity item in SelectedItems)
+                    {
+                        Model.Pictures.Remove(item);
+                    }
+                    ItemsCollection.ItemsSource = Model.Pictures;
+                }
+
+                // Refresh of the list view items source.
+                log.Warn("Refreshing Picture(s) list view...");
+                ItemsCollection.Items.Refresh();
+
+                // Raise the on delete event.
+                log.Warn("Refreshing Picture(s) list view...");
+                RaiseOnDelete(SelectedItems.ToArray());
+
+                // Stop to busy application.
+                log.Warn("Ending deleting Picture(s).");
+                MessageBase.IsBusy = false;
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBase.Error(ex.Output());
+            }
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void ListView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            List<PictureEntity> pictList = e.NewValue.GetPropertyValue("Pictures") as List<PictureEntity>;
-            Items = new PictureEntityCollection(pictList);
+            try
+            {
+                List<PictureEntity> pictList = e.NewValue.GetPropertyValue("Pictures") as List<PictureEntity>;
+                Items = new PictureEntityCollection(pictList);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBase.Error(ex.Output());
+            }
         }
 
         /// <summary>
@@ -383,6 +461,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// <param name="e">Selection changed event arguments.</param>
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            base.ItemsCollection_SelectionChanged(sender, e);
+
             ((TextBlock)FindName("Counter_SelectedNumber")).Text = SelectedItems.Count.ToString();
         }
 

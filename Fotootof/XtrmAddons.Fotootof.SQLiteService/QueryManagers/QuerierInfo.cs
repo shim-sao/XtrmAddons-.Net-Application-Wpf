@@ -8,7 +8,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
     /// <summary>
     /// Class XtrmAddons Fotootof SQLiteService.
     /// </summary>
-    public partial class QuerierInfo : Querier
+    public partial class QuerierInfo : Queriers
     {
         #region Methods List
 

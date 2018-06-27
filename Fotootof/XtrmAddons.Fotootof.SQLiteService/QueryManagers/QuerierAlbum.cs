@@ -1,18 +1,34 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
-using XtrmAddons.Fotootof.SQLiteService.QueryManagers;
+using XtrmAddons.Fotootof.SQLiteService.QueryManagers.Interfaces;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
 {
     /// <summary>
     /// Class XtrmAddons Fotootof SQLite Service Albums.
     /// </summary>
-    public partial class QuerierAlbum : Querier
+    public partial class QuerierAlbum : Queriers,
+        IQuerierList<AlbumEntity, AlbumOptionsList>,
+        IQuerierSingle<AlbumEntity, AlbumOptionsSelect>
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Methods List
 
         /// <summary>
@@ -22,6 +38,13 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// <returns>A list of Album entities.</returns>
         public ObservableCollection<AlbumEntity> List(AlbumOptionsList op)
         {
+            if (op == null)
+            {
+                ArgumentNullException e = new ArgumentNullException(nameof(op));
+                log.Error(e.Output(), e);
+                throw e;
+            }
+
             using (Db.Context)
             {
                 return new ObservableCollection<AlbumEntity>(AlbumManager.List(op));
@@ -49,6 +72,13 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// <returns>An Album entity or null.</returns>
         public AlbumEntity SingleOrNull(AlbumOptionsSelect op)
         {
+            if (op == null)
+            {
+                ArgumentNullException e = new ArgumentNullException(nameof(op));
+                log.Error(e.Output(), e);
+                throw e;
+            }
+
             using (Db.Context)
             {
                 return AlbumManager.Select(op);
@@ -61,12 +91,35 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// <param name="op">Album filters options for query.</param>
         /// <returns>An Album entity or null.</returns>
         public Task<AlbumEntity> SingleOrNullAsync(AlbumOptionsSelect op)
+            => Task.Run(() => SingleOrNull(op));
+
+        /// <summary>
+        /// Method to get a single Album entity.
+        /// </summary>
+        /// <param name="op">Album filters options for query.</param>
+        /// <returns>An Album entity or a dafault entity.</returns>
+        public AlbumEntity SingleOrDefault(AlbumOptionsSelect op)
         {
-            return Task.Run(() =>
+            if (op == null)
             {
-                return SingleOrNull(op);
-            });
+                ArgumentNullException e = new ArgumentNullException(nameof(op));
+                log.Error(e.Output(), e);
+                throw e;
+            }
+
+            using (Db.Context)
+            {
+                return AlbumManager.Select(op) ?? default(AlbumEntity);
+            }
         }
+
+        /// <summary>
+        /// Method to get a single Album entity.
+        /// </summary>
+        /// <param name="op">Album filters options for query.</param>
+        /// <returns>An Album entity or a dafault entity.</returns>
+        public Task<AlbumEntity> SingleOrDefaultAsync(AlbumOptionsSelect op)
+            => Task.Run(() => SingleOrDefault(op));
 
         #endregion
 

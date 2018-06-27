@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.Api.Models.Json;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
-using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Net.Application;
-using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Net.Common.Extensions;
-using XtrmAddons.Fotootof.Lib.Api.Models.Json;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace XtrmAddons.Fotootof.Common.Collections
 {
@@ -91,35 +91,37 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 return null;
             }
 
+            // Check if the list to add is not empty.
+            if (newItems.Count() == 0)
+            {
+                log.Debug($"{typeof(AlbumEntityCollection).Name}.{MethodBase.GetCurrentMethod().Name} : the list of {typeof(AlbumEntity).Name} to insert is empty.");
+                return null;
+            }
+
             IList<AlbumEntity> itemsAdded = new List<AlbumEntity>();
+            log.Info($"Adding {newItems.Count()} album{(newItems.Count() > 1 ? "s" : "")} : Please wait...");
 
             try
             {
-                log.Info($"Adding {newItems.Count()} album{(newItems.Count() > 0 ? "s" : "")} : Please wait...");
-
-                // Get all Album to check some properties before inserting new item.
-                var items = MainWindow.Database.Albums.List(GetOptionsDefault());
-
-                if (newItems != null && newItems.Count > 0)
+                foreach (AlbumEntity entity in newItems)
                 {
-                    foreach (AlbumEntity entity in newItems)
-                    {
-                        FormatAlias(entity, items);
+                    // Get all Album to check some properties before inserting new item.
+                    // Format Alias before update.
+                    FormatAlias(entity, new List<IAlias>(Db.Albums.List(GetOptionsDefault())));
 
-                        itemsAdded.Add(Db.Albums.Add(entity));
-
-                        log.Info($"Album [{entity.PrimaryKey}:{entity.Name}] added.");
-                    }
+                    // Add new item into the database.
+                    itemsAdded.Add(Db.Albums.Add(entity));
+                    log.Info($"Album [{entity.PrimaryKey}:{entity.Name}] added.");
                 }
 
+                // Clear application navigator to refresh it for new data.
                 AppNavigator.Clear();
-                log.Debug("Application navigator cleared.");
-                log.Info($"Adding {newItems.Count()} album{(newItems.Count() > 0 ? "s" : "")} : Done.");
+                log.Info($"Adding {itemsAdded.Count()} album{(itemsAdded.Count() > 1 ? "s" : "")} : Done.");
             }
             catch (Exception ex)
             {
-                log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, $"Adding {newItems.Count()} album{(newItems.Count() > 0 ? "s" : "")} : Failed.");
+                log.Error(ex.Output(), ex); ;
+                MessageBase.Fatal(ex, $"Adding {newItems.Count() - itemsAdded.Count()}/{newItems.Count()} album{(newItems.Count() > 1 ? "s" : "")} : Failed.");
             }
 
             return itemsAdded;
@@ -129,32 +131,47 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// Method to delete a list of Album entities from the database.
         /// </summary>
         /// <param name="newItems">The list of items to remove.</param>
-        public static void DbDelete(List<AlbumEntity> oldItems)
+        public static async Task<IList<AlbumEntity>> DbDeleteAsync(IEnumerable<AlbumEntity> oldItems)
         {
-            log.Info("Deleting Album(s). Please wait...");
+            // Log error if the list to update if not null.
+            if (oldItems == null)
+            {
+                ArgumentNullException e = ExceptionBase.ArgNull(nameof(oldItems), oldItems);
+                log.Error(e.Output(), e);
+                return null;
+            }
+
+            // Check if the list to update is not empty.
+            if (oldItems.Count() == 0)
+            {
+                log.Debug($"{typeof(AlbumEntityCollection).Name}.{MethodBase.GetCurrentMethod().Name} : the list of {typeof(AlbumEntity).Name} to delete is empty.");
+                return null;
+            }
+
+            // Create a new list for update return.
+            IList<AlbumEntity> itemsDeleted = new List<AlbumEntity>();
+            log.Info($"Deleting {oldItems.Count()} album{(oldItems.Count() > 1 ? "s" : "")} : Please wait...");
 
             // Check for Removing items.
             try
             {
-                log.Info("Deleting Album(s). Please wait...");
-
-                if (oldItems != null && oldItems.Count > 0)
+                foreach (AlbumEntity entity in oldItems)
                 {
-                    foreach (AlbumEntity entity in oldItems)
-                    {
-                        MainWindow.Database.Albums.Delete(entity);
-                        log.Info($"Album [{entity.PrimaryKey}:{entity.Name}] deleted.");
-                    }
+                    itemsDeleted.Add(await Db.Albums.DeleteAsync(entity));
+                    log.Info($"Album [{entity.PrimaryKey}:{entity.Name}] deleted.");
                 }
 
+                // Clear application navigator to refresh it for new data.
                 AppNavigator.Clear();
-                log.Info("Adding Album(s). Done !");
+                log.Info($"Deleting {itemsDeleted.Count()} album{(itemsDeleted.Count() > 1 ? "s" : "")} : Done !");
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Deleting Album(s) list failed !");
+                MessageBase.Fatal(ex, $"Deleting {oldItems.Count() - itemsDeleted.Count()}/{oldItems.Count()} album{(oldItems.Count() > 1 ? "s" : "")} : Failed.");
             }
+
+            return itemsDeleted;
         }
 
         /// <summary>
@@ -163,69 +180,49 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <param name="newItems">Thee list of items to update.</param>
         public static async Task<IList<AlbumEntity>> DbUpdateAsync(IEnumerable<AlbumEntity> newItems, IEnumerable<AlbumEntity> oldItems)
         {
+            // Log error if the list to update if not null.
             if (newItems == null)
             {
                 ArgumentNullException e = ExceptionBase.ArgNull(nameof(newItems), newItems);
-                log.Error(e.Output());
+                log.Error(e.Output(), e);
                 return null;
             }
 
+            // Check if the list to update is not empty.
+            if (newItems.Count() == 0)
+            {
+                log.Debug($"{typeof(AlbumEntityCollection).Name}.{MethodBase.GetCurrentMethod().Name} : the list of {typeof(AlbumEntity).Name} to update is empty.");
+                return null;
+            }
+
+            // Create a new list for update return.
             IList<AlbumEntity> itemsUpdated = new List<AlbumEntity>();
+            log.Info($"Updating {newItems.Count()} album{(newItems.Count() > 1 ? "s" : "")} : Please wait...");
 
             try
             {
-                log.Info($"Updating {newItems.Count()} album{(newItems.Count() > 0 ? "s" : "")} : Please wait...");
-
-                // Get all Album to check some properties before inserting new item.
-                var items = MainWindow.Database.Albums.List(GetOptionsDefault());
-
-                if (newItems != null && newItems.Count() > 0)
+                foreach (AlbumEntity entity in newItems)
                 {
-                    foreach (AlbumEntity entity in newItems)
-                    {
-                        FormatAlias(entity, items);
-                        itemsUpdated.Add(await MainWindow.Database.Albums.UpdateAsync(entity));
-                        log.Info($"Album [{entity.PrimaryKey}:{entity.Name}] updated.");
-                    }
+                    // Get all Album to check some properties before inserting new item.
+                    // Format Alias before update.
+                    FormatAlias(entity, new List<IAlias>(Db.Albums.List(GetOptionsDefault())));
+
+                    // Update item into the database.
+                    itemsUpdated.Add(await Db.Albums.UpdateAsync(entity));
+                    log.Info($"Album [{entity.PrimaryKey}:{entity.Name}] updated.");
                 }
 
+                // Clear application navigator to refresh it for new data.
                 AppNavigator.Clear();
-                log.Info($"Updating {newItems.Count()} album{(newItems.Count() > 0 ? "s" : "")} : Done !");
+                log.Info($"Updating {itemsUpdated.Count()} album{(itemsUpdated.Count() > 1 ? "s" : "")} : Done !");
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, $"Updating {newItems.Count()} album{(newItems.Count() > 0 ? "s" : "")} : Failed.");
+                MessageBase.Fatal(ex, $"Updating {newItems.Count()- itemsUpdated.Count()}/{newItems.Count()} album{(newItems.Count() > 1 ? "s" : "")} : Failed.");
             }
 
             return itemsUpdated;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <param name="items"></param>
-        /// <returns></returns>
-        private static AlbumEntity FormatAlias(AlbumEntity entity, IList<AlbumEntity> items = null)
-        {
-            items = items ?? MainWindow.Database.Albums.List(GetOptionsDefault());
-
-            // Check if the alias is empty. Set name if required.
-            if (entity.Alias.IsNullOrWhiteSpace())
-            {
-                entity.Alias = entity.Name;
-            }
-
-            // Check if another entity with the same alias is in database.
-            int index = items.ToList().FindIndex(x => x.Alias.IsNotNullOrWhiteSpace() && x.Alias == entity.Alias && x.PrimaryKey != entity.PrimaryKey);
-            if (index >= 0 || entity.Alias.IsNullOrWhiteSpace())
-            {
-                DateTime d = DateTime.Now;
-                entity.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss-fff");
-            }
-
-            return entity;
         }
 
         #endregion

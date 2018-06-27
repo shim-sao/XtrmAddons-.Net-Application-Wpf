@@ -19,6 +19,18 @@ namespace XtrmAddons.Fotootof.Common.Tools
     /// </summary>
     public static class AppNavigator
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
@@ -52,7 +64,10 @@ namespace XtrmAddons.Fotootof.Common.Tools
         /// Method to clear visited pages.
         /// </summary>
         public static void Clear()
-            => Pages.Clear();
+        {
+            Pages.Clear();
+            log.Debug("Application pages navigator cleared !");
+        }
 
         /// <summary>
         /// Method to load a page.

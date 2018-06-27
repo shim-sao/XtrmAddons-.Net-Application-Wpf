@@ -8,6 +8,8 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Net.Common.Extensions;
+using System.Threading.Tasks;
+using System.Reflection;
 
 namespace XtrmAddons.Fotootof.Common.Collections
 {
@@ -153,37 +155,45 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// Method to delete a list of Picture entities from the database.
         /// </summary>
         /// <param name="newItems">The list of items to remove.</param>
-        public static void DbDelete(IEnumerable<PictureEntity> oldItems)
+        public static async Task<IList<PictureEntity>> DbDeleteAsync(IEnumerable<PictureEntity> oldItems)
         {
             if(oldItems == null)
             {
                 ArgumentNullException e = ExceptionBase.ArgNull(nameof(oldItems), oldItems);
                 log.Error(e.Output());
-                return;
+                return null;
             }
+
+            // Check if the list to update is not empty.
+            if (oldItems.Count() == 0)
+            {
+                log.Debug($"{typeof(PictureEntityCollection).Name}.{MethodBase.GetCurrentMethod().Name} : the list of {typeof(PictureEntity).Name} to delete is empty.");
+                return null;
+            }
+
+            // Create a new list for update return.
+            IList<PictureEntity> itemsDeleted = new List<PictureEntity>();
+            log.Info($"Deleting {oldItems.Count()} picture{(oldItems.Count() > 1 ? "s" : "")} : Please wait...");
 
             try
             {
-                log.Info($"Deleting {oldItems.Count()} picture{(oldItems.Count() > 0 ? "s" : "")} : Please wait...");
-
-                if (oldItems != null && oldItems.Count() > 0)
+                foreach (PictureEntity entity in oldItems)
                 {
-                    foreach (PictureEntity entity in oldItems)
-                    {
-                        MainWindow.Database.Pictures.Delete(entity);
-
-                        log.Info(string.Format("Album [{0}:{1}] deleted.", entity.PrimaryKey, entity.Name));
-                    }
+                    itemsDeleted.Add(await Db.Pictures.DeleteAsync(entity));
+                    log.Info($"Picture [{entity.PrimaryKey}:{entity.Name}] deleted.");
                 }
 
+                // Clear application navigator to refresh it for new data.
                 AppNavigator.Clear();
-                log.Info($"Deleting {oldItems.Count()} picture{(oldItems.Count() > 0 ? "s" : "")} : Done !");
+                log.Info($"Deleting {itemsDeleted.Count()} picture{(itemsDeleted.Count() > 1 ? "s" : "")} : Done !");
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, $"Deleting {oldItems.Count()} picture{(oldItems.Count() > 0 ? "s" : "")} : failed !");
+                MessageBase.Fatal(ex, $"Deleting {oldItems.Count() - itemsDeleted.Count()}/{oldItems.Count()} picture{(oldItems.Count() > 1 ? "s" : "")} : Failed.");
             }
+
+            return itemsDeleted;
         }
 
         /// <summary>

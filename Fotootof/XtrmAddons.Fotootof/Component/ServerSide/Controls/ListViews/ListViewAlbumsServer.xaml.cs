@@ -2,8 +2,13 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
+using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
@@ -15,25 +20,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
     {
         #region Properties
 
-        /// <summary>
-        /// Property to access to the main add to collection control.
-        /// </summary>
-        public override Control AddControl => (Control)FindName("Button_Add");
-
-        /// <summary>
-        /// Property to access to the main edit item control.
-        /// </summary>
-        public override Control EditControl => (Control)FindName("Button_Edit");
-
-        /// <summary>
-        /// Property to access to the main delete items control.
-        /// </summary>
-        public override Control DeleteControl => (Control)FindName("Button_Delete");
-
-        /// <summary>
-        /// Property to access to the items collection.
-        /// </summary>
-        public override ListView ItemsCollection => FindName<ListView>("AlbumsCollection");
+        public override AlbumEntityCollection Items
+        { 
+            get => (AlbumEntityCollection) DataContext.GetPropertyValue("Items");
+            set => DataContext.SetPropertyValue("Items",  value);
+        }
 
         /// <summary>
         /// 
@@ -74,6 +65,103 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
 
 
         #region Methods
+
+        /// <summary>
+        /// Method called on delete click event to delete a Album.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        public async override void OnDeleteItems_Click(object sender, RoutedEventArgs e)
+        {
+            // Check if the selected items list is not null. 
+            if (SelectedItems == null)
+            {
+                NullReferenceException ex = ExceptionBase.RefNull(nameof(SelectedItems), SelectedItems);
+                log.Warn(ex.Output(), ex);
+                MessageBase.Warning(ex.Output());
+                return;
+            }
+
+            // Alert user for acceptation.
+            MessageBoxResult result = MessageBox.Show
+            (
+                String.Format(Translation.DWords.MessageBox_Acceptation_DeleteGeneric, Translation.DWords.Album, SelectedItems.Count),
+                Translation.DWords.ApplicationName,
+                MessageBoxButton.YesNoCancel
+            );
+
+            // If not accept, do nothing at this moment.
+            if (result != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            // If accepted, try to update page model collection.
+            try
+            {
+                // Start to busy application.
+                MessageBase.IsBusy = true;
+                log.Warn("Starting deleting Album(s). Please wait...");
+
+                // Delete item from database.
+                await AlbumEntityCollection.DbDeleteAsync(SelectedItems);
+                
+                // Important : No need to defer for list view items refresh.
+                log.Warn("Updating Album(s) list view items...");
+                foreach (AlbumEntity item in SelectedItems)
+                {
+                    Items.Remove(item);
+                }
+
+                // Refresh of the list view items source.
+                log.Warn("Refreshing Album(s) list view...");
+                ItemsCollection.Items.Refresh();
+
+                // Raise the on delete event.
+                log.Warn("Refreshing Album(s) list view...");
+                RaiseOnDelete(SelectedItems.ToArray());
+
+                // Stop to busy application.
+                log.Warn("Ending deleting Album(s).");
+                MessageBase.IsBusy = false;
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBase.Error(ex.Output());
+            }
+
+
+
+
+
+            /*
+
+
+            // Check if an AclGroup is founded. 
+            if (SelectedItem != null)
+            {
+                // Alert user for acceptation.
+                MessageBoxResult result = MessageBox.Show
+                (
+                    String.Format(Translation.DWords.MessageBox_Acceptation_DeleteGeneric, Translation.DWords.Album, SelectedItem.Name),
+                    Translation.DWords.ApplicationName,
+                    MessageBoxButton.YesNoCancel
+                );
+
+                // If accepted, try to update page model collection.
+                if (result == MessageBoxResult.Yes)
+                {
+                    RaiseOnDelete(SelectedItem);
+                }
+            }
+            else
+            {
+                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                log.Warn(message);
+                MessageBase.Warning(message);
+            }*/
+        }
 
         /// <summary>
         /// 
@@ -123,7 +211,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Selection changed event arguments.</param>
-        public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        /*public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
 
@@ -137,7 +225,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 Button_Delete.IsEnabled = false;
                 Button_Edit.IsEnabled = false;
             }
-        }
+        }*/
 
         #endregion
 

@@ -10,6 +10,16 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Event
         #region Properties
 
         /// <summary>
+        /// Property to access to a new entity arguments.
+        /// </summary>
+        public object NewEntity { get; set; }
+
+        /// <summary>
+        /// Property to access to an old entity arguments.
+        /// </summary>
+        public object OldEntity { get; set; }
+
+        /// <summary>
         /// Property to access to an array of new entities arguments.
         /// </summary>
         public object[] NewEntities { get; set; }
@@ -18,16 +28,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Event
         /// Property to access to an array of old entities arguments.
         /// </summary>
         public object[] OldEntities { get; set; }
-
-        /// <summary>
-        /// Property to access to the new entity arguments.
-        /// </summary>
-        public object NewEntity { get; set; }
-
-        /// <summary>
-        /// Property to access to the old entity Arguments.
-        /// </summary>
-        public object OldEntity { get; set; }
 
         #endregion
 
@@ -38,21 +38,23 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Event
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Event Arguments Constructor.
         /// </summary>
-        /// <param name="args">Event Arguments.</param>
-        public EntityChangesEventArgs(object[] newEntities, object[] oldEntities = null)
+        /// <param name="newEntity"></param>
+        /// <param name="oldEntity"></param>
+        public EntityChangesEventArgs(object newEntity, object oldEntity = null)
         {
-            NewEntities = newEntities;
-            OldEntities = oldEntities;
+            NewEntity = newEntity;
+            OldEntity = oldEntity;
         }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Event Arguments Constructor.
         /// </summary>
-        /// <param name="args">Event Arguments.</param>
-        public EntityChangesEventArgs(object newEntity, object oldEntity = null)
+        /// <param name="newEntities"></param>
+        /// <param name="oldEntities"></param>
+        public EntityChangesEventArgs(object[] newEntities, object[] oldEntities = null)
         {
-            NewEntity = newEntity;
-            OldEntity = oldEntity;
+            NewEntities = newEntities;
+            OldEntities = oldEntities;
         }
 
         #endregion

@@ -10,6 +10,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Net.Common.Extensions;
 using System.Windows;
 using System.Xml.Serialization;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 {
@@ -19,7 +20,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     [Serializable]
     [Table("Albums")]
     [JsonObject(MemberSerialization.OptIn)]
-    public partial class AlbumEntity : CommonEntity
+    public partial class AlbumEntity : CommonEntity, IAlias
     {
         #region Variables
 

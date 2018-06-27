@@ -10,6 +10,9 @@ using System.ComponentModel;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.SQLite.Event;
+using XtrmAddons.Fotootof.Common.Collections;
+using System.Collections.Generic;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
 {
@@ -111,6 +114,44 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
             }
 
             Model.Album = album ?? new AlbumEntity();
+
+            /*UcDataGridSections.OnAdd += SectionsDataGrid_OnAdd;
+            UcDataGridSections.OnChange += SectionsDataGrid_OnChange;
+            UcDataGridSections.OnCancel += SectionsDataGrid_OnCancel;*/
+            PicturesCollection.OnDelete += PicturesCollection_OnDelete;
+        }
+
+        /// <summary>
+        /// Method called on Section delete event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Entity changes event arguments.</param>
+        private void PicturesCollection_OnDelete(object sender, EntityChangesEventArgs e)
+        {
+            /*
+            try
+            {
+                // Start to busy application.
+                MessageBase.IsBusy = true;
+                log.Warn("Starting deleting Picture(s). Please wait...");
+
+                // Remove item from list.
+                PictureEntity[] items = (PictureEntity[])e.OldEntities;
+
+                // Delete item from database.
+                await PictureEntityCollection.DbDeleteAsync(items);
+
+                // Stop to busy application.
+                log.Warn("Ending deleting Picture(s).");
+                MessageBase.IsBusy = false;
+
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBase.Error(ex.Output());
+            }
+            */
         }
 
         #endregion

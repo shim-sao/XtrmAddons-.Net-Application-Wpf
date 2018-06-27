@@ -2,10 +2,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using System.Xml.Serialization;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
 using XtrmAddons.Net.Application.Application;
 using XtrmAddons.Net.Common.Extensions;
@@ -15,9 +15,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries SQLite Database Data Base Entity.
     /// </summary>
-    [Serializable]
-    [JsonObject(MemberSerialization.OptIn)]
-    public abstract class EntityBase : ObjectBaseNotifier, IEntityBaseInterface
+    [Serializable, JsonObject(MemberSerialization.OptIn)]
+    public abstract class EntityBase : ObjectBaseNotifier, IEntityBase
     {
         #region Variables
 
@@ -49,8 +48,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// <summary>
         /// Property to access to the application database connector.
         /// </summary>
-        [XmlIgnore]
-        [NotMapped]
+        [NotMapped, XmlIgnore]
         public static DatabaseCore Db
         {
             get => db;
