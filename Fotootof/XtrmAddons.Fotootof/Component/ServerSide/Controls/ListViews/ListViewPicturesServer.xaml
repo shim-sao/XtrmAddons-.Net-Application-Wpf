@@ -56,7 +56,7 @@
 									   FontSize="{StaticResource FontSizeHeader}"
 									   Foreground="{StaticResource Panton_3}"
 									   Margin="5"
-									   Text="0" />
+									   Text="{Binding Pictures.Count, Mode=OneWay, IsAsync=True}" />
 						</StackPanel>
 					</Grid>
 				</Border>
@@ -155,8 +155,7 @@
 						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 						  MouseDoubleClick="ItemsCollection_MouseDoubleClick"
 						  SelectionChanged="ItemsCollection_SelectionChanged"
-						  Padding="5,5,5,10"
-						  DataContextChanged="ListView_DataContextChanged">
+						  Padding="5,5,5,10">
 
 					<ListView.ContextMenu>
 						<ContextMenu>

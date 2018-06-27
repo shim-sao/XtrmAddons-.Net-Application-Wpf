@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
@@ -101,7 +102,15 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         /// </summary>
         protected void RaiseOnDelete<T>(T entity) where T : class
         {
-            OnDelete?.Invoke(this, new EntityChangesEventArgs(entity));
+            OnDelete?.Invoke(this, new EntityChangesEventArgs(null, entity));
+        }
+
+        /// <summary>
+        /// Method to raise the on delete event.
+        /// </summary>
+        protected void RaiseOnDelete<T>(T[] entities) where T : class
+        {
+            OnDelete?.Invoke(this, new EntityChangesEventArgs(null, entities));
         }
 
         /// <summary>

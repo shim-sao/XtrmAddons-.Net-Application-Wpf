@@ -142,7 +142,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             UcListViewAlbums.OnAdd += AlbumsListView_OnAdd;
             UcListViewAlbums.OnChange += AlbumsListView_OnChange;
             UcListViewAlbums.OnCancel += AlbumsListView_OnCancel;
-            UcListViewAlbums.OnDelete += AlbumsListView_OnDelete;
+           // UcListViewAlbums.OnDelete += AlbumsListView_OnDeleteAsync;
         }
 
         #endregion
@@ -369,7 +369,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Entity changes event arguments.</param>
-        private void AlbumsListView_OnDelete(object sender, EntityChangesEventArgs e)
+        private async void AlbumsListView_OnDeleteAsync(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
             log.Warn("Deleting Album(s). Please wait...");
@@ -379,7 +379,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             if(Model.Albums.Items.Remove(item))
             {
                 // Delete item from database.
-                AlbumEntityCollection.DbDelete(new List<AlbumEntity> { item });
+                await AlbumEntityCollection.DbDeleteAsync(new List<AlbumEntity> { item });
             }
 
             log.Info("Deleting Album(s). Done.");

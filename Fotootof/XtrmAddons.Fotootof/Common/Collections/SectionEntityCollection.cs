@@ -18,6 +18,9 @@ namespace XtrmAddons.Fotootof.Common.Collections
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override bool IsAutoloadEnabled => true;
 
         #endregion

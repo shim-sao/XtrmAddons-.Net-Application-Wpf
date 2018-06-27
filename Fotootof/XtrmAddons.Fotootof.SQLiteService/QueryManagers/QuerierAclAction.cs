@@ -1,15 +1,32 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Fotootof.SQLiteService.QueryManagers.Interfaces;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
 {
     /// <summary>
     /// Class XtrmAddons Fotootof SQLiteService.
     /// </summary>
-    public class QuerierAclAction : Querier
+    public class QuerierAclAction : Queriers,
+        IQuerierList<AclActionEntity, AclActionOptionsList>,
+        IQuerierSingle<AclActionEntity, AclActionOptionsSelect>
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Methods List
 
         /// <summary>
@@ -27,7 +44,8 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// </summary>
         /// <param name="op">AclAction list options to perform query.</param>
         /// <returns>A list of AclAction entities.</returns>
-        public Task<ObservableCollection<AclActionEntity>> ListAsync(AclActionOptionsList op = null) => Task.Run(() => { return List(op); });
+        public Task<ObservableCollection<AclActionEntity>> ListAsync(AclActionOptionsList op = null) 
+            => Task.Run(() => { return List(op); });
 
         #endregion
 
@@ -44,7 +62,9 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         {
             if (op == null)
             {
-                throw new System.ArgumentNullException(nameof(op));
+                ArgumentNullException e = new ArgumentNullException(nameof(op));
+                log.Error(e.Output(), e);
+                throw e;
             }
 
             using (Db.Context) { return AclActionManager.Select(op); }
@@ -55,7 +75,8 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// </summary>
         /// <param name="op">AclAction select options to perform query.</param>
         /// <returns>An AclAction entity or null if not found.</returns>
-        public Task<AclActionEntity> SingleOrNullAsync(AclActionOptionsSelect op) => Task.Run(() => { return SingleOrNull(op); });
+        public Task<AclActionEntity> SingleOrNullAsync(AclActionOptionsSelect op)
+            => Task.Run(() => SingleOrNull(op));
 
         /// <summary>
         /// Method to select an AclAction entity.
@@ -66,7 +87,9 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         {
             if (op == null)
             {
-                throw new System.ArgumentNullException(nameof(op));
+                ArgumentNullException e = new ArgumentNullException(nameof(op));
+                log.Error(e.Output(), e);
+                throw e;
             }
 
             using (Db.Context) { return AclActionManager.Select(op); }
@@ -78,9 +101,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// <param name="op">AclAction select options to perform query.</param>
         /// <returns>An AclAction entity or null if not found.</returns>
         public Task<AclActionEntity> SingleOrDefaultAsync(AclActionOptionsSelect op)
-        {
-            return Task.Run(() => { return SingleOrDefault(op); });
-        }
+            => Task.Run(() => SingleOrDefault(op));
 
         #endregion
 

@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
@@ -147,6 +149,35 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
             }
 
             return Items.ToList().Single(x => (int)x.GetPropertyValue("PrimaryKey") == pk);
+        }
+
+        /// <summary>
+        /// Method to format the Alias property of an entity.
+        /// </summary>
+        /// <param name="entity">An entity with an Alias property derived from IAlias.</param>
+        /// <param name="items">The list of entities to check in.</param>
+        /// <returns></returns>
+        protected static T FormatAlias(T entity, IList<IAlias> items)
+        {
+            var obj = (IAlias)entity;
+
+            // Check if the alias is empty. Set name if required.
+            if (obj.Alias.IsNullOrWhiteSpace())
+            {
+                obj.Alias = obj.Name;
+            }
+
+            // Check if another entity with the same alias is in database.
+            int index = items.ToList().FindIndex(x => x.Alias.IsNotNullOrWhiteSpace() && x.Alias == obj.Alias && x.PrimaryKey != obj.PrimaryKey);
+            if (index >= 0 || obj.Alias.IsNullOrWhiteSpace())
+            {
+                DateTime d = DateTime.Now;
+                obj.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss-fff");
+            }
+
+            ((IAlias)entity).Alias = obj.Alias;
+
+            return entity;
         }
 
         #endregion

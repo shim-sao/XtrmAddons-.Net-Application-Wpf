@@ -62,7 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="QueryManagers\Querier.cs" />
+    <Compile Include="QueryManagers\Interfaces\IQuerierSingle.cs" />
+    <Compile Include="QueryManagers\Interfaces\IQuerierList.cs" />
+    <Compile Include="QueryManagers\Queriers.cs" />
     <Compile Include="QueryManagers\QuerierAclAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryManagers\QuerierAclGroup.cs" />

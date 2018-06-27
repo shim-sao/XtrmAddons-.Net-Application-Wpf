@@ -173,7 +173,7 @@
 
 			<Grid x:Name="Block_Items">
 
-				<ListView x:Name="AlbumsCollection"
+				<ListView x:Name="ListViewCollection"
 						  Background="White"
 						  HorizontalAlignment="Stretch"
 						  VerticalAlignment="Stretch"

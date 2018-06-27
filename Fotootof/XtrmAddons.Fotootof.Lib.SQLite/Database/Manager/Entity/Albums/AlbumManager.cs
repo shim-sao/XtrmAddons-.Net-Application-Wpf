@@ -8,6 +8,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
 {
@@ -16,6 +17,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
     /// </summary>
     public partial class AlbumManager : EntitiesManager
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static new readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Constructors
 
         /// <summary>
@@ -27,6 +40,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         #endregion
 
 
+
+        #region Methods
 
         /// <summary>
         /// Method to add new album.
@@ -163,8 +178,15 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// Method to list albums entities.
         /// </summary><param name="depencies">Load also dependencies.</param>
         /// <returns>A list of albums entities.</returns>
-        public List<AlbumEntity> List(AlbumOptionsList op)
+        public IList<AlbumEntity> List(AlbumOptionsList op)
         {
+            if(op == null)
+            {
+                ArgumentNullException e = new ArgumentNullException(nameof(op));
+                log.Error(e.Output(), e);
+                throw e;
+            }
+
             // Initialize query.
             IQueryable<AlbumEntity> query = Context.Albums;
 
@@ -315,6 +337,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// <returns>An album entity.</returns>
         public AlbumEntity Select(AlbumOptionsSelect op)
         {
+            if (op == null)
+            {
+                ArgumentNullException e = new ArgumentNullException(nameof(op));
+                log.Error(e.Output(), e);
+                throw e;
+            }
+
             // Initialize query.
             IQueryable<AlbumEntity> query = Context.Albums;
 
@@ -408,5 +437,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             // Return updates albums.
             return entities;
         }
+
+        #endregion
     }
 }
