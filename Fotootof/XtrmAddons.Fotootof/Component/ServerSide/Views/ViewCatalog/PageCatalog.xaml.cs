@@ -123,7 +123,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             Model = new PageCatalogModel(this)
             {
                 Sections = new DataGridSectionsModel<DataGridSections>(UcDataGridSections),
-                Albums = new ListViewAlbumsModel<ListViewAlbums>(UcListViewAlbums)
+                Albums = new ListViewAlbumsModel(UcListViewAlbums)
             };
             
             LoadSections();

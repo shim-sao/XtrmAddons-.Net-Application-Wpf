@@ -17,6 +17,8 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Win32;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Picture;
 
@@ -172,27 +174,20 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 MessageBase.IsBusy = true;
                 log.Warn("Starting deleting Picture(s). Please wait...");
 
-                // Delete item from database.
-                await PictureEntityCollection.DbDeleteAsync(SelectedItems);
-
-                // Important : Need to defer for list view items refresh.
-                log.Warn("Defering Picture(s) list view items refresh...");
-                using (var defer = ItemsCollection.Items.DeferRefresh())
+                // Important : No need to defer for list view items refresh.
+                log.Warn("Updating Picture(s) list view items...");
+                foreach (PictureEntity item in SelectedItems)
                 {
-                    foreach (PictureEntity item in SelectedItems)
-                    {
-                        Model.Pictures.Remove(item);
-                    }
-                    ItemsCollection.ItemsSource = Model.Pictures;
+                    Model.Pictures.Remove(item);
                 }
+
+                // Raise the on delete event.
+                log.Warn("Raising Picture(s) deleted event...");
+                RaiseOnDelete(SelectedItems.ToArray());
 
                 // Refresh of the list view items source.
                 log.Warn("Refreshing Picture(s) list view...");
                 ItemsCollection.Items.Refresh();
-
-                // Raise the on delete event.
-                log.Warn("Refreshing Picture(s) list view...");
-                RaiseOnDelete(SelectedItems.ToArray());
 
                 // Stop to busy application.
                 log.Warn("Ending deleting Picture(s).");
@@ -463,7 +458,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         {
             base.ItemsCollection_SelectionChanged(sender, e);
 
-            ((TextBlock)FindName("Counter_SelectedNumber")).Text = SelectedItems.Count.ToString();
+            //((TextBlock)FindName("Counter_SelectedNumber")).Text = SelectedItems.Count.ToString();
         }
 
         #endregion

@@ -91,9 +91,11 @@ namespace XtrmAddons.Fotootof.AddInsContracts.Catalog
             DirectoryInfo di = new DirectoryInfo("Plugins");
             log.Debug($"Directory assemblies : {di.FullName}");
 
-            DirectoryCatalog dc = new DirectoryCatalog(di.FullName);
-
-            InitializeModules(dc);
+            if(File.Exists(di.FullName))
+            {
+                DirectoryCatalog dc = new DirectoryCatalog(di.FullName);
+                InitializeModules(dc);
+            }
 
 
             // Assemblies.Add("Plugins", new DirectoryCatalog(di.FullName));

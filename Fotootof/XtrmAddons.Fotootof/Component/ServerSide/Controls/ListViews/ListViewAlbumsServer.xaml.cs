@@ -20,6 +20,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override AlbumEntityCollection Items
         { 
             get => (AlbumEntityCollection) DataContext.GetPropertyValue("Items");
@@ -130,37 +133,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 log.Error(ex.Output(), ex);
                 MessageBase.Error(ex.Output());
             }
-
-
-
-
-
-            /*
-
-
-            // Check if an AclGroup is founded. 
-            if (SelectedItem != null)
-            {
-                // Alert user for acceptation.
-                MessageBoxResult result = MessageBox.Show
-                (
-                    String.Format(Translation.DWords.MessageBox_Acceptation_DeleteGeneric, Translation.DWords.Album, SelectedItem.Name),
-                    Translation.DWords.ApplicationName,
-                    MessageBoxButton.YesNoCancel
-                );
-
-                // If accepted, try to update page model collection.
-                if (result == MessageBoxResult.Yes)
-                {
-                    RaiseOnDelete(SelectedItem);
-                }
-            }
-            else
-            {
-                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
-                log.Warn(message);
-                MessageBase.Warning(message);
-            }*/
         }
 
         /// <summary>
@@ -206,29 +178,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
             ItemsCollection.UnselectAll();
         }
 
-        /// <summary>
-        /// Method called on items collection selection changed click event.
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Selection changed event arguments.</param>
-        /*public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
-
-            if(SelectedItems.Count > 0)
-            {
-                Button_Delete.IsEnabled = true;
-                Button_Edit.IsEnabled = true;
-            }
-            else
-            {
-                Button_Delete.IsEnabled = false;
-                Button_Edit.IsEnabled = false;
-            }
-        }*/
-
         #endregion
 
+        
 
         #region Methods Size Changed
 

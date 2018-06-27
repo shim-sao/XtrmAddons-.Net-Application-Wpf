@@ -807,6 +807,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <Folder Include="Common\Converters\" />
+    <Folder Include="Common\Interfaces\" />
+>>>>>>> b362078d12cba3828c4ee61dd91c08e97d92b691
     <Folder Include="Config\" />
   </ItemGroup>
   <ItemGroup>

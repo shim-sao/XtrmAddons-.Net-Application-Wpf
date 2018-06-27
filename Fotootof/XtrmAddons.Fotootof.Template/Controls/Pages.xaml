@@ -4,9 +4,8 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!-- Page Content -->
-    <Style x:Key="PageContent" TargetType="{x:Type Page}">
-        <!-- <Setter Property="MinHeight" Value="975"/> -->
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+	<Style x:Key="PageContent" TargetType="{x:Type Page}">
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="Background" Value="{StaticResource ResourceKey=Panton_2}" />
     </Style>

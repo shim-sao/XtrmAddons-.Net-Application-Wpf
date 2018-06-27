@@ -56,7 +56,7 @@
 				<Grid Grid.Row="0"
 					  Grid.Column="2"
 					  x:Name="GridAlbums">
-					
+
 					<albums:ListViewAlbumsServer x:Name="UcListViewAlbums"
 												 DataContext="{Binding Albums}"
 												 FilterColorChanged="FiltersColor_SelectionChanged"
