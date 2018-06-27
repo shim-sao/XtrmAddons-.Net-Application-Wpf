@@ -118,6 +118,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
             /*UcDataGridSections.OnAdd += SectionsDataGrid_OnAdd;
             UcDataGridSections.OnChange += SectionsDataGrid_OnChange;
             UcDataGridSections.OnCancel += SectionsDataGrid_OnCancel;*/
+
+            // Add picture delete handler.
+            PicturesCollection.OnDelete -= PicturesCollection_OnDelete;
             PicturesCollection.OnDelete += PicturesCollection_OnDelete;
         }
 
@@ -126,9 +129,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Entity changes event arguments.</param>
-        private void PicturesCollection_OnDelete(object sender, EntityChangesEventArgs e)
+        private async void PicturesCollection_OnDelete(object sender, EntityChangesEventArgs e)
         {
-            /*
             try
             {
                 // Start to busy application.
@@ -145,13 +147,15 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
                 log.Warn("Ending deleting Picture(s).");
                 MessageBase.IsBusy = false;
 
+                // Reload album.
+                InitializeModel();
+                //PicturesCollection.ListViewCollection.Items.Refresh();
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
                 MessageBase.Error(ex.Output());
             }
-            */
         }
 
         #endregion

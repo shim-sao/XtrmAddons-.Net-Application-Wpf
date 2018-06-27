@@ -42,7 +42,7 @@
 									   FontSize="{StaticResource FontSizeHeader}"
 									   Foreground="{StaticResource Panton_3}"
 									   Margin="5"
-									   Text="0" />
+									   Text="{Binding SelectedItems.Count, ElementName=ListViewCollection, IsAsync=True}" />
 
 							<TextBlock x:Name="Counter_Spacer"
 									   FontWeight="SemiBold"
@@ -56,7 +56,7 @@
 									   FontSize="{StaticResource FontSizeHeader}"
 									   Foreground="{StaticResource Panton_3}"
 									   Margin="5"
-									   Text="{Binding Pictures.Count, Mode=OneWay, IsAsync=True}" />
+									   Text="{Binding Items.Count, ElementName=ListViewCollection, IsAsync=True}" />
 						</StackPanel>
 					</Grid>
 				</Border>

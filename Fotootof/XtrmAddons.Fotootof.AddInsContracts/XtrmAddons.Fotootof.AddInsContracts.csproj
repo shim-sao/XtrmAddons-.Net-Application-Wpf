@@ -40,15 +40,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="XtrmAddons.Net.Application, Version=1.0.18158.1340, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Application.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="XtrmAddons.Net.Application">
+      <HintPath>..\Packages\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
-    <Reference Include="XtrmAddons.Net.Common, Version=1.0.18171.1925, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Common.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="XtrmAddons.Net.Common">
+      <HintPath>..\Packages\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

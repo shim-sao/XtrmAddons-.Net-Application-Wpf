@@ -27,7 +27,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <summary>
         /// Variable observable collection of Albums.
         /// </summary>
-        private ListViewAlbumsModel<ListViewAlbums> albums;
+        private ListViewAlbumsModel albums;
 
         /// <summary>
         /// Variable observable collection of quality filters.
@@ -64,7 +64,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
         /// <summary>
         /// Property to access to the observable collection of Albums
         /// </summary>
-        public ListViewAlbumsModel<ListViewAlbums> Albums
+        public ListViewAlbumsModel Albums
         {
             get => albums;
             set

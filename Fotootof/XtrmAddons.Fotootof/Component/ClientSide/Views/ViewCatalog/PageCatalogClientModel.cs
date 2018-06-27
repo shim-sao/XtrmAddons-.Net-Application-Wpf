@@ -33,7 +33,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// <summary>
         /// Variable observable collection of Albums.
         /// </summary>
-        private ListViewAlbumsModel<ListViewAlbums> albums;
+        private ListViewAlbumsModel albums;
 
         /// <summary>
         /// Variable client http server.
@@ -86,7 +86,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         /// <summary>
         /// Property to access to the observable collection of Albums
         /// </summary>
-        public ListViewAlbumsModel<ListViewAlbums> Albums
+        public ListViewAlbumsModel Albums
         {
             get => albums;
             set
@@ -322,7 +322,7 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
 
             if(Albums == null)
             {
-                Albums = new ListViewAlbumsModel<ListViewAlbums>();
+                Albums = new ListViewAlbumsModel();
             }
 
             try
