@@ -48,16 +48,13 @@
     <Reference Include="System.Xml.Serialization" />
     <Reference Include="WindowsBase" />
     <Reference Include="XtrmAddons.Net.Application">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Application.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Packages\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Common">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.Common.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Packages\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SQLiteBundle">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\Release\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Packages\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

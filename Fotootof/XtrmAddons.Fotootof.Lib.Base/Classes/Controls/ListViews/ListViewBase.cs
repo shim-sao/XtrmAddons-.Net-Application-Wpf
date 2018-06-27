@@ -66,7 +66,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
         /// <summary>
         /// Property Using a DependencyProperty as the backing store for Entities.
         /// </summary>
-        public static readonly DependencyProperty PropertyItems =
+        public readonly DependencyProperty PropertyItems =
             DependencyProperty.Register
             (
                 "Items",

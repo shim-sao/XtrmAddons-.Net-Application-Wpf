@@ -7,7 +7,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
     /// Class XtrmAddons Fotootof Libraries Common Models List View Albums Constructor.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ListViewAlbumsModel<ListViewAlbums> : ListViewBaseModel<ListViewAlbums, AlbumEntityCollection>
+    public class ListViewAlbumsModel : ListViewBaseModel<ListViewAlbums, AlbumEntityCollection>
     {
         #region Variables
 
