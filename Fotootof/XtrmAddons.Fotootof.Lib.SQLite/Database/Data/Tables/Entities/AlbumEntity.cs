@@ -2,15 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
-using XtrmAddons.Net.Common.Extensions;
-using System.Windows;
+using System.Reflection;
 using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 {
@@ -150,7 +150,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable list of Picture associated to the Album.
         /// </summary>
         [NotMapped]
-        private List<PictureEntity> pictures;
+        private ObservableCollection<PictureEntity> pictures = new ObservableCollection<PictureEntity>();
 
         /// <summary>
         /// Variable list of Info associated to the Album.
@@ -257,7 +257,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                 }
             }
         }
-        
+
         /// <summary>
         /// Property to access to the created date.
         /// </summary>
@@ -454,7 +454,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         {
             get
             {
-                if(backgroundPicture == null)
+                if (backgroundPicture == null)
                 {
                     backgroundPicture = GetPicture(BackgroundPictureId);
                 }
@@ -468,6 +468,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                     NotifyPropertyChanged();
 
                     // Update the Background Picture Id property.
+                    if (backgroundPicture != null)
+                    {
+                        log.Debug(new NullReferenceException($"Parameter : '{nameof(backgroundPicture)}' type of '{backgroundPicture.GetType().Name}'"));
+                        return;
+                    }
+
+                    if (backgroundPicture.PrimaryKey == 0)
+                    {
+                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(backgroundPicture)}' type of '{backgroundPicture.GetType().Name}' PrimaryKey=0"));
+                        return;
+                    }
+
                     BackgroundPictureId = backgroundPicture.PrimaryKey;
                 }
             }
@@ -497,6 +509,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                     NotifyPropertyChanged();
 
                     // Update the Preview Picture Id property.
+                    if (previewPicture != null)
+                    {
+                        log.Debug(new NullReferenceException($"Parameter : '{nameof(previewPicture)}' type of '{previewPicture.GetType().Name}'"));
+                        return;
+                    }
+
+                    if (previewPicture.PrimaryKey == 0)
+                    {
+                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(previewPicture)}' type of '{previewPicture.GetType().Name}' PrimaryKey=0"));
+                        return;
+                    }
+
                     PreviewPictureId = previewPicture.PrimaryKey;
                 }
             }
@@ -526,6 +550,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                     NotifyPropertyChanged();
 
                     // Update the Thumbnail Picture Id property.
+                    if (backgroundPicture != null)
+                    {
+                        log.Debug(new NullReferenceException($"Parameter : '{nameof(thumbnailPicture)}' type of '{thumbnailPicture.GetType().Name}'"));
+                        return;
+                    }
+
+                    if (thumbnailPicture.PrimaryKey == 0)
+                    {
+                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(thumbnailPicture)}' type of '{thumbnailPicture.GetType().Name}' PrimaryKey=0"));
+                        return;
+                    }
+
                     ThumbnailPictureId = thumbnailPicture.PrimaryKey;
                 }
             }
@@ -588,10 +624,21 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Pictures associated to the Album.
         /// </summary>
         [NotMapped]
-        public List<PictureEntity> Pictures
+        public ObservableCollection<PictureEntity> Pictures
         {
             get => ListPictures();
-            set => pictures = value;
+            set
+            {
+                if (value != ListPictures())
+                {
+                    pictures.Clear();
+
+                    foreach (var p in value)
+                    {
+                        pictures.Add(p);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -640,8 +687,46 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         public AlbumEntity()
         {
             AlbumsInSections.CollectionChanged += (s, e) => { sections = null; };
-            PicturesInAlbums.CollectionChanged += (s, e) => { pictures = null; };
+            PicturesInAlbums.CollectionChanged += PicturesInAlbums_CollectionChanged;
             InfosInAlbums.CollectionChanged += (s, e) => { infos = null; };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PicturesInAlbums_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {e.NewItems?.Count} | {e.OldItems?.Count}");
+
+            if (e.NewItems?.Count != null)
+            {
+                foreach (PicturesInAlbums pia in e.NewItems)
+                {
+                    PictureEntity p = Db.Context.Find<PictureEntity>(pia.PictureId);
+
+                    if (p != null && !pictures.Contains(p))
+                    {
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : adding Picture {p.PrimaryKey} to observable list.");
+                        pictures.Add(p);
+                    }
+                }
+            }
+
+            if (e.OldItems?.Count != null)
+            {
+                foreach (PicturesInAlbums pia in e.OldItems)
+                {
+                    int index = Pictures.ToList().FindIndex(x => x.PictureId == pia.PictureId);
+
+                    if (index != 0)
+                    {
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : removing Picture {pia.PictureId} from observable list.");
+                        pictures.RemoveAt(index);
+                    }
+                }
+            }
         }
 
         #endregion
@@ -654,18 +739,29 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to get a list of associated Picture.
         /// </summary>
         /// <returns></returns>
-        private List<PictureEntity> ListPictures()
+        private ObservableCollection<PictureEntity> ListPictures()
         {
-            if (pictures == null || pictures.Count == 0)
+            if (pictures.Count == 0)
             {
-                pictures = new List<PictureEntity>();
-
+                IEnumerable<PictureEntity> picts = null;
+                
                 if (PicturesInAlbums != null)
                 {
-                    pictures = ListEntities<PictureEntity>(PicturesInAlbums);
+                    picts = ListEntities<PictureEntity>(PicturesInAlbums);
+                }
+
+                if(picts != null)
+                {
+                    foreach(var p in picts)
+                    {
+                        if (p != null && !pictures.Contains(p))
+                        {
+                            pictures.Add(p);
+                        }
+                    }
                 }
             }
-
+            
             return pictures;
         }
 
@@ -673,7 +769,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// 
         /// </summary>
         /// <param name="pictureId"></param>
-        public void LinkPicture(int pictureId)
+        public void LinkPicture(int pictureId, bool isNew = true)
         {
             try
             {
@@ -681,7 +777,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
                 if (index < 0)
                 {
-                    PicturesInAlbums.Add(new PicturesInAlbums { PictureId = pictureId });
+                    if (isNew)
+                    {
+                        PicturesInAlbums.Add(new PicturesInAlbums { PictureId = pictureId });
+                    }
+                    else
+                    {
+                        PicturesInAlbums.Add(new PicturesInAlbums { PictureId = pictureId, AlbumId = PrimaryKey });
+                    }
                 }
             }
             catch { }

@@ -34,7 +34,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
                 Dependencies != null &&
                 (
                     Dependencies.Contains(EnumEntitiesDependencies.All) ||
-                    Dependencies.Contains(EnumEntitiesDependencies.UsersInAclGroups)
+                    Dependencies.Contains(dependency)
                 )
             ) {
                 return true;

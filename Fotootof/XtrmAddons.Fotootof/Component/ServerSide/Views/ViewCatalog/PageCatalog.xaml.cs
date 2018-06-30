@@ -61,7 +61,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
 
                 AlbumOptionsList op = new AlbumOptionsList
                 {
-                    Dependencies = { EnumEntitiesDependencies.All }
+                    Dependencies = { EnumEntitiesDependencies.AlbumsInSections, EnumEntitiesDependencies.InfosInAlbums }
                 };
 
                 if (a != null)
@@ -161,6 +161,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
 
             try
             {
+                /*SectionOptionsList op = new SectionOptionsList
+                {
+                    Dependencies = { EnumEntitiesDependencies.AlbumsInSections, EnumEntitiesDependencies.SectionsInAclGroups }
+                };
+
+                Model.Sections.Items = new SectionEntityCollection(true, op);*/
+
                 Model.Sections.Items = new SectionEntityCollection(true);
             }
             catch (Exception ex)
@@ -286,7 +293,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog
             try
             {
                 Model.Albums.Items = new AlbumEntityCollection(true, AlbumOptionsListFilters);
-                log.Info("Loading Albums list. Done.");
+                log.Info($"Loading {Model?.Albums?.Items?.Count()} Albums. Done.");
             }
             catch (Exception ex)
             {

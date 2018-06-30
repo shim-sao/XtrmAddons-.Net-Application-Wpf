@@ -3,22 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
-using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum;
+using XtrmAddons.Fotootof.Common.Interfaces;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Layouts.Windows.Slideshow;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Win32;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Picture;
 
@@ -27,14 +25,35 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
     /// <summary>
     /// Class XtrmAddons Fotootof Server Common Controls Pictures List View.
     /// </summary>
-    public partial class ListViewPicturesServer : ListViewPictures
+    public partial class ListViewPicturesServer : ListViewPictures, IAlbum
     {
         #region Properties
 
         /// <summary>
+        /// Property to access to the main items data grid.
+        /// </summary>
+        public AlbumEntity AlbumEntity
+        {
+            get => (AlbumEntity)GetValue(propertyAlbumEntity);
+            set => SetValue(propertyAlbumEntity, value);
+        }
+
+        /// <summary>
+        /// Property Using a DependencyProperty as the backing store for Entities.
+        /// </summary>
+        public static readonly DependencyProperty propertyAlbumEntity =
+            DependencyProperty.Register
+            (
+                "AlbumEntity",
+                typeof(AlbumEntity),
+                typeof(ListViewPicturesServer),
+                new PropertyMetadata(null)
+            );
+        
+        /// <summary>
         /// 
         /// </summary>
-        public PageAlbumModel Model
+        /*public PageAlbumModel Model
         {
             get
             {
@@ -45,13 +64,21 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
 
                 return (PageAlbumModel)DataContext;
             }
-        }
+        }*/
 
         #endregion
 
 
-
         #region Constructor
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Server Common Controls Pictures List View Constructor.
+        /// </summary>
+        static ListViewPicturesServer()
+        {
+            PropertyItems.OverrideMetadata(typeof(ListViewPicturesServer), new PropertyMetadata(new PictureEntityCollection()));
+            Debug.Assert(!PropertyItems.OwnerType.Equals(typeof(ListViewPicturesServer)));
+        }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Common Controls Pictures List View Constructor.
@@ -74,67 +101,68 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// <param name="e">Routed event arguments.</param>
         public override async void OnAddNewItem_Click(object sender, RoutedEventArgs e)
         {
+            // Open file dialog box for picture selection.
             Microsoft.Win32.OpenFileDialog pfdb = PictureFileDialogBox.Show(true, Translation.DWords.DialogBoxTitle_PictureFileSelector);
 
-            if(Model.Album == null)
+            // Check if refence to the album is not null.
+            if (AlbumEntity == null)
             {
-                NullReferenceException ex = new NullReferenceException(nameof(Model.Album));
+                NullReferenceException ex = ExceptionBase.RefNull(nameof(AlbumEntity), AlbumEntity);
                 log.Error(ex.Output(), ex);
                 return;
             }
 
-            if(pfdb != null)
+            // Check the response of the dialog box.
+            // If null, nothing to do.
+            if (pfdb == null)
             {
-                List<PictureEntity> pictures = new List<PictureEntity>();
-
-                foreach (string s in pfdb.FileNames)
-                {
-                    PictureEntity item = (new StorageInfoModel(new FileInfo(s))).ToPicture();
-
-                    // Check if storage information is and return a picture information.
-                    if (item != null)
-                    {
-                        // Add Picture to the list for Pictures.
-                        pictures.Add(item);
-                        Model.Pictures.Add(item);
-                    }
-                }
-
-                // Create a list of Albums to update.
-                var albums = new AlbumEntity[] { Model.Album };
-
-                // Insert Pictures into the database.
-                var pictAdded = PictureEntityCollection.DbInsert(pictures, albums);
-
-                bool updateAlbum = false;
-
-                // Update Album informations.
-                if (Model.Album.ThumbnailPictureId == 0)
-                {
-                    Model.Album.ThumbnailPictureId = pictAdded[0].PrimaryKey;
-                    updateAlbum = true;
-                }
-                if (Model.Album.PreviewPictureId == 0)
-                {
-                    Model.Album.PreviewPictureId = pictAdded[0].PrimaryKey;
-                    updateAlbum = true;
-                }
-                if (Model.Album.BackgroundPictureId == 0)
-                {
-                    Model.Album.BackgroundPictureId = pictAdded[0].PrimaryKey;
-                    updateAlbum = true;
-                }
-
-                // Update the Album with new informations.
-                if (updateAlbum)
-                {
-                    await AlbumEntityCollection.DbUpdateAsync(albums, null);
-                }
-
-                // Reload page.
-                AppNavigator.NavigateToPageAlbumServer(Model.Album.PrimaryKey);
+                log.Warn("Adding Picture(s). Canceled.");
+                return;
             }
 
+            // Start to busy application.
+            MessageBase.IsBusy = true;
+            log.Warn($"Starting adding {pfdb.FileNames.Length} Picture(s). Please wait...");
+
+            var album = AlbumEntity;
+            var pictAdded = PictureEntityCollection.FromFileNames(pfdb.FileNames, ref album);
+
+            bool updateAlbum = false;
+
+            // Update Album informations.
+            if (AlbumEntity.ThumbnailPictureId == 0)
+            {
+                AlbumEntity.ThumbnailPictureId = pictAdded[0].PrimaryKey;
+                updateAlbum = true;
+            }
+            if (AlbumEntity.PreviewPictureId == 0)
+            {
+                AlbumEntity.PreviewPictureId = pictAdded[0].PrimaryKey;
+                updateAlbum = true;
+            }
+            if (AlbumEntity.BackgroundPictureId == 0)
+            {
+                AlbumEntity.BackgroundPictureId = pictAdded[0].PrimaryKey;
+                updateAlbum = true;
+            }
+
+            // Update the Album with new informations.
+            if (updateAlbum)
+            {
+                AlbumEntity = (await AlbumEntityCollection.DbUpdateAsync(AlbumEntity, AlbumEntity))[0];
+            }
+
+            // Refresh of the list view items source.
+            //log.Warn($"Refreshing {AlbumEntity.Pictures?.Count()} Picture(s) list view...");
+            //ItemsCollection.Items.Refresh();
+
+            // Raise the on delete event.
+            log.Warn($"Raising {pictAdded.ToArray()?.Length} Picture(s) adding event...");
+            RaiseOnAdd(pictAdded.ToArray());
+
+            // Stop to busy application.
+            log.Warn($"Ending adding {pictAdded.ToArray()?.Length} Picture(s).");
+            MessageBase.IsBusy = false;
         }
 
         /// <summary>
@@ -174,43 +202,27 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 MessageBase.IsBusy = true;
                 log.Warn("Starting deleting Picture(s). Please wait...");
 
+                // Delete item from database.
+                var pictDeleted = await PictureEntityCollection.DbDeleteAsync(SelectedItems);
+
                 // Important : No need to defer for list view items refresh.
                 log.Warn("Updating Picture(s) list view items...");
                 foreach (PictureEntity item in SelectedItems)
                 {
-                    Model.Pictures.Remove(item);
+                    AlbumEntity.Pictures.Remove(item);
                 }
-
-                // Raise the on delete event.
-                log.Warn("Raising Picture(s) deleted event...");
-                RaiseOnDelete(SelectedItems.ToArray());
 
                 // Refresh of the list view items source.
                 log.Warn("Refreshing Picture(s) list view...");
                 ItemsCollection.Items.Refresh();
 
+                // Raise the on delete event.
+                log.Warn("Raising Picture(s) deleted event...");
+                RaiseOnDelete(pictDeleted.ToArray());
+
                 // Stop to busy application.
                 log.Warn("Ending deleting Picture(s).");
                 MessageBase.IsBusy = false;
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Output(), ex);
-                MessageBase.Error(ex.Output());
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
-        private void ListView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            try
-            {
-                List<PictureEntity> pictList = e.NewValue.GetPropertyValue("Pictures") as List<PictureEntity>;
-                Items = new PictureEntityCollection(pictList);
             }
             catch (Exception ex)
             {

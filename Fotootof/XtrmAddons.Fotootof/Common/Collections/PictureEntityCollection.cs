@@ -10,9 +10,14 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Net.Common.Extensions;
 using System.Threading.Tasks;
 using System.Reflection;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
+using System.IO;
 
 namespace XtrmAddons.Fotootof.Common.Collections
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PictureEntityCollection : CollectionBaseEntity<PictureEntity, PictureOptionsList>
     {
         #region Properties
@@ -43,8 +48,35 @@ namespace XtrmAddons.Fotootof.Common.Collections
         /// <summary>
         /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
         /// </summary>
-        /// <param name="collection">>A collection of Album to paste in.</param>
+        /// <param name="collection">A collection of Album to paste in.</param>
         public PictureEntityCollection(IEnumerable<PictureEntity> collection) : base(collection) { }
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
+        /// </summary>
+        /// <param name="collection">>A collection of Album to paste in.</param>
+        public PictureEntityCollection(string[] fileNames, ref AlbumEntity album) : base()
+        {
+            PictureEntity[] items = FromFileNames(fileNames, ref album);
+            foreach (PictureEntity entity in items)
+            {
+                Add(entity);
+            }
+        }
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
+        /// </summary>
+        /// <param name="collection">>A collection of Album to paste in.</param>
+        public PictureEntityCollection(string[] fileNames) : base()
+        {
+            AlbumEntity album = default(AlbumEntity);
+            PictureEntity[] items = FromFileNames(fileNames, ref album);
+            foreach (PictureEntity entity in items)
+            {
+                Add(entity);
+            }
+        }
 
         #endregion
 
@@ -78,15 +110,89 @@ namespace XtrmAddons.Fotootof.Common.Collections
         }
 
         /// <summary>
+        /// Method to create a list of pictures from a list of file names.
+        /// </summary>
+        /// <param name="fileNames"></param>
+        /// <param name="album"></param>
+        /// <returns></returns>
+        public static PictureEntity[] FromFileNames(string[] fileNames, ref AlbumEntity album)
+        {
+            // Initialize the list of pictures to add.
+            IList<PictureEntity> newItems = new List<PictureEntity>();
+            PictureEntity[] pictAdded = null;
+            
+            foreach (string s in fileNames)
+            {
+                // Check if storage information is not null
+                // Add a new picture to album.
+                PictureEntity item = (new StorageInfoModel(new FileInfo(s))).ToPicture();
+                if (item != null && !newItems.Contains(item))
+                {
+                    // Add Picture to the list for Pictures.
+                    newItems.Add(item);
+                }
+
+                // Insert Pictures into the database.
+                log.Debug($"{typeof(PictureEntityCollection).Name}.{MethodBase.GetCurrentMethod().Name} : {newItems?.Count()} Pictures ready to insert into database.");
+            }
+
+            pictAdded = DbInsert(newItems, ref album).ToArray();
+
+            return pictAdded;
+        }
+
+        /// <summary>
         /// Method to insert a list of Picture entities into the database.
         /// </summary>
-        /// <param name="newItems">Thee list of items to add.</param>
-        public static IList<PictureEntity> DbInsert(IEnumerable<PictureEntity> newItems, IEnumerable<AlbumEntity> albums = default(IEnumerable<AlbumEntity>))
+        /// <param name="newItems">The list of items to add.</param>
+        /// <returns>The list of new items inserted in the database.</returns>
+        public static IList<PictureEntity> DbInsert(IEnumerable<PictureEntity> newItems)
         {
+            // Create a default albums enumerable list.
+            IEnumerable<AlbumEntity> albums = default(IEnumerable<AlbumEntity>);
+
+            // Return the main Db Insert result.
+            log.Debug($"{typeof(PictureEntityCollection).Name}.{MethodBase.GetCurrentMethod().Name} 1 : {newItems?.Count()} newItems to insert into database.");
+            return DbInsert(newItems, ref albums);
+        }
+
+        /// <summary>
+        /// Method to insert a list of Picture entities into the database.
+        /// </summary>
+        /// <param name="newItems">The list of items to add.</param>
+        /// <param name="album">The Album, past on reference, to associate the items and update its informations.</param>
+        /// <returns>The list of new items inserted in the database.</returns>
+        public static IList<PictureEntity> DbInsert(IEnumerable<PictureEntity> newItems, ref AlbumEntity album)
+        {
+            // Create a default albums enumerable list.
+            // Initialize array with the album past on reference.
+            IEnumerable<AlbumEntity> albums = new AlbumEntity[] { album };
+
+            // Return the main Db Insert result.
+            log.Debug($"{typeof(PictureEntityCollection).Name}.{MethodBase.GetCurrentMethod().Name} 2 : {newItems?.Count()} newItems to insert into database.");
+            return DbInsert(newItems, ref albums);
+        }
+
+        /// <summary>
+        /// Method to insert a list of Picture entities into the database.
+        /// </summary>
+        /// <param name="newItems">The list of items to add.</param>
+        /// <param name="album">The list of Albums, past on reference, to associate the items and update their informations.</param>
+        /// <returns>The list of new items inserted in the database.</returns>
+        public static IList<PictureEntity> DbInsert(IEnumerable<PictureEntity> newItems, ref IEnumerable<AlbumEntity> albums)
+        {
+            log.Debug($"{typeof(PictureEntityCollection).Name}.{MethodBase.GetCurrentMethod().Name} 3 : {newItems?.Count()} newItems to insert into database.");
+
             if (newItems == null)
             {
                 ArgumentNullException e = ExceptionBase.ArgNull(nameof(newItems), newItems);
                 log.Error(e.Output());
+                return null;
+            }
+
+            if (newItems.Count() == 0)
+            {
+                log.Debug($"{typeof(AlbumEntityCollection).Name}.{MethodBase.GetCurrentMethod().Name} : the list of {typeof(IEnumerable<PictureEntity>).Name} to insert is empty.");
                 return null;
             }
 
@@ -97,57 +203,83 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 return null;
             }
 
+            // Create new Picture list to return.
             IList<PictureEntity> itemsAdded = new List<PictureEntity>();
 
             try
             {
-                log.Info($"Adding {newItems.Count()} picture{(newItems.Count() > 0 ? "s" : "")} : Please wait...");
+                log.Debug("----------------------------------------------------------------------------------------------------------");
+                log.Info($"Adding {newItems.Count()} picture{(newItems.Count() > 1 ? "s" : "")} : Please wait...");
 
-                if (newItems != null && newItems.Count() > 0)
+                foreach (PictureEntity entity in newItems)
                 {
-                    foreach (PictureEntity entity in newItems)
+                    if (entity == null)
                     {
-                        // Process association for each albums.
-                        if(albums != null)
+                        log.Error($"{typeof(PictureEntityCollection).Name}.{MethodBase.GetCurrentMethod().Name} : Picture null can't be inserted in database.");
+                        continue;
+                    }
+
+                    // Process association for each albums.
+                    if (albums != null && albums.Count() > 0)
+                    {
+                        foreach (AlbumEntity a in albums)
                         {
-                            foreach (AlbumEntity a in albums)
+                            if(a == null)
                             {
-                                // Try to find Picture and Album dependency
-                                PicturesInAlbums dependency = (new List<PicturesInAlbums>(entity.PicturesInAlbums)).Find(p => p.AlbumId == a.AlbumId);
+                                log.Error(new NullReferenceException($"Album null can't be associated to a Picture.").Output());
+                                continue;
+                            }
 
-                                // Associate Picture to the Album if not already set.
-                                if (dependency == null)
-                                {
-                                    entity.PicturesInAlbums.Add(
-                                        new PicturesInAlbums
-                                        {
-                                            AlbumId = a.AlbumId,
-                                            Ordering = entity.PicturesInAlbums.Count + 1
-                                        }
-                                    );
+                            // Try to find Picture and Album dependency
+                            PicturesInAlbums dependency = (new List<PicturesInAlbums>(entity.PicturesInAlbums)).Find(x => x.AlbumId == a.AlbumId);
 
-                                    log.Info(string.Format("Picture [{0}:{1}] associated to Album [{2}:{3}].", entity.PrimaryKey, entity.Name, a.PrimaryKey, a.Name));
-                                }
+                            // Associate Picture to the Album if not already set.
+                            if (dependency == null)
+                            {
+                                entity.PicturesInAlbums.Add(
+                                    new PicturesInAlbums
+                                    {
+                                        AlbumId = a.AlbumId,
+                                        Ordering = entity.PicturesInAlbums.Count + 1
+                                    }
+                                );
+
+                                log.Info(string.Format("Picture [{0}:{1}] associated to Album [{2}:{3}].", entity.PrimaryKey, entity.Name, a.PrimaryKey, a.Name));
                             }
                         }
-                        
-                        // Add picture strored in database to the return list.
-                        itemsAdded.Add(MainWindow.Database.Pictures.Add(entity));
-
-                        log.Info($"Picture [{entity.PrimaryKey}:{entity.Name}] added.");
                     }
-                }
 
+                    // Add picture strored in database to the return list.
+                    var pictAdded = MainWindow.Database.Pictures.Add(entity);
+                    itemsAdded.Add(pictAdded);
+                    
+                    foreach (AlbumEntity a in albums)
+                    {
+                        if (a == null)
+                        {
+                            log.Error(new NullReferenceException($"Picture null can't be associated to a Album.").Output());
+                            continue;
+                        }
+
+                        a.LinkPicture(pictAdded.PrimaryKey, false);
+
+                        log.Info($"Album [{a.PrimaryKey}:{a.Name}] associated to Picture [{entity.PrimaryKey}:{entity.Name}].");
+                    }
+
+                    log.Info($"Picture [{entity.PrimaryKey}:{entity.Name}] added to database.");
+                }
+                
                 AppNavigator.Clear();
                 log.Debug("Application navigator cleared.");
-                log.Info($"Adding {newItems.Count()} picture{(newItems.Count() > 0 ? "s" : "")} : Done.");
+                log.Info($"Adding {itemsAdded.Count()} picture{(itemsAdded.Count() > 1 ? "s" : "")} : Done.");
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, $"Adding {newItems.Count()} picture{(newItems.Count() > 0 ? "s" : "")} : Failed.");
+                MessageBase.Fatal(ex, $"Adding {newItems.Count()}/{newItems.Count()} picture{(newItems.Count() > 1 ? "s" : "")} : Failed.");
             }
 
+            log.Debug("----------------------------------------------------------------------------------------------------------");
             return itemsAdded;
         }
 

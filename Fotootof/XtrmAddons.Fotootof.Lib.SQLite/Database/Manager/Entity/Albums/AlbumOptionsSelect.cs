@@ -7,6 +7,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
     /// </summary>
     public class AlbumOptionsSelect : EntitiesOptionsSelect
     {
+        #region Properties
+
+        /// <summary>
+        /// Property main entity Alias.
+        /// </summary>
+        public string Alias { get; set; }
+
+        #endregion
 
     }
 }

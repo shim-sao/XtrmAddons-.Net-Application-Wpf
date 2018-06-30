@@ -10,6 +10,7 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Common.Collections
@@ -175,9 +176,18 @@ namespace XtrmAddons.Fotootof.Common.Collections
         }
 
         /// <summary>
+        /// Method to update an Album entity into the database.
+        /// </summary>
+        /// <param name="newItem">The item to update.</param>
+        public static async Task<IList<AlbumEntity>> DbUpdateAsync(AlbumEntity newItem, AlbumEntity oldItem)
+        {
+            return await DbUpdateAsync(new AlbumEntity[] { newItem }, new AlbumEntity[] { oldItem });
+        }
+
+        /// <summary>
         /// Method to update a list of Album entities into the database.
         /// </summary>
-        /// <param name="newItems">Thee list of items to update.</param>
+        /// <param name="newItems">The list of items to update.</param>
         public static async Task<IList<AlbumEntity>> DbUpdateAsync(IEnumerable<AlbumEntity> newItems, IEnumerable<AlbumEntity> oldItems)
         {
             // Log error if the list to update if not null.
@@ -205,7 +215,13 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 {
                     // Get all Album to check some properties before inserting new item.
                     // Format Alias before update.
-                    FormatAlias(entity, new List<IAlias>(Db.Albums.List(GetOptionsDefault())));
+                    AlbumOptionsList op = new AlbumOptionsList
+                    {
+                        Dependencies = { EnumEntitiesDependencies.None },
+                        
+                    };
+
+                    FormatAlias(entity);
 
                     // Update item into the database.
                     itemsUpdated.Add(await Db.Albums.UpdateAsync(entity));
@@ -223,6 +239,41 @@ namespace XtrmAddons.Fotootof.Common.Collections
             }
 
             return itemsUpdated;
+        }
+
+        /// <summary>
+        /// Method to format the Alias property of an entity.
+        /// </summary>
+        /// <param name="entity">An entity with an Alias property derived from IAlias.</param>
+        /// <param name="items">The list of entities to check in.</param>
+        /// <returns></returns>
+        protected static AlbumEntity FormatAlias(AlbumEntity entity)
+        {
+            var obj = (IAlias)entity;
+
+            // Check if the alias is empty. Set name if required.
+            if (obj.Alias.IsNullOrWhiteSpace())
+            {
+                obj.Alias = obj.Name;
+            }
+
+            // Check if another entity with the same alias is in database.
+            var alb = Db.Albums.SingleOrNull(
+                new AlbumOptionsSelect
+                {
+                    Alias = obj.Alias,
+                    Dependencies = { EnumEntitiesDependencies.None }
+                });
+                
+            if (alb != null || obj.Alias.IsNullOrWhiteSpace())
+            {
+                DateTime d = DateTime.Now;
+                obj.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss-fff");
+            }
+
+            ((IAlias)entity).Alias = obj.Alias;
+
+            return entity;
         }
 
         #endregion

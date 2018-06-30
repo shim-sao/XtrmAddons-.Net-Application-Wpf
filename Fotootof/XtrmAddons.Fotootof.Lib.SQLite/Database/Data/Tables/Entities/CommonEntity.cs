@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Reflection;
 using System.Windows;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 {
@@ -12,6 +14,17 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     [JsonObject(MemberSerialization.OptIn)]
     public partial class CommonEntity : EntityBase
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
         #region Methods
 
         /// <summary>
@@ -43,7 +56,15 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
             else
             {
-                pe = Db.Context.Pictures.FindAsync(pk).Result;
+                try
+                {
+                    pe = Db.Context.Pictures.FindAsync(pk).Result;
+
+                }
+                catch(Exception e)
+                {
+                    log.Error(e.Output(), e);
+                }
             }
 
             return pe;

@@ -16,6 +16,8 @@
 		</Style.Resources>
 
 		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="HorizontalContentAlignment" Value="Left"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
 
 		<Setter Property="Template">
 			<Setter.Value>

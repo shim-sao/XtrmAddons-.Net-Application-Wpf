@@ -254,6 +254,7 @@
     </Compile>
     <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponseAlbums.cs" />
     <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponseSection.cs" />
+    <Compile Include="Common\Interfaces\IAlbum.cs" />
     <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClientModel.cs" />
     <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClient.xaml.cs">
       <DependentUpon>PageCatalogClient.xaml</DependentUpon>
@@ -365,9 +366,6 @@
     <Compile Include="Common\Collections\InfoEntityCollection.cs" />
     <Compile Include="Common\Controls\DataGrids\DataGridAlbums.cs" />
     <Compile Include="Common\Controls\DataGrids\DataGridSections.cs" />
-    <Compile Include="Common\Controls\Tooltips\UCToolTipPicture.xaml.cs">
-      <DependentUpon>UCToolTipPicture.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Common\Controls\DataGrids\DataGridSectionsModel.cs" />
     <Compile Include="Layouts\Windows\Forms\AclGroupForm\WindowFormAclGroupModel.cs" />
     <Compile Include="Layouts\Windows\Forms\AlbumForm\WindowFormAlbumModel.cs" />
@@ -516,10 +514,6 @@
     <Page Include="Component\ServerSide\Controls\DataGrids\DataGridSectionsServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Common\Controls\Tooltips\UCToolTipPicture.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Layouts\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -814,8 +808,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Common\Converters\" />
-    <Folder Include="Common\Interfaces\" />
     <Folder Include="Config\" />
   </ItemGroup>
   <ItemGroup>
