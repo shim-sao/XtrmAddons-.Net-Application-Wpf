@@ -175,7 +175,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 }
 
                 // Insert Pictures into the database.
-                PictureEntityCollection.DbInsert(pictures, dlg.SelectedAlbums.ToList());
+                IEnumerable<AlbumEntity> albums = dlg.SelectedAlbums.ToList();
+                PictureEntityCollection.DbInsert(pictures, ref albums);
             }
             
             // Clear user selection.

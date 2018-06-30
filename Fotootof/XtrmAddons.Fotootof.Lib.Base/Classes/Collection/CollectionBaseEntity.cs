@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;

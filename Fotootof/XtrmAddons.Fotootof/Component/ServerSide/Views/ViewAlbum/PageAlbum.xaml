@@ -24,9 +24,9 @@
 				  Style="{StaticResource MiddleContents}">
 				
 					<pictures:ListViewPicturesServer x:Name="PicturesCollection"
-												 Grid.Row="0"
-												 Grid.Column="0"
-												 DataContext="{Binding}"/>
+													 Grid.Row="0"
+													 Grid.Column="0"
+													 AlbumEntity="{Binding AlbumEntity, Mode=OneWay, IsAsync=True}"/>
 			</Grid>
 
 		</StackPanel>

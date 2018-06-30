@@ -113,11 +113,15 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
                 album = await MainWindow.Database.Albums.SingleOrNullAsync(options);
             }
 
-            Model.Album = album ?? new AlbumEntity();
+            Model.AlbumEntity = album ?? new AlbumEntity();
 
             /*UcDataGridSections.OnAdd += SectionsDataGrid_OnAdd;
             UcDataGridSections.OnChange += SectionsDataGrid_OnChange;
             UcDataGridSections.OnCancel += SectionsDataGrid_OnCancel;*/
+
+            // Add picture add handler.
+            PicturesCollection.OnDelete -= PicturesCollection_OnAdd;
+            PicturesCollection.OnDelete += PicturesCollection_OnAdd;
 
             // Add picture delete handler.
             PicturesCollection.OnDelete -= PicturesCollection_OnDelete;
@@ -129,7 +133,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Entity changes event arguments.</param>
-        private async void PicturesCollection_OnDelete(object sender, EntityChangesEventArgs e)
+        private void PicturesCollection_OnDelete(object sender, EntityChangesEventArgs e)
         {
             try
             {
@@ -141,15 +145,45 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
                 PictureEntity[] items = (PictureEntity[])e.OldEntities;
 
                 // Delete item from database.
-                await PictureEntityCollection.DbDeleteAsync(items);
+               // await PictureEntityCollection.DbDeleteAsync(items);
 
                 // Stop to busy application.
                 log.Warn("Ending deleting Picture(s).");
                 MessageBase.IsBusy = false;
 
                 // Reload album.
-                InitializeModel();
+               // InitializeModel();
                 //PicturesCollection.ListViewCollection.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBase.Error(ex.Output());
+            }
+        }
+
+        /// <summary>
+        /// Method called on Section delete event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Entity changes event arguments.</param>
+        private void PicturesCollection_OnAdd(object sender, EntityChangesEventArgs e)
+        {
+            try
+            {
+                // Start to busy application.
+                MessageBase.IsBusy = true;
+                log.Warn("Starting adding Picture(s). Please wait...");
+
+                // Remove item from list.
+                //PictureEntity[] items = (PictureEntity[])e.NewEntities;
+
+                // Stop to busy application.
+                log.Warn("Ending adding Picture(s).");
+                MessageBase.IsBusy = false;
+
+                // Reload album.
+                //InitializeModel();
             }
             catch (Exception ex)
             {

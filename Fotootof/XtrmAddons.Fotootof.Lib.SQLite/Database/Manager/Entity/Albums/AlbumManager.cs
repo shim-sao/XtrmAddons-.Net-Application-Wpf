@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
@@ -106,21 +107,30 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// <returns></returns>
         private IQueryable<AlbumEntity> Query_Dependencies(IQueryable<AlbumEntity> query, EntitiesOptions op)
         {
+            /*if (op.IsDependOn(EnumEntitiesDependencies.None))
+            {
+                log.Debug($"{typeof(EntitiesQueryExtension).Name}.{MethodBase.GetCurrentMethod().Name} : EnumEntitiesDependencies.None");
+                return query;
+            }*/
+
             // Load Pictures dependencies if required.
             if (op.IsDependOn(EnumEntitiesDependencies.PicturesInAlbums))
             {
+                log.Debug($"{typeof(EntitiesQueryExtension).Name}.{MethodBase.GetCurrentMethod().Name} : EnumEntitiesDependencies.PicturesInAlbums");
                 query = query.Include(x => x.PicturesInAlbums);
             }
 
             // Load Sections dependencies if required.
             if (op.IsDependOn(EnumEntitiesDependencies.AlbumsInSections))
             {
+                log.Debug($"{typeof(EntitiesQueryExtension).Name}.{MethodBase.GetCurrentMethod().Name} : EnumEntitiesDependencies.AlbumsInSections");
                 query = query.Include(x => x.AlbumsInSections);
             }
 
             // Load Infos dependencies if required.
             if (op.IsDependOn(EnumEntitiesDependencies.InfosInAlbums))
             {
+                log.Debug($"{typeof(EntitiesQueryExtension).Name}.{MethodBase.GetCurrentMethod().Name} : EnumEntitiesDependencies.InfosInAlbums");
                 query = query.Include(x => x.InfosInAlbums);
             }
 
@@ -350,9 +360,19 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             // Load dependencies if required.
             query = Query_Dependencies(query, op);
 
-            // Initialize Album
-            AlbumEntity entity = SingleIdOrNull(query, op);
+            AlbumEntity entity = null;
 
+            // Initialize Album
+            if(op.PrimaryKey != 0)
+            {
+                entity = SingleIdOrNull(query, op);
+            }
+
+            if(op.Alias.IsNotNullOrWhiteSpace())
+            {
+                entity = SingleAliasOrNull(query, op);
+            }
+            
             if (entity != null)
             {
                 if (op.IsDependOn(EnumEntitiesDependencies.PicturesInAlbums))
@@ -385,7 +405,24 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             AlbumEntity entity = query.SingleOrDefault(x => x.AlbumId == op.PrimaryKey);
 
             // Check if user is found, return null instead of default.
-            if (entity != null && entity.AlbumId == 0)
+            if (entity == null || entity.AlbumId == 0)
+            {
+                return null;
+            }
+
+            return entity;
+        }
+
+        /// <summary>
+        /// Method to select an Album by id.
+        /// </summary>
+        /// <returns>An Album entity or null if not found.</returns>
+        private AlbumEntity SingleAliasOrNull(IQueryable<AlbumEntity> query, AlbumOptionsSelect op)
+        {
+            AlbumEntity entity = query.SingleOrDefault(x => x.Alias == op.Alias);
+
+            // Check if user is found, return null instead of default.
+            if (entity == null || entity.AlbumId == 0)
             {
                 return null;
             }

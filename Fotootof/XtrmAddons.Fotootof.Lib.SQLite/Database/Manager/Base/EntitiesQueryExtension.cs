@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
@@ -9,6 +11,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
     /// </summary>
     public static class EntitiesQueryExtension
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Methods
 
         /// <summary>

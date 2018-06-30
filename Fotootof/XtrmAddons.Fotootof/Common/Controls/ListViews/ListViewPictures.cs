@@ -1,36 +1,17 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using XtrmAddons.Fotootof.Common.Collections;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Common.Collections;
-using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Common.Controls.ListViews
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Common Controls Albums List View.
+    /// Class XtrmAddons Fotootof Common Controls Pictures List View.
     /// </summary>
     public abstract class ListViewPictures : ListViewBase<PictureEntityCollection, PictureEntity>
     {
-        #region Properties
-
-        /// <summary>
-        /// Property Using a DependencyProperty as the backing store for Entities.
-        /// </summary>
-        public new static readonly DependencyProperty PropertyItems =
-            DependencyProperty.Register
-            (
-                "Items",
-                typeof(PictureEntityCollection),
-                typeof(ListViewPictures),
-                new PropertyMetadata(new PictureEntityCollection())
-            );
-
-        #endregion
-
-
-
         #region Methods
 
         /// <summary>
@@ -54,7 +35,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
         }
 
         /// <summary>
-        /// Method called on delete click to delete a Album.
+        /// Method called on items selection delete click event to delete a list of Pictures.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
@@ -64,17 +45,17 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
         }
 
         /// <summary>
-        /// 
+        /// Method called on items selection mouse double clear click event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="e">Mouse button event arguments.</param>
         private void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            
+            MessageBase.NotImplemented();
         }
 
         /// <summary>
-        /// Method called clear items selection click event.
+        /// Method called on clear items selection click event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>

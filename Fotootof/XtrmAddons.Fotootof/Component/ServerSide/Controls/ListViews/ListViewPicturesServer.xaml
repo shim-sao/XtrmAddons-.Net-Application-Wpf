@@ -6,11 +6,20 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
 	xmlns:base="clr-namespace:XtrmAddons.Fotootof.Common.Controls.ListViews"
+	xmlns:local="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews"
 	mc:Ignorable="d"
 	SizeChanged="Control_SizeChanged">
 
+	<UserControl.Resources>
+		<Style TargetType="{x:Type ListViewItem}">
+			<Setter Property="HorizontalContentAlignment" Value="Left"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+	</UserControl.Resources>
+
 	<Grid x:Name="Block_Root"
-          Style="{StaticResource ResourceKey=Root}">
+          Style="{StaticResource ResourceKey=Root}"
+		  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewPicturesServer}}}">
 
 		<StackPanel x:Name="Block_RootPanel"
                     Style="{StaticResource ResourceKey=FieldsetVertical}">
@@ -28,7 +37,7 @@
 						</Grid.ColumnDefinitions>
 						
 						<TextBlock x:Name="Title_Text"
-								   Text="{Binding Album.Name, Mode=OneWay, IsAsync=True}"
+								   Text="{Binding Path=AlbumEntity.Name, Mode=OneWay, IsAsync=True}"
 								   FontSize="{StaticResource FontSizeHeader}"
 								   Foreground="{StaticResource Panton_3}"
 								   FontWeight="SemiBold"
@@ -144,11 +153,11 @@
 
 			<Grid x:Name="Block_Items">
 
-				<ListView Name="ListViewCollection"
+				<ListView x:Name="ListViewCollection"
 						  Background="White"
 						  HorizontalAlignment="Stretch"
 						  VerticalAlignment="Stretch"
-						  ItemsSource="{Binding Pictures, Mode=OneWay, IsAsync=True}"
+						  ItemsSource="{Binding Path=AlbumEntity.Pictures, Mode=OneWay, IsAsync=True}"
 						  VirtualizingStackPanel.IsVirtualizing="True"
 						  VirtualizingStackPanel.VirtualizationMode="Recycling"
 						  ScrollViewer.IsDeferredScrollingEnabled="True"
@@ -157,7 +166,7 @@
 						  SelectionChanged="ItemsCollection_SelectionChanged"
 						  Padding="5,5,5,10">
 
-					<ListView.ContextMenu>
+					<!--<ListView.ContextMenu>
 						<ContextMenu>
 							<MenuItem Header="{x:Static p:Resources.SelectAll}"
 									  Click="SelectAll_Click" />
@@ -170,11 +179,11 @@
 
 						</ContextMenu>
 
-					</ListView.ContextMenu>
+					</ListView.ContextMenu>-->
 
 					<ListView.ItemsPanel>
 						<ItemsPanelTemplate>
-							<WrapPanel Name="WrapPanelItemsContainer"
+							<WrapPanel x:Name="WrapPanelItemsContainer"
 									   Width="{Binding ActualWidth, ElementName=Block_Root, IsAsync=True}"
 									   MaxWidth="{Binding MaxWidth, ElementName=Block_Root, IsAsync=True}">
 
@@ -188,7 +197,8 @@
 
 					<ListView.ItemTemplate>
 						<DataTemplate>
-							<Viewbox Width="{Binding ActualWidth, ElementName=WrapPanelItemsContainer, Converter={StaticResource CvResponsiveListViewItem}}"
+							<Viewbox x:Name="ViewboxImage"
+									 Width="{Binding ActualWidth, ElementName=WrapPanelItemsContainer, Converter={StaticResource CvResponsiveListViewItem}}"
 									 MaxHeight="{Binding ActualWidth, ElementName=WrapPanelItemsContainer, Converter={StaticResource CvResponsiveListViewItem}}">
 
 								<Grid Background="Black"
@@ -203,7 +213,8 @@
 										</ContextMenu>
 									</Grid.ContextMenu>-->
 
-									<Image Source="{Binding ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}, IsAsync=True, Mode=OneWay}"
+									<Image x:Name="ImageThumbnail"
+										   Source="{Binding ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}, IsAsync=True, Mode=OneWay}"
 										   Stretch="UniformToFill"
 										   MouseEnter="OnImage_MouseEnter"
 										   Width="{StaticResource Icon256Double}"

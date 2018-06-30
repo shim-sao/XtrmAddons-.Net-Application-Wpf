@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
@@ -13,7 +15,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
     /// </summary>
     /// <typeparam name="T">The collection items type.</typeparam>
     /// <typeparam name="U">The item type.</typeparam>
-    public abstract class ListViewBase<T, U> : ControlBaseCollection, IListItems<T>
+    public abstract class ListViewBase<T, U> : ControlBaseCollection
     {
         #region Properties Events Handlers
 
@@ -61,12 +63,27 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
         /// <summary>
         /// Property to access to the items collection.
         /// </summary>
-        public virtual T Items { get => (T)GetValue(PropertyItems); set => SetValue(PropertyItems, value); }
+        public virtual T Items
+        {
+            get
+            {
+                Debug.WriteLine($"* Getter : {GetType().Name}.{MethodBase.GetCurrentMethod().Name} => {typeof(T)}");
+
+                return (T)GetValue(PropertyItems);
+            }
+            set
+            {
+                Debug.WriteLineIf(value == null, $"+ Setter : {GetType().Name}.{MethodBase.GetCurrentMethod().Name} => null");
+                Debug.WriteLineIf(value != null, $"+ Setter : {GetType().Name}.{MethodBase.GetCurrentMethod().Name} => {(value as IEnumerable<U>).Count()}");
+
+                SetValue(PropertyItems, value);
+            }
+        }
 
         /// <summary>
         /// Property Using a DependencyProperty as the backing store for Entities.
         /// </summary>
-        public readonly DependencyProperty PropertyItems =
+        public static readonly DependencyProperty PropertyItems =
             DependencyProperty.Register
             (
                 "Items",

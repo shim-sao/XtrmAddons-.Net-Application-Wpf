@@ -3,6 +3,11 @@
     public enum EnumEntitiesDependencies
     {
         /// <summary>
+        /// None dependencies
+        /// </summary>
+        None = -1,
+
+        /// <summary>
         /// All dependencies
         /// </summary>
         All = 0,
