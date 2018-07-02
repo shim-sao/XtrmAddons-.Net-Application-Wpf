@@ -10,12 +10,12 @@
 	mc:Ignorable="d"
 	SizeChanged="Control_SizeChanged">
 
-	<UserControl.Resources>
+	<!--<UserControl.Resources>
 		<Style TargetType="{x:Type ListViewItem}">
 			<Setter Property="HorizontalContentAlignment" Value="Left"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 		</Style>
-	</UserControl.Resources>
+	</UserControl.Resources>-->
 
 	<Grid x:Name="Block_Root"
           Style="{StaticResource ResourceKey=Root}"
@@ -157,7 +157,7 @@
 						  Background="White"
 						  HorizontalAlignment="Stretch"
 						  VerticalAlignment="Stretch"
-						  ItemsSource="{Binding Path=AlbumEntity.Pictures, Mode=OneWay, IsAsync=True}"
+						  ItemsSource="{Binding Path=AlbumEntity.Pictures, Mode=OneWay, IsAsync=False}"
 						  VirtualizingStackPanel.IsVirtualizing="True"
 						  VirtualizingStackPanel.VirtualizationMode="Recycling"
 						  ScrollViewer.IsDeferredScrollingEnabled="True"
@@ -180,6 +180,13 @@
 						</ContextMenu>
 
 					</ListView.ContextMenu>-->
+
+					<ListView.ItemContainerStyle>
+						<Style TargetType="{x:Type ListViewItem}">
+							<Setter Property="HorizontalContentAlignment" Value="Left"/>
+							<Setter Property="VerticalContentAlignment" Value="Center"/>
+						</Style>
+					</ListView.ItemContainerStyle>
 
 					<ListView.ItemsPanel>
 						<ItemsPanelTemplate>

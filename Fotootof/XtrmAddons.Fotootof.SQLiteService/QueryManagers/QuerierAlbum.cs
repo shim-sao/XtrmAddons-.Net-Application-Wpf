@@ -178,9 +178,9 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// <param name="album">The Album to delete.</param>
         /// <param name="save">Save changes ?</param>
         /// <returns>The deleted Album entity.</returns>
-        public Task<AlbumEntity> DeleteAsync(AlbumEntity entity, bool save = true)
+        public async Task<AlbumEntity> DeleteAsync(AlbumEntity entity, bool save = true)
         {
-            return Task.Run(() => Delete(entity));
+            return await Task.Run(() => Delete(entity));
         }
 
         #endregion
@@ -196,23 +196,33 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// <param name="save">Save changes ?</param>
         /// <param name="autoDate">Auto initialize dates.</param>
         /// <returns>The updated Album entity.</returns>
-        public async Task<AlbumEntity> UpdateAsync(AlbumEntity entity, bool save = true, bool autoDate = true)
+        public AlbumEntity Update(AlbumEntity entity, bool save = true, bool autoDate = true)
         {
             using (Db.Context)
             {
                 // Try to attach entity to the database context.
-                try { Db.Context.Attach(entity); } catch { throw new System.Exception("Error on database Context Attach Album"); }
+                try { Db.Context.Attach(entity); } catch { throw new Exception("Error on database Context Attach Album"); }
 
                 // Update entity.
                 entity = AlbumManager.Update(entity, true);
 
                 // Hack to delete unassociated dependencies. 
-                await CleanDependenciesAsync("AlbumsInSections", "SectionId", entity.PrimaryKey, entity.SectionsPK);
-                await CleanDependenciesAsync("InfosInAlbums", "InfoId", entity.PrimaryKey, entity.InfosPK);
-                await CleanDependenciesAsync("PicturesInAlbums", "PictureId", entity.PrimaryKey, entity.PicturesPK);
+                CleanDependencyAllAsync(entity);
 
                 return entity;
             }
+        }
+
+        /// <summary>
+        /// Method to update a album asynchronous.
+        /// </summary>
+        /// <param name="entity">The Album to update.</param>
+        /// <param name="save">Save changes ?</param>
+        /// <param name="autoDate">Auto initialize dates.</param>
+        /// <returns>The updated Album entity.</returns>
+        public async Task<AlbumEntity> UpdateAsync(AlbumEntity entity, bool save = true, bool autoDate = true)
+        {
+            return await Task.Run(() => Update(entity, save, autoDate));
         }
 
         #endregion
@@ -229,7 +239,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// <param name="aclGroupId"></param>
         /// <param name="dependenciesPKs"></param>
         /// <returns></returns>
-        public async Task<int> CleanDependenciesAsync(string dependencyName, string dependencyPKName, int albumId, IEnumerable<int> dependenciesPKs)
+        public async Task<int> CleanDependencyAsync(string dependencyName, string dependencyPKName, int albumId, IEnumerable<int> dependenciesPKs)
         {
             using (Db.Context)
             {
@@ -240,6 +250,18 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
                         dependenciesPKs
                     );
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        public async void CleanDependencyAllAsync(AlbumEntity entity)
+        {
+            // Hack to delete unassociated dependencies. 
+            await CleanDependencyAsync("AlbumsInSections", "SectionId", entity.PrimaryKey, entity.SectionsPK);
+            await CleanDependencyAsync("InfosInAlbums", "InfoId", entity.PrimaryKey, entity.InfosPKs);
+            await CleanDependencyAsync("PicturesInAlbums", "PictureId", entity.PrimaryKey, entity.PicturesPKs);
         }
 
         #endregion

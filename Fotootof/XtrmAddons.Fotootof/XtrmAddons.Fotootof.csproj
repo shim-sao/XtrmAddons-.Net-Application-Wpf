@@ -212,7 +212,8 @@
     <Reference Include="XtrmAddons.Net.Application">
       <HintPath>..\Packages\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
-    <Reference Include="XtrmAddons.Net.Common">
+    <Reference Include="XtrmAddons.Net.Common, Version=1.0.18176.1004, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Packages\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.HttpWebServer">
@@ -254,7 +255,6 @@
     </Compile>
     <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponseAlbums.cs" />
     <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponseSection.cs" />
-    <Compile Include="Common\Interfaces\IAlbum.cs" />
     <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClientModel.cs" />
     <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClient.xaml.cs">
       <DependentUpon>PageCatalogClient.xaml</DependentUpon>

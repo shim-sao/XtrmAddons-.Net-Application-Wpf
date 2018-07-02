@@ -118,8 +118,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variables collection of relationship Albums in Sections. Sections dependencies.
         /// </summary>
         [NotMapped, XmlIgnore, NonSerialized]
-        private ObservableAlbumsInSections albumsDependencies =
-            new ObservableAlbumsInSections("SectionId");
+        private ObservableAlbumsInSections<SectionEntity> albumsDependencies =
+            new ObservableAlbumsInSections<SectionEntity>();
 
         #endregion
 
@@ -151,8 +151,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variables collection of relationship Albums in Sections. Sections dependencies.
         /// </summary>
         [NotMapped, XmlIgnore, NonSerialized]
-        private ObservableSectionsInAclGroups aclGroupsDependencies =
-            new ObservableSectionsInAclGroups("SectionId");
+        private ObservableSectionsInAclGroups<SectionEntity> aclGroupsDependencies =
+            new ObservableSectionsInAclGroups<SectionEntity>();
 
         #endregion
 
@@ -387,7 +387,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             {
                 if (value != albumsDependencies as ObservableCollection<AlbumsInSections>)
                 {
-                    albumsDependencies = new ObservableAlbumsInSections("SectionId", value);
+                    albumsDependencies = new ObservableAlbumsInSections<SectionEntity>(value);
                     NotifyPropertyChanged();
                 }
                 
@@ -500,7 +500,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             {
                 if (value != aclGroupsDependencies as ObservableCollection<SectionsInAclGroups>)
                 {
-                    aclGroupsDependencies = new ObservableSectionsInAclGroups("SectionId", value);
+                    aclGroupsDependencies = new ObservableSectionsInAclGroups<SectionEntity>(value);
                     NotifyPropertyChanged();
                 }
 

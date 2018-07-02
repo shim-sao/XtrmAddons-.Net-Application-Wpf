@@ -87,6 +87,9 @@
     <Compile Include="Database\Data\Tables\Entities\UserEntity.cs" />
     <Compile Include="Database\Data\Tables\Entities\AclActionEntity.cs" />
     <Compile Include="Database\Data\Tables\Entities\AclGroupEntity.cs" />
+    <Compile Include="Database\Data\Tables\Interfaces\ISectionEntity.cs" />
+    <Compile Include="Database\Data\Tables\Interfaces\IPictureEntity.cs" />
+    <Compile Include="Database\Data\Tables\Interfaces\IAlbumEntity.cs" />
     <Compile Include="Database\Event\EntityChangesEventArgs.cs" />
     <Compile Include="Database\Manager\Base\EntitiesManager.cs" />
     <Compile Include="Database\Manager\Base\EntitiesOptions.cs" />

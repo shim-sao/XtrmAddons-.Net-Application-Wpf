@@ -137,23 +137,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         {
             try
             {
-                // Start to busy application.
-                MessageBase.IsBusy = true;
-                log.Warn("Starting deleting Picture(s). Please wait...");
+                //// Start to busy application.
+                //MessageBase.IsBusy = true;
+                //log.Warn("Starting deleting Picture(s). Please wait...");
 
-                // Remove item from list.
-                PictureEntity[] items = (PictureEntity[])e.OldEntities;
+                //// Get item from list.
+                //PictureEntity[] items = (PictureEntity[])e.OldEntities;
 
-                // Delete item from database.
-               // await PictureEntityCollection.DbDeleteAsync(items);
-
-                // Stop to busy application.
-                log.Warn("Ending deleting Picture(s).");
-                MessageBase.IsBusy = false;
-
-                // Reload album.
-               // InitializeModel();
-                //PicturesCollection.ListViewCollection.Items.Refresh();
+                //// Stop to busy application.
+                //log.Warn("Ending deleting Picture(s).");
+                //MessageBase.IsBusy = false;
             }
             catch (Exception ex)
             {
@@ -171,19 +164,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
         {
             try
             {
-                // Start to busy application.
-                MessageBase.IsBusy = true;
-                log.Warn("Starting adding Picture(s). Please wait...");
+                //// Start to busy application.
+                //MessageBase.IsBusy = true;
+                //log.Warn("Starting adding Picture(s). Please wait...");
 
-                // Remove item from list.
+                //// Get item from list.
                 //PictureEntity[] items = (PictureEntity[])e.NewEntities;
 
-                // Stop to busy application.
-                log.Warn("Ending adding Picture(s).");
-                MessageBase.IsBusy = false;
-
-                // Reload album.
-                //InitializeModel();
+                //// Stop to busy application.
+                //log.Warn("Ending adding Picture(s).");
+                //MessageBase.IsBusy = false;
             }
             catch (Exception ex)
             {

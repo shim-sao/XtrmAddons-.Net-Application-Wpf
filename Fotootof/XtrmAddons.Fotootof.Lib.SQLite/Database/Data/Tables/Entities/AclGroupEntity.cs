@@ -270,8 +270,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Property to access to the collection of relationship AclGroups in AclActions.
         /// </summary>
-        public ObservableAclGroupsInAclActions AclGroupsInAclActions { get; set; }
-            = new ObservableAclGroupsInAclActions("AclActionId");
+        public ObservableAclGroupsInAclActions<AclActionEntity> AclGroupsInAclActions { get; set; }
+            = new ObservableAclGroupsInAclActions<AclActionEntity>();
 
         /// <summary>
         /// Property to access to the AclAction id (required for entity dependency).

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -137,14 +136,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Properties : Dependencies
 
         /// <summary>
-        /// Property to access to the collection of relationship AclGroup in AclAction.
-        /// </summary>
-        [JsonProperty(PropertyName = "AclGroups_AclActions")]
-        [XmlElement(ElementName = "AclGroups_AclActions")]
-        public ObservableAclGroupsInAclActions AclGroupsInAclActions { get; set; }
-            = new ObservableAclGroupsInAclActions("AclGroupId");
-
-        /// <summary>
         /// Property to access to the AclGroup id (required for entity dependency).
         /// </summary>
         [NotMapped]
@@ -166,8 +157,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of AclGroup dependencies primary key.
         /// </summary>
         [NotMapped]
-        public IEnumerable<int> AclGroupsPKs
-            => AclGroupsInAclActions.DependenciesPrimaryKeys;
+        public ObservableCollection<int> AclGroupsPKs
+            => AclGroupsInAclActions.DepPKeys;
 
         /// <summary>
         /// Property to access to the list of AclGroup associated to the AclAction.
@@ -175,27 +166,16 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         [NotMapped]
         [JsonProperty(PropertyName = "AclGroups", ItemConverterType = typeof(Array))]
         [XmlElement(ElementName = "AclGroups")]
-        public IEnumerable<AclGroupEntity> AclGroups
-        {
-            get
-            {
-                if(aclGroups == null || aclGroups.Count() != AclGroupsInAclActions?.Count)
-                {
-                    aclGroups = ListEntities<AclGroupEntity>(AclGroupsInAclActions);
-                }
+        public ObservableCollection<AclGroupEntity> AclGroups
+            => AclGroupsInAclActions.DepReferences;
 
-                return aclGroups;
-            }
-
-            private set
-            {
-                if(aclGroups != value)
-                {
-                    aclGroups = value;
-                }
-                NotifyPropertyChanged();
-            }
-        }
+        /// <summary>
+        /// Property to access to the collection of relationship AclGroup in AclAction.
+        /// </summary>
+        [JsonProperty(PropertyName = "AclGroups_AclActions")]
+        [XmlElement(ElementName = "AclGroups_AclActions")]
+        public ObservableAclGroupsInAclActions<AclGroupEntity> AclGroupsInAclActions { get; set; }
+            = new ObservableAclGroupsInAclActions<AclGroupEntity>();
 
         #endregion
 
@@ -206,109 +186,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries SQLite AclAction Entity Constructor.
         /// </summary>
-        public AclActionEntity()
-        {
-            // Manage Properties on AclGroup dependencies changes.
-            AclGroupsInAclActions.CollectionChanged += AclGroupsInAclActions_CollectionChanged;
-        }
+        public AclActionEntity() { }
 
         #endregion
 
 
 
         #region Methods
-
-        /// <summary>
-        /// Method to manage Properties on AclGroup dependencies changes.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Notify collection changed event arguments.</param>
-        private void AclGroupsInAclActions_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            AclGroups = null;
-        }
-
-        /// <summary>
-        /// Method to add a list of associated AclGroup to the AclAction.
-        /// </summary>
-        /// <param name="listGroups">A list of AclGroups</param>
-        // todo : write public function to append a list and a function to create a new list.
-        private void AddAclGroupsDependencies(List<AclGroupEntity> listGroups)
-        {
-            if (listGroups != null && listGroups.Count > 0)
-            {
-                // Link all AclGroup in the list.
-                foreach(var group in listGroups)
-                {
-                    LinkAclGroup(group.PrimaryKey);
-                }
-
-                // Unlink AclGroup that are not in the List.
-                foreach (var group in AclGroupsInAclActions)
-                {
-                    int index = listGroups.FindIndex(x => x.PrimaryKey == group.AclGroupId);
-                    if (index < 0)
-                    {
-                        UnLinkAclGroup(group.AclGroupId);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Method to add a list of associated AclGroup.
-        /// </summary>
-        /// <param name="aclGroupsPk">A list of AclGroups</param>
-        // todo : write public function to append a list and a function to create a new list.
-        private bool CreateAclGroupsDependencies(IEnumerable<int> aclGroupsPk)
-        {
-            // Check if List is not null.
-            if (aclGroupsPk == null)
-            {
-                log.Debug((new ArgumentNullException(nameof(aclGroupsPk)).Output()));
-                return true;
-            }
-
-            // Check if List is not empty.
-            if (aclGroupsPk.Count() == 0)
-            {
-                log.Debug((new ArgumentOutOfRangeException(nameof(aclGroupsPk) + " is empty !").Output()));
-                return true;
-            }
-
-            // Proccess of the dependencies association.
-            try
-            {
-                IEnumerable<int> depAclGroupsPk = ListOfPrimaryKeys(AclGroupsInAclActions, "AclGroupId");
-                IEnumerable<int> difference = aclGroupsPk.Except(depAclGroupsPk);
-                IEnumerable<int> intersection = aclGroupsPk.Intersect(depAclGroupsPk);
-
-                // Link all new AclGroup in the list.
-                if (difference.Count() > 0)
-                {
-                    foreach (var pk in difference)
-                    {
-                        LinkAclGroup(pk);
-                    }
-                }
-
-                // Unlink all old AclGroup in the list.
-                if (intersection.Count() > 0)
-                {
-                    foreach (var pk in intersection)
-                    {
-                        UnLinkAclGroup(pk);
-                    }
-                }
-
-                return true;
-            }
-            catch (Exception e)
-            {
-                log.Debug(e.Output());
-                return false;
-            }
-        }
 
         /// <summary>
         /// Method to associate an AclGroup to the AclAction.

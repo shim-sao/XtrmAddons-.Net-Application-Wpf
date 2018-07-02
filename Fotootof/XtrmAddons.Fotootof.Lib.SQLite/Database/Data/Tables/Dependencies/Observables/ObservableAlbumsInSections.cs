@@ -7,22 +7,25 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Obser
     /// <summary>
     /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Albums In Sections.
     /// </summary>
+    /// <typeparam name="E">The Type of the entity items destination of the dependency.</typeparam>
     [JsonArray(Title = "Albums_Sections")]
-    public class ObservableAlbumsInSections : ObservableDependenciesBase<AlbumsInSections>
+    public class ObservableAlbumsInSections<E> : ObservableDependenciesBase<AlbumsInSections, E> where E : class
     {
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Albums In Sections Constructor.
         /// </summary>
-        /// <param name="dependencyPrimaryKeyName">The dependency primary key name.</param>
-        public ObservableAlbumsInSections(string dependencyPrimaryKeyName)
-            : base(dependencyPrimaryKeyName) { }
+        public ObservableAlbumsInSections() : base() { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Albums In Sections Constructor.
         /// </summary>
-        /// <param name="dependencyPrimaryKeyName">The dependency primary key name.</param>
-        /// <param name="collection">An enumerable collection of items.</param>
-        public ObservableAlbumsInSections(string dependencyPrimaryKeyName, IEnumerable<AlbumsInSections> collection)
-            : base(dependencyPrimaryKeyName, collection) { }
+        /// <param name="list">A list of items to add at the collection initialization. </param>
+        public ObservableAlbumsInSections(List<AlbumsInSections> list) : base(list) { }
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Albums In Sections Constructor.
+        /// </summary>
+        /// <param name="collection">A enumerable collection of items to add at the collection initialization.</param>
+        public ObservableAlbumsInSections(IEnumerable<AlbumsInSections> collection) : base(collection) { }
     }
 }

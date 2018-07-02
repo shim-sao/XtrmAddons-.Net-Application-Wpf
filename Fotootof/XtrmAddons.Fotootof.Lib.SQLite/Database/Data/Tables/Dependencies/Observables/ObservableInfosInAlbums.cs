@@ -7,23 +7,25 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Obser
     /// <summary>
     /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Infos In Albums.
     /// </summary>
+    /// <typeparam name="E">The Type of the entity items destination of the dependency.</typeparam>
     [JsonArray(Title = "Infos_Albums")]
-    public class ObservableInfosInAlbums : ObservableDependenciesBase<InfosInAlbums>
+    public class ObservableInfosInAlbums<E> : ObservableDependenciesBase<InfosInAlbums, E> where E : class
     {
+        /// <summary>
+        /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Infos In Albums Constructor.
+        /// </summary>
+        public ObservableInfosInAlbums() : base() { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Infos In Albums Constructor.
         /// </summary>
-        /// <param name="dependenciesPrimaryKeysName">The dependency primary key name.</param>
-        public ObservableInfosInAlbums(string dependenciesPrimaryKeysName)
-            : base(dependenciesPrimaryKeysName) { }
+        /// <param name="list">A list of items to add at the collection initialization. </param>
+        public ObservableInfosInAlbums(List<InfosInAlbums> list) : base(list) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Infos In Albums Constructor.
         /// </summary>
-        /// <param name="dependenciesPrimaryKeysName">The dependency primary key name.</param>
-        /// <param name="collection">An enumerable collection of items.</param>
-        public ObservableInfosInAlbums(string dependenciesPrimaryKeysName, IEnumerable<InfosInAlbums> collection)
-            : base(dependenciesPrimaryKeysName, collection) { }
+        /// <param name="collection">A enumerable collection of items to add at the collection initialization.</param>
+        public ObservableInfosInAlbums(IEnumerable<InfosInAlbums> collection) : base(collection) { }
     }
 }

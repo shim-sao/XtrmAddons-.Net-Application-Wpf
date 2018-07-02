@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
-using XtrmAddons.Fotootof.Common.Interfaces;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Interfaces;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Layouts.Windows.Slideshow;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
@@ -19,13 +19,16 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Win32;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Picture;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
+using XtrmAddons.Net.Application;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Common Controls Pictures List View.
     /// </summary>
-    public partial class ListViewPicturesServer : ListViewPictures, IAlbum
+    public partial class ListViewPicturesServer : ListViewPictures, IAlbumEntity
     {
         #region Properties
 
@@ -203,25 +206,34 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 log.Warn("Starting deleting Picture(s). Please wait...");
 
                 // Delete item from database.
-                var pictDeleted = await PictureEntityCollection.DbDeleteAsync(SelectedItems);
+                //var pictDeleted = await PictureEntityCollection.DbDeleteAsync(SelectedItems);
 
                 // Important : No need to defer for list view items refresh.
                 log.Warn("Updating Picture(s) list view items...");
+
+                /*foreach (PictureEntity item in SelectedItems)
+                {
+                     AlbumEntity.UnLinkPicture(item.PrimaryKey);
+                }*/
+
                 foreach (PictureEntity item in SelectedItems)
                 {
                     AlbumEntity.Pictures.Remove(item);
                 }
 
+
+                AlbumEntity = (await AlbumEntityCollection.DbUpdateAsync(AlbumEntity, AlbumEntity))[0];
+                
                 // Refresh of the list view items source.
-                log.Warn("Refreshing Picture(s) list view...");
+                log.Warn($"Refreshing list view with {AlbumEntity?.Pictures} Pictures...");
                 ItemsCollection.Items.Refresh();
 
                 // Raise the on delete event.
-                log.Warn("Raising Picture(s) deleted event...");
-                RaiseOnDelete(pictDeleted.ToArray());
+                log.Warn($"Raising deleted event with {SelectedItems?.Count} Pictures...");
+                RaiseOnDelete(SelectedItems.ToArray());
 
                 // Stop to busy application.
-                log.Warn("Ending deleting Picture(s).");
+                log.Warn($"Ending of deleting  {SelectedItems?.Count} of Pictures.");
                 MessageBase.IsBusy = false;
             }
             catch (Exception ex)

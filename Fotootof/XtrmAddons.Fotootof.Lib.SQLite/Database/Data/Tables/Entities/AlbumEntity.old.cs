@@ -572,10 +572,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
 
 
-        #region Properties Dependency Section
+        #region Properties Dependencies Section
 
         /// <summary>
-        /// Property to access to the Section Id required for dependency.
+        /// Property Section id.
         /// </summary>
         [NotMapped]
         public int SectionId { get; set; }
@@ -584,53 +584,24 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Sections associated to the Album.
         /// </summary>
         [NotMapped]
-        public ObservableCollection<SectionEntity> Sections
-            => AlbumsInSections.DepReferences;
+        public List<SectionEntity> Sections
+        {
+            get => ListSections();
+            set => sections = value;
+        }
 
         /// <summary>
-        /// Propertiy to access to the list of Section dependency Primary Keys.
+        /// Propertiy to access to the list of Section dependencies primary key.
         /// </summary>
         [NotMapped]
         public IEnumerable<int> SectionsPK
-            => AlbumsInSections.DepPKeys;
+            => ListOfPrimaryKeys(AlbumsInSections.ToList(), "SectionId");
 
         /// <summary>
         /// Property to access to the collection of relationship Albums in Sections.
         /// </summary>
-        public ObservableAlbumsInSections<SectionEntity> AlbumsInSections { get; set; }
-            = new ObservableAlbumsInSections<SectionEntity>();
-
-        #endregion
-
-
-
-        #region Properties Dependency Picture
-
-        /// <summary>
-        /// Property Picture id.
-        /// </summary>
-        [NotMapped]
-        public int PictureId { get; set; }
-
-        /// <summary>
-        /// Propertiy to access to the list of Picture dependencies primary key.
-        /// </summary>
-        [NotMapped]
-        public IEnumerable<int> PicturesPKs
-            => PicturesInAlbums.DepPKeys;
-
-        /// <summary>
-        /// Property to access to the list of Pictures associated to the Album.
-        /// </summary>
-        [NotMapped]
-        public ObservableCollection<PictureEntity> Pictures
-            => PicturesInAlbums.DepReferences;
-
-        /// <summary>
-        /// Property to access to the collection of relationship Pictures In Albums entities.
-        /// </summary>
-        public ObservablePicturesInAlbums<PictureEntity> PicturesInAlbums { get; set; }
-            = new ObservablePicturesInAlbums<PictureEntity>();
+        public ObservableCollection<AlbumsInSections> AlbumsInSections { get; set; }
+            = new ObservableCollection<AlbumsInSections>();
 
         #endregion
 
@@ -639,30 +610,77 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Properties : Dependencies
 
         /// <summary>
+        /// Property Picture id.
+        /// </summary>
+        [NotMapped]
+        public int PictureId { get; set; }
+
+        /// <summary>
         /// Property Info id.
         /// </summary>
         [NotMapped]
         public int InfoId { get; set; }
 
         /// <summary>
-        /// Propertiy to access to the list of Info dependencies primary key.
+        /// Property to access to the list of Pictures associated to the Album.
         /// </summary>
         [NotMapped]
-        public IEnumerable<int> InfosPKs
-            => InfosInAlbums.DepPKeys;
+        public ObservableCollection<PictureEntity> Pictures
+            => PicturesInAlbums.DepReferences;
+        /*public ObservableCollection<PictureEntity> Pictures
+        {
+            get => ListPictures();
+            set
+            {
+                if (value != ListPictures())
+                {
+                    pictures.Clear();
+
+                    foreach (var p in value)
+                    {
+                        pictures.Add(p);
+                    }
+                }
+            }
+        }*/
 
         /// <summary>
         /// Property to access to the list of Infos associated to the Album.
         /// </summary>
         [NotMapped]
-        public ObservableCollection<InfoEntity> Infos
-            => InfosInAlbums.DepReferences;
+        public List<InfoEntity> Infos
+        {
+            get => ListInfos();
+            set => infos = value;
+        }
+
+        /// <summary>
+        /// Propertiy to access to the list of Picture dependencies primary key.
+        /// </summary>
+        [NotMapped]
+        public IEnumerable<int> PicturesPKs
+            => PicturesInAlbums.DepPKeys;
+            //=> ListOfPrimaryKeys(PicturesInAlbums.ToList(), "PictureId");
+
+        /// <summary>
+        /// Propertiy to access to the list of Info dependencies primary key.
+        /// </summary>
+        [NotMapped]
+        public IEnumerable<int> InfosPK => ListOfPrimaryKeys(InfosInAlbums.ToList(), "InfoId");
+
+        /// <summary>
+        /// Property to access to the collection of relationship Pictures In Albums entities.
+        /// </summary>
+        //public ObservableCollection<PicturesInAlbums> PicturesInAlbums { get; set; }
+        //    = new ObservableCollection<PicturesInAlbums>();
+        public ObservablePicturesInAlbums<PictureEntity> PicturesInAlbums { get; set; }
+            = new ObservablePicturesInAlbums<PictureEntity>();
 
         /// <summary>
         /// Property to access to the collection of relationship Infos In Albums entities.
         /// </summary>
-        public ObservableInfosInAlbums<InfoEntity> InfosInAlbums { get; set; }
-            = new ObservableInfosInAlbums<InfoEntity>();
+        public ObservableCollection<InfosInAlbums> InfosInAlbums { get; set; }
+            = new ObservableCollection<InfosInAlbums>();
 
         #endregion
 
@@ -675,7 +693,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         public AlbumEntity()
         {
-            //AlbumsInSections.CollectionChanged += (s, e) => { sections = null; };
+            AlbumsInSections.CollectionChanged += (s, e) => { sections = null; };
             //PicturesInAlbums.CollectionChanged += PicturesInAlbums_CollectionChanged;
             InfosInAlbums.CollectionChanged += (s, e) => { infos = null; };
         }

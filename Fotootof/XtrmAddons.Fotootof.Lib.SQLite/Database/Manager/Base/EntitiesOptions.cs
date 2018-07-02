@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
 {
@@ -16,7 +12,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
         /// <summary>
         /// Property array of entity dependencies for process.
         /// </summary>
-        public List<EnumEntitiesDependencies> Dependencies { get; set; } = new List<EnumEntitiesDependencies>();
+        public IList<EnumEntitiesDependencies> Dependencies { get; set; }
+            = new List<EnumEntitiesDependencies>();
 
         #endregion
 
@@ -30,13 +27,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
         /// <returns>True if the(all) dependency(ies) is(are) set.</returns>
         public bool IsDependOn(EnumEntitiesDependencies dependency)
         {
-            if (
-                Dependencies != null &&
-                (
-                    Dependencies.Contains(EnumEntitiesDependencies.All) ||
-                    Dependencies.Contains(dependency)
-                )
-            ) {
+            if (Dependencies == null || Dependencies.Contains(EnumEntitiesDependencies.None))
+            {
+                return false;
+            }
+
+            if(Dependencies.Contains(EnumEntitiesDependencies.All) || Dependencies.Contains(dependency))
+            {
                 return true;
             }
 
