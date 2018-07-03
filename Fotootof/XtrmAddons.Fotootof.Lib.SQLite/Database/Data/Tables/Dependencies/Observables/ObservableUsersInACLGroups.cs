@@ -7,9 +7,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Obser
     /// <summary>
     /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Users In AclGroups.
     /// </summary>
+    /// <typeparam name="O">The Type of the entity item to observe.</typeparam>
     /// <typeparam name="E">The Type of the entity items destination of the dependency.</typeparam>
     [JsonArray(Title = "Users_AclGroups")]
-    public class ObservableUsersInAclGroups<E> : ObservableDependenciesBase<UsersInAclGroups, E> where E : class
+    public class ObservableUsersInAclGroups<O, E> : ObservableDependencyBase<UsersInAclGroups, O, E> where O : class where E : class
     {
 
         /// <summary>

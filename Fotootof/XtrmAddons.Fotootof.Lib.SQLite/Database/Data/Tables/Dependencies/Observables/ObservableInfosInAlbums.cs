@@ -7,9 +7,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Obser
     /// <summary>
     /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Infos In Albums.
     /// </summary>
+    /// <typeparam name="O">The Type of the entity item to observe.</typeparam>
     /// <typeparam name="E">The Type of the entity items destination of the dependency.</typeparam>
     [JsonArray(Title = "Infos_Albums")]
-    public class ObservableInfosInAlbums<E> : ObservableDependenciesBase<InfosInAlbums, E> where E : class
+    public class ObservableInfosInAlbums<O, E> : ObservableDependencyBase<InfosInAlbums, O, E> where O : class where E : class
     {
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Infos In Albums Constructor.

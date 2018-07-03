@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Reflection;
 using System.Windows;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Net.Common.Extensions;

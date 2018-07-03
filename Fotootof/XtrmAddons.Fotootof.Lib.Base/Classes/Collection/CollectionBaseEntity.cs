@@ -87,7 +87,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
         protected static U GetOptionsDefault()
         {
             U item = (U)Activator.CreateInstance(typeof(U));
-            item.SetPropertyValue("Dependencies", new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All });
+            item.SetPropertyValue("Dependencies", new EnumEntitiesDependencies[] { EnumEntitiesDependencies.None });
 
             return item;
         }

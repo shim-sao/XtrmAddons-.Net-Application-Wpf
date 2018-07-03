@@ -56,18 +56,20 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             if(sectionId > 0)
             {
                 // Check if Album contains associated Sections
-                if (entity.AlbumsInSections == null)
+                /*if (entity.AlbumsInSections == null)
                 {
                     // Add new dependency.
-                    entity.AlbumsInSections = new ObservableAlbumsInSections<SectionEntity>
+                    entity.AlbumsInSections = new ObservableAlbumsInSections<AlbumEntity, SectionEntity>
                     {
                         new AlbumsInSections { SectionId = sectionId }
                     };
+                    
                 }
                 else if(entity.AlbumsInSections.SingleOrDefault(x => x.SectionId == sectionId).SectionId == 0)
                 {
                     entity.AlbumsInSections.Add(new AlbumsInSections { SectionId = sectionId });
-                }
+                }*/
+                entity.SectionsPKs.Add(sectionId);
             }
 
             entity = Context.Albums.Add(entity).Entity;

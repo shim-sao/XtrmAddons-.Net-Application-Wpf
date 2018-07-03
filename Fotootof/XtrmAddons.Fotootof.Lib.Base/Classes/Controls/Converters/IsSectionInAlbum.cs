@@ -11,6 +11,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters
         /// <summary>
         /// Property to access to the name of Sections dependencies primary keys.
         /// </summary>
-        public override string DependenciesPKName => "SectionsPK";
+        public override string DependenciesPKName => "SectionsPKs";
     }
 }

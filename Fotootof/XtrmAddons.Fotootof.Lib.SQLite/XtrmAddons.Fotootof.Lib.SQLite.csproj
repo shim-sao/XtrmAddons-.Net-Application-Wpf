@@ -62,7 +62,7 @@
     <Compile Include="Database\Data\Base\EntityBaseExtension.cs" />
     <Compile Include="Database\Data\Base\Interfaces\IAlias.cs" />
     <Compile Include="Database\Data\Base\Interfaces\IEntityBase.cs" />
-    <Compile Include="Database\Data\Base\ObservableDependenciesBase.cs" />
+    <Compile Include="Database\Data\Base\ObservableDependencyBase.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableUsersInAclGroups.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableSectionsInAclGroups.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservablePicturesInAlbums.cs" />

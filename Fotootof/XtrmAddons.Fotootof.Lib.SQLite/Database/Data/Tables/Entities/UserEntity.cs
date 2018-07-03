@@ -9,6 +9,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Observables;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
@@ -79,14 +80,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
 
         #region Variables Dependencies
-        
-        /// <summary>
-        /// Variable collection of relationship Users in AclGroups.
-        /// </summary>
-        [NotMapped]
-        [XmlIgnore]
-        ObservableCollection<UsersInAclGroups> usersInAclGroups
-            = new ObservableCollection<UsersInAclGroups>();
 
         /// <summary>
         /// Variable AclGroup id (required for entity dependency).
@@ -94,22 +87,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         [NotMapped]
         [XmlIgnore]
         private int aclGroupId = 0;
-
-        /// <summary>
-        /// Variable associated AclGroups primary keys list.
-        /// </summary>
-        [NotMapped]
-        [XmlIgnore]
-#pragma warning disable CS0414 // Le champ 'UserEntity.aclGroupsPK' est assigné, mais sa valeur n'est jamais utilisée
-        private IEnumerable<int> aclGroupsPK = null;
-#pragma warning restore CS0414 // Le champ 'UserEntity.aclGroupsPK' est assigné, mais sa valeur n'est jamais utilisée
-
-        /// <summary>
-        /// Variable list of AclGroup associated to the User.
-        /// </summary>
-        [NotMapped]
-        [XmlIgnore]
-        private IEnumerable<AclGroupEntity> aclGroups = null;
 
         #endregion
 
@@ -273,55 +250,38 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// <para>Property to access to the list of AclGroup associated to the User.</para>
-        /// <para>Notify on property changes.</para>
+        /// Property to access to the list of AclGroup dependencies primary key.
         /// </summary>
         [NotMapped]
-        public IEnumerable<AclGroupEntity> AclGroups
+        public ObservableCollection<int> AclGroupsPKs
         {
             get
             {
-                if (aclGroups == null || aclGroups.Count() != UsersInAclGroups?.Count)
-                {
-                    aclGroups = ListEntities<AclGroupEntity>(UsersInAclGroups);
-                }
-                return aclGroups;
-            }
-
-            private set
-            {
-                if (value != aclGroups)
-                {
-                    aclGroups = value;
-                    NotifyPropertyChanged();
-                }
+                UsersInAclGroups.Populate();
+                return UsersInAclGroups.DepPKeys;
             }
         }
 
         /// <summary>
-        /// Property to access to the list of AclGroup dependencies primary key.
+        /// <para>Property to access to the list of AclGroup associated to the User.</para>
+        /// <para>Notify on property changes.</para>
         /// </summary>
         [NotMapped]
-        public IEnumerable<int> AclGroupsPK
-            => ListOfPrimaryKeys(UsersInAclGroups.ToList(), "AclGroupId");
+        public ObservableCollection<AclGroupEntity> AclGroups
+        {
+            get
+            {
+                UsersInAclGroups.Populate();
+                return UsersInAclGroups.DepReferences;
+            }
+        }
 
         /// <summary>
         /// <para>Property to access to the collection of relationship Users in AclGroups.</para>
         /// <para>Notify on property changes.</para>
         /// </summary>
-        [JsonIgnore]
-        public ObservableCollection<UsersInAclGroups> UsersInAclGroups
-        {
-            get => usersInAclGroups;
-            set
-            {
-                if (value != usersInAclGroups)
-                {
-                    usersInAclGroups = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
+        public ObservableUsersInAclGroups<UserEntity, AclGroupEntity> UsersInAclGroups { get; set; }
+            = new ObservableUsersInAclGroups<UserEntity, AclGroupEntity>();
 
         #endregion
 
@@ -332,10 +292,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Server SQLite User entity Constructor.
         /// </summary>
-        public UserEntity()
-        {
-            UsersInAclGroups.CollectionChanged += UsersInAclGroups_CollectionChanged;
-        }
+        public UserEntity() { }
 
         #endregion
 
@@ -344,20 +301,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Methods
 
         /// <summary>
-        /// Method called on Users InA clGroups collection changed event.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Notify collection changed event arguments.</param>
-        private void UsersInAclGroups_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            aclGroups = null;
-            NotifyPropertyChanged();
-        }
-
-        /// <summary>
         /// Method to associate a AclGroup to the User.
         /// </summary>
         /// <param name="AclGroupId">An AclGroup primary key.</param>
+        [System.Obsolete("Use dependency references.")]
         public void LinkAclGroup(int aclGroupId)
         {
             try
@@ -376,6 +323,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to unlink a AclGroup of the User.
         /// </summary>
         /// <param name="AclGroupId">An AclGroup primary key.</param>
+        [System.Obsolete("Use dependency references.")]
         public void UnLinkAclGroup(int aclGroupId)
         {
             try

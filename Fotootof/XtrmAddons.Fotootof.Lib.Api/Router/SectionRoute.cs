@@ -92,7 +92,7 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
                             }
                         );
 
-                    entity = ag.Sections.Find(x => x.PrimaryKey == id);
+                    entity = ag.Sections.ToList().Find(x => x.PrimaryKey == id);
 
                     if (entity != null)
                     {

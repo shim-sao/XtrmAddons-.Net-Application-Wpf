@@ -203,7 +203,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm
         /// <param name="routedEventArgs">Routed event arguments.</param>
         private void CheckBoxSection_Checked(object sender, RoutedEventArgs e)
         {
-            NewForm.LinkSection(Tag2Object<SectionEntity>(sender).PrimaryKey);
+            NewForm.SectionsPKs.AddIfNotExists(Tag2Object<SectionEntity>(sender).PrimaryKey);
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm
         /// <param name="routedEventArgs">Routed event arguments.</param>
         private void CheckBoxSection_UnChecked(object sender, RoutedEventArgs e)
         {
-            NewForm.UnlinkSection(Tag2Object<SectionEntity>(sender).PrimaryKey);
+            NewForm.SectionsPKs.Remove(Tag2Object<SectionEntity>(sender).PrimaryKey);
         }
 
         #endregion
@@ -236,7 +236,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm
             {
                 foreach (InfoEntity inf in e.RemovedItems) 
                 {
-                    NewForm.UnLinkInfo(inf.PrimaryKey);
+                    NewForm.InfosPKs.Remove(inf.PrimaryKey);
                 }
             }
 
@@ -244,14 +244,14 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm
             InfoEntity color = (InfoEntity)FiltersColorSelector.SelectedItem;
             if(color != null && color.PrimaryKey != 0)
             {
-                NewForm.LinkInfo(color.PrimaryKey);
+                NewForm.InfosPKs.Add(color.PrimaryKey);
             }
 
             // Get quality filter.
             InfoEntity quality = (InfoEntity)FiltersQualitySelector.SelectedItem;
             if (quality != null && quality.PrimaryKey != 0)
             {
-                NewForm.LinkInfo(quality.PrimaryKey);
+                NewForm.InfosPKs.Add(quality.PrimaryKey);
             }
         }
 

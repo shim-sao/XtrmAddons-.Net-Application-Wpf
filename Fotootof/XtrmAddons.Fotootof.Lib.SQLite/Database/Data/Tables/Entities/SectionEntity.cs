@@ -118,8 +118,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variables collection of relationship Albums in Sections. Sections dependencies.
         /// </summary>
         [NotMapped, XmlIgnore, NonSerialized]
-        private ObservableAlbumsInSections<SectionEntity> albumsDependencies =
-            new ObservableAlbumsInSections<SectionEntity>();
+        private ObservableAlbumsInSections<SectionEntity, AlbumEntity> albumsDependencies =
+            new ObservableAlbumsInSections<SectionEntity, AlbumEntity>();
 
         #endregion
 
@@ -134,25 +134,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         private int aclGroupId = 0;
 
         /// <summary>
-        /// Variable associated AclGroups primary keys list.
-        /// </summary>
-        [NotMapped, XmlIgnore]
-#pragma warning disable CS0169 // Le champ 'SectionEntity.aclGroupsPK' n'est jamais utilisé
-        private IEnumerable<int> aclGroupsPK;
-#pragma warning restore CS0169 // Le champ 'SectionEntity.aclGroupsPK' n'est jamais utilisé
-
-        /// <summary>
         /// Variable list of AclGroups associated to the Section.
         /// </summary>
         [NotMapped, XmlIgnore]
         private IEnumerable<AclGroupEntity> aclGroups;
-
-        /// <summary>
-        /// Variables collection of relationship Albums in Sections. Sections dependencies.
-        /// </summary>
-        [NotMapped, XmlIgnore, NonSerialized]
-        private ObservableSectionsInAclGroups<SectionEntity> aclGroupsDependencies =
-            new ObservableSectionsInAclGroups<SectionEntity>();
 
         #endregion
 
@@ -376,25 +361,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Proprerties Dependencies Album
 
         /// <summary>
-        /// Property to access to the collection of relationship Albums in Sections.
-        /// </summary>
-        //public ObservableAlbumsInSections AlbumsInSections { get; set; }
-        //    = new ObservableAlbumsInSections("SectionId");
-        public ObservableCollection<AlbumsInSections> AlbumsInSections
-        {
-            get => albumsDependencies;
-            set
-            {
-                if (value != albumsDependencies as ObservableCollection<AlbumsInSections>)
-                {
-                    albumsDependencies = new ObservableAlbumsInSections<SectionEntity>(value);
-                    NotifyPropertyChanged();
-                }
-                
-            }
-        }
-
-        /// <summary>
         /// Property Album id (required for entity dependency).
         /// </summary>
         [NotMapped, XmlIgnore]
@@ -437,22 +403,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                 }
             }
         }
-        //{
-        //    get
-        //    {
 
-        //        return AlbumsInSections.DependenciesPrimaryKeys;
-        //    }
-
-        //    private set
-        //    {
-        //        if (albumsPK != value)
-        //        {
-        //            albumsPK = value;
-        //        }
-        //        NotifyPropertyChanged();
-        //    }
-        //}
+        /// <summary>
+        /// Property to access to the collection of relationship Albums in Sections.
+        /// </summary>
+        public ObservableAlbumsInSections<SectionEntity, AlbumEntity> AlbumsInSections { get; set; }
+            = new ObservableAlbumsInSections<SectionEntity, AlbumEntity>();
 
         /// <summary>
         /// Property to access to the list of Albums associated to the Section.
@@ -493,19 +449,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         //public ObservableCollection<SectionsInAclGroups> SectionsInAclGroups { get; set; }
         //    = new ObservableCollection<SectionsInAclGroups>();
-        public ObservableCollection<SectionsInAclGroups> SectionsInAclGroups
-        {
-            get => aclGroupsDependencies;
-            set
-            {
-                if (value != aclGroupsDependencies as ObservableCollection<SectionsInAclGroups>)
-                {
-                    aclGroupsDependencies = new ObservableSectionsInAclGroups<SectionEntity>(value);
-                    NotifyPropertyChanged();
-                }
-
-            }
-        }
+        public ObservableSectionsInAclGroups<SectionEntity, AclGroupEntity> SectionsInAclGroups { get; set; }
+            = new ObservableSectionsInAclGroups<SectionEntity, AclGroupEntity>();
 
         /// <summary>
         /// Property AclGroup id (required for entity dependency).

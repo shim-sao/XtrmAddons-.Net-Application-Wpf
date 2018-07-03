@@ -207,6 +207,13 @@
 						<Style TargetType="{x:Type ListViewItem}"
 							   BasedOn="{StaticResource ListViewItemDefault}" />
 					</ListView.Resources>
+					
+					<ListView.ItemContainerStyle>
+						<Style TargetType="{x:Type ListViewItem}">
+							<Setter Property="HorizontalContentAlignment" Value="Left"/>
+							<Setter Property="VerticalContentAlignment" Value="Center"/>
+						</Style>
+					</ListView.ItemContainerStyle>
 
 					<ListView.ItemsPanel>
 						<ItemsPanelTemplate>

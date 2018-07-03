@@ -10,13 +10,6 @@
 	mc:Ignorable="d"
 	SizeChanged="Control_SizeChanged">
 
-	<!--<UserControl.Resources>
-		<Style TargetType="{x:Type ListViewItem}">
-			<Setter Property="HorizontalContentAlignment" Value="Left"/>
-			<Setter Property="VerticalContentAlignment" Value="Center"/>
-		</Style>
-	</UserControl.Resources>-->
-
 	<Grid x:Name="Block_Root"
           Style="{StaticResource ResourceKey=Root}"
 		  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewPicturesServer}}}">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
@@ -147,7 +148,7 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
                             }
                         );
 
-                    entity = ag.Sections.Find(x => x.PrimaryKey == int.Parse(Uri.Params[0]));
+                    entity = ag.Sections.ToList().Find(x => x.PrimaryKey == int.Parse(Uri.Params[0]));
                 }
 
                 // Check if folder is associated or not.

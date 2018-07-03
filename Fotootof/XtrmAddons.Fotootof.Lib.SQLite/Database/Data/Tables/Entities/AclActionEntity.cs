@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using System.Linq;
 using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
@@ -27,23 +27,20 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Variable logger.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Variable action of the item.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         private string action = "";
 
         /// <summary>
         /// Variable parameters of the item.
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         private string parameters = "";
 
         #endregion
@@ -55,16 +52,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Variable AclGroup id (required for entity dependency).
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         private int aclGroupId = 0;
-
-        /// <summary>
-        /// Variable list of AclGroup associated to the AclAction.
-        /// </summary>
-        [NotMapped]
-        [XmlIgnore]
-        private IEnumerable<AclGroupEntity> aclGroups = null;
 
         #endregion
 
@@ -138,8 +127,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Property to access to the AclGroup id (required for entity dependency).
         /// </summary>
-        [NotMapped]
-        [XmlIgnore]
+        [NotMapped, XmlIgnore]
         public int AclGroupId
         {
             get => aclGroupId;
@@ -158,7 +146,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [NotMapped]
         public ObservableCollection<int> AclGroupsPKs
-            => AclGroupsInAclActions.DepPKeys;
+        {    
+            get
+            {
+                AclGroupsInAclActions.Populate();
+                return AclGroupsInAclActions.DepPKeys;
+            }
+        }
 
         /// <summary>
         /// Property to access to the list of AclGroup associated to the AclAction.
@@ -167,15 +161,21 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         [JsonProperty(PropertyName = "AclGroups", ItemConverterType = typeof(Array))]
         [XmlElement(ElementName = "AclGroups")]
         public ObservableCollection<AclGroupEntity> AclGroups
-            => AclGroupsInAclActions.DepReferences;
+        {
+            get
+            {
+                AclGroupsInAclActions.Populate();
+                return AclGroupsInAclActions.DepReferences;
+            }
+        }
 
         /// <summary>
         /// Property to access to the collection of relationship AclGroup in AclAction.
         /// </summary>
         [JsonProperty(PropertyName = "AclGroups_AclActions")]
         [XmlElement(ElementName = "AclGroups_AclActions")]
-        public ObservableAclGroupsInAclActions<AclGroupEntity> AclGroupsInAclActions { get; set; }
-            = new ObservableAclGroupsInAclActions<AclGroupEntity>();
+        public ObservableAclGroupsInAclActions<AclActionEntity, AclGroupEntity> AclGroupsInAclActions { get; set; }
+            = new ObservableAclGroupsInAclActions<AclActionEntity, AclGroupEntity>();
 
         #endregion
 
@@ -199,8 +199,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         /// <param name="aclGroupPk">An AclGroup id or primary key to link.</param>
         /// <returns>True if link process is successful otherwise false.</returns>
+        [System.Obsolete("Use => AclGroupsPKs.Add(aclGroupPk);")]
         public bool LinkAclGroup(int aclGroupPk)
         {
+            Debug.WriteLine("System.Obsolete : Use => AclGroupsPKs.Add(aclGroupPk);");
+
             try
             {
                 int index = FindIndexDependencyAclGroup(aclGroupPk);
@@ -222,8 +225,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         /// <param name="aclGroupPk">An AclGroup id or primary key to unlink.</param>
         /// <returns>True if unlink process is successful otherwise false.</returns>
+        [System.Obsolete("Use => AclGroupsPKs.Remove(aclGroupPk);")]
         public bool UnLinkAclGroup(int aclGroupPk)
         {
+            Debug.WriteLine("System.Obsolete : Use => AclGroupsPKs.Remove(aclGroupPk);");
+
             try
             {
                 int index = FindIndexDependencyAclGroup(aclGroupPk);
@@ -245,6 +251,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         /// <param name="aclGroupPk">An AclGroup id or primary key to find.</param>
         /// <returns>The index of the dependency or -1, on error or if it is not found.</returns>
+        [System.Obsolete("")]
         public int FindIndexDependencyAclGroup(int aclGroupPk)
         {
             try
