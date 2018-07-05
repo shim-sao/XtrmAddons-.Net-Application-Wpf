@@ -94,7 +94,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
 
 
-        #region Variables Dependencies Album
+        #region Variables Dependencies
 
         /// <summary>
         /// Variable Album id (required for entity dependency).
@@ -103,40 +103,30 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         private int albumId = 0;
 
         /// <summary>
-        /// Variable associated Albums primary keys list.
-        /// </summary>
-        [NotMapped, XmlIgnore]
-        private IEnumerable<int> albumsPKs;
-
-        /// <summary>
-        /// Variable list of Albums associated to the Section.
-        /// </summary>
-        [NotMapped, XmlIgnore]
-        private IEnumerable<AlbumEntity> albums;
-
-        /// <summary>
-        /// Variables collection of relationship Albums in Sections. Sections dependencies.
-        /// </summary>
-        [NotMapped, XmlIgnore, NonSerialized]
-        private ObservableAlbumsInSections<SectionEntity, AlbumEntity> albumsDependencies =
-            new ObservableAlbumsInSections<SectionEntity, AlbumEntity>();
-
-        #endregion
-
-
-
-        #region Variables Dependencies AclGroup
-
-        /// <summary>
         /// Variable AclGroup id (required for entity dependency).
         /// </summary>
         [NotMapped, XmlIgnore]
         private int aclGroupId = 0;
 
+        #endregion
+
+
+
+        #region Obsolete Variables Dependencies
+
+        /// <summary>
+        /// Variables collection of relationship Albums in Sections. Sections dependencies.
+        /// </summary>
+        [NotMapped, XmlIgnore, NonSerialized]
+        [System.Obsolete("Use dependency References);")]
+        private ObservableAlbumsInSections<SectionEntity, AlbumEntity> albumsDependencies =
+            new ObservableAlbumsInSections<SectionEntity, AlbumEntity>();
+
         /// <summary>
         /// Variable list of AclGroups associated to the Section.
         /// </summary>
         [NotMapped, XmlIgnore]
+        [System.Obsolete("Use dependency References);")]
         private IEnumerable<AclGroupEntity> aclGroups;
 
         #endregion
@@ -383,24 +373,27 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         [NotMapped]
         [JsonProperty(PropertyName = "AlbumsPKs")]
         [XmlElement(ElementName = "AlbumsPKs")]
-        public IEnumerable<int> AlbumsPKs
+        public ObservableCollection<int> AlbumsPKs
         {
             get
             {
-                if (albumsPKs == null)
-                {
-                    albumsPKs = ListOfPrimaryKeys(AlbumsInSections, "AlbumId");
-                }
-                return ListOfPrimaryKeys(AlbumsInSections, "AlbumId");
+                AlbumsInSections.Populate();
+                return AlbumsInSections.DepPKeys;
             }
+        }
 
-            private set
+        /// <summary>
+        /// Property to access to the list of Albums associated to the Section.
+        /// </summary>
+        [NotMapped]
+        [JsonProperty(PropertyName = "Albums")]
+        [XmlElement(ElementName = "Albums")]
+        public ObservableCollection<AlbumEntity> Albums
+        {
+            get
             {
-                if (albumsPKs != value)
-                {
-                    albumsPKs = value;
-                    NotifyPropertyChanged();
-                }
+                AlbumsInSections.Populate();
+                return AlbumsInSections.DepReferences;
             }
         }
 
@@ -410,47 +403,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         public ObservableAlbumsInSections<SectionEntity, AlbumEntity> AlbumsInSections { get; set; }
             = new ObservableAlbumsInSections<SectionEntity, AlbumEntity>();
 
-        /// <summary>
-        /// Property to access to the list of Albums associated to the Section.
-        /// </summary>
-        [NotMapped]
-        [JsonProperty(PropertyName = "Albums")]
-        [XmlElement(ElementName = "Albums")]
-        public IEnumerable<AlbumEntity> Albums
-        {
-            get
-            {
-                if (albums == null || albums.Count() != AlbumsInSections?.Count)
-                {
-                    albums = ListEntities<AlbumEntity>(AlbumsInSections);
-                }
-
-                return albums;
-            }
-
-            private set
-            {
-                if (albums != value)
-                {
-                    albums = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
-
         #endregion
 
 
 
         #region Proprerties Dependencies AclGroup
-
-        /// <summary>
-        /// Property to access to the collection of relationship Albums in Sections.
-        /// </summary>
-        //public ObservableCollection<SectionsInAclGroups> SectionsInAclGroups { get; set; }
-        //    = new ObservableCollection<SectionsInAclGroups>();
-        public ObservableSectionsInAclGroups<SectionEntity, AclGroupEntity> SectionsInAclGroups { get; set; }
-            = new ObservableSectionsInAclGroups<SectionEntity, AclGroupEntity>();
 
         /// <summary>
         /// Property AclGroup id (required for entity dependency).
@@ -475,8 +432,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         [NotMapped]
         [JsonProperty(PropertyName = "AclGroupsPKs")]
         [XmlElement(ElementName = "AclGroupsPKs")]
-        public IEnumerable<int> AclGroupsPKs
-            => ListOfPrimaryKeys(SectionsInAclGroups.ToList(), "AclGroupId");
+        public ObservableCollection<int> AclGroupsPKs
+        {
+            get
+            {
+                SectionsInAclGroups.Populate();
+                return SectionsInAclGroups.DepPKeys;
+            }
+        }
 
         /// <summary>
         /// Property to access to the list of AclGroups associated to the Section.
@@ -484,11 +447,20 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         [NotMapped]
         [JsonProperty(PropertyName = "AclGroups")]
         [XmlElement(ElementName = "AclGroups")]
-        public IEnumerable<AclGroupEntity> AclGroups
+        public ObservableCollection<AclGroupEntity> AclGroups
         {
-            get => ListAclGroups();
-            set => aclGroups = value;
+            get
+            {
+                SectionsInAclGroups.Populate();
+                return SectionsInAclGroups.DepReferences;
+            }
         }
+
+        /// <summary>
+        /// Property to access to the collection of relationship Albums in Sections.
+        /// </summary>
+        public ObservableSectionsInAclGroups<SectionEntity, AclGroupEntity> SectionsInAclGroups { get; set; }
+            = new ObservableSectionsInAclGroups<SectionEntity, AclGroupEntity>();
 
         #endregion
 
@@ -499,11 +471,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries SQLite Section Entity Constructor.
         /// </summary>
-        public SectionEntity()
-        {
-            AlbumsInSections.CollectionChanged += (s, e) => { albums = null; };
-            SectionsInAclGroups.CollectionChanged += (s, e) => { aclGroups = null; };
-        }
+        public SectionEntity() { }
 
         #endregion
 
@@ -515,6 +483,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to get the list of associated AclGroups to the Section.
         /// </summary>
         /// <returns>The list of associated AclGroups to the Section.</returns>
+        [System.Obsolete("Use dependency References);")]
         private IEnumerable<AclGroupEntity> ListAclGroups()
         {
             if (aclGroups == null)
@@ -534,6 +503,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to associate an AclGroup to the Section.
         /// </summary>
         /// <param name="aclGroupPk">An album id or primary key.</param>
+        [System.Obsolete("Use => AclGroupsPKs.Add(aclGroupPk);")]
         public bool LinkAclGroup(int aclGroupPk)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {aclGroupPk}");
@@ -558,6 +528,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to unlink an AclGroup of the Section.
         /// </summary>
         /// <param name="aclGroupPk">An album id or primary key.</param>
+        [System.Obsolete("Use => AclGroupsPKs.Remove(aclGroupPk);")]
         public bool UnLinkAclGroup(int aclGroupPk)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {aclGroupPk}");
@@ -585,28 +556,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Methods Album
 
         /// <summary>
-        /// Method to get the list of associated Album to the Section.
-        /// </summary>
-        /// <returns>The list of associated Albums to the Section.</returns>
-        private IEnumerable<AlbumEntity> ListAlbums()
-        {
-            if (albums == null)
-            {
-                albums = new List<AlbumEntity>();
-
-                if (AlbumsInSections != null)
-                {
-                    albums = ListEntities<AlbumEntity>(AlbumsInSections);
-                }
-            }
-
-            return albums;
-        }
-
-        /// <summary>
         /// Method to associate an Album to the Section.
         /// </summary>
         /// <param name="albumPk">An album id or primary key.</param>
+        [System.Obsolete("Use => AlbumsPKs.Add(AlbumPk);")]
         public bool LinkAlbum(int albumPk)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {albumPk}");
@@ -631,6 +584,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to unlink an Album of the Section.
         /// </summary>
         /// <param name="albumPk">An album id or primary key.</param>
+        [System.Obsolete("Use => AlbumsPKs.Remove(AlbumPk);")]
         public bool UnlinkAlbum(int albumPk)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {albumPk}");

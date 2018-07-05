@@ -194,7 +194,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         {
             try
             {
-                NewForm.LinkAclAction(Tag2Object<AclActionEntity>(sender).PrimaryKey);
+                NewForm.AclActionsPKs.Add(Tag2Object<AclActionEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {
@@ -212,7 +212,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         {
             try
             {
-                NewForm.UnLinkAclAction(Tag2Object<AclActionEntity>(sender).PrimaryKey);
+                NewForm.AclActionsPKs.Remove(Tag2Object<AclActionEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {
@@ -236,7 +236,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         {
             try
             {
-                NewForm.LinkUser(Tag2Object<UserEntity>(sender).PrimaryKey);
+                NewForm.UsersPKs.Add(Tag2Object<UserEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {
@@ -254,7 +254,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         {
             try
             {
-                NewForm.UnLinkUser(Tag2Object<UserEntity>(sender).PrimaryKey);
+                NewForm.UsersPKs.Remove(Tag2Object<UserEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {

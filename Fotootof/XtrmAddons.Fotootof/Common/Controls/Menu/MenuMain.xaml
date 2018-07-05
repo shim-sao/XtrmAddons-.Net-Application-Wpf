@@ -122,7 +122,7 @@
 			</MenuItem>
 			<!-- #endregion Users -->
 			
-			<MenuItem Header="{x:Static p:Resources._Sections}">
+			<MenuItem Header="{x:Static p:Resources._Catalog}">
 				<MenuItem Header="{x:Static p:Resources._AddSection}"
 						  x:Name="MenuItem_AddSection"
 						  Click="OnAddSection_Click">

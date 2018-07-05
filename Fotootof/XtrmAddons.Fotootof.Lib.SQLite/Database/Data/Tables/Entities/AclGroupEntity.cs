@@ -264,7 +264,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of AclAction associated to the item.
         /// </summary>
         [NotMapped]
-        public IEnumerable<AclActionEntity> AclActions
+        public ObservableCollection<AclActionEntity> AclActions
         {
             get
             {
@@ -307,7 +307,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Propertiy to access to the list of Section dependencies primary key.
         /// </summary>
         [NotMapped]
-        public IEnumerable<int> SectionsPKs
+        public ObservableCollection<int> SectionsPKs
         {
             get
             {

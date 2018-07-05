@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
@@ -82,6 +81,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// <param name="userId">The id of the User.</param>
         /// <param name="aclGroupId">The list oft id of AclGoup.</param>
         /// <returns>Async task with modified AclGroup entity as result.</returns>
+        [System.Obsolete("Use generic method.")]
         public async Task<int> DeleteAclGroupDependencyAsync(int userId, List<int> aclGroupId)
         {
             string action = string.Join(",", aclGroupId);
@@ -100,6 +100,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
+        [System.Obsolete("Use generic method.")]
         public async Task<int> CleanAclGroupDependencyAsync(UserEntity entity, bool save = true)
         {
             string ids = string.Join(",", entity.ListOfPrimaryKeys(entity.UsersInAclGroups.ToList(), "AclGroupId"));

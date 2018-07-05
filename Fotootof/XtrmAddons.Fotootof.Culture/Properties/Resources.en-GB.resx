@@ -633,4 +633,7 @@
   <data name="FunctionalitiesCurrentlyUnavailable" xml:space="preserve">
     <value>Functionalities currently unavailable</value>
   </data>
+  <data name="_Catalog" xml:space="preserve">
+    <value>_Catalog</value>
+  </data>
 </root>

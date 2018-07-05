@@ -8,6 +8,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Observables;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
@@ -176,6 +177,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable list of Infos associated to the Album.
         /// </summary>
         [NotMapped, XmlIgnore]
+        [System.Obsolete("Use dependency References);")]
         private List<InfoEntity> infos;
 
         #endregion
@@ -591,12 +593,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Properties Dependencies Album
 
         /// <summary>
-        /// Property to access to the collection of relationship Pictures In Albums entities.
-        /// </summary>
-        public ObservableCollection<PicturesInAlbums> PicturesInAlbums { get; set; }
-            = new ObservableCollection<PicturesInAlbums>();
-
-        /// <summary>
         /// Property to access to the Album id (required for entity dependency).
         /// </summary>
         [NotMapped, XmlIgnore]
@@ -617,14 +613,33 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Album dependencies primary key.
         /// </summary>
         [NotMapped]
-        public IEnumerable<int> AlbumsPKs
-            => ListOfPrimaryKeys(PicturesInAlbums.ToList(), "AlbumId");
+        public ObservableCollection<int> AlbumsPKs
+        {
+            get
+            {
+                PicturesInAlbums.Populate();
+                return PicturesInAlbums.DepPKeys;
+            }
+        }
 
         /// <summary>
         /// Property to access to the list of Albums associated to the item.
         /// </summary>
         [NotMapped]
-        public List<AlbumEntity> Albums { get => ListAlbums(); set => albums = value; }
+        public ObservableCollection<AlbumEntity> Albums
+        {
+            get
+            {
+                PicturesInAlbums.Populate();
+                return PicturesInAlbums.DepReferences;
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the collection of relationship Pictures In Albums entities.
+        /// </summary>
+        public ObservablePicturesInAlbums<PictureEntity, AlbumEntity> PicturesInAlbums { get; set; }
+            = new ObservablePicturesInAlbums<PictureEntity, AlbumEntity>();
 
 
         #endregion
@@ -640,22 +655,36 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         public int InfoId { get; set; }
 
         /// <summary>
-        /// Property to access to the list of Infos associated to the item.
-        /// </summary>
-        [NotMapped]
-        public List<InfoEntity> Infos { get => ListInfos(); set => infos = value; }
-
-        /// <summary>
         /// Propertiy to access to the list of Info dependencies primary key.
         /// </summary>
         [NotMapped]
-        public IEnumerable<int> InfosPK => ListOfPrimaryKeys(InfosInPictures.ToList(), "InfoId");
+        public ObservableCollection<int> InfosPKs
+        {
+            get
+            {
+                InfosInPictures.Populate();
+                return InfosInPictures.DepPKeys;
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the list of Infos associated to the item.
+        /// </summary>
+        [NotMapped]
+        public ObservableCollection<InfoEntity> Infos
+        {
+            get
+            {
+                InfosInPictures.Populate();
+                return InfosInPictures.DepReferences;
+            }
+        }
 
         /// <summary>
         /// Property to access to the collection of relationship Infos In Pictures entities.
         /// </summary>
-        public ObservableCollection<InfosInPictures> InfosInPictures { get; set; }
-            = new ObservableCollection<InfosInPictures>();
+        public ObservableInfosInPictures<PictureEntity, InfoEntity> InfosInPictures { get; set; }
+            = new ObservableInfosInPictures<PictureEntity, InfoEntity>();
 
         #endregion
 
@@ -666,22 +695,19 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries SQLite Picture Entity Constructor.
         /// </summary>
-        public PictureEntity()
-        {
-            PicturesInAlbums.CollectionChanged += (s, e) => { albums = null; };
-            InfosInPictures.CollectionChanged += (s, e) => { infos = null; };
-        }
+        public PictureEntity() { }
 
         #endregion
 
 
 
-        #region Methods
+        #region Obsolete Methods
 
         /// <summary>
         /// Method to get a list of associated Album of the Picture.
         /// </summary>
         /// <returns>A list of associated Album to the Picture.</returns>
+        [System.Obsolete("Use dependency References);")]
         private List<AlbumEntity> ListAlbums()
         {
             if (albums == null)
@@ -701,6 +727,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to get a list of associated Info to the Picture.
         /// </summary>
         /// <returns>A list of associated Info to the Picture.</returns>
+        [System.Obsolete("Use dependency References);")]
         private List<InfoEntity> ListInfos()
         {
             if (infos == null)

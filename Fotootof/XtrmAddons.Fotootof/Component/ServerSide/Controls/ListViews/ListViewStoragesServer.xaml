@@ -157,7 +157,8 @@
 			<!-- #region Files List -->
 			<Grid x:Name="Block_Items">
 
-				<ListView Name="ItemsCollectionStorages"
+				<ListView x:Uid="ListViewCollection"
+						  x:Name="ItemsCollectionStorages"
 						  Background="White"
 						  HorizontalAlignment="Stretch"
 						  VerticalAlignment="Stretch"
@@ -173,6 +174,13 @@
 						<Style TargetType="{x:Type ListViewItem}"
 							   BasedOn="{StaticResource ListViewItemDefault}" />
 					</ListView.Resources>
+
+					<ListView.ItemContainerStyle>
+						<Style TargetType="{x:Type ListViewItem}">
+							<Setter Property="HorizontalContentAlignment" Value="Left"/>
+							<Setter Property="VerticalContentAlignment" Value="Center"/>
+						</Style>
+					</ListView.ItemContainerStyle>
 
 					<ListView.ContextMenu>
 						<ContextMenu>
@@ -316,7 +324,7 @@
 											 TextWrapping="Wrap"
 											 Padding="2"
 											 IsEnabled="False"
-											 BorderThickness="0"/>
+											 BorderThickness="0" />
 								</Border>
 
 								<!--

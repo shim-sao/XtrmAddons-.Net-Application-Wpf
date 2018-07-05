@@ -65,6 +65,7 @@ namespace XtrmAddons.Fotootof.SQLiteService
         /// <summary>
         /// 
         /// </summary>
+        [System.Obsolete("Use others mechanisms. Table will be deleted.")]
         public QuerierVersion Versions { get; } = new QuerierVersion();
         
         #endregion

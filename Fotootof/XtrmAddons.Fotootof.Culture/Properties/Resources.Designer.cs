@@ -133,6 +133,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à _Catalog.
+        /// </summary>
+        public static string _Catalog {
+            get {
+                return ResourceManager.GetString("_Catalog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à _Categories.
         /// </summary>
         public static string _Categories {
