@@ -250,7 +250,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
             {
                 obj.Alias = obj.Name;
             }
-
+            
             // Check if another entity with the same alias is in database.
             var alb = Db.Albums.SingleOrNull(
                 new AlbumOptionsSelect

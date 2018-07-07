@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
@@ -81,6 +82,55 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
 
         #region Methods
 
+        // Save not working at all.
+        //public async Task<object> Save()
+        //{
+        //    try
+        //    {
+        //        using (Db.Context)
+        //        {
+        //            try { Db.Context.Attach(this); } catch (Exception e1) { log.Info(e1.Output(), e1); }
+
+        //            if (PrimaryKey == 0)
+        //            {
+        //                this.Bind(Db.Context.Add(this));
+        //                log.Info($"Adding {GetType().Name} [PrimaryKey:{PrimaryKey}] into database.");
+        //            }
+        //            else
+        //            {
+        //                this.Bind(Db.Context.Update(this));
+        //                log.Info($"Updating {GetType().Name} [PrimaryKey:{PrimaryKey}] into database.");
+        //            }
+        //            /*
+        //            using (Task<int> result = Db.Context.SaveChangesAsync())
+        //            {
+        //                if(result.IsCompleted)
+        //                {
+        //                    log.Warn($"Saving {GetType().Name} [PrimaryKey:{PrimaryKey}] into database : Done.");
+        //                }
+
+        //                if(result.IsCanceled)
+        //                {
+        //                    log.Warn($"Saving {GetType().Name} [PrimaryKey:{PrimaryKey}] into database : Canceled.");
+        //                }
+
+        //                if(result.IsFaulted)
+        //                {
+        //                    log.Warn($"Saving {GetType().Name} [PrimaryKey:{PrimaryKey}] into database : Error.");
+        //                }
+        //            }
+        //            */
+        //            int result = Db.Context.SaveChanges(true);
+        //        }
+        //    }
+        //    catch (Exception e2)
+        //    {
+        //        log.Error(e2.Output(), e2);
+        //    }
+
+        //    return await Task.FromResult(this);
+        //}
+        
         /// <summary>
         /// Method to get an observable collection of primaries keys.
         /// </summary>

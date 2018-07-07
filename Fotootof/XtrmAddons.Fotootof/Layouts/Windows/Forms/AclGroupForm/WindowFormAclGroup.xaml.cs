@@ -1,18 +1,17 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Common.Collections;
-using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
+using XtrmAddons.Fotootof.SQLiteService;
+using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
-using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
 {
@@ -33,6 +32,12 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
 
 
         #region Properties
+
+        /// <summary>
+        /// Property alias to access to the main database connector.
+        /// </summary>
+        public static SQLiteSvc Db
+            => (SQLiteSvc)ApplicationSession.Properties.Database;
 
         /// <summary>
         /// Property to access to the Window model.
@@ -56,18 +61,41 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         /// <summary>
         /// Property to access to the main form save button.
         /// </summary>
-        public Button ButtonSave => Button_Save;
+        public Button ButtonSave => (Button)FindName("Button_Save") ?? new Button();
 
         /// <summary>
         /// Property to access to the main form cancel button.
         /// </summary>
-        public Button ButtonCancel => Button_Cancel;
+        public Button ButtonCancel => (Button)FindName("Button_Cancel") ?? new Button();
 
         #endregion
 
 
 
         #region Constructor
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pageBase"></param>
+        /// <param name="group"></param>
+        public WindowFormAclGroup(int AclGroupId)
+        {
+            // Initialize window component.
+            InitializeComponent();
+
+            // Initialize window data model.
+
+            var op = new AclGroupOptionsSelect
+            {
+                PrimaryKey = AclGroupId,
+                Dependencies = { EnumEntitiesDependencies.All }
+            };
+
+            var entity = Db.AclGroups.SingleOrDefault(op);
+
+            InitializeModel(entity);
+        }
 
         /// <summary>
         /// 
@@ -194,7 +222,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         {
             try
             {
-                NewForm.AclActionsPKs.Add(Tag2Object<AclActionEntity>(sender).PrimaryKey);
+                NewForm.AclActionsPKeys.Add(Tag2Object<AclActionEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {
@@ -212,7 +240,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         {
             try
             {
-                NewForm.AclActionsPKs.Remove(Tag2Object<AclActionEntity>(sender).PrimaryKey);
+                NewForm.AclActionsPKeys.Remove(Tag2Object<AclActionEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {
@@ -236,7 +264,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         {
             try
             {
-                NewForm.UsersPKs.Add(Tag2Object<UserEntity>(sender).PrimaryKey);
+                NewForm.UsersPKeys.Add(Tag2Object<UserEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {
@@ -254,7 +282,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         {
             try
             {
-                NewForm.UsersPKs.Remove(Tag2Object<UserEntity>(sender).PrimaryKey);
+                NewForm.UsersPKeys.Remove(Tag2Object<UserEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {

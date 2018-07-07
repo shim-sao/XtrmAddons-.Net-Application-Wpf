@@ -12,7 +12,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewAlbum
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Page Album Model.
     /// </summary>
-    public class PageAlbumModel : PageBaseModel<PageAlbum>, IAlbumEntity
+    public class PageAlbumModel : PageBaseModel<PageAlbum>, IAlbum
     {
         #region Variables
 

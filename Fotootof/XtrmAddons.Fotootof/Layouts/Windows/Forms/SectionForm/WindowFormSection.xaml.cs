@@ -205,7 +205,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
         {
             try
             {
-                Model.Section.AlbumsPKs.Add(Tag2Object<AlbumEntity>(sender).PrimaryKey);
+                Model.Section.AlbumsPKeys.Add(Tag2Object<AlbumEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {
@@ -223,7 +223,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
         {
             try
             {
-                Model.Section.AlbumsPKs.Remove(Tag2Object<AlbumEntity>(sender).PrimaryKey);
+                Model.Section.AlbumsPKeys.Remove(Tag2Object<AlbumEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {
@@ -247,7 +247,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
         {
             try
             {
-                Model.Section.AclGroupsPKs.Add(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
+                Model.Section.AclGroupsPKeys.Add(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {
@@ -265,7 +265,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
         {
             try
             {
-                Model.Section.AclGroupsPKs.Remove(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
+                Model.Section.AclGroupsPKeys.Remove(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {

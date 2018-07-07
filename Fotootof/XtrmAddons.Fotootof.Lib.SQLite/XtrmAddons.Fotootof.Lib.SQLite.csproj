@@ -89,7 +89,7 @@
     <Compile Include="Database\Data\Tables\Entities\AclGroupEntity.cs" />
     <Compile Include="Database\Data\Tables\Interfaces\ISectionEntity.cs" />
     <Compile Include="Database\Data\Tables\Interfaces\IPictureEntity.cs" />
-    <Compile Include="Database\Data\Tables\Interfaces\IAlbumEntity.cs" />
+    <Compile Include="Database\Data\Tables\Interfaces\IAlbum.cs" />
     <Compile Include="Database\Event\EntityChangesEventArgs.cs" />
     <Compile Include="Database\Manager\Base\EntitiesManager.cs" />
     <Compile Include="Database\Manager\Base\EntitiesOptions.cs" />
@@ -198,6 +198,5 @@
       <Version>4.3.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

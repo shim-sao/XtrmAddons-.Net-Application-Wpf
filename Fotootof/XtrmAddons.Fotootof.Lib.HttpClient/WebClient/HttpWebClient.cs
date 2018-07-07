@@ -441,7 +441,7 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
         /// Method to dispose the object.
         /// </summary>
         /// <param name="disposing">Dispose managed objects ?</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "<Handler>k__BackingField")]
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "<Handler>k__BackingField")]
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -449,10 +449,10 @@ namespace XtrmAddons.Fotootof.Lib.HttpClient.WebClient
                 if (disposing)
                 {
                     // Dispose managed objects.
+                    handle.Dispose();
                     Client.Dispose();
                     Handler.Dispose();
                     Response.Dispose();
-                    handle.Dispose();
                 }
 
                 // Dispose not managed objects & big size variables = null.

@@ -12,6 +12,7 @@ using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers;
 using XtrmAddons.Fotootof.Layouts.Windows.About;
+using XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.ClientForm;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm;
@@ -76,8 +77,8 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         public MenuMain()
         {
             InitializeComponent();
-            HttpServerBase.AddStartHandlerOnce((s, e) => { InitializeMenuItemsServer(); });
-            HttpServerBase.AddStopHandlerOnce((s, e) => { InitializeMenuItemsServer(); });
+            HttpServerBase.NotifyServerStartedHandlerOnce += (s, e) => { InitializeMenuItemsServer(); };
+            HttpServerBase.NotifyServerStoppedHandlerOnce += (s, e) => { InitializeMenuItemsServer(); };
             Model = new MenuMainModel(this);
 
             try
@@ -358,6 +359,11 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
             }
         }
 
+        private void OnServerSettings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// Method to navigate to new user view.
         /// </summary>
@@ -402,6 +408,30 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
                 log.Info("Adding or editing Section informations. Please wait...");
                 
                 SectionEntityCollection.DbInsert(new List<SectionEntity> { dlg.NewForm });
+
+                log.Info("Adding or editing Section informations. Done");
+                MessageBase.IsBusy = false;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e"></param>
+        private void OnAddAlbum_Click(object sender, RoutedEventArgs e)
+        {
+            // Show open file dialog box 
+            WindowFormAlbum dlg = new WindowFormAlbum(new AlbumEntity());
+            bool? result = dlg.ShowDialog();
+
+            // Process open file dialog box results 
+            if (result == true)
+            {
+
+                log.Info("Adding or editing Album informations. Please wait...");
+
+                AlbumEntityCollection.DbInsert(new List<AlbumEntity> { dlg.NewForm });
 
                 log.Info("Adding or editing Section informations. Done");
                 MessageBase.IsBusy = false;

@@ -96,20 +96,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
         public string Q(string s)
         {
             return $"'{s.Replace("'", "\'").Replace("\\'", "\'")}'";
-
-            //if (s[0] == '\'')
-            //    s = "'\\" + s;
-            //else
-            //    s = "'" + s;
-
-            //if (s[s.Length - 1] == '\'')
-            //{
-            //    s = s.Remove(s.Length - 1, 1) + "\''";
-            //}
-            //else
-            //    s += "'";
-
-            //return s;
         }
 
        /// <summary>
@@ -360,7 +346,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
 
             string query = "";
 
-            // Becareful : SQLiteException maybe occurs whithout '.
+            // Becareful : SQLiteException maybe occurs whithout  ` or/and '.
             //log.Debug(query = $"UPDATE `{tableName}` SET `IsDefault` = 0");
             log.Debug(query = $"UPDATE {QN(tableName)} SET {QN("IsDefault")} = {Q("0")}");
             try
@@ -385,7 +371,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
 
             log.Info($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Affected Rows => {result}");
 
-            // Becareful : SQLiteException maybe occurs whithout '.
+            // Becareful : SQLiteException maybe occurs whithout ` or/and '.
             log.Debug(query = $"UPDATE {QN(tableName)} SET {QN("IsDefault")} = {Q("1")} WHERE _rowid_ = {Q(entityPK.ToString())}");
             try
             {

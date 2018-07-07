@@ -410,7 +410,17 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                         if (obj == null)
                         {
                             T newObj = (T)Activator.CreateInstance(typeof(T));
-                            newObj.SetPropertyValue(DepPKName, pkValue);
+                            try
+                            {
+                                string key = DepPKName.Substring(1); 
+                                newObj.SetPropertyValue(key, pkValue);
+                            }
+                            catch
+                            {
+                                newObj.SetPropertyValue(DepPKName, pkValue);
+                            }
+
+                            
                             Add(newObj);
                             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {newObj?.GetType()?.Name} {pkValue} to observable dependency link.");
                         }
@@ -445,7 +455,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
 
                     if (pkValue > 0)
                     {
-                        if (FindIndexInDepReferences(pkValue) == -1)
+                        if (FindIndexInDepReferences(pkValue) == -1 && IsPopulated == true)
                         {
                             E reference = EntityBase.Db.Context.Find<E>(pkValue);
 
@@ -640,13 +650,15 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                 IsPopulated = true;
 
                 // Convert dependencies into a list of Primary Keys.
-                if (DepPKeys.Count != Count)
+                if (DepPKeys.Count != Count || DepReferences.Count != Count)
                 {
                     foreach (var o in this)
                     {
-                        DepPKeys.Add((int)((T)o).GetPropertyValue(DepPKName));
+                        DepPKeys.AddIfNotExists((int)((T)o).GetPropertyValue(DepPKName));
                     }
                 }
+
+                IsPopulated = false;
             }
         }
 

@@ -613,7 +613,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Album dependencies primary key.
         /// </summary>
         [NotMapped]
-        public ObservableCollection<int> AlbumsPKs
+        public ObservableCollection<int> AlbumsPKeys
         {
             get
             {

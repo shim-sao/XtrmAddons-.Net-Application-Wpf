@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Observables;
 using XtrmAddons.Net.Common.Extensions;
@@ -19,7 +20,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// Class XtrmAddons Fotootof Libraries SQLite Database Section Entity.
     /// </summary>
     [Table("Sections"), Serializable, JsonObject(MemberSerialization.OptIn)]
-    public partial class SectionEntity : EntityBase
+    public partial class SectionEntity : EntityBase, IAlias
     {
         #region Variables
 
@@ -371,9 +372,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Album dependencies primary key.
         /// </summary>
         [NotMapped]
-        [JsonProperty(PropertyName = "AlbumsPKs")]
-        [XmlElement(ElementName = "AlbumsPKs")]
-        public ObservableCollection<int> AlbumsPKs
+        [JsonProperty(PropertyName = "AlbumsPKeys")]
+        [XmlElement(ElementName = "AlbumsPKeys")]
+        public ObservableCollection<int> AlbumsPKeys
         {
             get
             {
@@ -430,9 +431,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of AclGroup dependencies primary key.
         /// </summary>
         [NotMapped]
-        [JsonProperty(PropertyName = "AclGroupsPKs")]
-        [XmlElement(ElementName = "AclGroupsPKs")]
-        public ObservableCollection<int> AclGroupsPKs
+        [JsonProperty(PropertyName = "AclGroupsPKeys")]
+        [XmlElement(ElementName = "AclGroupsPKeys")]
+        public ObservableCollection<int> AclGroupsPKeys
         {
             get
             {
@@ -503,7 +504,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to associate an AclGroup to the Section.
         /// </summary>
         /// <param name="aclGroupPk">An album id or primary key.</param>
-        [System.Obsolete("Use => AclGroupsPKs.Add(aclGroupPk);")]
+        [System.Obsolete("Use => AclGroupsPKeys.Add(aclGroupPk);")]
         public bool LinkAclGroup(int aclGroupPk)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {aclGroupPk}");
@@ -528,7 +529,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to unlink an AclGroup of the Section.
         /// </summary>
         /// <param name="aclGroupPk">An album id or primary key.</param>
-        [System.Obsolete("Use => AclGroupsPKs.Remove(aclGroupPk);")]
+        [System.Obsolete("Use => AclGroupsPKeys.Remove(aclGroupPk);")]
         public bool UnLinkAclGroup(int aclGroupPk)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {aclGroupPk}");
@@ -559,7 +560,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to associate an Album to the Section.
         /// </summary>
         /// <param name="albumPk">An album id or primary key.</param>
-        [System.Obsolete("Use => AlbumsPKs.Add(AlbumPk);")]
+        [System.Obsolete("Use => AlbumsPKeys.Add(AlbumPk);")]
         public bool LinkAlbum(int albumPk)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {albumPk}");
@@ -584,7 +585,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to unlink an Album of the Section.
         /// </summary>
         /// <param name="albumPk">An album id or primary key.</param>
-        [System.Obsolete("Use => AlbumsPKs.Remove(AlbumPk);")]
+        [System.Obsolete("Use => AlbumsPKeys.Remove(AlbumPk);")]
         public bool UnlinkAlbum(int albumPk)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {albumPk}");

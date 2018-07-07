@@ -46,6 +46,12 @@
 			<!-- #region Server -->
 			<MenuItem Header="{x:Static p:Resources._Server}">
 
+                <MenuItem Header="{x:Static p:Resources._ServerSettings}"
+						  Name="MenuItem_ServerSettings"
+						  Click="OnServerSettings_Click">
+				</MenuItem>
+
+
                 <MenuItem Header="{x:Static p:Resources._ClientNew}"
 						  Name="MenuItem_ServerAddClient"
 						  Click="OnServerAddClient_Click">
@@ -121,16 +127,27 @@
 				</MenuItem>
 			</MenuItem>
 			<!-- #endregion Users -->
-			
+
+
+			<!-- #region Catalog -->
 			<MenuItem Header="{x:Static p:Resources._Catalog}">
-				<MenuItem Header="{x:Static p:Resources._AddSection}"
+				<MenuItem Header="{x:Static p:Resources._AddNewSection}"
 						  x:Name="MenuItem_AddSection"
 						  Click="OnAddSection_Click">
 					<MenuItem.Icon>
 						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ListPlus}}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				
+				<MenuItem Header="{x:Static p:Resources._AddNewAlbum}"
+						  x:Name="MenuItem_AddAlbum"
+						  Click="OnAddAlbum_Click">
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ListPlus}}" />
+					</MenuItem.Icon>
+				</MenuItem>
 			</MenuItem>
+			<!-- #rendegion Catalog -->
 			
 			
 			<MenuItem Header="{x:Static p:Resources._Display}">

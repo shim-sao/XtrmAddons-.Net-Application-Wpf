@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Network;
 using ServerData = XtrmAddons.Net.Application.Serializable.Elements.Remote.Server;
 
@@ -29,12 +31,17 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer
         /// <summary>
         /// 
         /// </summary>
-        private static event EventHandler OnServerStart = delegate { };
+        private static event EventHandler NotifyServerStartedHandler = delegate { };
 
         /// <summary>
         /// 
         /// </summary>
-        private static event EventHandler OnServerStop = delegate { };
+        private static event EventHandler NotifyServerStoppedHandler = delegate { };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private static event EventHandler NotifyServerFailedHandler = delegate { };
 
         #endregion
 
@@ -45,17 +52,25 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer
         /// <summary>
         /// 
         /// </summary>
-        protected static void RaiseServerStart()
+        protected static void NotifyServerStarted()
         {
-            OnServerStart?.Invoke(null, new EventArgs());
+            NotifyServerStartedHandler?.Invoke(null, new EventArgs());
         }
 
         /// <summary>
         /// 
         /// </summary>
-        protected static void RaiseServerStop()
+        protected static void NotifyServerStopped()
         {
-            OnServerStop?.Invoke(null, new EventArgs());
+            NotifyServerStoppedHandler?.Invoke(null, new EventArgs());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected static void NotifyServerFailed()
+        {
+            NotifyServerFailedHandler?.Invoke(null, new EventArgs());
         }
 
         /// <summary>
@@ -66,20 +81,30 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer
             // Check if the server is started.
             if (!HttpWebServerApplication.IsStarted)
             {
-                // Try to get server informations
-                ServerData server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
-
-                if (server != null)
+                try
                 {
-                    HttpWebServerApplication.Start(server.Host, server.Port);
-                    log.Info(Translation.DLogs.ServerStarted);
-                }
+                    // Try to get server informations
+                    ServerData server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
 
-                RaiseServerStart();
+                    if (server != null)
+                    {
+                        HttpWebServerApplication.Start(server.Host, server.Port);
+                        log.Info(Translation.DLogs.ServerStarted);
+                    }
+
+                    NotifyServerStarted();
+                }
+                catch (Exception ex)
+                {
+                    MessageBase.Warning(ex.Output(), ex.GetType().Name);
+                    log.Error(ex.Output(), ex);
+
+                    NotifyServerFailed();
+                }
             }
             else
             {
-                log.Info("Server is already started.");
+                log.Warn("Server is already started.");
             }
         }
 
@@ -91,7 +116,7 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer
             HttpWebServerApplication.Stop();
             log.Info(Translation.DLogs.ServerStopped);
 
-            RaiseServerStop();
+            NotifyServerStopped();
         }
 
         /// <summary>
@@ -144,21 +169,75 @@ namespace XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer
         /// 
         /// </summary>
         /// <param name="handler">Event handler.</param>
-        public static void AddStartHandlerOnce(EventHandler handler)
+        public static event EventHandler NotifyServerStartedHandlerOnce
         {
+            add
+            {
+                lock(NotifyServerStartedHandler)
+                {
+                    NotifyServerStartedHandler -= value;
+                    NotifyServerStartedHandler += value;
+                }
+            }
+            remove
+            {
+                lock (NotifyServerStartedHandler)
+                {
+                    NotifyServerStartedHandler -= value;
+                }
 
-            OnServerStart -= handler;
-            OnServerStart += handler;
+            }
+            
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="handler">Event handler.</param>
+        public static event EventHandler NotifyServerStoppedHandlerOnce
+        {
+            add
+            {
+                lock(NotifyServerStartedHandler)
+                {
+                    NotifyServerStoppedHandler -= value;
+                    NotifyServerStoppedHandler += value;
+                }
+            }
+            remove
+            {
+                lock (NotifyServerStartedHandler)
+                {
+                    NotifyServerStoppedHandler -= value;
+                }
+
+            }
+            
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="handler">Event handler.</param>
+        [System.Obsolete("use : NotifyServerStartedHandlerOnce")]
+        public static void AddStartHandlerOnce(EventHandler handler)
+        {
+
+            NotifyServerStartedHandler -= handler;
+            NotifyServerStartedHandler += handler;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="handler">Event handler.</param>
+        [System.Obsolete("use : NotifyServerStoppedHandler")]
         public static void AddStopHandlerOnce(EventHandler handler)
         {
-            OnServerStop -= handler;
-            OnServerStop += handler;
+            NotifyServerStoppedHandler -= handler;
+            NotifyServerStoppedHandler += handler;
         }
 
         #endregion

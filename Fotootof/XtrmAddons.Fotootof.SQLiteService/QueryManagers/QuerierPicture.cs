@@ -211,7 +211,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         public async void CleanDependencyAllAsync(PictureEntity entity)
         {
             // Hack to delete unassociated dependencies. 
-            await CleanDependencyAsync("PicturesInAlbums", "AlbumId", entity.PrimaryKey, entity.AlbumsPKs);
+            await CleanDependencyAsync("PicturesInAlbums", "AlbumId", entity.PrimaryKey, entity.AlbumsPKeys);
         }
 
         #endregion

@@ -70,11 +70,20 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add _Album.
+        /// </summary>
+        public static string _AddNewAlbum {
+            get {
+                return ResourceManager.GetString("_AddNewAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Add _Section.
         /// </summary>
-        public static string _AddSection {
+        public static string _AddNewSection {
             get {
-                return ResourceManager.GetString("_AddSection", resourceCulture);
+                return ResourceManager.GetString("_AddNewSection", resourceCulture);
             }
         }
         
@@ -345,6 +354,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string _Server {
             get {
                 return ResourceManager.GetString("_Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à _Server settings.
+        /// </summary>
+        public static string _ServerSettings {
+            get {
+                return ResourceManager.GetString("_ServerSettings", resourceCulture);
             }
         }
         

@@ -295,6 +295,10 @@
     <Compile Include="Common\Tools\AppNavigator.cs" />
     <Compile Include="Layouts\DataGrids\AclGroups\DataGridAclGroups.cs" />
     <Compile Include="Layouts\DataGrids\AclGroups\DataGridAclGroupsModel.cs" />
+    <Compile Include="Layouts\Windows\Forms\ServerForm\WindowFormServer.xaml.cs">
+      <DependentUpon>WindowFormServer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Windows\Forms\ServerForm\WindowFormServerModel.cs" />
     <Compile Include="Layouts\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
@@ -464,6 +468,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Common\Controls\Menu\MenuMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\Windows\Forms\ServerForm\WindowFormServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

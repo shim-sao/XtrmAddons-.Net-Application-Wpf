@@ -43,7 +43,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// <summary>
         /// Accessors to page user model.
         /// </summary>
-        public UserOptionsList UserOptionsList
+        private UserOptionsList UserOptionsList
         {
             get
             {
@@ -58,6 +58,22 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
                 {
                     op.IncludeAclGroupKeys = new List<int>() { a.PrimaryKey };
                 }
+
+                return op;
+            }
+        }
+
+        /// <summary>
+        /// Accessors to page user model.
+        /// </summary>
+        private AclGroupOptionsList AclGroupOptionsList
+        {
+            get
+            {
+                AclGroupOptionsList op = new AclGroupOptionsList
+                {
+                    Dependencies = { EnumEntitiesDependencies.All }
+                };
 
                 return op;
             }
@@ -154,7 +170,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             try
             {
 
-                Model.AclGroups.Items = new AclGroupEntityCollection(true);
+                Model.AclGroups.Items = new AclGroupEntityCollection(true, AclGroupOptionsList);
             }
             catch (Exception e)
             {

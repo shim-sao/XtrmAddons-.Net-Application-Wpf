@@ -102,7 +102,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// <returns>Async task with modified AclGroup entity as result.</returns>
         public async void CleanAclActionDependencyAsync(AclGroupEntity entity)
         {
-            string action = string.Join(",", entity.AclActionsPKs);
+            string action = string.Join(",", entity.AclActionsPKeys);
 
             int result = await Context.Database.ExecuteSqlCommandAsync (
                     $"DELETE FROM AclGroupsInAclActions WHERE AclGroupId = {entity.PrimaryKey} AND AclActionId NOT IN ({action})"

@@ -459,8 +459,8 @@
   <data name="_About" xml:space="preserve">
     <value>_À propos</value>
   </data>
-  <data name="_AddSection" xml:space="preserve">
-    <value>Ajouter une Section</value>
+  <data name="_AddNewSection" xml:space="preserve">
+    <value>Ajouter une _Section</value>
   </data>
   <data name="_AddToFirewall" xml:space="preserve">
     <value>_Ajouter au Pare-Feu</value>
@@ -629,5 +629,11 @@
   </data>
   <data name="_Catalog" xml:space="preserve">
     <value>_Catalogue</value>
+  </data>
+  <data name="_AddNewAlbum" xml:space="preserve">
+    <value>Ajouter un _Album</value>
+  </data>
+  <data name="_ServerSettings" xml:space="preserve">
+    <value>Paramètres serveur</value>
   </data>
 </root>

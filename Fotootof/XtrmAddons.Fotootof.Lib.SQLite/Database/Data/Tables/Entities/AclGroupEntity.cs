@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +8,6 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Observables;
 using XtrmAddons.Net.Common.Extensions;
-
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 {
@@ -81,14 +79,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Variable Section primary key (required for entity dependency).
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private int sectionId = 0;
 
         /// <summary>
         /// Variable primary key (required for entity dependency).
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         private int userId = 0;
 
         #endregion
@@ -104,12 +100,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         [Column(Order = 0)]
         public int AclGroupId
         {
-            get { return primaryKey; }
+            get => PrimaryKey;
             set
             {
                 if (value != primaryKey)
                 {
-                    primaryKey = value;
+                    PrimaryKey = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -251,7 +247,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [NotMapped]
         [JsonProperty]
-        public ObservableCollection<int> AclActionsPKs
+        public ObservableCollection<int> AclActionsPKeys
         {
             get
             {
@@ -271,6 +267,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                 AclGroupsInAclActions.Populate();
                 return AclGroupsInAclActions.DepReferences;
             }
+            //set
+            //{
+            //    if (value != AclGroupsInAclActions.DepReferences)
+            //    {
+            //        AclGroupsInAclActions.DepReferences.ClearAndAdd(value);
+            //        NotifyPropertyChanged();
+            //    }
+            //}
         }
 
         /// <summary>
@@ -347,7 +351,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the User primary key (required for entity dependency).
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
         public int UserId
         {
             get { return userId; }
@@ -365,7 +368,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Propertiy to access to the list of User dependencies primary key.
         /// </summary>
         [NotMapped]
-        public ObservableCollection<int> UsersPKs
+        public ObservableCollection<int> UsersPKeys
         {
             get
             {
@@ -414,7 +417,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// 
         /// </summary>
         /// <param name="aclActionId"></param>
-        [System.Obsolete("Use => AclActionsPKs.Add(AclActionPk);")]
+        [System.Obsolete("Use => AclActionsPKeys.Add(AclActionPk);")]
         public void LinkAclAction(int aclActionId)
         {
             try
@@ -433,7 +436,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// 
         /// </summary>
         /// <param name="AclGroupId"></param>
-        [System.Obsolete("Use => AclActionsPKs.Remove(AclActionPk);")]
+        [System.Obsolete("Use => AclActionsPKeys.Remove(AclActionPk);")]
         public void UnLinkAclAction(int aclActionId)
         {
             try
@@ -495,7 +498,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to link User to the AclGroup.
         /// </summary>
         /// <param name="sectionId">A User primary key.</param>
-        [System.Obsolete("Use => UsersPKs.Add(UserPk);")]
+        [System.Obsolete("Use => UsersPKeys.Add(UserPk);")]
         public void LinkUser(int userId)
         {
             try
@@ -514,7 +517,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to unlink User of the AclGroup.
         /// </summary>
         /// <param name="sectionId">A User primary key.</param>
-        [System.Obsolete("Use => UsersPKs.Remove(UserPk);")]
+        [System.Obsolete("Use => UsersPKeys.Remove(UserPk);")]
         public void UnLinkUser(int userId)
         {
             try

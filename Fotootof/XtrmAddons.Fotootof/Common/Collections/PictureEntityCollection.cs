@@ -121,21 +121,21 @@ namespace XtrmAddons.Fotootof.Common.Collections
             IList<PictureEntity> newItems = new List<PictureEntity>();
             PictureEntity[] pictAdded = null;
             
+            // Create the array of new Picture entities to add in the database.
             foreach (string s in fileNames)
             {
                 // Check if storage information is not null
-                // Add a new picture to album.
+                // Add a new picture to the album.
                 PictureEntity item = (new StorageInfoModel(new FileInfo(s))).ToPicture();
                 if (item != null && !newItems.Contains(item))
                 {
                     // Add Picture to the list for Pictures.
                     newItems.Add(item);
                 }
-
-                // Insert Pictures into the database.
-                log.Debug($"{typeof(PictureEntityCollection).Name}.{MethodBase.GetCurrentMethod().Name} : {newItems?.Count()} Pictures ready to insert into database.");
             }
 
+            // Insert Pictures into the database.
+            log.Warn($"{typeof(PictureEntityCollection).Name}.{MethodBase.GetCurrentMethod().Name} : {newItems?.Count() ?? 0} Pictures ready to insert into database.");
             pictAdded = DbInsert(newItems, ref album).ToArray();
 
             return pictAdded;

@@ -59,7 +59,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
             {
                 if (aclActions == null)
                 {
-                    aclActions = new AclActionEntityCollection(true); ;
+                    aclActions = new AclActionEntityCollection(true);
                 }
                 return aclActions;
             }
@@ -82,7 +82,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
             {
                 if (users == null)
                 {
-                    users = new UserEntityCollection(true); ;
+                    users = new UserEntityCollection(true);
                 }
                 return users;
             }

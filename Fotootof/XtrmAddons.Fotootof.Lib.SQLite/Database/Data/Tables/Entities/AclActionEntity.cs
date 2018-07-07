@@ -69,12 +69,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         [XmlIgnore]
         public int AclActionId
         {
-            get { return primaryKey; }
+            get => PrimaryKey;
             set
             {
                 if (value != primaryKey)
                 {
-                    primaryKey = value;
+                    PrimaryKey = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -125,7 +125,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Properties : Dependencies
 
         /// <summary>
-        /// Property to access to the AclGroup id (required for entity dependency).
+        /// <para>Property to access to an AclGroup Id or Primary Key.</para>
+        /// <para>Don't use it. It is only required for EntityFramework foreign key dependency.</para>
         /// </summary>
         [NotMapped, XmlIgnore]
         public int AclGroupId
@@ -145,7 +146,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of AclGroup dependencies primary key.
         /// </summary>
         [NotMapped]
-        public ObservableCollection<int> AclGroupsPKs
+        public ObservableCollection<int> AclGroupsPKeys
         {    
             get
             {
@@ -167,6 +168,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                 AclGroupsInAclActions.Populate();
                 return AclGroupsInAclActions.DepReferences;
             }
+            //set
+            //{
+            //    if (value != AclGroupsInAclActions.DepReferences)
+            //    {
+            //        AclGroupsInAclActions.DepReferences.ClearAndAdd(value);
+            //        NotifyPropertyChanged();
+            //    }
+            //}
         }
 
         /// <summary>
@@ -199,10 +208,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         /// <param name="aclGroupPk">An AclGroup id or primary key to link.</param>
         /// <returns>True if link process is successful otherwise false.</returns>
-        [System.Obsolete("Use => AclGroupsPKs.Add(aclGroupPk);")]
+        [System.Obsolete("Use => AclGroupsPKeys.Add(aclGroupPk);")]
         public bool LinkAclGroup(int aclGroupPk)
         {
-            Debug.WriteLine("System.Obsolete : Use => AclGroupsPKs.Add(aclGroupPk);");
+            Debug.WriteLine("System.Obsolete : Use => AclGroupsPKeys.Add(aclGroupPk);");
 
             try
             {
@@ -225,10 +234,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         /// <param name="aclGroupPk">An AclGroup id or primary key to unlink.</param>
         /// <returns>True if unlink process is successful otherwise false.</returns>
-        [System.Obsolete("Use => AclGroupsPKs.Remove(aclGroupPk);")]
+        [System.Obsolete("Use => AclGroupsPKeys.Remove(aclGroupPk);")]
         public bool UnLinkAclGroup(int aclGroupPk)
         {
-            Debug.WriteLine("System.Obsolete : Use => AclGroupsPKs.Remove(aclGroupPk);");
+            Debug.WriteLine("System.Obsolete : Use => AclGroupsPKeys.Remove(aclGroupPk);");
 
             try
             {

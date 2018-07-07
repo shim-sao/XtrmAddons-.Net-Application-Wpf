@@ -469,15 +469,15 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                     NotifyPropertyChanged();
 
                     // Update the Background Picture Id property.
-                    if (backgroundPicture != null)
+                    if (backgroundPicture == null)
                     {
-                        log.Debug(new NullReferenceException($"Parameter : '{nameof(backgroundPicture)}' type of '{backgroundPicture.GetType().Name}'"));
+                        log.Debug(new NullReferenceException($"Parameter : '{nameof(backgroundPicture)}' type of 'null'"));
                         return;
                     }
 
                     if (backgroundPicture.PrimaryKey == 0)
                     {
-                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(backgroundPicture)}' type of '{backgroundPicture.GetType().Name}' PrimaryKey=0"));
+                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(backgroundPicture)}' type of '{backgroundPicture.GetType().Name}' [PrimaryKey:0]"));
                         return;
                     }
 
@@ -510,15 +510,15 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                     NotifyPropertyChanged();
 
                     // Update the Preview Picture Id property.
-                    if (previewPicture != null)
+                    if (previewPicture == null)
                     {
-                        log.Debug(new NullReferenceException($"Parameter : '{nameof(previewPicture)}' type of '{previewPicture.GetType().Name}'"));
+                        log.Debug(new NullReferenceException($"Parameter : '{nameof(previewPicture)}' type of 'null'"));
                         return;
                     }
 
                     if (previewPicture.PrimaryKey == 0)
                     {
-                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(previewPicture)}' type of '{previewPicture.GetType().Name}' PrimaryKey=0"));
+                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(previewPicture)}' type of '{previewPicture.GetType().Name}' [PrimaryKey:0]"));
                         return;
                     }
 
@@ -551,15 +551,15 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                     NotifyPropertyChanged();
 
                     // Update the Thumbnail Picture Id property.
-                    if (backgroundPicture != null)
+                    if (thumbnailPicture == null)
                     {
-                        log.Debug(new NullReferenceException($"Parameter : '{nameof(thumbnailPicture)}' type of '{thumbnailPicture.GetType().Name}'"));
+                        log.Debug(new NullReferenceException($"Parameter : '{nameof(thumbnailPicture)}' type of 'null'"));
                         return;
                     }
 
                     if (thumbnailPicture.PrimaryKey == 0)
                     {
-                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(thumbnailPicture)}' type of '{thumbnailPicture.GetType().Name}' PrimaryKey=0"));
+                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(thumbnailPicture)}' type of '{thumbnailPicture.GetType().Name}' [PrimaryKey:0]"));
                         return;
                     }
 
@@ -923,7 +923,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// 
         /// </summary>
         /// <param name="infoId"></param>
-        [System.Obsolete("Use => InfosPKs.Remove(InfoPk);")]
+        [System.Obsolete("Use => InfosPKs.Remove(InfoPk);", true)]
         public void UnLinkInfo(int infoId)
         {
             try
