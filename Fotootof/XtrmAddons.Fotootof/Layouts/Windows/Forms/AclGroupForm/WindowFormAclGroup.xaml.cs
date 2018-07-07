@@ -34,12 +34,6 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         #region Properties
 
         /// <summary>
-        /// Property alias to access to the main database connector.
-        /// </summary>
-        public static SQLiteSvc Db
-            => (SQLiteSvc)ApplicationSession.Properties.Database;
-
-        /// <summary>
         /// Property to access to the Window model.
         /// </summary>
         public new WindowFormAclGroupModel<WindowFormAclGroup> Model

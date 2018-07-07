@@ -422,7 +422,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
 
                             
                             Add(newObj);
-                            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {newObj?.GetType()?.Name} {pkValue} to observable dependency link.");
+                            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding Type {newObj?.GetType()?.Name} [PrimaryKey:{pkValue}] to observable dependency link.");
                         }
                     }
                     else
@@ -462,7 +462,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                             if (reference != null && !DepReferences.Contains(reference))
                             {
                                 DepReferences.Add(reference);
-                                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {reference.GetType().Name} {(reference as EntityBase).PrimaryKey} to observable dependency reference.");
+                                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding Type {reference.GetType().Name} [PrimaryKey:{(reference as EntityBase).PrimaryKey}] to observable dependency reference.");
                             }
                         }
                     }
