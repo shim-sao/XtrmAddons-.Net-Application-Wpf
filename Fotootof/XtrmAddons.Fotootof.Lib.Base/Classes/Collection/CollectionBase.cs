@@ -21,7 +21,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Collections
 
 
 
-        #region Variables
+        #region Properties
 
         /// <summary>
         /// Property to define if the default items of the collection can be loaded.

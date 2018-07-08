@@ -196,9 +196,9 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
                 }
 
                 // Hack to delete unassociated dependencies. 
-                await CleanDependencies_Async("AclGroupsInAclActions", "AclActionId", entity.PrimaryKey, entity.AclActionsPK);
-                await CleanDependencies_Async("SectionsInAclGroups", "SectionId", entity.PrimaryKey, entity.SectionsPK);
-                await CleanDependencies_Async("UsersInAclGroups", "UserId", entity.PrimaryKey, entity.UsersPK);
+                await CleanDependencies_Async("AclGroupsInAclActions", "AclActionId", entity.PrimaryKey, entity.AclActionsPKeys);
+                await CleanDependencies_Async("SectionsInAclGroups", "SectionId", entity.PrimaryKey, entity.SectionsPKs);
+                await CleanDependencies_Async("UsersInAclGroups", "UserId", entity.PrimaryKey, entity.UsersPKeys);
 
                 return entity;
             }
@@ -208,11 +208,11 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// Method to set default AclGroup.
         /// </summary>
         /// <param name="entityPK">A AclGroup primary key.</param>
-        public void SetDefault(int entityPK)
+        public async void SetDefault(int entityPK)
         {
             using (Db.Context)
             {
-                AclGroupManager.SetDefaultAsync("AclGroups", "AclGroupId", entityPK);
+                await AclGroupManager.SetDefaultAsync("AclGroups", "AclGroupId", entityPK);
             }
         }
 

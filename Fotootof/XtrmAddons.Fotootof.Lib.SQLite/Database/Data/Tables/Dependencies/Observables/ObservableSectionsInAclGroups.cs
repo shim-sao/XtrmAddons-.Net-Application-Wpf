@@ -7,22 +7,27 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Obser
     /// <summary>
     /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Sections In AclGroups.
     /// </summary>
+    /// <typeparam name="O">The Type of the entity item to observe.</typeparam>
+    /// <typeparam name="E">The Type of the entity items destination of the dependency.</typeparam>
     [JsonArray(Title = "Sections_AclGroups")]
-    public class ObservableSectionsInAclGroups : ObservableDependenciesBase<SectionsInAclGroups>
+    public class ObservableSectionsInAclGroups<O, E> : ObservableDependencyBase<SectionsInAclGroups, O, E> where O : class where E : class
     {
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Sections In AclGroups Constructor.
         /// </summary>
-        /// <param name="dependenciesPrimaryKeysName">The dependency primary key name.</param>
-        public ObservableSectionsInAclGroups(string dependenciesPrimaryKeysName) : base(dependenciesPrimaryKeysName) { }
+        public ObservableSectionsInAclGroups() : base() { }
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Sections In AclGroups Constructor.
+        /// </summary>
+        /// <param name="list">A list of items to add at the collection initialization. </param>
+        public ObservableSectionsInAclGroups(List<SectionsInAclGroups> list) : base(list) { }
 
 
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Sections In AclGroups Constructor.
         /// </summary>
-        /// <param name="dependenciesPrimaryKeysName">The dependency primary key name.</param>
-        /// <param name="collection">An enumerable collection of items.</param>
-        public ObservableSectionsInAclGroups(string dependenciesPrimaryKeysName, IEnumerable<SectionsInAclGroups> collection)
-            : base(dependenciesPrimaryKeysName, collection) { }
+        /// <param name="collection">A enumerable collection of items to add at the collection initialization.</param>
+        public ObservableSectionsInAclGroups(IEnumerable<SectionsInAclGroups> collection) : base(collection) { }
     }
 }

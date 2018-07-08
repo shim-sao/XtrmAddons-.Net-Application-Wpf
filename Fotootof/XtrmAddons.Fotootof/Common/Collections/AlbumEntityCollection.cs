@@ -108,7 +108,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 {
                     // Get all Album to check some properties before inserting new item.
                     // Format Alias before update.
-                    FormatAlias(entity, new List<IAlias>(Db.Albums.List(GetOptionsDefault())));
+                    FormatAlias(entity);
 
                     // Add new item into the database.
                     itemsAdded.Add(Db.Albums.Add(entity));
@@ -215,12 +215,6 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 {
                     // Get all Album to check some properties before inserting new item.
                     // Format Alias before update.
-                    AlbumOptionsList op = new AlbumOptionsList
-                    {
-                        Dependencies = { EnumEntitiesDependencies.None },
-                        
-                    };
-
                     FormatAlias(entity);
 
                     // Update item into the database.
@@ -256,7 +250,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
             {
                 obj.Alias = obj.Name;
             }
-
+            
             // Check if another entity with the same alias is in database.
             var alb = Db.Albums.SingleOrNull(
                 new AlbumOptionsSelect
@@ -265,7 +259,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
                     Dependencies = { EnumEntitiesDependencies.None }
                 });
                 
-            if (alb != null || obj.Alias.IsNullOrWhiteSpace())
+            if ((alb != null && alb.PrimaryKey != obj.PrimaryKey) || obj.Alias.IsNullOrWhiteSpace())
             {
                 DateTime d = DateTime.Now;
                 obj.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss-fff");

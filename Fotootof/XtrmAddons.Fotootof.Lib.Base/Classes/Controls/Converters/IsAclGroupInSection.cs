@@ -11,6 +11,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters
         /// <summary>
         /// Property to access to the name of AclGroups dependencies primary keys.
         /// </summary>
-        public override string DependenciesPKName => "AclGroupsPK";
+        public override string DependenciesPKName => "AclGroupsPKeys";
     }
 }

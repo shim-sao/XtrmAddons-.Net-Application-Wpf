@@ -8,6 +8,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries SQLite Database Data Base Entity.
     /// </summary>
+    [System.Obsolete("Use property of observable dependency. Change dependency property to get new observable list.")]
     public static class EntityBaseExtension
     {
         #region Proprerties

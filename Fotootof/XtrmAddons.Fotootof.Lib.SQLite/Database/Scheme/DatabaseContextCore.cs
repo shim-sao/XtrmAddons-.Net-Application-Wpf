@@ -23,7 +23,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
 
 
         #region Properties
-
+        
         /// <summary>
         /// Property database table ACLAction entity queries link.
         /// </summary>
@@ -67,6 +67,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
         /// <summary>
         /// Property database table Versions entity queries link.
         /// </summary>
+        [System.Obsolete("Will be remove.")]
         public DbSet<VersionEntity> Versions { get; set; }
 
         

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Observables;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
@@ -55,15 +56,21 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             if (picture == null || picture.PictureId == 0)
             {
                 picture.PictureId = insertId;
-                picture.PicturesInAlbums =
-                    new ObservableCollection<PicturesInAlbums>
+                //picture.PicturesInAlbums =
+                //    new ObservablePicturesInAlbums<PictureEntity, AlbumEntity>
+                //    {
+                //        new PicturesInAlbums
+                //        {
+                //            AlbumId = albumId,
+                //            Ordering = ++maxorder
+                //        }
+                //    };
+                picture.PicturesInAlbums.Add(
+                    new PicturesInAlbums
                     {
-                        new PicturesInAlbums
-                        {
-                            AlbumId = albumId,
-                            Ordering = ++maxorder
-                        }
-                    };
+                        AlbumId = albumId,
+                        Ordering = ++maxorder
+                    });
 
                 et = Context.Pictures.Add(picture);
             }

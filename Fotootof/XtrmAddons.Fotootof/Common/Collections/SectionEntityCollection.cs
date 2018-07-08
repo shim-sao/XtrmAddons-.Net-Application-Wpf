@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Lib.Api.Models.Json;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
-using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Net.Common.Extensions;
-using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 
 namespace XtrmAddons.Fotootof.Common.Collections
 {
@@ -124,7 +125,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
                             firstItem = false;
                         }
 
-                        FormatAlias(entity, items);
+                        FormatAlias(entity);
 
                         // Finally add the entity into the database.
                         MainWindow.Database.Sections.Add(entity);
@@ -146,28 +147,36 @@ namespace XtrmAddons.Fotootof.Common.Collections
         }
 
         /// <summary>
-        /// 
+        /// Method to format the Alias property of an entity.
         /// </summary>
-        /// <param name="entity"></param>
-        /// <param name="items"></param>
+        /// <param name="entity">An entity with an Alias property derived from IAlias.</param>
+        /// <param name="items">The list of entities to check in.</param>
         /// <returns></returns>
-        private static SectionEntity FormatAlias(SectionEntity entity, IList<SectionEntity> items = null)
+        protected static SectionEntity FormatAlias(SectionEntity entity)
         {
-            items = items ?? MainWindow.Database.Sections.List(GetOptionsDefault());
+            var obj = (IAlias)entity;
 
             // Check if the alias is empty. Set name if required.
-            if (entity.Alias.IsNullOrWhiteSpace())
+            if (obj.Alias.IsNullOrWhiteSpace())
             {
-                entity.Alias = entity.Name;
+                obj.Alias = obj.Name;
             }
 
             // Check if another entity with the same alias is in database.
-            int index = items.ToList().FindIndex(x => x.Alias.IsNotNullOrWhiteSpace() && x.Alias == entity.Alias && x.PrimaryKey != entity.PrimaryKey);
-            if (index >= 0 || entity.Alias.IsNullOrWhiteSpace())
+            var item = Db.Sections.SingleOrNull(
+                new SectionOptionsSelect
+                {
+                    Alias = obj.Alias,
+                    Dependencies = { EnumEntitiesDependencies.None }
+                });
+
+            if ((item != null && item.PrimaryKey != obj.PrimaryKey) || obj.Alias.IsNullOrWhiteSpace())
             {
                 DateTime d = DateTime.Now;
-                entity.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss-fff");
+                obj.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss-fff");
             }
+
+            ((IAlias)entity).Alias = obj.Alias;
 
             return entity;
         }

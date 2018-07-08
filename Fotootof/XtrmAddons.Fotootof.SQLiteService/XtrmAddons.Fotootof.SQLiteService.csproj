@@ -60,6 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connector\DatabaseContextCore.cs" />
+    <Compile Include="Connector\DatabaseCore.cs" />
     <Compile Include="QueryManagers\Interfaces\IQuerierSingle.cs" />
     <Compile Include="QueryManagers\Interfaces\IQuerierList.cs" />
     <Compile Include="QueryManagers\Queriers.cs" />

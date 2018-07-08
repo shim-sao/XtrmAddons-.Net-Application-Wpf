@@ -330,7 +330,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
         /// <param name="e">Routed event arguments.</param>
         private void CheckBoxAclGroup_Checked(object sender, RoutedEventArgs e)
         {
-            NewForm.LinkAclGroup(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
+            NewForm.AclGroupsPKeys.Add(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
             IsSaveEnabled = IsValidInputs();
         }
 
@@ -341,7 +341,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
         /// <param name="e">Routed event arguments.</param>
         private void CheckBoxAclGroup_UnChecked(object sender, RoutedEventArgs e)
         {
-            NewForm.UnLinkAclGroup(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
+            NewForm.AclGroupsPKeys.Remove(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
             IsSaveEnabled = NewForm.UsersInAclGroups.Count == 0 ? false : IsValidInputs();
         }
 

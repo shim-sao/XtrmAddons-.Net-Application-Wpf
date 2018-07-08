@@ -8,6 +8,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
     /// <summary>
     /// Class XtrmAddons Fotootof SQLiteService : Versions.
     /// </summary>
+    [System.Obsolete("Use others mechanisms. Table will be deleted.")]
     public partial class QuerierVersion : Queriers
     {
         #region Methods List

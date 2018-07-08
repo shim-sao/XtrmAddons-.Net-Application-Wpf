@@ -145,6 +145,7 @@ namespace XtrmAddons.Fotootof.AddInsContracts.Base
                 if (disposing)
                 {
                     // Dispose managed objects.
+                    handle.Dispose();
                 }
 
                 // Dispose not managed objects & big size variables = null.

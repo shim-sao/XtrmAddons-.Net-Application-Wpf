@@ -7,23 +7,26 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Obser
     /// <summary>
     /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Infos In Pictures.
     /// </summary>
+    /// <typeparam name="O">The Type of the entity item to observe.</typeparam>
+    /// <typeparam name="E">The Type of the entity items destination of the dependency.</typeparam>
     [JsonArray(Title = "Infos_Pictures")]
-    public class ObservableInfosInPictures : ObservableDependenciesBase<InfosInPictures>
+    public class ObservableInfosInPictures<O, E> : ObservableDependencyBase<InfosInPictures, O, E> where O : class where E : class
     {
+        /// <summary>
+        /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Infos In Pictures Constructor.
+        /// </summary>
+        public ObservableInfosInPictures() : base() { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Infos In Pictures Constructor.
         /// </summary>
-        /// <param name="dependenciesPrimaryKeysName">The dependency primary key name.</param>
-        public ObservableInfosInPictures(string dependenciesPrimaryKeysName)
-            : base(dependenciesPrimaryKeysName) { }
+        /// <param name="list">A list of items to add at the collection initialization. </param>
+        public ObservableInfosInPictures(List<InfosInPictures> list) : base(list) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Infos In Pictures Constructor.
         /// </summary>
-        /// <param name="dependenciesPrimaryKeysName">The dependency primary key name.</param>
-        /// <param name="collection">An enumerable collection of items.</param>
-        public ObservableInfosInPictures(string dependenciesPrimaryKeysName, IEnumerable<InfosInPictures> collection)
-            : base(dependenciesPrimaryKeysName, collection) { }
+        /// <param name="collection">A enumerable collection of items to add at the collection initialization.</param>
+        public ObservableInfosInPictures(string dependenciesPrimaryKeysName, IEnumerable<InfosInPictures> collection) : base(collection) { }
     }
 }

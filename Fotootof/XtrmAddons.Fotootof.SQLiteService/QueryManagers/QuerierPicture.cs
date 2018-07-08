@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 
 namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
 {
@@ -175,6 +176,43 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// <returns>The deleted Picture entity list.</returns>
         public Task<List<PictureEntity>> DeleteAsync(List<PictureEntity> pictures)
             => Task.Run(() => Delete(pictures));
+
+        #endregion
+
+
+
+        #region Methods Dependency
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dependencyName"></param>
+        /// <param name="dependencyPKName"></param>
+        /// <param name="aclGroupId"></param>
+        /// <param name="dependenciesPKs"></param>
+        /// <returns></returns>
+        public async Task<int> CleanDependencyAsync(string dependencyName, string dependencyPKName, int pictureId, IEnumerable<int> dependenciesPKs)
+        {
+            using (Db.Context)
+            {
+                return await PictureManager.CleanDependencyAsync
+                    (
+                        new EntityManagerDeleteDependency { Name = dependencyName, key = "PictureId", keyList = dependencyPKName },
+                        pictureId,
+                        dependenciesPKs
+                    );
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        public async void CleanDependencyAllAsync(PictureEntity entity)
+        {
+            // Hack to delete unassociated dependencies. 
+            await CleanDependencyAsync("PicturesInAlbums", "AlbumId", entity.PrimaryKey, entity.AlbumsPKeys);
+        }
 
         #endregion
     }

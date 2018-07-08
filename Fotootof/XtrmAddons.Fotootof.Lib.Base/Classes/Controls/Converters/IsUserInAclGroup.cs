@@ -11,6 +11,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters
         /// <summary>
         /// Property to access to the name of Users dependencies primary keys.
         /// </summary>
-        public override string DependenciesPKName => "UsersPK";
+        public override string DependenciesPKName => "UsersPKeys";
     }
 }

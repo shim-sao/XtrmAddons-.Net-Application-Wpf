@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
-using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Net.Common.Objects;
 
 namespace XtrmAddons.Fotootof.AddInsContracts.Base
@@ -139,6 +138,7 @@ namespace XtrmAddons.Fotootof.AddInsContracts.Base
                 if (disposing)
                 {
                     // Dispose managed objects.
+                    handle.Dispose();
                 }
 
                 // Dispose not managed objects & big size variables = null.

@@ -63,7 +63,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 try
                 {
                     string key = entity.Name.RemoveWhitespace().RemoveDiacritics();
-                    Trace.WriteLine(key);
+                    //Trace.WriteLine(key);
 
                     if(Culture.Translation.Words.Contains(key))
                     {
@@ -73,7 +73,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
                 }
                 catch (Exception ex)
                 {
-                    log.Error(ex.Output());
+                    log.Error(ex.Output(), ex);
                 }
                 i++;
             }

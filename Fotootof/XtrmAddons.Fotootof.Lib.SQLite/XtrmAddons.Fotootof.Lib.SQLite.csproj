@@ -62,7 +62,7 @@
     <Compile Include="Database\Data\Base\EntityBaseExtension.cs" />
     <Compile Include="Database\Data\Base\Interfaces\IAlias.cs" />
     <Compile Include="Database\Data\Base\Interfaces\IEntityBase.cs" />
-    <Compile Include="Database\Data\Base\ObservableDependenciesBase.cs" />
+    <Compile Include="Database\Data\Base\ObservableDependencyBase.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableUsersInAclGroups.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservableSectionsInAclGroups.cs" />
     <Compile Include="Database\Data\Tables\Dependencies\Observables\ObservablePicturesInAlbums.cs" />
@@ -87,6 +87,9 @@
     <Compile Include="Database\Data\Tables\Entities\UserEntity.cs" />
     <Compile Include="Database\Data\Tables\Entities\AclActionEntity.cs" />
     <Compile Include="Database\Data\Tables\Entities\AclGroupEntity.cs" />
+    <Compile Include="Database\Data\Tables\Interfaces\ISectionEntity.cs" />
+    <Compile Include="Database\Data\Tables\Interfaces\IPictureEntity.cs" />
+    <Compile Include="Database\Data\Tables\Interfaces\IAlbum.cs" />
     <Compile Include="Database\Event\EntityChangesEventArgs.cs" />
     <Compile Include="Database\Manager\Base\EntitiesManager.cs" />
     <Compile Include="Database\Manager\Base\EntitiesOptions.cs" />
@@ -195,6 +198,5 @@
       <Version>4.3.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

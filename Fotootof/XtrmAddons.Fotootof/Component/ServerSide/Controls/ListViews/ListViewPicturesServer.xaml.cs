@@ -10,13 +10,12 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
-using XtrmAddons.Fotootof.Common.Interfaces;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Layouts.Windows.Slideshow;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Win32;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Interfaces;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Picture;
 
@@ -49,22 +48,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 typeof(ListViewPicturesServer),
                 new PropertyMetadata(null)
             );
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /*public PageAlbumModel Model
-        {
-            get
-            {
-                if(!(DataContext is PageAlbumModel))
-                {
-                    return null;
-                }
-
-                return (PageAlbumModel)DataContext;
-            }
-        }*/
 
         #endregion
 
@@ -116,13 +99,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
             // If null, nothing to do.
             if (pfdb == null)
             {
-                log.Warn("Adding Picture(s). Canceled.");
+                log.Warn("Adding Pictures. Process canceled.");
                 return;
             }
 
             // Start to busy application.
             MessageBase.IsBusy = true;
-            log.Warn($"Starting adding {pfdb.FileNames.Length} Picture(s). Please wait...");
+            log.Warn($"Starting adding {pfdb.FileNames.Length} Pictures. Please wait...");
 
             var album = AlbumEntity;
             var pictAdded = PictureEntityCollection.FromFileNames(pfdb.FileNames, ref album);
@@ -130,38 +113,51 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
             bool updateAlbum = false;
 
             // Update Album informations.
-            if (AlbumEntity.ThumbnailPictureId == 0)
+            if (
+                AlbumEntity.ThumbnailPicture?.PrimaryKey is null ||
+                AlbumEntity.ThumbnailPicture.PrimaryKey == 0 ||
+                !File.Exists(AlbumEntity?.ThumbnailPicture?.PicturePath)
+                )
             {
-                AlbumEntity.ThumbnailPictureId = pictAdded[0].PrimaryKey;
+                AlbumEntity.ThumbnailPictureId = pictAdded[0]?.PrimaryKey ?? 0;
                 updateAlbum = true;
             }
-            if (AlbumEntity.PreviewPictureId == 0)
+
+            if (
+                AlbumEntity.PreviewPicture?.PrimaryKey is null ||
+                AlbumEntity.PreviewPicture.PrimaryKey == 0 ||
+                !File.Exists(AlbumEntity?.PreviewPicture?.PicturePath)
+                )
             {
-                AlbumEntity.PreviewPictureId = pictAdded[0].PrimaryKey;
+                AlbumEntity.PreviewPictureId = pictAdded[0]?.PrimaryKey ?? 0;
                 updateAlbum = true;
             }
-            if (AlbumEntity.BackgroundPictureId == 0)
+
+            if (
+                AlbumEntity.BackgroundPicture?.PrimaryKey is null ||
+                AlbumEntity.BackgroundPicture.PrimaryKey == 0 ||
+                !File.Exists(AlbumEntity?.BackgroundPicture?.PicturePath)
+                )
             {
-                AlbumEntity.BackgroundPictureId = pictAdded[0].PrimaryKey;
+                AlbumEntity.BackgroundPictureId = pictAdded[0]?.PrimaryKey ?? 0;
                 updateAlbum = true;
             }
 
             // Update the Album with new informations.
             if (updateAlbum)
             {
-                AlbumEntity = (await AlbumEntityCollection.DbUpdateAsync(AlbumEntity, AlbumEntity))[0];
+                //AlbumEntity = (await AlbumEntityCollection.DbUpdateAsync(AlbumEntity, AlbumEntity))[0];
+                await AlbumEntityCollection.DbUpdateAsync(AlbumEntity, AlbumEntity);
             }
 
-            // Refresh of the list view items source.
-            //log.Warn($"Refreshing {AlbumEntity.Pictures?.Count()} Picture(s) list view...");
-            //ItemsCollection.Items.Refresh();
+            //await AlbumEntity.Save();
 
             // Raise the on delete event.
-            log.Warn($"Raising {pictAdded.ToArray()?.Length} Picture(s) adding event...");
+            log.Warn($"Raising adding event with {pictAdded?.ToArray()?.Length ?? 0} Picture(s)...");
             RaiseOnAdd(pictAdded.ToArray());
 
             // Stop to busy application.
-            log.Warn($"Ending adding {pictAdded.ToArray()?.Length} Picture(s).");
+            log.Warn($"Ending adding {pictAdded?.ToArray()?.Length ?? 0} Picture(s).");
             MessageBase.IsBusy = false;
         }
 
@@ -203,25 +199,34 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 log.Warn("Starting deleting Picture(s). Please wait...");
 
                 // Delete item from database.
-                var pictDeleted = await PictureEntityCollection.DbDeleteAsync(SelectedItems);
+                //var pictDeleted = await PictureEntityCollection.DbDeleteAsync(SelectedItems);
 
                 // Important : No need to defer for list view items refresh.
                 log.Warn("Updating Picture(s) list view items...");
+
+                /*foreach (PictureEntity item in SelectedItems)
+                {
+                     AlbumEntity.UnLinkPicture(item.PrimaryKey);
+                }*/
+
                 foreach (PictureEntity item in SelectedItems)
                 {
                     AlbumEntity.Pictures.Remove(item);
                 }
 
+
+                AlbumEntity = (await AlbumEntityCollection.DbUpdateAsync(AlbumEntity, AlbumEntity))[0];
+                
                 // Refresh of the list view items source.
-                log.Warn("Refreshing Picture(s) list view...");
+                log.Warn($"Refreshing list view with {AlbumEntity?.Pictures} Pictures...");
                 ItemsCollection.Items.Refresh();
 
                 // Raise the on delete event.
-                log.Warn("Raising Picture(s) deleted event...");
-                RaiseOnDelete(pictDeleted.ToArray());
+                log.Warn($"Raising deleted event with {SelectedItems?.Count} Pictures...");
+                RaiseOnDelete(SelectedItems.ToArray());
 
                 // Stop to busy application.
-                log.Warn("Ending deleting Picture(s).");
+                log.Warn($"Ending of deleting  {SelectedItems?.Count} of Pictures.");
                 MessageBase.IsBusy = false;
             }
             catch (Exception ex)

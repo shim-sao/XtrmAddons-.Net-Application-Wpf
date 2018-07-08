@@ -462,7 +462,7 @@
   <data name="_About" xml:space="preserve">
     <value>_About XtrmAddons PhotoAlbum Server</value>
   </data>
-  <data name="_AddSection" xml:space="preserve">
+  <data name="_AddNewSection" xml:space="preserve">
     <value>Add _Section</value>
   </data>
   <data name="_AddToFirewall" xml:space="preserve">
@@ -632,5 +632,14 @@
   </data>
   <data name="FunctionalitiesCurrentlyUnavailable" xml:space="preserve">
     <value>Functionalities currently unavailable</value>
+  </data>
+  <data name="_Catalog" xml:space="preserve">
+    <value>_Catalog</value>
+  </data>
+  <data name="_AddNewAlbum" xml:space="preserve">
+    <value>Add _Album</value>
+  </data>
+  <data name="_ServerSettings" xml:space="preserve">
+    <value>_Server settings</value>
   </data>
 </root>

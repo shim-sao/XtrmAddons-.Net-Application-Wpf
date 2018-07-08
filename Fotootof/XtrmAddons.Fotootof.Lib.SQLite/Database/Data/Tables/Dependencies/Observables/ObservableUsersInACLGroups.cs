@@ -7,23 +7,27 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Obser
     /// <summary>
     /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Users In AclGroups.
     /// </summary>
+    /// <typeparam name="O">The Type of the entity item to observe.</typeparam>
+    /// <typeparam name="E">The Type of the entity items destination of the dependency.</typeparam>
     [JsonArray(Title = "Users_AclGroups")]
-    public class ObservableUsersInAclGroups : ObservableDependenciesBase<UsersInAclGroups>
+    public class ObservableUsersInAclGroups<O, E> : ObservableDependencyBase<UsersInAclGroups, O, E> where O : class where E : class
     {
 
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Users In AclGroups Constructor.
         /// </summary>
-        /// <param name="dependenciesPrimaryKeysName">The dependency primary key name.</param>
-        public ObservableUsersInAclGroups(string dependenciesPrimaryKeysName)
-            : base(dependenciesPrimaryKeysName) { }
+        public ObservableUsersInAclGroups() : base() { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Users In AclGroups Constructor.
         /// </summary>
-        /// <param name="dependenciesPrimaryKeysName">The dependency primary key name.</param>
-        /// <param name="collection">An enumerable collection of items.</param>
-        public ObservableUsersInAclGroups(string dependenciesPrimaryKeysName, IEnumerable<UsersInAclGroups> collection)
-            : base(dependenciesPrimaryKeysName, collection) { }
+        /// <param name="list">A list of items to add at the collection initialization.</param>
+        public ObservableUsersInAclGroups(List<UsersInAclGroups> list) : base(list) { }
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Lib SQLite Database Data Tables Dependencies Observable Users In AclGroups Constructor.
+        /// </summary>
+        /// <param name="collection">A enumerable collection of items to add at the collection initialization.</param>
+        public ObservableUsersInAclGroups(IEnumerable<UsersInAclGroups> collection) : base(collection) { }
     }
 }

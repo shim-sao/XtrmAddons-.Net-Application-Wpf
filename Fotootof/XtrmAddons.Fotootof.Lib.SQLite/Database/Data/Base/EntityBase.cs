@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
@@ -13,7 +14,8 @@ using XtrmAddons.Net.Common.Objects;
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite Database Data Base Entity.
+    /// <para>Class XtrmAddons Fotootof Lib SQLite Database Data Base Entity.</para>
+    /// <para>This class provide base properties and methods for database Entity object.</para>
     /// </summary>
     [Serializable, JsonObject(MemberSerialization.OptIn)]
     public abstract class EntityBase : ObjectBaseNotifier, IEntityBase
@@ -28,13 +30,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// Variable database connector.
+        /// Variable to store the database connector.
         /// </summary>
         [XmlIgnore]
         private static DatabaseCore db;
 
         /// <summary>
-        /// Variable primary key auto incremented.
+        /// Variable to store the primary key auto incremented value.
         /// </summary>
         [XmlIgnore]
         protected int primaryKey = 0;
@@ -56,7 +58,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         }
 
         /// <summary>
-        /// Property alias to access to the primary key of the entity.
+        /// Property alias to access to the Primary Key (PK or Id) of the entity.
         /// </summary>
         [NotMapped]
         [JsonProperty(PropertyName = "Id")]
@@ -80,6 +82,55 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
 
         #region Methods
 
+        // Save not working at all.
+        //public async Task<object> Save()
+        //{
+        //    try
+        //    {
+        //        using (Db.Context)
+        //        {
+        //            try { Db.Context.Attach(this); } catch (Exception e1) { log.Info(e1.Output(), e1); }
+
+        //            if (PrimaryKey == 0)
+        //            {
+        //                this.Bind(Db.Context.Add(this));
+        //                log.Info($"Adding {GetType().Name} [PrimaryKey:{PrimaryKey}] into database.");
+        //            }
+        //            else
+        //            {
+        //                this.Bind(Db.Context.Update(this));
+        //                log.Info($"Updating {GetType().Name} [PrimaryKey:{PrimaryKey}] into database.");
+        //            }
+        //            /*
+        //            using (Task<int> result = Db.Context.SaveChangesAsync())
+        //            {
+        //                if(result.IsCompleted)
+        //                {
+        //                    log.Warn($"Saving {GetType().Name} [PrimaryKey:{PrimaryKey}] into database : Done.");
+        //                }
+
+        //                if(result.IsCanceled)
+        //                {
+        //                    log.Warn($"Saving {GetType().Name} [PrimaryKey:{PrimaryKey}] into database : Canceled.");
+        //                }
+
+        //                if(result.IsFaulted)
+        //                {
+        //                    log.Warn($"Saving {GetType().Name} [PrimaryKey:{PrimaryKey}] into database : Error.");
+        //                }
+        //            }
+        //            */
+        //            int result = Db.Context.SaveChanges(true);
+        //        }
+        //    }
+        //    catch (Exception e2)
+        //    {
+        //        log.Error(e2.Output(), e2);
+        //    }
+
+        //    return await Task.FromResult(this);
+        //}
+        
         /// <summary>
         /// Method to get an observable collection of primaries keys.
         /// </summary>
@@ -88,6 +139,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// <param name="primaryKeyName">The associated key name of the dependencies.</param>
         /// <returns>A list of dependencies primary keys.</returns>
         /// <exception cref="ArgumentNullException">Occurs if primaryKeyName argument is null, empty or whitespace.</exception>
+        [Obsolete("Use property of observable dependency. Change dependency property to get new observable list.")]
         public IEnumerable<int> ListOfPrimaryKeys<T>(IEnumerable<T> dependencies, string primaryKeyName) where T : class
         {
             // Check if primary key name is valid, if not throw exception.
@@ -123,6 +175,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// <typeparam name="T">The Class of entity.</typeparam>
         /// <param name="dependencies">An collection of entities dependencies.</param>
         /// <returns>A list of AclAction associated to the dependencies.</returns>
+        [Obsolete("Use property of observable dependency. Change dependency property to get new observable list.")]
         public static List<T> ListEntities<T>(IEnumerable dependencies) where T : class
         {
             log.Debug($"{typeof(EntityBase).Name}.{MethodBase.GetCurrentMethod().Name} : Object Type => {typeof(T)}");

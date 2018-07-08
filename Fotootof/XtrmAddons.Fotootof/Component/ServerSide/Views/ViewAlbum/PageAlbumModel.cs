@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using XtrmAddons.Fotootof.Common.Collections;
-using XtrmAddons.Fotootof.Common.Interfaces;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Interfaces;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 

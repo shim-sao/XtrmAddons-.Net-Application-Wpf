@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Observables;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
@@ -468,15 +469,15 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                     NotifyPropertyChanged();
 
                     // Update the Background Picture Id property.
-                    if (backgroundPicture != null)
+                    if (backgroundPicture == null)
                     {
-                        log.Debug(new NullReferenceException($"Parameter : '{nameof(backgroundPicture)}' type of '{backgroundPicture.GetType().Name}'"));
+                        log.Debug(new NullReferenceException($"Parameter : '{nameof(backgroundPicture)}' type of 'null'"));
                         return;
                     }
 
                     if (backgroundPicture.PrimaryKey == 0)
                     {
-                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(backgroundPicture)}' type of '{backgroundPicture.GetType().Name}' PrimaryKey=0"));
+                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(backgroundPicture)}' type of '{backgroundPicture.GetType().Name}' [PrimaryKey:0]"));
                         return;
                     }
 
@@ -509,15 +510,15 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                     NotifyPropertyChanged();
 
                     // Update the Preview Picture Id property.
-                    if (previewPicture != null)
+                    if (previewPicture == null)
                     {
-                        log.Debug(new NullReferenceException($"Parameter : '{nameof(previewPicture)}' type of '{previewPicture.GetType().Name}'"));
+                        log.Debug(new NullReferenceException($"Parameter : '{nameof(previewPicture)}' type of 'null'"));
                         return;
                     }
 
                     if (previewPicture.PrimaryKey == 0)
                     {
-                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(previewPicture)}' type of '{previewPicture.GetType().Name}' PrimaryKey=0"));
+                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(previewPicture)}' type of '{previewPicture.GetType().Name}' [PrimaryKey:0]"));
                         return;
                     }
 
@@ -550,15 +551,15 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                     NotifyPropertyChanged();
 
                     // Update the Thumbnail Picture Id property.
-                    if (backgroundPicture != null)
+                    if (thumbnailPicture == null)
                     {
-                        log.Debug(new NullReferenceException($"Parameter : '{nameof(thumbnailPicture)}' type of '{thumbnailPicture.GetType().Name}'"));
+                        log.Debug(new NullReferenceException($"Parameter : '{nameof(thumbnailPicture)}' type of 'null'"));
                         return;
                     }
 
                     if (thumbnailPicture.PrimaryKey == 0)
                     {
-                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(thumbnailPicture)}' type of '{thumbnailPicture.GetType().Name}' PrimaryKey=0"));
+                        log.Debug(new IndexOutOfRangeException($"Parameter : '{nameof(thumbnailPicture)}' type of '{thumbnailPicture.GetType().Name}' [PrimaryKey:0]"));
                         return;
                     }
 
@@ -571,10 +572,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
 
 
 
-        #region Properties Dependencies Section
+        #region Properties Dependency Section
 
         /// <summary>
-        /// Property Section id.
+        /// Property to access to the Section Id required for dependency.
         /// </summary>
         [NotMapped]
         public int SectionId { get; set; }
@@ -583,30 +584,27 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Sections associated to the Album.
         /// </summary>
         [NotMapped]
-        public List<SectionEntity> Sections
-        {
-            get => ListSections();
-            set => sections = value;
-        }
+        public ObservableCollection<SectionEntity> Sections
+            => AlbumsInSections.DepReferences;
 
         /// <summary>
-        /// Propertiy to access to the list of Section dependencies primary key.
+        /// Propertiy to access to the list of Section dependency Primary Keys.
         /// </summary>
         [NotMapped]
-        public IEnumerable<int> SectionsPK
-            => ListOfPrimaryKeys(AlbumsInSections.ToList(), "SectionId");
+        public ObservableCollection<int> SectionsPKs
+            => AlbumsInSections.DepPKeys;
 
         /// <summary>
         /// Property to access to the collection of relationship Albums in Sections.
         /// </summary>
-        public ObservableCollection<AlbumsInSections> AlbumsInSections { get; set; }
-            = new ObservableCollection<AlbumsInSections>();
+        public ObservableAlbumsInSections<AlbumEntity, SectionEntity> AlbumsInSections { get; set; }
+            = new ObservableAlbumsInSections<AlbumEntity, SectionEntity>();
 
         #endregion
 
 
 
-        #region Properties : Dependencies
+        #region Properties Dependency Picture
 
         /// <summary>
         /// Property Picture id.
@@ -615,29 +613,59 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         public int PictureId { get; set; }
 
         /// <summary>
-        /// Property Info id.
+        /// Propertiy to access to the list of Picture dependencies primary key.
         /// </summary>
         [NotMapped]
-        public int InfoId { get; set; }
+        public ObservableCollection<int> PicturesPKs
+        {
+            get
+            {
+                PicturesInAlbums.Populate();
+                return PicturesInAlbums.DepPKeys;
+            }
+        }
 
         /// <summary>
         /// Property to access to the list of Pictures associated to the Album.
         /// </summary>
         [NotMapped]
         public ObservableCollection<PictureEntity> Pictures
-        {
-            get => ListPictures();
-            set
+        {    
+            get
             {
-                if (value != ListPictures())
-                {
-                    pictures.Clear();
+                PicturesInAlbums.Populate();
+                return PicturesInAlbums.DepReferences;
+            }
+        }
 
-                    foreach (var p in value)
-                    {
-                        pictures.Add(p);
-                    }
-                }
+        /// <summary>
+        /// Property to access to the collection of relationship Pictures In Albums entities.
+        /// </summary>
+        public ObservablePicturesInAlbums<AlbumEntity, PictureEntity> PicturesInAlbums { get; set; }
+            = new ObservablePicturesInAlbums<AlbumEntity, PictureEntity>();
+
+        #endregion
+
+
+
+        #region Properties Dependency Info
+
+        /// <summary>
+        /// Property Info id.
+        /// </summary>
+        [NotMapped]
+        public int InfoId { get; set; }
+
+        /// <summary>
+        /// Propertiy to access to the list of Info dependencies primary key.
+        /// </summary>
+        [NotMapped]
+        public ObservableCollection<int> InfosPKs
+        {
+            get
+            {
+                InfosInAlbums.Populate();
+                return InfosInAlbums.DepPKeys;
             }
         }
 
@@ -645,35 +673,20 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of Infos associated to the Album.
         /// </summary>
         [NotMapped]
-        public List<InfoEntity> Infos
+        public ObservableCollection<InfoEntity> Infos
         {
-            get => ListInfos();
-            set => infos = value;
+            get
+            {
+                InfosInAlbums.Populate();
+                return InfosInAlbums.DepReferences;
+            }
         }
-
-        /// <summary>
-        /// Propertiy to access to the list of Picture dependencies primary key.
-        /// </summary>
-        [NotMapped]
-        public IEnumerable<int> PicturesPK => ListOfPrimaryKeys(PicturesInAlbums.ToList(), "PictureId");
-
-        /// <summary>
-        /// Propertiy to access to the list of Info dependencies primary key.
-        /// </summary>
-        [NotMapped]
-        public IEnumerable<int> InfosPK => ListOfPrimaryKeys(InfosInAlbums.ToList(), "InfoId");
-
-        /// <summary>
-        /// Property to access to the collection of relationship Pictures In Albums entities.
-        /// </summary>
-        public ObservableCollection<PicturesInAlbums> PicturesInAlbums { get; set; }
-            = new ObservableCollection<PicturesInAlbums>();
 
         /// <summary>
         /// Property to access to the collection of relationship Infos In Albums entities.
         /// </summary>
-        public ObservableCollection<InfosInAlbums> InfosInAlbums { get; set; }
-            = new ObservableCollection<InfosInAlbums>();
+        public ObservableInfosInAlbums<AlbumEntity, InfoEntity> InfosInAlbums { get; set; }
+            = new ObservableInfosInAlbums<AlbumEntity, InfoEntity>();
 
         #endregion
 
@@ -684,18 +697,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries SQLite Album Entity Constructor.
         /// </summary>
-        public AlbumEntity()
-        {
-            AlbumsInSections.CollectionChanged += (s, e) => { sections = null; };
-            PicturesInAlbums.CollectionChanged += PicturesInAlbums_CollectionChanged;
-            InfosInAlbums.CollectionChanged += (s, e) => { infos = null; };
-        }
+        public AlbumEntity() { }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        [System.Obsolete("Use dependency references.", true)]
         private void PicturesInAlbums_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {e.NewItems?.Count} | {e.OldItems?.Count}");
@@ -739,6 +748,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to get a list of associated Picture.
         /// </summary>
         /// <returns></returns>
+        [System.Obsolete("Use dependency references.", true)]
         private ObservableCollection<PictureEntity> ListPictures()
         {
             if (pictures.Count == 0)
@@ -814,6 +824,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to get a list of associated Section.
         /// </summary>
         /// <returns></returns>
+        [System.Obsolete("Use dependency references.")]
         private List<SectionEntity> ListSections()
         {
             if (sections == null)
@@ -833,6 +844,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// 
         /// </summary>
         /// <param name="sectionId"></param>
+        [System.Obsolete("Use => SectionsPKs.Add(SectionPk);")]
         public void LinkSection(int sectionId)
         {
             try
@@ -851,6 +863,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// 
         /// </summary>
         /// <param name="sectionId"></param>
+        [System.Obsolete("Use => SectionsPKs.Remove(SectionPk);")]
         public void UnlinkSection(int sectionId)
         {
             try
@@ -871,6 +884,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to get a list of associated Info.
         /// </summary>
         /// <returns></returns>
+        [System.Obsolete("Use dependency references.")]
         private List<InfoEntity> ListInfos()
         {
             if (infos == null)
@@ -890,6 +904,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// 
         /// </summary>
         /// <param name="infoId"></param>
+        [System.Obsolete("Use => InfosPKs.Add(InfoPk);")]
         public void LinkInfo(int infoId)
         {
             try
@@ -908,6 +923,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// 
         /// </summary>
         /// <param name="infoId"></param>
+        [System.Obsolete("Use => InfosPKs.Remove(InfoPk);", true)]
         public void UnLinkInfo(int infoId)
         {
             try

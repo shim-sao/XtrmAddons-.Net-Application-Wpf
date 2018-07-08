@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Observables;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
@@ -55,18 +56,20 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             if(sectionId > 0)
             {
                 // Check if Album contains associated Sections
-                if (entity.AlbumsInSections == null)
+                /*if (entity.AlbumsInSections == null)
                 {
                     // Add new dependency.
-                    entity.AlbumsInSections = new ObservableCollection<AlbumsInSections>
+                    entity.AlbumsInSections = new ObservableAlbumsInSections<AlbumEntity, SectionEntity>
                     {
                         new AlbumsInSections { SectionId = sectionId }
                     };
+                    
                 }
                 else if(entity.AlbumsInSections.SingleOrDefault(x => x.SectionId == sectionId).SectionId == 0)
                 {
                     entity.AlbumsInSections.Add(new AlbumsInSections { SectionId = sectionId });
-                }
+                }*/
+                entity.SectionsPKs.Add(sectionId);
             }
 
             entity = Context.Albums.Add(entity).Entity;
@@ -78,26 +81,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
 
             return entity;
         }
-
-        /// <summary>
-        /// Method to add a category to an album.
-        /// </summary>
-        /// <param name="albumId"></param>
-        /// <param name="categoryId"></param>
-        /// <returns>The added user entity.</returns>
-        /*public AlbumEntity AddCategoryDependency(int albumId, int sectionId, bool save = true)
-        {
-            AlbumOptionsSelect options = new AlbumOptionsSelect { PrimaryKey = albumId };
-            options.Dependencies.Add(EnumEntitiesDependencies.AlbumsInSections);
-
-            AlbumEntity item = Select(options);
-
-            item.AlbumsInSections.Add(
-                new AlbumsInSections { SectionId = sectionId }
-            );
-
-            return Update(item, save);
-        }*/
 
         /// <summary>
         /// 
