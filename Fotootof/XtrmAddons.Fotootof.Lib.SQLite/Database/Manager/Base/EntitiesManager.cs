@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
 using XtrmAddons.Net.Common.Extensions;
 
@@ -22,7 +23,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
         /// Variable logger.
         /// </summary>
         protected static readonly log4net.ILog log =
-            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 
@@ -118,6 +119,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
             if (save)
             {
                 log.Debug("Saving database context set to true.");
+                var result = Context.SaveChanges();
                 return Context.SaveChanges();
             }
             else
@@ -393,7 +395,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
                 return 0;
             }
 
-            log.Info($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Affected Rows => {result}");
+            log.Info($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {result} Affected Rows");
             return result;
         }
 

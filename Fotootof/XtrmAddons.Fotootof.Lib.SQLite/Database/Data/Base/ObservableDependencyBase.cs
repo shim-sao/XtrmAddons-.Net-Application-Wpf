@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
@@ -63,7 +65,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         }
 
         /// <summary>
-        /// Property to access to
+        /// Property to access to the dependency References.
         /// </summary>
         public ObservableCollection<E> DepReferences
         {
@@ -80,8 +82,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         }
 
         /// <summary>
-        /// 
+        /// Property to get or set to 
         /// </summary>
+        [System.Obsolete("BlockReentrancy() is used.")]
         public bool LockChanges { get; set; } = false;
 
         /// <summary>
@@ -218,19 +221,71 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// Method called on collection changed event.
         /// </summary>
         /// <param name="e">Notify collection changed event arguments.</param>
+        //protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        //{
+        //    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Sender => {GetType().Name}");
+            
+
+        //    // Check if the collection changes is not locked.
+        //    // Check if we must populate data on construct.
+        //    if (LockChanges == true || IsPopulated == false)
+        //    {
+        //        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => {LockChanges} || {IsPopulated}");
+        //        LockChanges = false;
+        //        return;
+        //    }
+
+        //    // Check if a dependency primary key name is valid.
+        //    if (DepPKName.IsNullOrWhiteSpace())
+        //    {
+        //        DepPKName = typeof(E).Name.Replace("Entity", "Id");
+        //        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : DepPKName => {DepPKName}");
+        //    }
+
+        //    LockDepPKeysChanges = true;
+        //    LockDepReferencesChanges = true;
+
+        //    // Switch for the action to do.
+        //    switch (e.Action)
+        //    {
+        //        // Occurs on add new item into the collection.
+        //        case NotifyCollectionChangedAction.Add:
+        //            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => Action Add");
+        //            NotifyCollectionAdd_DepPKeys(this, e);
+        //            NotifyCollectionAdd_DepReferences(this, e);
+        //            break;
+
+        //        case NotifyCollectionChangedAction.Move :
+        //            break;
+
+        //        case NotifyCollectionChangedAction.Remove:
+        //            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => Action Remove");
+        //            NotifyCollectionRemove_DepPKeys(this, e);
+        //            NotifyCollectionRemove_DepReferences(this, e);
+        //            break;
+
+        //        case NotifyCollectionChangedAction.Replace :
+        //            break;
+
+        //        case NotifyCollectionChangedAction.Reset :
+        //            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => Action Reset");
+        //            NotifyCollectionReset_DepPKeys(this, e);
+        //            DepReferences.Clear();
+        //            break;
+        //    }
+
+        //    LockDepPKeysChanges = false;
+        //    LockDepReferencesChanges = false;
+        //}
+
+        /// <summary>
+        /// Method called on collection changed event.
+        /// </summary>
+        /// <param name="e">Notify collection changed event arguments.</param>
         protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Sender => {GetType().Name}");
-
-            // Check if the collection changes is not locked.
-            // Check if we must populate data on construct.
-            if (LockChanges == true || IsPopulated == false)
-            {
-                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => {LockChanges} || {IsPopulated}");
-                LockChanges = false;
-                return;
-            }
-
+            
             // Check if a dependency primary key name is valid.
             if (DepPKName.IsNullOrWhiteSpace())
             {
@@ -238,40 +293,46 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                 log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : DepPKName => {DepPKName}");
             }
 
-            LockDepPKeysChanges = true;
-            LockDepReferencesChanges = true;
 
-            // Switch for the action to do.
-            switch (e.Action)
+            // Check if the collection changes is not locked.
+            // Check if we must populate data on construct.
+            using (var block = this.BlockReentrancy())
             {
-                // Occurs on add new item into the collection.
-                case NotifyCollectionChangedAction.Add:
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => Action Add");
-                    NotifyCollectionAdd_DepPKeys(this, e);
-                    NotifyCollectionAdd_DepReferences(this, e);
-                    break;
+                LockDepPKeysChanges = true;
+                LockDepReferencesChanges = true;
 
-                case NotifyCollectionChangedAction.Move :
-                    break;
+                // Switch for the action to do.
+                switch (e.Action)
+                {
+                    // Occurs on add new item into the collection.
+                    case NotifyCollectionChangedAction.Add:
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => Action Add");
+                        NotifyCollectionAdd_DepPKeys(this, e);
+                        NotifyCollectionAdd_DepReferences(this, e);
+                        break;
 
-                case NotifyCollectionChangedAction.Remove:
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => Action Remove");
-                    NotifyCollectionRemove_DepPKeys(this, e);
-                    NotifyCollectionRemove_DepReferences(this, e);
-                    break;
+                    case NotifyCollectionChangedAction.Move:
+                        break;
 
-                case NotifyCollectionChangedAction.Replace :
-                    break;
+                    case NotifyCollectionChangedAction.Remove:
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => Action Remove");
+                        NotifyCollectionRemove_DepPKeys(this, e);
+                        NotifyCollectionRemove_DepReferences(this, e);
+                        break;
 
-                case NotifyCollectionChangedAction.Reset :
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => Action Reset");
-                    NotifyCollectionReset_DepPKeys(this, e);
-                    DepReferences.Clear();
-                    break;
+                    case NotifyCollectionChangedAction.Replace:
+                        break;
+
+                    case NotifyCollectionChangedAction.Reset:
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => Action Reset");
+                        NotifyCollectionReset_DepPKeys(this, e);
+                        DepReferences.Clear();
+                        break;
+                }
+
+                LockDepPKeysChanges = false;
+                LockDepReferencesChanges = false;
             }
-
-            LockDepPKeysChanges = false;
-            LockDepReferencesChanges = false;
         }
 
         /// <summary>
@@ -283,7 +344,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Sender => {GetType().Name}");
 
-            if(LockDepReferencesChanges == true)
+            if (LockDepReferencesChanges == true)
             {
                 log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyDepReferencesChanges => {LockDepReferencesChanges}");
                 LockDepReferencesChanges = false;
@@ -410,19 +471,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                         if (obj == null)
                         {
                             T newObj = (T)Activator.CreateInstance(typeof(T));
-                            try
-                            {
-                                string key = DepPKName.Substring(1); 
-                                newObj.SetPropertyValue(key, pkValue);
-                            }
-                            catch
-                            {
-                                newObj.SetPropertyValue(DepPKName, pkValue);
-                            }
+                            newObj.SetPropertyValue(DepPKName, pkValue);
 
-                            
+
                             Add(newObj);
-                            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {newObj?.GetType()?.Name} {pkValue} to observable dependency link.");
+                            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding Type {newObj?.GetType()?.Name} [PrimaryKey:{pkValue}] to observable dependency link.");
                         }
                     }
                     else
@@ -434,13 +487,24 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         }
 
         /// <summary>
-        /// <para>Method to notify an add event to the dependency References collection</para>
+        /// <para>Method to notify an add event to the dependency References collection.</para>
         /// <para>Originaly from the Primary Keys and Links collections.</para>
+        /// <para>
+        /// WARNING : REFERENCES can't be auto populated.
+        /// SQLite lock table on Save, concurrent Select cause SQLiteException.
+        /// Method still here to try to find a solution.
+        /// Use a call to Populate() when needed.
+        /// </para>
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Notify collection changed event arguments.</param>
         protected virtual void NotifyCollectionAdd_DepReferences(object sender, NotifyCollectionChangedEventArgs e)
         {
+            // REFERENCES can't be auto populated.
+            // SQLite lock table on Save, concurrent Select cause SQLiteException.
+            // Method still here to try to find a solution.
+            return;
+
             // Process action on each new item
             if (e.NewItems?.Count != null)
             {
@@ -462,7 +526,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                             if (reference != null && !DepReferences.Contains(reference))
                             {
                                 DepReferences.Add(reference);
-                                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {reference.GetType().Name} {(reference as EntityBase).PrimaryKey} to observable dependency reference.");
+                                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding Type {reference.GetType().Name} [PrimaryKey:{(reference as EntityBase).PrimaryKey}] to observable dependency reference.");
                             }
                         }
                     }
@@ -641,24 +705,69 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         #region Methods
 
         /// <summary>
-        /// 
+        /// Method to populate observable collection of Primary Keys and References.
         /// </summary>
-        public void Populate()
+        public virtual void Populate()
         {
             if (!IsPopulated)
             {
                 IsPopulated = true;
 
                 // Convert dependencies into a list of Primary Keys.
-                if (DepPKeys.Count != Count || DepReferences.Count != Count)
+                if (DepPKeys.Count != Count)
                 {
                     foreach (var o in this)
                     {
                         DepPKeys.AddIfNotExists((int)((T)o).GetPropertyValue(DepPKName));
                     }
                 }
+            }
 
-                IsPopulated = false;
+            // Convert dependencies into a list of Entity References.
+            if (DepReferences.Count != Count)
+            {
+                Populate_DepReferences();
+            }
+        }
+
+        /// <summary>
+        /// <para>Method to notify an add event to the dependency References collection</para>
+        /// <para>Originaly from the Primary Keys and Links collections.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Notify collection changed event arguments.</param>
+        protected virtual void Populate_DepReferences()
+        {
+            // Process action on each new item
+            if (Items?.Count != null)
+            {
+                foreach (var item in Items)
+                {
+                    int pkValue = 0;
+
+                    pkValue = (int)item.GetPropertyValue(DepPKName);
+
+                    if (pkValue > 0)
+                    {
+                        if (FindIndexInDepReferences(pkValue) == -1 && IsPopulated == true)
+                        {
+                            E reference = EntityBase.Db.Context.Find<E>(pkValue);
+
+                            if (reference != null && !DepReferences.Contains(reference))
+                            {
+                                ApplicationBase.BeginInvokeIfRequired(new Action(() =>
+                                {
+                                    DepReferences.Add(reference);
+                                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {reference.GetType().Name} {(reference as EntityBase).PrimaryKey} to REFERENCES.");
+                                }));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding to REFERENCES => Can't add 0");
+                    }
+                }
             }
         }
 

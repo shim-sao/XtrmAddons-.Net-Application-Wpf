@@ -184,15 +184,15 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
                 modelBuilder.Entity<AlbumsInSections>()
                 .HasKey(d => new { d.AlbumId, d.SectionId });
 
-            modelBuilder.Entity<AlbumsInSections>()
-                .HasOne(d => d.AlbumEntity)
-                .WithMany(x => x.AlbumsInSections)
-                .HasForeignKey(d => d.AlbumId);
+                modelBuilder.Entity<AlbumsInSections>()
+                    .HasOne(d => d.AlbumEntity)
+                    .WithMany(x => x.AlbumsInSections)
+                    .HasForeignKey(d => d.AlbumId);
 
-            modelBuilder.Entity<AlbumsInSections>()
-                .HasOne(d => d.SectionEntity)
-                .WithMany(x => x.AlbumsInSections)
-                .HasForeignKey(d => d.SectionId);
+                modelBuilder.Entity<AlbumsInSections>()
+                    .HasOne(d => d.SectionEntity)
+                    .WithMany(x => x.AlbumsInSections)
+                    .HasForeignKey(d => d.SectionId);
             }
             catch (Exception e)
             {
