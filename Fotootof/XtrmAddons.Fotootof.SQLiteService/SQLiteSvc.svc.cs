@@ -80,14 +80,6 @@ namespace XtrmAddons.Fotootof.SQLiteService
         /// </summary>
         public void Main() { }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IList<E> Get<E, O>(O options)
-        {
-            return null;
-        }
         #endregion
     }
 }
