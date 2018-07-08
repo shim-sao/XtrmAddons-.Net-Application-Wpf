@@ -9,8 +9,6 @@ using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
-using XtrmAddons.Fotootof.SQLiteService;
-using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
@@ -32,12 +30,6 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
 
 
         #region Properties
-
-        /// <summary>
-        /// Property alias to access to the main database connector.
-        /// </summary>
-        public static SQLiteSvc Db
-            => (SQLiteSvc)ApplicationSession.Properties.Database;
 
         /// <summary>
         /// Property to access to the Window model.

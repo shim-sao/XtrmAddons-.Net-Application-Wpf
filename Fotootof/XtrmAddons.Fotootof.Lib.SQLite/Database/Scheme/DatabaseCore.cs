@@ -26,7 +26,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
         /// <summary>
         /// Variable database file name.
         /// </summary>
-        private string dbname = "";
+        private readonly string dbname = "";
 
         #endregion
 

@@ -11,7 +11,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// </summary>
     [Serializable]
     [Table("Versions")]
-    [System.Obsolete("Use others mechanisms. Table will be deleted.")]
+    [System.Obsolete("Use others mechanisms. Table will be deleted.", true)]
     public partial class VersionEntity : EntityBase
     {
         #region Variables

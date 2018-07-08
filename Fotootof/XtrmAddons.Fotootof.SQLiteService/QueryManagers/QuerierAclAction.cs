@@ -11,9 +11,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
     /// <summary>
     /// Class XtrmAddons Fotootof SQLiteService.
     /// </summary>
-    public class QuerierAclAction : Queriers,
-        IQuerierList<AclActionEntity, AclActionOptionsList>,
-        IQuerierSingle<AclActionEntity, AclActionOptionsSelect>
+    public class QuerierAclAction : Queriers
     {
         #region Variables
         
