@@ -128,7 +128,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
-    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.3.0" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.4.0" />
     <PackageReference Include="log4net">
       <Version>2.0.8</Version>
     </PackageReference>

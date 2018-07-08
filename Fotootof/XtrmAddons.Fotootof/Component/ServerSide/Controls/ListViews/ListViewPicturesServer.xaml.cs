@@ -31,11 +31,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// <summary>
         /// Property to access to the main items data grid.
         /// </summary>
-        public AlbumEntity AlbumEntity
-        {
-            get => (AlbumEntity)GetValue(propertyAlbumEntity);
-            set => SetValue(propertyAlbumEntity, value);
-        }
+        public AlbumEntity AlbumEntity { get => (AlbumEntity)GetValue(propertyAlbumEntity); set => SetValue(propertyAlbumEntity, value); }
 
         /// <summary>
         /// Property Using a DependencyProperty as the backing store for Entities.
@@ -146,11 +142,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
             // Update the Album with new informations.
             if (updateAlbum)
             {
-                //AlbumEntity = (await AlbumEntityCollection.DbUpdateAsync(AlbumEntity, AlbumEntity))[0];
-                await AlbumEntityCollection.DbUpdateAsync(AlbumEntity, AlbumEntity);
+                // Updating the Album will create a new DataContext.
+                AlbumEntity = (await AlbumEntityCollection.DbUpdateAsync(AlbumEntity, AlbumEntity))[0];
             }
-
-            //await AlbumEntity.Save();
+            else
+            {
+                // Need this to Populate new Pictures to update the DataContext.
+                var a = AlbumEntity.Pictures;
+            }
 
             // Raise the on delete event.
             log.Warn($"Raising adding event with {pictAdded?.ToArray()?.Length ?? 0} Picture(s)...");

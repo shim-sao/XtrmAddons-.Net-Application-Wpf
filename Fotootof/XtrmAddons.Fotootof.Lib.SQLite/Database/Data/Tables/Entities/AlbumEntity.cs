@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies.Observables;
@@ -21,7 +22,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     [Serializable]
     [Table("Albums")]
     [JsonObject(MemberSerialization.OptIn)]
-    public partial class AlbumEntity : CommonEntity, IAlias
+    public partial class AlbumEntity : EntityBase, IAlias
     {
         #region Variables
 

@@ -168,14 +168,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
                 AclGroupsInAclActions.Populate();
                 return AclGroupsInAclActions.DepReferences;
             }
-            //set
-            //{
-            //    if (value != AclGroupsInAclActions.DepReferences)
-            //    {
-            //        AclGroupsInAclActions.DepReferences.ClearAndAdd(value);
-            //        NotifyPropertyChanged();
-            //    }
-            //}
+            set
+            {
+                if (value != AclGroupsInAclActions.DepReferences)
+                {
+                    AclGroupsInAclActions.DepReferences.ClearAndAdd(value);
+                    NotifyPropertyChanged();
+                }
+            }
         }
 
         /// <summary>

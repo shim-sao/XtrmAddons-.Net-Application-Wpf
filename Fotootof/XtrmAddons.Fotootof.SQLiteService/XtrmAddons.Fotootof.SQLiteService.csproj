@@ -60,8 +60,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connector\DatabaseContextCore.cs" />
-    <Compile Include="Connector\DatabaseCore.cs" />
     <Compile Include="QueryManagers\Interfaces\IQuerierSingle.cs" />
     <Compile Include="QueryManagers\Interfaces\IQuerierList.cs" />
     <Compile Include="QueryManagers\Queriers.cs" />
@@ -72,7 +70,6 @@
     <Compile Include="QueryManagers\QuerierInfo.cs" />
     <Compile Include="QueryManagers\QuerierPicture.cs" />
     <Compile Include="QueryManagers\QuerierSection.cs" />
-    <Compile Include="QueryManagers\QuerierVersion.cs" />
     <Compile Include="QueryManagers\QuerierUser.cs" />
     <Compile Include="SQLiteSvc.cs" />
     <Compile Include="SQLiteSvc.svc.cs" />
@@ -99,7 +96,9 @@
       <Name>XtrmAddons.Fotootof.Lib.SQLite</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="QueryManagers\AclGroups\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

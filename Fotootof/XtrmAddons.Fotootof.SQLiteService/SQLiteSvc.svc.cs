@@ -1,4 +1,5 @@
-﻿using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
+﻿using System.Collections.Generic;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
 using XtrmAddons.Fotootof.SQLiteService.QueryManagers;
 
@@ -26,6 +27,7 @@ namespace XtrmAddons.Fotootof.SQLiteService
         /// Property database connector core using EntityFramework.
         /// </summary>
         public static DatabaseCore Db { get => db; set { if (db is null) EntityBase.Db = db = value; } }
+        // public static DatabaseCore Db { get => db; set { if (db is null) db = value; } }
 
         /// <summary>
         /// 
@@ -61,12 +63,6 @@ namespace XtrmAddons.Fotootof.SQLiteService
         /// 
         /// </summary>
         public QuerierUser Users { get; } = new QuerierUser();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [System.Obsolete("Use others mechanisms. Table will be deleted.")]
-        public QuerierVersion Versions { get; } = new QuerierVersion();
         
         #endregion
 
@@ -84,6 +80,14 @@ namespace XtrmAddons.Fotootof.SQLiteService
         /// </summary>
         public void Main() { }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IList<E> Get<E, O>(O options)
+        {
+            return null;
+        }
         #endregion
     }
 }
