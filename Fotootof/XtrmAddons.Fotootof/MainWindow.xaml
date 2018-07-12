@@ -6,16 +6,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Properties"
-    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Common.Controls.Menu"
+    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Layouts.Menu"
     xmlns:ucsubmenu="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.Menu"
     mc:Ignorable="d"
     Title="{x:Static p:Resources.ApplicationName}"
-    Style="{StaticResource ResourceKey=ApplicationWindow}"
+    Style="{StaticResource ResourceKey=Window_MainWindow}"
     Loaded="Window_Loaded"
     Closing="Window_Closing"
     SizeChanged="Window_SizeChanged">
 
-    <Grid x:Name="Block_Root">
+	<Window.InputBindings>
+		<KeyBinding Key="X" Modifiers="Alt" Command="ApplicationCommands.Close" />
+	</Window.InputBindings>
+
+	<Window.CommandBindings>
+		<CommandBinding Command="ApplicationCommands.Close" Executed="FileExit_Click"></CommandBinding>
+	</Window.CommandBindings>
+
+	<Grid x:Name="Block_Root">
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -28,74 +36,75 @@
             <RowDefinition x:Name="RowGridLogs" Height="0"/>
         </Grid.RowDefinitions>
 
-        <!-- #region Main navigation -->
-        <Border x:Name="Block_MainMenu"  Grid.Row="0">
+		
+        <!-- #region BLOCK Main Menu -->
+		<Border x:Name="Block_MainMenu" Grid.Row="0">
             <ucmenu:MenuMain x:Name="AppMainMenu" />
         </Border>
-        <!-- #endegion Main navigation -->
+        <!-- #endregion -->
 
-        <!-- #region Second menu navigation -->
-        <Border x:Name="Block_MainSubmenu"  Grid.Row="1">
+		
+		
+        <!-- #region BLOCK Main Sub Menu -->
+        <Border x:Name="Block_MainSubmenu" Grid.Row="1">
             <ucsubmenu:MenuMainServer x:Name="AppMainSubmenu" />
         </Border>
-        <!-- #endegion Second menu navigation -->
+        <!-- #endregion -->
 
-		<Border 
-            x:Name="Block_Content"
-            Grid.Row="2"
-            Background="{StaticResource ResourceKey=DarkGrey}"
-            BorderBrush="{StaticResource ResourceKey=MediumGrey}"
-            BorderThickness="1"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
-			
-			<Frame
-                x:Name="Frame_Content"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                NavigationUIVisibility="Hidden"
-                Background="Azure">
+
+		
+		<!-- #region BLOCK Content -->
+		<Border x:Name="Block_Content" Grid.Row="2"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch">
+
+			<Frame x:Name="Frame_Content"
+				   HorizontalAlignment="Stretch"
+				   VerticalAlignment="Stretch"
+				   NavigationUIVisibility="Hidden">
+				<!--Background="{DynamicResource ResourceKey=BaseMediumHighBrush}">-->
             </Frame>
-        </Border>
-            
-        <GridSplitter
-            x:Name="GridSplitter"
-            Grid.Row="3"
-            Height="3"
-            ResizeDirection="Rows"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Center"
-            Background="Black"
-            ShowsPreview="true">
-        </GridSplitter>
+		</Border>
+		<!-- #endregion -->
 
-        <Border
-            x:Name="Block_Logs"
-            Grid.Row="4"
-            Background="{StaticResource ResourceKey=DarkGrey}"
-            BorderBrush="{StaticResource ResourceKey=MediumGrey}"
-            BorderThickness="1">
-            
-            <ScrollViewer>
+
+
+		<!-- #region SPLITTER -->
+		<GridSplitter x:Name="ContentLogs_GridSplitter"
+					  Grid.Row="3"
+					  Height="3"
+					  ResizeDirection="Rows"
+					  HorizontalAlignment="Stretch"
+					  VerticalAlignment="Center"
+					  Background="Black"
+					  ShowsPreview="true">
+		</GridSplitter>
+		<!-- #endregion -->
+
+
+
+		<!-- #region SPLITTER -->
+		<Border x:Name="Block_Logs" Grid.Row="4">
+			<ScrollViewer x:Name="ScrollViewer_Logs">
                 <WrapPanel>
                     <HeaderedItemsControl Header="Frame">
                         <Grid>
-                            <Frame
-                                x:Name="Frame_Logs"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                NavigationUIVisibility="Hidden">
+                            <Frame x:Name="Frame_Logs"
+								   HorizontalAlignment="Stretch"
+								   VerticalAlignment="Stretch"
+								   NavigationUIVisibility="Hidden">
                             </Frame>
                         </Grid>
                     </HeaderedItemsControl>
                 </WrapPanel>
             </ScrollViewer>
-        </Border>
+		</Border>
+		<!-- #endregion -->
+		
 
-        <xctk:BusyIndicator
-            x:Name="XCTKBusyIndicator"
-            IsBusy="True"
-            Grid.RowSpan="5">
-        </xctk:BusyIndicator>
-    </Grid>
+
+		<!-- #region BusyIndicator -->
+		<xctk:BusyIndicator x:Name="XCTKBusyIndicator" Grid.RowSpan="5"	IsBusy="True" />
+		<!-- #endregion -->
+	</Grid>
 </Window>

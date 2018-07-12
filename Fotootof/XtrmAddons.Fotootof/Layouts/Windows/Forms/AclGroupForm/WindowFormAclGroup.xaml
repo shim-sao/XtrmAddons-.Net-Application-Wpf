@@ -42,7 +42,7 @@
 								   Style="{DynamicResource TextBlock_FieldLabel}"/>
 
 						<TextBox x:Name="InputName"
-								Style="{StaticResource Textbox_FieldInput_Required}"
+								Style="{StaticResource TextBox_FieldInput_Required}"
 								Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
 								Validation.Error="OnInput_ValidationError"
 								SourceUpdated="OnInputStringRequired_SourceUpdated"

@@ -350,8 +350,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                 LockDepReferencesChanges = false;
                 return;
             }
-
-            LockChanges = true;
+            
             LockDepPKeysChanges = true;
 
             // Switch for the action to do.
@@ -382,8 +381,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     Clear();
                     break;
             }
-
-            LockChanges = false;
+            
             LockDepPKeysChanges = false;
         }
 
@@ -402,8 +400,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                 LockDepPKeysChanges = false;
                 return;
             }
-
-            LockChanges = true;
+            
             LockDepReferencesChanges = true;
 
             // Switch for the action to do.
@@ -434,8 +431,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     NotifyCollectionReset_DepReferences(sender, e);
                     break;
             }
-
-            LockChanges = false;
+            
             LockDepReferencesChanges = false;
         }
 
@@ -506,36 +502,36 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
             return;
 
             // Process action on each new item
-            if (e.NewItems?.Count != null)
-            {
-                foreach (var item in e.NewItems)
-                {
-                    int pkValue = 0;
+            //if (e.NewItems?.Count != null)
+            //{
+            //    foreach (var item in e.NewItems)
+            //    {
+            //        int pkValue = 0;
 
-                    if (item is int)
-                        pkValue = (int)item;
-                    else
-                        pkValue = (int)item.GetPropertyValue(DepPKName);
+            //        if (item is int)
+            //            pkValue = (int)item;
+            //        else
+            //            pkValue = (int)item.GetPropertyValue(DepPKName);
 
-                    if (pkValue > 0)
-                    {
-                        if (FindIndexInDepReferences(pkValue) == -1 && IsPopulated == true)
-                        {
-                            E reference = EntityBase.Db.Context.Find<E>(pkValue);
+            //        if (pkValue > 0)
+            //        {
+            //            if (FindIndexInDepReferences(pkValue) == -1 && IsPopulated == true)
+            //            {
+            //                E reference = EntityBase.Db.Context.Find<E>(pkValue);
 
-                            if (reference != null && !DepReferences.Contains(reference))
-                            {
-                                DepReferences.Add(reference);
-                                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {reference.GetType().Name} {(reference as EntityBase).PrimaryKey} to observable dependency reference.");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding to observable dependency reference => Can't add 0");
-                    }                    
-                }
-            }
+            //                if (reference != null && !DepReferences.Contains(reference))
+            //                {
+            //                    DepReferences.Add(reference);
+            //                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {reference.GetType().Name} {(reference as EntityBase).PrimaryKey} to observable dependency reference.");
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+            //            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding to observable dependency reference => Can't add 0");
+            //        }                    
+            //    }
+            //}
         }
 
         /// <summary>

@@ -8,12 +8,15 @@
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:sections="clr-namespace:XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids"
     xmlns:albums="clr-namespace:XtrmAddons.Fotootof.Component.ClientSide.Controls.ListViews"
+    xmlns:local="clr-namespace:XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Sections}"
     Style="{StaticResource PageContent}"
     SizeChanged="Control_SizeChanged"
-	Loaded="Control_Loaded">
+	Loaded="Control_Loaded"
+	Height="{Binding Height, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}, Mode=OneWay}"
+	Width="{Binding Width, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}, Mode=OneWay}">
 
 	<Grid x:Name="Block_Root"
 		  Style="{StaticResource Root}">
@@ -34,7 +37,8 @@
 
 
 			<Grid x:Name="Block_MiddleContents"
-				  Style="{StaticResource ResourceKey=MiddleContents}">
+				  Style="{StaticResource Grid_MiddleContents}"
+				  Width="{Binding Width, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:PageCatalogClient}}}">
 
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="1*" MinWidth="240" x:Name="ColSections"/>

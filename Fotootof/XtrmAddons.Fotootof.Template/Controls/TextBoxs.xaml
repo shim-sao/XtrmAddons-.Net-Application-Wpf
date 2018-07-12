@@ -4,7 +4,7 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 	<!-- TextBox -->
-	<Style x:Key="Textbox_FieldInput" TargetType="{x:Type TextBox}">
+	<Style x:Key="TextBox_FieldInput" TargetType="{x:Type TextBox}">
 		<Setter Property="VerticalAlignment" Value="Stretch"/>
 		<Setter Property="VerticalContentAlignment" Value="Center"/>
 		<Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSizeNormal}"/>
@@ -12,32 +12,29 @@
 		<Setter Property="Padding" Value="5,0" />
 	</Style>
 
-	<Style x:Key="Textbox_FieldInput_Required" TargetType="{x:Type TextBox}" BasedOn="{StaticResource Textbox_FieldInput}">
+	<Style x:Key="TextBox_FieldInput_Required" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBox_FieldInput}">
 		<Style.Triggers>
-			<Trigger Property="Validation.HasError"
-					 Value="true">
-				<Setter Property="BorderBrush"
-						Value="{StaticResource Error}"/>
-				<Setter Property="ToolTip"
-						Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+			<Trigger Property="Validation.HasError" Value="true">
+				<Setter Property="BorderBrush" Value="{StaticResource Error}"/>
+				<Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
 			</Trigger>
-			<Trigger Property="Validation.HasError"
-					 Value="false">
-				<Setter Property="BorderBrush"
-						Value="{StaticResource Ready}"/>
-				<Setter Property="ToolTip"
-						Value=""/>
-				<Setter Property="ToolTipService.IsEnabled"
-						Value="False"/>
+			<Trigger Property="Validation.HasError" Value="false">
+				<Setter Property="BorderBrush" Value="{StaticResource Ready}"/>
+				<Setter Property="ToolTip" Value=""/>
+				<Setter Property="ToolTipService.IsEnabled" Value="False"/>
 			</Trigger>
 		</Style.Triggers>
 	</Style>
 
-    <Style x:Key="FieldInputShort" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResourceKey=FieldInput}">
-        <Setter Property="Width" Value="60"/>
-    </Style>
+	<Style x:Key="TextBox_FieldInputShort" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBox_FieldInput}">
+		<Setter Property="Width" Value="60"/>
+	</Style>
+	
+	
+	
+	
 
-    <Style x:Key="FieldInputLong" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResourceKey=FieldInput}">
+	<Style x:Key="FieldInputLong" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBox_FieldInput}">
         <Setter Property="Width" Value="420"/>
     </Style>
     
@@ -46,6 +43,10 @@
         <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
     </Style>
     
+	
+	
+	
+	
     <Style x:Key="FieldInputLongTooltipOff" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResourceKey=FieldInputLongTooltipOn}">
         <Setter Property="IsEnabled" Value="False"/>
     </Style>
@@ -69,7 +70,7 @@
 	
 	
 	<!-- Obsolete -->
-	<Style x:Key="FieldInput" TargetType="{x:Type TextBox}">
+	<Style x:Key="FieldInputOldTb" TargetType="{x:Type TextBox}">
 		<Setter Property="VerticalAlignment" Value="Stretch"/>
 		<Setter Property="VerticalContentAlignment" Value="Center"/>
 		<Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSizeNormal}"/>

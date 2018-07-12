@@ -75,7 +75,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
-            AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Browser"));
             MessageBase.IsBusy = false;

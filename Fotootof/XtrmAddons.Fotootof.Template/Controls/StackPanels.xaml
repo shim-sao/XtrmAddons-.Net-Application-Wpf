@@ -4,10 +4,10 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 	<Style x:Key="StackPanel_Field" TargetType="{x:Type StackPanel}">
-		<Setter Property="Orientation" Value="Horizontal"/>
-		<Setter Property="VerticalAlignment" Value="Top" />
 		<Setter Property="MinHeight" Value="24"/>
 		<Setter Property="Margin" Value="10,0"/>
+		<Setter Property="Orientation" Value="Horizontal"/>
+		<Setter Property="VerticalAlignment" Value="Top" />
 	</Style>
 
 
@@ -40,8 +40,8 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
     </Style>
-    
-    <Style x:Key="FieldsetVerticalTop" TargetType="{x:Type StackPanel}">
+
+	<Style x:Key="StackPanel_FieldsetVerticalTop" TargetType="{x:Type StackPanel}">
         <Setter Property="Orientation" Value="Vertical" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -62,16 +62,29 @@
     </Style>
 
     <!-- Field -->
+	<Style x:Key="StackPanel_FieldsetHeader" TargetType="{x:Type StackPanel}" BasedOn="{StaticResource StackPanel_FieldsetVerticalTop}">
+		<Setter Property="Height" Value="auto" />
+		<Setter Property="MinHeight" Value="60" />
+		<Setter Property="Background" Value="{DynamicResource ResourceKey=ChromeMediumBrush}" />
+	</Style>
 
-	<Style x:Key="FieldsetHeader"
-		   TargetType="{x:Type StackPanel}"
-		   BasedOn="{StaticResource FieldsetVerticalTop}">
-		<Setter Property="Height"
-				Value="auto" />
-		<Setter Property="MinHeight"
-				Value="70" />
-		<Setter Property="Background"
-				Value="{StaticResource Panton_4}" />
+
+
+
+
+
+
+	<Style x:Key="FieldsetVerticalTop" TargetType="{x:Type StackPanel}">
+		<Setter Property="Orientation" Value="Vertical" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="VerticalAlignment" Value="Top" />
+	</Style>
+
+
+	<Style x:Key="FieldsetHeader" TargetType="{x:Type StackPanel}" BasedOn="{StaticResource FieldsetVerticalTop}">
+		<Setter Property="Height" Value="auto" />
+		<Setter Property="MinHeight" Value="70" />
+		<Setter Property="Background" Value="{StaticResource Panton_4}" />
 	</Style>
 
 

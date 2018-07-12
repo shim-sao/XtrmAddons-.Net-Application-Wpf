@@ -53,7 +53,15 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
                 throw ane;
             }
 
-            return ApplicationBase.UI.Controls.FindControl(ctrl) ?? new UiElement<object>(ctrl);
+            var setting = ApplicationBase.UI.Controls.FindControl(ctrl);
+
+            if(setting == null)
+            {
+                setting = new UiElement<object>(ctrl);
+                ApplicationBase.UI.Controls.Add(setting);
+            }
+
+            return setting;
         }
 
         /// <summary>
@@ -291,7 +299,15 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
                 throw ane;
             }
 
-            return GetUiElement(ctrl).FindBindingProperty(propertyName) ?? new BindingProperty<object>() { Name = propertyName, Value = defaultValue };
+            var setting = GetUiElement(ctrl);
+            var binding = setting.FindBindingProperty(propertyName);
+            if(binding == null)
+            {
+                binding = new BindingProperty<object>() { Name = propertyName, Value = defaultValue };
+                setting.Context.Add(binding);
+            }
+
+            return binding;
         }
 
         /// <summary>

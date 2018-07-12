@@ -289,7 +289,7 @@
     <Compile Include="Common\Controls\ListViews\ListViewPictures.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewPicturesModel.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewStorages.cs" />
-    <Compile Include="Common\Controls\Menu\MenuMainModel.cs" />
+    <Compile Include="Layouts\Menu\MenuMainModel.cs" />
     <Compile Include="Common\Tools\AppLogger.cs" />
     <Compile Include="Common\Tools\AppOverwork.cs" />
     <Compile Include="Common\Tools\AppNavigator.cs" />
@@ -347,7 +347,7 @@
     </Compile>
     <Compile Include="Common\Controls\DataGrids\DataGridUsers.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewAlbums.cs" />
-    <Compile Include="Common\Controls\Menu\MenuMain.xaml.cs">
+    <Compile Include="Layouts\Menu\MenuMain.xaml.cs">
       <DependentUpon>MenuMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\Controls\DataGrids\DataGridAlbumsModel.cs" />
@@ -467,7 +467,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Common\Controls\Menu\MenuMain.xaml">
+    <Page Include="Layouts\Menu\MenuMain.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -555,6 +555,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ListViews.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -594,6 +598,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Assets\Images\Icons\Buttons\button-settings-24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Database\scheme.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -816,6 +823,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Common\Controls\Menu\" />
     <Folder Include="Config\" />
   </ItemGroup>
   <ItemGroup>

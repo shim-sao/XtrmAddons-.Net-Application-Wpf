@@ -69,7 +69,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
             if (SelectedItem != null)
             {
                 // Show open file dialog box 
-                WindowFormAlbum dlg = new WindowFormAlbum(SelectedItem);
+                WindowFormAlbum dlg = new WindowFormAlbum(SelectedItem.PrimaryKey);
                 bool? result = dlg.ShowDialog();
 
                 // Process open file dialog box results 

@@ -34,9 +34,9 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         /// <summary>
         /// Property to access to the Window model.
         /// </summary>
-        public new WindowFormAclGroupModel<WindowFormAclGroup> Model
+        public new WindowFormAclGroupModel Model
         {
-            get => (WindowFormAclGroupModel<WindowFormAclGroup>)model;
+            get => (WindowFormAclGroupModel)model;
             protected set { model = value; }
         }
 
@@ -121,13 +121,13 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         }
 
         /// <summary>
-        /// Method called on Window loaded event.
+        /// Method to initialize the Model on Windows construct.
         /// </summary>
-        /// <param name="entity">A Section entity.</param>
+        /// <param name="entity">A AclGroup entity.</param>
         protected void InitializeModel(AclGroupEntity entity = default(AclGroupEntity))
         {
             // 1 - Initialize view model.
-            Model = new WindowFormAclGroupModel<WindowFormAclGroup>(this);
+            Model = new WindowFormAclGroupModel(this);
 
             // 2 - Make sure entity is not null.
             entity = entity ?? new AclGroupEntity();

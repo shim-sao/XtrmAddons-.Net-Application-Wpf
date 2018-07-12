@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs;
@@ -86,6 +87,14 @@ namespace XtrmAddons.Fotootof
             Resources.MergedDictionaries.Add(Culture.Translation.Words);
             Resources.MergedDictionaries.Add(Culture.Translation.Logs);
 
+            // Merge dynamic custom Theme
+            string theme = ApplicationBase.UI.GetParameter("ApplicationTheme", "Dark");
+            ResourceDictionary rd = new ResourceDictionary
+            {
+                Source = new Uri($"XtrmAddons.Fotootof.Template;component/Theme/{theme}.xaml", UriKind.Relative)
+            };
+            Resources.MergedDictionaries.Add(rd);
+
             // Initialize window component.
             InitializeComponent();
 
@@ -162,6 +171,16 @@ namespace XtrmAddons.Fotootof
         }
 
         /// <summary>
+        /// Method called on file exit click.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The routed event arguments.</param>
+        private void FileExit_Click(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
+
+        /// <summary>
         /// Method called on window size changed event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
@@ -200,7 +219,7 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Method to toggle logs window.
         /// </summary>
-        public void LogsToggle()
+        public void ToggleLogs()
         {
             // Set the row grid splitter Height.
             RowGridSplitter.Height =
@@ -212,7 +231,7 @@ namespace XtrmAddons.Fotootof
                 RowGridLogs.Height == new GridLength(0)
                 ? new GridLength(250) : new GridLength(0);
         }
-                
+
         #endregion
     }
 }

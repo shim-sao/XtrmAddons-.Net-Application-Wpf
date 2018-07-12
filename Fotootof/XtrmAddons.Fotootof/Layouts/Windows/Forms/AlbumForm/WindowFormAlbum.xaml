@@ -47,7 +47,7 @@
 										   Style="{StaticResource FieldLabel}"/>
 
 							<TextBox x:Name="InputName"
-									Style="{StaticResource Textbox_FieldInput_Required}"
+									Style="{StaticResource TextBox_FieldInput_Required}"
 									Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
 									Validation.Error="OnInput_ValidationError"
 									SourceUpdated="OnInputStringRequired_SourceUpdated"
@@ -85,7 +85,7 @@
 										   Style="{StaticResource FieldLabel}"/>
 
 							<TextBox x:Name="InputAlias"
-										 Style="{StaticResource Textbox_FieldInput}"
+										 Style="{StaticResource TextBox_FieldInput}"
 										 Text="{Binding Path=Album.Alias, Mode=TwoWay, IsAsync=True}"
 										 Width="310"/>
 

@@ -3,6 +3,7 @@ using System.Windows;
 using System;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Fotootof.SQLiteService;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
 {
@@ -71,12 +72,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         {
             if (fe is null)
             {
-                throw new ArgumentNullException(nameof(fe));
+                ArgumentNullException e = new ArgumentNullException(nameof(fe), "FrameworkElement element is null.");
+                log.Error(e.Output(), e);
+                throw e;
             }
 
             if (!fe.GetType().IsSubclassOf(typeof(FrameworkElement)))
             {
-                throw new ArgumentException(fe.GetType() + " " + nameof(fe) + " : invalid parameter type. FrameworkElement inheritance type is required.");
+                TypeAccessException e = new TypeAccessException($"`{nameof(fe)}` Type of `{fe.GetType()}` : Invalid parameter type. FrameworkElement inheritance type is required.");
+                log.Error(e.Output(), e);
+                throw e;
             }
 
             if (defaut)

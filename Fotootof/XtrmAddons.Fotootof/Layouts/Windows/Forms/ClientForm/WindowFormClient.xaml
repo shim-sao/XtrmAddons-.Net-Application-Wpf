@@ -44,7 +44,7 @@
 									   Style="{StaticResource FieldLabel}"/>
 
 							<TextBox x:Name="InputName"
-									 Style="{StaticResource Textbox_FieldInput_Required}"
+									 Style="{StaticResource TextBox_FieldInput_Required}"
 									 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
 									 Validation.Error="OnInput_ValidationError"
 									 SourceUpdated="OnInputStringRequired_SourceUpdated"
@@ -82,7 +82,7 @@
 									   Style="{StaticResource FieldLabel}"/>
 
 							<TextBox x:Name="InputHost"
-									 Style="{StaticResource Textbox_FieldInput_Required}"
+									 Style="{StaticResource TextBox_FieldInput_Required}"
 									 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
 									 Validation.Error="OnInput_ValidationError"
 									 SourceUpdated="OnInputHost_SourceChanged"
@@ -119,7 +119,7 @@
 									   Style="{StaticResource FieldLabel}"/>
 
 							<TextBox x:Name="InputPort"
-									 Style="{StaticResource Textbox_FieldInput_Required}"
+									 Style="{StaticResource TextBox_FieldInput_Required}"
 									 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
 									 Validation.Error="OnInput_ValidationError"
 									 SourceUpdated="OnInputStringRequired_SourceUpdated"
@@ -187,7 +187,7 @@
 									   Style="{StaticResource FieldLabel}"/>
 
 							<!--<TextBox x:Name="InputPassword"
-									 Style="{StaticResource Textbox_FieldInput_Required}"
+									 Style="{StaticResource TextBox_FieldInput_Required}"
 									 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
 									 Validation.Error="OnInput_ValidationError"
 									 SourceUpdated="OnInputStringRequired_SourceUpdated"

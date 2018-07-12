@@ -3,14 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-	<Style x:Key="Border_Fieldset_Title"
-		   TargetType="{x:Type Border}">
-		<Setter Property="HorizontalAlignment"
-				Value="Stretch" />
-		<Setter Property="VerticalAlignment"
-				Value="top" />
-		<Setter Property="Height"
-				Value="40" />
+	<Style x:Key="Border_Fieldset_Title" TargetType="{x:Type Border}">
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="VerticalAlignment" Value="top" />
+		<Setter Property="Height" Value="40" />
 	</Style>
 
 

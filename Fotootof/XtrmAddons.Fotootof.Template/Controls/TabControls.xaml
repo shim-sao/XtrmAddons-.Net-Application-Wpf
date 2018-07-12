@@ -4,10 +4,8 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 	<!-- TabControl -->
-	<Style x:Key="TabControl_DefaultForm"
-		   TargetType="{x:Type TabControl}">
-		<Setter Property="Grid.Row" 
-				Value="0"/>
+	<Style x:Key="TabControl_DefaultForm" TargetType="{x:Type TabControl}">
+		<Setter Property="Grid.Row" Value="0"/>
 		<!--<Setter Property="Grid.RowSpan"
 				Value="2"/>-->
     </Style>

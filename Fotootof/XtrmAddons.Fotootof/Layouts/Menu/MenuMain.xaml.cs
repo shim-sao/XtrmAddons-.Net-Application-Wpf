@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,9 +22,8 @@ using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.Remote;
-using XtrmAddons.Net.Common.Extensions;
 
-namespace XtrmAddons.Fotootof.Common.Controls.Menu
+namespace XtrmAddons.Fotootof.Layouts.Menu
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries Common Controls Menu Main.
@@ -157,13 +156,15 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         /// </summary>
         public void InitializeLogsWindow()
         {
-            MenuItem mi = (MenuItem)FindName("MenuItem_ShowLogsWindow");
+            // Toggle check the right Theme MenuItem.
+            ToggleMenuItemTheme();
 
+            // Toggle the Logs Frame & check/uncheck the Logs MenuItem. 
+            MenuItem mi = (MenuItem)FindName("MenuItemDisplayLogs");
             mi.IsChecked = SettingsBase.GetBool(mi, "IsChecked", mi.IsChecked);
-
             if (mi.IsChecked)
             {
-                AppNavigator.MainWindow.LogsToggle();
+                AppNavigator.MainWindow.ToggleLogs();
             }
         }
 
@@ -184,16 +185,6 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
                 ((MenuItem)FindName("MenuItem_Server_Stop")).IsEnabled = false;
                 ((MenuItem)FindName("MenuItem_ServerRestart")).IsEnabled = false;
             }
-        }
-
-        /// <summary>
-        /// Method called on file exit click.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The routed event arguments.</param>
-        private void OnFileExit_Click(object sender, RoutedEventArgs e)
-        {
-            AppNavigator.MainWindow.Close();
         }
 
         /// <summary>
@@ -252,8 +243,9 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         /// <param name="e">The routed event arguments.</param>
         private void OnDisplayLogsWindowClick(object sender, RoutedEventArgs e)
         {
-            AppNavigator.MainWindow.LogsToggle();
-            SettingsBase.SaveBool(MenuItem_ShowLogsWindow, "IsChecked", MenuItem_ShowLogsWindow.IsChecked);
+            AppNavigator.MainWindow.ToggleLogs();
+            MenuItem mi = (MenuItem)FindName("MenuItemDisplayLogs");
+            SettingsBase.SaveBool(mi, "IsChecked", mi.IsChecked);
         }
 
         /// <summary>
@@ -261,7 +253,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
-        private void OnDisplayHelpAboutClick(object sender, RoutedEventArgs e)
+        private void HelpAbout_Click(object sender, RoutedEventArgs e)
         {
             //FormAbout about = new FormAbout();
             //about.Show();
@@ -359,7 +351,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
             }
         }
 
-        private void OnServerSettings_Click(object sender, RoutedEventArgs e)
+        private void ServerSettings_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -443,7 +435,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
-        private void OnEditionPreferences_Click(object sender, RoutedEventArgs e)
+        private void EditionPreferences_Click(object sender, RoutedEventArgs e)
         {
             // Show open file dialog box 
             WindowSettings dlg = new WindowSettings();
@@ -455,6 +447,51 @@ namespace XtrmAddons.Fotootof.Common.Controls.Menu
                
             }
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ThemeChanged_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the Theme name from the event sender.
+            string theme = (string)((FrameworkElement)sender).Tag;
+
+            // Add Theme to Application UI Parmeters.
+            ApplicationBase.UI.AddParameter("ApplicationTheme", theme);
+            ApplicationBase.SaveUi();
+
+            // Check the right theme MenuItem.
+            ToggleMenuItemTheme();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToggleMenuItemTheme()
+        {
+            // Get the Theme for Application Parameters.
+            string theme = ApplicationBase.UI.GetParameter("ApplicationTheme", "Light");
+
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Theme => {theme}");
+
+            // Check the right theme MenuItem.
+            switch (theme)
+            {
+                case "Light":
+                    (FindName("MenuItem_ThemeLight") as MenuItem).IsChecked = true;
+                    (FindName("MenuItem_ThemeDark") as MenuItem).IsChecked = false;
+                    break;
+
+                case "Dark":
+                    (FindName("MenuItem_ThemeLight") as MenuItem).IsChecked = false;
+                    (FindName("MenuItem_ThemeDark") as MenuItem).IsChecked = true;
+                    break;
+            }
         }
 
         #endregion

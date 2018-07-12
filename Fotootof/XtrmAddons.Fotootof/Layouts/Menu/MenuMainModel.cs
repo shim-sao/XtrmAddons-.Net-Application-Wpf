@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Models;
 
-namespace XtrmAddons.Fotootof.Common.Controls.Menu
+namespace XtrmAddons.Fotootof.Layouts.Menu
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries Common Controls Menu Main.

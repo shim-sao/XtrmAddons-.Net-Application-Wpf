@@ -9,9 +9,11 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Settings;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Helpers;
+using XtrmAddons.Net.Application.Serializable.Elements.Base;
 
 /// <summary>
 /// Globals Conditionals :
@@ -76,11 +78,11 @@ namespace XtrmAddons.Fotootof
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 
-            //Current.Resources.MergedDictionaries.Add(new ResourceDictionary()
-            //{
-            //    Source = new Uri("/../XtrmAddons.Fotootof.Template;component/Generic.xaml", UriKind.RelativeOrAbsolute)
-            //});
-
+            ResourceDictionary rd = new ResourceDictionary
+            {
+                Source = new Uri("XtrmAddons.Fotootof.Template;component/Theme/Dark.xaml", UriKind.Relative)
+            };
+            Current.Resources.MergedDictionaries.Add(rd);
         }
 
         #endregion
@@ -161,6 +163,9 @@ namespace XtrmAddons.Fotootof
 
             // Initialize application options.
             InitializeOptions();
+
+            // Add Theme to Application UI Parmeters.
+            //ApplicationBase.UI.AddParameter("ApplicationTheme", "Dark");
 
             // Application is running
             // Process command line args

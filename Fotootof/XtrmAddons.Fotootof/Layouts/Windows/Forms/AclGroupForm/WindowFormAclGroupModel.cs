@@ -9,7 +9,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries Common Window AclGroup Form Model.
     /// </summary>
-    public class WindowFormAclGroupModel<WindowBaseForm> : WindowBaseFormModel<WindowBaseForm>
+    public class WindowFormAclGroupModel : WindowBaseFormModel<WindowFormAclGroup>
     {
         #region Variables
 
@@ -106,7 +106,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         /// Class XtrmAddons Fotootof Server Window AclGroup Form Model Constructor.
         /// </summary>
         /// <param name="pageBase">The page associated to the model.</param>
-        public WindowFormAclGroupModel(WindowBaseForm windowBase) : base(windowBase) { }
+        public WindowFormAclGroupModel(WindowFormAclGroup window) : base(window) { }
 
         #endregion
 

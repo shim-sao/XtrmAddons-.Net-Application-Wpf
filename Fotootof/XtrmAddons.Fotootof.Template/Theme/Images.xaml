@@ -9,6 +9,7 @@
 	<system:String x:Key="IconPath24ServerRestart">\Assets\Images\Icons\Buttons\button-server-restart-24.png</system:String>
 	<system:String x:Key="IconPath24ServerStart">\Assets\Images\Icons\Buttons\button-server-start-24.png</system:String>
 	<system:String x:Key="IconPath24ServerStop">\Assets\Images\Icons\Buttons\button-server-stop-24.png</system:String>
+	<system:String x:Key="IconPath24Settings">\Assets\Images\Icons\Buttons\button-settings-24.png</system:String>
 	<system:String x:Key="IconPath24UserPlus">\Assets\Images\Icons\Buttons\button-user-plus-24.png</system:String>
 	<system:String x:Key="IconPath24UserSetting">\Assets\Images\Icons\Buttons\button-user-setting-24.png</system:String>
 	<system:String x:Key="IconPath24UsersSetting">\Assets\Images\Icons\Buttons\button-users-setting-24.png</system:String>
@@ -83,6 +84,9 @@
 
 	<Image x:Key="Icon24ServerStop"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-server-stop-24.png" />
+
+	<Image x:Key="Icon24Settings"
+		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-settings-24.png" />
 
 	<Image x:Key="Icon24Upward"
 		   Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-upward-24.png" />

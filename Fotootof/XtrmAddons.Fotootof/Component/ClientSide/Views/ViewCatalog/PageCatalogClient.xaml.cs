@@ -138,8 +138,8 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog
         {
             FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
 
-            this.Width = fe.ActualWidth;
-            this.Height = fe.ActualHeight;
+            //this.Width = fe.ActualWidth;
+            //this.Height = fe.ActualHeight;
 
             Block_MiddleContents.Width = this.Width;
             Block_MiddleContents.Height = this.Height - Block_TopControls.RenderSize.Height;

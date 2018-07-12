@@ -142,7 +142,7 @@
     <value>Application</value>
   </data>
   <data name="ApplicationName" xml:space="preserve">
-    <value>XtrmAddons Fotootof</value>
+    <value>XtrmAddons FotootoF</value>
   </data>
   <data name="AssociatedAlbums" xml:space="preserve">
     <value>Associated albums</value>
@@ -214,7 +214,7 @@
     <value>Description</value>
   </data>
   <data name="DialogBoxTitle_PictureFileSelector" xml:space="preserve">
-    <value>XtrmAddons Fotootof Image Selector</value>
+    <value>FotootoF Image Selector</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
@@ -463,7 +463,7 @@
     <value>Extra-Large</value>
   </data>
   <data name="_About" xml:space="preserve">
-    <value>_About XtrmAddons Fotootof Server</value>
+    <value>_About XtrmAddons FotootoF</value>
   </data>
   <data name="_AddNewSection" xml:space="preserve">
     <value>Add _Section</value>
@@ -644,5 +644,17 @@
   </data>
   <data name="_ServerSettings" xml:space="preserve">
     <value>_Server settings</value>
+  </data>
+  <data name="_Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="_ThemeDark" xml:space="preserve">
+    <value>_Dark</value>
+  </data>
+  <data name="_ThemeLight" xml:space="preserve">
+    <value>_Light</value>
+  </data>
+  <data name="_Plugin" xml:space="preserve">
+    <value>_Plugin</value>
   </data>
 </root>
