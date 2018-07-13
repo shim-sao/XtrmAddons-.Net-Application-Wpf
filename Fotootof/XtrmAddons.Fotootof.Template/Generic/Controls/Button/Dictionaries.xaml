@@ -1,0 +1,14 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<!-- #region BUTTON Dictionaries -->
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="Generic.xaml"/>
+		<ResourceDictionary Source="Icon24.xaml"/>
+		<ResourceDictionary Source="Icon32.xaml"/>
+		<ResourceDictionary Source="Obsolete.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+	<!-- #endregion -->
+
+</ResourceDictionary>

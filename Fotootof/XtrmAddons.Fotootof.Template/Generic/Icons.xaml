@@ -1,0 +1,86 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+	<!-- Icons Image Size String -->
+	<system:String x:Key="StringIcon16">16</system:String>
+	<system:String x:Key="StringIcon24">24</system:String>
+	<system:String x:Key="StringIcon32">32</system:String>
+	<system:String x:Key="StringIcon64">64</system:String>
+	<system:String x:Key="StringIcon128">128</system:String>
+	<system:String x:Key="StringIcon160">160</system:String>
+	<system:String x:Key="StringIcon256">256</system:String>
+	<system:String x:Key="StringIcon320">320</system:String>
+	<system:String x:Key="StringIcon512">512</system:String>
+
+	<!-- Icons Image Size Int32 -->
+	<system:Int32 x:Key="IntIcon16">16</system:Int32>
+    <system:Int32 x:Key="IntIcon24">24</system:Int32>
+    <system:Int32 x:Key="IntIcon32">32</system:Int32>
+    <system:Int32 x:Key="IntIcon64">64</system:Int32>
+    <system:Int32 x:Key="IntIcon128">128</system:Int32>
+    <system:Int32 x:Key="IntIcon160">128</system:Int32>
+    <system:Int32 x:Key="IntIcon256">256</system:Int32>
+    <system:Int32 x:Key="IntIcon320">320</system:Int32>
+	<system:Int32 x:Key="IntIcon512">512</system:Int32>
+
+	<!-- Icons Image Size Double -->
+	<system:Double x:Key="DoubleIcon16">32</system:Double>
+	<system:Double x:Key="DoubleIcon24">24</system:Double>
+	<system:Double x:Key="DoubleIcon32">32</system:Double>
+	<system:Double x:Key="DoubleIcon64">64</system:Double>
+	<system:Double x:Key="DoubleIcon128">128</system:Double>
+	<system:Double x:Key="DoubleIcon160">128</system:Double>
+	<system:Double x:Key="DoubleIcon256">256</system:Double>
+	<system:Double x:Key="DoubleIcon320">320</system:Double>
+	<system:Double x:Key="DoubleIcon512">512</system:Double>
+
+	<!-- Icons Image Path 24 -->
+	<system:String x:Key="StringIcon24Exit">\Assets\Images\Icons\Buttons\button-exit-24.png</system:String>
+	<system:String x:Key="StringIcon24ListPlus">\Assets\Images\Icons\Buttons\button-list-plus-24.png</system:String>
+	<system:String x:Key="StringIcon24ServerRestart">\Assets\Images\Icons\Buttons\button-server-restart-24.png</system:String>
+	<system:String x:Key="StringIcon24ServerStart">\Assets\Images\Icons\Buttons\button-server-start-24.png</system:String>
+	<system:String x:Key="StringIcon24ServerStop">\Assets\Images\Icons\Buttons\button-server-stop-24.png</system:String>
+	<system:String x:Key="StringIcon24Settings">\Assets\Images\Icons\Buttons\button-settings-24.png</system:String>
+	<system:String x:Key="StringIcon24UserPlus">\Assets\Images\Icons\Buttons\button-user-plus-24.png</system:String>
+	<system:String x:Key="StringIcon24UserSetting">\Assets\Images\Icons\Buttons\button-user-setting-24.png</system:String>
+	<system:String x:Key="StringIcon24UsersSetting">\Assets\Images\Icons\Buttons\button-users-setting-24.png</system:String>
+
+	<!-- Icons Image 24 -->
+	<Image x:Key="ImageIcon24Back" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-back-24.png" />
+	<Image x:Key="ImageIcon24Copy" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-copy-24.png" />
+	<Image x:Key="ImageIcon24Exit" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-exit-24.png" />
+	<Image x:Key="ImageIcon24FolderDelete" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-delete-24.png" />
+	<Image x:Key="ImageIcon24FolderEdit" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-edit-24.png" />
+	<Image x:Key="ImageIcon24FolderPlus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-plus-24.png" />
+	<Image x:Key="ImageIcon24FolderSelect" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-select-24.png" />
+	<Image x:Key="ImageIcon24FolderUnselect" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-unselect-24.png" />
+	<Image x:Key="ImageIcon24Forward" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-forward-24.png" />
+	<Image x:Key="ImageIcon24ImageEdit" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-edit-24.png" />
+	<Image x:Key="ImageIcon24ImageMinus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-minus-24.png" />
+	<Image x:Key="ImageIcon24ImagePlus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-plus-24.png" />
+	<Image x:Key="ImageIcon24ImageRefresh" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-refresh-24.png" />
+	<Image x:Key="ImageIcon24ImageSelect" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-select-24.png" />
+	<Image x:Key="ImageIcon24ImageUnselect" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-unselect-24.png" />
+	
+	<Image x:Key="ImageIcon24ListEdit" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-list-edit-24.png" />
+	<Image x:Key="ImageIcon24ListMinus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-list-minus-24.png" />
+	<Image x:Key="ImageIcon24ListPlus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-list-plus-24.png" />
+	<Image x:Key="ImageIcon24Minus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-minus-24.png" />
+	<Image x:Key="ImageIcon24Plus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-plus-24.png" />
+	<Image x:Key="ImageIcon24ServerRestart" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-server-restart-24.png" />
+	<Image x:Key="ImageIcon24ServerStart" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-server-start-24.png" />
+	<Image x:Key="ImageIcon24ServerStop" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-server-stop-24.png" />
+	<Image x:Key="ImageIcon24Settings" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-settings-24.png" />
+
+	<Image x:Key="ImageIcon24Upward" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-upward-24.png" />
+	<Image x:Key="ImageIcon24UserEdit" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-user-edit-24.png" />
+	<Image x:Key="ImageIcon24UserMinus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-user-minus-24.png" />
+	<Image x:Key="ImageIcon24UserPlus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-user-plus-24.png" />
+	<Image x:Key="ImageIcon24UserSetting" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-user-setting-24.png" />
+	<Image x:Key="ImageIcon24UsersEdit" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-users-edit-24.png" />
+	<Image x:Key="ImageIcon24UsersMinus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-users-minus-24.png" />
+	<Image x:Key="ImageIcon24UsersPlus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-users-plus-24.png" />
+	<Image x:Key="ImageIcon24UsersSetting" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-users-setting-24.png" />
+</ResourceDictionary>

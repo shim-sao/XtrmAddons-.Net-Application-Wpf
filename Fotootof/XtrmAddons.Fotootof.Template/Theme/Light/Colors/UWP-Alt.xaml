@@ -1,0 +1,29 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+	
+	<!-- UWP Colors Theme -->
+	<!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/controls-and-patterns/xaml-theme-resources -->
+	<!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/style/color -->
+
+	<!-- #region UWP System.Alt -->
+	<Color x:Key="AltHigh">#FF000000</Color>
+	<SolidColorBrush x:Key="AltHighBrush" Color="{StaticResource AltHigh}" />
+
+	<Color x:Key="AltLow">#33000000</Color>
+	<SolidColorBrush x:Key="AltLowBrush" Color="{StaticResource AltLow}" />
+
+	<Color x:Key="AltMedium">#99000000</Color>
+	<SolidColorBrush x:Key="AltMediumBrush" Color="{StaticResource AltMedium}" />
+
+	<Color x:Key="AltMediumHigh">#CC000000</Color>
+	<SolidColorBrush x:Key="AltMediumHighBrush" Color="{StaticResource AltMediumHigh}" />
+
+	<Color x:Key="AltMediumLow">#66000000</Color>
+	<SolidColorBrush x:Key="AltMediumLowBrush" Color="{StaticResource AltMediumLow}" />
+	<!-- #endregion UWP System.Alt -->
+
+
+</ResourceDictionary>

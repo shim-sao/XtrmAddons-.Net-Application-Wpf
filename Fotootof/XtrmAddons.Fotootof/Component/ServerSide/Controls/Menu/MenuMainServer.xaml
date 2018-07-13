@@ -13,14 +13,14 @@
         
         <StackPanel HorizontalAlignment="Stretch"
 					Orientation="Horizontal"
-					Background="{DynamicResource ChromeMediumBrush}">
+					Background="{DynamicResource ChromeMediumLowBrush}">
 
             <Border x:Name="Block_Menu"
 					VerticalAlignment="Stretch">
                 
                 <Button x:Name="ServerItemButton"
 						Content="{x:Static p:Resources.Server}"
-						Style="{StaticResource ResourceKey=Button_SubMenu}"
+						Style="{StaticResource ButtonSubMenu}"
 						Click="NavigateToPageServer"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"/>
@@ -32,7 +32,7 @@
 
                 <Button x:Name="BrowserItemButton"
 						Content="{x:Static p:Resources.Browser}"
-						Style="{StaticResource ResourceKey=Button_SubMenu}"
+						Style="{StaticResource ButtonSubMenu}"
 						Click="NavigateToPageBrowser"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"/>
@@ -43,7 +43,7 @@
 					VerticalAlignment="Stretch">
 
                 <Button Content="{x:Static p:Resources.Catalog}"
-						Style="{StaticResource ResourceKey=Button_SubMenu}"
+						Style="{StaticResource ButtonSubMenu}"
 						Click="NavigateToPageCatalog"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"/>

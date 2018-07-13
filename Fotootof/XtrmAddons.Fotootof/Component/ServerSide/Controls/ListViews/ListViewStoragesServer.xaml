@@ -99,8 +99,7 @@
 							Margin="5,0">
 
 						<Button x:Name="Button_AddPicturesToAlbum"
-								Content="{StaticResource Icon24ImagePlus}"
-								Style="{StaticResource Button_Icon24Default}"
+								Style="{StaticResource ButtonIcon24ImagePlus}"
 								PreviewMouseLeftButtonUp="OnAddPicturesToAlbum_Click"
 								ToolTipService.ToolTip="{x:Static p:Resources.AddPicturesToAlbum}"
 								IsEnabled="False"/>
@@ -127,22 +126,19 @@
 							</ComboBox>
 
 							<Button x:Name="Button_SelectAll"
-									Content="{StaticResource Icon24ImageSelect}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24ImageSelect}"
 									PreviewMouseLeftButtonUp="OnSelectAll_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.SelectAll}"/>
 
 							<Button Grid.Column="1"
 									x:Name="Button_UnselectAll"
-									Content="{StaticResource Icon24ImageUnselect}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24ImageUnselect}"
 									PreviewMouseLeftButtonUp="OnUnselectAll_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"/>
 
 							<Button Grid.Column="2"
 									x:Name="Button_Refresh"
-									Content="{StaticResource Icon24ImageRefresh}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24ImageRefresh}"
 									PreviewMouseLeftButtonUp="OnRefresh_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.Refresh}"/>
 
@@ -254,11 +250,11 @@
 									</Grid>
 
 									<Viewbox.ToolTip>
-										<Grid MaxWidth="{StaticResource Icon512Double}"
-											  MaxHeight="{StaticResource Icon512Double}"
+										<Grid MaxWidth="{StaticResource DoubleIcon512}"
+											  MaxHeight="{StaticResource DoubleIcon512}"
 											  Background="{StaticResource Panton_0}">
 
-											<Image Source="{Binding ImageFullName, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon512String}, IsAsync=True, Mode=OneWay}"
+											<Image Source="{Binding ImageFullName, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource StringIcon512}, IsAsync=True, Mode=OneWay}"
 												   Stretch="Uniform"
 												   Panel.ZIndex="0" />
 

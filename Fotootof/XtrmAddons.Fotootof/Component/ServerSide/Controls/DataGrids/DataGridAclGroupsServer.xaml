@@ -92,14 +92,14 @@
 
 							<Button x:Name="Button_Add"
 									Content="{StaticResource Icon24UsersPlus}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Add}"
 									Click="OnAddNewItem_Click" />
 
 							<Button Grid.Column="1"
 									x:Name="Button_Edit"
 									Content="{StaticResource Icon24UsersEdit}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
 									Click="OnEditItem_Click"
 									IsEnabled="False"/>
@@ -107,7 +107,7 @@
 							<Button Grid.Column="2"
 									x:Name="Button_Delete"
 									Content="{StaticResource Icon24UsersMinus}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
 									Click="OnDeleteItems_Click"
 									IsEnabled="False"/>

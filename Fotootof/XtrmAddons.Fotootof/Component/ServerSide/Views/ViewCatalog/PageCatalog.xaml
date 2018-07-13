@@ -22,7 +22,7 @@
 					Style="{StaticResource FieldsetVertical}">
 
 			<StackPanel x:Name="Block_TopControls"
-						Style="{StaticResource StackPanel_TopControls}">
+						Style="{StaticResource StackPanelTopControls}">
 				<Border Background="{StaticResource LightGrey}">
 					<TextBox Background="White"
 							 x:Name="Breadcrumbs"

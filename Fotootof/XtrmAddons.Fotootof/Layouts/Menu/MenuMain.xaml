@@ -29,7 +29,7 @@
 						  Command="ApplicationCommands.Close"
 						  InputGestureText="Alt+F4">
 					<MenuItem.Icon>
-						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24Exit}}" />
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24Exit}, IsAsync=True}" />
 					</MenuItem.Icon>
 				</MenuItem>
 
@@ -37,7 +37,7 @@
 			<!-- #endregion -->
 
 
-
+			
 			<!-- #region EDITION -->
 			<MenuItem Header="{x:Static p:Resources._Edition}"
 					  Style="{DynamicResource MenuItem_Main}"
@@ -54,7 +54,7 @@
 						  Style="{DynamicResource MenuItem_MainLevel1}"
 						  Click="EditionPreferences_Click">
 					<MenuItem.Icon>
-						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24Settings}}" />
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24Settings}, IsAsync=True}" />
 					</MenuItem.Icon>
 				</MenuItem>
 			</MenuItem>
@@ -89,7 +89,7 @@
 						  ToolTip="Start Http server.">
 
 					<MenuItem.Icon>
-						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ServerStart}}" />
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ServerStart}}" />
 					</MenuItem.Icon>
 				</MenuItem>
 
@@ -100,7 +100,7 @@
 						  Click="OnServerStop_Click">
 
 					<MenuItem.Icon>
-						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ServerStop}}" />
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ServerStop}}" />
 					</MenuItem.Icon>
 				</MenuItem>
 
@@ -111,7 +111,7 @@
 						  ToolTip="Restart Http server.">
 
 					<MenuItem.Icon>
-						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ServerRestart}}" />
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ServerRestart}}" />
 					</MenuItem.Icon>
 				</MenuItem>
 
@@ -144,7 +144,7 @@
 						  Style="{DynamicResource MenuItem_MainLevel1}"
 						  Click="OnUsersListClick">
 					<MenuItem.Icon>
-						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24UsersSetting}}" />
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24UsersSetting}}" />
 					</MenuItem.Icon>
 				</MenuItem>
 
@@ -154,7 +154,7 @@
 						  Click="OnAddUser_Click">
 
 					<MenuItem.Icon>
-						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24UserPlus}}" />
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24UserPlus}}" />
 					</MenuItem.Icon>
 				</MenuItem>
 			</MenuItem>
@@ -172,7 +172,7 @@
 						  Style="{DynamicResource MenuItem_MainLevel1}"
 						  Click="OnAddSection_Click">
 					<MenuItem.Icon>
-						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ListPlus}}" />
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ListPlus}}" />
 					</MenuItem.Icon>
 				</MenuItem>
 
@@ -181,7 +181,7 @@
 						  x:Name="MenuItem_AddAlbum"
 						  Click="OnAddAlbum_Click">
 					<MenuItem.Icon>
-						<Image Source="{Binding Mode=OneWay, Source={StaticResource IconPath24ListPlus}}" />
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ListPlus}}" />
 					</MenuItem.Icon>
 				</MenuItem>
 			</MenuItem>

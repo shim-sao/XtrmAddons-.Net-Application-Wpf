@@ -3,67 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <!-- Numbers -->
-    <system:Int32 x:Key="N1">1</system:Int32>
-    <system:Int32 x:Key="N2">2</system:Int32>
-    <system:Int32 x:Key="N3">3</system:Int32>
-    <system:Int32 x:Key="N4">4</system:Int32>
-    <system:Int32 x:Key="N5">5</system:Int32>
-    <system:Int32 x:Key="N6">6</system:Int32>
-    <system:Int32 x:Key="N7">7</system:Int32>
-    <system:Int32 x:Key="N8">8</system:Int32>
-    <system:Int32 x:Key="N9">9</system:Int32>
-    <system:Int32 x:Key="N10">10</system:Int32>
-    <system:Int32 x:Key="N11">11</system:Int32>
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="Generic/Numbers.xaml"/>
+		<ResourceDictionary Source="Generic/Fonts.xaml"/>
+		<ResourceDictionary Source="Generic/Icons.xaml"/>
+		<ResourceDictionary Source="Generic/Converters.xaml"/>
 
-	<!-- #region Font Size -->
-	<system:Double x:Key="MenuFontSize">12</system:Double>
-	<system:Double x:Key="MenuFontSizeBig">14</system:Double>
-	
-    <system:Double x:Key="Text-Small">11</system:Double>
-    <system:Double x:Key="Text-Normal">12</system:Double>
-    <system:Double x:Key="Text-Big">14</system:Double>
-    <system:Double x:Key="Text-H1">24</system:Double>
-    <system:Double x:Key="Text-H2">20</system:Double>
-    <system:Double x:Key="Text-H3">18</system:Double>
-	<system:Double x:Key="Text-H4">16</system:Double>
-
-	<system:Double x:Key="FontSizeSmall">11</system:Double>
-	<system:Double x:Key="FontSizeNormal">12</system:Double>
-	<system:Double x:Key="FontSizeBig">14</system:Double>
-	<system:Double x:Key="FontSizeHeader">18</system:Double>
-	<system:Double x:Key="FontSizeSection">20</system:Double>
-	<system:Double x:Key="FontSizeTitle">24</system:Double>
-	<!-- #endregion Font Size -->
-	
-	
-	<!-- Image Size -->
-    <system:Int32 x:Key="Icon16">32</system:Int32>
-    <system:Int32 x:Key="Icon24">24</system:Int32>
-    <system:Int32 x:Key="Icon64">64</system:Int32>
-    <system:Int32 x:Key="Icon128">128</system:Int32>
-    <system:Int32 x:Key="Icon160">128</system:Int32>
-    <system:Int32 x:Key="Icon256">256</system:Int32>
-    <system:Int32 x:Key="Icon320">256</system:Int32>
-	<system:Int32 x:Key="Icon512">512</system:Int32>
-
-	<system:String x:Key="Icon16String">32</system:String>
-	<system:String x:Key="Icon24String">24</system:String>
-	<system:String x:Key="Icon64String">64</system:String>
-	<system:String x:Key="Icon128String">128</system:String>
-	<system:String x:Key="Icon160String">128</system:String>
-	<system:String x:Key="Icon256String">256</system:String>
-	<system:String x:Key="Icon320String">256</system:String>
-	<system:String x:Key="Icon512String">512</system:String>
-
-	<system:Double x:Key="Icon16Double">32</system:Double>
-	<system:Double x:Key="Icon24Double">24</system:Double>
-	<system:Double x:Key="Icon64Double">64</system:Double>
-	<system:Double x:Key="Icon128Double">128</system:Double>
-	<system:Double x:Key="Icon160Double">128</system:Double>
-	<system:Double x:Key="Icon256Double">256</system:Double>
-	<system:Double x:Key="Icon320Double">256</system:Double>
-	<system:Double x:Key="Icon512Double">512</system:Double>
+		<ResourceDictionary Source="Generic/Controls/Button/Dictionaries.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
 
 	
 	
@@ -71,15 +18,9 @@
 	<BitmapImage x:Key="BitmapImageAbout" UriSource="\Assets\Images\Default\about.jpg"></BitmapImage>
 	<system:String x:Key="ImageAlbumDefaultBackground">Assets\Images\Default\album-background.png</system:String>
     <system:String x:Key="ImageAlbumDefaultPreview">Assets\Images\Default\album-preview.png</system:String>
-    <system:String x:Key="ImageAlbumDefaultThumbnail">Assets\Images\Default\album-thumbnail.png</system:String>
-
-
-
-	<!-- Converters parameters -->
-	<system:String x:Key="CvDateSQLParameter">DateSQL</system:String>
-	<system:String x:Key="CvDateLongParameter">DateLong</system:String>
-	<system:String x:Key="CvDateTimeLongParameter">DateTimeLong</system:String>
-	<system:String x:Key="CvTimeParameter">Time</system:String>
+	<system:String x:Key="ImageAlbumDefaultThumbnail">Assets\Images\Default\album-thumbnail.png</system:String>
+	
+	
 
 	<system:String x:Key="AlbumsPictureDirectory">albums</system:String>
 	<system:String x:Key="CategoriesPictureDirectory">categories</system:String>

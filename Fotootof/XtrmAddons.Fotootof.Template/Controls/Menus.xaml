@@ -4,8 +4,8 @@
 
 	<!-- Generic Menu -->
 	<Style x:Key="MenuControl_Generic" TargetType="{x:Type Control}">
-		<Setter Property="Background" Value="{DynamicResource ChromeMediumBrush}" />
-		<Setter Property="Foreground" Value="{DynamicResource ColoMenuTextBrush}" />
+		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ColorMenuTextBrush}" />
 		<Setter Property="FontSize" Value="{StaticResource MenuFontSize}" />
 	</Style>
 

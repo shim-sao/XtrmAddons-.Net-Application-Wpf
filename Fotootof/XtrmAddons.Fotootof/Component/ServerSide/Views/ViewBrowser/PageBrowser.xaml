@@ -23,7 +23,7 @@
 					Style="{StaticResource FieldsetVertical}">
 
 			<StackPanel x:Name="Block_TopControls"
-						Style="{StaticResource StackPanel_TopControls}">
+						Style="{StaticResource StackPanelTopControls}">
 
 				<Grid>
 					
@@ -38,20 +38,19 @@
 								Margin="2,0">
 						
 						<Button x:Name="Button_Back"
-								Content="{StaticResource Icon24Back}"
-								Style="{StaticResource Button_Icon24Default}"
+								Content="{StaticResource ImageIcon24Back}"
+								Style="{StaticResource ButtonIcon24}"
 								IsEnabled="False"
 								Click="OnBack_Click"/>
 
 						<Button x:Name="Button_Forward"
-								Content="{StaticResource Icon24Forward}"
-								Style="{StaticResource Button_Icon24Default}"
+								Style="{StaticResource ButtonIcon24Forward}"
 								IsEnabled="False"
 								Click="OnForward_Click"/>
 
 						<Button x:Name="Button_Upward"
 								Content="{StaticResource Icon24Upward}"
-								Style="{StaticResource Button_Icon24Default}"
+								Style="{StaticResource ButtonIcon24}"
 								Click="OnUpward_Click" />
 						
 					</StackPanel>
@@ -72,8 +71,8 @@
 								Margin="2,0,5,0">
 
 						<Button x:Name="Button_Copy"
-								Content="{StaticResource Icon24Copy}"
-								Style="{StaticResource Button_Icon24Default}"
+								Content="{StaticResource ImageIcon24Copy}"
+								Style="{StaticResource ButtonIcon24}"
 								IsEnabled="False" />
 					</StackPanel>
 				</Grid>

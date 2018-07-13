@@ -44,14 +44,13 @@
 
 							<Button x:Name="Button_Add"
 									Content="{StaticResource Icon24ListPlus}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Add}"
 									Click="OnAddNewItem_Click" />
 
 							<Button Grid.Column="1"
 									x:Name="Button_Edit"
-									Content="{StaticResource Icon24ListEdit}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24ListEdit}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
 									Click="OnEditItem_Click"
 									IsEnabled="False"/>
@@ -59,7 +58,7 @@
 							<Button Grid.Column="2"
 									x:Name="Button_Delete"
 									Content="{StaticResource Icon24ListMinus}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
 									Click="OnDeleteItems_Click"
 									IsEnabled="False"/>
@@ -145,22 +144,18 @@
                                     <TextBlock Margin="5,0" Text="{Binding Name, Mode=TwoWay}">
                                         <TextBlock.ContextMenu>
                                             <ContextMenu>
-                                                <MenuItem
-                                                    x:Name="MenuItemOnAdd"
-                                                    Header="{x:Static p:Resources.Add}"
-                                                    Click="OnAddNewItem_Click"/>
+                                                <MenuItem x:Name="MenuItemOnAdd"
+														  Header="{x:Static p:Resources.Add}"
+														  Click="OnAddNewItem_Click"/>
 
-                                                <MenuItem
-                                                    x:Name="MenuItemOnEdit"
-                                                    Header="{x:Static p:Resources.Edit}"
-                                                    Click="OnEditItem_Click"/>
+                                                <MenuItem x:Name="MenuItemOnEdit"
+														  Header="{x:Static p:Resources.Edit}"
+														  Click="OnEditItem_Click"/>
 
-                                                <MenuItem
-                                                    x:Name="MenuItemOnDelete"
-                                                    Header="{x:Static p:Resources.Delete}"
-                                                    Click="OnDeleteItems_Click"/>
-
-                                            </ContextMenu>
+												<MenuItem x:Name="MenuItemOnDelete"
+														  Header="{x:Static p:Resources.Delete}"
+														  Click="OnDeleteItems_Click"/>
+											</ContextMenu>
                                         </TextBlock.ContextMenu>
                                     </TextBlock>
 

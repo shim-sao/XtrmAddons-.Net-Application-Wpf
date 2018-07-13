@@ -16,7 +16,7 @@
                 <ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Images.xaml"/>
 
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Borders.xaml" />
-				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Buttons.xaml" />
+				<!--<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Buttons.xaml" />-->
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/CheckBoxs.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/ComboBoxs.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/ControlTemplates.xaml" />

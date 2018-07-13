@@ -84,23 +84,20 @@
 							</Grid.ColumnDefinitions>
 
 							<Button x:Name="Button_Add"
-									Content="{StaticResource Icon24FolderPlus}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24FolderPlus}"
 									PreviewMouseLeftButtonUp="OnAddNewItem_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.AddNewAlbum}"/>
 
 							<Button x:Name="Button_Edit"
 									Grid.Column="1"
-									Content="{StaticResource Icon24FolderEdit}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{DynamicResource ButtonIcon24FolderEdit}"
 									PreviewMouseLeftButtonUp="OnEditItem_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
 									IsEnabled="False"/>
 
 							<Button x:Name="Button_Delete"
 									Grid.Column="2"
-									Content="{StaticResource Icon24FolderDelete}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{DynamicResource ButtonIcon24FolderDelete}"
 									PreviewMouseLeftButtonUp="OnDeleteItems_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
 									IsEnabled="False"/>
@@ -153,15 +150,13 @@
 
 							<Button Grid.Column="2"
 									x:Name="Button_SelectAll"
-									Content="{StaticResource Icon24FolderSelect}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24FolderSelect}"
 									PreviewMouseLeftButtonUp="OnSelectAll_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.SelectAll}"/>
 
 							<Button Grid.Column="3"
 									x:Name="Button_ClearSelection"
-									Content="{StaticResource Icon24FolderUnselect}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24FolderUnselect}"
 									PreviewMouseLeftButtonUp="OnUnselectAll_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"/>
 
@@ -228,8 +223,8 @@
 									 MaxHeight="{Binding ActualWidth, ElementName=WrapPanelItemsContainer, Converter={StaticResource CvResponsiveListViewItem}}">
 
 								<Grid Background="{StaticResource Transparent}"
-									  Width="{StaticResource Icon256Double}"
-									  Height="{StaticResource Icon256Double}">
+									  Width="{StaticResource DoubleIcon256}"
+									  Height="{StaticResource DoubleIcon256}">
 
 									<!--<Grid.ContextMenu>
 										<ContextMenu>
@@ -253,8 +248,8 @@
 										</ContextMenu>
 									</Grid.ContextMenu>-->
 
-									<Image Source="{Binding ThumbnailPicture.ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon256String}, IsAsync=True, Mode=OneWay}"
-										   Width="{StaticResource Icon256Double}"
+									<Image Source="{Binding ThumbnailPicture.ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource StringIcon256}, IsAsync=True, Mode=OneWay}"
+										   Width="{StaticResource DoubleIcon256}"
 										   Stretch="UniformToFill"
 										   MouseEnter="OnAlbum_MouseEnter"
 										   Tag="{Binding}">
@@ -262,7 +257,7 @@
 										<Image.ToolTip>
 											<Grid Style="{StaticResource Grid_ImageToolTip}">
 
-												<Image Source="{Binding PreviewPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon512String}, IsAsync=True, Mode=OneWay}"
+												<Image Source="{Binding PreviewPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource StringIcon512}, IsAsync=True, Mode=OneWay}"
 													   Stretch="Uniform"
 													   Panel.ZIndex="0" />
 

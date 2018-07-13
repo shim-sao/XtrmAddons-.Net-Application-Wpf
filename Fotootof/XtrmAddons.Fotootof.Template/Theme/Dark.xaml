@@ -127,8 +127,11 @@
 
 
 	<!-- #region WPF System.Color -->
-	<Color x:Key="ColoMenuText">#FFFFFFFF</Color>
-	<SolidColorBrush x:Key="ColoMenuTextBrush" Color="{StaticResource ColoMenuText}" />
+	<Color x:Key="ColorMenuText">#FFFFFFFF</Color>
+	<SolidColorBrush x:Key="ColorMenuTextBrush" Color="{StaticResource ColorMenuText}" />
+
+	<Color x:Key="ColorSubMenuText">#FFEEEEEE</Color>
+	<SolidColorBrush x:Key="ColorSubMenuTextBrush" Color="{StaticResource ColorMenuText}" />
 
 
 	<!-- #endregion WPF System.Color -->

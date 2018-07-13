@@ -8,22 +8,9 @@
 	<!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/controls-and-patterns/xaml-theme-resources -->
 	<!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/style/color -->
 
-	<!-- #region UWP System.Alt -->
-	<Color x:Key="AltHigh">#FF000000</Color>
-	<SolidColorBrush x:Key="AltHighBrush" Color="{StaticResource AltHigh}" />
-
-	<Color x:Key="AltLow">#33000000</Color>
-	<SolidColorBrush x:Key="AltLowBrush" Color="{StaticResource AltLow}" />
-
-	<Color x:Key="AltMedium">#99000000</Color>
-	<SolidColorBrush x:Key="AltMediumBrush" Color="{StaticResource AltMedium}" />
-
-	<Color x:Key="AltMediumHigh">#CC000000</Color>
-	<SolidColorBrush x:Key="AltMediumHighBrush" Color="{StaticResource AltMediumHigh}" />
-
-	<Color x:Key="AltMediumLow">#66000000</Color>
-	<SolidColorBrush x:Key="AltMediumLowBrush" Color="{StaticResource AltMediumLow}" />
-	<!-- #endregion UWP System.Alt -->
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="Light/Colors/UWP-Alt.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
 
 
 	<!-- #region UWP System.Base -->
@@ -128,8 +115,11 @@
 
 
 	<!-- #region WPF System.Color -->
-	<Color x:Key="ColoMenuText">#FF000000</Color>
-	<SolidColorBrush x:Key="ColoMenuTextBrush" Color="{StaticResource ColoMenuText}" />
+	<Color x:Key="ColorMenuText">#FF000000</Color>
+	<SolidColorBrush x:Key="ColorMenuTextBrush" Color="{StaticResource ColorMenuText}" />
+	
+	<Color x:Key="ColorSubMenuText">#FF111111</Color>
+	<SolidColorBrush x:Key="ColorSubMenuTextBrush" Color="{StaticResource ColorSubMenuText}" />
 
 	
 	<!-- #endregion WPF System.Color -->

@@ -30,7 +30,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
             <RowDefinition x:Name="RowGridMain" Height="*" />
             <RowDefinition x:Name="RowGridSplitter" Height="0"/>
             <RowDefinition x:Name="RowGridLogs" Height="0"/>
