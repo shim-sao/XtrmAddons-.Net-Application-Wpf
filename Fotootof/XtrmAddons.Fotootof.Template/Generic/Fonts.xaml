@@ -3,25 +3,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-	<!-- Fontsize -->
-	<system:Double x:Key="MenuFontSize">12</system:Double>
-	<system:Double x:Key="MenuFontSizeBig">14</system:Double>
-
-	<system:Double x:Key="Text-Small">11</system:Double>
-	<system:Double x:Key="Text-Normal">12</system:Double>
-	<system:Double x:Key="Text-Big">14</system:Double>
-	<system:Double x:Key="Text-H1">24</system:Double>
-	<system:Double x:Key="Text-H2">20</system:Double>
-	<system:Double x:Key="Text-H3">18</system:Double>
-	<system:Double x:Key="Text-H4">16</system:Double>
-
+	<!-- #region FONTSIZE -->
 	<system:Double x:Key="FontSizeSmall">11</system:Double>
 	<system:Double x:Key="FontSizeNormal">12</system:Double>
 	<system:Double x:Key="FontSizeBig">14</system:Double>
+	
+	<system:Double x:Key="FontSizeH1">24</system:Double>
+	<system:Double x:Key="FontSizeH2">20</system:Double>
+	<system:Double x:Key="FontSizeH3">18</system:Double>
+	<system:Double x:Key="FontSizeH4">16</system:Double>
+	
 	<system:Double x:Key="FontSizeHeader">18</system:Double>
 	<system:Double x:Key="FontSizeSection">20</system:Double>
 	<system:Double x:Key="FontSizeTitle">24</system:Double>
+	<!-- #endregion -->
 
-	<!-- Obsolete -->
+	<!-- #region FONTSIZE MENU -->
+	<system:Double x:Key="MenuFontSize">12</system:Double>
+	<system:Double x:Key="MenuFontSizeBig">14</system:Double>
+	<!-- #endregion -->
 
 </ResourceDictionary>

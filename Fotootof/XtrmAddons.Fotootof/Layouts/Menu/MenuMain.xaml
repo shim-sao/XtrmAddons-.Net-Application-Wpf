@@ -202,14 +202,14 @@
 
 					<MenuItem Name="MenuItem_ThemeLight"
 							  Header="{x:Static p:Resources._ThemeLight}"
-							  Style="{DynamicResource MenuControl_Generic}"
+							  Style="{DynamicResource ControlMenuGeneric}"
 							  Click="ThemeChanged_Click"
 							  IsCheckable="True"
 							  Tag="Light"/>
 
 					<MenuItem Name="MenuItem_ThemeDark"
 							  Header="{x:Static p:Resources._ThemeDark}"
-							  Style="{DynamicResource MenuControl_Generic}"
+							  Style="{DynamicResource ControlMenuGeneric}"
 							  Click="ThemeChanged_Click"
 							  IsCheckable="True"
 							  Tag="Dark"/>
@@ -222,14 +222,14 @@
 
 					<MenuItem x:Name="MenuItem_LanguageFR"
 							  Header="{x:Static p:Resources.French}"
-							  Style="{DynamicResource MenuControl_Generic}"
+							  Style="{DynamicResource ControlMenuGeneric}"
 							  Click="LanguageChanged_Click"
 							  IsChecked="False"
 							  Tag="fr-FR"/>
 
 					<MenuItem x:Name="MenuItem_LanguageEN"
 							  Header="{x:Static p:Resources.English}"
-							  Style="{DynamicResource MenuControl_Generic}"
+							  Style="{DynamicResource ControlMenuGeneric}"
 							  Click="LanguageChanged_Click"
 							  IsChecked="False"
 							  Tag="en-GB" />

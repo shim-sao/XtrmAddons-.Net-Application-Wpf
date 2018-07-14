@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
 {
@@ -36,12 +37,19 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
             Resources.MergedDictionaries.Add(Culture.Translation.Words);
             Resources.MergedDictionaries.Add(Culture.Translation.Logs);
 
-            string theme = ApplicationBase.UI.GetParameter("ApplicationTheme", "Dark");
-            ResourceDictionary rd = new ResourceDictionary
+            try
             {
-                Source = new Uri($"XtrmAddons.Fotootof.Template;component/Theme/{theme}.xaml", UriKind.Relative)
-            };
-            Resources.MergedDictionaries.Add(rd);
+                string theme = ApplicationBase.UI.GetParameter("ApplicationTheme", "Dark");
+                ResourceDictionary rd = new ResourceDictionary
+                {
+                    Source = new Uri($"XtrmAddons.Fotootof.Template;component/Theme/{theme}.xaml", UriKind.Relative)
+                };
+                Resources.MergedDictionaries.Add(rd);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+            }
         }
 
         #endregion

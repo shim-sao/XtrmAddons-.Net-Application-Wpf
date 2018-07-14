@@ -1,15 +1,35 @@
+<!---
+ Main Theme Dictionary :
+	- IMPORTANT : Do not remove => xmlns:system="clr-namespace:System;assembly=mscorlib"
+	  Reference is required in all dictionaries.
+	- Xaml BaseOn can't find StaticResource from another dictionary so don't need to try it.
+	- For better normalization of the resources naming : 
+	  . remove _
+	  . Normilze like this : {TargetType}{TmplName}[Key|Brush]
+-->
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 	<ResourceDictionary.MergedDictionaries>
+		<!-- Common Generic StaticResources -->
 		<ResourceDictionary Source="Generic/Numbers.xaml"/>
 		<ResourceDictionary Source="Generic/Fonts.xaml"/>
 		<ResourceDictionary Source="Generic/Icons.xaml"/>
 		<ResourceDictionary Source="Generic/Converters.xaml"/>
-
-		<ResourceDictionary Source="Generic/Controls/Button/Dictionaries.xaml"/>
+		<!-- Common Controls Merged Dictionaries -->
+		<ResourceDictionary Source="Controls/Border/Dictionaries.xaml"/>
+		<ResourceDictionary Source="Controls/Button/Dictionaries.xaml"/>
+		<ResourceDictionary Source="Controls/CheckBox/Dictionaries.xaml"/>
+		<ResourceDictionary Source="Controls/ComboBox/Dictionaries.xaml"/>
+		<ResourceDictionary Source="Controls/DataGrid/Dictionaries.xaml"/>
+		<ResourceDictionary Source="Controls/Grid/Dictionaries.xaml"/>
+		<ResourceDictionary Source="Controls/ListView/Dictionaries.xaml"/>
+		<ResourceDictionary Source="Controls/Menu/Dictionaries.xaml"/>
+		<ResourceDictionary Source="Controls/Page/Dictionaries.xaml"/>
+		<ResourceDictionary Source="Controls/PasswordBox/Dictionaries.xaml"/>
+		<ResourceDictionary Source="Controls/StackPanel/Dictionaries.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 
 	
@@ -22,9 +42,7 @@
 	
 	
 
-	<system:String x:Key="AlbumsPictureDirectory">albums</system:String>
-	<system:String x:Key="CategoriesPictureDirectory">categories</system:String>
-	<system:String x:Key="PicturesDirectory">pictures</system:String>
+	
 
 	<system:Double x:Key="DatagridRowHeight">40</system:Double>
 

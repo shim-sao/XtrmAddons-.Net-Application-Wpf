@@ -4,7 +4,7 @@
 	
     <!-- Generic Window -->
 	<Style x:Key="Window_Generic" TargetType="{x:Type Window}">
-		<Setter Property="Background" Value="{DynamicResource ChromeLowBrush}" />
+		<Setter Property="Background" Value="{DynamicResource ColorWindowBrush}" />
 		<Setter Property="Icon" Value="/XtrmAddons Fotootof;component/Favicon.ico"/>
 	</Style>
 	

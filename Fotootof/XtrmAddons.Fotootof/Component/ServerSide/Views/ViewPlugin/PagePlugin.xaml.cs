@@ -96,10 +96,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewPlugin
         /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
-
-            Width = fe.ActualWidth;
-            Height = fe.ActualHeight;
+            Width = MainBlockContent.ActualWidth;
+            Height = MainBlockContent.ActualHeight;
         }
 
         #endregion

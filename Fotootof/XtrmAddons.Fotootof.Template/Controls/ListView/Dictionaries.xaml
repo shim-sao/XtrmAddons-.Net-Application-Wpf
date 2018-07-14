@@ -4,6 +4,12 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 	<!-- Generic List View Item Style -->
+	<Style x:Key="ListViewCollection" TargetType="{x:Type ListView}">
+		<Setter Property="Background" Value="{DynamicResource ListLowBrush}" />
+	</Style>
+	
+	
+	<!-- Generic List View Item Style -->
 	<Style x:Key="ListViewItemDefault" TargetType="{x:Type ListViewItem}">
 
 		<Style.Resources>

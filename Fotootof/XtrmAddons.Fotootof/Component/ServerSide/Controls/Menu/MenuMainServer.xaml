@@ -9,7 +9,7 @@
     Height="40">
 
     <Grid x:Name="GritRoot"
-		  Style="{StaticResource ResourceKey=Grid_Root}">
+		  Style="{StaticResource GridRoot}">
         
         <StackPanel HorizontalAlignment="Stretch"
 					Orientation="Horizontal"

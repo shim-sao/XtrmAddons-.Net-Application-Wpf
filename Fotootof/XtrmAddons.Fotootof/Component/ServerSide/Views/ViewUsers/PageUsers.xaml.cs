@@ -397,7 +397,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             ArrangeSize();
-            ArrangeMiddleContents();
+            ArrangeSizeMiddleContents();
         }
 
         /// <summary>
@@ -405,19 +405,17 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// </summary>
         private void ArrangeSize()
         {
-            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
+            this.Width = Math.Max(MainBlockContent.ActualWidth, 0);
+            this.Height = Math.Max(MainBlockContent.ActualHeight, 0);
 
-            this.Width = Math.Max(fe.ActualWidth, 0);
-            this.Height = Math.Max(fe.ActualHeight, 0);
-
-            TraceSize(fe);
+            TraceSize(MainBlockContent);
             TraceSize(this);
         }
 
         /// <summary>
         /// Method to arrange new page middle content size.
         /// </summary>
-        private void ArrangeMiddleContents()
+        private void ArrangeSizeMiddleContents()
         {
             Block_MiddleContents.Width = Math.Max(this.Width, 0);
             Block_MiddleContents.Height = Math.Max(this.Height, 0);

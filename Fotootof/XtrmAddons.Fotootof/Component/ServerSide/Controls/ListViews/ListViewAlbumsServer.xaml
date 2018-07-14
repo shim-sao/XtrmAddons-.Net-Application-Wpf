@@ -10,12 +10,12 @@
     SizeChanged="Control_SizeChanged">
 
 	<Grid x:Name="Block_Root"
-		  Style="{StaticResource ResourceKey=Root}">
+		  Style="{StaticResource GridRoot}">
 		<StackPanel x:Name="Block_RootPanel"
-					Style="{StaticResource ResourceKey=FieldsetVertical}">
+					Style="{StaticResource FieldsetVertical}">
 			
 			<StackPanel x:Name="Block_Header"
-						Style="{StaticResource FieldsetHeader}">
+						Style="{StaticResource StackPanelFieldsetHeader}">
 
 				<Border x:Name="Block_Title"
 						Style="{StaticResource Border_Fieldset_Title}">
@@ -65,7 +65,7 @@
 
 
 				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource Grid_Fieldset_Menu}">
+					  Style="{StaticResource GridFieldsetMenu}">
 					
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
@@ -117,7 +117,7 @@
 
 							<ComboBox x:Name="FiltersQualitySelector"
 									  ItemsSource="{Binding FiltersQuality, Mode=OneWay, IsAsync=True}"
-									  Style="{StaticResource DefaultComboBox}"
+									  Style="{StaticResource ComboBoxSelector}"
 									  Focusable="False"
 									  IsEditable="True"
 									  IsReadOnly="True"
@@ -134,7 +134,7 @@
 							<ComboBox Grid.Column="1"
 									  x:Name="FiltersColorSelector"
 									  ItemsSource="{Binding FiltersColor, Mode=OneWay, IsAsync=True}"
-									  Style="{StaticResource DefaultComboBox}"
+									  Style="{StaticResource ComboBoxSelector}"
 									  Focusable="False"
 									  IsEditable="True"
 									  IsReadOnly="True"
@@ -142,8 +142,7 @@
 
 								<ComboBox.ItemTemplate>
 									<DataTemplate>
-										<TextBlock Text="{Binding Name}"
-												   Tag="{Binding}" />
+										<TextBlock Text="{Binding Name}" Tag="{Binding}" />
 									</DataTemplate>
 								</ComboBox.ItemTemplate>
 							</ComboBox>
@@ -169,18 +168,18 @@
 			<Grid x:Name="Block_Items">
 
 				<ListView x:Name="ListViewCollection"
-						  Background="White"
 						  HorizontalAlignment="Stretch"
-						  VerticalAlignment="Stretch"
 						  ItemsSource="{Binding Items, Mode=OneWay, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
-						  VirtualizingStackPanel.IsVirtualizing="True"
-						  VirtualizingStackPanel.VirtualizationMode="Recycling"
-						  ScrollViewer.IsDeferredScrollingEnabled="True"
-						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-						  ScrollViewer.VerticalScrollBarVisibility="Auto"
 						  MouseDoubleClick="ItemsCollection_MouseDoubleClick"
+						  Padding="5,5,5,10"
 						  SelectionChanged="ItemsCollection_SelectionChanged"
-						  Padding="5,5,5,10">
+						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+						  ScrollViewer.IsDeferredScrollingEnabled="True"
+						  ScrollViewer.VerticalScrollBarVisibility="Auto"
+						  Style="{DynamicResource ListViewCollection}"
+						  VerticalAlignment="Stretch"
+						  VirtualizingStackPanel.IsVirtualizing="True"
+						  VirtualizingStackPanel.VirtualizationMode="Recycling">
 
 					<ListView.ContextMenu>
 						<ContextMenu>

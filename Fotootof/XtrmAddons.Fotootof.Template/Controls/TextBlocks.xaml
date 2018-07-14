@@ -9,7 +9,7 @@
 	<!-- #region TextBlock -->
 	<Style x:Key="TextBlock_Field" TargetType="{x:Type TextBlock}">
 		<Setter Property="VerticalAlignment" Value="Center"/>
-		<Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSizeNormal}" />
+		<Setter Property="FontSize" Value="{StaticResource FontSizeNormal}" />
 	</Style>
 
 	<Style x:Key="TextBlock_FieldLabel" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlock_Field}">

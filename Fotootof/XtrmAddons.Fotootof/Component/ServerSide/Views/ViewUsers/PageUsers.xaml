@@ -15,13 +15,13 @@
 	Loaded="Control_Loaded">
 
 	<Grid x:Name="Block_Root"
-		  Style="{StaticResource Root}">
+		  Style="{StaticResource GridRoot}">
 		
 		<StackPanel x:Name="Block_RootPanel"
 					Style="{StaticResource FieldsetVertical}">
 
 			<Grid x:Name="Block_MiddleContents"
-				  Style="{StaticResource ResourceKey=MiddleContents}">
+				  Style="{StaticResource GridMiddleContents}">
 
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="1*" MinWidth="240" x:Name="ColLeft"/>

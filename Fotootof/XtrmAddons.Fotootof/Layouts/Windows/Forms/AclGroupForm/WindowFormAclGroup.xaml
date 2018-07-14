@@ -43,7 +43,7 @@
 
 						<TextBox x:Name="InputName"
 								Style="{StaticResource TextBox_FieldInput_Required}"
-								Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+								Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidationTemplate}"
 								Validation.Error="OnInput_ValidationError"
 								SourceUpdated="OnInputStringRequired_SourceUpdated"
 								TargetUpdated="OnInput_TargetUpdated"
@@ -94,7 +94,7 @@
 						<TextBlock Style="{StaticResource FieldLabel}"
 								   Text="{x:Static p:Resources.Default}"/>
 
-						<CheckBox Style="{StaticResource FieldInputCb}"
+						<CheckBox Style="{StaticResource CheckBoxFieldInput}"
 								  IsChecked="{Binding Path=AclGroup.IsDefault, Mode=TwoWay, IsAsync=True}"/>
 					</StackPanel>
 					<!-- #endregion : Field IsDefault -->
@@ -128,7 +128,7 @@
 
 						<!--  Rights Section-->
 						<StackPanel Grid.Row="0"
-									Style="{StaticResource FieldsetHeader}">
+									Style="{StaticResource StackPanelFieldsetHeader}">
 
 							<TextBlock Grid.Row="0"
 									   Text="{x:Static p:Resources.Section}"
@@ -145,7 +145,7 @@
 										   Style="{StaticResource FieldLabelCb}" />
 
 								<CheckBox x:Name="CheckBoxSectionAdd"
-										  Style="{StaticResource FieldInputCb}"
+										  Style="{StaticResource CheckBoxFieldInput}"
 										  IsChecked="False"
 										  Checked="CheckBoxAclAction_Checked"
 										  Unchecked="CheckBoxAclAction_UnChecked"/>
@@ -158,7 +158,7 @@
 										   Style="{StaticResource FieldLabelCb}"/>
 
 								<CheckBox x:Name="CheckBoxSectionEdit"
-										  Style="{StaticResource FieldInputCb}"
+										  Style="{StaticResource CheckBoxFieldInput}"
 										  IsChecked="False"
 										  Checked="CheckBoxAclAction_Checked"
 										  Unchecked="CheckBoxAclAction_UnChecked"/>
@@ -171,7 +171,7 @@
 										   Style="{StaticResource FieldLabelCb}"/>
 
 								<CheckBox x:Name="CheckBoxSectionDelete"
-										  Style="{StaticResource FieldInputCb}"
+										  Style="{StaticResource CheckBoxFieldInput}"
 										  IsChecked="False"
 										  Checked="CheckBoxAclAction_Checked"
 										  Unchecked="CheckBoxAclAction_UnChecked"/>
@@ -184,7 +184,7 @@
 										   Style="{StaticResource FieldLabelCb}"/>
 
 								<CheckBox x:Name="CheckBoxSectionView"
-										  Style="{StaticResource FieldInputCb}"
+										  Style="{StaticResource CheckBoxFieldInput}"
 										  IsChecked="False"
 										  Checked="CheckBoxAclAction_Checked"
 										  Unchecked="CheckBoxAclAction_UnChecked"/>
@@ -193,7 +193,7 @@
 						</StackPanel>
 
 						<StackPanel Grid.Row="2"
-									Style="{StaticResource FieldsetHeader}">
+									Style="{StaticResource StackPanelFieldsetHeader}">
 
 							<TextBlock Grid.Row="0"
 									   Text="Album"

@@ -15,7 +15,7 @@
 					Style="{StaticResource ResourceKey=FieldsetVertical}">
 
 			<StackPanel x:Name="Block_Header"
-						Style="{StaticResource FieldsetHeader}">
+						Style="{StaticResource StackPanelFieldsetHeader}">
 
 				<Border x:Name="Block_Title"
 						Style="{StaticResource Border_Fieldset_Title}">
@@ -65,7 +65,7 @@
 
 
 				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource Grid_Fieldset_Menu}">
+					  Style="{StaticResource GridFieldsetMenu}">
 
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
@@ -117,7 +117,7 @@
 
 							<ComboBox x:Name="FiltersQualitySelector"
 									  ItemsSource="{Binding FiltersQuality, Mode=OneWay, IsAsync=True}"
-									  Style="{StaticResource DefaultComboBox}"
+									  Style="{StaticResource ComboBoxSelector}"
 									  Focusable="False"
 									  IsEditable="True"
 									  IsReadOnly="True"
@@ -134,7 +134,7 @@
 							<ComboBox Grid.Column="1"
 									  x:Name="FiltersColorSelector"
 									  ItemsSource="{Binding FiltersColor, Mode=OneWay, IsAsync=True}"
-									  Style="{StaticResource DefaultComboBox}"
+									  Style="{StaticResource ComboBoxSelector}"
 									  Focusable="False"
 									  IsEditable="True"
 									  IsReadOnly="True"

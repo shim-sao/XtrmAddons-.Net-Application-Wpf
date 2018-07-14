@@ -171,7 +171,23 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
             DepReferences.CollectionChanged += DepReferences_CollectionChanged;
             DepPKeys.CollectionChanged += DepPKeys_CollectionChanged;
         }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private int GetPkValue(object item)
+        {
+            int pkValue = 0;
+
+            if (item is int)
+                pkValue = (int)item;
+            else
+                pkValue = (int)item.GetPropertyValue(DepPKName);
+            return pkValue;
+        }
+
         #endregion
 
 
@@ -454,24 +470,29 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
             {
                 foreach (var item in e.NewItems)
                 {
-                    int pkValue = 0;
-
-                    if (item is int)
-                        pkValue = (int)item;
-                    else
-                        pkValue = (int)item.GetPropertyValue(DepPKName);
+                    int pkValue = GetPkValue(item);
 
                     if (pkValue > 0)
                     {
-                        T obj = this.ToList().Find(x => (int)x.GetPropertyValue(DepPKName) == pkValue);
-                        if (obj == null)
+                        //T obj1 = (T)Activator.CreateInstance(typeof(T));
+                        //var b = obj1.GetType();
+                        try
                         {
-                            T newObj = (T)Activator.CreateInstance(typeof(T));
-                            newObj.SetPropertyValue(DepPKName, pkValue);
+                            T obj = this.ToList().Find(x => (int)x.GetPropertyValue(DepPKName) == pkValue);
+                            if (obj == null)
+                            {
+                                T newObj = (T)Activator.CreateInstance(typeof(T));
+                                newObj.SetPropertyValue(DepPKName, pkValue);
 
 
-                            Add(newObj);
-                            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {newObj?.GetType()?.Name} {pkValue} to observable dependency link.");
+                                Add(newObj);
+                                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {newObj?.GetType()?.Name} {pkValue} to observable dependency link.");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            log.Error(ex.Output(), ex);
+                            throw ex;
                         }
                     }
                     else
@@ -549,7 +570,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                 {
                     // Try to find if the dependency is already set.
                     // Search for the value of the primary key name of the item.
-                    int pkValue = (int)item.GetPropertyValue(DepPKName);
+                    int pkValue = GetPkValue(item);
                     if (pkValue == 0 || FindIndexInDepPKeys(pkValue) == -1)
                     {
                         depPKs.Add((int)item.GetPropertyValue(DepPKName));
@@ -582,12 +603,23 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                 // Process action on each old items
                 foreach (var item in e.OldItems)
                 {
-                    int pkValue = (int)item.GetPropertyValue(DepPKName);
-                    T obj = this.ToList().Find(x => (int)x.GetPropertyValue(DepPKName) == pkValue);
-                    if (obj != null)
+                    try
                     {
-                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Removing {obj?.GetType()?.Name} {(obj as EntityBase)?.PrimaryKey} to observable list.");
-                        Remove(obj);
+                        int pkValue = GetPkValue(item);
+
+                        var a = this.ToList();
+
+                        T obj = this.ToList().Find(x => (int)x.GetPropertyValue(DepPKName) == pkValue);
+                        if (obj != null)
+                        {
+                            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Removing {obj?.GetType()?.Name} {(obj as EntityBase)?.PrimaryKey} to observable list.");
+                            Remove(obj);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error(ex.Output(), ex);
+                        throw ex;
                     }
                 }
             }
@@ -632,7 +664,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                 {
                     // Try to find if the dependency is already set.
                     // Search for the value of the primary key name of the item.
-                    int pkValue = (int)item.GetPropertyValue(DepPKName);
+                    int pkValue = GetPkValue(item);
                     if (LockDepReferencesChanges)
                     {
                         if (FindIndexInDepReferences(pkValue) != -1)

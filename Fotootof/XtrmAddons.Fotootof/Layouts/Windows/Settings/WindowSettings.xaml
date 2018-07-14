@@ -100,7 +100,7 @@
 								  Header="Storage : files"
 								  ExpandDirection="Down"
 								  IsExpanded="False"
-								  FontSize="{StaticResource Text-H3}"
+								  FontSize="{StaticResource FontSizeH3}"
 								  Background="{StaticResource MediumGrey}"
 								  Foreground="{StaticResource DarkGrey}">
 
@@ -167,7 +167,7 @@
                             Header="Storage : special directories"
                             ExpandDirection="Down"
                             IsExpanded="False"
-                            FontSize="{StaticResource ResourceKey=Text-H3}"
+                            FontSize="{StaticResource ResourceKey=FontSizeH3}"
                             Background="{StaticResource ResourceKey=MediumGrey}"
                             Foreground="{StaticResource ResourceKey=DarkGrey}">
 

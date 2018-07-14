@@ -14,6 +14,7 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems.Log4net;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.NotifyIcons;
 
 namespace XtrmAddons.Fotootof
@@ -56,7 +57,7 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Property alias to access to the text block container of logs stack.
         /// </summary>
-        public Border BlockContent => Block_Content;
+        //public Border BlockContent => BlockContent;
 
         /// <summary>
         /// Property alias to access to the text block container of logs stack.
@@ -118,8 +119,8 @@ namespace XtrmAddons.Fotootof
             await Task.Delay(10);
 
             // Assigned page frames.
-            Frame_Logs.Navigate(BlockLogs);
-            Frame_Content.Navigate(new PageBrowser());
+            //Frame_Logs.Navigate(BlockLogs);
+            //Frame_Content.Navigate(new PageBrowser());
 
             // Initialize items of Server Menu.
             AppMainMenu.InitializeMenuItemsServer();
@@ -188,11 +189,11 @@ namespace XtrmAddons.Fotootof
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
 #if DEBUG_SIZE
-
+            FrameworkElement fe = FindName("BlockContent") as FrameworkElement;
             Trace.TraceInformation("-------------------------------------------------------------------------------------------------------");
             Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
             Trace.TraceInformation("MainWindow.ActualSize = [" + ActualWidth + "," + ActualHeight + "]");
-            Trace.TraceInformation("Block_Content.ActualSize = [" + Block_Content.ActualWidth + "," + Block_Content.ActualHeight + "]");
+            Trace.TraceInformation("fe.ActualSize = [" + fe.ActualWidth + "," + fe.ActualHeight + "]");
             Trace.TraceInformation("Frame_Content.ActualSize = [" + Frame_Content.ActualWidth + "," + Frame_Content.ActualHeight + "]");
             Trace.TraceInformation("RowGridMain.Height = [" + RowGridMain.Height + "]");
             Trace.TraceInformation("-------------------------------------------------------------------------------------------------------");

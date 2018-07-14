@@ -11,16 +11,17 @@
 	SizeChanged="Control_SizeChanged">
 
 	<Grid x:Name="Block_Root"
-		  Style="{StaticResource ResourceKey=Root}">
+		  Style="{StaticResource GridRoot}">
 		
 		<StackPanel x:Name="Block_RootPanel"
-					Style="{StaticResource ResourceKey=FieldsetVertical}">
+					Style="{StaticResource FieldsetVertical}">
 
 			<StackPanel x:Name="Block_Header"
-						Style="{StaticResource FieldsetHeader}">
+						Style="{StaticResource StackPanelFieldsetHeader}">
 
 				<Border x:Name="Block_Title"
 						Style="{StaticResource Border_Fieldset_Title}">
+					
 					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="1*" />
@@ -40,6 +41,7 @@
 						<!-- #region Counter -->
 						<StackPanel Grid.Column="1"
 									Orientation="Horizontal">
+							
 							<TextBlock x:Name="Counter_SelectedNumber"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
@@ -87,7 +89,7 @@
 				</Border>
 				
 				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource Grid_Fieldset_Menu}">
+					  Style="{StaticResource GridFieldsetMenu}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
 						<ColumnDefinition Width="1*" />
@@ -114,7 +116,7 @@
 							<ComboBox Grid.Column="2"
 									  x:Name="ComboBox_ImageSize"
 									  x:Uid="ListViewStoragesServerImageSize"
-									  Style="{StaticResource DefaultComboBox}"
+									  Style="{StaticResource ComboBoxSelector}"
 									  SelectionChanged="ComboBox_ImageSize_SelectionChanged">
 
 								<ComboBoxItem Content="{x:Static p:Resources.Icon}" />
@@ -155,16 +157,16 @@
 
 				<ListView x:Uid="ListViewCollection"
 						  x:Name="ItemsCollectionStorages"
-						  Background="White"
 						  HorizontalAlignment="Stretch"
-						  VerticalAlignment="Stretch"
 						  ItemsSource="{Binding FilesCollection, Mode=OneWay, IsAsync=True}"
-						  VirtualizingStackPanel.IsVirtualizing="True"
-						  VirtualizingStackPanel.VirtualizationMode="Recycling"
+						  Padding="5,5,5,10"
 						  ScrollViewer.IsDeferredScrollingEnabled="True"
 						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 						  SelectionChanged="ItemsCollection_SelectionChanged"
-						  Padding="5">
+						  Style="{DynamicResource ListViewCollection}"
+						  VerticalAlignment="Stretch"
+						  VirtualizingStackPanel.IsVirtualizing="True"
+						  VirtualizingStackPanel.VirtualizationMode="Recycling">
 
 					<ListView.Resources>
 						<Style TargetType="{x:Type ListViewItem}"
@@ -252,7 +254,7 @@
 									<Viewbox.ToolTip>
 										<Grid MaxWidth="{StaticResource DoubleIcon512}"
 											  MaxHeight="{StaticResource DoubleIcon512}"
-											  Background="{StaticResource Panton_0}">
+											  Background="Red">
 
 											<Image Source="{Binding ImageFullName, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource StringIcon512}, IsAsync=True, Mode=OneWay}"
 												   Stretch="Uniform"

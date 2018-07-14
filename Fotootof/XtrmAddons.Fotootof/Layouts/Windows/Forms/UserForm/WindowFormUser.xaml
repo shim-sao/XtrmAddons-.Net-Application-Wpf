@@ -49,7 +49,7 @@
 
 							<TextBox x:Name="InputName"
 									 Style="{StaticResource TextBox_FieldInput_Required}"
-									 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidationTemplate}"
 									 Validation.Error="OnInput_ValidationError"
 									 SourceUpdated="OnInputStringRequired_SourceUpdated"
 									 TargetUpdated="OnInput_TargetUpdated"
@@ -87,7 +87,7 @@
 
 							<PasswordBox x:Name="InputPassword"
 										 Style="{StaticResource PasswordBox_FieldInput_Required}"
-										 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+										 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidationTemplate}"
 										 PasswordChanged="OnInputPassword_PasswordChanged"
 										 Validation.Error="OnInput_ValidationError"
 										 MaxLength="64"
@@ -132,7 +132,7 @@
 
 							<TextBox x:Name="InputEmail"
 									 Style="{StaticResource TextBox_FieldInput_Required}"
-									 Validation.ErrorTemplate="{StaticResource Default_FormFieldValidationTemplate}"
+									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidationTemplate}"
 									 Validation.Error="OnInput_ValidationError"
 									 SourceUpdated="OnInputEmail_SourceUpdated"
 									 TargetUpdated="OnInput_TargetUpdated"

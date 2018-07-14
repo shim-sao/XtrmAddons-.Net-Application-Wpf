@@ -11,14 +11,14 @@
 	SizeChanged="Control_SizeChanged">
 
 	<Grid x:Name="Block_Root"
-          Style="{StaticResource ResourceKey=Root}"
+          Style="{StaticResource GridRoot}"
 		  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewPicturesServer}}}">
 
 		<StackPanel x:Name="Block_RootPanel"
-                    Style="{StaticResource ResourceKey=FieldsetVertical}">
+                    Style="{StaticResource FieldsetVertical}">
 
 			<StackPanel x:Name="Block_Header"
-			          Style="{StaticResource FieldsetHeader}">
+			          Style="{StaticResource StackPanelFieldsetHeader}">
 
 				<Border x:Name="Block_Title"
 					  Style="{StaticResource Border_Fieldset_Title}">
@@ -40,23 +40,23 @@
 									Orientation="Horizontal">
 
 							<TextBlock x:Name="Counter_SelectedNumber"
+									   Foreground="{StaticResource Panton_3}"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
-									   Foreground="{StaticResource Panton_3}"
 									   Margin="5"
 									   Text="{Binding SelectedItems.Count, ElementName=ListViewCollection, IsAsync=True}" />
 
 							<TextBlock x:Name="Counter_Spacer"
+									   Foreground="{StaticResource Panton_3}"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
-									   Foreground="{StaticResource Panton_3}"
 									   Margin="0,5"
 									   Text="/" />
 
 							<TextBlock x:Name="Counter_Total"
+									   Foreground="{StaticResource Panton_3}"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
-									   Foreground="{StaticResource Panton_3}"
 									   Margin="5"
 									   Text="{Binding Items.Count, ElementName=ListViewCollection, IsAsync=True}" />
 						</StackPanel>
@@ -64,7 +64,7 @@
 				</Border>
 
 				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource Grid_Fieldset_Menu}">
+					  Style="{StaticResource GridFieldsetMenu}">
 
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
@@ -141,17 +141,18 @@
 			<Grid x:Name="Block_Items">
 
 				<ListView x:Name="ListViewCollection"
-						  Background="White"
 						  HorizontalAlignment="Stretch"
-						  VerticalAlignment="Stretch"
 						  ItemsSource="{Binding Path=AlbumEntity.Pictures, Mode=OneWay, IsAsync=False}"
-						  VirtualizingStackPanel.IsVirtualizing="True"
-						  VirtualizingStackPanel.VirtualizationMode="Recycling"
+						  MouseDoubleClick="ItemsCollection_MouseDoubleClick"
+						  Padding="5,5,5,10"
+						  SelectionChanged="ItemsCollection_SelectionChanged"
 						  ScrollViewer.IsDeferredScrollingEnabled="True"
 						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-						  MouseDoubleClick="ItemsCollection_MouseDoubleClick"
-						  SelectionChanged="ItemsCollection_SelectionChanged"
-						  Padding="5,5,5,10">
+						  ScrollViewer.VerticalScrollBarVisibility="Auto"
+						  Style="{DynamicResource ListViewCollection}"
+						  VerticalAlignment="Stretch"
+						  VirtualizingStackPanel.IsVirtualizing="True"
+						  VirtualizingStackPanel.VirtualizationMode="Recycling">
 
 					<!--<ListView.ContextMenu>
 						<ContextMenu>
@@ -167,6 +168,11 @@
 						</ContextMenu>
 
 					</ListView.ContextMenu>-->
+
+					<ListView.Resources>
+						<Style TargetType="{x:Type ListViewItem}"
+							   BasedOn="{StaticResource ListViewItemDefault}" />
+					</ListView.Resources>
 
 					<ListView.ItemContainerStyle>
 						<Style TargetType="{x:Type ListViewItem}">
@@ -199,13 +205,13 @@
 									  Width="{StaticResource DoubleIcon256}"
 									  Height="{StaticResource DoubleIcon256}">
 
-									<!--<Grid.ContextMenu>
+									<Grid.ContextMenu>
 										<ContextMenu>
 											<MenuItem Header="{x:Static p:Resources.Refresh}"
 													  Click="OnImageRefresh_Click"/>
 
 										</ContextMenu>
-									</Grid.ContextMenu>-->
+									</Grid.ContextMenu>
 
 									<Image x:Name="ImageThumbnail"
 										   Source="{Binding ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource StringIcon256}, IsAsync=True, Mode=OneWay}"
@@ -270,7 +276,7 @@
 										</ToolTipService.ToolTip>
 									</Image>
 
-									<Border Style="{StaticResource Border_ImageTextTop}">
+									<Border Style="{StaticResource BorderPictureTitle}">
 
 										<TextBlock Text="{Binding Name}"
 												   VerticalAlignment="center"
@@ -282,8 +288,8 @@
 												   FontWeight="SemiBold"
 												   TextWrapping="Wrap"/>
 									</Border>
-
-									<Border Style="{StaticResource Border_ImageTextBottom}">
+									
+									<Border Style="{StaticResource BorderPictureTextDate}">
 
 										<TextBlock Text="{Binding Captured, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateTimeLongParameter}}"
 												   VerticalAlignment="Center"

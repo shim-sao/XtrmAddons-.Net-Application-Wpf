@@ -93,11 +93,11 @@
 
 	<!-- #region UWP System.Color -->
 	<!-- ButtonBackground : Button Background color -->
-	<Color x:Key="ColorButtonFace">#FFFFFFFF</Color>
+	<Color x:Key="ColorButtonFace">#FF000000</Color>
 	<SolidColorBrush x:Key="ColorButtonFaceBrush" Color="{StaticResource ColorButtonFace}" />
 
 	<!-- ButtonForeground: Button Foreground color -->
-	<Color x:Key="ColorButtonText">#FF000000</Color>
+	<Color x:Key="ColorButtonText">#FFFFFFFF</Color>
 	<SolidColorBrush x:Key="ColorButtonTextBrush" Color="{StaticResource ColorButtonText}" />
 
 	<!-- TextDisabled : Disabled text color -->
@@ -117,23 +117,33 @@
 	<SolidColorBrush x:Key="ColorHotlightBrush" Color="{StaticResource ColorHotlight}" />
 
 	<!-- PageBackground : Main Body Text color -->
-	<Color x:Key="ColorWindow">#FFFFFFFF</Color>
+	<Color x:Key="ColorWindow">#FF000000</Color>
 	<SolidColorBrush x:Key="ColorWindowBrush" Color="{StaticResource ColorWindow}" />
 
 	<!-- PageText : Main Body Text color -->
-	<Color x:Key="ColorWindowText">#FF000000</Color>
+	<Color x:Key="ColorWindowText">#FFFFFFFF</Color>
 	<SolidColorBrush x:Key="ColorWindowTextBrush" Color="{StaticResource ColorWindowText}" />
 	<!-- #endregion UWP System.Color -->
 
+	
 
 	<!-- #region WPF System.Color -->
 	<Color x:Key="ColorMenuText">#FFFFFFFF</Color>
 	<SolidColorBrush x:Key="ColorMenuTextBrush" Color="{StaticResource ColorMenuText}" />
 
 	<Color x:Key="ColorSubMenuText">#FFEEEEEE</Color>
-	<SolidColorBrush x:Key="ColorSubMenuTextBrush" Color="{StaticResource ColorMenuText}" />
+	<SolidColorBrush x:Key="ColorSubMenuTextBrush" Color="{StaticResource ColorSubMenuText}" />
 
+	<!-- Generic colors messages -->
+	<Color x:Key="ColorReady">#A2C176</Color>
+	<SolidColorBrush x:Key="ColorReadyBrush" Color="{StaticResource ColorReady}" />
 
-	<!-- #endregion WPF System.Color -->
+	<Color x:Key="ColorWarning">Orange</Color>
+	<SolidColorBrush x:Key="ColorWarningBrush" Color="{StaticResource ColorWarning}" />
+
+	<Color x:Key="ColorError">Red</Color>
+	<SolidColorBrush x:Key="ColorErrorBrush" Color="{StaticResource ColorError}" />
+	
+	<!-- #endregion -->
 
 </ResourceDictionary>

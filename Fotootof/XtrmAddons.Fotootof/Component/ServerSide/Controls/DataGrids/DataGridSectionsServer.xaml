@@ -14,7 +14,7 @@
         <StackPanel x:Name="Block_RootPanel" Style="{StaticResource ResourceKey=FieldsetVertical}">
 
 			<StackPanel x:Name="Block_Header"
-						Style="{StaticResource FieldsetHeader}">
+						Style="{StaticResource StackPanelFieldsetHeader}">
 
 				<Border x:Name="Block_Title"
 						Style="{StaticResource Border_Fieldset_Title}">
@@ -28,7 +28,7 @@
 
 
 				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource Grid_Fieldset_Menu}">
+					  Style="{StaticResource GridFieldsetMenu}">
 
 					<Border x:Name="Menu_Border">
 
@@ -43,8 +43,7 @@
 							</Grid.ColumnDefinitions>
 
 							<Button x:Name="Button_Add"
-									Content="{StaticResource Icon24ListPlus}"
-									Style="{StaticResource ButtonIcon24}"
+									Style="{StaticResource ButtonIcon24ListPlus}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Add}"
 									Click="OnAddNewItem_Click" />
 
@@ -57,8 +56,7 @@
 
 							<Button Grid.Column="2"
 									x:Name="Button_Delete"
-									Content="{StaticResource Icon24ListMinus}"
-									Style="{StaticResource ButtonIcon24}"
+									Style="{StaticResource ButtonIcon24ListMinus}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
 									Click="OnDeleteItems_Click"
 									IsEnabled="False"/>

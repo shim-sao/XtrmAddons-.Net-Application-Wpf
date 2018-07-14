@@ -3,10 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 	<!-- ControlTemplate -->
-	<ControlTemplate x:Key="Default_FormFieldValidationTemplate">
+	<ControlTemplate x:Key="ControlTemplateFormFieldValidationTemplate">
 		<DockPanel>
-			<TextBlock Foreground="{StaticResource Warning}"
-					   FontSize="{StaticResource Text-H4}"
+			<TextBlock Foreground="{DynamicResource ColorWarningBrush}"
+					   FontSize="{StaticResource FontSizeH4}"
 					   Margin="2"
 					   VerticalAlignment="Top"
 					   Text="!"/>

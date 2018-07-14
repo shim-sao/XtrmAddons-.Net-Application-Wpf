@@ -16,14 +16,14 @@
 	Loaded="Control_Loaded">
 
 	<Grid x:Name="Block_Root"
-		  Style="{StaticResource Root}">
+		  Style="{StaticResource GridRoot}">
 		
 		<StackPanel x:Name="Block_RootPanel"
 					Style="{StaticResource FieldsetVertical}">
 
 			<StackPanel x:Name="Block_TopControls"
 						Style="{StaticResource StackPanelTopControls}">
-				<Border Background="{StaticResource LightGrey}">
+				<Border Background="{StaticResource LightGrey}" Visibility="Hidden">
 					<TextBox Background="White"
 							 x:Name="Breadcrumbs"
 							 Margin="5"
@@ -34,7 +34,7 @@
 
 
 			<Grid x:Name="Block_MiddleContents"
-				  Style="{StaticResource ResourceKey=MiddleContents}">
+				  Style="{StaticResource MiddleContents}">
 
 				<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColSections"/>

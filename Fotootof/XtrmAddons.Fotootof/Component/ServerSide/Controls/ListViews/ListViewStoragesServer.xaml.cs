@@ -107,7 +107,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 Items = ItemsCollection.ItemsSource as StorageCollection
             };
 
-            ComboBox_ImageSize.SelectedIndex = SettingsBase.GetInt(ComboBox_ImageSize, "SelectedIndex", ComboBox_ImageSize.SelectedIndex);
+            ComboBox_ImageSize.SelectedIndex = AppSettings.GetInt(ComboBox_ImageSize, "SelectedIndex", ComboBox_ImageSize.SelectedIndex);
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         {
             if (ComboBox_ImageSize != null)
             {
-                SettingsBase.SaveInt(ComboBox_ImageSize, "SelectedIndex", ComboBox_ImageSize.SelectedIndex);
+                AppSettings.SaveInt(ComboBox_ImageSize, "SelectedIndex", ComboBox_ImageSize.SelectedIndex);
             }
         }
 

@@ -35,7 +35,7 @@
             <TextBlock
                 x:Name="ServerNameTitle"
                 Text="{x:Static p:Resources.ServerInformations}"
-                FontSize="{StaticResource ResourceKey=Text-H2}"
+                FontSize="{StaticResource ResourceKey=FontSizeH2}"
                 Foreground="{StaticResource ResourceKey=DarkGrey}"
                 Margin="10,5"/>
 
@@ -47,7 +47,7 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         Text="{x:Static p:Resources.Host}"
-                        FontSize="{StaticResource ResourceKey=Text-Big}"
+                        FontSize="{StaticResource ResourceKey=FontSizeBig}"
                         Style="{StaticResource FieldLabel}"
                         Foreground="{StaticResource Panton_0}"
                         Width="auto"/>
@@ -56,7 +56,7 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Text=":"
-                        FontSize="{StaticResource ResourceKey=Text-Big}"
+                        FontSize="{StaticResource ResourceKey=FontSizeBig}"
                         Foreground="{StaticResource Panton_0}"
                         Margin="5,0"/>
 
@@ -65,7 +65,7 @@
                         Grid.Column="2"
                         x:Name="InputHost"
                         Text="{Binding Server.Host}"
-                        FontSize="{StaticResource ResourceKey=Text-Big}"
+                        FontSize="{StaticResource ResourceKey=FontSizeBig}"
                         Style="{StaticResource FieldLabel}"
                         Foreground="{StaticResource Panton_0}"
                         Width="auto" />
@@ -78,7 +78,7 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         Text="{x:Static p:Resources.Port}"
-                        FontSize="{StaticResource ResourceKey=Text-Big}"
+                        FontSize="{StaticResource ResourceKey=FontSizeBig}"
                         Style="{StaticResource FieldLabel}"
                         Foreground="{StaticResource Panton_0}"
                         Width="auto"/>
@@ -87,7 +87,7 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Text=":"
-                        FontSize="{StaticResource ResourceKey=Text-Big}"
+                        FontSize="{StaticResource ResourceKey=FontSizeBig}"
                         Foreground="{StaticResource Panton_0}"
                         Margin="5,0"/>
 
@@ -96,7 +96,7 @@
                         Grid.Column="2"
                         x:Name="InputPort"
                         Text="{Binding Server.Port}"
-                        FontSize="{StaticResource ResourceKey=Text-Big}"
+                        FontSize="{StaticResource ResourceKey=FontSizeBig}"
                         Style="{StaticResource FieldLabel}"
                         Foreground="{StaticResource Panton_0}"
                         Width="auto" />

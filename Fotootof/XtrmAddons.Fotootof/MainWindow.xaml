@@ -38,7 +38,7 @@
 
 		
         <!-- #region BLOCK Main Menu -->
-		<Border x:Name="Block_MainMenu" Grid.Row="0">
+		<Border x:Name="BlockMainMenu" Grid.Row="0">
             <ucmenu:MenuMain x:Name="AppMainMenu" />
         </Border>
         <!-- #endregion -->
@@ -46,7 +46,7 @@
 		
 		
         <!-- #region BLOCK Main Sub Menu -->
-        <Border x:Name="Block_MainSubmenu" Grid.Row="1">
+        <Border x:Name="BlockMainSubmenu" Grid.Row="1">
             <ucsubmenu:MenuMainServer x:Name="AppMainSubmenu" />
         </Border>
         <!-- #endregion -->
@@ -54,16 +54,15 @@
 
 		
 		<!-- #region BLOCK Content -->
-		<Border x:Name="Block_Content" Grid.Row="2"
+		<Border x:Name="BlockContent" Grid.Row="2"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch">
 
 			<Frame x:Name="Frame_Content"
+				   NavigationUIVisibility="Hidden"
 				   HorizontalAlignment="Stretch"
-				   VerticalAlignment="Stretch"
-				   NavigationUIVisibility="Hidden">
-				<!--Background="{DynamicResource ResourceKey=BaseMediumHighBrush}">-->
-            </Frame>
+				   VerticalAlignment="Stretch">
+			</Frame>
 		</Border>
 		<!-- #endregion -->
 

@@ -17,7 +17,7 @@
 
 
 	<Grid x:Name="Block_Root"
-		  Style="{StaticResource Root}">
+		  Style="{StaticResource GridRoot}">
 		
 		<StackPanel x:Name="Block_RootPanel"
 					Style="{StaticResource FieldsetVertical}">
@@ -60,7 +60,7 @@
 								 x:Name="Breadcrumbs"
 								 Margin="2"
 								 Padding="10,0"
-								 FontSize="{StaticResource ResourceKey=FontSizeNormal}"
+								 FontSize="{StaticResource FontSizeNormal}"
 								 HorizontalAlignment="Stretch"
 								 Height="24"
 								 VerticalContentAlignment="Center"/>
@@ -79,7 +79,7 @@
 			</StackPanel>
 
 			<Grid x:Name="Block_MiddleContents"
-				  Style="{StaticResource MiddleContents}">
+				  Style="{StaticResource GridMiddleContents}">
 
 				<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColStorages"/>
@@ -94,7 +94,7 @@
 												 Grid.Column="0"
 												 x:Name="UcTreeViewDirectories"
 												 IsHeaderVisible="Visible"
-												 Background="{StaticResource ResourceKey=Panton_3}"/>
+												 Background="{DynamicResource ChromeMediumLowBrush}"/>
 
                 <GridSplitter Grid.Row="0"
 							  Grid.Column="1"

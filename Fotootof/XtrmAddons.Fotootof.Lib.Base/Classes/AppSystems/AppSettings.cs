@@ -11,7 +11,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
     /// <para>Class XtrmAddons Fotootof Lib Base Classes AppSystems Settings Base.</para>
     /// <para>This class provides easy accesses to store and retrive application settings.</para>
     /// </summary>
-    public static class SettingsBase
+    public static class AppSettings
     {
         #region Variable
 

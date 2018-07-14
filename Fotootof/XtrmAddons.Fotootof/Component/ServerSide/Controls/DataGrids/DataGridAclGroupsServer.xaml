@@ -11,12 +11,12 @@
 	SizeChanged="Control_SizeChanged">
 
 	<Grid x:Name="Block_Root"
-		  Style="{StaticResource ResourceKey=Root}">
+		  Style="{StaticResource GridRoot}">
 		<StackPanel x:Name="Block_RootPanel"
-					Style="{StaticResource ResourceKey=FieldsetVertical}">
+					Style="{StaticResource FieldsetVertical}">
 
 			<StackPanel x:Name="Block_Header"
-						Style="{StaticResource FieldsetHeader}">
+						Style="{StaticResource StackPanelFieldsetHeader}">
 
 				<Border x:Name="Block_Title"
 						Style="{StaticResource Border_Fieldset_Title}">
@@ -74,7 +74,7 @@
 
 
 				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource Grid_Fieldset_Menu}">
+					  Style="{StaticResource GridFieldsetMenu}">
 
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
@@ -121,18 +121,19 @@
 				
 				<DataGrid x:Name="ItemsLayout"
 						  AutoGenerateColumns="False"
-						  EnableRowVirtualization="false"
-						  EnableColumnVirtualization="false"
-						  ColumnWidth="*"
 						  CanUserDeleteRows="True"
 						  CanUserAddRows="False"
+						  ColumnWidth="*"
+						  EnableRowVirtualization="false"
+						  EnableColumnVirtualization="false"
 						  SelectionMode="Extended"
 						  ItemsSource="{Binding Items, Mode=OneWay, IsAsync=true}"
 						  RowHeight="22"
 						  HorizontalAlignment="Stretch"
 						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 						  MouseDoubleClick="OnEditItem_Click"
-						  SelectionChanged="ItemsCollection_SelectionChanged">
+						  SelectionChanged="ItemsCollection_SelectionChanged"
+						  Background="{DynamicResource ChromeLowBrush}">
 
 					<DataGrid.Columns>
 						<!-- #region : Column AclGroupId -->

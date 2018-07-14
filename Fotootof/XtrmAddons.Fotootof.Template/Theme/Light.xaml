@@ -71,10 +71,10 @@
 
 
 	<!-- #region UWP System.List -->
-	<Color x:Key="ListLow">#19FFFFFF</Color>
+	<Color x:Key="ListLow">#19000000</Color>
 	<SolidColorBrush x:Key="ListLowBrush" Color="{StaticResource ListLow}" />
 
-	<Color x:Key="ListMedium">#33FFFFFF</Color>
+	<Color x:Key="ListMedium">#33000000</Color>
 	<SolidColorBrush x:Key="ListMediumBrush" Color="{StaticResource ListMedium}" />
 	<!-- #endregion UWP System.List -->
 
@@ -114,6 +114,7 @@
 	<!-- #endregion UWP System.Color -->
 
 
+	
 	<!-- #region WPF System.Color -->
 	<Color x:Key="ColorMenuText">#FF000000</Color>
 	<SolidColorBrush x:Key="ColorMenuTextBrush" Color="{StaticResource ColorMenuText}" />
@@ -121,7 +122,16 @@
 	<Color x:Key="ColorSubMenuText">#FF111111</Color>
 	<SolidColorBrush x:Key="ColorSubMenuTextBrush" Color="{StaticResource ColorSubMenuText}" />
 
-	
+	<!-- Generic colors messages -->
+	<Color x:Key="ColorReady">#A2C176</Color>
+	<SolidColorBrush x:Key="ColorReadyBrush" Color="{StaticResource ColorReady}" />
+
+	<Color x:Key="ColorWarning">Orange</Color>
+	<SolidColorBrush x:Key="ColorWarningBrush" Color="{StaticResource ColorWarning}" />
+
+	<Color x:Key="ColorError">Red</Color>
+	<SolidColorBrush x:Key="ColorErrorBrush" Color="{StaticResource ColorError}" />
+
 	<!-- #endregion WPF System.Color -->
 
 

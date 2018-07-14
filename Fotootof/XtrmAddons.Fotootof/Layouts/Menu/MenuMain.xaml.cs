@@ -161,7 +161,7 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
 
             // Toggle the Logs Frame & check/uncheck the Logs MenuItem. 
             MenuItem mi = (MenuItem)FindName("MenuItemDisplayLogs");
-            mi.IsChecked = SettingsBase.GetBool(mi, "IsChecked", mi.IsChecked);
+            mi.IsChecked = AppSettings.GetBool(mi, "IsChecked", mi.IsChecked);
             if (mi.IsChecked)
             {
                 AppNavigator.MainWindow.ToggleLogs();
@@ -245,7 +245,7 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         {
             AppNavigator.MainWindow.ToggleLogs();
             MenuItem mi = (MenuItem)FindName("MenuItemDisplayLogs");
-            SettingsBase.SaveBool(mi, "IsChecked", mi.IsChecked);
+            AppSettings.SaveBool(mi, "IsChecked", mi.IsChecked);
         }
 
         /// <summary>

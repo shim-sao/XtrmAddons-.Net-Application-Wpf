@@ -10,13 +10,13 @@
     SizeChanged="TreeView_Resize">
 
 	<Grid x:Name="Block_Root"
-		  Style="{StaticResource Grid_Root}">
+		  Style="{StaticResource GridRoot}">
 		
 		<StackPanel x:Name="Block_RootPanel"
 					Style="{StaticResource FieldsetVertical}">
 
 			<StackPanel x:Name="Block_Header"
-						Style="{StaticResource StackPanel_FieldsetHeader}">
+						Style="{StaticResource StackPanelFieldsetHeader}">
 
 				<Border x:Name="Block_Title"
 						Style="{StaticResource Border_Fieldset_Title}">
@@ -30,7 +30,7 @@
 				</Border>
 
 				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource Grid_Fieldset_Menu}">
+					  Style="{StaticResource GridFieldsetMenu}">
 				</Grid>
 
 			</StackPanel>
@@ -42,7 +42,7 @@
 					  TreeViewItem.Expanded="TreeViewItem_Expanded"
 					  ScrollViewer.HorizontalScrollBarVisibility="Auto"
 					  ScrollViewer.VerticalScrollBarVisibility="Auto"
-					  Background="{DynamicResource ResourceKey=BaseLowBrush}" />
+					  Background="{DynamicResource BaseLowBrush}" />
 
 			<!-- #endregion Directories list -->
 

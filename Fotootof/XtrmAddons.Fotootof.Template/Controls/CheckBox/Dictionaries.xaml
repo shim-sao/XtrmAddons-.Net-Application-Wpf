@@ -4,7 +4,7 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 	<!-- CheckBox -->
-	<Style x:Key="FieldInputCb" TargetType="{x:Type CheckBox}">
+	<Style x:Key="CheckBoxFieldInput" TargetType="{x:Type CheckBox}">
 		<Setter Property="VerticalAlignment" Value="center"/>
 		<Setter Property="Height" Value="15"/>
 	</Style>
