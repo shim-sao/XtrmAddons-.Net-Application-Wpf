@@ -11,14 +11,14 @@
     mc:Ignorable="d"
     Width="480"
     Height="480"
-    Title="{x:Static p:Resources.WindowUserFormTitle}"
-    Background="{StaticResource ResourceKey=DarkGrey}"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     FocusManager.FocusedElement="{Binding ElementName=InputName}"
 	Loaded="Window_Load"
-	Closing="Window_Closing">
-
+	Closing="Window_Closing"
+	Style="{DynamicResource WindowStyle}"
+    Title="{x:Static p:Resources.WindowUserFormTitle}">
+	
 	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
 
 		<Grid.RowDefinitions>
@@ -35,8 +35,7 @@
 
 				<Grid>
 					
-					<StackPanel Style="{StaticResource Form}"
-								Background="White">
+					<StackPanel Style="{StaticResource Form}">
 
                         <!-- #region : Field Name -->
                         <StackPanel Orientation="Horizontal"

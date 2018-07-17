@@ -51,7 +51,7 @@
 		<Setter Property="BorderThickness" Value="0" />
 		<Setter Property="FontSize" Value="{StaticResource MenuFontSizeBig}" />
 		<Setter Property="FontWeight" Value="Bold" />
-		<Setter Property="Foreground" Value="{DynamicResource ColorMenuTextBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource CustomMenuTextBrush}" />
 		<Setter Property="Padding" Value="10,0" />
 	</Style>
 

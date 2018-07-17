@@ -8,8 +8,9 @@
 
 	<!-- #region TextBlock -->
 	<Style x:Key="TextBlockFieldStyle" TargetType="{x:Type TextBlock}">
-		<Setter Property="VerticalAlignment" Value="Center"/>
 		<Setter Property="FontSize" Value="{StaticResource FontSizeNormal}" />
+		<Setter Property="Foreground" Value="{DynamicResource BaseMediumHighBrush}" />
+		<Setter Property="VerticalAlignment" Value="Center"/>
 	</Style>
 
 	<Style x:Key="TextBlockFieldLabelStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlockFieldStyle}">

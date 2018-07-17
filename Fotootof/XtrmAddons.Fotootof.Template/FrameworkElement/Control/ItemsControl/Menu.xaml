@@ -5,13 +5,13 @@
 	<!-- Generic Menu -->
 	<Style TargetType="Menu">
 		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
-		<Setter Property="Foreground" Value="{DynamicResource ColorMenuTextBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource CustomMenuTextBrush}" />
 		<Setter Property="FontSize" Value="{StaticResource MenuFontSize}" />
 	</Style>
 	
 	<Style x:Key="ControlMenuGeneric" TargetType="{x:Type Control}">
 		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
-		<Setter Property="Foreground" Value="{DynamicResource ColorMenuTextBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource CustomMenuTextBrush}" />
 		<Setter Property="FontSize" Value="{StaticResource MenuFontSize}" />
 	</Style>
 

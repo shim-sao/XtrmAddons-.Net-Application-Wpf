@@ -155,28 +155,24 @@
 	<SolidColorBrush x:Key="CustomListViewThumbBrush" Color="{StaticResource ChromeLow}" />
 	<SolidColorBrush x:Key="CustomListViewThumbTextBrush" Color="{StaticResource ColorWindowText}" />
 
+	
 	<!-- Generic colors messages -->
 	<Color x:Key="ColorError">#FFA80000</Color>
-	<SolidColorBrush x:Key="ColorErrorBrush" Color="#FFA80000" />
+	<SolidColorBrush x:Key="CustomErrorBrush" Color="#FFFF1D1D" />
 
-	<Color x:Key="ColorReady">#FF40FFFF</Color>
-	<SolidColorBrush x:Key="ColorReadyBrush" Color="#FF40FFFF" />
+	<Color x:Key="ColorReady">#FF1F1F1F</Color>
+	<SolidColorBrush x:Key="CustomReadyBrush" Color="#FF1F1F1F" />
 
 	<Color x:Key="ColorWarning">#FFFF8000</Color>
 	<SolidColorBrush x:Key="CustomWarningBrush" Color="#FFFF8000" />
-	<!-- #endregion -->
-
-
-
-
-
-
 
 
 	<!-- Menu -->
-	<Color x:Key="ColorMenuText">#FFFFFFFF</Color>
-	<Color x:Key="ColorSubMenuText">#FFEEEEEE</Color>
-	<SolidColorBrush x:Key="ColorMenuTextBrush" Color="{StaticResource ColorMenuText}" />
-	<SolidColorBrush x:Key="ColorSubMenuTextBrush" Color="{StaticResource ColorSubMenuText}" />
+	<Color x:Key="CustomMenuTextColor">#FFFFFFFF</Color>
+	<SolidColorBrush x:Key="CustomMenuTextBrush" Color="{StaticResource CustomMenuTextColor}" />
+	
+	<Color x:Key="CustomSubMenuTextColor">#FFEEEEEE</Color>
+	<SolidColorBrush x:Key="CustomSubMenuTextBrush" Color="{StaticResource CustomSubMenuTextColor}" />
+	<!-- #endregion -->
 
 </ResourceDictionary>

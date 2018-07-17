@@ -10,10 +10,8 @@
 					   Margin="2"
 					   Text="!"
 					   VerticalAlignment="Top"/>
-			
-			<AdornedElementPlaceholder/>
 
-			<TextBlock DockPanel.Dock="Bottom" Text="test text" />
+			<AdornedElementPlaceholder/>
 		</DockPanel>
 	</ControlTemplate>
 
