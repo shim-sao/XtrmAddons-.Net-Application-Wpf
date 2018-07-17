@@ -84,7 +84,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Menu
         /// <param name="e"></param>
         private void ItemButton_MouseEnter(object sender, MouseEventArgs e)
         {
-            ((Button)sender).Background = (SolidColorBrush)FindResource("LightBlack");
+            ((Button)sender).Background = (SolidColorBrush)FindResource("CustomHighlightBrush");
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Menu
         /// <param name="e"></param>
         private void ItemButton_MouseLeave(object sender, MouseEventArgs e)
         {
-            ((Button)sender).Background = (SolidColorBrush)FindResource("Transparent");
+            ((Button)sender).Background = (SolidColorBrush)FindResource("TransparentBrush");
         }
     }
 }

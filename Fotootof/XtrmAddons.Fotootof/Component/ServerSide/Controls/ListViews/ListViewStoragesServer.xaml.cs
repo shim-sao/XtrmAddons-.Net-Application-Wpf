@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
@@ -51,8 +52,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// </summary>
         public event SelectionChangedEventHandler ImageSize_SelectionChanged
         {
-            add => ComboBox_ImageSize.SelectionChanged += value;
-            remove => ComboBox_ImageSize.SelectionChanged -= value;
+            add => ((ComboBox)FindName("ComboBoxImageSizeName")).SelectionChanged += value;
+            remove => ((ComboBox)FindName("ComboBoxImageSizeName")).SelectionChanged -= value;
         }
 
         /// <summary>
@@ -107,7 +108,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
                 Items = ItemsCollection.ItemsSource as StorageCollection
             };
 
-            ComboBox_ImageSize.SelectedIndex = AppSettings.GetInt(ComboBox_ImageSize, "SelectedIndex", ComboBox_ImageSize.SelectedIndex);
+            ComboBox selectorImgSize = ((ComboBox)FindName("ComboBoxImageSizeName"));
+            selectorImgSize.SelectedIndex = AppSettings.GetInt(selectorImgSize, "SelectedIndex", selectorImgSize.SelectedIndex);
         }
 
         /// <summary>
@@ -220,11 +222,13 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Selection changed event arguments.</param>
-        private void ComboBox_ImageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBoxImageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ComboBox_ImageSize != null)
+            ComboBox selectorImgSize = ((ComboBox)FindName("ComboBoxImageSizeName"));
+
+            if (selectorImgSize != null)
             {
-                AppSettings.SaveInt(ComboBox_ImageSize, "SelectedIndex", ComboBox_ImageSize.SelectedIndex);
+                AppSettings.SaveInt(selectorImgSize, "SelectedIndex", selectorImgSize.SelectedIndex);
             }
         }
 
@@ -245,26 +249,36 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         }
 
         /// <summary>
-        /// 
+        /// Method to arrange the root block size on control resize.
         /// </summary>
         private void ArrangeBlockRoot()
         {
-            Block_Root.Arrange(new Rect(new Size(this.ActualWidth, this.ActualHeight)));
-            TraceSize(Block_Root);
+            // Get the framework element to resize.
+            Grid blockRoot = FindName("GridBlockRootName") as Grid;
+
+            // Resize required element.
+            blockRoot.Arrange(new Rect(new Size(this.ActualWidth, this.ActualHeight)));
+            TraceSize(GridBlockRootName);
         }
 
         /// <summary>
-        /// 
+        /// Method to arrange the items block size on control resize.
         /// </summary>
         private void ArrangeBlockItems()
         {
-            double height = Math.Max(this.ActualHeight - Block_Header.RenderSize.Height, 0);
+            // Get the framework elements to resize.
+            StackPanel blockHeader = FindName("StackPanelBlockHeaderName") as StackPanel;
 
-            Block_Items.Height = height;
+            // Get new sizes.
+            double height = Math.Max(this.ActualHeight - blockHeader.RenderSize.Height, 0);
+
+            // Resize required elements.
+            GridBlockItemsName.Height = height;
             ItemsCollection.Height = height;
             
-            TraceSize(Block_Items);
-            TraceSize(Block_Header);
+            // Trace with DEBUG_SIZE
+            TraceSize(GridBlockItemsName);
+            TraceSize(blockHeader);
             TraceSize(ItemsCollection);
         }
 

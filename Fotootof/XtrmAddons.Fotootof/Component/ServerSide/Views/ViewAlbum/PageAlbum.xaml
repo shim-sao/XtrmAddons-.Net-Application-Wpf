@@ -10,18 +10,17 @@
     mc:Ignorable="d"
 	ShowsNavigationUI="False"
 	Title="{x:Static p:Resources.Album}"
-	Style="{StaticResource ResourceKey=PageContent}"
     SizeChanged="Control_SizeChanged"
 	Loaded="Control_Loaded">
 
-	<Grid x:Name="Block_Root"
-		  Style="{StaticResource Root}">
+	<Grid x:Name="GridBlockRootName"
+		  Style="{StaticResource FrameworkElementRootStyle}">
 		
-		<StackPanel x:Name="Block_RootPanel"
-					Style="{StaticResource FieldsetVertical}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
+					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
 			<Grid x:Name="Block_MiddleContents"
-				  Style="{StaticResource MiddleContents}">
+				  Style="{StaticResource GridMiddleContentStyle}">
 				
 					<pictures:ListViewPicturesServer x:Name="PicturesCollection"
 													 Grid.Row="0"

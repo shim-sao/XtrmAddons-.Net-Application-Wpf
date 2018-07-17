@@ -10,16 +10,7 @@
         <ResourceDictionary>			
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="Dictionary.xaml"/>
-				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Generic.xaml"/>
-				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Color.xaml"/>
-				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Theme/Images.xaml"/>
-				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/ControlTemplates.xaml" />
-				
-				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TextBlocks.xaml"/>
-				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TextBoxs.xaml"/>
-				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TabControls.xaml"/>
-				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/TreeViews.xaml"/>
-				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Controls/Windows.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/XtrmAddons.Fotootof.Template;component/Dictionary.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

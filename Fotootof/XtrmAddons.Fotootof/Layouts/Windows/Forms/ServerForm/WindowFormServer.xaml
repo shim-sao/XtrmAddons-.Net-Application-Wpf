@@ -38,14 +38,14 @@
 								Background="White">
 
 						<!-- #region : Field Name -->
-						<StackPanel Style="{StaticResource StackPanel_FormField}">
+						<StackPanel Style="{StaticResource StackPanelFormFieldStyle}">
 
 							<TextBlock Text="{x:Static p:Resources.Name}"
 									   Style="{StaticResource FieldLabel}"/>
 
 							<TextBox x:Name="InputName"
-									 Style="{StaticResource TextBox_FieldInput_Required}"
-									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidationTemplate}"
+									 Style="{StaticResource TextBoxFieldInputRequiredStyle}"
+									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
 									 Validation.Error="OnInput_ValidationError"
 									 SourceUpdated="OnInputStringRequired_SourceUpdated"
 									 TargetUpdated="OnInput_TargetUpdated"
@@ -82,8 +82,8 @@
 									   Style="{StaticResource FieldLabel}"/>
 
 							<TextBox x:Name="InputHost"
-									 Style="{StaticResource TextBox_FieldInput_Required}"
-									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidationTemplate}"
+									 Style="{StaticResource TextBoxFieldInputRequiredStyle}"
+									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
 									 Validation.Error="OnInput_ValidationError"
 									 SourceUpdated="OnInputHost_SourceChanged"
 									 TargetUpdated="OnInput_TargetUpdated"
@@ -113,14 +113,14 @@
 
 
 						<!-- #region : Field Port -->
-						<StackPanel Style="{StaticResource StackPanel_FormField}">
+						<StackPanel Style="{StaticResource StackPanelFormFieldStyle}">
 
 							<TextBlock Text="{x:Static p:Resources.Port}"
 									   Style="{StaticResource FieldLabel}"/>
 
 							<TextBox x:Name="InputPort"
-									 Style="{StaticResource TextBox_FieldInput_Required}"
-									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidationTemplate}"
+									 Style="{StaticResource TextBoxFieldInputRequiredStyle}"
+									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
 									 Validation.Error="OnInput_ValidationError"
 									 SourceUpdated="OnInputStringRequired_SourceUpdated"
 									 TargetUpdated="OnInput_TargetUpdated"

@@ -10,10 +10,11 @@
     xmlns:ucsubmenu="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.Menu"
     mc:Ignorable="d"
     Title="{x:Static p:Resources.ApplicationName}"
-    Style="{StaticResource ResourceKey=Window_MainWindow}"
+    Style="{StaticResource MainWindowStyle}"
     Loaded="Window_Loaded"
     Closing="Window_Closing"
     SizeChanged="Window_SizeChanged">
+	<!--Template="{DynamicResource WindowControlTemplate1}">-->
 
 	<Window.InputBindings>
 		<KeyBinding Key="X" Modifiers="Alt" Command="ApplicationCommands.Close" />
@@ -23,7 +24,8 @@
 		<CommandBinding Command="ApplicationCommands.Close" Executed="FileExit_Click"></CommandBinding>
 	</Window.CommandBindings>
 
-	<Grid x:Name="Block_Root">
+	<Grid x:Name="GridBlockRootName"
+		  Style="{StaticResource FrameworkElementRootStyle}">
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -69,26 +71,23 @@
 
 
 		<!-- #region SPLITTER -->
-		<GridSplitter x:Name="ContentLogs_GridSplitter"
+		<GridSplitter x:Name="GridSplitterBlockLogsName"
 					  Grid.Row="3"
-					  Height="3"
+					  Height="6"
 					  ResizeDirection="Rows"
-					  HorizontalAlignment="Stretch"
-					  VerticalAlignment="Center"
-					  Background="Black"
-					  ShowsPreview="true">
+					  BorderThickness="0,1">
 		</GridSplitter>
 		<!-- #endregion -->
 
 
 
 		<!-- #region SPLITTER -->
-		<Border x:Name="Block_Logs" Grid.Row="4">
-			<ScrollViewer x:Name="ScrollViewer_Logs">
+		<Border x:Name="BorderBlockLogsName" Grid.Row="4">
+			<ScrollViewer x:Name="ScrollViewerBlockLogsName">
                 <WrapPanel>
                     <HeaderedItemsControl Header="Frame">
                         <Grid>
-                            <Frame x:Name="Frame_Logs"
+                            <Frame x:Name="FrameBlockLogsName"
 								   HorizontalAlignment="Stretch"
 								   VerticalAlignment="Stretch"
 								   NavigationUIVisibility="Hidden">

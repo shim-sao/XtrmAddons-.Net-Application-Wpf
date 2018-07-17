@@ -1,0 +1,30 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+	
+    <!-- Generic Window -->
+	<Style x:Key="WindowStyle" TargetType="{x:Type Window}">
+		<Setter Property="Background" Value="{DynamicResource ColorWindowBrush}" />
+		<Setter Property="Icon" Value="/XtrmAddons Fotootof;component/Favicon.ico"/>
+	</Style>
+	
+    <!-- Application Main Window -->
+	<Style x:Key="MainWindowStyle" TargetType="{x:Type Window}" BasedOn="{StaticResource WindowStyle}">
+		<Setter Property="Height" Value="768"/>
+		<Setter Property="MaxHeight" Value="1080"/>
+		<Setter Property="MinHeight" Value="768"/>
+		<Setter Property="MinWidth" Value="1024"/>
+		<Setter Property="Width" Value="1024"/>
+	</Style>
+	
+	<!-- Window Form -->
+	<Style x:Key="Window_Form" TargetType="{x:Type Window}" BasedOn="{StaticResource WindowStyle}">
+		<Setter Property="ResizeMode" Value="NoResize"/>
+		<Setter Property="Topmost" Value="True"/>
+		<!--WARNING : WindowStartupLocation property null Exception => set it directly in Window Xaml-->
+		<!--<Setter Property="WindowStartupLocation" Value="CenterScreen"/>-->
+		<Setter Property="WindowStyle" Value="ToolWindow"/>
+	</Style>
+
+</ResourceDictionary>

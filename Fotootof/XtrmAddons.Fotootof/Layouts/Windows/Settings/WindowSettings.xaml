@@ -22,7 +22,7 @@
 		
         <ScrollViewer>
             <TabControl x:Name="TabControlContent"
-						Style="{StaticResource TabControl_DefaultForm}">
+						Style="{StaticResource TabControlDefaultForm}">
             
                 <!-- #region : Tabs General -->
                 <TabItem Header="{x:Static p:Resources.General}">
@@ -30,10 +30,10 @@
                         
                         <!-- #region Base Directory -->
                         <Border Margin="5">
-							<StackPanel Style="{StaticResource StackPanel_Field}">
+							<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
                                 <TextBlock Text="{x:Static p:Resources.BaseDirectory}"
-										   Style="{StaticResource TextBlock_FieldLabelLong}"/>
+										   Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
 								<TextBox x:Name="InputDirectoriesBase"
 										 Style="{StaticResource FieldInputLongTooltipOff}"
@@ -71,13 +71,13 @@
 					<StackPanel>
 
 						<!-- #region : Field Database -->
-						<StackPanel Style="{StaticResource StackPanel_Field}">
+						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
 							<TextBlock Text="{x:Static p:Resources.UserInterface}"
-									   Style="{StaticResource TextBlock_FieldLabelLong}"/>
+									   Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
 							<TextBox x:Name="InputDatabaseSource"
-									 Style="{StaticResource TextBox_FieldInput}"
+									 Style="{StaticResource TextBoxFieldInput}"
 									 Text="{Binding Database.Source, Mode=OneWay}"
 									 ToolTipService.ToolTip="{Binding Database.Source, Mode=OneWay}"/>
 
@@ -108,10 +108,10 @@
                                 <StackPanel Margin="5">
 
                                     <!-- #region : Field Preferences file -->
-                                    <StackPanel Style="{StaticResource StackPanel_Field}">
+									<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
                                         <TextBlock Text="{x:Static p:Resources.Preferences}"
-												   Style="{StaticResource TextBlock_FieldLabelLong}"/>
+												   Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
                                         <TextBox x:Name="InputFilePreferences"
 												 Style="{StaticResource FieldInputLongTooltipOff}"
@@ -122,11 +122,11 @@
                                     <!-- #endregion : Field Preferences file -->
 
                                     <!-- #region : Field Options file -->
-                                    <StackPanel Style="{StaticResource StackPanel_Field}">
+									<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
                                         <TextBlock
                                             Text="{x:Static p:Resources.Options}"
-                                            Style="{StaticResource TextBlock_FieldLabelLong}"/>
+                                            Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
                                         <TextBox
                                             x:Name="InputFileOptions"
@@ -138,11 +138,11 @@
                                     <!-- #endregion : Field Options file -->
 
                                     <!-- #region : Field UserInterface file -->
-									<StackPanel Style="{StaticResource StackPanel_Field}">
+									<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
                                         <TextBlock
                                             Text="{x:Static p:Resources.UserInterface}"
-                                            Style="{StaticResource TextBlock_FieldLabelLong}"/>
+                                            Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
                                         <TextBox
                                             x:Name="InputFileUi"
@@ -182,10 +182,10 @@
 												   Style="{StaticResource FieldLabelShort}" />
 
                                         <TextBlock Text="{}{Bin}"
-												   Style="{StaticResource TextBlock_FieldLabel}"/>
+												   Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 										<TextBox x:Name="InputDirectoriesBin"
-												 Style="{StaticResource TextBox_FieldInput}"
+												 Style="{StaticResource TextBoxFieldInput}"
 												 Text="{Binding Directories.Bin, Mode=OneWay}"
 												 ToolTipService.ToolTip="{Binding Directories.Bin, Mode=OneWay}"
 												 ToolTipService.IsEnabled="True"
@@ -213,10 +213,10 @@
 												   Style="{StaticResource FieldLabelShort}"/>
 
                                         <TextBlock Text="{}{Cache}"
-												   Style="{StaticResource TextBlock_FieldLabel}"/>
+												   Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 										<TextBox x:Name="InputDirectoriesCache"
-												 Style="{StaticResource TextBox_FieldInput}"
+												 Style="{StaticResource TextBoxFieldInput}"
 												 Text="{Binding Directories.Cache, Mode=OneWay}"
 												 ToolTipService.ToolTip="{Binding Directories.Cache, Mode=OneWay}"
 												 ToolTipService.IsEnabled="True"
@@ -236,7 +236,7 @@
 
 									
                                     <!-- #region Config Directory -->
-									<StackPanel Style="{StaticResource StackPanel_Field}">
+									<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
                                         <TextBlock Text="{x:Static p:Resources.SettingsInputConfigName}"
 												   Style="{StaticResource FieldLabelShort}"/>
@@ -245,7 +245,7 @@
 												   Style="{StaticResource FieldLabel}"/>
 
 										<TextBox x:Name="InputDirectoriesConfig"
-												 Style="{StaticResource TextBox_FieldInput}"
+												 Style="{StaticResource TextBoxFieldInput}"
 												 Text="{Binding Directories.Config, Mode=OneWay}"
 												 ToolTipService.ToolTip="{Binding Directories.Config, Mode=OneWay}"
 												 ToolTipService.IsEnabled="True"
@@ -276,7 +276,7 @@
 												   Style="{StaticResource FieldLabel}"/>
 
 										<TextBox x:Name="InputDirectoriesData"
-												 Style="{StaticResource TextBox_FieldInput}"
+												 Style="{StaticResource TextBoxFieldInput}"
 												 Text="{Binding Directories.Data, Mode=OneWay}"
 												 ToolTipService.ToolTip="{Binding Directories.Data, Mode=OneWay}"
 												 ToolTipService.IsEnabled="True"
@@ -307,7 +307,7 @@
 												   Style="{StaticResource FieldLabel}"/>
 
 										<TextBox x:Name="InputDirectoriesTheme"
-												 Style="{StaticResource TextBox_FieldInput}"
+												 Style="{StaticResource TextBoxFieldInput}"
 												 Text="{Binding Directories.Theme, Mode=OneWay}"
 												 ToolTipService.ToolTip="{Binding Directories.Theme, Mode=OneWay}"
 												 ToolTipService.IsEnabled="True"

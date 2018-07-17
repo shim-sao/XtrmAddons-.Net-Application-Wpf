@@ -10,17 +10,17 @@
 	Loaded="Control_Loaded"
 	SizeChanged="Control_SizeChanged">
 
-	<Grid x:Name="Block_Root"
-		  Style="{StaticResource GridRoot}">
+	<Grid x:Name="GridBlockRootName"
+		  Style="{StaticResource GridRootStyle}">
 		
-		<StackPanel x:Name="Block_RootPanel"
-					Style="{StaticResource FieldsetVertical}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
+					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<StackPanel x:Name="Block_Header"
+			<StackPanel x:Name="StackPanelBlockHeaderName"
 						Style="{StaticResource StackPanelFieldsetHeader}">
 
-				<Border x:Name="Block_Title"
-						Style="{StaticResource Border_Fieldset_Title}">
+				<Border x:Name="BorderFieldsetTitleName"
+						Style="{StaticResource BorderFieldsetTitleStyle}">
 					
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -89,7 +89,7 @@
 				</Border>
 				
 				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource GridFieldsetMenu}">
+					  Style="{StaticResource GridFieldsetMenuStyle}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
 						<ColumnDefinition Width="1*" />
@@ -112,12 +112,11 @@
 							Margin="5,0">
 
 						<StackPanel Orientation="Horizontal">
-							
-							<ComboBox Grid.Column="2"
-									  x:Name="ComboBox_ImageSize"
-									  x:Uid="ListViewStoragesServerImageSize"
-									  Style="{StaticResource ComboBoxSelector}"
-									  SelectionChanged="ComboBox_ImageSize_SelectionChanged">
+
+							<ComboBox x:Uid="ListViewStoragesServerComboBoxImageSizeId"
+									  x:Name="ComboBoxImageSizeName"
+									  Grid.Column="2"
+									  SelectionChanged="ComboBoxImageSize_SelectionChanged">
 
 								<ComboBoxItem Content="{x:Static p:Resources.Icon}" />
 								<ComboBoxItem Content="{x:Static p:Resources.Thumbnail}" />
@@ -153,9 +152,9 @@
 
 
 			<!-- #region Files List -->
-			<Grid x:Name="Block_Items">
+			<Grid x:Name="GridBlockItemsName">
 
-				<ListView x:Uid="ListViewCollection"
+				<ListView x:Uid="ListViewCollectionName"
 						  x:Name="ItemsCollectionStorages"
 						  HorizontalAlignment="Stretch"
 						  ItemsSource="{Binding FilesCollection, Mode=OneWay, IsAsync=True}"
@@ -163,7 +162,6 @@
 						  ScrollViewer.IsDeferredScrollingEnabled="True"
 						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 						  SelectionChanged="ItemsCollection_SelectionChanged"
-						  Style="{DynamicResource ListViewCollection}"
 						  VerticalAlignment="Stretch"
 						  VirtualizingStackPanel.IsVirtualizing="True"
 						  VirtualizingStackPanel.VirtualizationMode="Recycling">
@@ -196,8 +194,8 @@
 					<ListView.ItemsPanel>
 						<ItemsPanelTemplate>
 							<WrapPanel Name="WrapPanelItemsContainer"
-									   Width="{Binding ActualWidth, ElementName=Block_Root, IsAsync=True}"
-									   MaxWidth="{Binding MaxWidth, ElementName=Block_Root, IsAsync=True}">
+									   Width="{Binding ActualWidth, ElementName=GridBlockRootName, IsAsync=True}"
+									   MaxWidth="{Binding MaxWidth, ElementName=GridBlockRootName, IsAsync=True}">
 
 								<WrapPanel.CacheMode>
 									<BitmapCache EnableClearType="True" />
@@ -260,7 +258,7 @@
 												   Stretch="Uniform"
 												   Panel.ZIndex="0" />
 
-											<Grid x:Name="Grid_Image_Tooltip_Description"
+											<Grid x:Name="GridTooltipFileName"
 												  Margin="10"
 												  HorizontalAlignment="Left"
 												  VerticalAlignment="Stretch">
@@ -276,9 +274,9 @@
 															Margin="5">
 
 													<TextBlock Text="{Binding Name}"
-															   Style="{StaticResource TextBlock_Tooltip}"
 															   HorizontalAlignment="left"
 															   Panel.ZIndex="1"
+															   Style="{StaticResource TextBlockTooltipStyle}"
 															   TextWrapping="Wrap" />
 
 												</StackPanel>
@@ -288,16 +286,16 @@
 															Margin="5">
 
 													<TextBlock Text="{Binding DateCreated, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateSQLParameter}}"
-															   Style="{StaticResource TextBlock_Tooltip}"
+															   Style="{StaticResource TextBlockTooltipStyle}"
 															   FontStyle="Oblique" />
 
 													<TextBlock Text="-"
-															   Style="{StaticResource TextBlock_Tooltip}"
+															   Style="{StaticResource TextBlockTooltipStyle}"
 															   FontStyle="Oblique"
 															   Margin="3,0" />
 
 													<TextBlock Text="{Binding DateModified, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateSQLParameter}}"
-															   Style="{StaticResource TextBlock_Tooltip}"
+															   Style="{StaticResource TextBlockTooltipStyle}"
 															   FontStyle="Oblique" />
 
 												</StackPanel>

@@ -19,11 +19,9 @@
 	Loaded="Window_Load"
 	Closing="Window_Closing">
 
-    <Grid
-        Margin="2"
-        Background="{StaticResource ResourceKey=LightGrey}">
+	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
 
-        <Grid.RowDefinitions>
+		<Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
@@ -35,9 +33,9 @@
             <!-- #region : Tabs Informations -->
             <TabItem Header="{x:Static p:Resources.Informations}">
 
-                <Grid>
-
-                    <StackPanel Style="{StaticResource Form}"
+				<Grid>
+					
+					<StackPanel Style="{StaticResource Form}"
 								Background="White">
 
                         <!-- #region : Field Name -->
@@ -48,12 +46,12 @@
 									   Style="{StaticResource FieldLabel}"/>
 
 							<TextBox x:Name="InputName"
-									 Style="{StaticResource TextBox_FieldInput_Required}"
-									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidationTemplate}"
-									 Validation.Error="OnInput_ValidationError"
 									 SourceUpdated="OnInputStringRequired_SourceUpdated"
+									 Style="{StaticResource TextBoxFieldInputRequiredStyle}"
 									 TargetUpdated="OnInput_TargetUpdated"
 									 TextChanged="OnInputStringRequired_TextChanged"
+									 Validation.Error="OnInput_ValidationError"
+									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
 									 Width="310">
 
 								<TextBox.Text>
@@ -75,9 +73,10 @@
 							</TextBox>
 							
 						</StackPanel>
-                        <!-- #endregion : Field Name -->
+                        <!-- #endregion -->
 
 
+						
                         <!-- #region : Field Password -->
                         <StackPanel Orientation="Horizontal"
 									Style="{StaticResource Field}">
@@ -86,8 +85,8 @@
 									   Style="{StaticResource FieldLabel}"/>
 
 							<PasswordBox x:Name="InputPassword"
-										 Style="{StaticResource PasswordBox_FieldInput_Required}"
-										 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidationTemplate}"
+										 Style="{StaticResource PasswordBoxFieldInputRequired}"
+										 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
 										 PasswordChanged="OnInputPassword_PasswordChanged"
 										 Validation.Error="OnInput_ValidationError"
 										 MaxLength="64"
@@ -128,11 +127,11 @@
 									Style="{StaticResource Field}">
 
                             <TextBlock Text="{x:Static p:Resources.Email}"
-									   Style="{StaticResource FieldLabel}"/>
+									   Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 							<TextBox x:Name="InputEmail"
-									 Style="{StaticResource TextBox_FieldInput_Required}"
-									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidationTemplate}"
+									 Style="{StaticResource TextBoxFieldInputRequiredStyle}"
+									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
 									 Validation.Error="OnInput_ValidationError"
 									 SourceUpdated="OnInputEmail_SourceUpdated"
 									 TargetUpdated="OnInput_TargetUpdated"
@@ -219,21 +218,16 @@
 							<!-- #endregion : Column AclGroupId -->
 
 							<!-- #region : Column Is Default -->
-							<DataGridTemplateColumn 
-                                CanUserResize="False"
-                                IsReadOnly="True"
-                                Width="20"
-                                CanUserSort="True"
-                                Header=""
-                                SortMemberPath="IsDefault">
+							<DataGridTemplateColumn CanUserResize="False"
+													IsReadOnly="True"
+													Width="20"
+													CanUserSort="True"
+													Header=""
+													SortMemberPath="IsDefault">
 
 								<DataGridTemplateColumn.CellTemplate>
 									<DataTemplate>
-
-										<CheckBox
-                                            IsChecked="{Binding IsDefault, Mode=TwoWay}"
-                                            IsEnabled="False"/>
-
+										<CheckBox IsChecked="{Binding IsDefault, Mode=TwoWay}" IsEnabled="False"/>
 									</DataTemplate>
 								</DataGridTemplateColumn.CellTemplate>
 							</DataGridTemplateColumn>
@@ -292,16 +286,15 @@
 
 			<Grid>
 				<StackPanel Style="{StaticResource StackPanel_FormValidator}">
-
 					<Button x:Name="Button_Save"
+							Click="DialogSave_Click"
 							Content="{x:Static p:Resources.Save}"
-							Style="{StaticResource Button_Save}"
 							IsEnabled="{Binding IsSaveEnabled, UpdateSourceTrigger=Explicit, Mode=TwoWay, IsAsync=True}"
-							Click="DialogSave_Click"/>
+							Style="{StaticResource ButtonSaveStyle}"/>
 
 					<Button x:Name="Button_Cancel"
 							Content="{x:Static p:Resources.Cancel}"
-							Style="{StaticResource Button_Cancel}"/>
+							Style="{StaticResource ButtonCancelStyle}"/>
 
 				</StackPanel>
 			</Grid>

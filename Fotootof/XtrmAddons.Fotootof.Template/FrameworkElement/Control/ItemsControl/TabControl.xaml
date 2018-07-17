@@ -1,0 +1,13 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+	<!-- TabControl -->
+	<Style x:Key="TabControlDefaultForm" TargetType="{x:Type TabControl}">
+		<Setter Property="Grid.Row" Value="0"/>
+		<!--<Setter Property="Grid.RowSpan"
+				Value="2"/>-->
+    </Style>
+
+</ResourceDictionary>

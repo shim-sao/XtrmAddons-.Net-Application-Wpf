@@ -47,17 +47,15 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         Text="{x:Static p:Resources.Host}"
-                        FontSize="{StaticResource ResourceKey=FontSizeBig}"
+                        FontSize="{StaticResource FontSizeBig}"
                         Style="{StaticResource FieldLabel}"
-                        Foreground="{StaticResource Panton_0}"
                         Width="auto"/>
 
                     <TextBlock
                         Grid.Row="0"
                         Grid.Column="1"
                         Text=":"
-                        FontSize="{StaticResource ResourceKey=FontSizeBig}"
-                        Foreground="{StaticResource Panton_0}"
+                        FontSize="{StaticResource FontSizeBig}"
                         Margin="5,0"/>
 
                     <TextBlock
@@ -65,9 +63,8 @@
                         Grid.Column="2"
                         x:Name="InputHost"
                         Text="{Binding Server.Host}"
-                        FontSize="{StaticResource ResourceKey=FontSizeBig}"
+                        FontSize="{StaticResource FontSizeBig}"
                         Style="{StaticResource FieldLabel}"
-                        Foreground="{StaticResource Panton_0}"
                         Width="auto" />
                 </StackPanel>
                 <!-- #endregion Host -->
@@ -78,17 +75,15 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         Text="{x:Static p:Resources.Port}"
-                        FontSize="{StaticResource ResourceKey=FontSizeBig}"
+                        FontSize="{StaticResource FontSizeBig}"
                         Style="{StaticResource FieldLabel}"
-                        Foreground="{StaticResource Panton_0}"
                         Width="auto"/>
 
                     <TextBlock
                         Grid.Row="0"
                         Grid.Column="1"
                         Text=":"
-                        FontSize="{StaticResource ResourceKey=FontSizeBig}"
-                        Foreground="{StaticResource Panton_0}"
+                        FontSize="{StaticResource FontSizeBig}"
                         Margin="5,0"/>
 
                     <TextBlock
@@ -96,9 +91,8 @@
                         Grid.Column="2"
                         x:Name="InputPort"
                         Text="{Binding Server.Port}"
-                        FontSize="{StaticResource ResourceKey=FontSizeBig}"
+                        FontSize="{StaticResource FontSizeBig}"
                         Style="{StaticResource FieldLabel}"
-                        Foreground="{StaticResource Panton_0}"
                         Width="auto" />
                 </StackPanel>
                 <!-- #endregion Port -->

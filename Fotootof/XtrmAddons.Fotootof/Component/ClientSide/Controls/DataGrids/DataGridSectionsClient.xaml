@@ -10,25 +10,27 @@
     HorizontalAlignment="Stretch"
 	SizeChanged="Control_SizeChanged">
 
-	<Grid x:Name="Block_Root" Style="{StaticResource ResourceKey=Root}">
-		<StackPanel x:Name="Block_RootPanel" Style="{StaticResource ResourceKey=FieldsetVertical}">
+	<Grid x:Name="GridBlockRootName"
+		  Style="{DynamicResource FrameworkElementRootStyle}">
+		
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
+					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<StackPanel x:Name="Block_Header"
+			<StackPanel x:Name="StackPanelBlockHeaderName"
 						Style="{StaticResource StackPanelFieldsetHeader}">
 
-				<Border x:Name="Block_Title"
-						Style="{StaticResource Border_Fieldset_Title}">
+				<Border x:Name="BorderFieldsetTitleName"
+						Style="{StaticResource BorderFieldsetTitleStyle}">
 					<TextBlock x:Name="Header_Text"
 							   Text="{x:Static p:Resources.Sections}"
 							   FontSize="{StaticResource FontSizeHeader}"
-							   Foreground="{StaticResource Panton_3}"
 							   FontWeight="SemiBold"
 							   Margin="5" />
 				</Border>
 
 
 				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource GridFieldsetMenu}">
+					  Style="{StaticResource GridFieldsetMenuStyle}">
 
 					<Border x:Name="Menu_Border">
 
@@ -68,7 +70,7 @@
 
 
 			<!-- #region Sections DataGrid -->
-			<Grid x:Name="Block_Items">
+			<Grid x:Name="GridBlockItemsName">
 
 				<DataGrid 
                     x:Name="ItemsLayout"
@@ -118,10 +120,9 @@
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
 
-									<CheckBox
-                                        Tag="{Binding}"
-                                        IsChecked="{Binding IsDefault, Mode=TwoWay}"
-                                        Click="CheckBoxDefault_Checked"/>
+									<CheckBox Tag="{Binding}"
+											  IsChecked="{Binding IsDefault, Mode=TwoWay}"
+											  Click="CheckBoxDefault_Checked"/>
 
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>

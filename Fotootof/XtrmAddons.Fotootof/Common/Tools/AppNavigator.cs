@@ -52,7 +52,7 @@ namespace XtrmAddons.Fotootof.Common.Tools
         /// <summary>
         /// Property access to the main application text box logs stack.
         /// </summary>
-        public static TextBlock LogsStack => MainWindow.BlockLogs.TextBlockLogsStack;
+        public static TextBlock LogsStack => MainWindow.BlockLogs.TextBlockLogsName;
 
         #endregion Properties
 

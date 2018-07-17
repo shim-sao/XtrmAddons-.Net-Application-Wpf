@@ -11,7 +11,7 @@
 
     <!-- #region : list -->
     <Grid
-        x:Name="Block_Root"
+        x:Name="GridBlockRootName"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch">
 

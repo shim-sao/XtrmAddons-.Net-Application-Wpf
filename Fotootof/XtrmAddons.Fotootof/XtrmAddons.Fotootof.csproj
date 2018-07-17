@@ -419,6 +419,9 @@
     </Compile>
     <Compile Include="Settings\SettingsOptions.cs" />
     <Compile Include="Settings\SettingsPreferences.cs" />
+    <Compile Include="SideServer\Layouts\TreeViews\Sections\TreeViewSections.xaml.cs">
+      <DependentUpon>TreeViewSections.xaml</DependentUpon>
+    </Compile>
     <Page Include="Common\Controls\DataGrids\UCAlbumsDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
@@ -555,10 +558,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ListViews.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -571,6 +570,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SideServer\Layouts\TreeViews\Sections\TreeViewSections.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -825,6 +828,7 @@
   <ItemGroup>
     <Folder Include="Common\Controls\Menu\" />
     <Folder Include="Config\" />
+    <Folder Include="SideClient\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Shell32">

@@ -106,7 +106,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
             };
 
             // Add action to the tree view item event handler.
-            UcTreeViewDirectories.DirectoriesTreeView.SelectedItemChanged += TreeViewDirectories_SelectedItemChanged;
+            UcTreeViewDirectories.TreeViewDirectoryInfoName.SelectedItemChanged += TreeViewDirectories_SelectedItemChanged;
             UcListViewStoragesServer.ImageSize_SelectionChanged += ImageSize_SelectionChanged;
         }
 

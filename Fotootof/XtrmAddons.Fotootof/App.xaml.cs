@@ -77,7 +77,7 @@ namespace XtrmAddons.Fotootof
             Thread.CurrentThread.CurrentUICulture = ci;
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-
+            
             ResourceDictionary rd = new ResourceDictionary
             {
                 Source = new Uri("XtrmAddons.Fotootof.Template;component/Theme/Dark.xaml", UriKind.Relative)
@@ -183,6 +183,22 @@ namespace XtrmAddons.Fotootof
             if (startMinimized)
             {
                 mainWindow.WindowState = WindowState.Minimized;
+            }
+
+            string ws = ApplicationBase.UI.AddParameter("WindowState", "Maximized");
+            switch (ws)
+            {
+                case "Maximized":
+                    mainWindow.WindowState = WindowState.Maximized;
+                    break;
+
+                case "Minimized":
+                    mainWindow.WindowState = WindowState.Minimized;
+                    break;
+
+                case "Normal":
+                    mainWindow.WindowState = WindowState.Normal;
+                    break;
             }
             mainWindow.Show();
         }

@@ -14,7 +14,7 @@
     Height="480">
 
     <!-- #region : List Album -->
-	<Grid Background="{StaticResource Panton_3}">
+	<Grid x:Name="GridBlockRootName" Style="{DynamicResource FrameworkElementRootStyle}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -46,24 +46,18 @@
 				<StackPanel Style="{StaticResource StackPanel_FormValidator}">
 
 					<Button x:Name="Button_Save"
-							IsEnabled="False"
-							IsDefault="True"
 							Click="DialogSave_Click"
-							Margin="0,0,15,0"
 							Content="{x:Static p:Resources.Save}"
-							MinWidth="80"
-							Style="{StaticResource RoundCorner}"
-							Background="{StaticResource ResourceKey=MediumGrey}"
-							Foreground="{StaticResource ResourceKey=RoundedButton}"/>
+							Style="{StaticResource ButtonSaveStyle}"/>
 
 					<Button x:Name="Button_Cancel"
 							Content="{x:Static p:Resources.Cancel}"
-							Style="{StaticResource Button_Cancel}"/>
+							Style="{StaticResource ButtonCancelStyle}"/>
 
 				</StackPanel>
             </Grid>
         </Border>
 
     </Grid>
-    <!-- #endregion : List Album -->
+    <!-- #endregion -->
 </base:WindowBaseForm>

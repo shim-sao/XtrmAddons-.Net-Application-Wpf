@@ -66,10 +66,10 @@
 	<Image x:Key="ImageIcon24ListEdit" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-list-edit-24.png" />
 	<Image x:Key="ImageIcon24ListMinus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-list-minus-24.png" />
 	<Image x:Key="ImageIcon24ListPlus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-list-plus-24.png" />
-	
 	<Image x:Key="ImageIcon24Minus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-minus-24.png" />
 	<Image x:Key="ImageIcon24Plus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-plus-24.png" />
 	<Image x:Key="ImageIcon24ServerRestart" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-server-restart-24.png" />
+	
 	<Image x:Key="ImageIcon24ServerStart" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-server-start-24.png" />
 	<Image x:Key="ImageIcon24ServerStop" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-server-stop-24.png" />
 	<Image x:Key="ImageIcon24Settings" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-settings-24.png" />

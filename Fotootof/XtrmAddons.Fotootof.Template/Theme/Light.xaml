@@ -8,9 +8,22 @@
 	<!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/controls-and-patterns/xaml-theme-resources -->
 	<!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/style/color -->
 
-	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="Light/Colors/UWP-Alt.xaml"/>
-	</ResourceDictionary.MergedDictionaries>
+	<!-- #region UWP System.Alt -->
+	<Color x:Key="AltHigh">#FF000000</Color>
+	<SolidColorBrush x:Key="AltHighBrush" Color="{StaticResource AltHigh}" />
+
+	<Color x:Key="AltLow">#33000000</Color>
+	<SolidColorBrush x:Key="AltLowBrush" Color="{StaticResource AltLow}" />
+
+	<Color x:Key="AltMedium">#99000000</Color>
+	<SolidColorBrush x:Key="AltMediumBrush" Color="{StaticResource AltMedium}" />
+
+	<Color x:Key="AltMediumHigh">#CC000000</Color>
+	<SolidColorBrush x:Key="AltMediumHighBrush" Color="{StaticResource AltMediumHigh}" />
+
+	<Color x:Key="AltMediumLow">#66000000</Color>
+	<SolidColorBrush x:Key="AltMediumLowBrush" Color="{StaticResource AltMediumLow}" />
+	<!-- #endregion UWP System.Alt -->
 
 
 	<!-- #region UWP System.Base -->
@@ -76,6 +89,15 @@
 
 	<Color x:Key="ListMedium">#33000000</Color>
 	<SolidColorBrush x:Key="ListMediumBrush" Color="{StaticResource ListMedium}" />
+
+	<Color x:Key="ListAccentLow">#FF188CE8</Color>
+	<SolidColorBrush x:Key="ListAccentLowBrush" Color="{StaticResource ListAccentLow}" />
+
+	<Color x:Key="ListAccentMedium">#FF1E78BF</Color>
+	<SolidColorBrush x:Key="ListAccentMediumBrush" Color="{StaticResource ListAccentMedium}" />
+
+	<Color x:Key="ListAccentHigh">#FF166AAC</Color>
+	<SolidColorBrush x:Key="ListAccentHighBrush" Color="{StaticResource ListAccentHigh}" />
 	<!-- #endregion UWP System.List -->
 
 
@@ -114,25 +136,50 @@
 	<!-- #endregion UWP System.Color -->
 
 
-	
+
 	<!-- #region WPF System.Color -->
-	<Color x:Key="ColorMenuText">#FF000000</Color>
-	<SolidColorBrush x:Key="ColorMenuTextBrush" Color="{StaticResource ColorMenuText}" />
-	
-	<Color x:Key="ColorSubMenuText">#FF111111</Color>
-	<SolidColorBrush x:Key="ColorSubMenuTextBrush" Color="{StaticResource ColorSubMenuText}" />
+
+	<!-- Generic Transparent -->
+	<SolidColorBrush x:Key="TransparentBrush" Color="Transparent" />
+
+	<!-- CustomHighlightColor : Background color of the selected elements. -->
+	<Color x:Key="CustomHighlightColor">#FF21D6DE</Color>
+	<SolidColorBrush x:Key="CustomHighlightBrush" Color="#FF21D6DE" />
+
+	<!-- CustomScrollBarColor : Background color of a scroll bar. -->
+	<Color x:Key="CustomScrollBarColor">#FF46494D</Color>
+	<SolidColorBrush x:Key="CustomScrollBarColorBrush" Color="#FF46494D" />
+
+	<!-- CustomWindowColor : Background color in the client area of a window. -->
+	<SolidColorBrush x:Key="CustomWindowBrush" Color="{StaticResource ColorWindow}" />
+
+	<!-- CustomWindowTextColor : Text color in the client area of a window. -->
+	<SolidColorBrush x:Key="CustomWindowTextBrush" Color="{StaticResource ColorWindowText}" />
+
+	<!-- ListView -->
+	<SolidColorBrush x:Key="CustomListViewThumbBrush" Color="{StaticResource ChromeLow}" />
+	<SolidColorBrush x:Key="CustomListViewThumbTextBrush" Color="{StaticResource ColorWindowText}" />
 
 	<!-- Generic colors messages -->
-	<Color x:Key="ColorReady">#A2C176</Color>
-	<SolidColorBrush x:Key="ColorReadyBrush" Color="{StaticResource ColorReady}" />
+	<Color x:Key="ColorError">#FFA80000</Color>
+	<SolidColorBrush x:Key="ColorErrorBrush" Color="#FFA80000" />
 
-	<Color x:Key="ColorWarning">Orange</Color>
-	<SolidColorBrush x:Key="ColorWarningBrush" Color="{StaticResource ColorWarning}" />
+	<Color x:Key="ColorReady">#FF40FFFF</Color>
+	<SolidColorBrush x:Key="ColorReadyBrush" Color="#FF40FFFF" />
 
-	<Color x:Key="ColorError">Red</Color>
-	<SolidColorBrush x:Key="ColorErrorBrush" Color="{StaticResource ColorError}" />
+	<Color x:Key="ColorWarning">#FFFF8000</Color>
+	<SolidColorBrush x:Key="CustomWarningBrush" Color="#FFFF8000" />
 
-	<!-- #endregion WPF System.Color -->
+	<!-- #endregion -->
+
+	
+	
+	
+	<!-- Menu -->
+	<Color x:Key="ColorMenuText">#FF000000</Color>
+	<Color x:Key="ColorSubMenuText">#FF111111</Color>
+	<SolidColorBrush x:Key="ColorMenuTextBrush" Color="{StaticResource ColorMenuText}" />
+	<SolidColorBrush x:Key="ColorSubMenuTextBrush" Color="{StaticResource ColorSubMenuText}" />
 
 
 </ResourceDictionary>

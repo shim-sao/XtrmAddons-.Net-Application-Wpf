@@ -119,7 +119,7 @@ namespace XtrmAddons.Fotootof
             await Task.Delay(10);
 
             // Assigned page frames.
-            //Frame_Logs.Navigate(BlockLogs);
+            FrameBlockLogsName.Navigate(BlockLogs);
             //Frame_Content.Navigate(new PageBrowser());
 
             // Initialize items of Server Menu.
@@ -225,7 +225,7 @@ namespace XtrmAddons.Fotootof
             // Set the row grid splitter Height.
             RowGridSplitter.Height =
                 RowGridSplitter.Height == new GridLength(0)
-                ? new GridLength(5) : new GridLength(0);
+                ? new GridLength(6) : new GridLength(0);
 
             // Set the grid row logs height.
             RowGridLogs.Height =

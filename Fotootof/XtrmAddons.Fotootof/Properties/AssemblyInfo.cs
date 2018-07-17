@@ -11,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("www.xtrmaddons.com")]
 [assembly: AssemblyProduct("XtrmAddons Fotootof")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright ©  2017 - 2018")]
 [assembly: AssemblyTrademark("XtrmAddons")]
 [assembly: AssemblyCulture("")]
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -54,5 +54,5 @@ using System.Windows;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.18195.0144")]
-[assembly: AssemblyFileVersion("1.0.18195.0144")]
+[assembly: AssemblyVersion("1.0.18198.1546")]
+[assembly: AssemblyFileVersion("1.0.18198.1546")]

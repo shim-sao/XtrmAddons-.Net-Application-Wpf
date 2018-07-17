@@ -10,16 +10,23 @@
     HorizontalAlignment="Stretch"
     SizeChanged="Control_SizeChanged">
 
-	<Grid x:Name="Block_Root"
-		  Style="{StaticResource ResourceKey=Root}">
-		<StackPanel x:Name="Block_RootPanel"
-					Style="{StaticResource ResourceKey=FieldsetVertical}">
+	<!--<UserControl.Style>
+		<Style>
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+		</Style>
+	</UserControl.Style>-->
 
-			<StackPanel x:Name="Block_Header"
+	<Grid x:Name="GridBlockRootName"
+		  Style="{StaticResource GridRootStyle}">
+		
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
+					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
+
+			<StackPanel x:Name="StackPanelBlockHeaderName"
 						Style="{StaticResource StackPanelFieldsetHeader}">
 
-				<Border x:Name="Block_Title"
-						Style="{StaticResource Border_Fieldset_Title}">
+				<Border x:Name="BorderFieldsetTitleName"
+						Style="{StaticResource BorderFieldsetTitleStyle}">
 					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="1*"/>
@@ -74,7 +81,7 @@
 
 
 				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource GridFieldsetMenu}">
+					  Style="{StaticResource GridFieldsetMenuStyle}">
 
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
@@ -91,23 +98,20 @@
 							</Grid.ColumnDefinitions>
 
 							<Button x:Name="Button_Add"
-									Content="{StaticResource Icon24UserPlus}"
-									Style="{StaticResource ButtonIcon24}"
+									Style="{StaticResource ButtonIcon24UserPlus}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Add}"
 									Click="OnAddNewItem_Click" />
 
 							<Button Grid.Column="1"
 									x:Name="Button_Edit"
-									Content="{StaticResource Icon24UserEdit}"
-									Style="{StaticResource ButtonIcon24}"
+									Style="{StaticResource ButtonIcon24UserEdit}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
 									Click="OnEditItem_Click"
 									IsEnabled="False"/>
 
 							<Button Grid.Column="2"
 									x:Name="Button_Delete"
-									Content="{StaticResource Icon24UserMinus}"
-									Style="{StaticResource ButtonIcon24}"
+									Style="{StaticResource ButtonIcon24UserMinus}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
 									Click="OnDeleteItems_Click"
 									IsEnabled="False"/>
@@ -128,7 +132,7 @@
 			</StackPanel>
 
 
-			<Grid x:Name="Block_Items">
+			<Grid x:Name="GridBlockItemsName">
 				
 				<DataGrid x:Name="ItemsLayout"
 						  AutoGenerateColumns="False"

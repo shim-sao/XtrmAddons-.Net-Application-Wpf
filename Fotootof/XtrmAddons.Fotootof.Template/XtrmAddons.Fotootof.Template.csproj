@@ -50,87 +50,91 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\Border\Dictionaries.xaml">
+    <Page Include="FrameworkElement\ControlTemplate\FormFieldValidation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\CheckBox\Dictionaries.xaml">
+    <Page Include="FrameworkElement\Control\ContentControl\ButtonObsolete.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\ComboBox\Dictionaries.xaml">
+    <Page Include="FrameworkElement\Control\ContentControl\Button.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\ControlTemplates.xaml">
+    <Page Include="FrameworkElement\Control\ContentControl\ButtonIcon24.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\DataGrid\Dictionaries.xaml">
+    <Page Include="FrameworkElement\Control\ContentControl\ButtonIcon32.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\TabControls.xaml">
+    <Page Include="FrameworkElement\Control\ContentControl\CheckBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\PasswordBox\Dictionaries.xaml">
+    <Page Include="FrameworkElement\Control\ContentControl\Window.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\TextBoxs.xaml">
+    <Page Include="FrameworkElement\Control\Control.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\ListView\Dictionaries.xaml">
+    <Page Include="FrameworkElement\Control\TextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\TextBlocks.xaml">
+    <Page Include="FrameworkElement\Control\ItemsControl\TabControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\StackPanel\Dictionaries.xaml">
+    <Page Include="FrameworkElement\Control\PasswordBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\TreeViews.xaml">
+    <Page Include="FrameworkElement\Control\ItemsControl\DataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Menu\Dictionaries.xaml">
+    <Page Include="FrameworkElement\Control\ItemsControl\ComboBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Windows.xaml">
+    <Page Include="FrameworkElement\Control\ItemsControl\Menu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Page\Dictionaries.xaml">
+    <Page Include="FrameworkElement\Control\ItemsControl\TreeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Grid\Dictionaries.xaml">
+    <Page Include="FrameworkElement\Control\ItemsControl\ListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Button\Obsolete.xaml">
+    <Page Include="FrameworkElement\Decorator\Border.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Button\Generic.xaml">
+    <Page Include="FrameworkElement\Page\Page.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Button\Icon32.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
-    </Page>
-    <Page Include="Controls\Button\Dictionaries.xaml">
+    <Page Include="FrameworkElement\FrameworkElement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Button\Icon24.xaml">
+    <Page Include="FrameworkElement\Panel\StackPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrameworkElement\Panel\Grid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrameworkElement\Text\TextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -162,7 +166,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Generic.xaml">
+    <Page Include="Dictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -174,13 +178,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Theme\Light\Colors\UWP-Alt.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Theme\Dark\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

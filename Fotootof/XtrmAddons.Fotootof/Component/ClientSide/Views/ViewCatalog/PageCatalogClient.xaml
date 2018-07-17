@@ -12,17 +12,16 @@
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Sections}"
-    Style="{StaticResource PageContent}"
     SizeChanged="Control_SizeChanged"
 	Loaded="Control_Loaded"
 	Height="{Binding Height, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}, Mode=OneWay}"
 	Width="{Binding Width, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}, Mode=OneWay}">
 
-	<Grid x:Name="Block_Root"
+	<Grid x:Name="GridBlockRootName"
 		  Style="{StaticResource Root}">
 
-		<StackPanel x:Name="Block_RootPanel"
-					Style="{StaticResource FieldsetVertical}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
+					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
 			<StackPanel x:Name="Block_TopControls"
 						Style="{StaticResource StackPanelTopControls}">
@@ -37,7 +36,7 @@
 
 
 			<Grid x:Name="Block_MiddleContents"
-				  Style="{StaticResource GridMiddleContents}"
+				  Style="{StaticResource GridMiddleContentStyle}"
 				  Width="{Binding Width, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:PageCatalogClient}}}">
 
 				<Grid.ColumnDefinitions>

@@ -10,22 +10,24 @@
     VerticalAlignment="Stretch"
     MinWidth="640"
     MinHeight="1000"
-    Title="XtrmAddons Fotootof Server Logs"
 	SizeChanged="Page_SizeChanged">
 
-    <Grid x:Name="MainGridLogs"
-		  HorizontalAlignment="Stretch"
-		  VerticalAlignment="Stretch">
+	<Grid x:Name="GridBlockRootName"
+		  Style="{StaticResource FrameworkElementRootStyle}">
 
-        <StackPanel x:Name="StackPanelLogsStack"
+		<StackPanel x:Name="StackPanelBlockLogsName"
 					HorizontalAlignment="Stretch"
-					VerticalAlignment="Stretch"
-					Background="White">
+					VerticalAlignment="Stretch">
 
-			<TextBlock x:Name="TextBlockLogsStack"
+			<TextBlock x:Name="TextBlockLogsName"
 					   HorizontalAlignment="Stretch"
 					   VerticalAlignment="Stretch"
-					   Margin="5"/>
+					   Padding="6"
+					   Text="Console"
+					   Background="White"
+					   Foreground="Black"/>
+					   <!--Background="{DynamicResource ChromeLowBrush}"
+					   Foreground="{DynamicResource BaseHighBrush}"/>-->
 
 		</StackPanel>
     </Grid>

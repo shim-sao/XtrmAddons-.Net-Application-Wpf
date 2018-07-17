@@ -95,7 +95,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews
         /// <summary>
         /// Property to access to the main items data grid.
         /// </summary>
-        public virtual ListView ItemsCollection => (ListView)FindName("ListViewCollection");
+        public virtual ListView ItemsCollection => (ListView)FindName("ListViewCollectionName");
 
         /// <summary>
         /// Property to access to the datagrid selected item.
