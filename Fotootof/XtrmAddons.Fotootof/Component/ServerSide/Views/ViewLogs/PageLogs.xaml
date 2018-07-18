@@ -20,14 +20,11 @@
 					VerticalAlignment="Stretch">
 
 			<TextBlock x:Name="TextBlockLogsName"
+					   Background="{DynamicResource ChromeLowBrush}"
+					   Foreground="{DynamicResource CustomWindowTextBrush}"
 					   HorizontalAlignment="Stretch"
-					   VerticalAlignment="Stretch"
 					   Padding="6"
-					   Text="Console"
-					   Background="White"
-					   Foreground="Black"/>
-					   <!--Background="{DynamicResource ChromeLowBrush}"
-					   Foreground="{DynamicResource BaseHighBrush}"/>-->
+					   VerticalAlignment="Stretch"/>
 
 		</StackPanel>
     </Grid>
