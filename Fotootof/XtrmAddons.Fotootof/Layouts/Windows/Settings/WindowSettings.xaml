@@ -21,8 +21,7 @@
         </Grid.RowDefinitions>
 		
         <ScrollViewer>
-            <TabControl x:Name="TabControlContent"
-						Style="{StaticResource TabControlDefaultForm}">
+            <TabControl x:Name="TabControlContent">
             
                 <!-- #region : Tabs General -->
                 <TabItem Header="{x:Static p:Resources.General}">

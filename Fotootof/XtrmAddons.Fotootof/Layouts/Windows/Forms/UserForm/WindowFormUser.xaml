@@ -31,18 +31,13 @@
             Grid.Row="0">
 
             <!-- #region : Tabs Informations -->
-            <TabItem Header="{x:Static p:Resources.Informations}">
-
+			<TabItem Header="{x:Static p:Resources.Informations}">
 				<Grid>
-					
-					<StackPanel Style="{StaticResource Form}">
+					<StackPanel Style="{StaticResource StackPanelFormStyle}">
 
                         <!-- #region : Field Name -->
-                        <StackPanel Orientation="Horizontal"
-									Style="{StaticResource Field}">
-
-                            <TextBlock Text="{x:Static p:Resources.Name}"
-									   Style="{StaticResource FieldLabel}"/>
+						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
+							<TextBlock Text="{x:Static p:Resources.Name}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 							<TextBox x:Name="InputName"
 									 SourceUpdated="OnInputStringRequired_SourceUpdated"
@@ -77,11 +72,9 @@
 
 						
                         <!-- #region : Field Password -->
-                        <StackPanel Orientation="Horizontal"
-									Style="{StaticResource Field}">
+						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
-                            <TextBlock Text="{x:Static p:Resources.Password}"
-									   Style="{StaticResource FieldLabel}"/>
+							<TextBlock Text="{x:Static p:Resources.Password}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 							<PasswordBox x:Name="InputPassword"
 										 Style="{StaticResource PasswordBoxFieldInputRequired}"
@@ -122,11 +115,8 @@
                     
 
                         <!-- #region : Field Email -->
-                        <StackPanel Orientation="Horizontal"
-									Style="{StaticResource Field}">
-
-                            <TextBlock Text="{x:Static p:Resources.Email}"
-									   Style="{StaticResource TextBlockFieldLabelStyle}"/>
+						<StackPanel Orientation="Horizontal" Style="{StaticResource StackPanelFieldStyle}">
+							<TextBlock Text="{x:Static p:Resources.Email}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 							<TextBox x:Name="InputEmail"
 									 Style="{StaticResource TextBoxFieldInputRequiredStyle}"
@@ -168,8 +158,7 @@
 
 
 			<TabItem Header="{x:Static p:Resources.UsersGroups}">
-				<StackPanel VerticalAlignment="Top"
-							Style="{StaticResource Field}">
+				<StackPanel VerticalAlignment="Top" Style="{StaticResource StackPanelFieldStyle}">
 
 					<DataGrid x:Name="CollectionAclGroups"
 							  AutoGenerateColumns="False"
@@ -185,7 +174,7 @@
 							  HorizontalAlignment="Stretch"
 							  VerticalAlignment="Stretch"
 							  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-							  Width="430"
+							  Width="440"
 							  Height="340"
 							  SelectionUnit="FullRow"
 							  Cursor="Hand"
