@@ -24,6 +24,10 @@
 		<Setter Property="VerticalAlignment" Value="Bottom" />
 	</Style>
 
+	<Style x:Key="GridFormValidatorStyle" TargetType="{x:Type Grid}">
+		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
+	</Style>
+
 	<Style x:Key="GridMiddleContentStyle" TargetType="{x:Type Grid}" BasedOn="{StaticResource GridRootStyle}">
 		<Setter Property="Background" Value="Transparent"/>
 	</Style>

@@ -10,12 +10,6 @@
     HorizontalAlignment="Stretch"
     SizeChanged="Control_SizeChanged">
 
-	<!--<UserControl.Style>
-		<Style>
-			<Setter Property="HorizontalAlignment" Value="Stretch" />
-		</Style>
-	</UserControl.Style>-->
-
 	<Grid x:Name="GridBlockRootName"
 		  Style="{StaticResource GridRootStyle}">
 		
@@ -80,8 +74,7 @@
 				</Border>
 
 
-				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource GridFieldsetMenuStyle}">
+				<Grid x:Name="Block_Menu" Style="{StaticResource GridFieldsetMenuStyle}">
 
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
@@ -136,17 +129,18 @@
 				
 				<DataGrid x:Name="ItemsLayout"
 						  AutoGenerateColumns="False"
-						  EnableRowVirtualization="false"
-						  EnableColumnVirtualization="false"
-						  ColumnWidth="*"
-						  CanUserDeleteRows="True"
+						  Background="{DynamicResource ChromeLowBrush}"
 						  CanUserAddRows="False"
-						  SelectionMode="Extended"
-						  ItemsSource="{Binding Items, Mode=OneWay, IsAsync=True}"
-						  RowHeight="22"
+						  CanUserDeleteRows="True"
+						  ColumnWidth="*"
+						  EnableColumnVirtualization="false"
+						  EnableRowVirtualization="false"
 						  HorizontalAlignment="Stretch"
+						  ItemsSource="{Binding Items, Mode=OneWay, IsAsync=True}"
 						  MouseDoubleClick="OnEditItem_Click"
-						  SelectionChanged="ItemsCollection_SelectionChanged">
+						  RowHeight="22"
+						  SelectionChanged="ItemsCollection_SelectionChanged"
+						  SelectionMode="Extended">
 
 					<DataGrid.Columns>
 						<!-- #region : Column UserId -->

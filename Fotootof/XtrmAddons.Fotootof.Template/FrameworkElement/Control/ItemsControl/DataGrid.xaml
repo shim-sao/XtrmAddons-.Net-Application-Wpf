@@ -7,25 +7,37 @@
 	<Style TargetType="DataGrid">
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="Foreground" Value="{DynamicResource CustomWindowTextBrush}" />
 	</Style>
-	
+
+	<Style TargetType="DataGridColumnHeader">
+		<Setter Property="Background" Value="{DynamicResource ChromeMediumBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource AltMediumBrush}" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="FontWeight"  Value="Bold" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="Padding"  Value="3" />
+	</Style>
+
 	<Style TargetType="DataGridRow">
 		<Style.Resources>
-			<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
-			<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
-			<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource BaseHighBrush}" />
-			<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{DynamicResource BaseHighBrush}" />
+			<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{DynamicResource ListAccentMediumBrush}"/>
+			<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{DynamicResource ChromeMediumLowBrush}" />
+			<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource CustomWindowTextBrush}" />
+			<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{DynamicResource CustomWindowTextBrush}" />
 		</Style.Resources>
-		
-		<Setter Property="Background" Value="{DynamicResource ChromeMediumBrush}" />
+
+		<!-- Warning message but color is present !? -->
+		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
+		<!--<Setter Property="Foreground" Value="{DynamicResource CustomWindowTextBrush}" />-->
 	</Style>
 	
 	<Style TargetType="DataGridCell">
 		<Style.Triggers>
 			<Trigger Property="IsSelected" Value="True">
-				<Setter Property="Background" Value="#0FAD88" />
-				<Setter Property="BorderBrush" Value="#2A816D" />
-				<Setter Property="Foreground" Value="#FFFFFF" />
+				<Setter Property="Background" Value="{DynamicResource ListAccentLowBrush}" />
+				<Setter Property="BorderBrush" Value="{DynamicResource AltMediumBrush}" />
+				<Setter Property="Foreground" Value="{DynamicResource CustomWindowTextBrush}" />
 			</Trigger>
 		</Style.Triggers>
 	</Style>

@@ -25,7 +25,7 @@
 		</Grid.RowDefinitions>
 		
 		<!-- region : Informations -->
-		<TabControl x:Name="TabControlContent">
+		<TabControl x:Name="TabControlFormContentName">
 
 			<!-- #region : Tabs Informations -->
 			<TabItem Header="{x:Static p:Resources.Informations}">
@@ -78,7 +78,7 @@
 										   Style="{StaticResource FieldLabel}"/>
 
 							<TextBox x:Name="InputAlias"
-										 Style="{StaticResource TextBoxFieldInput}"
+										 Style="{StaticResource TextBoxFieldInputStyle}"
 										 Text="{Binding Path=Album.Alias, Mode=TwoWay, IsAsync=True}"
 										 Width="310"/>
 

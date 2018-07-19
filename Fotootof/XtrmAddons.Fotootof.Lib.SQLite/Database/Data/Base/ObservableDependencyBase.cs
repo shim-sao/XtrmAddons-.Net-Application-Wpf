@@ -6,7 +6,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
 
@@ -32,6 +31,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// Variable list of dependency primary keys.
         /// </summary>
         private ObservableCollection<int> depPKs = new ObservableCollection<int>();
+
+        /// <summary>
+        /// Variable list of dependency primary keys removed.
+        /// </summary>
+        private ObservableCollection<int> depPKsRemoved = new ObservableCollection<int>();
 
         /// <summary>
         /// Variable list of dependency primary keys.
@@ -60,6 +64,21 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                 if (value != depPKs)
                 {
                     depPKs.ClearAndAdd(value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Property to access to a list of dependency items Primary Keys removed.
+        /// </summary>
+        public ObservableCollection<int> DepPKeysRemoved
+        {
+            get => depPKsRemoved;
+            private set
+            {
+                if (value != depPKsRemoved)
+                {
+                    depPKsRemoved.ClearAndAdd(value);
                 }
             }
         }
@@ -195,14 +214,34 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         #region Methods Find
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="primaryKey"></param>
+        /// <returns></returns>
+        public int FindIndexInDepPKeys(int primaryKey)
+        {
+            return depPKs.ToList().FindIndex(x => x == primaryKey);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="primaryKey"></param>
+        /// <returns></returns>
+        public bool ExistsDepPKeys(int primaryKey)
+        {
+            return depPKs.ToList().FindIndex(x => x == primaryKey) > -1;
+        }
+
+        /// <summary>
         /// Method to find an element by a property value.
         /// </summary>
         /// <param name="propertyName">The property name.</param>
         /// <param name="value">The property value to search.</param>
         /// <returns>The first founded element otherwise, default value of type T, or null if type T is nullable.</returns>
-        public int FindIndexInDepPKeys(int primaryKey)
+        public int FindIndexInDepPKeysRemoved(int primaryKey)
         {
-            return depPKs.ToList().FindIndex(x => x == primaryKey);
+            return depPKsRemoved.ToList().FindIndex(x => x == primaryKey);
         }
 
         /// <summary>
@@ -322,7 +361,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                 {
                     // Occurs on add new item into the collection.
                     case NotifyCollectionChangedAction.Add:
-                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => Action Add");
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Add Dependency");
                         NotifyCollectionAdd_DepPKeys(this, e);
                         NotifyCollectionAdd_DepReferences(this, e);
                         break;
@@ -331,7 +370,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                         break;
 
                     case NotifyCollectionChangedAction.Remove:
-                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => Action Remove");
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Remove Dependency");
                         NotifyCollectionRemove_DepPKeys(this, e);
                         NotifyCollectionRemove_DepReferences(this, e);
                         break;
@@ -340,9 +379,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                         break;
 
                     case NotifyCollectionChangedAction.Reset:
-                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyChanges => Action Reset");
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Reset Dependency");
                         NotifyCollectionReset_DepPKeys(this, e);
-                        DepReferences.Clear();
+                        NotifyCollectionReset_DepReferences(this, e);
                         break;
                 }
 
@@ -374,7 +413,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
             {
                 // Occurs on add new item into the collection.
                 case NotifyCollectionChangedAction.Add:
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyDepReferencesChanges => Action Add");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Add Dependency References");
                     NotifyCollectionAdd(sender, e);
                     NotifyCollectionAdd_DepPKeys(sender, e);
                     break;
@@ -383,7 +422,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     break;
 
                 case NotifyCollectionChangedAction.Remove:
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyDepReferencesChanges => Action Remove");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Remove Dependency References");
                     NotifyCollectionRemove(sender, e);
                     NotifyCollectionRemove_DepPKeys(sender, e);
                     break;
@@ -392,9 +431,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     break;
 
                 case NotifyCollectionChangedAction.Reset:
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyDepReferencesChanges => Action Reset");
-                    DepPKeys.Clear();
-                    Clear();
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Reset Dependency References");
+                    NotifyCollectionReset(sender, e);
+                    NotifyCollectionReset_DepPKeys(sender, e);
                     break;
             }
             
@@ -412,7 +451,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
 
             if(LockDepPKeysChanges == true)
             {
-                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : LockDepPKeysChanges => {LockDepReferencesChanges}");
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : LockDepPKeysChanges => {LockDepPKeysChanges}");
                 LockDepPKeysChanges = false;
                 return;
             }
@@ -427,6 +466,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : DepPKeysChanged => Action Add");
                     NotifyCollectionAdd(sender, e);
                     NotifyCollectionAdd_DepReferences(sender, e);
+                    NotifyCollectionAdd_DepPKeysRemoved(sender, e); // Remove
                     break;
 
                 case NotifyCollectionChangedAction.Move:
@@ -436,6 +476,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : DepPKeysChanged => Action Remove");
                     NotifyCollectionRemove(sender, e);
                     NotifyCollectionRemove_DepReferences(sender, e);
+                    NotifyCollectionRemove_DepPKeysRemoved(sender, e); // Add
                     break;
 
                 case NotifyCollectionChangedAction.Replace:
@@ -568,17 +609,49 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
             {
                 foreach (var item in e.NewItems)
                 {
+                    int pkValue = GetPkValue(item);
+                    if (pkValue != 0)
+                    depPKs.AddIfNotExists(pkValue);
+
                     // Try to find if the dependency is already set.
                     // Search for the value of the primary key name of the item.
+                    //int pkValue = GetPkValue(item);
+                    //if (pkValue != 0 && !ExistsDepPKeys(pkValue))
+                    //{
+                    //    depPKs.Add(pkValue);
+                    //    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {pkValue} to observable dependency primary key.");
+                    //}
+                    //else
+                    //{
+                    //    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding to observable dependency primary keys => Can't add {pkValue}");
+                    //}
+                }
+            }
+        }
+
+        /// <summary>
+        /// <para>Method to notify an add event to the dependency Primary Keys collection</para>
+        /// <para>Originaly from the References and Links collections.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Notify collection changed event arguments.</param>
+        protected virtual void NotifyCollectionAdd_DepPKeysRemoved(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            // Process action on each new item
+            if (e.NewItems?.Count != null)
+            {
+                foreach (var item in e.NewItems)
+                {
+                    // Search for the value of the primary key name of the item.
                     int pkValue = GetPkValue(item);
-                    if (pkValue == 0 || FindIndexInDepPKeys(pkValue) == -1)
+                    if (FindIndexInDepPKeysRemoved(pkValue) != -1)
                     {
-                        depPKs.Add((int)item.GetPropertyValue(DepPKName));
-                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {pkValue} to observable dependency primary key.");
+                        depPKsRemoved.Remove(pkValue);
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Removing {pkValue} from observable removed dependency primary key.");
                     }
                     else
                     {
-                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding to observable dependency primary keys => Can't add {pkValue}");
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Removing from observable removed dependency primary keys => Key not found {pkValue}");
                     }
                 }
             }
@@ -640,10 +713,33 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                 {
                     // Try to find if the dependency is already set.
                     // Search for the value of the primary key name of the item.
-                    int pkValue = (int)item.GetPropertyValue(DepPKName);
+                    int pkValue = GetPkValue(item);
                     if (FindIndexInDepPKeys(pkValue) != -1)
                     {
                         depPKs.Remove(pkValue);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
+        /// <para>Method to notify a remove event to the dependency Primary Keys collection</para>
+        /// <para>Originaly from the References and Links collections.</para>
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Notify collection changed event arguments.</param>
+        protected virtual void NotifyCollectionRemove_DepPKeysRemoved(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.OldItems?.Count != null)
+            {
+                // Process action on each old items
+                foreach (var item in e.OldItems)
+                {
+                    // Search for the value of the primary key name of the item.
+                    int pkValue = GetPkValue(item);
+                    if (pkValue != 0 && FindIndexInDepPKeysRemoved(pkValue) == -1)
+                    {
+                        depPKsRemoved.Add(pkValue);
                     }
                 }
             }

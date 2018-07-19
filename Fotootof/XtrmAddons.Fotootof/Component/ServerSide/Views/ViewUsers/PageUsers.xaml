@@ -32,7 +32,7 @@
 					<RowDefinition Height="1*" />
 				</Grid.RowDefinitions>
 
-				<dgserver:DataGridAclGroupsServer x:Name="UcDataGridAclGroups"
+				<dgserver:DataGridAclGroupsServer x:Name="UcDataGridAclGroupsServerName"
 												  DataContext="{Binding AclGroups}"/>
 
 				<GridSplitter Grid.Column="1"

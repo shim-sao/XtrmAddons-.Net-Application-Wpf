@@ -27,7 +27,7 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <TabControl x:Name="TabControlContent">
+        <TabControl x:Name="TabControlFormContentName">
 
             <!-- #region : Tabs Informations -->
             <TabItem Header="{x:Static p:Resources.Informations}">

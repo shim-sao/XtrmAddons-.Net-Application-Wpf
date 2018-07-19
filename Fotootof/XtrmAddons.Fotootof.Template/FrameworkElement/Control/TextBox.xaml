@@ -4,7 +4,7 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 	<!-- TextBox -->
-	<Style x:Key="TextBoxFieldInput" TargetType="{x:Type TextBox}">
+	<Style x:Key="TextBoxFieldInputStyle" TargetType="{x:Type TextBox}">
 		<Setter Property="VerticalAlignment" Value="Stretch"/>
 		<Setter Property="VerticalContentAlignment" Value="Center"/>
 		<Setter Property="FontSize" Value="{StaticResource FontSizeNormal}"/>
@@ -14,7 +14,7 @@
 		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
 	</Style>
 
-	<Style x:Key="TextBoxFieldInputRequiredStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxFieldInput}">
+	<Style x:Key="TextBoxFieldInputRequiredStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxFieldInputStyle}">
 		<Style.Triggers>
 			<Trigger Property="Validation.HasError" Value="true">
 				<Setter Property="BorderBrush" Value="{DynamicResource CustomErrorBrush}"/>
@@ -29,8 +29,22 @@
 		</Style.Triggers>
 	</Style>
 
-	<Style x:Key="TextBoxFieldInputShort" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxFieldInput}">
+	<Style x:Key="TextBoxFieldInputShort" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxFieldInputStyle}">
 		<Setter Property="Width" Value="60"/>
+	</Style>
+
+	<Style x:Key="TextBoxFieldInputAreaStyle" TargetType="{x:Type TextBox}">
+		<Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSizeNormal}"/>
+		<Setter Property="Width" Value="320"/>
+		<Setter Property="MinHeight" Value="90"/>
+		<Setter Property="MaxHeight" Value="90"/>
+		<Setter Property="Padding" Value="5,0" />
+		<Setter Property="MinLines" Value="5" />
+		<Setter Property="TextWrapping" Value="Wrap" />
+		<Setter Property="AcceptsReturn" Value="True" />
+		<Setter Property="AcceptsTab" Value="True" />
+		<Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
 	</Style>
 
 
@@ -58,16 +72,16 @@
 		<Setter Property="TextAlignment" Value="Center" />
 		<Setter Property="VerticalAlignment" Value="center"/>
 	</Style>
-	
-	
-	
-	
 
 
 
 
 
-	<Style x:Key="FieldInputLong" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxFieldInput}">
+
+
+
+
+	<Style x:Key="FieldInputLong" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxFieldInputStyle}">
         <Setter Property="Width" Value="420"/>
     </Style>
     
@@ -84,25 +98,13 @@
         <Setter Property="IsEnabled" Value="False"/>
     </Style>
 
-	<Style x:Key="FieldInputArea" TargetType="{x:Type TextBox}">
-		<Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSizeNormal}"/>
-		<Setter Property="Width" Value="320"/>
-		<Setter Property="MinHeight" Value="90"/>
-		<Setter Property="MaxHeight" Value="90"/>
-		<Setter Property="Padding" Value="5,0" />
-		<Setter Property="MinLines" Value="5" />
-		<Setter Property="TextWrapping" Value="Wrap" />
-		<Setter Property="AcceptsReturn" Value="True" />
-		<Setter Property="AcceptsTab" Value="True" />
-		<Setter Property="ScrollViewer.CanContentScroll" Value="True" />
-		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
-	</Style>
 	
 	
 	
 	
 	
 	<!-- Obsolete -->
+	<Style x:Key="FieldInputArea" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResourceKey=TextBoxFieldInputAreaStyle}"></Style>
 	<Style x:Key="FieldInputOldTb" TargetType="{x:Type TextBox}">
 		<Setter Property="VerticalAlignment" Value="Stretch"/>
 		<Setter Property="VerticalContentAlignment" Value="Center"/>

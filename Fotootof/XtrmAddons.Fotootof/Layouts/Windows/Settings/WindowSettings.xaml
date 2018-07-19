@@ -12,7 +12,7 @@
 	WindowStartupLocation="CenterScreen"
 	Loaded="Window_Load"
     Title="{x:Static p:Resources.WindowSettingsTitle}"
-	Style="{StaticResource Window_Form}">
+	Style="{StaticResource WindowFormStyle}">
 
 	<Grid Background="{StaticResource LightGrey}">
 		<Grid.RowDefinitions>
@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 		
         <ScrollViewer>
-            <TabControl x:Name="TabControlContent">
+            <TabControl x:Name="TabControlFormContentName">
             
                 <!-- #region : Tabs General -->
                 <TabItem Header="{x:Static p:Resources.General}">
@@ -76,7 +76,7 @@
 									   Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
 							<TextBox x:Name="InputDatabaseSource"
-									 Style="{StaticResource TextBoxFieldInput}"
+									 Style="{StaticResource TextBoxFieldInputStyle}"
 									 Text="{Binding Database.Source, Mode=OneWay}"
 									 ToolTipService.ToolTip="{Binding Database.Source, Mode=OneWay}"/>
 
@@ -184,7 +184,7 @@
 												   Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 										<TextBox x:Name="InputDirectoriesBin"
-												 Style="{StaticResource TextBoxFieldInput}"
+												 Style="{StaticResource TextBoxFieldInputStyle}"
 												 Text="{Binding Directories.Bin, Mode=OneWay}"
 												 ToolTipService.ToolTip="{Binding Directories.Bin, Mode=OneWay}"
 												 ToolTipService.IsEnabled="True"
@@ -215,7 +215,7 @@
 												   Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 										<TextBox x:Name="InputDirectoriesCache"
-												 Style="{StaticResource TextBoxFieldInput}"
+												 Style="{StaticResource TextBoxFieldInputStyle}"
 												 Text="{Binding Directories.Cache, Mode=OneWay}"
 												 ToolTipService.ToolTip="{Binding Directories.Cache, Mode=OneWay}"
 												 ToolTipService.IsEnabled="True"
@@ -244,7 +244,7 @@
 												   Style="{StaticResource FieldLabel}"/>
 
 										<TextBox x:Name="InputDirectoriesConfig"
-												 Style="{StaticResource TextBoxFieldInput}"
+												 Style="{StaticResource TextBoxFieldInputStyle}"
 												 Text="{Binding Directories.Config, Mode=OneWay}"
 												 ToolTipService.ToolTip="{Binding Directories.Config, Mode=OneWay}"
 												 ToolTipService.IsEnabled="True"
@@ -275,7 +275,7 @@
 												   Style="{StaticResource FieldLabel}"/>
 
 										<TextBox x:Name="InputDirectoriesData"
-												 Style="{StaticResource TextBoxFieldInput}"
+												 Style="{StaticResource TextBoxFieldInputStyle}"
 												 Text="{Binding Directories.Data, Mode=OneWay}"
 												 ToolTipService.ToolTip="{Binding Directories.Data, Mode=OneWay}"
 												 ToolTipService.IsEnabled="True"
@@ -306,7 +306,7 @@
 												   Style="{StaticResource FieldLabel}"/>
 
 										<TextBox x:Name="InputDirectoriesTheme"
-												 Style="{StaticResource TextBoxFieldInput}"
+												 Style="{StaticResource TextBoxFieldInputStyle}"
 												 Text="{Binding Directories.Theme, Mode=OneWay}"
 												 ToolTipService.ToolTip="{Binding Directories.Theme, Mode=OneWay}"
 												 ToolTipService.IsEnabled="True"
@@ -343,7 +343,7 @@
 				Grid.RowSpan="2">
 
 			<Grid>
-				<StackPanel Style="{StaticResource StackPanel_FormValidator}">
+				<StackPanel Style="{StaticResource StackPanelFormValidatorStyle}">
 
 					<Button x:Name="Button_Save"
 							Content="{x:Static p:Resources.Save}"

@@ -11,13 +11,13 @@
     mc:Ignorable="d"
     Width="480"
     Height="480"
-    ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen"
+	Closing="Window_Closing"
     FocusManager.FocusedElement="{Binding ElementName=InputName}"
 	Loaded="Window_Load"
-	Closing="Window_Closing"
-	Style="{DynamicResource WindowStyle}"
-    Title="{x:Static p:Resources.WindowUserFormTitle}">
+    ResizeMode="NoResize"
+	Style="{DynamicResource WindowFormStyle}"
+    Title="{x:Static p:Resources.WindowUserFormTitle}"
+    WindowStartupLocation="CenterScreen">
 	
 	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
 
@@ -26,9 +26,7 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <TabControl 
-            x:Name="TabControlContent"
-            Grid.Row="0">
+        <TabControl x:Name="TabControlFormContentName" Grid.Row="0">
 
             <!-- #region : Tabs Informations -->
 			<TabItem Header="{x:Static p:Resources.Informations}">
@@ -158,7 +156,7 @@
 
 
 			<TabItem Header="{x:Static p:Resources.UsersGroups}">
-				<StackPanel VerticalAlignment="Top" Style="{StaticResource StackPanelFieldStyle}">
+				<StackPanel VerticalAlignment="Top" Margin="3">
 
 					<DataGrid x:Name="CollectionAclGroups"
 							  AutoGenerateColumns="False"
@@ -174,7 +172,7 @@
 							  HorizontalAlignment="Stretch"
 							  VerticalAlignment="Stretch"
 							  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-							  Width="440"
+							  Width="450"
 							  Height="340"
 							  SelectionUnit="FullRow"
 							  Cursor="Hand"
@@ -184,21 +182,20 @@
 							  CanUserResizeRows="False">
 
 						<DataGrid.Columns>
+							
 							<!-- #region : Column AclGroupId -->
-							<DataGridTemplateColumn 
-                                IsReadOnly="True"
-                                Width="30"
-                                CanUserSort="True"
-                                Header="{x:Static p:Resources.Id}"
-                                SortMemberPath="AclGroupId">
+							<DataGridTemplateColumn IsReadOnly="True"
+													Width="30"
+													CanUserSort="True"
+													Header="{x:Static p:Resources.Id}"
+													SortMemberPath="AclGroupId">
 
 								<DataGridTemplateColumn.CellTemplate>
 									<DataTemplate>
 
-										<TextBlock
-                                            Margin="5,0"
-                                            Text="{Binding AclGroupId}"
-                                            ToolTip="{Binding AclGroupId}"/>
+										<TextBlock Margin="5,0"
+												   Text="{Binding AclGroupId}"
+												   ToolTip="{Binding AclGroupId}"/>
 
 									</DataTemplate>
 								</DataGridTemplateColumn.CellTemplate>
@@ -222,12 +219,11 @@
 							<!-- #endregion : Column Is Default -->
 
 							<!-- #region : Column Name -->
-							<DataGridTemplateColumn 
-                                IsReadOnly="True"
-                                MinWidth="160"
-                                CanUserSort="True"
-                                Header="{x:Static p:Resources.Name}"
-                                SortMemberPath="Name">
+							<DataGridTemplateColumn IsReadOnly="True"
+													MinWidth="160"
+													CanUserSort="True"
+													Header="{x:Static p:Resources.Name}"
+													SortMemberPath="Name">
 
 								<DataGridTemplateColumn.CellTemplate>
 									<DataTemplate>
@@ -248,12 +244,10 @@
 								<DataGridTemplateColumn.CellTemplate>
 									<DataTemplate>
 
-										<CheckBox 
-                                        Tag="{Binding}"
-                                        IsChecked="{Binding PrimaryKey,
-                                        Converter={StaticResource IsAclGroupInUser}}"
-                                        Checked="CheckBoxAclGroup_Checked"
-                                        Unchecked="CheckBoxAclGroup_UnChecked"/>
+										<CheckBox  Tag="{Binding}"
+												   IsChecked="{Binding PrimaryKey, Converter={StaticResource IsAclGroupInUser}}"
+												   Checked="CheckBoxAclGroup_Checked"
+												   Unchecked="CheckBoxAclGroup_UnChecked"/>
 
 									</DataTemplate>
 								</DataGridTemplateColumn.CellTemplate>
@@ -269,24 +263,22 @@
         </TabControl>
 
 
-		<Border Grid.Row="1"
-				Grid.RowSpan="2">
-
-			<Grid>
-				<StackPanel Style="{StaticResource StackPanel_FormValidator}">
-					<Button x:Name="Button_Save"
+		<!-- #region BLOCK FORM VALIDATOR -->
+		<Grid Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource GridFormValidatorStyle}">
+			<StackPanel Style="{StaticResource StackPanelFormValidatorStyle}">
+				<Button x:Name="Button_Save"
 							Click="DialogSave_Click"
 							Content="{x:Static p:Resources.Save}"
 							IsEnabled="{Binding IsSaveEnabled, UpdateSourceTrigger=Explicit, Mode=TwoWay, IsAsync=True}"
 							Style="{StaticResource ButtonSaveStyle}"/>
 
-					<Button x:Name="Button_Cancel"
+				<Button x:Name="Button_Cancel"
 							Content="{x:Static p:Resources.Cancel}"
 							Style="{StaticResource ButtonCancelStyle}"/>
 
-				</StackPanel>
-			</Grid>
-		</Border>
+			</StackPanel>
+		</Grid>
+		<!-- #endregion -->
 
 	</Grid>
 </base:WindowBaseForm>

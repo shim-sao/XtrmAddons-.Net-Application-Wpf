@@ -1,7 +1,16 @@
-﻿using XtrmAddons.Fotootof.Common.Controls.DataGrids;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Controls;
+using XtrmAddons.Fotootof.Common.Collections;
+using XtrmAddons.Fotootof.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Common.Models.DataGrids;
+using XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids;
 using XtrmAddons.Fotootof.Layouts.DataGrids.AclGroups;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 {
@@ -76,7 +85,96 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// Class XtrmAddons Fotootof Component Server Models List Users Constructor.
         /// </summary>
         /// <param name="page">The page associated to the model.</param>
-        public PageUsersModel(PageUsers page) : base(page) { }
+        public PageUsersModel(PageUsers page) : base(page)
+        {
+            LoadAclGroups();
+        }
+
+        #endregion
+
+
+
+        #region Methods
+
+        /// <summary>
+        /// Method to load the list of AclGroup from database.
+        /// </summary>
+        public void LoadAclGroups()
+        {
+            MessageBase.IsBusy = true;
+            log.Info("Loading Acl Groups list : Start. Please wait...");
+
+            try
+            {
+                AclGroups.Items = new AclGroupEntityCollection(true);
+            }
+            catch (Exception e)
+            {
+                string message = "Loading Acl Groups list failed !";
+                log.Fatal(message, e);
+                MessageBase.Fatal(e, message);
+            }
+            finally
+            {
+                log.Info("Loading Acl Groups list : End.");
+                MessageBase.IsBusy = false;
+            }
+        }
+
+        /// <summary>
+        /// Method to load users list.
+        /// </summary>
+        public void LoadUsers()
+        {
+            MessageBase.IsBusy = true;
+            log.Warn(MessageBase.BusyContent = "Loading Users list. Please wait...");
+
+            try
+            {
+                UserOptionsList op = new UserOptionsList
+                {
+                    Dependencies = { EnumEntitiesDependencies.UsersInAclGroups }
+                };
+
+                if (((DataGridAclGroupsServer)(OwnerBase.FindName("UcDataGridAclGroupsServerName")))?.SelectedItem is AclGroupEntity a && a.PrimaryKey > 0)
+                {
+                    op.IncludeAclGroupKeys = new List<int>() { a.PrimaryKey };
+                }
+
+                UserEntityCollection users = new UserEntityCollection(op, false);
+                users.Load();
+                Users.Items = users;
+
+                log.Info(MessageBase.BusyContent = "Loading Users list. Done.");
+            }
+            catch (Exception e)
+            {
+                MessageBase.BusyContent = "Loading Users list. failed !";
+                log.Fatal(MessageBase.BusyContent, e);
+                MessageBase.Fatal(e, (string)MessageBase.BusyContent);
+            }
+            finally
+            {
+                log.Warn(MessageBase.BusyContent = "Loading Users list. Done.");
+                MessageBase.IsBusy = false;
+            }
+        }
+
+        /// <summary>
+        /// Method called on User view delete event.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e"></param>
+        public void DeleleUser(UserEntity item)
+        {
+            // Remove item from the database.
+            UserEntityCollection.DbDelete(new List<UserEntity> { item });
+
+            // Remove item from the list.
+            Users.Items.Remove(item);
+
+            //Refresh();
+        }
 
         #endregion
     }

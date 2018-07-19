@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
@@ -43,15 +44,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// <summary>
         /// Accessors to page user model.
         /// </summary>
+        [System.Obsolete("no need of property")]
         private UserOptionsList UserOptionsList
         {
             get
             {
-               AclGroupEntity a = UcDataGridAclGroups.SelectedItem;
+               AclGroupEntity a = (FindName("UcDataGridAclGroupsServerName") as DataGridAclGroupsServer).SelectedItem;
 
                 UserOptionsList op = new UserOptionsList
                 {
-                    Dependencies = { EnumEntitiesDependencies.All }
+                    Dependencies = { EnumEntitiesDependencies.UsersInAclGroups }
                 };
 
                 if (a != null)
@@ -66,6 +68,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// <summary>
         /// Accessors to page user model.
         /// </summary>
+        [System.Obsolete("no need of property")]
         private AclGroupOptionsList AclGroupOptionsList
         {
             get
@@ -120,10 +123,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         {
             // Paste page to User list.
             Model = new PageUsersModel(this);
-            UcDataGridAclGroups.Tag = this;
+            //UcDataGridAclGroupsServerName.Tag = this;
 
-            LoadAclGroups();
-            LoadUsers();
+            // LoadAclGroups(); delete : on model constructor
+            // LoadUsers();
         }
 
         /// <summary>
@@ -131,12 +134,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// </summary>
         private void InitializeEvents()
         {
-            UcDataGridAclGroups.OnAdd += UcDataGridAclGroups_AclGroupAdded;
-            UcDataGridAclGroups.OnChange += UcDataGridAclGroups_AclGroupChanged;
-            UcDataGridAclGroups.OnCancel += UcDataGridAclGroups_AclGroupCanceled;
-            UcDataGridAclGroups.OnDelete += UcDataGridAclGroups_AclGroupDeleted;
-            UcDataGridAclGroups.DefaultChanged += UcDataGridAclGroups_DefaultChanged;
-            UcDataGridAclGroups.SelectionChanged += (s, ec) => { LoadUsers(); };
+            (FindName("UcDataGridAclGroupsServerName") as DataGridAclGroupsServer).OnAdd += UcDataGridAclGroups_AclGroupAdded;
+            (FindName("UcDataGridAclGroupsServerName") as DataGridAclGroupsServer).OnChange += UcDataGridAclGroups_AclGroupChanged;
+            (FindName("UcDataGridAclGroupsServerName") as DataGridAclGroupsServer).OnCancel += UcDataGridAclGroups_AclGroupCanceled;
+            (FindName("UcDataGridAclGroupsServerName") as DataGridAclGroupsServer).OnDelete += UcDataGridAclGroups_AclGroupDeleted;
+            (FindName("UcDataGridAclGroupsServerName") as DataGridAclGroupsServer).DefaultChanged += UcDataGridAclGroups_DefaultChanged;
+            (FindName("UcDataGridAclGroupsServerName") as DataGridAclGroupsServer).SelectionChanged += (s, ec) => { Model.LoadUsers(); };
 
             UcDataGridUsers.OnAdd += UcDataGridUsers_UserAdded;
             UcDataGridUsers.OnChange += UcDataGridUsers_UserChanged;
@@ -155,13 +158,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// </summary>
         private void Refresh()
         {
-            LoadAclGroups();
-            LoadUsers();
+            Model.LoadAclGroups();
+            Model.LoadUsers();
         }
 
         /// <summary>
         /// Method to load the list of AclGroup from database.
         /// </summary>
+        [System.Obsolete("use model design.")]
         private void LoadAclGroups()
         {
             MessageBase.IsBusy = true;
@@ -194,7 +198,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         {
             log.Info("Adding or editing AclGroup operation canceled. Please wait...");
 
-            LoadAclGroups();
+            Model.LoadAclGroups();
 
             log.Info("Adding or editing AclGroup operation canceled. Done.");
         }
@@ -270,7 +274,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 
             AclGroupEntity newEntity = (AclGroupEntity)e.NewEntity;
             AclGroupEntityCollection.SetDefault(newEntity);
-            LoadAclGroups();
+            Model.LoadAclGroups();
 
             log.Info("Setting default Section. Done.");
         }
@@ -284,6 +288,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// <summary>
         /// Method to load users list.
         /// </summary>
+        [System.Obsolete("use model design.")]
         private void LoadUsers()
         {
             MessageBase.IsBusy = true;
@@ -319,7 +324,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         {
             log.Info("Adding or editing User operation canceled. Please wait...");
 
-            LoadUsers();
+            Model.LoadUsers();
 
             log.Info("Adding or editing AclGroup operation canceled. Done.");
         }
@@ -367,20 +372,43 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
+        //private void UcDataGridUsers_UserDeleled(object sender, EntityChangesEventArgs e)
+        //{
+        //    log.Info("Deleting User(s). Please wait...");
+
+        //    // Remove item from list.
+        //    UserEntity item = (UserEntity)e.NewEntity;
+        //    Model.Users.Items.Remove(item);
+
+        //    // Delete item from database.
+        //    UserEntityCollection.DbDelete(new List<UserEntity> { item });
+
+        //    Refresh();
+
+        //    log.Info("Deleting User(s). Done.");
+        //}
         private void UcDataGridUsers_UserDeleled(object sender, EntityChangesEventArgs e)
         {
-            log.Info("Deleting User(s). Please wait...");
+            MessageBase.IsBusy = true;
+            log.Info("Deleting selected Users. Please wait...");
 
-            // Remove item from list.
-            UserEntity item = (UserEntity)e.NewEntity;
-            Model.Users.Items.Remove(item);
+            try
+            {
+                Model.DeleleUser((UserEntity)e.NewEntity);
 
-            // Delete item from database.
-            UserEntityCollection.DbDelete(new List<UserEntity> { item });
-
-            Refresh();
-
-            log.Info("Deleting User(s). Done.");
+                log.Info(MessageBase.BusyContent = "Deleting selected Users. Done.");
+            }
+            catch (Exception ex)
+            {
+                MessageBase.BusyContent = "Deleting selected Users. failed !";
+                log.Fatal(MessageBase.BusyContent, ex);
+                MessageBase.Fatal(ex, (string)MessageBase.BusyContent);
+            }
+            finally
+            {
+                log.Warn(MessageBase.BusyContent = "Deleting selected Users. End.");
+                MessageBase.IsBusy = false;
+            }
         }
 
         #endregion
@@ -422,10 +450,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 
             TraceSize(Block_MiddleContents);
 
-            UcDataGridAclGroups.Height = Math.Max(this.Height, 0);
+            (FindName("UcDataGridAclGroupsServerName") as DataGridAclGroupsServer).Height = Math.Max(this.Height, 0);
             UcDataGridUsers.Height = Math.Max(this.Height, 0);
 
-            TraceSize(UcDataGridAclGroups);
+            TraceSize((FindName("UcDataGridAclGroupsServerName") as DataGridAclGroupsServer));
             TraceSize(UcDataGridUsers);
         }
 

@@ -6,6 +6,7 @@
     <!-- Generic Window -->
 	<Style x:Key="WindowStyle" TargetType="{x:Type Window}">
 		<Setter Property="Background" Value="{DynamicResource ColorWindowBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource CustomWindowTextBrush}" />
 		<Setter Property="Icon" Value="/XtrmAddons Fotootof;component/Favicon.ico"/>
 	</Style>
 	
@@ -19,7 +20,10 @@
 	</Style>
 	
 	<!-- Window Form -->
-	<Style x:Key="Window_Form" TargetType="{x:Type Window}" BasedOn="{StaticResource WindowStyle}">
+	<Style x:Key="WindowFormStyle" TargetType="{x:Type Window}" BasedOn="{StaticResource WindowStyle}">
+		<Setter Property="Background" Value="{DynamicResource ChromeLowBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ChromeAltLowBrush}" />
+		<Setter Property="BorderThickness" Value="3"/>
 		<Setter Property="ResizeMode" Value="NoResize"/>
 		<Setter Property="Topmost" Value="True"/>
 		<!--WARNING : WindowStartupLocation property null Exception => set it directly in Window Xaml-->

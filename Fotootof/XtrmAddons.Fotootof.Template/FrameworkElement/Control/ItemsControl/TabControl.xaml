@@ -6,7 +6,8 @@
 	<!-- TabControl -->
 	<Style TargetType="TabControl">
 		<Setter Property="Background" Value="Transparent"/>
-		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource ChromeAltLowBrush}" />
+		<Setter Property="BorderThickness" Value="0,3,0,1"/>
 	</Style>
 
 </ResourceDictionary>
