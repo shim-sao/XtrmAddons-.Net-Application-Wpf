@@ -524,8 +524,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                             {
                                 T newObj = (T)Activator.CreateInstance(typeof(T));
                                 newObj.SetPropertyValue(DepPKName, pkValue);
-
-
+                              
                                 Add(newObj);
                                 log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {newObj?.GetType()?.Name} {pkValue} to observable dependency link.");
                             }
