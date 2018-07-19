@@ -40,10 +40,10 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
             => ApplicationSession.Properties.MainWindow;
 
         /// <summary>
-        /// 
+        /// Property to access to the MainWindow content Block.
         /// </summary>
         public static FrameworkElement MainBlockContent
-            => ((Window)AppWindow).FindName("Block_Content") as FrameworkElement;
+            => ((Window)AppWindow).FindName("BlockContent") as FrameworkElement;
 
         /// <summary>
         /// Variable page width marging for content adjustement on size changed.
@@ -54,18 +54,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Pages
         /// Variable page height marging for content adjustement on size changed.
         /// </summary>
         public double MargingHeight { get; set; } = 0; // SystemParameters.HorizontalScrollBarHeight
-
-        /// <summary>
-        /// Property alias to access to the dynamic translation words.
-        /// </summary>
-        [System.Obsolete("use Translation.", true)]
-        public dynamic DWords => Culture.Translation.DWords;
-
-        /// <summary>
-        /// Property alias to access to the dynamic translation logs.
-        /// </summary>
-        [System.Obsolete("use Translation.", true)]
-        public dynamic DLogs => Culture.Translation.DLogs;
 
         #endregion
 

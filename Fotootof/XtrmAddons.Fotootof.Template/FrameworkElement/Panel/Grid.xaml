@@ -1,0 +1,47 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+	<!-- Grid -->
+	<Style TargetType="GridSplitter">
+		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource AltLowBrush}"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="ShowsPreview" Value="true"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+	</Style>
+	
+	<Style x:Key="GridRootStyle" TargetType="{x:Type Grid}">
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+	</Style>
+	
+	<Style x:Key="GridFieldsetMenuStyle" TargetType="{x:Type Grid}">
+		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
+		<Setter Property="Height" Value="30" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="VerticalAlignment" Value="Bottom" />
+	</Style>
+
+	<Style x:Key="GridFormValidatorStyle" TargetType="{x:Type Grid}">
+		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
+	</Style>
+
+	<Style x:Key="GridMiddleContentStyle" TargetType="{x:Type Grid}" BasedOn="{StaticResource GridRootStyle}">
+		<Setter Property="Background" Value="Transparent"/>
+	</Style>
+
+	<Style x:Key="GridToolTipLargeStyle" TargetType="{x:Type Grid}">
+		<Setter Property="Background" Value="{DynamicResource ChromeLowBrush}"/>
+		<Setter Property="Height" Value="{DynamicResource DoubleIcon512}"/>
+		<Setter Property="Width" Value="{DynamicResource DoubleIcon512}"/>
+	</Style>
+
+	<Style x:Key="PanelSquare256Style" TargetType="{x:Type Panel}">
+		<Setter Property="Background" Value="{DynamicResource ListMediumBrush}"/>
+		<Setter Property="Height" Value="{DynamicResource DoubleIcon256}"/>
+		<Setter Property="Width" Value="{DynamicResource DoubleIcon256}"/>
+	</Style>
+
+</ResourceDictionary>

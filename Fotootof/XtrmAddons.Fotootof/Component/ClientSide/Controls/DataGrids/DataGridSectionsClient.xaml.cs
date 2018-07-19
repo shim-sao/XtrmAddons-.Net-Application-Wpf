@@ -131,8 +131,8 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids
         /// </summary>
         private void ArrangeBlockRoot()
         {
-            Block_Root.Arrange(new Rect(new Size(this.ActualWidth, this.ActualHeight)));
-            TraceSize(Block_Root);
+            GridBlockRootName.Arrange(new Rect(new Size(this.ActualWidth, this.ActualHeight)));
+            TraceSize(GridBlockRootName);
         }
 
         /// <summary>
@@ -140,19 +140,19 @@ namespace XtrmAddons.Fotootof.Component.ClientSide.Controls.DataGrids
         /// </summary>
         private void ArrangeBlockItems()
         {
-            double height = Math.Max(this.ActualHeight - Block_Header.RenderSize.Height, 0);
+            double height = Math.Max(this.ActualHeight - StackPanelBlockHeaderName.RenderSize.Height, 0);
             double width = Math.Max(this.ActualWidth, 0);
 
-            Block_Header.Width = width;
+            StackPanelBlockHeaderName.Width = width;
 
-            Block_Items.Width = width;
-            Block_Items.Height = height;
+            GridBlockItemsName.Width = width;
+            GridBlockItemsName.Height = height;
 
             ItemsLayout.Width = width;
             ItemsLayout.Height = height;
 
-            TraceSize(Block_Header);
-            TraceSize(Block_Items);
+            TraceSize(StackPanelBlockHeaderName);
+            TraceSize(GridBlockItemsName);
             TraceSize(ItemsLayout);
         }
 

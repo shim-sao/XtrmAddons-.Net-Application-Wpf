@@ -9,7 +9,6 @@
 		Title="{x:Static p:Resources.WindowAboutTitle}"
 		Width="480"
 		Height="340"
-		Background="{StaticResource Panton_0}"
 		Loaded="Window_Load">
 	
     <Grid>
@@ -23,62 +22,62 @@
 		<StackPanel Grid.Row="1">
 
 			<!-- #region : Field Product Name -->
-			<StackPanel Style="{StaticResource StackPanel_FormField}"
+			<StackPanel Style="{StaticResource StackPanelFormFieldStyle}"
 						Margin="10,1">
 
 				<TextBlock Text="{x:Static p:Resources.ProductName}"
-						   Style="{StaticResource TextBlock_FieldLabel}"/>
+						   Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 				<TextBlock Text="{Binding AssemblyTitle}"
-						   Style="{StaticResource TextBlock_FieldText}"/>
+						   Style="{StaticResource TextBlockFieldTextStyle}"/>
 
 			</StackPanel>
 			<!-- #endregion : Product Name -->
 
 
 			<!-- #region : Field Version -->
-			<StackPanel Style="{StaticResource StackPanel_Field}">
+			<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
 				<TextBlock Text="{x:Static p:Resources.Version}"
-						   Style="{StaticResource TextBlock_FieldLabel}"/>
+						   Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 				<TextBlock Text="{Binding AssemblyVersion}"
-						   Style="{StaticResource TextBlock_FieldText}"/>
+						   Style="{StaticResource TextBlockFieldTextStyle}"/>
 
 			</StackPanel>
 			<!-- #endregion : Version -->
 
 
 			<!-- #region : Field Copyright -->
-			<StackPanel Style="{StaticResource StackPanel_Field}">
+			<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
 				<TextBlock Text="{x:Static p:Resources.Copyright}"
-						   Style="{StaticResource TextBlock_FieldLabel}"/>
+						   Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 				<TextBlock Text="{Binding AssemblyCopyright}"
-						   Style="{StaticResource TextBlock_FieldText}"/>
+						   Style="{StaticResource TextBlockFieldTextStyle}"/>
 
 			</StackPanel>
 			<!-- #endregion : Copyright -->
 
 
 			<!-- #region : Field Company Name -->
-			<StackPanel Style="{StaticResource StackPanel_Field}">
+			<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
 				<TextBlock Text="{x:Static p:Resources.Company}"
-						   Style="{StaticResource TextBlock_FieldLabel}"/>
+						   Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 				<TextBlock Text="{Binding AssemblyCompany}"
-						   Style="{StaticResource TextBlock_FieldText}"/>
+						   Style="{StaticResource TextBlockFieldTextStyle}"/>
 
 			</StackPanel>
 			<!-- #endregion : Company Name -->
 
 
 			<!-- #region : Field Smashicons -->
-			<StackPanel Style="{StaticResource StackPanel_Field}">
+			<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
-				<TextBlock Style="{StaticResource TextBlock_FieldText}">           
+				<TextBlock Style="{StaticResource TextBlockFieldTextStyle}">           
 					<Hyperlink NavigateUri="https://www.flaticon.com/authors/smashicons/">
 						Icon By Smashicons for FlatIcon
 					</Hyperlink>

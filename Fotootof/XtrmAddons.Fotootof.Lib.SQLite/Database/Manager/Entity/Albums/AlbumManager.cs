@@ -355,28 +355,28 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             {
                 entity = SingleAliasOrNull(query, op);
             }
-            
-            if (entity != null)
-            {
-                if (op.IsDependOn(EnumEntitiesDependencies.PicturesInAlbums))
-                {
-                    foreach (PictureEntity item in entity.Pictures)
-                    {
-                        if (item != null)
-                        {
-                            List<PicturesInAlbums> l = Context.PicturesInAlbums.Where(d => d.PictureId == item.PictureId && d.AlbumId == op.PrimaryKey).ToList();
-                            if (l.Count > 0)
-                            {
-                                item.Ordering = l[0].Ordering;
-                            }
-                        }
-                    }
-                }
 
-                return entity;
-            }
+            //if (entity != null)
+            //{
+            //    if (op.IsDependOn(EnumEntitiesDependencies.PicturesInAlbums))
+            //    {
+            //        foreach (PictureEntity item in entity.Pictures)
+            //        {
+            //            if (item != null)
+            //            {
+            //                List<PicturesInAlbums> l = Context.PicturesInAlbums.Where(d => d.PictureId == item.PictureId && d.AlbumId == op.PrimaryKey).ToList();
+            //                if (l.Count > 0)
+            //                {
+            //                    item.Ordering = l[0].Ordering;
+            //                }
+            //            }
+            //        }
+            //    }
 
-            return null;
+            //    return entity;
+            //}
+
+            return entity;
         }
 
         /// <summary>

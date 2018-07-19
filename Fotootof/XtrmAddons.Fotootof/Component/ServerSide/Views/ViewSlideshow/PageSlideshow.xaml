@@ -9,11 +9,11 @@
     mc:Ignorable="d"
 	ShowsNavigationUI="False"
 	Title="{x:Static p:Resources.Album}"
-	Style="{StaticResource PageContent}"
+	Style="{StaticResource PageContentStyle}"
     SizeChanged="Control_SizeChanged"
 	Loaded="Control_Loaded">
 
-	<Grid x:Name="Block_Root"
+	<Grid x:Name="GridBlockRootName"
 		  Style="{StaticResource Root}"
 		  Background="Red">
 

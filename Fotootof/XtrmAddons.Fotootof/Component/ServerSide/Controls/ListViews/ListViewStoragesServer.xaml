@@ -10,17 +10,18 @@
 	Loaded="Control_Loaded"
 	SizeChanged="Control_SizeChanged">
 
-	<Grid x:Name="Block_Root"
-		  Style="{StaticResource ResourceKey=Root}">
+	<Grid x:Name="GridBlockRootName"
+		  Style="{StaticResource GridRootStyle}">
 		
-		<StackPanel x:Name="Block_RootPanel"
-					Style="{StaticResource ResourceKey=FieldsetVertical}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
+					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<StackPanel x:Name="Block_Header"
-						Style="{StaticResource FieldsetHeader}">
+			<StackPanel x:Name="StackPanelBlockHeaderName"
+						Style="{StaticResource StackPanelFieldsetHeader}">
 
-				<Border x:Name="Block_Title"
-						Style="{StaticResource Border_Fieldset_Title}">
+				<Border x:Name="BorderFieldsetTitleName"
+						Style="{StaticResource BorderFieldsetTitleStyle}">
+					
 					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="1*" />
@@ -40,6 +41,7 @@
 						<!-- #region Counter -->
 						<StackPanel Grid.Column="1"
 									Orientation="Horizontal">
+							
 							<TextBlock x:Name="Counter_SelectedNumber"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
@@ -87,7 +89,7 @@
 				</Border>
 				
 				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource Grid_Fieldset_Menu}">
+					  Style="{StaticResource GridFieldsetMenuStyle}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
 						<ColumnDefinition Width="1*" />
@@ -99,8 +101,7 @@
 							Margin="5,0">
 
 						<Button x:Name="Button_AddPicturesToAlbum"
-								Content="{StaticResource Icon24ImagePlus}"
-								Style="{StaticResource Button_Icon24Default}"
+								Style="{StaticResource ButtonIcon24ImagePlus}"
 								PreviewMouseLeftButtonUp="OnAddPicturesToAlbum_Click"
 								ToolTipService.ToolTip="{x:Static p:Resources.AddPicturesToAlbum}"
 								IsEnabled="False"/>
@@ -111,12 +112,11 @@
 							Margin="5,0">
 
 						<StackPanel Orientation="Horizontal">
-							
-							<ComboBox Grid.Column="2"
-									  x:Name="ComboBox_ImageSize"
-									  x:Uid="ListViewStoragesServerImageSize"
-									  Style="{StaticResource DefaultComboBox}"
-									  SelectionChanged="ComboBox_ImageSize_SelectionChanged">
+
+							<ComboBox x:Uid="ListViewStoragesServerComboBoxImageSizeId"
+									  x:Name="ComboBoxImageSizeName"
+									  Grid.Column="2"
+									  SelectionChanged="ComboBoxImageSize_SelectionChanged">
 
 								<ComboBoxItem Content="{x:Static p:Resources.Icon}" />
 								<ComboBoxItem Content="{x:Static p:Resources.Thumbnail}" />
@@ -127,22 +127,19 @@
 							</ComboBox>
 
 							<Button x:Name="Button_SelectAll"
-									Content="{StaticResource Icon24ImageSelect}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24ImageSelect}"
 									PreviewMouseLeftButtonUp="OnSelectAll_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.SelectAll}"/>
 
 							<Button Grid.Column="1"
 									x:Name="Button_UnselectAll"
-									Content="{StaticResource Icon24ImageUnselect}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24ImageUnselect}"
 									PreviewMouseLeftButtonUp="OnUnselectAll_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"/>
 
 							<Button Grid.Column="2"
 									x:Name="Button_Refresh"
-									Content="{StaticResource Icon24ImageRefresh}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{StaticResource ButtonIcon24ImageRefresh}"
 									PreviewMouseLeftButtonUp="OnRefresh_Click"
 									ToolTipService.ToolTip="{x:Static p:Resources.Refresh}"/>
 
@@ -155,20 +152,19 @@
 
 
 			<!-- #region Files List -->
-			<Grid x:Name="Block_Items">
+			<Grid x:Name="GridBlockItemsName">
 
-				<ListView x:Uid="ListViewCollection"
+				<ListView x:Uid="ListViewCollectionName"
 						  x:Name="ItemsCollectionStorages"
-						  Background="White"
 						  HorizontalAlignment="Stretch"
-						  VerticalAlignment="Stretch"
 						  ItemsSource="{Binding FilesCollection, Mode=OneWay, IsAsync=True}"
-						  VirtualizingStackPanel.IsVirtualizing="True"
-						  VirtualizingStackPanel.VirtualizationMode="Recycling"
+						  Padding="5,5,5,10"
 						  ScrollViewer.IsDeferredScrollingEnabled="True"
 						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 						  SelectionChanged="ItemsCollection_SelectionChanged"
-						  Padding="5">
+						  VerticalAlignment="Stretch"
+						  VirtualizingStackPanel.IsVirtualizing="True"
+						  VirtualizingStackPanel.VirtualizationMode="Recycling">
 
 					<ListView.Resources>
 						<Style TargetType="{x:Type ListViewItem}"
@@ -198,8 +194,8 @@
 					<ListView.ItemsPanel>
 						<ItemsPanelTemplate>
 							<WrapPanel Name="WrapPanelItemsContainer"
-									   Width="{Binding ActualWidth, ElementName=Block_Root, IsAsync=True}"
-									   MaxWidth="{Binding MaxWidth, ElementName=Block_Root, IsAsync=True}">
+									   Width="{Binding ActualWidth, ElementName=GridBlockRootName, IsAsync=True}"
+									   MaxWidth="{Binding MaxWidth, ElementName=GridBlockRootName, IsAsync=True}">
 
 								<WrapPanel.CacheMode>
 									<BitmapCache EnableClearType="True" />
@@ -254,15 +250,15 @@
 									</Grid>
 
 									<Viewbox.ToolTip>
-										<Grid MaxWidth="{StaticResource Icon512Double}"
-											  MaxHeight="{StaticResource Icon512Double}"
-											  Background="{StaticResource Panton_0}">
+										<Grid MaxWidth="{StaticResource DoubleIcon512}"
+											  MaxHeight="{StaticResource DoubleIcon512}"
+											  Background="Red">
 
-											<Image Source="{Binding ImageFullName, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource Icon512String}, IsAsync=True, Mode=OneWay}"
+											<Image Source="{Binding ImageFullName, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource StringIcon512}, IsAsync=True, Mode=OneWay}"
 												   Stretch="Uniform"
 												   Panel.ZIndex="0" />
 
-											<Grid x:Name="Grid_Image_Tooltip_Description"
+											<Grid x:Name="GridTooltipFileName"
 												  Margin="10"
 												  HorizontalAlignment="Left"
 												  VerticalAlignment="Stretch">
@@ -278,9 +274,9 @@
 															Margin="5">
 
 													<TextBlock Text="{Binding Name}"
-															   Style="{StaticResource TextBlock_Tooltip}"
 															   HorizontalAlignment="left"
 															   Panel.ZIndex="1"
+															   Style="{StaticResource TextBlockTooltipStyle}"
 															   TextWrapping="Wrap" />
 
 												</StackPanel>
@@ -290,16 +286,16 @@
 															Margin="5">
 
 													<TextBlock Text="{Binding DateCreated, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateSQLParameter}}"
-															   Style="{StaticResource TextBlock_Tooltip}"
+															   Style="{StaticResource TextBlockTooltipStyle}"
 															   FontStyle="Oblique" />
 
 													<TextBlock Text="-"
-															   Style="{StaticResource TextBlock_Tooltip}"
+															   Style="{StaticResource TextBlockTooltipStyle}"
 															   FontStyle="Oblique"
 															   Margin="3,0" />
 
 													<TextBlock Text="{Binding DateModified, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateSQLParameter}}"
-															   Style="{StaticResource TextBlock_Tooltip}"
+															   Style="{StaticResource TextBlockTooltipStyle}"
 															   FontStyle="Oblique" />
 
 												</StackPanel>

@@ -34,9 +34,9 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         /// <summary>
         /// Property to access to the Window model.
         /// </summary>
-        public new WindowFormAclGroupModel<WindowFormAclGroup> Model
+        public new WindowFormAclGroupModel Model
         {
-            get => (WindowFormAclGroupModel<WindowFormAclGroup>)model;
+            get => (WindowFormAclGroupModel)model;
             protected set { model = value; }
         }
 
@@ -76,16 +76,20 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
             // Initialize window component.
             InitializeComponent();
 
-            // Initialize window data model.
-
-            var op = new AclGroupOptionsSelect
+            // Load entity with all required dependencies.
+            var entity = default(AclGroupEntity);
+            if (AclGroupId > 0)
             {
-                PrimaryKey = AclGroupId,
-                Dependencies = { EnumEntitiesDependencies.All }
-            };
+                var op = new AclGroupOptionsSelect
+                {
+                    PrimaryKey = AclGroupId,
+                    Dependencies = { EnumEntitiesDependencies.All }
+                };
 
-            var entity = Db.AclGroups.SingleOrDefault(op);
+                entity = Db.AclGroups.SingleOrDefault(op);
+            }
 
+            // Initialize window data model.
             InitializeModel(entity);
         }
 
@@ -94,14 +98,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         /// </summary>
         /// <param name="pageBase"></param>
         /// <param name="group"></param>
-        public WindowFormAclGroup(AclGroupEntity entity = default(AclGroupEntity))
-        {
-            // Initialize window component.
-            InitializeComponent();
-
-            // Initialize window data model.
-            InitializeModel(entity);
-        }
+        public WindowFormAclGroup(AclGroupEntity entity = default(AclGroupEntity)) : this(entity?.PrimaryKey ?? 0) { }
 
         #endregion
 
@@ -121,13 +118,13 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         }
 
         /// <summary>
-        /// Method called on Window loaded event.
+        /// Method to initialize the Model on Windows construct.
         /// </summary>
-        /// <param name="entity">A Section entity.</param>
+        /// <param name="entity">A AclGroup entity.</param>
         protected void InitializeModel(AclGroupEntity entity = default(AclGroupEntity))
         {
             // 1 - Initialize view model.
-            Model = new WindowFormAclGroupModel<WindowFormAclGroup>(this);
+            Model = new WindowFormAclGroupModel(this);
 
             // 2 - Make sure entity is not null.
             entity = entity ?? new AclGroupEntity();

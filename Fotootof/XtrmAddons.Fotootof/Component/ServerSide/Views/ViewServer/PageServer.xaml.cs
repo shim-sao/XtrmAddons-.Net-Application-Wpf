@@ -91,8 +91,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer
                 OnServerStop();
             }
 
-            HttpServerBase.AddStartHandlerOnce(OnServerStart);
-            HttpServerBase.AddStopHandlerOnce(OnServerStop);
+            HttpServerBase.NotifyServerStartedHandlerOnce += OnServerStart;
+            HttpServerBase.NotifyServerStoppedHandlerOnce += OnServerStop;
         }
 
         /// <summary>

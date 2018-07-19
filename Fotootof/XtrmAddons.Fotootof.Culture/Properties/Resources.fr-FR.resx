@@ -211,7 +211,7 @@
     <value>Description</value>
   </data>
   <data name="DialogBoxTitle_PictureFileSelector" xml:space="preserve">
-    <value>XtrmAddons Fotootof Sélecteur d'image</value>
+    <value>FotootoF Sélecteur d'image</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Editer</value>
@@ -400,7 +400,7 @@
     <value>Arrêtez le serveur Http. Empêche la requête Http entrante sur l'application.</value>
   </data>
   <data name="ToolTip_SelectAlbumColor" xml:space="preserve">
-    <value>Select the Color associated to the Album.</value>
+    <value>Sélectionnez la Couleur associée à l'album.</value>
   </data>
   <data name="ToolTip_SelectAlbumQuality" xml:space="preserve">
     <value>Sélectionner la Qualité associée à l'Album.</value>
@@ -607,7 +607,7 @@
     <value>Couleur Vraies</value>
   </data>
   <data name="WindowAboutTitle" xml:space="preserve">
-    <value>FotootoF A propos</value>
+    <value>FotootoF À propos</value>
   </data>
   <data name="Company" xml:space="preserve">
     <value>Company</value>
@@ -635,5 +635,17 @@
   </data>
   <data name="_ServerSettings" xml:space="preserve">
     <value>Paramètres serveur</value>
+  </data>
+  <data name="_Theme" xml:space="preserve">
+    <value>Thème</value>
+  </data>
+  <data name="_ThemeDark" xml:space="preserve">
+    <value>_Sombre</value>
+  </data>
+  <data name="_ThemeLight" xml:space="preserve">
+    <value>_Clair</value>
+  </data>
+  <data name="_Plugin" xml:space="preserve">
+    <value>_Plugin</value>
   </data>
 </root>

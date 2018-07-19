@@ -257,7 +257,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         {
             get
             {
-                UsersInAclGroups.Populate();
+                //UsersInAclGroups.Populate();
                 return UsersInAclGroups.DepPKeys;
             }
         }

@@ -177,7 +177,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// </summary>
         protected virtual bool IsValidInputs()
         {
-            Trace.WriteLine("Validate Inputs Result : True");
+            log.Debug("Validate Inputs Result : True");
             return true;
         }
         /// <summary>
@@ -185,7 +185,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// </summary>
         protected bool IsValidInput(TextBox tb)
         {
-            Trace.WriteLine("Is valid Input " + tb.Name + " : " + tb.Text + " => " + tb.Text.IsNotNullOrWhiteSpace());
+            log.Debug("Is valid Input " + tb.Name + " : " + tb.Text + " => " + tb.Text.IsNotNullOrWhiteSpace());
             return tb.Text.IsNotNullOrWhiteSpace();
         }
 
@@ -196,7 +196,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// <returns>True if the entry is an email string otherwise false.</returns>
         protected bool IsValidInputEmail(TextBox tb)
         {
-            Trace.WriteLine("Is valid Email : " + tb.Text + " => " + tb.Text.IsValidEmail());
+            log.Debug("Is valid Email : " + tb.Text + " => " + tb.Text.IsValidEmail());
             return tb.Text.IsValidEmail();
         }
 
@@ -207,7 +207,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         /// <returns>True if the entry is an email string otherwise false.</returns>
         protected bool IsValidInputAlias(TextBox tb)
         {
-            Trace.WriteLine("Is valid Alias : " + tb.Text + " => " + tb.Text.Sanitize().RemoveDiacritics().ToLower().IsNotNullOrWhiteSpace());
+            log.Debug("Is valid Alias : " + tb.Text + " => " + tb.Text.Sanitize().RemoveDiacritics().ToLower().IsNotNullOrWhiteSpace());
             return tb.Text.Sanitize().RemoveDiacritics().ToLower().IsNotNullOrWhiteSpace();
         }
 
@@ -340,49 +340,6 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
             IsSaveEnabled = !IsValidInputEmail(sender as TextBox) ? false : IsValidInputs();
         }
 
-        #endregion
-
-
-
-        #region Obsolete
-
-        /// <summary>
-        /// Method to set TextBlock text changes to an object property.
-        /// </summary>
-        /// <param name="tb">A TextBox to get value.</param>
-        /// <param name="obj">An object to bind text box value.</param>
-        /// <param name="propertyName">The name of the property of the object.</param>
-        [Obsolete("Use Xaml validationError", true)]
-        protected virtual void TextBox_TextChanged(TextBox tb, object obj, string propertyName = null, bool validate = true)
-        {
-
-            if (tb == null)
-            {
-                throw new ArgumentNullException(nameof(tb));
-            }
-
-            if (obj == null)
-            {
-                throw new ArgumentNullException(nameof(obj));
-            }
-
-            propertyName = propertyName ?? (string)tb.Tag;
-
-            if (!tb.Text.IsNullOrWhiteSpace())
-            {
-                obj.SetPropertyValue(propertyName, tb.Text);
-            }
-            else
-            {
-                obj.SetPropertyValue(propertyName, "");
-            }
-
-            if (validate)
-            {
-                IsSaveEnabled = IsValidForm();
-            }
-        }
-        
         #endregion
     }
 }

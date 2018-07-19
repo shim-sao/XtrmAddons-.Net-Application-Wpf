@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs
 {
@@ -45,6 +47,20 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs
         /// </summary>
         public PageLogs()
         {
+            try
+            {
+                string theme = ApplicationBase.UI.GetParameter("ApplicationTheme", "Dark");
+                ResourceDictionary rd = new ResourceDictionary
+                {
+                    Source = new Uri($"XtrmAddons.Fotootof.Template;component/Theme/{theme}.xaml", UriKind.Relative)
+                };
+                Resources.MergedDictionaries.Add(rd);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+            }
+
             InitializeComponent();
         }
 

@@ -3,6 +3,7 @@ using System.Windows;
 using System;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Fotootof.SQLiteService;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
 {
@@ -55,6 +56,20 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
             // Merge application culture translation resources.
             Resources.MergedDictionaries.Add(Culture.Translation.Words);
             Resources.MergedDictionaries.Add(Culture.Translation.Logs);
+
+            try
+            {
+                string theme = ApplicationBase.UI.GetParameter("ApplicationTheme", "Dark");
+                ResourceDictionary rd = new ResourceDictionary
+                {
+                    Source = new Uri($"XtrmAddons.Fotootof.Template;component/Theme/{theme}.xaml", UriKind.Relative)
+                };
+                Resources.MergedDictionaries.Add(rd);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+            }
         }
 
         #endregion
@@ -71,12 +86,16 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Windows
         {
             if (fe is null)
             {
-                throw new ArgumentNullException(nameof(fe));
+                ArgumentNullException e = new ArgumentNullException(nameof(fe), "FrameworkElement element is null.");
+                log.Error(e.Output(), e);
+                throw e;
             }
 
             if (!fe.GetType().IsSubclassOf(typeof(FrameworkElement)))
             {
-                throw new ArgumentException(fe.GetType() + " " + nameof(fe) + " : invalid parameter type. FrameworkElement inheritance type is required.");
+                TypeAccessException e = new TypeAccessException($"`{nameof(fe)}` Type of `{fe.GetType()}` : Invalid parameter type. FrameworkElement inheritance type is required.");
+                log.Error(e.Output(), e);
+                throw e;
             }
 
             if (defaut)

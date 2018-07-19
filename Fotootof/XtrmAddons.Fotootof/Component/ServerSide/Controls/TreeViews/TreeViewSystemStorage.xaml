@@ -7,44 +7,46 @@
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Controls;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     mc:Ignorable="d"
-    Background="AliceBlue"
     SizeChanged="TreeView_Resize">
 
-	<Grid x:Name="Block_Root"
-		  Style="{StaticResource ResourceKey=Root}">
-		<StackPanel x:Name="Block_RootPanel"
-					Style="{StaticResource ResourceKey=FieldsetVertical}">
+	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<StackPanel x:Name="Block_Header"
-						Style="{StaticResource FieldsetHeader}">
+			<!-- #region BLOCK HEADER -->
+			<StackPanel x:Name="StackPanelBlockHeaderName" Style="{StaticResource StackPanelFieldsetHeader}">
 
-				<Border x:Name="Block_Title"
-						Style="{StaticResource Border_Fieldset_Title}">
+				<!-- Block Title -->
+				<Border x:Name="BorderFieldsetTitleName" Style="{StaticResource BorderFieldsetTitleStyle}">
 					<TextBlock Text="{x:Static p:Resources.Folders}"
 							   FontSize="{StaticResource FontSizeHeader}"
-							   Foreground="{StaticResource Panton_3}"
+							   Foreground="{DynamicResource BaseHighBrush}"
 							   FontWeight="SemiBold"
 							   Margin="5" />
-
 				</Border>
 
-				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource Grid_Fieldset_Menu}">
+				<!-- Block Menu -->
+				<Grid x:Name="Block_Menu" Style="{StaticResource GridFieldsetMenuStyle}">
 				</Grid>
 
 			</StackPanel>
-            <!-- #endregion Sections Directories Header -->
+            <!-- #endregion -->
 
 
-            <!-- #region Directories list -->
-			<TreeView x:Name="DirectoriesTreeView"
+            <!-- #region TREEVIEW DIRECTORYINFO -->
+			<TreeView x:Name="TreeViewDirectoryInfoName"
 					  TreeViewItem.Expanded="TreeViewItem_Expanded"
 					  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-					  ScrollViewer.VerticalScrollBarVisibility="Auto"
-					  Background="LightBlue" />
+					  ScrollViewer.VerticalScrollBarVisibility="Auto">
+				
+				<!-- Overrides of resources must be place directly in the FramworkElement -->
+				<!-- IMPORTANT : Do not move resources overrides in Dictionary : DynamicResource do nothing, no exception. -->
+				<TreeView.Resources>
+					<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource BaseHigh}" />
+					<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{DynamicResource BaseMediumHigh}" />
+				</TreeView.Resources>
+			</TreeView>
+			<!-- #endregion -->
 
-			<!-- #endregion Directories list -->
-
-        </StackPanel>
+		</StackPanel>
     </Grid>
 </base:ControlBase>

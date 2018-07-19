@@ -4,6 +4,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using XtrmAddons.Fotootof.Lib.Base.Enums;
 using XtrmAddons.Fotootof.Common.Tools;
+using System;
+using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Application.Serializable.Elements.Base;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Menu
 {
@@ -23,6 +26,14 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Menu
         /// </summary>
         public MenuMainServer()
         {
+            string theme = ApplicationBase.UI.GetParameter("ApplicationTheme", "Dark");
+            ResourceDictionary rd = new ResourceDictionary
+            {
+                Source = new Uri($"XtrmAddons.Fotootof.Template;component/Theme/{theme}.xaml", UriKind.Relative)
+            };
+
+            Resources.MergedDictionaries.Add(rd);
+
             InitializeComponent();
         }
 
@@ -73,7 +84,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Menu
         /// <param name="e"></param>
         private void ItemButton_MouseEnter(object sender, MouseEventArgs e)
         {
-            ((Button)sender).Background = (SolidColorBrush)FindResource("LightBlack");
+            ((Button)sender).Background = (SolidColorBrush)FindResource("CustomHighlightBrush");
         }
 
         /// <summary>
@@ -83,7 +94,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.Menu
         /// <param name="e"></param>
         private void ItemButton_MouseLeave(object sender, MouseEventArgs e)
         {
-            ((Button)sender).Background = (SolidColorBrush)FindResource("Transparent");
+            ((Button)sender).Background = (SolidColorBrush)FindResource("TransparentBrush");
         }
     }
 }
