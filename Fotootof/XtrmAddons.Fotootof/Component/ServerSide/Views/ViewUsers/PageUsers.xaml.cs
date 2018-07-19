@@ -156,6 +156,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// <summary>
         /// Method to load the list of AclGroup from database.
         /// </summary>
+        [System.Obsolete("use model LoadAll().")]
         private void Refresh()
         {
             Model.LoadAclGroups();
@@ -292,7 +293,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         private void LoadUsers()
         {
             MessageBase.IsBusy = true;
-            log.Info(MessageBase.BusyContent = "Loading Users list. Please wait...");
+            log.Warn("Loading Users list. Please wait...");
 
             try
             {
@@ -310,7 +311,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             }
             finally
             {
-                log.Info(MessageBase.BusyContent = "Loading Users list. Done.");
+                log.Warn("Loading Users list. Done.");
                 MessageBase.IsBusy = false;
             }
         }
@@ -336,14 +337,24 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// <param name="e">Event arguments.</param>
         private void UcDataGridUsers_UserAdded(object sender, EntityChangesEventArgs e)
         {
-            log.Info("Adding or editing User informations. Please wait...");
+            MessageBase.IsBusy = true;
+            log.Warn("Adding or editing User informations. Please wait...");
 
-            UserEntity entity = (UserEntity)e.NewEntity;
-            Model.Users.Items.Add(entity);
-            UserEntityCollection.DbInsert(new List<UserEntity> { entity });
-            Refresh();
-
-            log.Info("Adding or editing User informations. Done");
+            try
+            {
+                Model.AddUserNew((UserEntity)e.NewEntity);
+                log.Info("Adding or editing User informations. Done.");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBase.Error(ex);
+            }
+            finally
+            {
+                log.Warn("Adding or editing User informations. End.");
+                MessageBase.IsBusy = false;
+            }
         }
 
         /// <summary>
@@ -353,18 +364,24 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// <param name="e">Event arguments.</param>
         private void UcDataGridUsers_UserChanged(object sender, EntityChangesEventArgs e)
         {
-            log.Info("Editing User informations. Please wait...");
+            MessageBase.IsBusy = true;
+            log.Warn("Editing User informations. Please wait...");
 
-            UserEntity entity = (UserEntity)e.NewEntity;
-
-            UserEntity old = Model.Users.Items.Single(x => x.PrimaryKey == entity.PrimaryKey);
-            int index = Model.Users.Items.IndexOf(old);
-            Model.Users.Items[index] = entity;
-            UserEntityCollection.DbUpdate(new List<UserEntity> { entity }, new List<UserEntity> { old });
-
-            Refresh();
-
-            log.Info("Editing User informations. Done");
+            try
+            {
+                Model.SaveUserChanges((UserEntity)e.NewEntity);
+                log.Info("Editing User informations. Done.");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBase.Error(ex);
+            }
+            finally
+            {
+                log.Warn("Editing User informations. End.");
+                MessageBase.IsBusy = false;
+            }
         }
 
         /// <summary>
@@ -372,21 +389,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
-        //private void UcDataGridUsers_UserDeleled(object sender, EntityChangesEventArgs e)
-        //{
-        //    log.Info("Deleting User(s). Please wait...");
-
-        //    // Remove item from list.
-        //    UserEntity item = (UserEntity)e.NewEntity;
-        //    Model.Users.Items.Remove(item);
-
-        //    // Delete item from database.
-        //    UserEntityCollection.DbDelete(new List<UserEntity> { item });
-
-        //    Refresh();
-
-        //    log.Info("Deleting User(s). Done.");
-        //}
         private void UcDataGridUsers_UserDeleled(object sender, EntityChangesEventArgs e)
         {
             MessageBase.IsBusy = true;
@@ -395,7 +397,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             try
             {
                 Model.DeleleUser((UserEntity)e.NewEntity);
-
                 log.Info(MessageBase.BusyContent = "Deleting selected Users. Done.");
             }
             catch (Exception ex)

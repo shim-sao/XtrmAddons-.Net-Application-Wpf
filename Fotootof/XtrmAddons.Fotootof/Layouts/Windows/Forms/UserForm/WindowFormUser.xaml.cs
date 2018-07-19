@@ -88,7 +88,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
             // Initialize window component.
             InitializeComponent();
 
-            // Initialize window data model.
+            // Load entity with all required dependencies.
             var entity = default(UserEntity);
             if (UserId > 0)
             {
@@ -100,6 +100,8 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
 
                 entity = Db.Users.SingleOrNull(op);
             }
+
+            // Initialize window data model.
             InitializeModel(entity);
         }
 
@@ -107,14 +109,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
         /// Class XtrmAddons Fotootof Server Component Windows Form User Constructor.
         /// </summary>
         /// <param name="entity">A user entity to edit or a default entity is created if no argument is specified.</param>
-        public WindowFormUser(UserEntity entity = default(UserEntity)) : this(entity?.PrimaryKey ?? 0)
-        {
-            //// Initialize window component.
-            //InitializeComponent();
-
-            //// Initialize window data model.
-            //InitializeModel(entity);
-        }
+        public WindowFormUser(UserEntity entity = default(UserEntity)) : this(entity?.PrimaryKey ?? 0) { }
 
         #endregion
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.DataGrids;
@@ -87,7 +88,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// <param name="page">The page associated to the model.</param>
         public PageUsersModel(PageUsers page) : base(page)
         {
-            LoadAclGroups();
+            LoadAll();
         }
 
         #endregion
@@ -97,7 +98,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         #region Methods
 
         /// <summary>
-        /// Method to load the list of AclGroup from database.
+        /// Method to load all required page data from database.
+        /// </summary>
+        public void LoadAll()
+        {
+            LoadAclGroups();
+            LoadUsers();
+        }
+
+        /// <summary>
+        /// Method to load the list of AclGroups from the database.
         /// </summary>
         public void LoadAclGroups()
         {
@@ -122,7 +132,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         }
 
         /// <summary>
-        /// Method to load users list.
+        /// Method to load the list of users from the database.
         /// </summary>
         public void LoadUsers()
         {
@@ -161,10 +171,9 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         }
 
         /// <summary>
-        /// Method called on User view delete event.
+        /// Method to delete a user from the list and the database.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="item">The User to remove from database.</param>
         public void DeleleUser(UserEntity item)
         {
             // Remove item from the database.
@@ -172,6 +181,33 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
 
             // Remove item from the list.
             Users.Items.Remove(item);
+
+            //Refresh();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        public void AddUserNew(UserEntity item)
+        {
+            Users.Items.Add(item);
+            UserEntityCollection.DbInsert(new List<UserEntity> { item });
+            LoadAll();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">Event arguments.</param>
+        public void SaveUserChanges(UserEntity item)
+        {
+            UserEntity old = Users.Items.Single(x => x.PrimaryKey == item.PrimaryKey);
+            int index = Users.Items.IndexOf(old);
+
+            UserEntityCollection.DbUpdate(new List<UserEntity> { item }, new List<UserEntity> { old });;
+            Users.Items[index] = item;
 
             //Refresh();
         }

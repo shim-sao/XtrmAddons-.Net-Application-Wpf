@@ -47,14 +47,14 @@
 
 							<TextBox.Text>
 								<Binding Path="AclGroup.Name"
-											 Mode="TwoWay"
-											 UpdateSourceTrigger="LostFocus"
-											 IsAsync="True"
-											 ValidatesOnDataErrors="True"
-											 ValidatesOnExceptions="True"
-											 NotifyOnValidationError="True"
-											 NotifyOnSourceUpdated="True"
-											 NotifyOnTargetUpdated="True">
+										 Mode="TwoWay"
+										 UpdateSourceTrigger="LostFocus"
+										 IsAsync="True"
+										 ValidatesOnDataErrors="True"
+										 ValidatesOnExceptions="True"
+										 NotifyOnValidationError="True"
+										 NotifyOnSourceUpdated="True"
+										 NotifyOnTargetUpdated="True">
 
 									<Binding.ValidationRules>
 										<rrString:StringRequired />
@@ -190,8 +190,7 @@
 							  CanUserSortColumns="True"
 							  ColumnWidth="*"
 							  Cursor="Hand"
-							  
-							  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowFormAclGroup}}}"
+							  DataContext="{Binding DataContext, ElementName=UCWindowBaseForm, IsAsync=True}"
 							  EnableRowVirtualization="false"
 							  EnableColumnVirtualization="false"
 							  Height="340"
@@ -202,7 +201,7 @@
 							  SelectionUnit="FullRow"
 							  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 							  Width="430">
-						<!--DataContext="{Binding DataContext, ElementName=UCWindowBaseForm, IsAsync=True}"-->
+						<!-- DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowFormAclGroup}}}" -->
 
 						<DataGrid.Columns>
 

@@ -76,16 +76,20 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
             // Initialize window component.
             InitializeComponent();
 
-            // Initialize window data model.
-
-            var op = new AclGroupOptionsSelect
+            // Load entity with all required dependencies.
+            var entity = default(AclGroupEntity);
+            if (AclGroupId > 0)
             {
-                PrimaryKey = AclGroupId,
-                Dependencies = { EnumEntitiesDependencies.All }
-            };
+                var op = new AclGroupOptionsSelect
+                {
+                    PrimaryKey = AclGroupId,
+                    Dependencies = { EnumEntitiesDependencies.All }
+                };
 
-            var entity = Db.AclGroups.SingleOrDefault(op);
+                entity = Db.AclGroups.SingleOrDefault(op);
+            }
 
+            // Initialize window data model.
             InitializeModel(entity);
         }
 
@@ -94,14 +98,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         /// </summary>
         /// <param name="pageBase"></param>
         /// <param name="group"></param>
-        public WindowFormAclGroup(AclGroupEntity entity = default(AclGroupEntity))
-        {
-            // Initialize window component.
-            InitializeComponent();
-
-            // Initialize window data model.
-            InitializeModel(entity);
-        }
+        public WindowFormAclGroup(AclGroupEntity entity = default(AclGroupEntity)) : this(entity?.PrimaryKey ?? 0) { }
 
         #endregion
 
