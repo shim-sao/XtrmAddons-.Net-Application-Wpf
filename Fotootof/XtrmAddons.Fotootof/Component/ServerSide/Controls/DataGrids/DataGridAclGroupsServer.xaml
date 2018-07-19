@@ -10,16 +10,12 @@
     HorizontalAlignment="Stretch"
 	SizeChanged="Control_SizeChanged">
 
-	<Grid x:Name="Block_Root"
-		  Style="{StaticResource ResourceKey=Root}">
-		<StackPanel x:Name="Block_RootPanel"
-					Style="{StaticResource ResourceKey=FieldsetVertical}">
+	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<StackPanel x:Name="Block_Header"
-						Style="{StaticResource FieldsetHeader}">
-
-				<Border x:Name="Block_Title"
-						Style="{StaticResource Border_Fieldset_Title}">
+			<StackPanel x:Name="StackPanelBlockHeaderName" Style="{StaticResource StackPanelFieldsetHeader}">
+				
+				<Border x:Name="BorderFieldsetTitleName" Style="{StaticResource BorderFieldsetTitleStyle}">
 					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="1*"/>
@@ -28,17 +24,17 @@
 
 						<!-- #region Title -->
 						<Border x:Name="Title_Border">
-							<TextBlock
-                                x:Name="Title_Text"
-                                Text="{x:Static p:Resources.UsersGroups}"
-                                FontSize="{StaticResource FontSizeHeader}"
-                                Foreground="{StaticResource Panton_3}"
-                                FontWeight="SemiBold"
-                                Margin="5">
+							<TextBlock x:Name="Title_Text"
+									   Text="{x:Static p:Resources.UsersGroups}"
+									   FontSize="{StaticResource FontSizeHeader}"
+									   Foreground="{StaticResource Panton_3}"
+									   FontWeight="SemiBold"
+									   Margin="5">
 							</TextBlock>
 						</Border>
-						<!-- #endregion Title -->
+						<!-- #endregion -->
 
+						
 						<!-- #region Counter -->
 						<StackPanel Grid.Column="1" Orientation="Horizontal">
 							<TextBlock
@@ -74,7 +70,7 @@
 
 
 				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource Grid_Fieldset_Menu}">
+					  Style="{StaticResource GridFieldsetMenuStyle}">
 
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
@@ -91,23 +87,20 @@
 							</Grid.ColumnDefinitions>
 
 							<Button x:Name="Button_Add"
-									Content="{StaticResource Icon24UsersPlus}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{DynamicResource ButtonIcon24UsersPlus}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Add}"
 									Click="OnAddNewItem_Click" />
 
 							<Button Grid.Column="1"
 									x:Name="Button_Edit"
-									Content="{StaticResource Icon24UsersEdit}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{DynamicResource ButtonIcon24UsersEdit}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
 									Click="OnEditItem_Click"
 									IsEnabled="False"/>
 
 							<Button Grid.Column="2"
 									x:Name="Button_Delete"
-									Content="{StaticResource Icon24UsersMinus}"
-									Style="{StaticResource Button_Icon24Default}"
+									Style="{DynamicResource ButtonIcon24UsersMinus}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
 									Click="OnDeleteItems_Click"
 									IsEnabled="False"/>
@@ -117,22 +110,23 @@
 			</StackPanel>
 
 
-			<Grid x:Name="Block_Items">
+			<Grid x:Name="GridBlockItemsName">
 				
 				<DataGrid x:Name="ItemsLayout"
 						  AutoGenerateColumns="False"
-						  EnableRowVirtualization="false"
-						  EnableColumnVirtualization="false"
-						  ColumnWidth="*"
+						  Background="{DynamicResource ChromeLowBrush}"
 						  CanUserDeleteRows="True"
 						  CanUserAddRows="False"
-						  SelectionMode="Extended"
-						  ItemsSource="{Binding Items, Mode=OneWay, IsAsync=true}"
-						  RowHeight="22"
+						  ColumnWidth="*"
+						  EnableColumnVirtualization="false"
+						  EnableRowVirtualization="false"
 						  HorizontalAlignment="Stretch"
-						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+						  ItemsSource="{Binding Items, Mode=OneWay, IsAsync=true}"
 						  MouseDoubleClick="OnEditItem_Click"
-						  SelectionChanged="ItemsCollection_SelectionChanged">
+						  RowHeight="22"
+						  SelectionMode="Extended"
+						  SelectionChanged="ItemsCollection_SelectionChanged"
+						  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
 
 					<DataGrid.Columns>
 						<!-- #region : Column AclGroupId -->

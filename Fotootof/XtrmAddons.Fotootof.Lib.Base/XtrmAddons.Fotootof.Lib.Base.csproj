@@ -91,7 +91,7 @@
     <Compile Include="Classes\Controls\Systems\StorageInfoModel.cs" />
     <Compile Include="Classes\AppSystems\Log4net\MemoryLogWatcher.cs" />
     <Compile Include="Classes\AppSystems\Log4net\MemoryAppenderWithEvents.cs" />
-    <Compile Include="Classes\AppSystems\SettingsBase.cs" />
+    <Compile Include="Classes\AppSystems\AppSettings.cs" />
     <Compile Include="Classes\Win32\DialogBase.cs" />
     <Compile Include="Classes\Windows\WindowBase.cs" />
     <Compile Include="Classes\Windows\WindowBaseDataGridModel.cs" />

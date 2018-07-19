@@ -9,12 +9,5 @@ namespace XtrmAddons.Fotootof.SQLiteService
         // Main Service contract
         [OperationContract(Name = "Contract")]
         void Main();
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [OperationContract(Name = "GetAclGroups")]
-        IList<E> Get<E, O>(O options);
     }
 }

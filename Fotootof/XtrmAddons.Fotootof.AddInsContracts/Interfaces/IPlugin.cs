@@ -1,39 +1,30 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 
 namespace XtrmAddons.Fotootof.AddInsContracts.Interfaces
 {
     /// <summary>
-    /// Interface XtrmAddons Fotootof AddIns Contracts Plugin.
+    /// Interface XtrmAddons Fotootof Interfaces AddInsContracts Module.
     /// </summary>
-    public interface IPlugin
+    public interface IPlugin : IDisposable
     {
         #region Properties
 
         /// <summary>
-        /// Property check, or set, if the plugin is created.
+        /// <para>Property to define the name of the module.</para>
+        /// <para>The name of the module will be displays as menu item title.</para>
         /// </summary>
-        bool IsPluginCreated { get; set; }
+        string Name { get; set; }
 
         /// <summary>
-        /// <para>Property to access to the custon user control.</para>
+        /// Property to define the name of the parent menu item.
         /// </summary>
-        UserControl MenuControl { get; set; }
-
-        #endregion
-
-
-        #region Method
+        string ParentName { get; set; }
 
         /// <summary>
-        /// Method to initialize plugin.
+        /// 
         /// </summary>
-        void InitializePlugin();
-
-        /// <summary>
-        /// Method to get user control plugin.
-        /// </summary>
-        /// <returns>A custon user control.</returns>
-        UserControl GetPlugin();
+        MenuItem MenuItem { get; set; }
 
         #endregion
     }

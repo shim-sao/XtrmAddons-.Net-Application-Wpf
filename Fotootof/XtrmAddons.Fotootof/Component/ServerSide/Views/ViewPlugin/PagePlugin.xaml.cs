@@ -28,12 +28,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewPlugin
         /// </summary>
         public PagePluginModel Model { get; private set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        [System.Obsolete("Use FindName('Block_Root')")]
-        public Grid BlockRoot => Block_Root;
-
         #endregion
 
 
@@ -57,7 +51,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewPlugin
                 ((Grid)uc.Parent).Children.Remove(uc);
             }
 
-            ((Grid)FindName("Block_Root")).Children.Add(uc);
+            ((Grid)FindName("GridBlockRootName")).Children.Add(uc);
         }
 
         #endregion
@@ -96,10 +90,8 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewPlugin
         /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
-
-            Width = fe.ActualWidth;
-            Height = fe.ActualHeight;
+            Width = MainBlockContent.ActualWidth;
+            Height = MainBlockContent.ActualHeight;
         }
 
         #endregion

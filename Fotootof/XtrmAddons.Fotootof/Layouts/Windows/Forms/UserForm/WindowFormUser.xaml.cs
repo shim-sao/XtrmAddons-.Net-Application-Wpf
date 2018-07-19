@@ -10,6 +10,8 @@ using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 
 namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
 {
@@ -75,20 +77,39 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
 
 
 
-        #region Constructors
+        #region 
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Server Component Windows Form User Constructor.
+        /// </summary>
+        /// <param name="UserId">A user entity id or primary key.</param>
+        public WindowFormUser(int UserId)
+        {
+            // Initialize window component.
+            InitializeComponent();
+
+            // Load entity with all required dependencies.
+            var entity = default(UserEntity);
+            if (UserId > 0)
+            {
+                var op = new UserOptionsSelect
+                {
+                    PrimaryKey = UserId,
+                    Dependencies = { EnumEntitiesDependencies.All }
+                };
+
+                entity = Db.Users.SingleOrNull(op);
+            }
+
+            // Initialize window data model.
+            InitializeModel(entity);
+        }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Windows Form User Constructor.
         /// </summary>
         /// <param name="entity">A user entity to edit or a default entity is created if no argument is specified.</param>
-        public WindowFormUser(UserEntity entity = default(UserEntity))
-        {
-            // Initialize window component.
-            InitializeComponent();
-
-            // Initialize window data model.
-            InitializeModel(entity);
-        }
+        public WindowFormUser(UserEntity entity = default(UserEntity)) : this(entity?.PrimaryKey ?? 0) { }
 
         #endregion
 
@@ -330,7 +351,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
         /// <param name="e">Routed event arguments.</param>
         private void CheckBoxAclGroup_Checked(object sender, RoutedEventArgs e)
         {
-            NewForm.AclGroupsPKeys.Add(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
+            NewForm.AclGroupsPKeys.AddIfNotExists(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
             IsSaveEnabled = IsValidInputs();
         }
 

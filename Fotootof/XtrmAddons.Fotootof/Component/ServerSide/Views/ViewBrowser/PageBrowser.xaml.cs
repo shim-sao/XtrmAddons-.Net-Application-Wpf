@@ -75,7 +75,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
-            AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Browser"));
             MessageBase.IsBusy = false;
@@ -107,7 +106,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
             };
 
             // Add action to the tree view item event handler.
-            UcTreeViewDirectories.DirectoriesTreeView.SelectedItemChanged += TreeViewDirectories_SelectedItemChanged;
+            UcTreeViewDirectories.TreeViewDirectoryInfoName.SelectedItemChanged += TreeViewDirectories_SelectedItemChanged;
             UcListViewStoragesServer.ImageSize_SelectionChanged += ImageSize_SelectionChanged;
         }
 
@@ -448,9 +447,6 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
         /// <param name="e">Size changed event arguments.</param>
         public override void Control_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            FrameworkElement fe = ((MainWindow)AppWindow).Block_Content as FrameworkElement;
-            fe = MainBlockContent;
-
             Width = Math.Max(MainBlockContent.ActualWidth, 0);
             Height = Math.Max(MainBlockContent.ActualHeight, 0);
 

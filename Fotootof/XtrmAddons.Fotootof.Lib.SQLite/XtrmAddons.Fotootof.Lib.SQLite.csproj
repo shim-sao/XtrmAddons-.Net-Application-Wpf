@@ -94,6 +94,7 @@
     <Compile Include="Database\Manager\Base\EntitiesManager.cs" />
     <Compile Include="Database\Manager\Base\EntitiesOptions.cs" />
     <Compile Include="Database\Manager\Base\EntitiesOptionsList.cs" />
+    <Compile Include="Database\Manager\Base\EntitiesOptionsDelete.cs" />
     <Compile Include="Database\Manager\Base\EntitiesOptionsSelect.cs" />
     <Compile Include="Database\Manager\Base\EntitiesQueryExtension.cs" />
     <Compile Include="Database\Manager\Base\EntityManagerDeleteDependency.cs" />

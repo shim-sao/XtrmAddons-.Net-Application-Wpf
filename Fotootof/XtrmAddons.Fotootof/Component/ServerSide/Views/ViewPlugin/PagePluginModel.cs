@@ -1,8 +1,4 @@
 ﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
-using XtrmAddons.Fotootof.Common.Collections;
-using XtrmAddons.Fotootof.Common.Controls.DataGrids;
-using XtrmAddons.Fotootof.Common.Controls.ListViews;
-using XtrmAddons.Fotootof.Common.Models.DataGrids;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewPlugin
 {

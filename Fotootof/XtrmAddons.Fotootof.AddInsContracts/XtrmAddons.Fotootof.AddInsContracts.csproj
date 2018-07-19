@@ -53,6 +53,8 @@
     <Compile Include="Classes\Base\ExtensionBase.cs" />
     <Compile Include="Classes\Catalog\CatalogBase.cs" />
     <Compile Include="Classes\Builder\InterfaceBuilder.cs" />
+    <Compile Include="Interfaces\IPlugin.cs" />
+    <Compile Include="Interfaces\ITheme.cs" />
     <Compile Include="Interfaces\IExtension.cs" />
     <Compile Include="Interfaces\IComponent.cs" />
     <Compile Include="Interfaces\IProcess.cs" />

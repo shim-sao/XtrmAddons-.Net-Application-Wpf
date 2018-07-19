@@ -165,6 +165,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// <param name="userId"></param>
         /// <param name="aclGroupId"></param>
         /// <returns></returns>
+        [System.Obsolete("to delete", true)]
         public async Task<int> DeleteAclGroupDependenciesAsync(int userId, List<int> aclGroupId)
         {
             using (Db.Context)

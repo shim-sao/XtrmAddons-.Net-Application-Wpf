@@ -25,11 +25,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.TreeViews
         {
             get
             {
-                return Block_Header.Visibility;
+                return StackPanelBlockHeaderName.Visibility;
             }
             set
             {
-                Block_Header.Visibility = value;
+                StackPanelBlockHeaderName.Visibility = value;
             }
         }
 
@@ -57,7 +57,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.TreeViews
             // Add items to the tree view.
             foreach (DriveInfo driveInfo in Drives)
             {
-                DirectoriesTreeView.Items.Add(CreateTreeDriveInfo(driveInfo));
+                TreeViewDirectoryInfoName.Items.Add(CreateTreeDriveInfo(driveInfo));
             }
         }
 
@@ -201,11 +201,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.TreeViews
         /// </summary>
         private void TreeView_Loaded()
         {
-            DirectoriesTreeView.Height = Block_Root.ActualHeight;
+            TreeViewDirectoryInfoName.Height = GridBlockRootName.ActualHeight;
 
-            if(Block_Header.IsVisible)
+            if(StackPanelBlockHeaderName.IsVisible)
             {
-                DirectoriesTreeView.Height -= Block_Header.ActualHeight;
+                TreeViewDirectoryInfoName.Height -= StackPanelBlockHeaderName.ActualHeight;
             }
         }
 

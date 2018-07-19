@@ -12,12 +12,12 @@
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Server}"
-    Style="{StaticResource ResourceKey=PageContent}"
+    Style="{StaticResource ResourceKey=PageContentStyle}"
     Background="{StaticResource ResourceKey=LightGrey}"
     SizeChanged="Control_SizeChanged"
 	Loaded="Control_Loaded">
 
-    <Grid x:Name="Block_Root">
+    <Grid x:Name="GridBlockRootName">
         
 
         

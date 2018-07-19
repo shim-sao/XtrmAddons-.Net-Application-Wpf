@@ -9,23 +9,18 @@
     Height="40">
 
     <Grid x:Name="GritRoot"
-		  Style="{StaticResource ResourceKey=Root}">
+		  Style="{StaticResource GridRootStyle}">
         
         <StackPanel HorizontalAlignment="Stretch"
 					Orientation="Horizontal"
-					Background="{StaticResource ResourceKey=Panton_4}">
+					Background="{DynamicResource ChromeMediumLowBrush}">
 
             <Border x:Name="Block_Menu"
 					VerticalAlignment="Stretch">
                 
                 <Button x:Name="ServerItemButton"
 						Content="{x:Static p:Resources.Server}"
-						FontSize="{StaticResource Text-H4}"
-						Background="Transparent"
-						Padding="10,0"
-						Foreground="White"
-						FontWeight="Bold"
-						BorderThickness="0"
+						Style="{StaticResource ButtonSubMenu}"
 						Click="NavigateToPageServer"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"/>
@@ -37,12 +32,7 @@
 
                 <Button x:Name="BrowserItemButton"
 						Content="{x:Static p:Resources.Browser}"
-						FontSize="{StaticResource Text-H4}"
-						Background="Transparent"
-						Padding="10,0"
-						Foreground="White"
-						FontWeight="Bold"
-						BorderThickness="0"
+						Style="{StaticResource ButtonSubMenu}"
 						Click="NavigateToPageBrowser"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"/>
@@ -53,12 +43,7 @@
 					VerticalAlignment="Stretch">
 
                 <Button Content="{x:Static p:Resources.Catalog}"
-						FontSize="{StaticResource Text-H4}"
-						Background="Transparent"
-						Padding="10,0"
-						Foreground="White"
-						FontWeight="Bold"
-						BorderThickness="0"
+						Style="{StaticResource ButtonSubMenu}"
 						Click="NavigateToPageCatalog"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"/>

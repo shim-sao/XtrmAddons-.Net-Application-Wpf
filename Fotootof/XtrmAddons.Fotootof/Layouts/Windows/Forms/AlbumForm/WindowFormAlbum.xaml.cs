@@ -11,6 +11,8 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 
 namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm
 {
@@ -72,6 +74,28 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm
 
 
         #region Constructor
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="AlbumId"></param>
+        public WindowFormAlbum(int AlbumId)
+        {
+            // Initialize window component.
+            InitializeComponent();
+
+            // Initialize window data model.
+
+            var op = new AlbumOptionsSelect
+            {
+                PrimaryKey = AlbumId,
+                Dependencies = { EnumEntitiesDependencies.All }
+            };
+
+            var entity = Db.Albums.SingleOrDefault(op);
+
+            InitializeModel(entity);
+        }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Common Window Form Album Constructor.

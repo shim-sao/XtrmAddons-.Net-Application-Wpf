@@ -61,7 +61,7 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à _About XtrmAddons Fotootof Server.
+        ///   Recherche une chaîne localisée semblable à _About XtrmAddons FotootoF.
         /// </summary>
         public static string _About {
             get {
@@ -313,6 +313,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à _Plugin.
+        /// </summary>
+        public static string _Plugin {
+            get {
+                return ResourceManager.GetString("_Plugin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Preferences.
         /// </summary>
         public static string _Preferences {
@@ -390,6 +399,33 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         public static string _Stop {
             get {
                 return ResourceManager.GetString("_Stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Theme.
+        /// </summary>
+        public static string _Theme {
+            get {
+                return ResourceManager.GetString("_Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à _Dark.
+        /// </summary>
+        public static string _ThemeDark {
+            get {
+                return ResourceManager.GetString("_ThemeDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à _Light.
+        /// </summary>
+        public static string _ThemeLight {
+            get {
+                return ResourceManager.GetString("_ThemeLight", resourceCulture);
             }
         }
         
@@ -520,7 +556,7 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à XtrmAddons Fotootof.
+        ///   Recherche une chaîne localisée semblable à XtrmAddons FotootoF.
         /// </summary>
         public static string ApplicationName {
             get {
@@ -763,7 +799,7 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à XtrmAddons Fotootof Image Selector.
+        ///   Recherche une chaîne localisée semblable à FotootoF Image Selector.
         /// </summary>
         public static string DialogBoxTitle_PictureFileSelector {
             get {

@@ -1,0 +1,17 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+	
+	<!-- Date converter parameter -->
+	<system:String x:Key="CvDateSQLParameter">DateSQL</system:String>
+	<system:String x:Key="CvDateLongParameter">DateLong</system:String>
+	<system:String x:Key="CvDateTimeLongParameter">DateTimeLong</system:String>
+	<system:String x:Key="CvTimeParameter">Time</system:String>
+	
+	<!-- Cache directory name -->
+	<system:String x:Key="AlbumsPictureDirectory">albums</system:String>
+	<system:String x:Key="CategoriesPictureDirectory">categories</system:String>
+	<system:String x:Key="PicturesDirectory">pictures</system:String>
+
+</ResourceDictionary>

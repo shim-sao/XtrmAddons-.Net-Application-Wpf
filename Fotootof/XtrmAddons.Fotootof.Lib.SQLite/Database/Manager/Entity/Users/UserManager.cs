@@ -81,7 +81,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// <param name="userId">The id of the User.</param>
         /// <param name="aclGroupId">The list oft id of AclGoup.</param>
         /// <returns>Async task with modified AclGroup entity as result.</returns>
-        [System.Obsolete("Use generic method.")]
+        [System.Obsolete("Use generic method.", true)]
         public async Task<int> DeleteAclGroupDependencyAsync(int userId, List<int> aclGroupId)
         {
             string action = string.Join(",", aclGroupId);
@@ -100,7 +100,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        [System.Obsolete("Use generic method.")]
+        [System.Obsolete("Use generic method.", true)]
         public async Task<int> CleanAclGroupDependencyAsync(UserEntity entity, bool save = true)
         {
             string ids = string.Join(",", entity.ListOfPrimaryKeys(entity.UsersInAclGroups.ToList(), "AclGroupId"));
@@ -123,19 +123,53 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// </summary>
         /// <param name="item">An Entity to update.</param>
         /// <returns>The updated Entity.</returns>
+        [System.Obsolete("save parameter no more used.", true)]
         public async Task<UserEntity> UpdateAsync(UserEntity entity, bool save = true)
         {
-            // Update item informations.
-            entity = Context.Update(entity).Entity;
-            await CleanAclGroupDependencyAsync(entity, save);
-
-            // Save changes on the database.
-            if (save)
+            // Remove Users In AclGroups dependencies.
+            if (entity.UsersInAclGroups.DepPKeysRemoved.Count > 0)
             {
-                Save();
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "UsersInAclGroups", key = "UserId", keyList = "AclGroupId" },
+                    entity.PrimaryKey,
+                    entity.UsersInAclGroups.DepPKeysRemoved
+                );
+                entity.UsersInAclGroups.DepPKeysRemoved.Clear();
             }
 
-            // Return updated item.
+            // Update item informations.
+            entity = Context.Update(entity).Entity;
+
+            await SaveAsync();
+
+            // Return the updated item.
+            return entity;
+        }
+
+        /// <summary>
+        /// Method to update an Entity.
+        /// </summary>
+        /// <param name="item">An Entity to update.</param>
+        /// <returns>The updated Entity.</returns>
+        public async Task<UserEntity> UpdateAsync(UserEntity entity)
+        {
+            // Remove Users In AclGroups dependencies.
+            if (entity.UsersInAclGroups.DepPKeysRemoved.Count > 0)
+            { 
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "UsersInAclGroups", key = "UserId", keyList = "AclGroupId" },
+                    entity.PrimaryKey,
+                    entity.UsersInAclGroups.DepPKeysRemoved
+                );
+                entity.UsersInAclGroups.DepPKeysRemoved.Clear();
+            }
+
+            // Update item informations.
+            entity = Context.Update(entity).Entity;
+
+            await SaveAsync();
+
+            // Return the updated item.
             return entity;
         }
 

@@ -1,41 +1,68 @@
 ﻿using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.Storage;
 using XtrmAddons.Net.Application.Helpers;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 
 namespace XtrmAddons.Fotootof.Layouts.Windows.Settings
 {
-    public class WindowSettingsModel
+    public class WindowSettingsModel : WindowBaseFormModel<WindowSettings>
     {
+        #region Constructor
+
         /// <summary>
-        /// Property to access to the application base directory.
+        /// Class XtrmAddons Fotootof Server Window AclGroup Form Model Constructor.
         /// </summary>
-        public static string BaseDirectory => ApplicationBase.Directories.Base;
+        /// <param name="pageBase">The page associated to the model.</param>
+        public WindowSettingsModel(WindowSettings window) : base(window) { }
+
+        #endregion
+
+
+
+        #region Properties Files
 
         /// <summary>
         /// Property to access to the application preferences directory file absolute path.
         /// </summary>
-        public static string FilePreferencesXml => ((Net.Application.Helpers.SerializerHelper)ApplicationBase.SerializerHelper).FileName_Preferences;
+        public string FilePreferencesXml
+        {
+            get => ((Net.Application.Helpers.SerializerHelper)ApplicationBase.SerializerHelper).FileName_Preferences;
+        }
 
         /// <summary>
         /// Property to access to the application options directory file absolute path.
         /// </summary>
-        public static string FileOptionsXml => ((SerializerHelper)ApplicationBase.SerializerHelper).FileName_Options;
+        public string FileOptionsXml
+        {
+            get => ((SerializerHelper)ApplicationBase.SerializerHelper).FileName_Options;
+        }
 
         /// <summary>
         /// Property to access to the application user interface directory file absolute path.
         /// </summary>
-        public static string FileUiXml => ((SerializerHelper)ApplicationBase.SerializerHelper).FileName_Ui;
+        public string FileUiXml
+        {
+            get => ((SerializerHelper)ApplicationBase.SerializerHelper).FileName_Ui;
+        }
+
+        #endregion
 
 
-        public string BinDirectory => ApplicationBase.Directories.Bin;
+        #region Properties Directories
 
-        public string CacheDirectory => ApplicationBase.Directories.Cache;
+        /// <summary>
+        /// Property to access to the application base directory.
+        /// </summary>
+        public DirectoryHelper Directories
+        {
+            get => ApplicationBase.Directories;
+        }
+        
+        public Net.Application.Serializable.Elements.Data.Database Database
+            => ApplicationBase.Options.Data.Databases.FindDefaultFirst();
 
-        public string ConfigDirectory => ApplicationBase.Directories.Config;
+        #endregion
 
-        public string DataDirectory => ApplicationBase.Directories.Config;
-
-        public string ThemeDirectory => ApplicationBase.Directories.Theme;
 
         public StorageOptions Storage => ApplicationBase.Storage;
 

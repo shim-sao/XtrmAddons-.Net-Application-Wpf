@@ -11,19 +11,19 @@
     mc:Ignorable="d"
     ShowsNavigationUI="False"
     Title="{x:Static p:Resources.Sections}"
-    Style="{StaticResource PageContent}"
+    Style="{StaticResource PageContentStyle}"
     SizeChanged="Control_SizeChanged"
 	Loaded="Control_Loaded">
 
-	<Grid x:Name="Block_Root"
-		  Style="{StaticResource Root}">
+	<Grid x:Name="GridBlockRootName"
+		  Style="{StaticResource GridRootStyle}">
 		
-		<StackPanel x:Name="Block_RootPanel"
-					Style="{StaticResource FieldsetVertical}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
+					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
 			<StackPanel x:Name="Block_TopControls"
-						Style="{StaticResource StackPanel_TopControls}">
-				<Border Background="{StaticResource LightGrey}">
+						Style="{StaticResource StackPanelTopControls}">
+				<Border Background="{StaticResource LightGrey}" Visibility="Hidden">
 					<TextBox Background="White"
 							 x:Name="Breadcrumbs"
 							 Margin="5"
@@ -34,7 +34,7 @@
 
 
 			<Grid x:Name="Block_MiddleContents"
-				  Style="{StaticResource ResourceKey=MiddleContents}">
+				  Style="{StaticResource GridMiddleContentStyle}">
 
 				<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColSections"/>

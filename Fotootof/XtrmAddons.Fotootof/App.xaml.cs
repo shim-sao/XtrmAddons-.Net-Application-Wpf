@@ -9,9 +9,11 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Settings;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Helpers;
+using XtrmAddons.Net.Application.Serializable.Elements.Base;
 
 /// <summary>
 /// Globals Conditionals :
@@ -75,12 +77,12 @@ namespace XtrmAddons.Fotootof
             Thread.CurrentThread.CurrentUICulture = ci;
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-
-            //Current.Resources.MergedDictionaries.Add(new ResourceDictionary()
-            //{
-            //    Source = new Uri("/../XtrmAddons.Fotootof.Template;component/Generic.xaml", UriKind.RelativeOrAbsolute)
-            //});
-
+            
+            ResourceDictionary rd = new ResourceDictionary
+            {
+                Source = new Uri("XtrmAddons.Fotootof.Template;component/Theme/Dark.xaml", UriKind.Relative)
+            };
+            Current.Resources.MergedDictionaries.Add(rd);
         }
 
         #endregion
@@ -162,6 +164,9 @@ namespace XtrmAddons.Fotootof
             // Initialize application options.
             InitializeOptions();
 
+            // Add Theme to Application UI Parmeters.
+            //ApplicationBase.UI.AddParameter("ApplicationTheme", "Dark");
+
             // Application is running
             // Process command line args
             bool startMinimized = false;
@@ -178,6 +183,22 @@ namespace XtrmAddons.Fotootof
             if (startMinimized)
             {
                 mainWindow.WindowState = WindowState.Minimized;
+            }
+
+            string ws = ApplicationBase.UI.AddParameter("WindowState", "Maximized");
+            switch (ws)
+            {
+                case "Maximized":
+                    mainWindow.WindowState = WindowState.Maximized;
+                    break;
+
+                case "Minimized":
+                    mainWindow.WindowState = WindowState.Minimized;
+                    break;
+
+                case "Normal":
+                    mainWindow.WindowState = WindowState.Normal;
+                    break;
             }
             mainWindow.Show();
         }

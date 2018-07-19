@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewLogs;
@@ -13,6 +14,7 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems.Log4net;
 using XtrmAddons.Fotootof.SQLiteService;
 using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.NotifyIcons;
 
 namespace XtrmAddons.Fotootof
@@ -55,7 +57,7 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Property alias to access to the text block container of logs stack.
         /// </summary>
-        public Border BlockContent => Block_Content;
+        //public Border BlockContent => BlockContent;
 
         /// <summary>
         /// Property alias to access to the text block container of logs stack.
@@ -86,6 +88,14 @@ namespace XtrmAddons.Fotootof
             Resources.MergedDictionaries.Add(Culture.Translation.Words);
             Resources.MergedDictionaries.Add(Culture.Translation.Logs);
 
+            // Merge dynamic custom Theme
+            string theme = ApplicationBase.UI.GetParameter("ApplicationTheme", "Dark");
+            ResourceDictionary rd = new ResourceDictionary
+            {
+                Source = new Uri($"XtrmAddons.Fotootof.Template;component/Theme/{theme}.xaml", UriKind.Relative)
+            };
+            Resources.MergedDictionaries.Add(rd);
+
             // Initialize window component.
             InitializeComponent();
 
@@ -109,8 +119,8 @@ namespace XtrmAddons.Fotootof
             await Task.Delay(10);
 
             // Assigned page frames.
-            Frame_Logs.Navigate(BlockLogs);
-            Frame_Content.Navigate(new PageBrowser());
+            FrameBlockLogsName.Navigate(BlockLogs);
+            //Frame_Content.Navigate(new PageBrowser());
 
             // Initialize items of Server Menu.
             AppMainMenu.InitializeMenuItemsServer();
@@ -162,6 +172,16 @@ namespace XtrmAddons.Fotootof
         }
 
         /// <summary>
+        /// Method called on file exit click.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The routed event arguments.</param>
+        private void FileExit_Click(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
+
+        /// <summary>
         /// Method called on window size changed event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
@@ -169,11 +189,11 @@ namespace XtrmAddons.Fotootof
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
 #if DEBUG_SIZE
-
+            FrameworkElement fe = FindName("BlockContent") as FrameworkElement;
             Trace.TraceInformation("-------------------------------------------------------------------------------------------------------");
             Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
             Trace.TraceInformation("MainWindow.ActualSize = [" + ActualWidth + "," + ActualHeight + "]");
-            Trace.TraceInformation("Block_Content.ActualSize = [" + Block_Content.ActualWidth + "," + Block_Content.ActualHeight + "]");
+            Trace.TraceInformation("fe.ActualSize = [" + fe.ActualWidth + "," + fe.ActualHeight + "]");
             Trace.TraceInformation("Frame_Content.ActualSize = [" + Frame_Content.ActualWidth + "," + Frame_Content.ActualHeight + "]");
             Trace.TraceInformation("RowGridMain.Height = [" + RowGridMain.Height + "]");
             Trace.TraceInformation("-------------------------------------------------------------------------------------------------------");
@@ -200,19 +220,19 @@ namespace XtrmAddons.Fotootof
         /// <summary>
         /// Method to toggle logs window.
         /// </summary>
-        public void LogsToggle()
+        public void ToggleLogs()
         {
             // Set the row grid splitter Height.
             RowGridSplitter.Height =
                 RowGridSplitter.Height == new GridLength(0)
-                ? new GridLength(5) : new GridLength(0);
+                ? new GridLength(6) : new GridLength(0);
 
             // Set the grid row logs height.
             RowGridLogs.Height =
                 RowGridLogs.Height == new GridLength(0)
                 ? new GridLength(250) : new GridLength(0);
         }
-                
+
         #endregion
     }
 }
