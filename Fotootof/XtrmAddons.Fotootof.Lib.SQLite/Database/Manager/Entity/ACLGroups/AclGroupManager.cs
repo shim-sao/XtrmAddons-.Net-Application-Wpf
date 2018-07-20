@@ -200,6 +200,33 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             return result;
         }
 
+        /// <summary>
+        /// Method to update an Entity.
+        /// </summary>
+        /// <param name="item">An Entity to update.</param>
+        /// <returns>The updated Entity.</returns>
+        public async Task<AclGroupEntity> UpdateAsync(AclGroupEntity entity)
+        {
+            // Remove Users In AclGroups dependencies.
+            if (entity.UsersInAclGroups.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "UsersInAclGroups", key = "AclGroupId", keyList = "UserId" },
+                    entity.PrimaryKey,
+                    entity.UsersInAclGroups.DepPKeysRemoved
+                );
+                entity.UsersInAclGroups.DepPKeysRemoved.Clear();
+            }
+
+            // Update item informations.
+            entity = Context.Update(entity).Entity;
+
+            await SaveAsync();
+
+            // Return the updated item.
+            return entity;
+        }
+
         #endregion
     }
 }

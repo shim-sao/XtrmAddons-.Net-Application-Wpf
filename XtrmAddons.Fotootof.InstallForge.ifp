@@ -57,7 +57,7 @@ Time = 2
 PlaySound = 0
 Allow = 0
 [Build]
-File = G:\projects\vs-builds\Fotootof\XtrmAddons.Fotootof.Installer.1.0.18198.1321-alpha.exe
+File = G:\projects\vs-builds\Fotootof\XtrmAddons.Fotootof.Installer.1.0.18200.1615-alpha.exe
 [Updater]
 Allow = 1
 1 = <appname>
@@ -800,7 +800,7 @@ Fotootof Uninstall
 0
 Startmenu
 Fotootof
-<installpath>\XtrmAddons Fotootof.exe
+<installpath>\Update.exe
 
 
 0

@@ -114,7 +114,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// <summary>
         /// 
         /// </summary>
-        public bool LockDepPKeysChanges { get; set; } = true;
+        public bool LockDepPKeysChanges { get; set; } = false;
 
         /// <summary>
         /// 
@@ -353,6 +353,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
             // Check if we must populate data on construct.
             using (var block = this.BlockReentrancy())
             {
+                log.Debug("---------------------------------------------------------------------------------");
+
                 LockDepPKeysChanges = true;
                 LockDepReferencesChanges = true;
 
@@ -361,7 +363,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                 {
                     // Occurs on add new item into the collection.
                     case NotifyCollectionChangedAction.Add:
-                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Add Dependency");
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Add COLLECTION");
                         NotifyCollectionAdd_DepPKeys(this, e);
                         NotifyCollectionAdd_DepReferences(this, e);
                         break;
@@ -370,7 +372,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                         break;
 
                     case NotifyCollectionChangedAction.Remove:
-                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Remove Dependency");
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Remove COLLECTION");
                         NotifyCollectionRemove_DepPKeys(this, e);
                         NotifyCollectionRemove_DepReferences(this, e);
                         break;
@@ -379,7 +381,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                         break;
 
                     case NotifyCollectionChangedAction.Reset:
-                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Reset Dependency");
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Reset COLLECTION");
                         NotifyCollectionReset_DepPKeys(this, e);
                         NotifyCollectionReset_DepReferences(this, e);
                         break;
@@ -387,6 +389,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
 
                 LockDepPKeysChanges = false;
                 LockDepReferencesChanges = false;
+
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Collection count => {this.Count}");
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Primary Keys count => {depPKs.Count}");
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Primary Keys Removed count => {depPKsRemoved.Count}");
+                log.Debug("---------------------------------------------------------------------------------");
             }
         }
 
@@ -397,11 +404,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// <param name="e">Notify collection changed event arguments.</param>
         private void DepReferences_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Sender => {GetType().Name}");
+            log.Debug("---------------------------------------------------------------------------------");
 
             if (LockDepReferencesChanges == true)
             {
-                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyDepReferencesChanges => {LockDepReferencesChanges}");
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Sender => {GetType().Name}");
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : REFERENCES is locked");
                 LockDepReferencesChanges = false;
                 return;
             }
@@ -413,7 +421,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
             {
                 // Occurs on add new item into the collection.
                 case NotifyCollectionChangedAction.Add:
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Add Dependency References");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Add REFERENCES");
                     NotifyCollectionAdd(sender, e);
                     NotifyCollectionAdd_DepPKeys(sender, e);
                     break;
@@ -422,7 +430,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     break;
 
                 case NotifyCollectionChangedAction.Remove:
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Remove Dependency References");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Remove REFERENCES");
                     NotifyCollectionRemove(sender, e);
                     NotifyCollectionRemove_DepPKeys(sender, e);
                     break;
@@ -431,13 +439,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     break;
 
                 case NotifyCollectionChangedAction.Reset:
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Reset Dependency References");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Reset REFERENCES");
                     NotifyCollectionReset(sender, e);
                     NotifyCollectionReset_DepPKeys(sender, e);
                     break;
             }
             
             LockDepPKeysChanges = false;
+
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Collection count => {this.Count}");
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Primary Keys count => {depPKs.Count}");
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Primary Keys Removed count => {depPKsRemoved.Count}");
+            log.Debug("---------------------------------------------------------------------------------");
         }
 
         /// <summary>
@@ -447,11 +460,12 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
         /// <param name="e">Notify collection changed event arguments.</param>
         private void DepPKeys_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Sender => {GetType().Name}");
+            log.Debug("---------------------------------------------------------------------------------");
 
             if(LockDepPKeysChanges == true)
             {
-                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : LockDepPKeysChanges => {LockDepPKeysChanges}");
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Sender => {GetType().Name}");
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : PRIMARY KEYS is locked");
                 LockDepPKeysChanges = false;
                 return;
             }
@@ -463,7 +477,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
             {
                 // Occurs on add new item into the collection.
                 case NotifyCollectionChangedAction.Add:
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : DepPKeysChanged => Action Add");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Add to PRIMAY KEYS");
                     NotifyCollectionAdd(sender, e);
                     NotifyCollectionAdd_DepReferences(sender, e);
                     NotifyCollectionAdd_DepPKeysRemoved(sender, e); // Remove
@@ -473,7 +487,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     break;
 
                 case NotifyCollectionChangedAction.Remove:
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : DepPKeysChanged => Action Remove");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Remove to PRIMAY KEYS");
                     NotifyCollectionRemove(sender, e);
                     NotifyCollectionRemove_DepReferences(sender, e);
                     NotifyCollectionRemove_DepPKeysRemoved(sender, e); // Add
@@ -483,13 +497,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     break;
 
                 case NotifyCollectionChangedAction.Reset:
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : DepPKeysChanged => Action Reset");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Action Reset to PRIMAY KEYS");
                     NotifyCollectionReset(sender, e);
                     NotifyCollectionReset_DepReferences(sender, e);
                     break;
             }
             
             LockDepReferencesChanges = false;
+
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Collection count => {this.Count}");
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Primary Keys count => {depPKs.Count}");
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Primary Keys Removed count => {depPKsRemoved.Count}");
+            log.Debug("---------------------------------------------------------------------------------");
         }
 
         #endregion
@@ -526,7 +545,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                                 newObj.SetPropertyValue(DepPKName, pkValue);
                               
                                 Add(newObj);
-                                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {newObj?.GetType()?.Name} {pkValue} to observable dependency link.");
+                                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {newObj?.GetType()?.Name} : {pkValue} to COLLECTION. Done.");
                             }
                         }
                         catch (Exception ex)
@@ -537,7 +556,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     }
                     else
                     {
-                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding to observable dependency link => Can't add 0");
+                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding to COLLECTION => Can't add 0");
                     }
                 }
             }
@@ -606,11 +625,15 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
             // Process action on each new item
             if (e.NewItems?.Count != null)
             {
+                LockDepPKeysChanges = true;
+
                 foreach (var item in e.NewItems)
                 {
                     int pkValue = GetPkValue(item);
                     if (pkValue != 0)
-                    depPKs.AddIfNotExists(pkValue);
+                    {
+                        depPKs.AddIfNotExists(pkValue);
+                    }
 
                     // Try to find if the dependency is already set.
                     // Search for the value of the primary key name of the item.
@@ -625,6 +648,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     //    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding to observable dependency primary keys => Can't add {pkValue}");
                     //}
                 }
+
+                LockDepPKeysChanges = false;
             }
         }
 

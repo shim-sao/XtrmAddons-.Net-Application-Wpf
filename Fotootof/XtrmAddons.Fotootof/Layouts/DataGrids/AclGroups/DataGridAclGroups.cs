@@ -73,17 +73,18 @@ namespace XtrmAddons.Fotootof.Layouts.DataGrids.AclGroups
                 // Process open file dialog box results 
                 if (result == true)
                 {
-                    RaiseOnChange(SelectedItem);
+                    RaiseOnChange(dlg.NewForm);
                 }
                 else
                 {
-                    RaiseOnCancel(SelectedItem);
+                    RaiseOnCancel(dlg.NewForm);
                 }
             }
             else
             {
-                log.Error("Group not found !");
-                MessageBase.Warning("Group not found !");
+                string message = string.Format("{0} not found !", nameof(AclGroupEntity));
+                log.Warn(message);
+                MessageBase.Warning(message);
             }
         }
 
