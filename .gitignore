@@ -291,3 +291,4 @@ __pycache__/
 *.Thumbs.db
 */Thumbs.db
 **/Thumbs.db
+*.psd
