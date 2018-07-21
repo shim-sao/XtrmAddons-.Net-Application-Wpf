@@ -50,12 +50,6 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// </summary>
         public static UserManager UserManager => Db.Users;
 
-        /// <summary>
-        /// Property proxy to access to the database Version entities manager.
-        /// </summary>
-        [System.Obsolete("Use others mechanisms. Table will be deleted.")]
-        public static VersionManager VersionManager => Db.Versions;
-
         #endregion
     }
 }

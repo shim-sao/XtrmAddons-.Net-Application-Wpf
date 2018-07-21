@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
 {
@@ -83,10 +82,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
             {
                 if (dbname != "")
                 {
-                    Connect();
+                    bool isCreated = Connect();
                     RegisterContext();
+                    if(isCreated == true)
+                    {
+                        PopulateDatabase();
+                    }
                 }
-
+                
                 return context;
             }
         }
@@ -130,13 +133,14 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
         /// Method to connect to the database.
         /// </summary>
         /// <exception cref="InvalidOperationException">Exception thrown if database connection fail.</exception>
-        private void Connect()
+        private bool Connect()
         {
             try
             {
                 var options = new DbContextOptionsBuilder<DatabaseContextCore>();
                 options.UseSqlite(GetConnectionString());
                 context = new DatabaseContextCore(options.Options);
+                return context.Database.EnsureCreated();
             }
             catch (Exception e)
             {
@@ -181,11 +185,21 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
             Pictures = new PictureManager(context);
             Sections = new SectionManager(context);
             Users = new UserManager(context);
-            Versions = new VersionManager(context);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void PopulateDatabase()
+        {
+            AclActions.ServerVersion();
+            AclActions.InitializeTable();
+            AclGroups.InitializeTable();
+            Infos.InitializeTable();
         }
 
         #endregion
-        
+
 
 
         #region IDisposable Support

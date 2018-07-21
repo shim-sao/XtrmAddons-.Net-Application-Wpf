@@ -205,7 +205,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
         private void IsValidFormUserGroupsDependencies()
         {
             // Validate the groups association fields.
-            if (NewForm.UsersInAclGroups == null || NewForm.UsersInAclGroups.Count == 0)
+            if (NewForm.AclGroupsPKeys == null || NewForm.AclGroupsPKeys.Count == 0)
             {
                 throw new ArgumentNullException(string.Format(CultureInfo.CurrentUICulture, Translation.DWords.FormFieldRequired, Translation.DWords.UsersGroups));
             }
@@ -248,7 +248,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
             Trace.WriteLine("Checking if the user group association is valid...");
             Trace.WriteLine("NewForm.UsersInAclGroups = " + NewForm.UsersInAclGroups);
             Trace.WriteLine("NewForm.UsersInAclGroups.Count = " + NewForm.UsersInAclGroups.Count);
-            if (NewForm.UsersInAclGroups == null || NewForm.UsersInAclGroups.Count == 0)
+            if (NewForm.AclGroupsPKeys == null || NewForm.AclGroupsPKeys.Count == 0)
             {
                 return false;
             }
@@ -363,7 +363,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
         private void CheckBoxAclGroup_UnChecked(object sender, RoutedEventArgs e)
         {
             NewForm.AclGroupsPKeys.Remove(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
-            IsSaveEnabled = NewForm.UsersInAclGroups.Count == 0 ? false : IsValidInputs();
+            IsSaveEnabled = NewForm.AclGroupsPKeys.Count == 0 ? false : IsValidInputs();
         }
 
         #endregion

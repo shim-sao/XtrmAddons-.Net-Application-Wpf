@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -97,6 +98,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base
         public string Q(string s)
         {
             return $"'{s.Replace("'", "\'").Replace("\\'", "\'")}'";
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public string ServerVersion()
+        {
+            string version = Context.Database.GetDbConnection().ServerVersion;
+            log.Debug($"Server Database version : {version}");
+            return version;
         }
 
        /// <summary>

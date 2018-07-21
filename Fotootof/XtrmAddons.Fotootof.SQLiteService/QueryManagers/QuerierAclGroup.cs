@@ -188,7 +188,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
                 try { Db.Context.Attach(entity); } catch { throw new System.Exception("Error on database Context Attach AclGroup"); }
 
                 // Update entity.
-                entity = AclGroupManager.Update(entity, true);
+                entity = await AclGroupManager.UpdateAsync(entity);
 
                 if (entity.IsDefault)
                 {
@@ -196,9 +196,9 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
                 }
 
                 // Hack to delete unassociated dependencies. 
-                await CleanDependencies_Async("AclGroupsInAclActions", "AclActionId", entity.PrimaryKey, entity.AclActionsPKeys);
-                await CleanDependencies_Async("SectionsInAclGroups", "SectionId", entity.PrimaryKey, entity.SectionsPKs);
-                await CleanDependencies_Async("UsersInAclGroups", "UserId", entity.PrimaryKey, entity.UsersPKeys);
+                //await CleanDependencies_Async("AclGroupsInAclActions", "AclActionId", entity.PrimaryKey, entity.AclActionsPKeys);
+                //await CleanDependencies_Async("SectionsInAclGroups", "SectionId", entity.PrimaryKey, entity.SectionsPKs);
+                //await CleanDependencies_Async("UsersInAclGroups", "UserId", entity.PrimaryKey, entity.UsersPKeys);
 
                 return entity;
             }

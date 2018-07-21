@@ -9,55 +9,53 @@
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Windows;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:rrString="clr-namespace:XtrmAddons.Net.Windows.ValidationRules;assembly=XtrmAddons.Net.Windows"
     mc:Ignorable="d"
+    Width="480"
+    Height="480"
 	Closing="Window_Closing"
     FocusManager.FocusedElement="{Binding ElementName=InputName}"
-    Height="480"
 	Loaded="Window_Load"
     ResizeMode="NoResize"
+	Style="{DynamicResource WindowFormStyle}"
     Title="{x:Static p:Resources.WindowAlbumFormTitle}"
-    Width="480"
     WindowStartupLocation="CenterScreen">
 
-	<Grid>
+	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
+
 		<Grid.RowDefinitions>
 			<RowDefinition Height="1*"/>
 			<RowDefinition Height="40"/>
 		</Grid.RowDefinitions>
-		
-		<!-- region : Informations -->
-		<TabControl x:Name="TabControlFormContentName">
+
+		<!-- #region BLOCK TAB CONTROL -->
+		<TabControl x:Name="TabControlFormContentName" Grid.Row="0">
 
 			<!-- #region : Tabs Informations -->
 			<TabItem Header="{x:Static p:Resources.Informations}">
 				<Grid>
-					<StackPanel Style="{StaticResource Form}">
+					<StackPanel Style="{StaticResource StackPanelFormStyle}">
 
 						<!-- #region : Field Name -->
-						<StackPanel Orientation="Horizontal"
-									Style="{StaticResource Field}">
-
-							<TextBlock Text="{x:Static p:Resources.Name}"
-									   Style="{StaticResource FieldLabel}"/>
+						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
+							<TextBlock Text="{x:Static p:Resources.Name}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 							<TextBox x:Name="InputName"
-									Style="{StaticResource TextBoxFieldInputRequiredStyle}"
-									Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
-									Validation.Error="OnInput_ValidationError"
-									SourceUpdated="OnInputStringRequired_SourceUpdated"
-									TargetUpdated="OnInput_TargetUpdated"
-									TextChanged="OnInputStringRequired_TextChanged"
-									Width="310">
+										 SourceUpdated="OnInputStringRequired_SourceUpdated"
+										 Style="{StaticResource TextBoxFieldInputRequiredStyle}"
+										 TargetUpdated="OnInput_TargetUpdated"
+										 TextChanged="OnInputStringRequired_TextChanged"
+										 Validation.Error="OnInput_ValidationError"
+										 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}">
 
 								<TextBox.Text>
 									<Binding Path="Album.Name"
-											 Mode="TwoWay"
-											 UpdateSourceTrigger="LostFocus"
-											 IsAsync="True"
-											 ValidatesOnDataErrors="True"
-											 ValidatesOnExceptions="True"
-											 NotifyOnValidationError="True"
-											 NotifyOnSourceUpdated="True"
-											 NotifyOnTargetUpdated="True">
+											IsAsync="True"
+											Mode="TwoWay"
+											NotifyOnSourceUpdated="True"
+											NotifyOnTargetUpdated="True"
+											NotifyOnValidationError="True"
+											ValidatesOnDataErrors="True"
+											ValidatesOnExceptions="True"
+											UpdateSourceTrigger="LostFocus">
 
 										<Binding.ValidationRules>
 											<rrString:StringRequired />
@@ -67,58 +65,37 @@
 							</TextBox>
 
 						</StackPanel>
-						<!-- #endregion : Field Name -->
+						<!-- #endregion -->
 
 
 						<!-- #region : Field Alias -->
-						<StackPanel Orientation="Horizontal"
-										Style="{StaticResource Field}">
-
-							<TextBlock Text="{x:Static p:Resources.Alias}"
-										   Style="{StaticResource FieldLabel}"/>
+						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
+							<TextBlock Text="{x:Static p:Resources.Alias}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
 
 							<TextBox x:Name="InputAlias"
-										 Style="{StaticResource TextBoxFieldInputStyle}"
-										 Text="{Binding Path=Album.Alias, Mode=TwoWay, IsAsync=True}"
-										 Width="310"/>
+									 Style="{StaticResource TextBoxFieldInputStyle}"
+									 Text="{Binding Path=Section.Alias, Mode=TwoWay, IsAsync=True}" />
 
 						</StackPanel>
-						<!-- #endregion : Field Alias -->
+						<!-- #endregion -->
+
 
 						<!-- #region : Field Description -->
-						<StackPanel
-                                Orientation="Horizontal"
-                                Style="{StaticResource Field}">
-
-							<TextBlock
-                                    Style="{StaticResource FieldLabelArea}"
-                                    Text="{x:Static p:Resources.Description}"/>
-
-							<TextBox
-                                    x:Name="InputDescription"
-                                    Style="{StaticResource FieldInputArea}"
-                                    Text="{Binding Path=Album.Description, Mode=TwoWay}"
-                                    Width="310"/>
-
+						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
+							<TextBlock Text="{x:Static p:Resources.Description}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
+							<TextBox Style="{StaticResource TextBoxFieldInputAreaStyle}"
+									 Text="{Binding Path=Section.Description, Mode=TwoWay, IsAsync=True}"/>
 						</StackPanel>
-						<!-- #endregion : Field Description -->
+						<!-- #endregion -->
+
 
 						<!-- #region : Field Comment -->
-						<StackPanel
-                                Orientation="Horizontal"
-                                Style="{StaticResource Field}">
-
-							<TextBlock
-                                    Style="{StaticResource FieldLabelArea}"
-                                    Text="{x:Static p:Resources.Comment}"/>
-
-							<TextBox
-                                    x:Name="InputComment"
-                                    Style="{StaticResource FieldInputArea}"
-                                    Text="{Binding Path=Album.Comment, Mode=TwoWay}"
-                                    Width="310"/>
+						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
+							<TextBlock Text="{x:Static p:Resources.Comment}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
+							<TextBox Style="{StaticResource TextBoxFieldInputAreaStyle}"
+									 Text="{Binding Path=Section.Comment, Mode=TwoWay, IsAsync=True}"/>
 						</StackPanel>
-						<!-- #endregion : Field Comment -->
+						<!-- #endregion -->
 
 					</StackPanel>
 				</Grid>
@@ -128,42 +105,38 @@
 
 			<!-- #region : Tabs Sections -->
 			<TabItem Header="{x:Static p:Resources.Sections}">
-				<StackPanel
-                    VerticalAlignment="Top"
-                    Style="{StaticResource Field}">
+				<StackPanel VerticalAlignment="Top" Margin="3">
 
-					<DataGrid  
-                        x:Name="DataGridCollectionSection"
-                        AutoGenerateColumns="False"
-                        EnableRowVirtualization="false"
-                        EnableColumnVirtualization="false"
-                        CanUserDeleteRows="False"
-                        CanUserAddRows="False"
-                        CanUserReorderColumns="False"
-                        CanUserResizeColumns="False"
-                        CanUserSortColumns="True"
-                        CanUserResizeRows="False"
-                        SelectionMode="Extended"
-                        ItemsSource="{Binding Sections, UpdateSourceTrigger=PropertyChanged}"
-                        DataContext="{Binding}"
-                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                        SelectionUnit="FullRow"
-                        HorizontalAlignment="Stretch"
-                        Cursor="Hand"
-                        RowHeight="22"
-                        ColumnWidth="*"
-                        Width="430"
-                        Height="340">
-
+					<DataGrid x:Name="DataGridCollectionSection"
+							  AutoGenerateColumns="False"
+							  CanUserAddRows="False"
+							  CanUserDeleteRows="False"
+							  CanUserResizeColumns="False"
+							  CanUserResizeRows="False"
+							  CanUserReorderColumns="False"
+							  CanUserSortColumns="True"
+							  ColumnWidth="*"
+							  Cursor="Hand"
+							  DataContext="{Binding DataContext, ElementName=UCWindowFormAlbum, IsAsync=True}"
+							  EnableRowVirtualization="false"
+							  EnableColumnVirtualization="false"
+							  Height="260"
+							  HorizontalAlignment="Stretch"
+							  ItemsSource="{Binding Sections, UpdateSourceTrigger=PropertyChanged}"
+							  RowHeight="22"
+							  SelectionMode="Extended"
+							  SelectionUnit="FullRow"
+							  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+							  Width="440">
+						
 						<DataGrid.Columns>
 
 							<!-- #region : Column PrimaryKey -->
-							<DataGridTemplateColumn 
-                                IsReadOnly="True"
-                                Width="30"
-                                CanUserSort="True"
-                                Header="{x:Static p:Resources.Id}"
-                                SortMemberPath="AlbumId">
+							<DataGridTemplateColumn CanUserSort="True"
+													Header="{x:Static p:Resources.Id}"
+													IsReadOnly="True"
+													SortMemberPath="AlbumId"
+													Width="30">
 
 								<DataGridTemplateColumn.CellTemplate>
 									<DataTemplate>
@@ -174,32 +147,31 @@
 									</DataTemplate>
 								</DataGridTemplateColumn.CellTemplate>
 							</DataGridTemplateColumn>
-							<!-- #endregion : Column PrimaryKey -->
+							<!-- #endregion -->
 
 							<!-- #region : Column Name -->
-							<DataGridTemplateColumn 
-                                IsReadOnly="True"
-                                MinWidth="160"
-                                CanUserSort="True"
-                                Header="{x:Static p:Resources.Name}"
-                                SortMemberPath="Name">
+							<DataGridTemplateColumn CanUserSort="True"
+													Header="{x:Static p:Resources.Name}"
+													IsReadOnly="True"
+													MinWidth="160"
+													SortMemberPath="Name">
 
 								<DataGridTemplateColumn.CellTemplate>
 									<DataTemplate>
 
 										<TextBlock Margin="5,0"
-												   Text="{Binding Name, Mode=TwoWay}"/>
+												   Text="{Binding Name, Mode=TwoWay}"
+												   ToolTip="{Binding Name}"/>
 
 									</DataTemplate>
 								</DataGridTemplateColumn.CellTemplate>
 							</DataGridTemplateColumn>
-							<!-- #endregion : Column Name -->
+							<!-- #endregion -->
 
 							<!-- #region : Column CheckBox -->
-							<DataGridTemplateColumn 
-                                    IsReadOnly="True"
-                                    Width="20"
-                                    CanUserSort="True">
+							<DataGridTemplateColumn CanUserSort="True"
+													IsReadOnly="True"
+													Width="20">
 
 								<DataGridTemplateColumn.CellTemplate>
 									<DataTemplate>
@@ -212,7 +184,7 @@
 									</DataTemplate>
 								</DataGridTemplateColumn.CellTemplate>
 							</DataGridTemplateColumn>
-							<!-- #endregion : Column CheckBox -->
+							<!-- #endregion -->
 
 						</DataGrid.Columns>
 					</DataGrid>
@@ -224,8 +196,7 @@
 
 			<!-- #region : Tabs Pictures -->
 			<TabItem Header="{x:Static p:Resources.Cover}">
-				<ScrollViewer VerticalScrollBarVisibility="Visible"
-							  HorizontalScrollBarVisibility="Hidden">
+				<ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden">
 					<StackPanel Orientation="Vertical">
 
 						<!-- #region : Tab Thumbnail -->
@@ -353,7 +324,7 @@
 
 								<ComboBox.ItemTemplate>
 									<DataTemplate>
-										<TextBlock Text="{Binding Name}" Tag="{Binding}" TextAlignment="Center"/>
+										<TextBlock Tag="{Binding}" Text="{Binding Name}" TextAlignment="Center"/>
 									</DataTemplate>
 								</ComboBox.ItemTemplate>
 							</ComboBox>
@@ -384,9 +355,7 @@
 
 								<ComboBox.ItemTemplate>
 									<DataTemplate>
-										<TextBlock Text="{Binding Name}"
-												   Tag="{Binding}"
-												   TextAlignment="Center"/>
+										<TextBlock Tag="{Binding}" Text="{Binding Name}" TextAlignment="Center"/>
 									</DataTemplate>
 								</ComboBox.ItemTemplate>
 							</ComboBox>
@@ -399,31 +368,25 @@
 			<!-- #endregion : Tabs Data -->
 
 		</TabControl>
-		<!-- region : Informations -->
+		<!-- region -->
 
-		<!-- #region : Form Validation -->
-		<Border Grid.Row="1"
-				Grid.RowSpan="2">
-			<Grid>
-				<StackPanel Orientation="Horizontal"
-							HorizontalAlignment="Center"
-							VerticalAlignment="center"
-							Height="30">
-
-					<Button x:Name="Button_Save"
+		
+		<!-- #region BLOCK FORM VALIDATOR -->
+		<Grid Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource GridFormValidatorStyle}">
+			<StackPanel Style="{StaticResource StackPanelFormValidatorStyle}">
+				<Button x:Name="Button_Save"
+							Click="DialogSave_Click"
 							Content="{x:Static p:Resources.Save}"
-							Style="{StaticResource Button_Save}"
 							IsEnabled="{Binding IsSaveEnabled, UpdateSourceTrigger=Explicit, Mode=TwoWay, IsAsync=True}"
-							Click="DialogSave_Click"/>
+							Style="{StaticResource ButtonSaveStyle}"/>
 
-					<Button x:Name="Button_Cancel"
+				<Button x:Name="Button_Cancel"
 							Content="{x:Static p:Resources.Cancel}"
-							Style="{StaticResource Button_Cancel}"/>
+							Style="{StaticResource ButtonCancelStyle}"/>
 
-				</StackPanel>
-			</Grid>
-		</Border>
-		<!-- #endregion : Form Validation -->
+			</StackPanel>
+		</Grid>
+		<!-- #endregion -->
 
 	</Grid>
 </base:WindowBaseForm>
