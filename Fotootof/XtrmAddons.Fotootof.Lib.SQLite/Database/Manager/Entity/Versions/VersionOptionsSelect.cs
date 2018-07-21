@@ -3,7 +3,7 @@
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite Versions Entities Select Options.
+    /// Class XtrmAddons Fotootof Lib SQLite Versions Entities Select Options.
     /// </summary>
     public class VersionOptionsSelect : EntitiesOptionsSelect
     {

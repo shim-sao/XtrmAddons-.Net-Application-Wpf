@@ -109,7 +109,9 @@ namespace XtrmAddons.Fotootof.Settings
             // Try to connect to the database.
             try
             {
-                // Check if default database exists, if not...
+                // Check if default database exists, if not... do nothing
+                // New database is auto created by EnsureCreated()
+                // Check for the database updates.
                 if (File.Exists(database.Source))
                 {
                     log.Info((string)Translation.DLogs.DatabaseFileFound);
@@ -152,6 +154,8 @@ namespace XtrmAddons.Fotootof.Settings
                             }
                         }
                     }
+
+                    log.Info((string)Translation.DLogs.DatabaseConnectionReady);
                 }
 
                 // ... create new database from scheme.
@@ -159,6 +163,7 @@ namespace XtrmAddons.Fotootof.Settings
                 {
                     log.Info((string)Translation.DLogs.DatabaseNotFileFound);
 
+                    /*
                     using (
                         SQLiteConnection db =
                             SQLiteManager.Instance(
@@ -170,6 +175,7 @@ namespace XtrmAddons.Fotootof.Settings
                     {
                         log.Info((string)Translation.DLogs.DatabaseConnectionReady);
                     }
+                    */
                 }
 
                 // Add connection to SQLite Service.

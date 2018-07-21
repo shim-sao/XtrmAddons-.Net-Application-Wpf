@@ -167,6 +167,12 @@
 					  Style="{DynamicResource MenuItem_Main}"
 					  Template="{DynamicResource MenuItemControlTemplateMain}">
 
+				<MenuItem x:Name="MenuItemCatalogNavigateToName"
+						  Header="{x:Static p:Resources._Catalog}"
+						  Style="{DynamicResource MenuItem_MainLevel1}"
+						  Click="CatalogNavigateTo_Click">
+				</MenuItem>
+
 				<MenuItem x:Name="MenuItem_AddSection"
 						  Header="{x:Static p:Resources._AddNewSection}"
 						  Style="{DynamicResource MenuItem_MainLevel1}"

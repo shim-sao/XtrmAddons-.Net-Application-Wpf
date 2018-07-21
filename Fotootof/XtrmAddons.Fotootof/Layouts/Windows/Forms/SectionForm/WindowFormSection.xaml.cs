@@ -165,6 +165,8 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
         /// </summary>
         protected override bool IsValidForm()
         {
+
+
             try
             {
                 IsValidFormNotNullOrWhiteSpace(NewForm, "Name");
@@ -173,8 +175,8 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
             }
             catch (ArgumentNullException e)
             {
-                log.Error(e);
-                throw new ArgumentNullException(e.Message);
+                log.Error(e.Output(), e);
+                throw e;
             }
             
             //log.Info($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
@@ -197,28 +199,30 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
         #region Methods Collection Albums
 
         /// <summary>
-        /// Method called to uncheck Album on the Albums list of the Section.
+        /// Method called on Album <see cref="CheckBox"/> check click event.
+        /// Its add Album dependency to the Section.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Routed event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
         private void CheckBoxAlbum_Checked(object sender, RoutedEventArgs e)
         {
             try
             {
-                Model.Section.AlbumsPKeys.Add(Tag2Object<AlbumEntity>(sender).PrimaryKey);
+                Model.Section.AlbumsPKeys.AddIfNotExists(Tag2Object<AlbumEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {
-                log.Error(ex);
+                log.Error(ex.Output(), ex);
                 MessageBase.Error(ex);
             }
         }
 
         /// <summary>
-        /// Method called to uncheck Album on the Albums list of the Section.
+        /// Method called on Album <see cref="CheckBox"/> uncheck click event.
+        /// Its remove Album dependency from the Section.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Routed event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
         private void CheckBoxAlbum_UnChecked(object sender, RoutedEventArgs e)
         {
             try
@@ -227,7 +231,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
             }
             catch (Exception ex)
             {
-                log.Error(ex);
+                log.Error(ex.Output(), ex);
                 MessageBase.Error(ex);
             }
         }
@@ -239,28 +243,30 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
         #region Methods Collection AclGroups
 
         /// <summary>
-        /// 
+        /// Method called on AclGroup <see cref="CheckBox"/> check click event.
+        /// Its add AclGroup dependency to the Section.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Routed event atguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
         private void CheckBoxAclGroup_Checked(object sender, RoutedEventArgs e)
         {
             try
             {
-                Model.Section.AclGroupsPKeys.Add(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
+                Model.Section.AclGroupsPKeys.AddIfNotExists(Tag2Object<AclGroupEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {
-                log.Error(ex);
+                log.Error(ex.Output(), ex);
                 MessageBase.Error(ex);
             }
         }
 
         /// <summary>
-        /// 
+        /// Method called on AclGroup <see cref="CheckBox"/> uncheck click event.
+        /// Its remove AclGroup dependency from the Section.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Routed event atguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
         private void CheckBoxAclGroup_UnChecked(object sender, RoutedEventArgs e)
         {
             try
@@ -269,7 +275,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
             }
             catch (Exception ex)
             {
-                log.Error(ex);
+                log.Error(ex.Output(), ex);
                 MessageBase.Error(ex);
             }
         }

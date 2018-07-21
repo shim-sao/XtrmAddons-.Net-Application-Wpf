@@ -31,6 +31,7 @@
 								   Text="{x:Static p:Resources.Albums}"
 								   FontSize="{StaticResource FontSizeHeader}"
 								   FontWeight="SemiBold"
+							   Foreground="{DynamicResource CustomWindowTextBrush}"
 								   Margin="5"/>
 						<!-- #endregion Title -->
                         
@@ -39,18 +40,21 @@
 							<TextBlock x:Name="Counter_SelectedNumber"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
+							   Foreground="{DynamicResource CustomWindowTextBrush}"
 									   Margin="5"
 									   Text="{Binding SelectedItems.Count, ElementName=ListViewCollectionName, IsAsync=True}"/>
 
 							<TextBlock x:Name="Counter_Spacer"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
+							   Foreground="{DynamicResource CustomWindowTextBrush}"
 									   Margin="0,5"
 									   Text="/"/>
 
 							<TextBlock x:Name="Counter_Total"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
+							   Foreground="{DynamicResource CustomWindowTextBrush}"
 									   Margin="5"
 									   Text="{Binding Path=Items.Count}"/>
 						</StackPanel>

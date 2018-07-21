@@ -227,6 +227,16 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             return entity;
         }
 
+        /// <summary>
+        /// Method to inialize content of the table AclGroup after EnsureCreated()
+        /// </summary>
+        internal void InitializeTable()
+        {
+            Context.AclGroups.Add(new AclGroupEntity() { PrimaryKey = 1, Name = "Administrateur", Alias = "administrateur", Comment = "Groupe authorisés à gérer l'administration du serveur." });
+            Context.AclGroups.Add(new AclGroupEntity() { PrimaryKey = 2, Name = "Visiteurs", Alias = "visiteurs", Comment = "Groupe authorisé à visiter la librairie d'images.", IsDefault = true });
+            Save();
+        }
+
         #endregion
     }
 }

@@ -826,7 +826,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Common\Controls\Menu\" />
     <Folder Include="Config\" />
     <Folder Include="SideClient\" />
   </ItemGroup>

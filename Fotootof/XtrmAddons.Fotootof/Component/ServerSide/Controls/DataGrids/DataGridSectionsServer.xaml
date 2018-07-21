@@ -18,9 +18,11 @@
 
 				<Border x:Name="BorderFieldsetTitleName"
 						Style="{StaticResource BorderFieldsetTitleStyle}">
+					
 					<TextBlock x:Name="Header_Text"
 							   Text="{x:Static p:Resources.Sections}"
 							   FontSize="{StaticResource FontSizeHeader}"
+							   Foreground="{DynamicResource CustomWindowTextBrush}"
 							   FontWeight="SemiBold"
 							   Margin="5" />
 				</Border>

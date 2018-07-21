@@ -156,7 +156,23 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
 
             throw new ArgumentNullException("AclActionOptionsSelect must contains no empty or null value Primary Key or Action for selection.");
         }
-        
+
+        /// <summary>
+        /// Method to inialize content of the table AclGroup after EnsureCreated()
+        /// </summary>
+        internal void InitializeTable()
+        {
+            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 1, Action = "section.add" });
+            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 2, Action = "section.edit" });
+            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 3, Action = "section.delete" });
+            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 4, Action = "section.view" });
+            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 5, Action = "album.add" });
+            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 6, Action = "album.edit" });
+            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 7, Action = "album.delete" });
+            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 8, Action = "album.view" });
+            Save();
+        }
+
         #endregion Methods
     }
 }

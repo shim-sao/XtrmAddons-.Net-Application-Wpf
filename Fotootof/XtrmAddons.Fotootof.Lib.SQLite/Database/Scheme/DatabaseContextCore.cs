@@ -6,7 +6,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite Database Context Core.
+    /// Class XtrmAddons Fotootof Lib SQLite Database Context Core.
     /// </summary>
     public class DatabaseContextCore : DbContext
     {
@@ -67,7 +67,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
         /// <summary>
         /// Property database table Versions entity queries link.
         /// </summary>
-        [System.Obsolete("Will be remove.")]
         public DbSet<VersionEntity> Versions { get; set; }
 
         
