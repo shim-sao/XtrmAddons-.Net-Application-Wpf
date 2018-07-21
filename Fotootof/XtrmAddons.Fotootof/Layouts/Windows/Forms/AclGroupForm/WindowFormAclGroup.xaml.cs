@@ -136,7 +136,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
             NewForm = entity;
 
             // 5 - Set model entity to dependencies converters.
-            IsUserInAclGroup.Entity = NewForm = entity;
+            IsUserInAclGroup.Entity = NewForm;
 
             var action = Model.AclAction_FindAction("section.add");
             CheckBoxSectionAdd.Tag = action;
@@ -167,13 +167,13 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         protected override bool IsValidInputs()
         {
             // Check if the name is not empty.
-            Trace.WriteLine("Checking if the name is not empty...");
+            log.Debug("Checking if the name is not empty...");
             if (!IsValidInput(InputName))
             {
                 return false;
             }
 
-            Trace.WriteLine("All inputs have been verified !");
+            log.Debug("All inputs have been verified !");
             return IsSaveEnabled = base.IsValidInputs();
         }
 
@@ -186,7 +186,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         /// <summary>
         /// Method to validate the Form Data.
         /// </summary>
-        private new bool IsValidForm()
+        protected override bool IsValidForm()
         {
             if (NewForm.Name.IsNullOrWhiteSpace())
             {
@@ -253,7 +253,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
         {
             try
             {
-                NewForm.UsersPKeys.Add(Tag2Object<UserEntity>(sender).PrimaryKey);
+                NewForm.UsersPKeys.AddIfNotExists(Tag2Object<UserEntity>(sender).PrimaryKey);
             }
             catch (Exception ex)
             {

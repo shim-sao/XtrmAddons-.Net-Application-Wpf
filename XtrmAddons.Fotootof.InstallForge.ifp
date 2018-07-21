@@ -2,7 +2,7 @@
 ProjectFileVersion = "1.1"
 [General]
 Program name = Fotootof
-Program version = 1.0.18198.1321
+Program version = 1.0.18200.2318
 Windows 2000 = 1
 Windows XP = 1
 Windows Server 2003 = 1
@@ -57,7 +57,7 @@ Time = 2
 PlaySound = 0
 Allow = 0
 [Build]
-File = G:\projects\vs-builds\Fotootof\XtrmAddons.Fotootof.Installer.1.0.18198.1321-alpha.exe
+File = G:\projects\vs-builds\Fotootof\XtrmAddons.Fotootof.Installer.1.0.18200.2318-alpha.exe
 [Updater]
 Allow = 1
 1 = <appname>
@@ -807,6 +807,12 @@ Fotootof
 Startmenu
 Fotootof Uninstall
 <installpath>\Uninstall.exe
+
+
+0
+Startmenu
+Fotootof Update
+<installpath>\Update.exe
 
 
 0

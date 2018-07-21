@@ -9,9 +9,8 @@ using XtrmAddons.Net.Common.Extensions;
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite Versions Entities Manager.
+    /// Class XtrmAddons Fotootof Lib SQLite Versions Entities Manager.
     /// </summary>
-    [System.Obsolete("Use others mechanisms. Table will be deleted.")]
     public partial class VersionManager : EntitiesManager
     {
         #region Constructors

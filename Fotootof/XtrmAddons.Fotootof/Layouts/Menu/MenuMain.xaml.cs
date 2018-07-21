@@ -10,6 +10,7 @@ using XtrmAddons.Fotootof.AddInsContracts.Interfaces;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.Common.Tools;
+using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog;
 using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers;
 using XtrmAddons.Fotootof.Layouts.Windows.About;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm;
@@ -410,7 +411,7 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         /// 
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="e">Routed event atguments.</param>
         private void OnAddAlbum_Click(object sender, RoutedEventArgs e)
         {
             // Show open file dialog box 
@@ -434,7 +435,7 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         /// 
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="e">Routed event atguments.</param>
         private void EditionPreferences_Click(object sender, RoutedEventArgs e)
         {
             // Show open file dialog box 
@@ -452,8 +453,8 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
         private void ThemeChanged_Click(object sender, RoutedEventArgs e)
         {
             // Get the Theme name from the event sender.
@@ -470,8 +471,6 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void ToggleMenuItemTheme()
         {
             // Get the Theme for Application Parameters.
@@ -492,6 +491,16 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
                     (FindName("MenuItem_ThemeDark") as MenuItem).IsChecked = true;
                     break;
             }
+        }
+
+        /// <summary>
+        /// Method called on navigate to <see cref="PageCatalog"/> click event.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
+        private void CatalogNavigateTo_Click(object sender, RoutedEventArgs e)
+        {
+            AppNavigator.LoadPage(nameof(PageCatalog), new PageCatalog());
         }
 
         #endregion

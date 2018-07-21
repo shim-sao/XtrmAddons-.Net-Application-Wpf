@@ -200,6 +200,43 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             return result;
         }
 
+        /// <summary>
+        /// Method to update an Entity.
+        /// </summary>
+        /// <param name="item">An Entity to update.</param>
+        /// <returns>The updated Entity.</returns>
+        public async Task<AclGroupEntity> UpdateAsync(AclGroupEntity entity)
+        {
+            // Remove Users In AclGroups dependencies.
+            if (entity.UsersInAclGroups.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "UsersInAclGroups", key = "AclGroupId", keyList = "UserId" },
+                    entity.PrimaryKey,
+                    entity.UsersInAclGroups.DepPKeysRemoved
+                );
+                entity.UsersInAclGroups.DepPKeysRemoved.Clear();
+            }
+
+            // Update item informations.
+            entity = Context.Update(entity).Entity;
+
+            await SaveAsync();
+
+            // Return the updated item.
+            return entity;
+        }
+
+        /// <summary>
+        /// Method to inialize content of the table AclGroup after EnsureCreated()
+        /// </summary>
+        internal void InitializeTable()
+        {
+            Context.AclGroups.Add(new AclGroupEntity() { PrimaryKey = 1, Name = "Administrateur", Alias = "administrateur", Comment = "Groupe authorisés à gérer l'administration du serveur." });
+            Context.AclGroups.Add(new AclGroupEntity() { PrimaryKey = 2, Name = "Visiteurs", Alias = "visiteurs", Comment = "Groupe authorisé à visiter la librairie d'images.", IsDefault = true });
+            Save();
+        }
+
         #endregion
     }
 }

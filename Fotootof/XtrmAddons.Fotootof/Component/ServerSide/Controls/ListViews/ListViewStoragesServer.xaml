@@ -32,7 +32,7 @@
 						<TextBlock x:Name="Title_Text"
 								   Text="{x:Static p:Resources.Files}"
 								   FontSize="{StaticResource FontSizeHeader}"
-								   Foreground="{StaticResource Panton_3}"
+								   Foreground="{DynamicResource CustomWindowTextBrush}"
 								   FontWeight="SemiBold"
 								   Margin="5" />
 
