@@ -9,21 +9,17 @@
     xmlns:dg="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids"
     xmlns:albums="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews"
     mc:Ignorable="d"
+	Loaded="Control_Loaded"
     ShowsNavigationUI="False"
-    Title="{x:Static p:Resources.Sections}"
-    Style="{StaticResource PageContentStyle}"
     SizeChanged="Control_SizeChanged"
-	Loaded="Control_Loaded">
+    Style="{StaticResource PageContentStyle}"
+    Title="{x:Static p:Resources.Sections}">
 
-	<Grid x:Name="GridBlockRootName"
-		  Style="{StaticResource GridRootStyle}">
-		
-		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
-					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
+	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<StackPanel x:Name="Block_TopControls"
-						Style="{StaticResource StackPanelTopControls}">
-				<Border Background="{StaticResource LightGrey}" Visibility="Hidden">
+			<StackPanel x:Name="Block_TopControls" Style="{StaticResource StackPanelTopControls}" Height="0">
+				<Border Background="{StaticResource LightGrey}" Visibility="Collapsed">
 					<TextBox Background="White"
 							 x:Name="Breadcrumbs"
 							 Margin="5"
@@ -33,8 +29,7 @@
 			</StackPanel>
 
 
-			<Grid x:Name="Block_MiddleContents"
-				  Style="{StaticResource GridMiddleContentStyle}">
+			<Grid x:Name="Block_MiddleContents" Style="{StaticResource GridMiddleContentStyle}">
 
 				<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColSections"/>

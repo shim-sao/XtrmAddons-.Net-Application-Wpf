@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls;
 using XtrmAddons.Net.Picture.Classes;
@@ -11,8 +12,27 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.TreeViews
     /// <summary>
     /// Class XtrmAddons Fotootof Server UI Control Browser Tree View Directory.
     /// </summary>
+    [System.Obsolete("Use : XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage.TreeViewSystemStorage")]
     public partial class TreeViewSystemStorage : ControlBase
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private new static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
+        #region Properties
+        
+        
+        
+        #endregion
+
         /// <summary>
         /// 
         /// </summary>
@@ -110,6 +130,11 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.TreeViews
         {
             BitmapImage icon = Win32Icon.IconFromHandle(di.Name).ToBitmap().ToBitmapImage();
 
+            Binding myBinding = new Binding("ActualWidth")
+            {
+                Source = this
+            };
+
             TreeViewItem tv = new TreeViewItem
             {
                 Header = new StackPanel
@@ -135,9 +160,16 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.TreeViews
                         }
                     }
                 },
-
                 Tag = di
             };
+            
+           /* (tv.Header as StackPanel).SetBinding(StackPanel.WidthProperty, myBinding);
+            if ((tv.Header as StackPanel).Width > 25)
+            {
+                (tv.Header as StackPanel).Width -= 25;
+            }*/
+            
+           tv.SetBinding(StackPanel.WidthProperty, myBinding);
 
             tv.Items.Add("Loading...");
 
@@ -159,6 +191,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.TreeViews
                 opacity = 0.5;
             }
 
+            Binding myBinding = new Binding("ActualWidth")
+            {
+                Source = this
+            };
 
             TreeViewItem tv = new TreeViewItem
             {
@@ -190,6 +226,12 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.TreeViews
 
                 Tag = di
             };
+
+            //(tv.Header as StackPanel).SetBinding(StackPanel.WidthProperty, myBinding);
+            //if((tv.Header as StackPanel).Width > 25)
+            //{
+            //    (tv.Header as StackPanel).Width -= 25;
+            //}
 
             tv.Items.Add("Loading...");
 

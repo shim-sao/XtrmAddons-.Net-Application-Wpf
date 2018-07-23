@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using XtrmAddons.Fotootof.Common.Collections;
-using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Component.ServerSide.Controls.DataGrids;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
@@ -116,17 +115,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
         /// <summary>
         /// Method to initialize page content.
         /// </summary>
-        /*[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage",
-            "CA2202:Ne pas supprimer d'objets plusieurs fois", Scope = "member",
-            Target = "XtrmAddons.Fotootof.Forms.About.FormAbout.#OnFormCloseClick(System.Object,System.EventArgs)")]*/
         public override void InitializeModel()
         {
             // Paste page to User list.
             Model = new PageUsersModel(this);
-            //UcDataGridAclGroupsServerName.Tag = this;
-
-            // LoadAclGroups(); delete : on model constructor
-            // LoadUsers();
         }
 
         /// <summary>
@@ -217,7 +209,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             Model.AclGroups.Items.Add(item);
             AclGroupEntityCollection.DbInsert(new List<AclGroupEntity> { item });
 
-            Refresh();
+            Model.LoadAll();
 
             log.Info("Saving new AclGroup informations. Done.");
         }
@@ -237,7 +229,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             Model.AclGroups.Items[index] = newEntity;
             AclGroupEntityCollection.DbUpdateAsync(new List<AclGroupEntity> { newEntity }, new List<AclGroupEntity> { old });
 
-            Refresh();
+            Model.LoadAll();
 
             log.Info("Saving AclGroup informations. Done.");
         }
@@ -259,7 +251,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers
             // Delete item from database.
             AclGroupEntityCollection.DbDelete(new List<AclGroupEntity> { item });
 
-            Refresh();
+            Model.LoadAll();
 
             log.Info("Deleting AclGroup(s). Done.");
         }

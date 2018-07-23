@@ -61,7 +61,7 @@
 				</Border>
 
 
-				<Grid x:Name="Block_Menu"
+				<Grid x:Name="GridBlockMenuName"
 					  Style="{StaticResource GridFieldsetMenuStyle}">
 
 					<Grid.ColumnDefinitions>

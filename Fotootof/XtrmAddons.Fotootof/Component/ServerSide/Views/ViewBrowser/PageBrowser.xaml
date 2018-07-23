@@ -5,16 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:uclistviews="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews"
-    xmlns:ucbrowser="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.TreeViews"
+    xmlns:uctreeviews="clr-namespace:XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
     mc:Ignorable="d"
+	Loaded="Control_Loaded"
     ShowsNavigationUI="False"
-    Title="{x:Static p:Resources.Browser}"
-    Style="{StaticResource FrameworkElementRootStyle}"
     SizeChanged="Control_SizeChanged"
-	Loaded="Control_Loaded">
-
+    Style="{StaticResource FrameworkElementRootStyle}"
+    Title="{x:Static p:Resources.Browser}">
+	<!--xmlns:uctreeviews="clr-namespace:XtrmAddons.Fotootof.Component.ServerSide.Controls.TreeViews"-->
 
 	<Grid x:Name="GridBlockRootName"
 		  Style="{StaticResource FrameworkElementRootStyle}">
@@ -86,7 +86,7 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <ucbrowser:TreeViewSystemStorage Grid.Row="0"
+                <uctreeviews:TreeViewSystemStorage Grid.Row="0"
 												 Grid.Column="0"
 												 x:Name="UcTreeViewDirectories"
 												 IsHeaderVisible="Visible"/>

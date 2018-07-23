@@ -128,7 +128,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
             else
             {
                 bool find = false;
-                foreach(StorageInfoModel sim in SelectedItems)
+                foreach(var sim in SelectedItems)
                 {
                     if(sim.IsPicture)
                     {

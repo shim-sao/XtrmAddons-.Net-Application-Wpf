@@ -25,11 +25,11 @@
 						<!-- #region Title -->
 						<Border x:Name="Title_Border">
 							<TextBlock x:Name="Title_Text"
-									   Text="{x:Static p:Resources.UsersGroups}"
-									   FontSize="{StaticResource FontSizeHeader}"
-									   Foreground="{StaticResource Panton_3}"
+									   FontSize="{StaticResource FontSizeH4}"
 									   FontWeight="SemiBold"
-									   Margin="5">
+									   Foreground="{DynamicResource CustomWindowTextBrush}"
+									   Margin="5"
+									   Text="{x:Static p:Resources.UsersGroups}">
 							</TextBlock>
 						</Border>
 						<!-- #endregion -->
@@ -40,8 +40,8 @@
 							<TextBlock
                                 x:Name="Counter_SelectedNumber"
                                 FontWeight="SemiBold"
-                                FontSize="{StaticResource FontSizeHeader}"
-                                Foreground="{StaticResource Panton_3}"
+                                FontSize="{StaticResource FontSizeH4}"
+								Foreground="{DynamicResource CustomWindowTextBrush}"
                                 Margin="5"
                                 Text="0">
 							</TextBlock>
@@ -49,8 +49,8 @@
 							<TextBlock
 								x:Name="Counter_Spacer"
 								FontWeight="SemiBold"
-								FontSize="{StaticResource FontSizeHeader}"
-								Foreground="{StaticResource Panton_3}"
+								FontSize="{StaticResource FontSizeH4}"
+								Foreground="{DynamicResource CustomWindowTextBrush}"
 								Margin="0,5"
 								Text="/">
 							</TextBlock>
@@ -58,8 +58,8 @@
 							<TextBlock
 								x:Name="Counter_Total"
 								FontWeight="SemiBold"
-								FontSize="{StaticResource FontSizeHeader}"
-								Foreground="{StaticResource Panton_3}"
+								FontSize="{StaticResource FontSizeH4}"
+								Foreground="{DynamicResource CustomWindowTextBrush}"
 								Margin="5"
 								Text="{Binding Path=Items.Count}">
 							</TextBlock>
@@ -69,8 +69,7 @@
 				</Border>
 
 
-				<Grid x:Name="Block_Menu"
-					  Style="{StaticResource GridFieldsetMenuStyle}">
+				<Grid x:Name="GridBlockMenuName" Style="{StaticResource GridFieldsetMenuStyle}">
 
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
@@ -114,7 +113,6 @@
 				
 				<DataGrid x:Name="ItemsLayout"
 						  AutoGenerateColumns="False"
-						  Background="{DynamicResource ChromeLowBrush}"
 						  CanUserDeleteRows="True"
 						  CanUserAddRows="False"
 						  ColumnWidth="*"
@@ -126,9 +124,11 @@
 						  RowHeight="22"
 						  SelectionMode="Extended"
 						  SelectionChanged="ItemsCollection_SelectionChanged"
-						  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+						  GridLinesVisibility="None">
 
 					<DataGrid.Columns>
+						
 						<!-- #region : Column AclGroupId -->
 						<DataGridTemplateColumn 
 							IsReadOnly="True"
@@ -137,13 +137,27 @@
 							Header="{x:Static p:Resources.Id}"
 							SortMemberPath="AclGroupId">
 
+
+							<!--<DataGridTemplateColumn.CellStyle>
+								<Style TargetType="{x:Type DataGridCell}">
+									<Style.Resources>
+										<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{DynamicResource CustomTestRedBrush}"/>
+										<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="MistyRose" />
+										<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource CustomDataGridHighlightTextBrush}" />
+										<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{DynamicResource CustomDataGridTextBrush}" />
+									</Style.Resources>
+									<Setter Property="BorderBrush" Value="{DynamicResource CustomDataGridCellBorderBrush}" />
+									<Setter Property="BorderThickness" Value="0" />
+									<Setter Property="Background" Value="{DynamicResource CustomDataGridCellBrush}" />
+								</Style>
+							</DataGridTemplateColumn.CellStyle>-->
+
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
 
-									<TextBlock
-										Margin="5,0"
-										Text="{Binding AclGroupId}"
-										ToolTip="{Binding AclGroupId}"/>
+									<TextBlock Margin="5,0"
+											   Text="{Binding AclGroupId}"
+											   ToolTip="{Binding AclGroupId}"/>
 
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>

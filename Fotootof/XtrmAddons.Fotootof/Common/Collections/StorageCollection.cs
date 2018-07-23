@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 
 namespace XtrmAddons.Fotootof.Common.Collections
@@ -11,7 +12,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
         {
             int count = 0;
 
-            foreach (StorageInfoModel sim in this)
+            foreach (var sim in this)
             {
                 if (!sim.IsPicture)
                 {
@@ -28,7 +29,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
         {
             int count = 0;
 
-            foreach (StorageInfoModel sim in this)
+            foreach (var sim in this)
             {
                 if (sim.IsPicture)
                 {

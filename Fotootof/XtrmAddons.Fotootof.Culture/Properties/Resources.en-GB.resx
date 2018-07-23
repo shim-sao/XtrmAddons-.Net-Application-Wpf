@@ -654,4 +654,7 @@
   <data name="_Plugin" xml:space="preserve">
     <value>_Plugin</value>
   </data>
+  <data name="_ServerRemote" xml:space="preserve">
+    <value>_Remote access...</value>
+  </data>
 </root>

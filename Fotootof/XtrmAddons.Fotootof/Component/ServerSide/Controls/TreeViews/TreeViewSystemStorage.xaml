@@ -25,7 +25,7 @@
 				</Border>
 
 				<!-- Block Menu -->
-				<Grid x:Name="Block_Menu" Style="{StaticResource GridFieldsetMenuStyle}">
+				<Grid x:Name="GridBlockMenuName" Style="{StaticResource GridFieldsetMenuStyle}">
 				</Grid>
 
 			</StackPanel>
@@ -44,6 +44,18 @@
 					<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource BaseHigh}" />
 					<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{DynamicResource BaseMediumHigh}" />
 				</TreeView.Resources>
+
+				
+				
+				<TreeView.ItemTemplate>
+					<DataTemplate>
+						<TextBlock x:Name="TitleText"
+								   Text="TitleText"
+								   FontSize="{StaticResource FontSizeHeader}"
+								   FontWeight="SemiBold"
+								   Margin="5" />
+					</DataTemplate>
+				</TreeView.ItemTemplate>
 			</TreeView>
 			<!-- #endregion -->
 

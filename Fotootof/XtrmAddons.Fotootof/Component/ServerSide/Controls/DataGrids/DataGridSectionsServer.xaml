@@ -19,16 +19,16 @@
 				<Border x:Name="BorderFieldsetTitleName"
 						Style="{StaticResource BorderFieldsetTitleStyle}">
 					
-					<TextBlock x:Name="Header_Text"
-							   Text="{x:Static p:Resources.Sections}"
+					<TextBlock x:Name="TextBlockHeaderTitleName"
 							   FontSize="{StaticResource FontSizeHeader}"
-							   Foreground="{DynamicResource CustomWindowTextBrush}"
 							   FontWeight="SemiBold"
-							   Margin="5" />
+							   Foreground="{DynamicResource CustomWindowTextBrush}"
+							   Margin="5"
+							   Text="{x:Static p:Resources.Sections}" />
 				</Border>
 
 
-				<Grid x:Name="Block_Menu"
+				<Grid x:Name="GridBlockMenuName"
 					  Style="{StaticResource GridFieldsetMenuStyle}">
 
 					<Border x:Name="Menu_Border">
@@ -68,9 +68,9 @@
 			</StackPanel>
 			<!-- #endregion -->
 			
+			
 
-
-			<!-- #region Sections DataGrid -->
+			<!-- #region BLOCK DATAGRID -->
 			<Grid x:Name="GridBlockItemsName">
 				
 				<DataGrid 
@@ -90,6 +90,7 @@
                     SelectionChanged="ItemsCollection_SelectionChanged">
 
                     <DataGrid.Columns>
+						
                         <!-- #region : Column PrimaryKey -->
                         <DataGridTemplateColumn IsReadOnly="True"
 												Width="30"

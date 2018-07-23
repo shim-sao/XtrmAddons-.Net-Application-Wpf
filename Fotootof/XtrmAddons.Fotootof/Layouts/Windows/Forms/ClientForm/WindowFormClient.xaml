@@ -233,7 +233,7 @@
 									   Text="{x:Static p:Resources.Comment}"/>
 
                             <TextBox x:Name="InputComment"
-									 Style="{StaticResource FieldInputArea}"
+									 Style="{StaticResource TextBoxFieldInputAreaStyle}"
 									 Text="{Binding Path=Client.Comment, Mode=TwoWay, IsAsync=True}"
 									 Width="320"
 									 MinHeight="60"

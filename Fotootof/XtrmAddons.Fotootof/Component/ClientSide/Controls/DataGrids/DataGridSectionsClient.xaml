@@ -21,7 +21,7 @@
 
 				<Border x:Name="BorderFieldsetTitleName"
 						Style="{StaticResource BorderFieldsetTitleStyle}">
-					<TextBlock x:Name="Header_Text"
+					<TextBlock x:Name="TextBlockHeaderTitleName"
 							   Text="{x:Static p:Resources.Sections}"
 							   FontSize="{StaticResource FontSizeHeader}"
 							   FontWeight="SemiBold"
@@ -29,7 +29,7 @@
 				</Border>
 
 
-				<Grid x:Name="Block_Menu"
+				<Grid x:Name="GridBlockMenuName"
 					  Style="{StaticResource GridFieldsetMenuStyle}">
 
 					<Border x:Name="Menu_Border">

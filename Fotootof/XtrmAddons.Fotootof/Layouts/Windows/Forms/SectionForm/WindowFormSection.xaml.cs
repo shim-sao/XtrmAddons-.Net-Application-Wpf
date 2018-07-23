@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +8,8 @@ using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Converters;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
@@ -73,17 +74,36 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Libraries Common Windows Form Section Constructor.
+        /// Class XtrmAddons Fotootof Layouts Windows Form Section Constructor.
         /// </summary>
-        /// <param name="entity">A Section entity.</param>
-        public WindowFormSection(SectionEntity entity = default(SectionEntity)) : base()
+        /// <param name="SectionId">The Section primary key to edit.</param>
+        public WindowFormSection(int SectionId)
         {
             // Initialize window component.
             InitializeComponent();
 
+            // Load entity with all required dependencies.
+            var entity = default(SectionEntity);
+            if (SectionId > 0)
+            {
+                var op = new SectionOptionsSelect
+                {
+                    PrimaryKey = SectionId,
+                    Dependencies = { EnumEntitiesDependencies.All }
+                };
+
+                entity = Db.Sections.SingleOrDefault(op);
+            }
+
             // Initialize window data model.
             InitializeModel(entity);
         }
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Layouts Windows Form Section Constructor.
+        /// </summary>
+        /// <param name="entity">A Section entity to edit.</param>
+        public WindowFormSection(SectionEntity entity = default(SectionEntity)) : this(entity?.PrimaryKey ?? 0) { }
 
         #endregion
 

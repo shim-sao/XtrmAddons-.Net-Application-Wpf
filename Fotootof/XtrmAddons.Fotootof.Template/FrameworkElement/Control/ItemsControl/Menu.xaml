@@ -15,15 +15,15 @@
 		<Setter Property="FontSize" Value="{StaticResource MenuFontSize}" />
 	</Style>
 
-	<Style x:Key="Menu_Main" TargetType="{x:Type Menu}" BasedOn="{StaticResource ControlMenuGeneric}">
+	<Style x:Key="MenuMainStyle" TargetType="{x:Type Menu}" BasedOn="{StaticResource ControlMenuGeneric}">
 		<Setter Property="Padding" Value="2,2,2,0" />
 	</Style>
 
-	<Style x:Key="MenuItem_Main" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource ControlMenuGeneric}">
+	<Style x:Key="MenuItemMainStyle" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource ControlMenuGeneric}">
 		<Setter Property="Padding" Value="6,0" />
 	</Style>
 
-	<Style x:Key="MenuItem_MainLevel1" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource ControlMenuGeneric}">
+	<Style x:Key="MenuItemMainLevel1Style" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource ControlMenuGeneric}">
 		<Setter Property="Padding" Value="0" />
 		<Setter Property="Margin" Value="0,2" />
 	</Style>
@@ -31,7 +31,7 @@
 
 
 	<!-- #region CONTROL TEMPLATE : MenuItem Level1 -->
-	<ControlTemplate x:Key="MenuItemControlTemplateMain" TargetType="{x:Type MenuItem}">
+	<ControlTemplate x:Key="MenuItemMainControlTemplate" TargetType="{x:Type MenuItem}">
 		<Border x:Name="templateRoot"
 				BorderBrush="{TemplateBinding BorderBrush}"
 				BorderThickness="{TemplateBinding BorderThickness}"

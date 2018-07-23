@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
@@ -112,22 +113,46 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// </summary>
         internal void InitializeTable()
         {
-            // Picture Quality
-            Context.Infos.Add(new InfoEntity() { PrimaryKey = 1, InfoTypeId = 1, Name = "High", Alias = "high", Description = "Defines High Quality of pictures.", Ordering = 0, IsDefault = true });
-            Context.Infos.Add(new InfoEntity() { PrimaryKey = 2, InfoTypeId = 1, Name = "Medium", Alias = "medium", Description = "Defines Medium Quality of pictures.", Ordering = 1 });
-            Context.Infos.Add(new InfoEntity() { PrimaryKey = 3, InfoTypeId = 1, Name = "Low", Alias = "low", Description = "Defines Low Quality of pictures.", Ordering = 2 });
-            Context.Infos.Add(new InfoEntity() { PrimaryKey = 4, InfoTypeId = 1, Name = "Mixed", Alias = "mixed", Description = "Defines Various Quality of pictures.", Ordering = 3 });
+            try
+            {
+                log.Info("SQLite Initializing Table `Infos`. Please wait...");
 
-            // Picture Color Type
-            Context.Infos.Add(new InfoEntity() { PrimaryKey = 5, InfoTypeId = 2, Name = "True Color", Alias = "true-color", Description = "Defines True Color pictures.", Ordering = 0, IsDefault = true });
-            Context.Infos.Add(new InfoEntity() { PrimaryKey = 6, InfoTypeId = 2, Name = "Black White", Alias = "black-white", Description = "Defines Black and White pictures.", Ordering = 1 });
-            Context.Infos.Add(new InfoEntity() { PrimaryKey = 7, InfoTypeId = 2, Name = "Mixed", Alias = "mixed", Description = "Defines mixed pictures color.", Ordering = 2 });
-            Save();
+                // Picture Quality
+                Context.Infos.Add(new InfoEntity() { PrimaryKey = 1, InfoTypeId = 1, Name = "High", Alias = "high", Description = "Defines High Quality of pictures.", Ordering = 0, IsDefault = true });
+                Context.Infos.Add(new InfoEntity() { PrimaryKey = 2, InfoTypeId = 1, Name = "Medium", Alias = "medium", Description = "Defines Medium Quality of pictures.", Ordering = 1 });
+                Context.Infos.Add(new InfoEntity() { PrimaryKey = 3, InfoTypeId = 1, Name = "Low", Alias = "low", Description = "Defines Low Quality of pictures.", Ordering = 2 });
+                Context.Infos.Add(new InfoEntity() { PrimaryKey = 4, InfoTypeId = 1, Name = "Mixed", Alias = "mixed", Description = "Defines Various Quality of pictures.", Ordering = 3 });
+
+                // Picture Color Type
+                Context.Infos.Add(new InfoEntity() { PrimaryKey = 5, InfoTypeId = 2, Name = "True Color", Alias = "true-color", Description = "Defines True Color pictures.", Ordering = 0, IsDefault = true });
+                Context.Infos.Add(new InfoEntity() { PrimaryKey = 6, InfoTypeId = 2, Name = "Black White", Alias = "black-white", Description = "Defines Black and White pictures.", Ordering = 1 });
+                Context.Infos.Add(new InfoEntity() { PrimaryKey = 7, InfoTypeId = 2, Name = "Mixed", Alias = "mixed", Description = "Defines mixed pictures color.", Ordering = 2 });
+
+                int result = Save();
+                log.Info($"SQLite Initializing Table `Info`. {result} affected rows.");
+            }
+            catch (Exception ex)
+            {
+                log.Error("SQLite Initializing Table `Infos`. Exception.");
+                log.Error(ex.Output(), ex);
+                throw ex;
+            }
 
             // Infos Types
-            Context.InfoTypes.Add(new InfoTypeEntity() { PrimaryKey = 1, Name = "Quality", Alias = "quality", Description = "Defines pictures Quality." });
-            Context.InfoTypes.Add(new InfoTypeEntity() { PrimaryKey = 2, Name = "Color", Alias = "color", Description = "Defines pictures Color." });
-            Save();
+            try
+            {
+                log.Info("SQLite Initializing Table `InfoTypes`. Please wait...");
+                Context.InfoTypes.Add(new InfoTypeEntity() { PrimaryKey = 1, Name = "Quality", Alias = "quality", Description = "Defines pictures Quality." });
+                Context.InfoTypes.Add(new InfoTypeEntity() { PrimaryKey = 2, Name = "Color", Alias = "color", Description = "Defines pictures Color." });
+                int result = Save();
+                log.Info($"SQLite Initializing Table `InfoTypes`. {result} affected rows.");
+            }
+            catch (Exception ex)
+            {
+                log.Error("SQLite Initializing Table `InfoTypes`. Exception.");
+                log.Error(ex.Output(), ex);
+                throw ex;
+            }
         }
 
         #endregion

@@ -10,8 +10,8 @@
 		<Setter Property="FontSize" Value="{StaticResource FontSizeNormal}"/>
 		<Setter Property="Width" Value="320"/>
 		<Setter Property="Padding" Value="5,0" />
-		<Setter Property="Foreground" Value="{DynamicResource BaseMediumHighBrush}" />
-		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource CustomInputTextBrush}" />
+		<Setter Property="Background" Value="{DynamicResource CustomInputBrush}" />
 	</Style>
 
 	<Style x:Key="TextBoxFieldInputRequiredStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxFieldInputStyle}">
@@ -36,9 +36,9 @@
 	<Style x:Key="TextBoxFieldInputAreaStyle" TargetType="{x:Type TextBox}">
 		<Setter Property="AcceptsReturn" Value="True" />
 		<Setter Property="AcceptsTab" Value="True" />
-		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
-		<Setter Property="Foreground" Value="{DynamicResource BaseMediumHighBrush}" />
+		<Setter Property="Background" Value="{DynamicResource CustomInputBrush}" />
 		<Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSizeNormal}"/>
+		<Setter Property="Foreground" Value="{DynamicResource CustomInputTextBrush}" />
 		<Setter Property="MaxHeight" Value="90"/>
 		<Setter Property="MinHeight" Value="90"/>
 		<Setter Property="MinLines" Value="5" />
@@ -53,10 +53,10 @@
 	<!-- TextBox ListView Thumbnail -->
 	<Style x:Key="TextBoxListLargeTitle" TargetType="{x:Type TextBox}">
 		<Setter Property="Background" Value="{DynamicResource CustomListViewThumbBrush}"/>
-		<Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
 		<Setter Property="HorizontalAlignment" Value="Stretch"/>
-		<Setter Property="Foreground" Value="{DynamicResource CustomListViewThumbTextBrush}"/>
+		<Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
 		<Setter Property="FontWeight" Value="SemiBold"/>
+		<Setter Property="Foreground" Value="{DynamicResource CustomListViewThumbTextBrush}"/>
 		<Setter Property="IsEnabled" Value="False"/>
 		<Setter Property="Padding" Value="5" />
 		<Setter Property="TextAlignment" Value="Center" />
@@ -75,28 +75,16 @@
 		<Setter Property="VerticalAlignment" Value="center"/>
 	</Style>
 
-
-
-
-
-
-
-
-
-	<Style x:Key="FieldInputLong" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxFieldInputStyle}">
+	<Style x:Key="TextBoxFieldInputLongStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxFieldInputStyle}">
         <Setter Property="Width" Value="420"/>
     </Style>
-    
-    <Style x:Key="FieldInputLongTooltipOn" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResourceKey=FieldInputLong}">
-        <Setter Property="ToolTipService.IsEnabled" Value="True"/>
-        <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
-    </Style>
-    
-	
-	
-	
-	
-    <Style x:Key="FieldInputLongTooltipOff" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResourceKey=FieldInputLongTooltipOn}">
+
+	<Style x:Key="TextBoxFieldInputLongTooltipOnStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResourceKey=TextBoxFieldInputLongStyle}">
+		<Setter Property="ToolTipService.IsEnabled" Value="True"/>
+		<Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+	</Style>
+
+	<Style x:Key="TextBoxFieldInputLongTooltipOffStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResourceKey=TextBoxFieldInputLongTooltipOnStyle}">
         <Setter Property="IsEnabled" Value="False"/>
     </Style>
 
@@ -106,13 +94,13 @@
 	
 	
 	<!-- Obsolete -->
-	<Style x:Key="FieldInputArea" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResourceKey=TextBoxFieldInputAreaStyle}"></Style>
-	<Style x:Key="FieldInputOldTb" TargetType="{x:Type TextBox}">
+	<!--<Style x:Key="FieldInputArea" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResourceKey=TextBoxFieldInputAreaStyle}"></Style>-->
+	<!--<Style x:Key="FieldInputOldTb" TargetType="{x:Type TextBox}">
 		<Setter Property="VerticalAlignment" Value="Stretch"/>
 		<Setter Property="VerticalContentAlignment" Value="Center"/>
 		<Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSizeNormal}"/>
 		<Setter Property="Width" Value="320"/>
 		<Setter Property="Padding" Value="5,0" />
-	</Style>
+	</Style>-->
 
 </ResourceDictionary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
@@ -13,6 +14,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
     /// </summary>
     public partial class VersionManager : EntitiesManager
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private new static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         #region Constructors
 
         /// <summary>
@@ -163,6 +176,26 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             }
 
             return item;
+        }
+
+        /// <summary>
+        /// Method to inialize content of the table AclGroup after EnsureCreated()
+        /// </summary>
+        internal void InitializeTable()
+        {
+            try
+            {
+                log.Info("SQLite Initializing Table `Versions`. Please wait...");
+                Context.Versions.Add(new VersionEntity() { PrimaryKey = 0, AssemblyVersionMin = Assembly.GetExecutingAssembly().GetName().Version.ToString(), Comment = "Database creation." });
+                int result = Save();
+                log.Info($"SQLite Initializing Table `Versions`. {result} affected rows.");
+            }
+            catch (Exception ex)
+            {
+                log.Error("SQLite Initializing Table `Versions`. Exception.");
+                log.Error(ex.Output(), ex);
+                throw ex;
+            }
         }
 
         #endregion

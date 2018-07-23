@@ -137,6 +137,8 @@
 
 
 	<!-- #region WPF System.Color -->
+	<SolidColorBrush x:Key="CustomTestRedBrush" Color="Red" />
+	<SolidColorBrush x:Key="CustomTestBlueBrush" Color="Blue" />
 
 	<!-- Generic Transparent -->
 	<SolidColorBrush x:Key="TransparentBrush" Color="Transparent" />
@@ -155,24 +157,54 @@
 	<SolidColorBrush x:Key="CustomListViewThumbBrush" Color="{StaticResource ChromeLow}" />
 	<SolidColorBrush x:Key="CustomListViewThumbTextBrush" Color="{StaticResource ColorWindowText}" />
 
+	<!-- DataGrid -->
+	<SolidColorBrush x:Key="CustomDataGridBrush" Color="Transparent" />
+	<SolidColorBrush x:Key="CustomDataGridBorderBrush" Color="#FF333333" />
+	<SolidColorBrush x:Key="CustomDataGridCellBrush" Color="#FF3DD1FC" />
+	<SolidColorBrush x:Key="CustomDataGridCellBorderBrush" Color="#FF0E8BB0" />
+	<SolidColorBrush x:Key="CustomDataGridCellTextBrush" Color="#FF021E27" />
+	<SolidColorBrush x:Key="CustomDataGridHeaderBrush" Color="#FF1F1F1F" />
+	<SolidColorBrush x:Key="CustomDataGridHeaderBorderBrush" Color="#FF323232" />
+	<SolidColorBrush x:Key="CustomDataGridHeaderTextBrush" Color="#FFFEFEFE" />
+	<SolidColorBrush x:Key="CustomDataGridRowBrush" Color="#FF2B2B2B" />
+	<SolidColorBrush x:Key="CustomDataGridRowBorderBrush" Color="#FF323232" />
+	<SolidColorBrush x:Key="CustomDataGridRowTextBrush" Color="#FFFEFEFE" />
+	<SolidColorBrush x:Key="CustomDataGridTextBrush" Color="#FFFEFEFE" />
+
+	<!-- Input -->
+	<Color x:Key="CustomInputColor">#FF2B2B2B</Color>
+	<SolidColorBrush x:Key="CustomInputBrush" Color="#FF2B2B2B" />
+
+	<Color x:Key="CustomInputTextColor">#FFFFFFFF</Color>
+	<SolidColorBrush x:Key="CustomInputTextBrush" Color="#FFFFFFFF" />
+
 	
 	<!-- Generic colors messages -->
 	<Color x:Key="ColorError">#FFA80000</Color>
 	<SolidColorBrush x:Key="CustomErrorBrush" Color="#FFFF1D1D" />
+	
+	<Color x:Key="ColorErrorText">#FFA80000</Color>
+	<SolidColorBrush x:Key="CustomErrorTextBrush" Color="#FFFF1D1D" />
 
 	<Color x:Key="ColorReady">#FF1F1F1F</Color>
 	<SolidColorBrush x:Key="CustomReadyBrush" Color="#FF1F1F1F" />
 
+	<Color x:Key="ColorReadyText">#FF1F1F1F</Color>
+	<SolidColorBrush x:Key="CustomReadyTextBrush" Color="#FF1F1F1F" />
+
 	<Color x:Key="ColorWarning">#FFFF8000</Color>
 	<SolidColorBrush x:Key="CustomWarningBrush" Color="#FFFF8000" />
+
+	<Color x:Key="ColorWarningText">#FFFF8000</Color>
+	<SolidColorBrush x:Key="CustomWarningTextBrush" Color="#FFFF8000" />
 
 
 	<!-- Menu -->
 	<Color x:Key="CustomMenuTextColor">#FFFFFFFF</Color>
-	<SolidColorBrush x:Key="CustomMenuTextBrush" Color="{StaticResource CustomMenuTextColor}" />
+	<SolidColorBrush x:Key="CustomMenuTextBrush" Color="#FFFFFFFF" />
 	
 	<Color x:Key="CustomSubMenuTextColor">#FFEEEEEE</Color>
-	<SolidColorBrush x:Key="CustomSubMenuTextBrush" Color="{StaticResource CustomSubMenuTextColor}" />
+	<SolidColorBrush x:Key="CustomSubMenuTextBrush" Color="#FFEEEEEE" />
 	<!-- #endregion -->
 
 </ResourceDictionary>

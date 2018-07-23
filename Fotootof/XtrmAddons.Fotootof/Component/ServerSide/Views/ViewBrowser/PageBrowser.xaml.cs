@@ -347,7 +347,7 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser
 
             foreach (DirectoryInfo dirInfo in dirInfos)
             {
-                StorageInfoModel item = new StorageInfoModel(dirInfo) { ImageSize = Model.ImageSize };
+                var item = new StorageInfoModel(dirInfo) { ImageSize = Model.ImageSize };
                 Model.FilesCollection.Add(item);
             }
 

@@ -31,7 +31,7 @@
 						<!-- #region Title -->
 						<TextBlock x:Name="Title_Text"
 								   Text="{x:Static p:Resources.Files}"
-								   FontSize="{StaticResource FontSizeHeader}"
+								   FontSize="{StaticResource FontSizeH4}"
 								   Foreground="{DynamicResource CustomWindowTextBrush}"
 								   FontWeight="SemiBold"
 								   Margin="5" />
@@ -88,7 +88,7 @@
 					</Grid>
 				</Border>
 				
-				<Grid x:Name="Block_Menu"
+				<Grid x:Name="GridBlockMenuName"
 					  Style="{StaticResource GridFieldsetMenuStyle}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />

@@ -20,7 +20,7 @@
 						Content="{x:Static p:Resources.Server}"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"
-						Style="{StaticResource ButtonSubMenu}"/>
+						Style="{StaticResource ButtonSubMenuStyle}"/>
 			</Border>
 
 			<Border x:Name="BorderBrowserName" VerticalAlignment="Stretch">
@@ -29,7 +29,7 @@
 						Content="{x:Static p:Resources.Browser}"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"
-						Style="{StaticResource ButtonSubMenu}"/>
+						Style="{StaticResource ButtonSubMenuStyle}"/>
 			</Border>
 
 			<Border x:Name="BorderCatalogName" VerticalAlignment="Stretch">
@@ -38,7 +38,7 @@
 						Content="{x:Static p:Resources.Catalog}"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"
-						Style="{StaticResource ButtonSubMenu}"/>
+						Style="{StaticResource ButtonSubMenuStyle}"/>
 			</Border>
             
         </StackPanel>

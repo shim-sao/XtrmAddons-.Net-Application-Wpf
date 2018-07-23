@@ -422,6 +422,10 @@
     <Compile Include="SideServer\Layouts\TreeViews\Sections\TreeViewSections.xaml.cs">
       <DependentUpon>TreeViewSections.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SideServer\Layouts\TreeViews\SystemStorage\TreeViewSystemStorage.xaml.cs">
+      <DependentUpon>TreeViewSystemStorage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SideServer\Layouts\TreeViews\SystemStorage\TreeViewSystemStorageModel.cs" />
     <Page Include="Common\Controls\DataGrids\UCAlbumsDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
@@ -573,6 +577,10 @@
     <Page Include="SideServer\Layouts\TreeViews\Sections\TreeViewSections.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SideServer\Layouts\TreeViews\SystemStorage\TreeViewSystemStorage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -828,6 +836,7 @@
   <ItemGroup>
     <Folder Include="Config\" />
     <Folder Include="SideClient\" />
+    <Folder Include="SideServer\Layouts\DataGrids\Users\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Shell32">

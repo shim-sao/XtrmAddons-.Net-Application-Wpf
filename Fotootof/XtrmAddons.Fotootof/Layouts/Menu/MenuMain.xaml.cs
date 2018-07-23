@@ -176,15 +176,15 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         {
             if (HttpWebServerApplication.IsStarted)
             {
-                ((MenuItem)FindName("MenuItem_Server_Start")).IsEnabled = false;
-                ((MenuItem)FindName("MenuItem_Server_Stop")).IsEnabled = true;
-                ((MenuItem)FindName("MenuItem_ServerRestart")).IsEnabled = true;
+                ((MenuItem)FindName("MenuItemServerStartName")).IsEnabled = false;
+                ((MenuItem)FindName("MenuItemServerStopName")).IsEnabled = true;
+                ((MenuItem)FindName("MenuItemServerRestartName")).IsEnabled = true;
             }
             else
             {
-                ((MenuItem)FindName("MenuItem_Server_Start")).IsEnabled = true;
-                ((MenuItem)FindName("MenuItem_Server_Stop")).IsEnabled = false;
-                ((MenuItem)FindName("MenuItem_ServerRestart")).IsEnabled = false;
+                ((MenuItem)FindName("MenuItemServerStartName")).IsEnabled = true;
+                ((MenuItem)FindName("MenuItemServerStopName")).IsEnabled = false;
+                ((MenuItem)FindName("MenuItemServerRestartName")).IsEnabled = false;
             }
         }
 
@@ -457,6 +457,12 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
         private void ThemeChanged_Click(object sender, RoutedEventArgs e)
         {
+            var result = MessageBase.YesNo("This action require to restart application. Do you want to continue ?", "Theme");
+            if(result != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
             // Get the Theme name from the event sender.
             string theme = (string)((FrameworkElement)sender).Tag;
 
@@ -465,7 +471,11 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
             ApplicationBase.SaveUi();
 
             // Check the right theme MenuItem.
-            ToggleMenuItemTheme();
+            //ToggleMenuItemTheme
+
+            // Restart the application.
+            System.Windows.Forms.Application.Restart();
+            Application.Current.Shutdown();
         }
 
         /// <summary>
@@ -500,7 +510,17 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
         private void CatalogNavigateTo_Click(object sender, RoutedEventArgs e)
         {
-            AppNavigator.LoadPage(nameof(PageCatalog), new PageCatalog());
+            AppNavigator.NavigateToPageCatalog();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
+        private void ServerRemote_Click(object sender, RoutedEventArgs e)
+        {
+            AppNavigator.NavigateToPageServer();
         }
 
         #endregion

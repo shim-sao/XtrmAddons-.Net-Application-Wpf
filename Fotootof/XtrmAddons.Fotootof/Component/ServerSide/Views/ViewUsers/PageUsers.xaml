@@ -8,20 +8,16 @@
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Pages;assembly=XtrmAddons.Fotootof.Lib.Base"
     mc:Ignorable="d"
+	Loaded="Control_Loaded"
     ShowsNavigationUI="False"
-    Title="{x:Static p:Resources.Users}"
-    Background="{StaticResource ResourceKey=LightGrey}"
     SizeChanged="Control_SizeChanged"
-	Loaded="Control_Loaded">
+    Style="{StaticResource PageContentStyle}"
+    Title="{x:Static p:Resources.Users}">
 
-	<Grid x:Name="GridBlockRootName"
-		  Style="{StaticResource GridRootStyle}">
-		
-		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
-					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
+	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<Grid x:Name="Block_MiddleContents"
-				  Style="{StaticResource GridMiddleContentStyle}">
+			<Grid x:Name="Block_MiddleContents" Style="{StaticResource GridMiddleContentStyle}">
 
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="1*" MinWidth="240" x:Name="ColLeft"/>

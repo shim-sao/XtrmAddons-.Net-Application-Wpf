@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Net.Picture.Extensions;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Net.Common.Objects;
+using XtrmAddons.Net.Picture.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
 {
@@ -12,8 +15,20 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
     /// <para>Class XtrmAddons Fotootof Lib Base Classes Controls Systems Storage Informations.</para>
     /// <para>Storage informations model for custom control displays.</para>
     /// </summary>
-    public class StorageInfoModel
+    public class StorageInfoModel : ObjectBaseNotifier
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
@@ -63,10 +78,109 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
         /// </summary>
         public FileInfo FileInfo { get; private set; }
 
-        /// <summary>Property to access to the system directory informations if the item is a file.
-        /// 
+        /// <summary>
+        /// Property to access to the system directory informations if the item is a directory.
         /// </summary>
         public DirectoryInfo DirectoryInfo { get; private set; }
+
+        /// <summary>
+        /// Property to access to the system directory informations if the item is a directory.
+        /// </summary>
+        public StorageInfoModel[] Directories
+        {
+            get
+            {
+                IList<StorageInfoModel> dirs = new List<StorageInfoModel>();
+                if(DriveInfo != null)
+                {
+                    foreach(var dir in DriveInfo.RootDirectory.GetDirectories())
+                    {
+                        dirs.Add(new StorageInfoModel(dir));
+                    }
+                }
+
+                if(DirectoryInfo != null)
+                {
+                    foreach(var dir in DirectoryInfo.GetDirectories())
+                    {
+                        dirs.Add(new StorageInfoModel(dir));
+                    }
+                }
+
+                return dirs.ToArray();
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the system directory informations if the item is a directory.
+        /// </summary>
+        public StorageInfoModel[] Files
+        {
+            get
+            {
+                IList<StorageInfoModel> dirs = new List<StorageInfoModel>();
+                if(DriveInfo != null)
+                {
+                    foreach(var dir in DriveInfo.RootDirectory.GetFiles())
+                    {
+                        dirs.Add(new StorageInfoModel(dir));
+                    }
+                }
+
+                if(DirectoryInfo != null)
+                {
+                    foreach(var dir in DirectoryInfo.GetFiles())
+                    {
+                        dirs.Add(new StorageInfoModel(dir));
+                    }
+                }
+
+                return dirs.ToArray();
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the system directory informations if the item is a directory.
+        /// </summary>
+        public StorageInfoModel[] StorageInfos
+        {
+            get
+            {
+                IList<StorageInfoModel> dirs = new List<StorageInfoModel>();
+                if(DriveInfo != null)
+                {
+                    foreach (var dir in DriveInfo.RootDirectory.GetDirectories())
+                    {
+                        dirs.Add(new StorageInfoModel(dir));
+                    }
+
+                    foreach (var dir in DriveInfo.RootDirectory.GetFiles())
+                    {
+                        dirs.Add(new StorageInfoModel(dir));
+                    }
+                }
+
+                if(DirectoryInfo != null)
+                {
+                    foreach (var dir in DirectoryInfo.GetDirectories())
+                    {
+                        dirs.Add(new StorageInfoModel(dir));
+                    }
+
+                    foreach (var dir in DirectoryInfo.GetFiles())
+                    {
+                        dirs.Add(new StorageInfoModel(dir));
+                    }
+                }
+
+                return dirs.ToArray();
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the system drive informations if the item is a drive.
+        /// </summary>
+        public DriveInfo DriveInfo { get; private set; }
 
         /// <summary>
         /// Property to define if this is file or directory informations.
@@ -144,6 +258,18 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
             DateModified = DirectoryInfo.LastWriteTime;
         }
 
+        /// <summary>
+        /// Class XtrmAddons Fotootof Lib Base Classes Controls Systems Storage Informations Constructor.
+        /// </summary>
+        /// <param name="fi">A directory system informations.</param>
+        public StorageInfoModel(DriveInfo info)
+        {
+            DriveInfo = info;
+            Name = DriveInfo.Name;
+            FullName = DriveInfo.Name;
+            ImageFullName = DriveInfo.Name;
+        }
+
         #endregion
 
 
@@ -204,7 +330,7 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems
         }
 
         /// <summary>
-        /// 
+        /// Method to check if the storage information is a valid image file.
         /// </summary>
         private void CheckIfIsPicture()
         {
