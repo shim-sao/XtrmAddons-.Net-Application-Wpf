@@ -12,8 +12,8 @@
 	<PathGeometry x:Key="TreeArrow" Figures="M0,0 L0,6 L6,0 z"/>
 	<SolidColorBrush x:Key="TreeViewItem.TreeArrow.Static.Fill" Color="#FFFFFFFF"/>
 	<SolidColorBrush x:Key="TreeViewItem.TreeArrow.Static.Stroke" Color="#FF818181"/>
-		
-    <Style TargetType="TreeView">
+
+	<Style TargetType="TreeView">
 		<!--<Style.Resources>
 			<LinearGradientBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" EndPoint="0,1" StartPoint="0,0">
                 <GradientStop Color="#FFD9F4FF" Offset="0"/>
@@ -29,33 +29,6 @@
 		<Setter Property="Background" Value="Transparent"/>
 		<Setter Property="BorderThickness" Value="0"/>
 	</Style>
-
-    <!--<Style x:Key="{x:Type TreeViewItem}" TargetType="TreeViewItem">
-        <Setter Property="Margin" Value="2" />
-        <Setter Property="Padding" Value="2" />
-		<Setter Property="BorderThickness" Value="1.5"/>
-		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-
-		<Style.Triggers>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="BorderBrush" Value="#adc6e5"/>
-            </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsSelected" Value="True"/>
-                    <Condition Property="IsSelectionActive" Value="False"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="BorderBrush" Value="red"/>
-            </MultiTrigger>
-        </Style.Triggers>
-        <Style.Resources>
-            <Style TargetType="Border">
-                <Setter Property="CornerRadius" Value="2"/>
-            </Style>
-        </Style.Resources>
-    </Style>-->
-
-
 
 	<Style x:Key="TreeViewItemFocusVisual">
 		<Setter Property="Control.Template">
@@ -116,15 +89,15 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
-	<Style x:Key="{x:Type TreeViewItem}" TargetType="TreeViewItem">
+
+	<Style x:Key="TreeViewItemStyle" TargetType="{x:Type TreeViewItem}">
 		<Setter Property="Background" Value="Transparent"/>
 		<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
 		<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
 		<Setter Property="Padding" Value="1,0,0,0"/>
 		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
 		<Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}"/>
-		
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type TreeViewItem}">
@@ -169,7 +142,7 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
-		
+
 		<Style.Triggers>
 			<Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
 				<Setter Property="ItemsPanel">
@@ -183,4 +156,5 @@
 		</Style.Triggers>
 	</Style>
 
+	<Style x:Key="{x:Type TreeViewItem}" TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}"/>
 </ResourceDictionary>

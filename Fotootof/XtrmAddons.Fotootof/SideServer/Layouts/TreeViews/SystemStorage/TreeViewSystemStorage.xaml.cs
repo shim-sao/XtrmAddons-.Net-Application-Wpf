@@ -61,9 +61,18 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
         {
             InitializeComponent();
             InitializeContent();
-            Loaded += (s, e) => TreeView_Loaded();
         }
-        
+
+        /// <summary>
+        /// Method called on user control loaded event.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Routed event arguments <see cref="RoutedEventArgs"/></param>
+        private void Control_Loaded(object sender, RoutedEventArgs e)
+        {
+            TreeView_Loaded();
+        }
+
 
         /// <summary>
         /// Method to initialize control content.
@@ -127,14 +136,10 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
         /// <returns></returns>
         private TreeViewItem CreateTreeDriveInfo(DriveInfo di)
         {
-            return CreateTree(new StorageInfoModel(di));
+            return new TreeViewItemDriveInfo(di) as TreeViewItem;
         }
 
-        /// <summary>
-        /// Method to create a DriveInfo tree item.
-        /// </summary>
-        /// <param name="di"></param>
-        /// <returns></returns>
+        [System.Obsolete("Use : TreeViewItemDriveInfo", true)]
         private TreeViewItem CreateTree(StorageInfoModel model)
         {
             BitmapImage icon = Win32Icon.IconFromHandle(model.Name).ToBitmap().ToBitmapImage();
@@ -228,8 +233,6 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
         /// <returns></returns>
         private TreeViewItem CreateTreeDirectoryInfo(DirectoryInfo di)
         {
-            //return CreateTree(new StorageInfoModel(di));
-
             BitmapImage icon = Win32Icon.IconFromHandle(di.FullName).ToBitmap().ToBitmapImage();
 
             double opacity = 1;
@@ -238,7 +241,7 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
                 opacity = 0.5;
             }
 
-            TreeViewItem tv = new TreeViewItem
+            TreeViewItem tv = new TreeViewItem()
             {
                 Header = new StackPanel
                 {

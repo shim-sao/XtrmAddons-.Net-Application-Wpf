@@ -1,14 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.Reflection;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Media.Imaging;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Models;
-using XtrmAddons.Net.Picture.Classes;
-using XtrmAddons.Net.Picture.Extensions;
 
 namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
 {
@@ -25,8 +18,8 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
         /// <summary>
         /// Variable Server.
         /// </summary>
-        public ObservableCollection<StorageInfoModel> drives
-            = new ObservableCollection<StorageInfoModel>();
+        public ObservableCollection<DriveInfo> drives
+            = new ObservableCollection<DriveInfo>();
 
         #endregion
 
@@ -36,7 +29,7 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
         /// <summary>
         /// Property to access to the Server.
         /// </summary>
-        public ObservableCollection<StorageInfoModel> Drives
+        public ObservableCollection<DriveInfo> Drives
         {
             get { return drives; }
             set
@@ -85,63 +78,45 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
             // Add items to the collection view.
             foreach (var driveInfo in DriveInfo.GetDrives())
             {
-                Drives.Add(new StorageInfoModel(driveInfo));
+                Drives.Add(driveInfo);
             }
         }
 
         /// <summary>
-        /// Method to create a DriveInfo tree item.
+        /// Method to expand a folder sub-directories tree.
         /// </summary>
-        /// <param name="di"></param>
-        /// <returns></returns>
-        private TreeViewItem CreateTreeDriveInfo(DriveInfo di)
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Routed event arguments.</param>
+        public void ExpandTreeViewItem(TreeViewItemDriveInfo item)
         {
-            BitmapImage icon = Win32Icon.IconFromHandle(di.Name).ToBitmap().ToBitmapImage();
-
-            Binding myBinding = new Binding("ActualWidth")
+            if ((item.Items.Count == 1) && (item.Items[0] is string))
             {
-                Source = OwnerBase.FindName("TreeViewDirectoryInfoName")
-            };
+                item.Items.Clear();
 
-            TreeViewItem tv = new TreeViewItem
-            {
-                Header = new StackPanel
+                DirectoryInfo expandedDir = null;
+
+                if (item.Tag is DriveInfo)
                 {
-                    Orientation = Orientation.Horizontal,
-                    Height = 20,
-                    Children =
-                    {
-                        new Border()
-                        {
-                            Child = new System.Windows.Controls.Image
-                            {
-                                Width = icon.Width,
-                                Height = icon.Height,
-                                Source = icon
-                            }
-                        },
+                    expandedDir = (item.Tag as DriveInfo).RootDirectory;
+                }
 
-                        new TextBlock
+                if (item.Tag is DirectoryInfo)
+                {
+                    expandedDir = (item.Tag as DirectoryInfo);
+                }
+
+                try
+                {
+                    foreach (DirectoryInfo subDir in expandedDir.GetDirectories())
+                    {
+                        if ((subDir.Attributes & FileAttributes.System) != FileAttributes.System)
                         {
-                            Text = di.ToString(),
-                            Margin = new Thickness(5,0,0,0)
+                           // item.Items.Add(CreateTreeDirectoryInfo(subDir));
                         }
                     }
-                },
-                Tag = di
-            };
-
-            /* (tv.Header as StackPanel).SetBinding(StackPanel.WidthProperty, myBinding);
-             if ((tv.Header as StackPanel).Width > 25)
-             {
-                 (tv.Header as StackPanel).Width -= 25;
-             }*/
-
-            tv.SetBinding(StackPanel.WidthProperty, myBinding);
-
-            tv.Items.Add("Loading...");
-
-            return tv;
+                }
+                catch { }
+            }
         }
 
         #endregion

@@ -97,10 +97,10 @@ namespace XtrmAddons.Fotootof.Component.ServerSide.Controls.ListViews
         #region Methods
 
         /// <summary>
-        /// 
+        /// Method called on user control loaded event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Routed event arguments <see cref="RoutedEventArgs"/></param>
         private void Control_Loaded(object sender, RoutedEventArgs e)
         {
             Model = new ListViewStoragesServerModel(this)
