@@ -42,11 +42,11 @@
 				
 				<!-- Overrides of resources must be place directly in the FramworkElement -->
 				<!-- IMPORTANT : Do not move resources overrides in Dictionary : DynamicResource do nothing, no exception. -->
-				<!--<TreeView.Resources>
-					<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource BaseHigh}" />
-					<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{DynamicResource BaseMediumHigh}" />
-				</TreeView.Resources>-->
-			</TreeView>
+                <TreeView.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource CustomHighlightTextColor}" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{DynamicResource CustomWindowTextColor}" />
+                </TreeView.Resources>
+            </TreeView>
 			<!-- #endregion -->
 
 		</StackPanel>

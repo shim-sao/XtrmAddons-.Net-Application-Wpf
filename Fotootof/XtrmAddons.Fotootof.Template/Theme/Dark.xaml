@@ -145,13 +145,18 @@
 
 	<!-- CustomHighlightColor : Background color of the selected elements. -->
 	<Color x:Key="CustomHighlightColor">#FF21D6DE</Color>
-	<SolidColorBrush x:Key="CustomHighlightBrush" Color="#FF21D6DE" />
+    <SolidColorBrush x:Key="CustomHighlightBrush" Color="#FF21D6DE" />
 
-	<!-- CustomWindowColor : Background color in the client area of a window. -->
+    <!-- CustomHighlightTextColor : Text color of the selected elements. -->
+    <Color x:Key="CustomHighlightTextColor">#FF021E27</Color>
+    <SolidColorBrush x:Key="CustomHighlightTextBrush" Color="{StaticResource CustomHighlightTextColor}" />
+
+    <!-- CustomWindowColor : Background color in the client area of a window. -->
 	<SolidColorBrush x:Key="CustomWindowBrush" Color="{StaticResource ColorWindow}" />
 
-	<!-- CustomWindowTextColor : Text color in the client area of a window. -->
-	<SolidColorBrush x:Key="CustomWindowTextBrush" Color="{StaticResource ColorWindowText}" />
+    <!-- CustomWindowTextColor : Text color in the client area of a window. -->
+    <Color x:Key="CustomWindowTextColor">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="CustomWindowTextBrush" Color="{StaticResource CustomWindowTextColor}" />
 
 	<!-- ListView -->
 	<SolidColorBrush x:Key="CustomListViewThumbBrush" Color="{StaticResource ChromeLow}" />
@@ -161,9 +166,9 @@
 	<SolidColorBrush x:Key="CustomDataGridBrush" Color="Transparent" />
 	<SolidColorBrush x:Key="CustomDataGridBorderBrush" Color="#FF333333" />
 	<SolidColorBrush x:Key="CustomDataGridCellBrush" Color="#FF3DD1FC" />
-	<SolidColorBrush x:Key="CustomDataGridCellBorderBrush" Color="#FF0E8BB0" />
-	<SolidColorBrush x:Key="CustomDataGridCellTextBrush" Color="#FF021E27" />
-	<SolidColorBrush x:Key="CustomDataGridHeaderBrush" Color="#FF1F1F1F" />
+    <SolidColorBrush x:Key="CustomDataGridCellBorderBrush" Color="#FF0E8BB0" />
+    <SolidColorBrush x:Key="CustomDataGridCellTextBrush" Color="{StaticResource CustomHighlightTextColor}" />
+    <SolidColorBrush x:Key="CustomDataGridHeaderBrush" Color="#FF1F1F1F" />
 	<SolidColorBrush x:Key="CustomDataGridHeaderBorderBrush" Color="#FF323232" />
 	<SolidColorBrush x:Key="CustomDataGridHeaderTextBrush" Color="#FFFEFEFE" />
 	<SolidColorBrush x:Key="CustomDataGridRowBrush" Color="#FF2B2B2B" />
