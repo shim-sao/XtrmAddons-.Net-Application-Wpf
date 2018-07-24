@@ -1,7 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Reflection;
+using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Models;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
 {
@@ -37,6 +40,14 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
                 drives = value;
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Property to access to the Server.
+        /// </summary>
+        public TreeView TreeViewDirectoryInfo
+        {
+            get => OwnerBase.FindName("TreeViewDirectoryInfoName") as TreeView;
         }
 
         #endregion
@@ -80,6 +91,11 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
             {
                 Drives.Add(driveInfo);
             }
+
+            foreach (DriveInfo driveInfo in Drives)
+            {
+                TreeViewDirectoryInfo.Items.Add(new TreeViewItemDriveInfo(driveInfo));
+            }
         }
 
         /// <summary>
@@ -87,7 +103,7 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public void ExpandTreeViewItem(TreeViewItemDriveInfo item)
+        public void ExpandTreeViewItem(TreeViewItem item)
         {
             if ((item.Items.Count == 1) && (item.Items[0] is string))
             {
@@ -111,11 +127,15 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
                     {
                         if ((subDir.Attributes & FileAttributes.System) != FileAttributes.System)
                         {
-                           // item.Items.Add(CreateTreeDirectoryInfo(subDir));
+                           item.Items.Add(new TreeViewItemDirectoryInfo(subDir));
                         }
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    log.Debug(ex.Output(), ex);
+                    throw ex;
+                }
             }
         }
 

@@ -422,6 +422,7 @@
     <Compile Include="SideServer\Layouts\TreeViews\Sections\TreeViewSections.xaml.cs">
       <DependentUpon>TreeViewSections.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SideServer\Layouts\TreeViews\SystemStorage\TreeViewItemDirectoryInfo.cs" />
     <Compile Include="SideServer\Layouts\TreeViews\SystemStorage\TreeViewItemDriveInfo.cs" />
     <Compile Include="SideServer\Layouts\TreeViews\SystemStorage\TreeViewSystemStorage.xaml.cs">
       <DependentUpon>TreeViewSystemStorage.xaml</DependentUpon>

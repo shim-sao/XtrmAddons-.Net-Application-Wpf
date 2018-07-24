@@ -7,7 +7,7 @@
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Controls;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     mc:Ignorable="d"
-    SizeChanged="TreeView_Resize"
+    SizeChanged="Control_SizeChanged"
 	Loaded="Control_Loaded">
 
 	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
@@ -42,10 +42,10 @@
 				
 				<!-- Overrides of resources must be place directly in the FramworkElement -->
 				<!-- IMPORTANT : Do not move resources overrides in Dictionary : DynamicResource do nothing, no exception. -->
-				<TreeView.Resources>
+				<!--<TreeView.Resources>
 					<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource BaseHigh}" />
 					<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{DynamicResource BaseMediumHigh}" />
-				</TreeView.Resources>
+				</TreeView.Resources>-->
 			</TreeView>
 			<!-- #endregion -->
 
