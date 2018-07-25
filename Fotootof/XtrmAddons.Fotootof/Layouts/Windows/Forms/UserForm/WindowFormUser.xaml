@@ -8,6 +8,7 @@
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:XtrmAddons.Fotootof.Lib.Base.Classes.Windows;assembly=XtrmAddons.Fotootof.Lib.Base"
     xmlns:rrString="clr-namespace:XtrmAddons.Net.Windows.ValidationRules;assembly=XtrmAddons.Net.Windows"
+    xmlns:local="clr-namespace:XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm"
     mc:Ignorable="d"
     Width="480"
     Height="480"
@@ -45,7 +46,11 @@
 									 Validation.Error="OnInput_ValidationError"
 									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}">
 
-								<TextBox.Text>
+                                <TextBox.Resources>
+                                    <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                                </TextBox.Resources>
+
+                                <TextBox.Text>
 									<Binding Path="User.Name"
 											 Mode="TwoWay"
 											 UpdateSourceTrigger="LostFocus"
@@ -56,8 +61,12 @@
 											 NotifyOnSourceUpdated="True"
 											 NotifyOnTargetUpdated="True">
 
-										<Binding.ValidationRules>
-											<rrString:StringRequired />
+                                        <Binding.ValidationRules>
+                                            <local:StringUniqueName>
+                                                <local:StringUniqueName.Wrapper>
+                                                    <local:Wrapper Name="{Binding Data.User.Name, Source={StaticResource proxy}}"/>
+                                                </local:StringUniqueName.Wrapper>
+                                            </local:StringUniqueName>                                            
 										</Binding.ValidationRules>
 									</Binding>
 								</TextBox.Text>
@@ -121,8 +130,12 @@
 									 SourceUpdated="OnInputEmail_SourceUpdated"
 									 TargetUpdated="OnInput_TargetUpdated"
 									 TextChanged="OnInputEmail_TextChanged">
+                                
+                                <TextBox.Resources>
+                                    <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                                </TextBox.Resources>
 
-								<TextBox.Text>
+                                <TextBox.Text>
 									<Binding Path="User.Email"
 											 Mode="TwoWay"
 											 UpdateSourceTrigger="LostFocus"
@@ -134,7 +147,11 @@
 											 NotifyOnTargetUpdated="True">
 
 										<Binding.ValidationRules>
-											<rrString:StringRequiredEmail />
+                                            <local:StringUniqueEmail>
+                                                <local:StringUniqueEmail.Wrapper>
+                                                    <local:Wrapper PrimaryKey="{Binding Data.User.PrimaryKey, Source={StaticResource proxy}}"/>
+                                                </local:StringUniqueEmail.Wrapper>
+                                            </local:StringUniqueEmail>
 										</Binding.ValidationRules>
 									</Binding>
 								</TextBox.Text>

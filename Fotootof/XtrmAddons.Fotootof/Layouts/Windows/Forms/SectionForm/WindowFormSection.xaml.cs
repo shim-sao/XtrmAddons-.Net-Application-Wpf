@@ -185,15 +185,12 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
         /// </summary>
         protected override bool IsValidForm()
         {
-
-
             try
             {
                 IsValidFormNotNullOrWhiteSpace(NewForm, "Name");
-
                 return true;
             }
-            catch (ArgumentNullException e)
+            catch (Exception e)
             {
                 log.Error(e.Output(), e);
                 throw e;

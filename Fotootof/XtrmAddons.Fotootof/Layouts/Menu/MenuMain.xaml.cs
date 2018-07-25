@@ -370,16 +370,17 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
             // Process open file dialog box results 
             if (result == true)
             {
-                log.Info("Adding or editing User informations. Please wait...");
+                MessageBase.IsBusy = true;
+                log.Warn("Adding or editing User informations. Please wait...");
 
                 UserEntityCollection.DbInsert(new List<UserEntity> { dlg.NewForm });
 
-                if(MainFrame.Content.GetType() == typeof(PageUsers))
+                if(MainFrame?.Content?.GetType() == typeof(PageUsers))
                 {
                     ((PageUsers)MainFrame.Content).Model.Users.Items.Add(dlg.NewForm);
                 }
 
-                log.Info("Adding or editing User informations. Done");
+                log.Warn("Adding or editing User informations. Done");
                 MessageBase.IsBusy = false;
             }
         }

@@ -33,8 +33,6 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
         /// <param name="di"></param>
         public TreeViewItemDriveInfo(DriveInfo di)
         {
-            BeginInit();
-
             // Get the icon image of the Drive.
             BitmapImage icon = Win32Icon.IconFromHandle(di.Name).ToBitmap().ToBitmapImage();
 
@@ -104,8 +102,6 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
             Style = Application.Current.Resources["TreeViewItemStyle"] as Style;
 
             Items.Add("Loading...");
-
-            EndInit();
         }
     }
 }

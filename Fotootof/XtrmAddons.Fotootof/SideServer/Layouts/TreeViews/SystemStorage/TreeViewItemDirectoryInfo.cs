@@ -33,8 +33,6 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
         /// <param name="di"></param>
         public TreeViewItemDirectoryInfo(DirectoryInfo di)
         {
-            BeginInit();
-
             // Get the icon image of the Drive.
             BitmapImage icon = Win32Icon.IconFromHandle(di.FullName).ToBitmap().ToBitmapImage();
 
@@ -104,42 +102,12 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
             header.Children.Add(title);
             header.Children.Add(count);
 
-            //Header = new StackPanel
-            //{
-            //    Orientation = Orientation.Horizontal,
-            //    Height = 20,
-            //    Children =
-            //    {
-            //        new Border()
-            //        {
-            //            Child = new Image
-            //            {
-            //                Width = icon.Width,
-            //                Height = icon.Height,
-            //                Source = icon,
-            //                Opacity = opacity
-            //            }
-            //        },
-
-            //        new TextBlock
-            //        {
-            //            Text = di.ToString(),
-            //            Margin = new Thickness(5,0,0,0),
-            //            Opacity = opacity,
-            //            HorizontalAlignment = HorizontalAlignment.Stretch
-            //        }
-            //    },
-            //    HorizontalAlignment = HorizontalAlignment.Stretch
-            //};
-
             Header = header;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             Tag = di;
             Style = Application.Current.Resources["TreeViewItemStyle"] as Style;
 
             Items.Add("Loading...");
-
-            EndInit();
         }
     }
 }

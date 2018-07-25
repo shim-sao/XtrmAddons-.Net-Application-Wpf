@@ -303,6 +303,7 @@
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Layouts\Windows\Forms\ClientForm\WindowFormClientModel.cs" />
+    <Compile Include="Layouts\Windows\Forms\UserForm\ValidationRules.cs" />
     <Compile Include="Layouts\Windows\Slideshow\WindowSlideshow.xaml.cs">
       <DependentUpon>WindowSlideshow.xaml</DependentUpon>
     </Compile>

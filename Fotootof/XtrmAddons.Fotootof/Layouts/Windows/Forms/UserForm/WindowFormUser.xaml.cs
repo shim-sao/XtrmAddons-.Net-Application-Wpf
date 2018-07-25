@@ -43,16 +43,20 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
         /// <summary>
         /// Property to access to the Window model.
         /// </summary>
-        public new WindowFormUserModel<WindowFormUser> Model
+        public new WindowFormUserModel Model
         {
-            get => (WindowFormUserModel<WindowFormUser>)model;
+            get => model as WindowFormUserModel;
             protected set { model = value; }
         }
 
         /// <summary>
         /// Variable old User informations backup.
         /// </summary>
-        public UserEntity OldForm { get; set; }
+        public UserEntity OldForm
+        {
+            get => Model?.OldUser;
+            set => Model.OldUser = value;
+        }
 
         /// <summary>
         /// Property to access  old User informations backup.
@@ -80,7 +84,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
         #region 
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Component Windows Form User Constructor.
+        /// Class XtrmAddons Fotootof Layouts Component Windows Form User Constructor.
         /// </summary>
         /// <param name="UserId">A user entity id or primary key.</param>
         public WindowFormUser(int UserId)
@@ -88,25 +92,12 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
             // Initialize window component.
             InitializeComponent();
 
-            // Load entity with all required dependencies.
-            var entity = default(UserEntity);
-            if (UserId > 0)
-            {
-                var op = new UserOptionsSelect
-                {
-                    PrimaryKey = UserId,
-                    Dependencies = { EnumEntitiesDependencies.All }
-                };
-
-                entity = Db.Users.SingleOrNull(op);
-            }
-
             // Initialize window data model.
-            InitializeModel(entity);
+            InitializeModel(UserId);
         }
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Component Windows Form User Constructor.
+        /// Class XtrmAddons Fotootof Layouts Component Windows Form User Constructor.
         /// </summary>
         /// <param name="entity">A user entity to edit or a default entity is created if no argument is specified.</param>
         public WindowFormUser(UserEntity entity = default(UserEntity)) : this(entity?.PrimaryKey ?? 0) { }
@@ -132,13 +123,14 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
         /// Method to initialize the data model of the Window Form User.
         /// </summary>
         /// <param name="entity">A user entity to edit or a default entity is created if no argument is specified.</param>
+        [System.Obsolete("use : InitializeModel(int UserId = 0)")]
         protected void InitializeModel(UserEntity entity = default(UserEntity))
         {
             // 1 - Make sure entity is not null.
             entity = entity ?? new UserEntity();
 
             // 2 - Initialize view model.
-            Model = new WindowFormUserModel<WindowFormUser>(this);
+            Model = new WindowFormUserModel(this);
 
             // 4 - Store current entity data in a new entity.
             OldForm = entity.Clone();
@@ -151,6 +143,15 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.UserForm
 
             // 7.1 - Assign list of AclGroup to the model.
             Model.AclGroups = new AclGroupEntityCollection(true);
+        }
+
+        /// <summary>
+        /// Method to initialize the data model <see cref="WindowFormUserModel"/> of the Window Form User.
+        /// </summary>u
+        /// <param name="UserId">A <see cref="UserEntity"/> primary key or id to edit or a default entity is created if no argument is specified.</param>
+        protected void InitializeModel(int UserId = 0)
+        {
+            Model = new WindowFormUserModel(this, UserId);
         }
 
         #endregion

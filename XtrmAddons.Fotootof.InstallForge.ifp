@@ -2,7 +2,7 @@
 ProjectFileVersion = "1.1"
 [General]
 Program name = Fotootof
-Program version = 1.0.18200.2318
+Program version = 1.0.18205.1343
 Windows 2000 = 1
 Windows XP = 1
 Windows Server 2003 = 1
@@ -14,7 +14,7 @@ Windows 10 = 1
 Windows Server 2016 = 1
 DoNotCheckOS = 1
 Company name = XtrmAddons
-Website = http://www.xtrmaddons.com/
+Website = https://www.xtrmaddons.com/
 SFA = 1
 DFA = 1
 Comp = 1
@@ -57,12 +57,12 @@ Time = 2
 PlaySound = 0
 Allow = 0
 [Build]
-File = G:\projects\vs-builds\Fotootof\XtrmAddons.Fotootof.Installer.1.0.18200.2318-alpha.exe
+File = G:\projects\vs-builds\Fotootof\XtrmAddons.Fotootof.Installer.1.0.18205.1343-alpha.exe
 [Updater]
 Allow = 1
 1 = <appname>
 2 = <appversion>
-3 = http://download.xtrmaddons.com/fotootof/Updates/Version-1.0/
+3 = https://download.xtrmaddons.com/fotootof/Updates/Version-1.0/
 4 = http://
 5 = http://
 6 = Update
