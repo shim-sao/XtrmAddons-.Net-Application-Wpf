@@ -79,6 +79,27 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à BEGIN TRANSACTION;
+        ///CREATE TABLE IF NOT EXISTS `Versions` (
+        ///	`VersionId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        ///	`AssemblyVersionMin`	TEXT,
+        ///	`AssemblyVersionMax`	TEXT,
+        ///	`Comment`	TEXT
+        ///);
+        ///CREATE TABLE IF NOT EXISTS `UsersInAclGroups` (
+        ///	`UserId`	INTEGER NOT NULL,
+        ///	`AclGroupId`	INTEGER NOT NULL,
+        ///	CONSTRAINT `PK_UsersInAclGroups` PRIMARY KEY(`UserId`,`AclGroupId`),
+        ///	CONSTRAINT `FK_UsersInAclGroups_AclGroups_AclGroupId` FOREIGN KEY(`AclGroupId`) REFERENCES `AclGroups`(`AclGroupId`) ON DELETE CASCADE,
+        ///	CONST [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        public static string schema {
+            get {
+                return ResourceManager.GetString("schema", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Visitor.
         /// </summary>
         public static string Visitor {

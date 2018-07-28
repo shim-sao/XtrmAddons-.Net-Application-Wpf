@@ -14,22 +14,40 @@
 		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
 			<!-- #region BLOCK HEADER -->
-			<StackPanel x:Name="StackPanelBlockHeaderName" Style="{StaticResource StackPanelFieldsetHeader}">
+            <StackPanel x:Name="StackPanelBlockHeaderName" Style="{StaticResource StackPanelFieldsetHeader}">
 
-				<!-- Block Title -->
-				<Border x:Name="BorderFieldsetTitleName" Style="{StaticResource BorderFieldsetTitleStyle}">
-					<TextBlock Text="{x:Static p:Resources.Folders}"
+                <!-- Block Title -->
+                <Border x:Name="BorderFieldsetTitleName" Style="{StaticResource BorderFieldsetTitleStyle}">
+                    <TextBlock Text="{x:Static p:Resources.Folders}"
 							   FontSize="{StaticResource FontSizeHeader}"
 							   Foreground="{DynamicResource BaseHighBrush}"
 							   FontWeight="SemiBold"
 							   Margin="5" />
-				</Border>
+                </Border>
 
-				<!-- Block Menu -->
-				<Grid x:Name="GridBlockMenuName" Style="{StaticResource GridFieldsetMenuStyle}">
-				</Grid>
+                <!-- Block Menu -->
+                <Grid x:Name="GridBlockMenuName" Style="{StaticResource GridFieldsetMenuStyle}">
 
-			</StackPanel>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border x:Name="BorderMenuRightName" Grid.Column="2">
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button x:Name="ButtonClearSelectionName"
+									Style="{DynamicResource ButtonIcon24Minus}"
+									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"
+									Click="ClearSelection_Click"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </StackPanel>
             <!-- #endregion -->
 
 

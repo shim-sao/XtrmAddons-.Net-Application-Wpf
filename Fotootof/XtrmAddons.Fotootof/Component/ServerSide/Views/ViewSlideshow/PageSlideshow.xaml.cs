@@ -1,14 +1,12 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Windows;
+using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
-using XtrmAddons.Fotootof.Common.Collections;
-using XtrmAddons.Fotootof.Common.Tools;
-using System.Globalization;
-using System;
-using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
-using XtrmAddons.Fotootof.Culture;
 
 namespace XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow
 {

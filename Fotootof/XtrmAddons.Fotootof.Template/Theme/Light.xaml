@@ -9,39 +9,33 @@
 	<!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/style/color -->
 
 	<!-- #region UWP System.Alt -->
-	<Color x:Key="AltHigh">#FF000000</Color>
+    <Color x:Key="AltHigh">#FFFFFFFF</Color>
+    <Color x:Key="AltMediumHigh">#CCFFFFFF</Color>
+    <Color x:Key="AltMedium">#99FFFFFF</Color>
+    <Color x:Key="AltMediumLow">#66FFFFFF</Color>
+    <Color x:Key="AltLow">#33FFFFFF</Color>
+    
 	<SolidColorBrush x:Key="AltHighBrush" Color="{StaticResource AltHigh}" />
-
-	<Color x:Key="AltLow">#33000000</Color>
-	<SolidColorBrush x:Key="AltLowBrush" Color="{StaticResource AltLow}" />
-
-	<Color x:Key="AltMedium">#99000000</Color>
-	<SolidColorBrush x:Key="AltMediumBrush" Color="{StaticResource AltMedium}" />
-
-	<Color x:Key="AltMediumHigh">#CC000000</Color>
-	<SolidColorBrush x:Key="AltMediumHighBrush" Color="{StaticResource AltMediumHigh}" />
-
-	<Color x:Key="AltMediumLow">#66000000</Color>
-	<SolidColorBrush x:Key="AltMediumLowBrush" Color="{StaticResource AltMediumLow}" />
+    <SolidColorBrush x:Key="AltMediumHighBrush" Color="{StaticResource AltMediumHigh}" />
+    <SolidColorBrush x:Key="AltMediumBrush" Color="{StaticResource AltMedium}" />
+    <SolidColorBrush x:Key="AltMediumLowBrush" Color="{StaticResource AltMediumLow}" />
+    <SolidColorBrush x:Key="AltLowBrush" Color="{StaticResource AltLow}" />
 	<!-- #endregion UWP System.Alt -->
 
 
 	<!-- #region UWP System.Base -->
 	<Color x:Key="BaseHigh">#FF000000</Color>
-	<SolidColorBrush x:Key="BaseHighBrush" Color="{StaticResource BaseHigh}" />
+    <Color x:Key="BaseMediumHigh">#CC000000</Color>
+    <Color x:Key="BaseMedium">#99000000</Color>
+    <Color x:Key="BaseMediumLow">#66000000</Color>
+    <Color x:Key="BaseLow">#33000000</Color>
 
-	<Color x:Key="BaseLow">#33000000</Color>
-	<SolidColorBrush x:Key="BaseLowBrush" Color="{StaticResource BaseLow}" />
-
-	<Color x:Key="BaseMedium">#99000000</Color>
-	<SolidColorBrush x:Key="BaseMediumBrush" Color="{StaticResource BaseMedium}" />
-
-	<Color x:Key="BaseMediumHigh">#CC000000</Color>
+    <SolidColorBrush x:Key="BaseHighBrush" Color="{StaticResource BaseHigh}" />
 	<SolidColorBrush x:Key="BaseMediumHighBrush" Color="{StaticResource BaseMediumHigh}" />
-
-	<Color x:Key="BaseMediumLow">#66000000</Color>
+	<SolidColorBrush x:Key="BaseMediumBrush" Color="{StaticResource BaseMedium}" />
 	<SolidColorBrush x:Key="BaseMediumLowBrush" Color="{StaticResource BaseMediumLow}" />
-	<!-- #endregion UWP System.Base -->
+    <SolidColorBrush x:Key="BaseLowBrush" Color="{StaticResource BaseLow}" />
+    <!-- #endregion UWP System.Base -->
 
 
 	<!-- #region UWP System.Chrome -->

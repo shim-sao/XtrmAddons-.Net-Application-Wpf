@@ -165,7 +165,7 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
             mi.IsChecked = AppSettings.GetBool(mi, "IsChecked", mi.IsChecked);
             if (mi.IsChecked)
             {
-                AppNavigator.MainWindow.ToggleLogs();
+                (Application.Current.MainWindow as MainWindow).ToggleLogs();
             }
         }
 
@@ -244,7 +244,7 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         /// <param name="e">The routed event arguments.</param>
         private void OnDisplayLogsWindowClick(object sender, RoutedEventArgs e)
         {
-            AppNavigator.MainWindow.ToggleLogs();
+            (Application.Current.MainWindow as MainWindow).ToggleLogs();
             MenuItem mi = (MenuItem)FindName("MenuItemDisplayLogs");
             AppSettings.SaveBool(mi, "IsChecked", mi.IsChecked);
         }

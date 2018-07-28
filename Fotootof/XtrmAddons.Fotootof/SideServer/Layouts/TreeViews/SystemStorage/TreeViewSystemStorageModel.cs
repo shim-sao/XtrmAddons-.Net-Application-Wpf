@@ -99,6 +99,16 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
         }
 
         /// <summary>
+        /// Method to initialize the model.
+        /// </summary>
+        public void Refresh()
+        { 
+            Drives.Clear();
+            TreeViewDirectoryInfo.Items?.Clear();
+            InitializeModel();
+        }
+
+        /// <summary>
         /// Method to expand a folder sub-directories tree.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
@@ -134,7 +144,7 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
                 catch (Exception ex)
                 {
                     log.Debug(ex.Output(), ex);
-                    throw ex;
+                    throw;
                 }
             }
         }

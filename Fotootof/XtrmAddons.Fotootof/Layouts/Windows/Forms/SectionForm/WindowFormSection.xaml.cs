@@ -193,7 +193,7 @@ namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm
             catch (Exception e)
             {
                 log.Error(e.Output(), e);
-                throw e;
+                throw;
             }
             
             //log.Info($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");

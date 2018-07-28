@@ -18,6 +18,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
     /// <summary>
     /// 
     /// </summary>
+    [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities.AlbumEntityCollection")]
     public class PictureEntityCollection : CollectionBaseEntity<PictureEntity, PictureOptionsList>
     {
         #region Properties

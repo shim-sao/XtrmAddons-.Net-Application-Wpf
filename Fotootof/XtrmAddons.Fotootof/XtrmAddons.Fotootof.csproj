@@ -187,6 +187,13 @@
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="FotootofComponent.Browser">
+      <HintPath>..\Packages\Debug\FotootofComponent.Browser.dll</HintPath>
+    </Reference>
+    <Reference Include="FotootofServer.Controls.TreeViews.Storage, Version=0.18.727.1453, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\FotootofServer.Controls.TreeViews.Storage.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -210,39 +217,39 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="XtrmAddons.Net.Application">
-      <HintPath>..\Packages\XtrmAddons.Net.Application.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Common, Version=1.0.18176.1004, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\XtrmAddons.Net.Common.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.HttpWebServer">
-      <HintPath>..\Packages\XtrmAddons.Net.HttpWebServer.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.HttpWebServer.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Memory">
-      <HintPath>..\Packages\XtrmAddons.Net.Memory.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Memory.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Network">
-      <HintPath>..\Packages\XtrmAddons.Net.Network.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Network.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.NotifyIcons">
-      <HintPath>..\Packages\XtrmAddons.Net.NotifyIcons.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.NotifyIcons.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Picture">
-      <HintPath>..\Packages\XtrmAddons.Net.Picture.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Picture.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SQLiteBundle">
-      <HintPath>..\Packages\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SystemIO">
-      <HintPath>..\Packages\XtrmAddons.Net.SystemIO.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.SystemIO.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Windows">
-      <HintPath>..\Packages\XtrmAddons.Net.Windows.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Windows.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Xml, Version=1.0.18019.2352, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\XtrmAddons.Net.Xml.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Xml.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -291,7 +298,6 @@
     <Compile Include="Common\Controls\ListViews\ListViewStorages.cs" />
     <Compile Include="Layouts\Menu\MenuMainModel.cs" />
     <Compile Include="Common\Tools\AppLogger.cs" />
-    <Compile Include="Common\Tools\AppOverwork.cs" />
     <Compile Include="Common\Tools\AppNavigator.cs" />
     <Compile Include="Layouts\DataGrids\AclGroups\DataGridAclGroups.cs" />
     <Compile Include="Layouts\DataGrids\AclGroups\DataGridAclGroupsModel.cs" />
@@ -401,9 +407,6 @@
       <DependentUpon>ListViewAlbumsServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\ServerSide\Controls\Servers\ServerInfosModel.cs" />
-    <Compile Include="Component\ServerSide\Controls\TreeViews\TreeViewSystemStorage.xaml.cs">
-      <DependentUpon>TreeViewSystemStorage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Layouts\Windows\About\WindowAbout.xaml.cs">
       <DependentUpon>WindowAbout.xaml</DependentUpon>
     </Compile>
@@ -420,15 +423,6 @@
     </Compile>
     <Compile Include="Settings\SettingsOptions.cs" />
     <Compile Include="Settings\SettingsPreferences.cs" />
-    <Compile Include="SideServer\Layouts\TreeViews\Sections\TreeViewSections.xaml.cs">
-      <DependentUpon>TreeViewSections.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SideServer\Layouts\TreeViews\SystemStorage\TreeViewItemDirectoryInfo.cs" />
-    <Compile Include="SideServer\Layouts\TreeViews\SystemStorage\TreeViewItemDriveInfo.cs" />
-    <Compile Include="SideServer\Layouts\TreeViews\SystemStorage\TreeViewSystemStorage.xaml.cs">
-      <DependentUpon>TreeViewSystemStorage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SideServer\Layouts\TreeViews\SystemStorage\TreeViewSystemStorageModel.cs" />
     <Page Include="Common\Controls\DataGrids\UCAlbumsDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
@@ -557,10 +551,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Controls\TreeViews\TreeViewSystemStorage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Layouts\Windows\About\WindowAbout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -577,14 +567,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SideServer\Layouts\TreeViews\Sections\TreeViewSections.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SideServer\Layouts\TreeViews\SystemStorage\TreeViewSystemStorage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -709,7 +691,9 @@
     <Content Include="Assets\Images\Icons\Buttons\button-list-plus-24.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\Icons\Buttons\button-minus-24.png" />
+    <Content Include="Assets\Images\Icons\Buttons\button-minus-24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Images\Icons\Buttons\button-minus-32.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -838,8 +822,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
-    <Folder Include="SideClient\" />
-    <Folder Include="SideServer\Layouts\DataGrids\Users\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Shell32">

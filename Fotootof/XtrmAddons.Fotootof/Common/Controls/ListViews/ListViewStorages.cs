@@ -9,6 +9,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries Common Controls List Views Storage.
     /// </summary>
+    [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews.ListViewStorages")]
     public abstract class ListViewStorages : ListViewBase<StorageCollection, StorageInfoModel>
     {
         #region Properties

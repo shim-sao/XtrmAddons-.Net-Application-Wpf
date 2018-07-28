@@ -1,14 +1,9 @@
 ﻿using System;
-using System.IO;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls;
-using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Net.Common.Extensions;
-using XtrmAddons.Net.Picture.Classes;
-using XtrmAddons.Net.Picture.Extensions;
 
 namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
 {
@@ -35,11 +30,6 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
         /// Accessors to Window AclGroup Form model.
         /// </summary>
         internal TreeViewSystemStorageModel Model { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public DriveInfo[] Drives { get; private set; }
 
         /// <summary>
         /// 
@@ -85,15 +75,6 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
         /// </summary>
         public void InitializeContent()
         {
-            //// Get list of computer drives.
-            //Drives = DriveInfo.GetDrives();
-
-            //// Add items to the tree view.
-            //foreach (DriveInfo driveInfo in Drives)
-            //{
-            //    (FindName("TreeViewDirectoryInfoName") as TreeView).Items.Add(new TreeViewItemDriveInfo(driveInfo));
-            //}
-
             Model = new TreeViewSystemStorageModel(this);
         }
 
@@ -111,7 +92,13 @@ namespace XtrmAddons.Fotootof.SideServer.Layouts.TreeViews.SystemStorage
             catch(Exception ex)
             {
                 log.Debug(ex.Output(), ex);
+                MessageBase.Error(ex);
             }
+        }
+
+        private void ClearSelection_Click(object sender, RoutedEventArgs e)
+        {
+            Model.Refresh();
         }
 
         /// <summary>

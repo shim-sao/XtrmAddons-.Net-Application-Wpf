@@ -49,13 +49,13 @@
     <Reference Include="System.Xml.Serialization" />
     <Reference Include="WindowsBase" />
     <Reference Include="XtrmAddons.Net.Application">
-      <HintPath>..\Packages\XtrmAddons.Net.Application.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Common">
-      <HintPath>..\Packages\XtrmAddons.Net.Common.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SQLiteBundle">
-      <HintPath>..\Packages\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +259,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\schema.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
