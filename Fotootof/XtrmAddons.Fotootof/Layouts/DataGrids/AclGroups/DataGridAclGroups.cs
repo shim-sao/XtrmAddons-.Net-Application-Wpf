@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows;
-using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 

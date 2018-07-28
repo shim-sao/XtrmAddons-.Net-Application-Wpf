@@ -2,7 +2,7 @@
 using XtrmAddons.Fotootof.Lib.Base.Classes.Windows;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Common.Collections;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities;
 
 namespace XtrmAddons.Fotootof.Layouts.Windows.Forms.AclGroupForm
 {

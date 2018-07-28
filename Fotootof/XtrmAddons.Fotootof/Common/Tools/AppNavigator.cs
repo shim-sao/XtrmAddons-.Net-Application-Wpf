@@ -1,12 +1,12 @@
 ﻿using System.Windows.Controls;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpClient;
-using XtrmAddons.Fotootof.Component.ClientSide.Views.ViewCatalog;
-//using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewBrowser;
-using FotootofComponent.Browser.Views;
-using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog;
-using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewServer;
-using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewSlideshow;
-using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers;
+using XtrmAddons.Fotootof.ComponentOld.ClientSide.Views.ViewCatalog;
+//using XtrmAddons.Fotootof.ComponentOld.ServerSide.Views.ViewBrowser;
+using Fotootof.ServerSide.Component.Browser.Views;
+using XtrmAddons.Fotootof.ComponentOld.ServerSide.Views.ViewCatalog;
+using XtrmAddons.Fotootof.ComponentOld.ServerSide.Views.ViewServer;
+using XtrmAddons.Fotootof.ComponentOld.ServerSide.Views.ViewSlideshow;
+using XtrmAddons.Fotootof.ComponentOld.ServerSide.Views.ViewUsers;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities;
 
@@ -35,7 +35,7 @@ namespace XtrmAddons.Fotootof.Common.Tools
         /// Method to navigate to the Album page.
         /// </summary>
         public static void NavigateToPageAlbumServer(int albumId) 
-            => Navigate(new Component.ServerSide.Views.ViewAlbum.PageAlbum(albumId));
+            => Navigate(new ComponentOld.ServerSide.Views.ViewAlbum.PageAlbum(albumId));
 
         /// <summary>
         /// Method to navigate to Album page.
@@ -83,7 +83,7 @@ namespace XtrmAddons.Fotootof.Common.Tools
         /// Method to navigate to the Plugin Server page.
         /// </summary>
         public static void NavigateToPagePluginServer(UserControl uc)
-            => Navigate(new Component.ServerSide.Views.ViewPlugin.PagePlugin(uc));
+            => Navigate(new ComponentOld.ServerSide.Views.ViewPlugin.PagePlugin(uc));
 
         #endregion Methods
     }
