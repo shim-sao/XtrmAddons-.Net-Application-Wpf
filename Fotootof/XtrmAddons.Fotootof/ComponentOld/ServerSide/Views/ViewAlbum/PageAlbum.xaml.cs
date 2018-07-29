@@ -1,18 +1,14 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows;
+using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
-using XtrmAddons.Fotootof.Common.Tools;
-using System.Globalization;
-using System.ComponentModel;
-using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
-using XtrmAddons.Net.Common.Extensions;
-using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.SQLite.Event;
-using XtrmAddons.Fotootof.Common.Collections;
-using System.Collections.Generic;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.ComponentOld.ServerSide.Views.ViewAlbum
 {

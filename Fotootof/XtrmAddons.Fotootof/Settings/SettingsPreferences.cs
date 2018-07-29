@@ -30,6 +30,7 @@ namespace XtrmAddons.Fotootof.Settings
             Trace.TraceInformation($"data.server => {ApplicationBase.Storage.Directories.FindKeyFirst("data.server").AbsolutePath}");
 
             // Create path to configuration database directory
+            // Todo : delete not used anymore
             temp = new Directory
             {
                 Key = "data.database",

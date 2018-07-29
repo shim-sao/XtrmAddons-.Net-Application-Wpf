@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -20,7 +21,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         /// Variable logger.
         /// </summary>
         private new static readonly log4net.ILog log =
-            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 
@@ -193,6 +194,68 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             catch (Exception ex)
             {
                 log.Error("SQLite Initializing Table `Versions`. Exception.");
+                log.Error(ex.Output(), ex);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Method to inialize content of the table AclGroup after EnsureCreated()
+        /// </summary>
+        internal async void CheckVersion()
+        {
+            try
+            {
+                // Get the latest update version inserted.
+                var versionId = Context.Versions.Max(x => x.PrimaryKey);
+                var version = Context.Versions.Single(x => x.PrimaryKey == versionId);
+
+                // Create versions
+                var currentVersion = new Version(version.AssemblyVersionMin);
+                var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
+
+                log.Info($"Current Assembly Version : {currentVersion}");
+
+                // Create list of update versions.
+                Dictionary<string, string> versions = new Dictionary<string, string>()
+                {
+                    { "1.0.18123.2149", Properties.Database.SrcSQLiteDatabaseUpdate_1_0_18123_2149 },
+                    { "1.0.18134.1044", Properties.Database.SrcSQLiteDatabaseUpdate_1_0_18134_1044 },
+                    { "1.0.18137.1050", Properties.Database.SrcSQLiteDatabaseUpdate_1_0_18137_1050 },
+                    { "1.0.18210.1228", Properties.Database.SrcSQLiteDatabaseUpdate_1_0_18210_1228 }
+                };
+
+                // Check for the latest version to skeep process
+                // if not required at all connections.
+                Version old = new Version(versions.Keys.Last());
+                if(currentVersion >= old)
+                {
+                    return;
+                }
+
+                // Process to the updates
+                foreach (var ver in versions)
+                {
+                    old = new Version(ver.Key);
+                    if (currentVersion < old)
+                    {
+                        log.Info($"Updating Assembly Minimum Version : {old}");
+
+                        await Context.Database.ExecuteSqlCommandAsync(ver.Value);
+                        Context.Versions.Add(new VersionEntity() { PrimaryKey = 0, AssemblyVersionMin = old.ToString(), Comment = "Database auto update version." });
+                        await SaveAsync();
+
+                        log.Info($"Updating Assembly Minimum Version : {old}. Done !");
+                    }
+                    else
+                    {
+                        log.Info($"Updating Assembly Minimum Version : {old}. Skipped !");
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
                 log.Error(ex.Output(), ex);
                 throw ex;
             }

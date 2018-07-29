@@ -12,7 +12,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Users AclGroup Collections.
     /// </summary>
-    [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities.AclGroupEntityCollection")]
+    [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities.AclGroupEntityCollection", true)]
     public class AclGroupEntityCollection : CollectionBaseEntity<AclGroupEntity, AclGroupOptionsList>
     {
         #region Properties

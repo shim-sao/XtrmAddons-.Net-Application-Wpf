@@ -1,9 +1,10 @@
-﻿using XtrmAddons.Fotootof.Common.Collections;
+﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
 
 namespace XtrmAddons.Fotootof.ComponentOld.ServerSide.Controls.ListViews
 {
-    public class ListViewStoragesServerModel : ListViewBaseModel<ListViewStoragesServer, StorageCollection>
+    [System.Obsolete("use Fotootof.ServerSide.Component.Browser.dll")]
+    public class ListViewStoragesServerModel : ListViewBaseModel<ListViewStoragesServer, CollectionStorage>
     {
         #region Properties
         #endregion

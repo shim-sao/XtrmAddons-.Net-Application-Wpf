@@ -95,6 +95,10 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
                     {
                         PopulateDatabase();
                     }
+                    else
+                    {
+                        Versions.CheckVersion();
+                    }
                 }
                 
                 return context;

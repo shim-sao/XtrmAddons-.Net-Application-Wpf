@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Fotootof.Layouts.Windows.Forms.Section.Controls;
+using System;
 using System.Windows;
-using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Culture;
-using XtrmAddons.Fotootof.Layouts.Windows.Forms.SectionForm;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 
@@ -42,7 +42,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
         public override void OnAddNewItem_Click(object sender, RoutedEventArgs e)
         {
             // Show open file dialog box 
-            WindowFormSection dlg = new WindowFormSection(new SectionEntity());
+            WindowFormSectionControl dlg = new WindowFormSectionControl(new SectionEntity());
             bool? result = dlg.ShowDialog();
 
             if(!dlg.Activate())
@@ -75,7 +75,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.DataGrids
             if (SelectedItem != null)
             {
                 // Show open file dialog box 
-                WindowFormSection dlg = new WindowFormSection(SelectedItem);
+                WindowFormSectionControl dlg = new WindowFormSectionControl(SelectedItem);
                 bool? result = dlg.ShowDialog();
 
                 // Process open file dialog box results 

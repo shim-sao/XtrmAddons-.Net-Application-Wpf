@@ -1,5 +1,5 @@
-﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
-using XtrmAddons.Fotootof.Common.Collections;
+﻿using XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
 
 namespace XtrmAddons.Fotootof.Common.Controls.ListViews
 {

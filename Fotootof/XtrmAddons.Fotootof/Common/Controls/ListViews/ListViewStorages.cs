@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
-using XtrmAddons.Fotootof.Common.Collections;
 
 namespace XtrmAddons.Fotootof.Common.Controls.ListViews
 {
@@ -10,7 +10,7 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
     /// Class XtrmAddons Fotootof Libraries Common Controls List Views Storage.
     /// </summary>
     [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews.ListViewStorages")]
-    public abstract class ListViewStorages : ListViewBase<StorageCollection, StorageInfoModel>
+    public abstract class ListViewStorages : ListViewBase<CollectionStorage, StorageInfoModel>
     {
         #region Properties
 
@@ -21,9 +21,9 @@ namespace XtrmAddons.Fotootof.Common.Controls.ListViews
             DependencyProperty.Register
             (
                 "Items",
-                typeof(StorageCollection),
+                typeof(CollectionStorage),
                 typeof(ListViewStorages),
-                new PropertyMetadata(new StorageCollection())
+                new PropertyMetadata(new CollectionStorage())
             );
 
         #endregion

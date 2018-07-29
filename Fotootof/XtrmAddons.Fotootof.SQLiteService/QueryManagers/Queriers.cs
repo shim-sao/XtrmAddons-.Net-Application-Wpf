@@ -6,7 +6,7 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
     /// <summary>
     /// Class XtrmAddons Fotootof SQLiteService.
     /// </summary>
-    public class Queriers
+    public abstract class Queriers
     {
         #region Properties
 
@@ -49,6 +49,11 @@ namespace XtrmAddons.Fotootof.SQLiteService.QueryManagers
         /// Property proxy to access to the database User entities manager.
         /// </summary>
         public static UserManager UserManager => Db.Users;
+
+        /// <summary>
+        /// Property proxy to access to the database Version entities manager.
+        /// </summary>
+        public static VersionManager VersionManager => Db.Versions;
 
         #endregion
     }

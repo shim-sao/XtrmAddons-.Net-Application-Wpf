@@ -93,9 +93,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Properties {
         ///	CONSTRAINT `FK_UsersInAclGroups_AclGroups_AclGroupId` FOREIGN KEY(`AclGroupId`) REFERENCES `AclGroups`(`AclGroupId`) ON DELETE CASCADE,
         ///	CONST [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        public static string schema {
+        public static string SrcSQLiteDatabaseSchema {
             get {
-                return ResourceManager.GetString("schema", resourceCulture);
+                return ResourceManager.GetString("SrcSQLiteDatabaseSchema", resourceCulture);
             }
         }
         

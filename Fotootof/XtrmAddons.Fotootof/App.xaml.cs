@@ -78,11 +78,11 @@ namespace XtrmAddons.Fotootof
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
             
-            ResourceDictionary rd = new ResourceDictionary
+            /*ResourceDictionary rd = new ResourceDictionary
             {
                 Source = new Uri("XtrmAddons.Fotootof.Template;component/Theme/Dark.xaml", UriKind.Relative)
             };
-            Current.Resources.MergedDictionaries.Add(rd);
+            Current.Resources.MergedDictionaries.Add(rd);*/
         }
 
         #endregion

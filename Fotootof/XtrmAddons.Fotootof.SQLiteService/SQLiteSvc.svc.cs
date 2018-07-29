@@ -17,6 +17,11 @@ namespace XtrmAddons.Fotootof.SQLiteService
         /// </summary>
         private static DatabaseCore db;
 
+        /// <summary>
+        /// Variable to store the database file name.
+        /// </summary>
+        private static string databaseFileName;
+
         #endregion
 
 

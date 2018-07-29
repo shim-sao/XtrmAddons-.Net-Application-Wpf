@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
-using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Common.Models.DataGrids;
 using XtrmAddons.Fotootof.ComponentOld.ServerSide.Controls.DataGrids;
-using XtrmAddons.Fotootof.Layouts.DataGrids.AclGroups;
+using XtrmAddons.Fotootof.LayoutsOld.DataGrids.AclGroups;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;

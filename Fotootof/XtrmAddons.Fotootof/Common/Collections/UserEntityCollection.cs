@@ -12,7 +12,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Users Collections.
     /// </summary>
-    [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities.UserEntityCollection")]
+    [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities.UserEntityCollection", true)]
     public class UserEntityCollection : CollectionBaseEntity<UserEntity, UserOptionsList>
     {
         #region Properties

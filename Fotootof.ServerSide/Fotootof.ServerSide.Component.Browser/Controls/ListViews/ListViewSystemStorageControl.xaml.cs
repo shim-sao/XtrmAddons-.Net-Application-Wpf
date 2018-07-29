@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fotootof.Layouts.Windows.DataGrids.Albums.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -147,9 +148,8 @@ namespace Fotootof.ServerSide.Component.Browser.Controls
         /// <param name="e"></param>
         private void OnAddPicturesToAlbum_Click(object sender, RoutedEventArgs e)
         {
-            /*
             // Show open file dialog box 
-            WindowDataGridAlbums dlg = new WindowDataGridAlbums();
+            WindowDataGridAlbumsControl dlg = new WindowDataGridAlbumsControl();
             bool? result = dlg.ShowDialog();
 
             // Process open file dialog box results 
@@ -183,7 +183,6 @@ namespace Fotootof.ServerSide.Component.Browser.Controls
             
             // Clear user selection.
             ItemsCollection.SelectedItems.Clear();
-            */
         }
 
         /// <summary>

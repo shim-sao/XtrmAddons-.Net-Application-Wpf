@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:p="clr-namespace:XtrmAddons.Fotootof.Properties"
-    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.Layouts.Menu"
+    xmlns:ucmenu="clr-namespace:XtrmAddons.Fotootof.LayoutsOld.Menu"
     xmlns:ucsubmenu="clr-namespace:XtrmAddons.Fotootof.ComponentOld.ServerSide.Controls.Menu"
     mc:Ignorable="d"
     Title="{x:Static p:Resources.ApplicationName}"

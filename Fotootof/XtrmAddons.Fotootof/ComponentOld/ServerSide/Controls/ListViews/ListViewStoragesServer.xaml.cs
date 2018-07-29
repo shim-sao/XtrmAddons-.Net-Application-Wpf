@@ -5,10 +5,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
-using XtrmAddons.Fotootof.Layouts.Windows.DataGrids.AlbumsDataGrid;
+using XtrmAddons.Fotootof.LayoutsOld.Windows.DataGrids.AlbumsDataGrid;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Collections;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Net.Windows.Controls.Extensions;
@@ -18,6 +19,7 @@ namespace XtrmAddons.Fotootof.ComponentOld.ServerSide.Controls.ListViews
     /// <summary>
     /// Class XtrmAddons Fotootof Server Server Controls Albums List View.
     /// </summary>
+    [System.Obsolete("use Fotootof.ServerSide.Component.Browser.dll")]
     public partial class ListViewStoragesServer : ListViewStorages
     {
         #region Properties
@@ -105,7 +107,7 @@ namespace XtrmAddons.Fotootof.ComponentOld.ServerSide.Controls.ListViews
         {
             Model = new ListViewStoragesServerModel(this)
             {
-                Items = ItemsCollection.ItemsSource as StorageCollection
+                Items = ItemsCollection.ItemsSource as CollectionStorage
             };
 
             ComboBox selectorImgSize = ((ComboBox)FindName("ComboBoxImageSizeName"));

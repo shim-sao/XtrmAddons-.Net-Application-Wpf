@@ -1,0 +1,295 @@
+﻿<UserControl
+    x:Class="XtrmAddons.Fotootof.LayoutsOld.Menu.MenuMain"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+	mc:Ignorable="d"
+	Loaded="UserControl_Loaded">
+
+	<DockPanel HorizontalAlignment="Stretch"
+			   VerticalAlignment="Top"
+			   Background="{DynamicResource ChromeMediumBrush}"
+			   Height="24">
+
+		<Menu x:Name="MenuMainName"
+			  DockPanel.Dock="Top"
+			  Style="{DynamicResource MenuMainStyle}">
+
+
+			<!-- #region FILE -->
+			<MenuItem Header="{x:Static p:Resources._File}"
+					  Style="{DynamicResource MenuItemMainStyle}"
+					  Template="{DynamicResource MenuItemMainControlTemplate}">
+
+				<MenuItem x:Name="MenuItemFileExitName"
+						  Command="ApplicationCommands.Close"
+						  Header="{x:Static p:Resources._Exit}"
+						  InputGestureText="Alt+F4"
+						  Style="{DynamicResource MenuItemMainLevel1Style}">
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24Exit}, IsAsync=True}" />
+					</MenuItem.Icon>
+				</MenuItem>
+
+			</MenuItem>
+			<!-- #endregion -->
+
+
+			
+			<!-- #region EDITION -->
+			<MenuItem Header="{x:Static p:Resources._Edition}"
+					  Style="{DynamicResource MenuItemMainStyle}"
+					  Template="{DynamicResource MenuItemMainControlTemplate}">
+				
+				<MenuItem Command="Cut" Style="{DynamicResource MenuItemMainLevel1Style}" />
+				<MenuItem Command="Copy" Style="{DynamicResource MenuItemMainLevel1Style}" />
+				<MenuItem Command="Paste" Style="{DynamicResource MenuItemMainLevel1Style}" />
+
+				<Separator />
+				
+				<MenuItem Command="Select" Style="{DynamicResource MenuItemMainLevel1Style}" />
+				<MenuItem Command="Refresh" Style="{DynamicResource MenuItemMainLevel1Style}" />
+
+				<Separator />
+
+				<MenuItem x:Name="MenuItemEditionPreferencesName"
+						  Header="{x:Static p:Resources._Preferences}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="EditionPreferences_Click">
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24Settings}, IsAsync=True}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+			<!-- #endregion -->
+
+
+
+			<!-- #region SERVER -->
+			<MenuItem Header="{x:Static p:Resources._Server}"
+					  Style="{DynamicResource MenuItemMainStyle}"
+					  Template="{DynamicResource MenuItemMainControlTemplate}">
+
+				<MenuItem x:Name="MenuItemServerRemoteName"
+						  Header="{x:Static p:Resources._ServerRemote}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="ServerRemote_Click">
+				</MenuItem>
+
+				<Separator />
+
+				<MenuItem x:Name="MenuItemServerSettingsName"
+						  Header="{x:Static p:Resources._ServerSettings}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="ServerSettings_Click">
+				</MenuItem>
+
+
+				<MenuItem Header="{x:Static p:Resources._ClientNew}"
+						  Name="MenuItemServerClientNewName"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="OnServerAddClient_Click">
+				</MenuItem>
+
+				<Separator />
+
+				<MenuItem Name="MenuItemServerStartName"
+						  Header="{x:Static p:Resources._Start}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="OnServerStart_Click"
+						  ToolTip="Start Http server.">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ServerStart}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+
+				<MenuItem Name="MenuItemServerStopName"
+						  Header="{x:Static p:Resources._Stop}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  ToolTip="{x:Static p:Resources.Tooltip_MenuItem_Server_Stop}"
+						  Click="OnServerStop_Click">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ServerStop}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+
+				<MenuItem Name="MenuItemServerRestartName"
+						  Header="{x:Static p:Resources._Restart}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="OnServerRestart_Click"
+						  ToolTip="Restart Http server.">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ServerRestart}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+
+				<Separator />
+
+				<MenuItem Name="MenuItemServerAddToFirewallName"
+						  Header="{x:Static p:Resources._AddToFirewall}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="OnServerAddToFirewall_Click"
+						  ToolTip="Add Http server URL to the firewall rules. Enable external access."/>
+
+				<MenuItem Name="MenuItemServerRemoveFromFirewallName"
+						  Header="{x:Static p:Resources._RemoveFromFirewall}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="OnServerRemoveFromFirewall_Click"
+						  ToolTip="Remove Http server URL to the firewall rules. Disable external access."/>
+
+			</MenuItem>
+			<!-- #endregion -->
+
+
+
+			<!-- #region USERS -->
+			<MenuItem Header="{x:Static p:Resources._Users}"
+					  Style="{DynamicResource MenuItemMainStyle}"
+					  Template="{DynamicResource MenuItemMainControlTemplate}">
+
+				<MenuItem x:Name="UI_MI_Users"
+						  Header="{x:Static p:Resources._UsersList}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="OnUsersListClick">
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24UsersSetting}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+
+				<MenuItem x:Name="MenuItem_AddUser"
+						  Header="{x:Static p:Resources._UsersNew}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="OnAddUser_Click">
+
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24UserPlus}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+			<!-- #endregion -->
+
+
+
+			<!-- #region CATALOG -->
+			<MenuItem Header="{x:Static p:Resources._Catalog}"
+					  Style="{DynamicResource MenuItemMainStyle}"
+					  Template="{DynamicResource MenuItemMainControlTemplate}">
+
+				<MenuItem x:Name="MenuItemCatalogNavigateToName"
+						  Header="{x:Static p:Resources._Catalog}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="CatalogNavigateTo_Click">
+				</MenuItem>
+
+				<MenuItem x:Name="MenuItem_AddSection"
+						  Header="{x:Static p:Resources._AddNewSection}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="OnAddSection_Click">
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ListPlus}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+
+				<MenuItem Header="{x:Static p:Resources._AddNewAlbum}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  x:Name="MenuItem_AddAlbum"
+						  Click="OnAddAlbum_Click">
+					<MenuItem.Icon>
+						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ListPlus}}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+			<!-- #endregion -->
+
+
+
+			<!-- #region DISPLAY -->
+			<MenuItem x:Name="MenuItemDisplay"
+					  Header="{x:Static p:Resources._Display}"
+					  Style="{DynamicResource MenuItemMainStyle}"
+					  Template="{DynamicResource MenuItemMainControlTemplate}">
+
+				<MenuItem x:Name="MenuItemDisplayTheme"
+						  Header="{x:Static p:Resources._Theme}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Template="{DynamicResource MenuItemControlTemplateLevel1}">
+
+					<MenuItem Name="MenuItem_ThemeLight"
+							  Header="{x:Static p:Resources._ThemeLight}"
+							  Style="{DynamicResource ControlMenuGeneric}"
+							  Click="ThemeChanged_Click"
+							  IsCheckable="True"
+							  Tag="Light"/>
+
+					<MenuItem Name="MenuItem_ThemeDark"
+							  Header="{x:Static p:Resources._ThemeDark}"
+							  Style="{DynamicResource ControlMenuGeneric}"
+							  Click="ThemeChanged_Click"
+							  IsCheckable="True"
+							  Tag="Dark"/>
+				</MenuItem>
+
+				<MenuItem x:Name="MenuItemDisplayLanguage"
+						  Header="{x:Static p:Resources._Language}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Template="{DynamicResource MenuItemControlTemplateLevel1}">
+
+					<MenuItem x:Name="MenuItem_LanguageFR"
+							  Header="{x:Static p:Resources.French}"
+							  Style="{DynamicResource ControlMenuGeneric}"
+							  Click="LanguageChanged_Click"
+							  IsChecked="False"
+							  Tag="fr-FR"/>
+
+					<MenuItem x:Name="MenuItem_LanguageEN"
+							  Header="{x:Static p:Resources.English}"
+							  Style="{DynamicResource ControlMenuGeneric}"
+							  Click="LanguageChanged_Click"
+							  IsChecked="False"
+							  Tag="en-GB" />
+
+				</MenuItem>
+
+				<MenuItem x:Uid="MenuItemDisplayLogsId"
+						  x:Name="MenuItemDisplayLogs"
+						  Header="{x:Static p:Resources._LogsWindow}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="OnDisplayLogsWindowClick"
+						  IsCheckable="True"/>
+			</MenuItem>
+			<!-- #endregion -->
+
+
+
+			<!-- #region PLUGINS -->
+			<MenuItem x:Name="MainMenuItemPlugins"
+					  Header="Plugins"
+					  Style="{DynamicResource MenuItemMainStyle}"
+					  Template="{DynamicResource MenuItemMainControlTemplate}">
+
+			</MenuItem>
+			<!-- #endregion -->
+
+
+
+			<!-- #region HELP -->
+			<MenuItem x:Name="MenuItemHelp"
+					  Header="{x:Static p:Resources._Help}"
+					  Style="{DynamicResource MenuItemMainStyle}"
+					  Template="{DynamicResource MenuItemMainControlTemplate}">
+
+				<MenuItem x:Name="MenuItemHelpAbout"
+						  Header="{x:Static p:Resources._About}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="HelpAbout_Click"/>
+			</MenuItem>
+			<!-- #endregion -->
+
+		</Menu>
+	</DockPanel>
+</UserControl>

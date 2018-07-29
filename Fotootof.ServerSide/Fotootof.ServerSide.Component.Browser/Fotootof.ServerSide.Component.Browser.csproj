@@ -97,7 +97,12 @@
       <Version>2.0.8</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Windows.DataGrids.Albums\Fotootof.Layouts.Windows.DataGrids.Albums.csproj">
+      <Project>{4800EBE5-57FC-4650-AD66-9663FDEC1ED7}</Project>
+      <Name>Fotootof.Layouts.Windows.DataGrids.Albums</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\ListViews\ListViewSystemStorageControl.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -18,7 +18,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
     /// <summary>
     /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection.
     /// </summary>
-    [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities.AlbumEntityCollection")]
+    [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities.AlbumEntityCollection", true)]
     public class AlbumEntityCollection : CollectionBaseEntity<AlbumEntity, AlbumOptionsList>
     {
         #region Properties

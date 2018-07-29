@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Reflection;
-using XtrmAddons.Fotootof.Common.Collections;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Interfaces;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Pages;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
+using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Interfaces;
 
 namespace XtrmAddons.Fotootof.ComponentOld.ServerSide.Views.ViewAlbum
 {

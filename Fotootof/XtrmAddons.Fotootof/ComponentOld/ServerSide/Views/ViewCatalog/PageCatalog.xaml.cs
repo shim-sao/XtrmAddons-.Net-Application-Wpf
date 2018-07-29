@@ -8,7 +8,6 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Event;
-using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.DataGrids;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Common.Models.DataGrids;
@@ -17,6 +16,7 @@ using System.Globalization;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Fotootof.Culture;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities;
 
 namespace XtrmAddons.Fotootof.ComponentOld.ServerSide.Views.ViewCatalog
 {

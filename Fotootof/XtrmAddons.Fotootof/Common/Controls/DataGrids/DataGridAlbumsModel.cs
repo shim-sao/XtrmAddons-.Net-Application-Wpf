@@ -1,6 +1,6 @@
 ﻿using System.Windows;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.DataGrids;
-using XtrmAddons.Fotootof.Common.Collections;
 
 namespace XtrmAddons.Fotootof.Common.Models.DataGrids
 {

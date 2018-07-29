@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
@@ -44,17 +43,20 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls
         /// <summary>
         /// Property to access to the main add to collection control.
         /// </summary>
-        public abstract Control AddControl { get; }
+        public virtual Control AddControl
+            => FindName("ButtonAddName") as Button;
 
         /// <summary>
         /// Property to access to the main edit item control.
         /// </summary>
-        public abstract Control EditControl { get; }
+        public virtual Control EditControl
+            => FindName("ButtonEditName") as Button;
 
         /// <summary>
         /// Property to access to the main delete items control.
         /// </summary>
-        public abstract Control DeleteControl { get; }
+        public virtual Control DeleteControl
+            => FindName("ButtonDeleteName") as Button;
 
         #endregion
 

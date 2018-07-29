@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\XtrmAddons.Fotootof\bin\Debug\</OutputPath>
+    <OutputPath>..\..\Build\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\XtrmAddons.Fotootof\bin\Release\</OutputPath>
+    <OutputPath>..\..\Build\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -127,6 +127,16 @@
     <Compile Include="Database\Scheme\DatabaseContextCore.cs" />
     <Compile Include="Database\Scheme\DatabaseCore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Database.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Database.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.en-GB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -151,11 +161,6 @@
       <DependentUpon>ResourcesLogs.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SQLiteManager.cs" />
     <Compile Include="SQLiteTranslation.cs" />
@@ -235,6 +240,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Database.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Database.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\ResourcesLogs.fr-FR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesLogs.fr-FR.Designer.cs</LastGenOutput>
@@ -261,7 +270,20 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\schema.sql" />
+    <EmbeddedResource Include="Src\SrcSQLiteDatabaseSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Connector\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Src\SrcSQLiteDatabaseUpdate_1_0_18123_2149.sql" />
+    <EmbeddedResource Include="Src\SrcSQLiteDatabaseUpdate_1_0_18210_1228.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Src\SrcSQLiteDatabaseUpdate_1_0_18134_1044.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Src\SrcSQLiteDatabaseUpdate_1_0_18137_1050.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

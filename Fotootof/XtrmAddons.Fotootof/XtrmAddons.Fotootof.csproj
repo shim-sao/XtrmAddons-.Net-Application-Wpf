@@ -18,12 +18,15 @@
     </NuGetPackageImportStamp>
     <ShouldCreateLogs>True</ShouldCreateLogs>
     <AdvancedSettingsExpanded>False</AdvancedSettingsExpanded>
-    <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
-    <UpdateAssemblyFileVersion>True</UpdateAssemblyFileVersion>
-    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
-    <AssemblyVersionSettings>None.None.DateStamp.TimeStamp</AssemblyVersionSettings>
-    <AssemblyFileVersionSettings>None.None.DateStamp.TimeStamp</AssemblyFileVersionSettings>
-    <AssemblyInfoVersionSettings>None.None.DateStamp.TimeStamp</AssemblyInfoVersionSettings>
+    <UpdateAssemblyVersion>False</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>False</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>False</UpdateAssemblyInfoVersion>
+    <AssemblyVersionSettings>
+    </AssemblyVersionSettings>
+    <AssemblyFileVersionSettings>
+    </AssemblyFileVersionSettings>
+    <AssemblyInfoVersionSettings>
+    </AssemblyInfoVersionSettings>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>false</Install>
@@ -44,13 +47,16 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <UpdatePackageVersion>False</UpdatePackageVersion>
+    <AssemblyInfoVersionType>SettingsVersion</AssemblyInfoVersionType>
+    <InheritWinAppVersionFrom>None</InheritWinAppVersionFrom>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\Build\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -61,7 +67,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\Build\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -128,6 +134,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="EntityFramework.fr">
+      <Version>6.2.0</Version>
+    </PackageReference>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.4.0" />
     <PackageReference Include="log4net">
       <Version>2.0.8</Version>
@@ -187,15 +196,14 @@
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Fotootof.ServerSide.Component.Browser">
-      <HintPath>..\Packages\$(Configuration)\Fotootof.ServerSide.Component.Browser.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -286,30 +294,28 @@
       <DependentUpon>PageUsers.xaml</DependentUpon>
     </Compile>
     <Compile Include="ComponentOld\ServerSide\Views\ViewUsers\PageUsersModel.cs" />
-    <Compile Include="Common\Collections\AclActionEntityCollection.cs" />
     <Compile Include="Common\Controls\DataGrids\DataGridUsersModel.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewPictures.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewPicturesModel.cs" />
-    <Compile Include="Common\Controls\ListViews\ListViewStorages.cs" />
-    <Compile Include="Layouts\Menu\MenuMainModel.cs" />
+    <Compile Include="LayoutsOld\Menu\MenuMainModel.cs" />
     <Compile Include="Common\Tools\AppLogger.cs" />
     <Compile Include="Common\Tools\AppNavigator.cs" />
-    <Compile Include="Layouts\DataGrids\AclGroups\DataGridAclGroups.cs" />
-    <Compile Include="Layouts\DataGrids\AclGroups\DataGridAclGroupsModel.cs" />
-    <Compile Include="Layouts\Windows\Forms\ServerForm\WindowFormServer.xaml.cs">
+    <Compile Include="LayoutsOld\DataGrids\AclGroups\DataGridAclGroups.cs" />
+    <Compile Include="LayoutsOld\DataGrids\AclGroups\DataGridAclGroupsModel.cs" />
+    <Compile Include="LayoutsOld\Windows\Forms\ServerForm\WindowFormServer.xaml.cs">
       <DependentUpon>WindowFormServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Layouts\Windows\Forms\ServerForm\WindowFormServerModel.cs" />
-    <Compile Include="Layouts\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
+    <Compile Include="LayoutsOld\Windows\Forms\ServerForm\WindowFormServerModel.cs" />
+    <Compile Include="LayoutsOld\Windows\Forms\ClientForm\WindowFormClient.xaml.cs">
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Layouts\Windows\Forms\ClientForm\WindowFormClientModel.cs" />
-    <Compile Include="Layouts\Windows\Forms\UserForm\ValidationRules.cs" />
-    <Compile Include="Layouts\Windows\Slideshow\WindowSlideshow.xaml.cs">
+    <Compile Include="LayoutsOld\Windows\Forms\ClientForm\WindowFormClientModel.cs" />
+    <Compile Include="LayoutsOld\Windows\Forms\UserForm\ValidationRules.cs" />
+    <Compile Include="LayoutsOld\Windows\Slideshow\WindowSlideshow.xaml.cs">
       <DependentUpon>WindowSlideshow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Layouts\Windows\Slideshow\WindowSlideshowModel.cs" />
-    <Compile Include="Layouts\Windows\Slideshow\ZoomBoder.cs" />
+    <Compile Include="LayoutsOld\Windows\Slideshow\WindowSlideshowModel.cs" />
+    <Compile Include="LayoutsOld\Windows\Slideshow\ZoomBoder.cs" />
     <Compile Include="ComponentOld\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml.cs">
       <DependentUpon>DataGridAclGroupsServer.xaml</DependentUpon>
     </Compile>
@@ -320,10 +326,6 @@
     <Compile Include="ComponentOld\ServerSide\Controls\ListViews\ListViewPicturesServer.xaml.cs">
       <DependentUpon>ListViewPicturesServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ComponentOld\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml.cs">
-      <DependentUpon>ListViewStoragesServer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ComponentOld\ServerSide\Controls\ListViews\ListViewStoragesServerModel.cs" />
     <Compile Include="ComponentOld\ServerSide\Controls\Menu\MenuMainServer.xaml.cs">
       <DependentUpon>MenuMainServer.xaml</DependentUpon>
     </Compile>
@@ -335,7 +337,6 @@
     <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponseSections.cs" />
     <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponse.cs" />
     <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponseBase.cs" />
-    <Compile Include="Common\Collections\StorageCollection.cs" />
     <Compile Include="ComponentOld\ServerSide\Views\ViewAlbum\PageAlbumModel.cs" />
     <Compile Include="ComponentOld\ServerSide\Views\ViewAlbum\PageAlbum.xaml.cs">
       <DependentUpon>PageAlbum.xaml</DependentUpon>
@@ -346,17 +347,13 @@
     </Compile>
     <Compile Include="Common\Controls\DataGrids\DataGridUsers.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewAlbums.cs" />
-    <Compile Include="Layouts\Menu\MenuMain.xaml.cs">
+    <Compile Include="LayoutsOld\Menu\MenuMain.xaml.cs">
       <DependentUpon>MenuMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\Controls\DataGrids\DataGridAlbumsModel.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewAlbumsModel.cs" />
-    <Compile Include="Layouts\Windows\Settings\WindowSettingsModel.cs" />
-    <Compile Include="Layouts\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml.cs">
+    <Compile Include="LayoutsOld\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml.cs">
       <DependentUpon>WindowDataGridAlbums.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Layouts\Windows\Settings\WindowSettings.xaml.cs">
-      <DependentUpon>WindowSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="ComponentOld\ServerSide\Controls\DataGrids\DatagridHttpClient.xaml.cs">
       <DependentUpon>DatagridHttpClient.xaml</DependentUpon>
@@ -364,32 +361,22 @@
     <Compile Include="ComponentOld\ServerSide\Controls\DataGrids\DataGridSectionsServer.xaml.cs">
       <DependentUpon>DataGridSectionsServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\Collections\AlbumEntityCollection.cs" />
-    <Compile Include="Common\Collections\PictureEntityCollection.cs" />
-    <Compile Include="Common\Collections\InfoEntityCollection.cs" />
     <Compile Include="Common\Controls\DataGrids\DataGridAlbums.cs" />
     <Compile Include="Common\Controls\DataGrids\DataGridSections.cs" />
     <Compile Include="Common\Controls\DataGrids\DataGridSectionsModel.cs" />
-    <Compile Include="Layouts\Windows\Forms\AclGroupForm\WindowFormAclGroupModel.cs" />
-    <Compile Include="Layouts\Windows\Forms\AlbumForm\WindowFormAlbumModel.cs" />
-    <Compile Include="Common\Collections\UserEntityCollection.cs" />
-    <Compile Include="Common\Collections\AclGroupEntityCollection.cs" />
+    <Compile Include="LayoutsOld\Windows\Forms\AclGroupForm\WindowFormAclGroupModel.cs" />
+    <Compile Include="LayoutsOld\Windows\Forms\AlbumForm\WindowFormAlbumModel.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Common\Collections\SectionEntityCollection.cs" />
-    <Compile Include="Layouts\Windows\Forms\SectionForm\WindowFormSectionModel.cs" />
-    <Compile Include="Layouts\Windows\Forms\UserForm\WindowFormUserModel.cs" />
-    <Compile Include="Layouts\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbumsModel.cs" />
+    <Compile Include="LayoutsOld\Windows\Forms\UserForm\WindowFormUserModel.cs" />
+    <Compile Include="LayoutsOld\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbumsModel.cs" />
     <Compile Include="Common\HttpHelpers\HttpServer\ServerInfosModel.cs" />
-    <Compile Include="Layouts\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml.cs">
+    <Compile Include="LayoutsOld\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml.cs">
       <DependentUpon>WindowFormAclGroup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Layouts\Windows\Forms\AlbumForm\WindowFormAlbum.xaml.cs">
+    <Compile Include="LayoutsOld\Windows\Forms\AlbumForm\WindowFormAlbum.xaml.cs">
       <DependentUpon>WindowFormAlbum.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Layouts\Windows\Forms\SectionForm\WindowFormSection.xaml.cs">
-      <DependentUpon>WindowFormSection.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Layouts\Windows\Forms\UserForm\WindowFormUser.xaml.cs">
+    <Compile Include="LayoutsOld\Windows\Forms\UserForm\WindowFormUser.xaml.cs">
       <DependentUpon>WindowFormUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="ComponentOld\ClientSide\Controls\DataGrids\DataGridSectionsClient.xaml.cs">
@@ -399,10 +386,10 @@
       <DependentUpon>ListViewAlbumsServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="ComponentOld\ServerSide\Controls\Servers\ServerInfosModel.cs" />
-    <Compile Include="Layouts\Windows\About\WindowAbout.xaml.cs">
+    <Compile Include="LayoutsOld\Windows\About\WindowAbout.xaml.cs">
       <DependentUpon>WindowAbout.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Layouts\Windows\About\WindowAboutModel.cs" />
+    <Compile Include="LayoutsOld\Windows\About\WindowAboutModel.cs" />
     <Compile Include="Properties\Resources.en-GB.Designer.cs">
       <DependentUpon>Resources.en-GB.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -459,19 +446,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Layouts\Menu\MenuMain.xaml">
+    <Page Include="LayoutsOld\Menu\MenuMain.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Layouts\Windows\Forms\ServerForm\WindowFormServer.xaml">
+    <Page Include="LayoutsOld\Windows\Forms\ServerForm\WindowFormServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Layouts\Windows\Forms\ClientForm\WindowFormClient.xaml">
+    <Page Include="LayoutsOld\Windows\Forms\ClientForm\WindowFormClient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Layouts\Windows\Slideshow\WindowSlideshow.xaml">
+    <Page Include="LayoutsOld\Windows\Slideshow\WindowSlideshow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -487,10 +474,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ComponentOld\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="ComponentOld\ServerSide\Controls\Menu\MenuMainServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -499,11 +482,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Layouts\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Layouts\Windows\Settings\WindowSettings.xaml">
+    <Page Include="LayoutsOld\Windows\DataGrids\AlbumsDataGrid\WindowDataGridAlbums.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -515,19 +494,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Layouts\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml">
+    <Page Include="LayoutsOld\Windows\Forms\AclGroupForm\WindowFormAclGroup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Layouts\Windows\Forms\AlbumForm\WindowFormAlbum.xaml">
+    <Page Include="LayoutsOld\Windows\Forms\AlbumForm\WindowFormAlbum.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Layouts\Windows\Forms\SectionForm\WindowFormSection.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Layouts\Windows\Forms\UserForm\WindowFormUser.xaml">
+    <Page Include="LayoutsOld\Windows\Forms\UserForm\WindowFormUser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -539,7 +514,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Layouts\Windows\About\WindowAbout.xaml">
+    <Page Include="LayoutsOld\Windows\About\WindowAbout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -759,6 +734,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Windows.DataGrids.Albums\Fotootof.Layouts.Windows.DataGrids.Albums.csproj">
+      <Project>{4800ebe5-57fc-4650-ad66-9663fdec1ed7}</Project>
+      <Name>Fotootof.Layouts.Windows.DataGrids.Albums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Windows.Forms.Section\Fotootof.Layouts.Windows.Forms.Section.csproj">
+      <Project>{2B581F5A-BAEE-4BAE-A231-840BC0959B7C}</Project>
+      <Name>Fotootof.Layouts.Windows.Forms.Section</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Windows.Settings\Fotootof.Layouts.Windows.Settings.csproj">
+      <Project>{050EAD43-4791-488C-9F16-80A6C9F186B2}</Project>
+      <Name>Fotootof.Layouts.Windows.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.ServerSide\Fotootof.ServerSide.Component.Browser\Fotootof.ServerSide.Component.Browser.csproj">
+      <Project>{63dbffde-8e59-40b0-a245-8b18314632e1}</Project>
+      <Name>Fotootof.ServerSide.Component.Browser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XtrmAddons.Fotootof.AddInsContracts\XtrmAddons.Fotootof.AddInsContracts.csproj">
       <Project>{1f76a5ef-20ab-4782-bbf7-53e585955b4c}</Project>
       <Name>XtrmAddons.Fotootof.AddInsContracts</Name>
@@ -827,6 +818,9 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\Newtonsoft.Json.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

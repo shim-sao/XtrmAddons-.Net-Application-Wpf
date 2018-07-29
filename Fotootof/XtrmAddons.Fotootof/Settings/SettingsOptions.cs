@@ -116,7 +116,7 @@ namespace XtrmAddons.Fotootof.Settings
                 {
                     log.Info((string)Translation.DLogs.DatabaseFileFound);
 
-                    using (SQLiteConnection db = SQLiteManager.Instance(database.Source).Db)
+                    /*using (SQLiteConnection db = SQLiteManager.Instance(database.Source).Db)
                     {
                         log.Info((string)Translation.DLogs.DatabaseConnectionReady);
 
@@ -153,7 +153,7 @@ namespace XtrmAddons.Fotootof.Settings
                                 log.Info(string.Format(CultureInfo.InvariantCulture, "Updating Assembly Minimum Version : {0}. Skipped !", old));
                             }
                         }
-                    }
+                    }*/
 
                     log.Info((string)Translation.DLogs.DatabaseConnectionReady);
                 }

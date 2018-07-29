@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 

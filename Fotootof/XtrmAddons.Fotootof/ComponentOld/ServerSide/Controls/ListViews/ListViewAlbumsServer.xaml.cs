@@ -2,11 +2,11 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.Controls.ListViews;
 using XtrmAddons.Fotootof.Common.Tools;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems;
+using XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Windows.Controls.Extensions;
