@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
+using System;
 using System.Collections.Generic;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 
 namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
 {

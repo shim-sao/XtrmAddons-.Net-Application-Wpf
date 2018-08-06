@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CC881C8A-06D3-4362-9F83-1CFE28D95836}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fotootof.Components.Server</RootNamespace>
+    <AssemblyName>Fotootof.Components.Server</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Fotootof\Packages\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Fotootof\Packages\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\Fotootof\Packages\Release\Fotootof.ServerSide.Component.Browser.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="XtrmAddons.Net.Application">
+      <HintPath>..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Common">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Memory">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Picture">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Picture.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Windows">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Windows.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\ComponentNavigator.cs" />
+    <Compile Include="Classes\Components\Album\Layouts\ListViews\ListViewPicturesLayout.xaml.cs">
+      <DependentUpon>ListViewPicturesLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Browser\Layouts\ListViews\ListViewSystemStorageControl.xaml.cs">
+      <DependentUpon>ListViewSystemStorageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Browser\Layouts\ListViews\ListViewSystemStorageModel.cs" />
+    <Compile Include="Classes\Components\Browser\Layouts\TreeViews\Helpers\TreeViewItemDirectoryInfo.cs" />
+    <Compile Include="Classes\Components\Browser\Layouts\TreeViews\Helpers\TreeViewItemDriveInfo.cs" />
+    <Compile Include="Classes\Components\Browser\Layouts\TreeViews\TreeViewSystemStorageControl.xaml.cs">
+      <DependentUpon>TreeViewSystemStorageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Browser\Layouts\TreeViews\TreeViewSystemStorageModel.cs" />
+    <Compile Include="Classes\Components\Browser\Views\PageBrowser.xaml.cs">
+      <DependentUpon>PageBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Browser\Views\PageBrowserModel.cs" />
+    <Compile Include="Classes\Components\Album\Views\PageAlbumLayout.xaml.cs">
+      <DependentUpon>PageAlbumLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Album\Views\PageAlbumModel.cs" />
+    <Compile Include="Classes\Components\Logs\Views\PageLogsLayout.xaml.cs">
+      <DependentUpon>PageLogsLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Remote\Layouts\DataGrids\DatagridHttpClientLayout.xaml.cs">
+      <DependentUpon>DatagridHttpClientLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Remote\Layouts\DataGrids\DataGridHttpClientModel.cs" />
+    <Compile Include="Classes\Components\Remote\Views\PageRemoteLayout.xaml.cs">
+      <DependentUpon>PageRemoteLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Remote\Views\PageRemoteModel.cs" />
+    <Compile Include="Classes\Components\Section\Layouts\DataGrids\DataGridSectionsLayout.xaml.cs">
+      <DependentUpon>DataGridSectionsLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Section\Layouts\ListViews\ListViewAlbumsLayout.xaml.cs">
+      <DependentUpon>ListViewAlbumsLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Section\Views\PageSectionLayout.xaml.cs">
+      <DependentUpon>PageSectionLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Section\Views\PageSectionModel.cs" />
+    <Compile Include="Classes\Components\Remote\Layouts\Lists\ServerInfosLayout.xaml.cs">
+      <DependentUpon>ServerInfosLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Remote\Layouts\Lists\ServerInfosModel.cs" />
+    <Compile Include="Classes\Components\Slideshow\PageSlideshowLayout.xaml.cs">
+      <DependentUpon>PageSlideshowLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Slideshow\PageSlideshowModel.cs" />
+    <Compile Include="Classes\Components\Users\Layouts\DataGrids\DataGridAclGroupsLayout.xaml.cs">
+      <DependentUpon>DataGridAclGroupsLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Users\Layouts\DataGrids\DataGridUsersLayout.xaml.cs">
+      <DependentUpon>DataGridUsersLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Users\Views\PageUsersLayout.xaml.cs">
+      <DependentUpon>PageUsersLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Users\Views\PageUsersModel.cs" />
+    <Compile Include="Classes\Menus\SubMenuToolbar.xaml.cs">
+      <DependentUpon>SubMenuToolbar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Translations.Designer.cs">
+      <DependentUpon>Translations.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Translations.en-GB.Designer.cs">
+      <DependentUpon>Translations.en-GB.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Translations.fr-FR.Designer.cs">
+      <DependentUpon>Translations.fr-FR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Logs.Designer.cs">
+      <DependentUpon>Logs.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Logs.en-GB.Designer.cs">
+      <DependentUpon>Logs.en-GB.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Logs.fr-FR.Designer.cs">
+      <DependentUpon>Logs.fr-FR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="log4net">
+      <Version>2.0.8</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\Components\ACL\Layouts\DataGrids\" />
+    <Folder Include="Classes\Components\ACL\Views\" />
+    <Folder Include="Classes\Components\Catalog\" />
+    <Folder Include="Classes\Components\Plugin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Classes\Components\Album\Layouts\ListViews\ListViewPicturesLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Browser\Layouts\ListViews\ListViewSystemStorageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Browser\Layouts\TreeViews\TreeViewSystemStorageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Browser\Views\PageBrowser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Album\Views\PageAlbumLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Logs\Views\PageLogsLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Remote\Layouts\DataGrids\DatagridHttpClientLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Remote\Views\PageRemoteLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Section\Layouts\DataGrids\DataGridSectionsLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Section\Layouts\ListViews\ListViewAlbumsLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Section\Views\PageSectionLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Remote\Layouts\Lists\ServerInfosLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Slideshow\PageSlideshowLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Users\Layouts\DataGrids\DataGridAclGroupsLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Users\Layouts\DataGrids\DataGridUsersLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Users\Views\PageUsersLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Menus\SubMenuToolbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Dialogs\Fotootof.Layouts.Dialogs.csproj">
+      <Project>{06F82071-D500-4E6D-8734-373D1963C307}</Project>
+      <Name>Fotootof.Layouts.Dialogs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityManager.Base\Fotootof.SQLite.EntityManager.Base.csproj">
+      <Project>{DC57DCE2-1975-445D-A7F4-16491C0A72B3}</Project>
+      <Name>Fotootof.SQLite.EntityManager.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityManager.Interfaces\Fotootof.SQLite.EntityManager.Interfaces.csproj">
+      <Project>{FA432F87-DB16-4E8C-BBC8-1321583F027A}</Project>
+      <Name>Fotootof.SQLite.EntityManager.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityManager\Fotootof.SQLite.EntityManager.csproj">
+      <Project>{0136cd5b-63f9-400c-a881-4ef25699beee}</Project>
+      <Name>Fotootof.SQLite.EntityManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.Services\Fotootof.SQLite.Services.csproj">
+      <Project>{E3958E7E-076C-4865-B586-ECB282748FFF}</Project>
+      <Name>Fotootof.SQLite.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Theme\Fotootof.Theme\Fotootof.Theme.csproj">
+      <Project>{C76E2008-3DA1-4600-A889-BF08AF796F7F}</Project>
+      <Name>Fotootof.Theme</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Culture\Fotootof.Local.csproj">
+      <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
+      <Name>Fotootof.Local</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj">
+      <Project>{cb4c3960-2bb1-4567-b1af-88216ab66a3f}</Project>
+      <Name>Fotootof.Layouts.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Layouts\Fotootof.Layouts.csproj">
+      <Project>{f2cc7ece-4623-43f6-bcc7-de4c41005ebe}</Project>
+      <Name>Fotootof.Layouts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Libraries.Components\Fotootof.Libraries.Components.csproj">
+      <Project>{2df84f93-8390-42ee-bd61-a66ca77effb4}</Project>
+      <Name>Fotootof.Libraries.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Libraries.Controls\Fotootof.Libraries.Controls.csproj">
+      <Project>{6f733674-f83c-4707-bbe6-ea170d6420f2}</Project>
+      <Name>Fotootof.Libraries.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Libraries.Interfaces\Fotootof.Libraries.Interfaces.csproj">
+      <Project>{3c73fbde-434b-40dd-9e6d-d4cac4220b95}</Project>
+      <Name>Fotootof.Libraries.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj">
+      <Project>{FC62EC35-A6A3-4391-9A01-26C159CE1FFD}</Project>
+      <Name>Fotootof.Libraries.Logs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Libraries.Models.Interfaces\Fotootof.Libraries.Models.Interfaces.csproj">
+      <Project>{36ffb593-1a0a-4cd4-b83a-02dbfa33bf08}</Project>
+      <Name>Fotootof.Libraries.Models.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Libraries.Windows\Fotootof.Libraries.Windows.csproj">
+      <Project>{02efc769-e829-44f1-b601-780e7266e8ca}</Project>
+      <Name>Fotootof.Libraries.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Libraries\Fotootof.Libraries.csproj">
+      <Project>{7d666ea6-7f61-4c3c-a112-e707072e9205}</Project>
+      <Name>Fotootof.Libraries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Models\Fotootof.Libraries.Models.csproj">
+      <Project>{f9adb6b5-f96a-48d7-8a1c-2e37d48854bc}</Project>
+      <Name>Fotootof.Libraries.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Settings\Fotootof.Settings.csproj">
+      <Project>{70a4c255-1b1c-498b-8689-ad4504ae8ab9}</Project>
+      <Name>Fotootof.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XtrmAddons.Fotootof.Culture\XtrmAddons.Fotootof.Culture.csproj">
+      <Project>{a0c828d6-9afa-48e6-b279-713869ee07ef}</Project>
+      <Name>XtrmAddons.Fotootof.Culture</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.Api\XtrmAddons.Fotootof.Lib.Api.csproj">
+      <Project>{10851D07-11EA-4773-8B05-1228D9714FE1}</Project>
+      <Name>XtrmAddons.Fotootof.Lib.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.HttpServer\XtrmAddons.Fotootof.Lib.HttpServer.csproj">
+      <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
+      <Name>XtrmAddons.Fotootof.Lib.HttpServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Translations.en-GB.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.en-GB.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Translations.fr-FR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.fr-FR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Translations.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Logs.en-GB.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Logs.en-GB.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Logs.fr-FR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Logs.fr-FR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Logs.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Logs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

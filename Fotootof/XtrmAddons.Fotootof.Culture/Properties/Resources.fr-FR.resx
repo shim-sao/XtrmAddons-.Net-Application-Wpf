@@ -212,6 +212,7 @@
   </data>
   <data name="DialogBoxTitle_PictureFileSelector" xml:space="preserve">
     <value>FotootoF Sélecteur d'image</value>
+    <comment>Local</comment>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Editer</value>
@@ -608,6 +609,7 @@
   </data>
   <data name="WindowAboutTitle" xml:space="preserve">
     <value>FotootoF À propos</value>
+    <comment>Local</comment>
   </data>
   <data name="Company" xml:space="preserve">
     <value>Company</value>

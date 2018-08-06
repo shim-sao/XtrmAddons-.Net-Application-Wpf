@@ -1,0 +1,109 @@
+﻿<Window 
+    x:Class="Fotootof.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:p="clr-namespace:Fotootof.Properties"
+    xmlns:ucmenu="clr-namespace:Fotootof.Menus"
+    xmlns:ucsubmenu="clr-namespace:Fotootof.Components.Server.Menus;assembly=Fotootof.Components.Server"
+    mc:Ignorable="d"
+    Title="{x:Static p:Resources.ApplicationName}"
+    Style="{StaticResource MainWindowStyle}"
+    Loaded="Window_Loaded"
+    Closing="Window_Closing"
+    SizeChanged="Window_SizeChanged">
+	<!--Template="{DynamicResource WindowControlTemplate1}">-->
+
+	<Window.InputBindings>
+		<KeyBinding Key="X" Modifiers="Alt" Command="ApplicationCommands.Close" />
+	</Window.InputBindings>
+
+	<Window.CommandBindings>
+		<CommandBinding Command="ApplicationCommands.Close" Executed="FileExit_Click"></CommandBinding>
+	</Window.CommandBindings>
+
+	<Grid x:Name="GridBlockRootName"
+		  Style="{StaticResource FrameworkElementRootStyle}">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="30" />
+            <RowDefinition x:Name="RowGridMain" Height="*" />
+            <RowDefinition x:Name="RowGridSplitter" Height="0"/>
+            <RowDefinition x:Name="RowGridLogs" Height="0"/>
+        </Grid.RowDefinitions>
+
+		
+        <!-- #region BLOCK Main Menu -->
+		<Border x:Name="BlockMainMenu" Grid.Row="0">
+            <ucmenu:MainMenuHorizontalLayout x:Name="AppMainMenu" />
+        </Border>
+        <!-- #endregion -->
+
+		
+		
+        <!-- #region BLOCK Main Sub Menu -->
+        <Border x:Name="BlockMainSubmenu" Grid.Row="1">
+            <ucsubmenu:SubMenuToolbar x:Name="AppMainSubmenu" />
+        </Border>
+        <!-- #endregion -->
+
+
+		
+		<!-- #region BLOCK Content -->
+		<Border x:Name="BlockContent" Grid.Row="2"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch">
+
+			<Frame x:Name="Frame_Content"
+				   NavigationUIVisibility="Hidden"
+				   HorizontalAlignment="Stretch"
+				   VerticalAlignment="Stretch">
+			</Frame>
+		</Border>
+		<!-- #endregion -->
+
+
+
+		<!-- #region SPLITTER -->
+		<GridSplitter x:Name="GridSplitterBlockLogsName"
+					  Grid.Row="3"
+					  Height="6"
+					  ResizeDirection="Rows"
+					  BorderThickness="0,1">
+		</GridSplitter>
+		<!-- #endregion -->
+
+
+
+		<!-- #region BLOCK LOGS -->
+		<Border x:Name="BorderBlockLogsName" Grid.Row="4">
+			<ScrollViewer x:Name="ScrollViewerBlockLogsName">
+                <WrapPanel>
+                    <HeaderedItemsControl Header="Frame">
+                        <Grid>
+                            <Frame x:Name="FrameBlockLogsName"
+								   HorizontalAlignment="Stretch"
+								   VerticalAlignment="Stretch"
+								   NavigationUIVisibility="Hidden">
+                            </Frame>
+                        </Grid>
+                    </HeaderedItemsControl>
+                </WrapPanel>
+            </ScrollViewer>
+		</Border>
+		<!-- #endregion -->
+		
+
+
+		<!-- #region BusyIndicator -->
+		<xctk:BusyIndicator x:Name="XCTKBusyIndicator" Grid.RowSpan="5"	IsBusy="True" />
+		<!-- #endregion -->
+        
+	</Grid>
+</Window>

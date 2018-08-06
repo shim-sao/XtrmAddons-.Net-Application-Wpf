@@ -2,7 +2,7 @@
 ProjectFileVersion = "1.1"
 [General]
 Program name = Fotootof
-Program version = 1.0.18205.1343
+Program version = 1.0.18211.1634
 Windows 2000 = 1
 Windows XP = 1
 Windows Server 2003 = 1
@@ -27,7 +27,7 @@ Windows style = 1
 XpStyle = 1
 [Files]
 Include Zipfile = 0
-Zipfile = G:\projects\vs-builds\Fotootof\Release\Release-1.0.18195.1512.zip
+Zipfile = 
 Installation path = <programfiles>\<company>\<appname>\
 Autcip = 1
 [Uninstall]
@@ -57,7 +57,7 @@ Time = 2
 PlaySound = 0
 Allow = 0
 [Build]
-File = G:\projects\vs-builds\Fotootof\XtrmAddons.Fotootof.Installer.1.0.18205.1343-alpha.exe
+File = G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build.Setup\XtrmAddons.Fotootof.Installer.1.0.18211.1634-alpha.exe
 [Updater]
 Allow = 1
 1 = <appname>
@@ -74,34 +74,34 @@ Execdlls = 1
 3
 5
 [Files/Dirs]
-G:\projects\vs-builds\Fotootof\Release\XtrmAddons Fotootof.exe
+G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\XtrmAddons Fotootof.exe
 1.4 MB
 exe
-G:\projects\vs-builds\Fotootof\Release\XtrmAddons Fotootof.exe.config
+G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\XtrmAddons Fotootof.exe.config
 24.5 KB
 config
-G:\projects\vs-builds\Fotootof\Release\Assets\
+G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Assets\
 n/a
 [Folder]
-G:\projects\vs-builds\Fotootof\Release\Data\
+G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Data\
 n/a
 [Folder]
-G:\projects\vs-builds\Fotootof\Release\Local\
+G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Local\
 n/a
 [Folder]
-G:\projects\vs-builds\Fotootof\Release\Packages\
+G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Packages\
 n/a
 [Folder]
-G:\projects\vs-builds\Fotootof\Release\Plugins\
+G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Plugins\
 n/a
 [Folder]
-G:\projects\vs-builds\Fotootof\Release\Public\
+G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Public\
 n/a
 [Folder]
-G:\projects\vs-builds\Fotootof\Release\x64\
+G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\x64\
 n/a
 [Folder]
-G:\projects\vs-builds\Fotootof\Release\x86\
+G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\x86\
 n/a
 [Folder]
 [Licence_Begin]

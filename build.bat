@@ -149,6 +149,7 @@ set arrDll[9]=SQLitePCLRaw*
 set arrDll[10]=System*
 set arrDll[11]=Xceed*
 set arrDll[12]=SQLite-net*
+set arrDll[13]=Fotootof*
 
 set arrDestPack[0]=%DestPackInternal%
 set arrDestPack[1]=%DestPackExternal%EntityFramework\
@@ -163,8 +164,9 @@ set arrDestPack[9]=%DestPackExternal%SQLitePCLRaw\
 set arrDestPack[10]=%DestPackExternal%System\
 set arrDestPack[11]=%DestPackExternal%Xceed\
 set arrDestPack[12]=%DestPackExternal%SQLite-net\
+set arrDestPack[13]=%DestPackInternal%
 
-for /l %%n in (0,1,12) do (
+for /l %%n in (0,1,13) do (
 	set /a count=0
 	for %%x in (%DestProj%\!arrDll[%%n]!.dll) do set /a count+=1
 	call:LogFunc "!count! !arrDll[%%n]!.dll files found."
@@ -239,6 +241,7 @@ set arrFiles[5]=XtrmAddons.Fotootof.SQLiteService.*
 set arrFiles[6]=XtrmAddons.Fotootof.AddInsContracts.*
 set arrFiles[7]=XtrmAddons.Fotootof.Template.*
 set arrFiles[8]=XtrmAddons.*.Plugin.*
+set arrFiles[9]=Fotootof.*
 
 set foldersList[0]=%DestPackExternal%SQLite-net
 set foldersList[1]=%DestPackInternal%
@@ -249,6 +252,7 @@ set foldersList[5]=%DestPackInternal%
 set foldersList[6]=%DestPackInternal%
 set foldersList[7]=%DestPackInternal%
 set foldersList[8]=%DestPlg%
+set foldersList[9]=%DestPackInternal%
 
 for /l %%n in (0,1,8) do (
 	set /a count=0
@@ -283,6 +287,7 @@ set arrFiles[7]=XtrmAddons.Fotootof.Template.*
 set arrFiles[8]=XtrmAddons*Fotootof.pdb
 set arrFiles[9]=*.CodeAnalysisLog.xml
 set arrFiles[10]=*.lastcodeanalysissucceeded
+set arrFiles[11]=Fotootof.*.pdb
 
 for /l %%n in (0,1,10) do (
 	set /a count=0

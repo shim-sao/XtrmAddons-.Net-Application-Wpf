@@ -72,8 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Json\AlbumJson.cs" />
+    <Compile Include="Models\Json\EntityJson.cs" />
     <Compile Include="Models\Json\SectionJson.cs" />
-    <Compile Include="Models\Json\EntyJson.cs" />
     <Compile Include="Models\Json\InfoJson.cs" />
     <Compile Include="Models\Json\PictureJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,19 +95,21 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityManager.Base\Fotootof.SQLite.EntityManager.Base.csproj">
+      <Project>{DC57DCE2-1975-445D-A7F4-16491C0A72B3}</Project>
+      <Name>Fotootof.SQLite.EntityManager.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityManager\Fotootof.SQLite.EntityManager.csproj">
+      <Project>{0136CD5B-63F9-400C-A881-4EF25699BEEE}</Project>
+      <Name>Fotootof.SQLite.EntityManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.Services\Fotootof.SQLite.Services.csproj">
+      <Project>{E3958E7E-076C-4865-B586-ECB282748FFF}</Project>
+      <Name>Fotootof.SQLite.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.HttpServer\XtrmAddons.Fotootof.Lib.HttpServer.csproj">
       <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
       <Name>XtrmAddons.Fotootof.Lib.HttpServer</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.SQLite\XtrmAddons.Fotootof.Lib.SQLite.csproj">
-      <Project>{C2740C1D-4580-4216-9CAC-18580C02A383}</Project>
-      <Name>XtrmAddons.Fotootof.Lib.SQLite</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.SQLiteService\XtrmAddons.Fotootof.SQLiteService.csproj">
-      <Project>{60688da2-55cf-4e8d-8619-9e230c03caeb}</Project>
-      <Name>XtrmAddons.Fotootof.SQLiteService</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

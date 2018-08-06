@@ -122,18 +122,22 @@
   </data>
   <data name="AppIntLanguage" xml:space="preserve">
     <value>Initialisation du langage de l'application. Veuillez patienter, s'il vous plaît...</value>
+    <comment>IntializingApplicationLanguage</comment>
   </data>
   <data name="AppClosed" xml:space="preserve">
     <value>Fermeture de l'application.</value>
+    <comment>ApplicationClosed</comment>
   </data>
   <data name="ApplicationSettingsSaved" xml:space="preserve">
     <value>Paramètres de l'application enregistrés.</value>
   </data>
   <data name="AppSaveWaiting" xml:space="preserve">
     <value>Sauvegarde des options et paramètres de l'application avant de quitter. Veuillez patienter, s'il vous plaît...</value>
+    <comment>WaitingApplicationSave</comment>
   </data>
   <data name="AppStartWaiting" xml:space="preserve">
     <value>Démarrage de l'application. Initialisation des options et des paramètres. Veuillez patienter, s'il vous plaît...</value>
+    <comment>WaitingApplicationStart</comment>
   </data>
   <data name="CopyingProgramFiles" xml:space="preserve">
     <value>Copie des fichiers du programme dans le dossier utilisateur Mes documents. Patientez, s'il vous plaît...</value>
@@ -149,9 +153,11 @@
   </data>
   <data name="DeletingOptionsWaiting" xml:space="preserve">
     <value>Suppression des options et des paramètres de l'application. Veuillez patienter, s'il vous plaît...</value>
+    <comment>WaitingDeletingOptions</comment>
   </data>
   <data name="DeletingUserOptionsWaiting" xml:space="preserve">
     <value>Suppression des options et des paramètres de l'utilisateur. Veuillez patienter, s'il vous plaît...</value>
+    <comment>WaitingDeletingUserOptions</comment>
   </data>
   <data name="InitializingApplicationWindowComponentDone" xml:space="preserve">
     <value>Initialisation du composant de la fenêtre d'application. Terminé !</value>
@@ -161,12 +167,15 @@
   </data>
   <data name="InitializingPageDone" xml:space="preserve">
     <value>Initialisation du contenu de la Page {0}. Terminé !</value>
+    <comment>Fotootof.Libraries.Logs</comment>
   </data>
   <data name="InitializingPageWaiting" xml:space="preserve">
     <value>Initialisation du contenu de la Page {0}. Veuillez patienter, s'il vous plaît...</value>
+    <comment>Fotootof.Libraries.Logs</comment>
   </data>
   <data name="ItemDeleted" xml:space="preserve">
     <value>{0} supprimé !</value>
+    <comment>ItemDeleted</comment>
   </data>
   <data name="PleaseWait" xml:space="preserve">
     <value>Patientez, s'il vous plaît...</value>

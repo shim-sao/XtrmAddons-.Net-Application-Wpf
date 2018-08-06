@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
+using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
+using Fotootof.SQLite.EntityManager.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
-using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
-using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.HttpWebServer.Requests;
 using XtrmAddons.Net.HttpWebServer.Responses;
 

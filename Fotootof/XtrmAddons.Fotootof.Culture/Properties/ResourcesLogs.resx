@@ -122,18 +122,22 @@
   </data>
   <data name="AppIntLanguage" xml:space="preserve">
     <value>Initializing application language. Please wait...</value>
+    <comment>IntializingApplicationLanguage</comment>
   </data>
   <data name="AppClosed" xml:space="preserve">
     <value>Application closed.</value>
+    <comment>ApplicationClosed</comment>
   </data>
   <data name="ApplicationSettingsSaved" xml:space="preserve">
     <value>Application settings saved.</value>
   </data>
   <data name="AppSaveWaiting" xml:space="preserve">
     <value>Saving the application options &amp; parameters before exit. Please wait...</value>
+    <comment>WaitingApplicationSave</comment>
   </data>
   <data name="AppStartWaiting" xml:space="preserve">
     <value>Starting the application. Initialiazing the options &amp; parameters. Please wait...</value>
+    <comment>WaitingApplicationStart</comment>
   </data>
   <data name="CopyingProgramFiles" xml:space="preserve">
     <value>Copying program files to My Documents user folder. Please wait...</value>
@@ -149,9 +153,11 @@
   </data>
   <data name="DeletingOptionsWaiting" xml:space="preserve">
     <value>Deleting the application options and parameters. Please wait...</value>
+    <comment>WaitingDeletingOptions</comment>
   </data>
   <data name="DeletingUserOptionsWaiting" xml:space="preserve">
     <value>Deleting the user's options and parameters. Please wait...</value>
+    <comment>WaitingDeletingUserOptions</comment>
   </data>
   <data name="InitializingApplicationWindowComponentDone" xml:space="preserve">
     <value>Initializing application window component. Done !</value>
@@ -161,12 +167,15 @@
   </data>
   <data name="InitializingPageDone" xml:space="preserve">
     <value>Initializing Page {0} content. Done !</value>
+    <comment>Fotootof.Libraries.Logs</comment>
   </data>
   <data name="InitializingPageWaiting" xml:space="preserve">
     <value>Initializing Page {0} content. Please wait...</value>
+    <comment>Fotootof.Libraries.Logs</comment>
   </data>
   <data name="ItemDeleted" xml:space="preserve">
     <value>{0} deleted !</value>
+    <comment>ItemDeleted</comment>
   </data>
   <data name="PleaseWait" xml:space="preserve">
     <value>Please wait...</value>
