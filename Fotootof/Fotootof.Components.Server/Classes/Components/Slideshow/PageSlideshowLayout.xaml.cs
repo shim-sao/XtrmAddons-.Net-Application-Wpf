@@ -1,6 +1,6 @@
-﻿using Fotootof.Libraries.Collections.Entities;
+﻿using Fotootof.Collections.Entities;
+using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Components;
-using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using System.Globalization;
 using System.Windows;
@@ -10,7 +10,7 @@ namespace Fotootof.Components.Server.Slideshow
     /// <summary>
     /// Class Fotootof Component Slideshow.
     /// </summary>
-    public partial class PageSlideshowLayout : PageBase
+    public partial class PageSlideshowLayout : ComponentView
     {
         #region Variables
 
@@ -59,7 +59,7 @@ namespace Fotootof.Components.Server.Slideshow
         /// <param name="picture"></param>
         public PageSlideshowLayout(PictureEntityCollection collection, PictureEntity picture = null)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, Properties.Logs.InitializingPageWaiting, "Slideshow"));
 
             pictures = collection;
@@ -70,7 +70,7 @@ namespace Fotootof.Components.Server.Slideshow
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, Properties.Logs.InitializingPageDone, "Slideshow"));
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Fotootof.Components.Server.Slideshow
         /// <param name="picture"></param>
         public PageSlideshowLayout(int albumPk, PictureEntity picture = null)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, Properties.Logs.InitializingPageWaiting, "Slideshow"));
 
             this.albumPk = albumPk;
@@ -91,7 +91,7 @@ namespace Fotootof.Components.Server.Slideshow
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, Properties.Logs.InitializingPageDone, "Slideshow"));
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         #endregion

@@ -10,14 +10,14 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.Libraries.Windows
 {
     /// <summary>
-    /// Class Fotootof Libraries Window Form Base.
+    /// Class XtrmAddons Fotootof Libraries Window Form Layout.
     /// </summary>
-    public partial class WindowLayoutForm : WindowLayout
+    public partial class WindowLayoutForm : WindowLayout, IDisposable
     {
         #region Variables
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -60,7 +60,7 @@ namespace Fotootof.Libraries.Windows
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Libraries Base Windows Form Constructor.
+        /// Class XtrmAddons Fotootof Libraries Window Form Layout Constructor.
         /// </summary>
         public WindowLayoutForm() : base() { }
 
@@ -73,8 +73,8 @@ namespace Fotootof.Libraries.Windows
         /// <summary>
         /// Method called on dialog save form click event.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Routed event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         protected virtual void DialogSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -114,8 +114,8 @@ namespace Fotootof.Libraries.Windows
         /// <summary>
         /// Method called on windows closing.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Cancel event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The Cancel event arguments <see cref="CancelEventArgs"/></param>
         protected override void Window_Closing(object sender, CancelEventArgs e)
         {
             if (DialogResult != true)
@@ -178,9 +178,12 @@ namespace Fotootof.Libraries.Windows
             log.Debug("Validate Inputs Result : True");
             return true;
         }
+
         /// <summary>
-        /// Method to validate a simple required not empty string.
+        /// Method to validate a simple required <see cref="TextBox"/> text not empty string.
         /// </summary>
+        /// <param name="tb">A <see cref="TextBox"/> to verify text entry.</param>
+        /// <returns>True if the text is not empty, null or whitespace, otherwise false.</returns>
         protected bool IsValidInput(TextBox tb)
         {
             log.Debug("Is valid Input " + tb.Name + " : " + tb.Text + " => " + tb.Text.IsNotNullOrWhiteSpace());
@@ -190,8 +193,8 @@ namespace Fotootof.Libraries.Windows
         /// <summary>
         /// Method to validate a required email.
         /// </summary>
-        /// <param name="tb">A text box to check text entry.</param>
-        /// <returns>True if the entry is an email string otherwise false.</returns>
+        /// <param name="tb">A <see cref="TextBox"/> to verify text entry.</param>
+        /// <returns>True if the entry is an email string, otherwise false.</returns>
         protected bool IsValidInputEmail(TextBox tb)
         {
             log.Debug("Is valid Email : " + tb.Text + " => " + tb.Text.IsValidEmail());
@@ -201,8 +204,8 @@ namespace Fotootof.Libraries.Windows
         /// <summary>
         /// Method to validate a required alias.
         /// </summary>
-        /// <param name="tb">A text box to check text entry.</param>
-        /// <returns>True if the entry is an email string otherwise false.</returns>
+        /// <param name="tb">A <see cref="TextBox"/> to verify text entry.</param>
+        /// <returns>True if the entry is an email string, otherwise false.</returns>
         protected bool IsValidInputAlias(TextBox tb)
         {
             log.Debug("Is valid Alias : " + tb.Text + " => " + tb.Text.Sanitize().RemoveDiacritics().ToLower().IsNotNullOrWhiteSpace());
@@ -216,7 +219,7 @@ namespace Fotootof.Libraries.Windows
         #region Methods Validate Form
 
         /// <summary>
-        /// Method to validate the Form.
+        /// Method to validate the form.
         /// </summary>
         protected virtual bool IsValidForm()
         {
@@ -225,8 +228,10 @@ namespace Fotootof.Libraries.Windows
         }
 
         /// <summary>
-        /// Method to validate the Form Data Name.
+        /// Method to validate a form data string.
         /// </summary>
+        /// <param name="form">A <see cref="object"/> with an email property.</param>
+        /// <param name="propertyName">The property name to check.</param>
         protected void IsValidFormNotNullOrWhiteSpace(object form, string propertyName)
         {
             // Validate the form field name.
@@ -246,8 +251,10 @@ namespace Fotootof.Libraries.Windows
         }
 
         /// <summary>
-        /// Method to validate the Form Data Email.
+        /// Method to validate a form data email.
         /// </summary>
+        /// <param name="form">A <see cref="object"/> with an email property.</param>
+        /// <param name="propertyName">The property name for the email to check.</param>
         protected void IsValidFormEmail(object form, string propertyName)
         {
             // Validate the form field email.
@@ -276,8 +283,8 @@ namespace Fotootof.Libraries.Windows
         /// <para>Method to send validation error to a TextBox.</para>
         /// <para>Disable Form Save to prevent unwanted save.</para>
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Validation error event argumments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The Validation error event argumments <see cref="ValidationErrorEventArgs"/>.</param>
         protected void OnInput_ValidationError(object sender, ValidationErrorEventArgs e)
         {
            IsSaveEnabled = false;
@@ -287,8 +294,8 @@ namespace Fotootof.Libraries.Windows
         /// <para>Method called on input updated event.</para>
         /// <para>Disable Form Save to prevent unwanted save.</para>
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Data transfer event arguments</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The Data transfer event arguments <see cref="DataTransferEventArgs"/>.</param>
         protected void OnInput_TargetUpdated(object sender, DataTransferEventArgs e)
         {
             IsSaveEnabled = IsValidInputs();
@@ -304,8 +311,8 @@ namespace Fotootof.Libraries.Windows
         /// <para>Method called on input name text changed event.</para>
         /// <para>Send Form validation to Model to prevent unwanted save.</para>
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Text changed event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The Data transfer event arguments <see cref="TextChangedEventArgs"/>.</param>
         protected void OnInputStringRequired_TextChanged(object sender, TextChangedEventArgs e)
         {
             IsSaveEnabled = !IsValidInput(sender as TextBox) ? false : IsValidInputs();
@@ -315,8 +322,8 @@ namespace Fotootof.Libraries.Windows
         /// <para>Method called on input name text source changed event.</para>
         /// <para>Send Form validation to Model to prevent unwanted save.</para>
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Text changed event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The Data transfer event arguments <see cref="DataTransferEventArgs"/>.</param>
         protected void OnInputStringRequired_SourceUpdated(object sender, DataTransferEventArgs e)
         {
             IsSaveEnabled = IsValidInput(sender as TextBox) ? false : IsValidInputs();
@@ -332,8 +339,8 @@ namespace Fotootof.Libraries.Windows
         /// <para>Method called on input name text changed event.</para>
         /// <para>Send Form validation to Model to prevent unwanted save.</para>
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Text changed event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The Data transfer event arguments <see cref="TextChangedEventArgs"/>.</param>
         protected void OnInputEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
             IsSaveEnabled = !IsValidInputEmail(sender as TextBox) ? false : IsValidInputs();
@@ -343,11 +350,25 @@ namespace Fotootof.Libraries.Windows
         /// <para>Method called on input email text source changed event.</para>
         /// <para>Send Form validation to Model to prevent unwanted save.</para>
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Data transfer event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The Data transfer event arguments <see cref="DataTransferEventArgs"/>.</param>
         protected void OnInputEmail_SourceUpdated(object sender, DataTransferEventArgs e)
         {
             IsSaveEnabled = !IsValidInputEmail(sender as TextBox) ? false : IsValidInputs();
+        }
+
+        #endregion
+
+
+
+        #region IDisposable
+
+        /// <summary>
+        /// Method to dispose the Window layout.
+        /// </summary>
+        public void Dispose()
+        {
+            Model = null;
         }
 
         #endregion

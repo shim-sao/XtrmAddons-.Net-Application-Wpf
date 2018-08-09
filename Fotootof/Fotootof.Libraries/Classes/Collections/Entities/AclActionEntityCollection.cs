@@ -1,4 +1,5 @@
-﻿using Fotootof.Libraries.Systems;
+﻿using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Managers;
 using System;
@@ -74,7 +75,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex);
-                MessageBase.Fatal(ex, "Adding AclAction(s) failed !");
+                MessageBoxs.Fatal(ex, "Adding AclAction(s) failed !");
             }
         }
 
@@ -103,7 +104,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex);
-                MessageBase.Fatal(ex, "Deleting AclAction(s) list failed !");
+                MessageBoxs.Fatal(ex, "Deleting AclAction(s) list failed !");
             }
         }
 
@@ -124,7 +125,7 @@ namespace Fotootof.Libraries.Collections.Entities
                     {
                         //await Db.AclActions.Update(entity);
 
-                        MessageBase.NotImplemented();
+                        MessageBoxs.NotImplemented();
 
                         log.Info($"AclAction [{entity.PrimaryKey}:{entity.Action}] updated.");
                     }
@@ -136,7 +137,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex);
-                MessageBase.Fatal(ex, "Replacing AclAction(s) failed !");
+                MessageBoxs.Fatal(ex, "Replacing AclAction(s) failed !");
             }
         }
 

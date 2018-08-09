@@ -31,7 +31,6 @@ namespace Fotootof.Libraries.Controls.ListViews
         /// <summary>
         /// Class XtrmAddons Fotootof Server Libraries Base Models ListViews Constructor.
         /// </summary>
-        /// <param name="control">A Data Grid Base User Control.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ListViewBaseModel() : base()
         {
@@ -41,9 +40,9 @@ namespace Fotootof.Libraries.Controls.ListViews
         /// <summary>
         /// Class XtrmAddons Fotootof Server Libraries Base Models ListViews Constructor.
         /// </summary>
-        /// <param name="control">A Data Grid Base User Control.</param>
+        /// <param name="controlView">A Data Grid Base User Control.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ListViewBaseModel(T owner) : base(owner)
+        public ListViewBaseModel(T controlView) : base(controlView)
         {
             InitializeModel();
         }

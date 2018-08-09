@@ -3,10 +3,25 @@ using System.Collections.ObjectModel;
 
 namespace Fotootof.Libraries.Collections
 {
+    /// <summary>
+    /// Class Fotootof Libraries Collections.
+    /// </summary>
     public class CollectionStorage : ObservableCollection<StorageInfoModel>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public int DirectoriesCount => GetDirectoriesCount();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public int ImagesCount => GetImagesCount();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private int GetDirectoriesCount()
         {
             int count = 0;
@@ -22,8 +37,10 @@ namespace Fotootof.Libraries.Collections
             return count;
         }
 
-        public int ImagesCount => GetImagesCount();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private int GetImagesCount()
         {
             int count = 0;

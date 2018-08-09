@@ -1,4 +1,5 @@
-﻿using Fotootof.Libraries.Logs;
+﻿using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.Logs;
 using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
@@ -35,6 +36,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Common Albums Collection Constructor.
         /// </summary>
+        /// <param name="autoLoad"></param>
         /// <param name="options">Options for query filters.</param>
         public AlbumEntityCollection(bool autoLoad = false, AlbumOptionsList options = null) : base(autoLoad, options) { }
 
@@ -123,7 +125,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex); ;
-                MessageBase.Fatal(ex, $"Adding {newItems.Count() - itemsAdded.Count()}/{newItems.Count()} album{(newItems.Count() > 1 ? "s" : "")} : Failed.");
+                MessageBoxs.Fatal(ex, $"Adding {newItems.Count() - itemsAdded.Count()}/{newItems.Count()} album{(newItems.Count() > 1 ? "s" : "")} : Failed.");
             }
 
             return itemsAdded;
@@ -132,7 +134,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <summary>
         /// Method to delete a list of Album entities from the database.
         /// </summary>
-        /// <param name="newItems">The list of items to remove.</param>
+        /// <param name="oldItems">The list of items to remove.</param>
         public static async Task<IList<AlbumEntity>> DbDeleteAsync(IEnumerable<AlbumEntity> oldItems)
         {
             // Log error if the list to update if not null.
@@ -170,7 +172,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, $"Deleting {oldItems.Count() - itemsDeleted.Count()}/{oldItems.Count()} album{(oldItems.Count() > 1 ? "s" : "")} : Failed.");
+                MessageBoxs.Fatal(ex, $"Deleting {oldItems.Count() - itemsDeleted.Count()}/{oldItems.Count()} album{(oldItems.Count() > 1 ? "s" : "")} : Failed.");
             }
 
             return itemsDeleted;
@@ -180,6 +182,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// Method to update an Album entity into the database.
         /// </summary>
         /// <param name="newItem">The item to update.</param>
+        /// <param name="oldItem"></param>
         public static async Task<IList<AlbumEntity>> DbUpdateAsync(AlbumEntity newItem, AlbumEntity oldItem)
         {
             return await DbUpdateAsync(new AlbumEntity[] { newItem }, new AlbumEntity[] { oldItem });
@@ -189,6 +192,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// Method to update a list of Album entities into the database.
         /// </summary>
         /// <param name="newItems">The list of items to update.</param>
+        /// <param name="oldItems"></param>
         public static async Task<IList<AlbumEntity>> DbUpdateAsync(IEnumerable<AlbumEntity> newItems, IEnumerable<AlbumEntity> oldItems)
         {
             // Log error if the list to update if not null.
@@ -230,7 +234,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, $"Updating {newItems.Count()- itemsUpdated.Count()}/{newItems.Count()} album{(newItems.Count() > 1 ? "s" : "")} : Failed.");
+                MessageBoxs.Fatal(ex, $"Updating {newItems.Count()- itemsUpdated.Count()}/{newItems.Count()} album{(newItems.Count() > 1 ? "s" : "")} : Failed.");
             }
 
             return itemsUpdated;
@@ -240,7 +244,6 @@ namespace Fotootof.Libraries.Collections.Entities
         /// Method to format the Alias property of an entity.
         /// </summary>
         /// <param name="entity">An entity with an Alias property derived from IAlias.</param>
-        /// <param name="items">The list of entities to check in.</param>
         /// <returns></returns>
         protected static AlbumEntity FormatAlias(AlbumEntity entity)
         {

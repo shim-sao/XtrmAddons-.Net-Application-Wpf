@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ApplicationRestartRequired" xml:space="preserve">
+    <value>Pour réaliser cette action, il est nécessaire de redémarrer l'application. Voulez-vous continuer ?</value>
+  </data>
   <data name="DialogBoxTitle_PictureFileSelector" xml:space="preserve">
     <value>XtrmAddons FotootoF Sélecteur d'image</value>
+  </data>
+  <data name="FunctionalitiesCurrentlyUnavailable" xml:space="preserve">
+    <value>Fonctionnalités actuellement indisponibles</value>
   </data>
 </root>

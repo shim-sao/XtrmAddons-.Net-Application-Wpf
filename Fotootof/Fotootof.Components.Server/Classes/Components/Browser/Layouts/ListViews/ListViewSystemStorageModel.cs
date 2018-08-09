@@ -1,4 +1,4 @@
-﻿using Fotootof.Libraries.Collections;
+﻿using Fotootof.Collections;
 using Fotootof.Libraries.Controls.ListViews;
 
 namespace Fotootof.Components.Server.Browser.Layouts

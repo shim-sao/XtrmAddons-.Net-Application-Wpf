@@ -53,6 +53,10 @@ namespace Fotootof.Theme
 
         #endregion
 
+
+
+        #region Methods
+
         /// <summary>
         /// Method to load the custom theme <see cref="ResourceDictionary"/> from an <see cref="Assembly"/> 
         /// </summary>
@@ -65,16 +69,11 @@ namespace Fotootof.Theme
         {
             if (assemblyComponent == null)
             {
-                ArgumentNullException e = new ArgumentNullException(nameof(assemblyComponent), "The Assembly Component path must not be null !");
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(assemblyComponent), assemblyComponent);
                 log.Error(e.Output(), e);
                 throw e;
             }
-
-            if (assemblyComponent == "Light")
-                assemblyComponent = defaultAssemblyDictionary;
-
-            if (assemblyComponent == "Dark")
-                assemblyComponent = altAssemblyDictionary;
+            assemblyComponent = GetAssemblyComponent(assemblyComponent);
 
             ResourceDictionary rd = null;
             try
@@ -90,12 +89,12 @@ namespace Fotootof.Theme
                 throw e;
             }
 
-            if(rd.Count == 0)
+            if (rd.Count == 0)
             {
                 log.Debug($"{typeof(ThemeLoader).Name}.{MethodBase.GetCurrentMethod().Name} : Loading empty Assembly Component resources dictionary.");
             }
-            
-            if(!Resources.MergedDictionaries.ToList().Contains(rd))
+
+            if (!Resources.MergedDictionaries.ToList().Contains(rd))
             {
                 Resources.MergedDictionaries.Add(rd);
             }
@@ -104,6 +103,25 @@ namespace Fotootof.Theme
                 log.Debug($"{typeof(ThemeLoader).Name}.{MethodBase.GetCurrentMethod().Name} : Assembly Component resources dictionary already loaded.");
             }
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assemblyComponent"></param>
+        /// <returns></returns>
+        private static string GetAssemblyComponent(string assemblyComponent)
+        {
+            if (assemblyComponent == "")
+                assemblyComponent = defaultAssemblyDictionary;
+
+            else if (assemblyComponent == "Light")
+                assemblyComponent = defaultAssemblyDictionary;
+
+            else if (assemblyComponent == "Dark")
+                assemblyComponent = altAssemblyDictionary;
+
+            return assemblyComponent;
         }
 
         /// <summary>
@@ -149,8 +167,8 @@ namespace Fotootof.Theme
 
             try
             {
-                if (mergeApp == true && (Application.Current.MainWindow)?.Resources != null &&
-                    !resources.MergedDictionaries.ToList().Contains((Application.Current.MainWindow).Resources))
+                var res = (Application.Current.MainWindow)?.Resources;
+                if (mergeApp == true && res != null && !resources.MergedDictionaries.ToList().Contains(res))
                 {
                     resources.MergedDictionaries.Add((Application.Current.MainWindow).Resources);
                 }
@@ -165,27 +183,6 @@ namespace Fotootof.Theme
             MergeTo(resources);
         }
 
-        [System.Obsolete("MergeThemeTo", true)]
-        public static void TempDeprecatedMergeDynamicResources(ResourceDictionary resources, bool mergeApp = true)
-        {
-            try
-            {
-                if (mergeApp)
-                {
-                    resources.MergedDictionaries.Add((Application.Current.MainWindow).Resources);
-                }
-
-                string theme = ApplicationBase.UI.GetParameter("ApplicationTheme", "Dark");
-                ResourceDictionary rd = new ResourceDictionary
-                {
-                    Source = new Uri($"Fotootof.Template.{theme};component/Dictionary.xaml", UriKind.Relative)
-                };
-                resources.MergedDictionaries.Add(rd);
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Output(), ex);
-            }
-        }
+        #endregion
     }
 }

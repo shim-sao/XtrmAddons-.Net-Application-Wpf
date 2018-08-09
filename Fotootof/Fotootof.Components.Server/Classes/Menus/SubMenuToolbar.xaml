@@ -16,7 +16,7 @@
 
 			<Border x:Name="BorderServerName" VerticalAlignment="Stretch">
 				<Button x:Name="ButtonServerName"
-						Click="NavigateToPageServer"
+						Click="NavigateToRemote_Click"
 						Content="{x:Static p:Resources.Server}"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"
@@ -25,7 +25,7 @@
 
 			<Border x:Name="BorderBrowserName" VerticalAlignment="Stretch">
 				<Button x:Name="ButtonBrowserName"
-						Click="NavigateToPageBrowser"
+						Click="NavigateToBrowser_Click"
 						Content="{x:Static p:Resources.Browser}"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"
@@ -34,7 +34,7 @@
 
 			<Border x:Name="BorderCatalogName" VerticalAlignment="Stretch">
 				<Button x:Name="ButtonCatalogNName"
-						Click="NavigateToPageCatalog"
+						Click="NavigateToSection_Click"
 						Content="{x:Static p:Resources.Catalog}"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"

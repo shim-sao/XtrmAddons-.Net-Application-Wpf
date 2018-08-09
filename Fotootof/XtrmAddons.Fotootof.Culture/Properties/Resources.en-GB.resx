@@ -438,24 +438,31 @@
   </data>
   <data name="WindowAclGroupFormTitle" xml:space="preserve">
     <value>FotootoF Users group</value>
+    <comment>Fotootof.Layouts.Forms</comment>
   </data>
   <data name="WindowAlbumFormTitle" xml:space="preserve">
     <value>FotootoF Album</value>
+    <comment>Fotootof.Layouts.Forms</comment>
   </data>
   <data name="WindowClientFormTitle" xml:space="preserve">
     <value>FotootoF Client</value>
+    <comment>Fotootof.Layouts.Forms</comment>
   </data>
   <data name="WindowSectionFormTitle" xml:space="preserve">
     <value>FotootoF Section</value>
+    <comment>Fotootof.Layouts.Forms</comment>
   </data>
   <data name="WindowServerFormTitle" xml:space="preserve">
     <value>FotootoF Server</value>
+    <comment>Fotootof.Layouts.Forms</comment>
   </data>
   <data name="WindowSettingsTitle" xml:space="preserve">
     <value>FotootoF Settings</value>
+    <comment>Fotootof.Layouts.Forms</comment>
   </data>
   <data name="WindowUserFormTitle" xml:space="preserve">
     <value>FotootoF User</value>
+    <comment>Fotootof.Layouts.Forms</comment>
   </data>
   <data name="XLarge" xml:space="preserve">
     <value>Extra-Large</value>
@@ -615,7 +622,7 @@
   </data>
   <data name="WindowAboutTitle" xml:space="preserve">
     <value>FotootoF About</value>
-    <comment>Local</comment>
+    <comment>Fotootof.Layouts.Windows.About</comment>
   </data>
   <data name="Company" xml:space="preserve">
     <value>Company</value>
@@ -631,9 +638,11 @@
   </data>
   <data name="WindowsDataGridAlbumsTitle" xml:space="preserve">
     <value>Fotootof Albums</value>
+    <comment>Fotootof.Layouts.Forms</comment>
   </data>
   <data name="FunctionalitiesCurrentlyUnavailable" xml:space="preserve">
     <value>Functionalities currently unavailable</value>
+    <comment>Fotootof.Layouts.Dialogs</comment>
   </data>
   <data name="_Catalog" xml:space="preserve">
     <value>_Catalog</value>

@@ -1,4 +1,5 @@
-﻿using Fotootof.Libraries.Logs;
+﻿using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.Logs;
 using Fotootof.Libraries.Models.Systems;
 using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.EntityManager.Data.Tables.Dependencies;
@@ -36,6 +37,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
         /// </summary>
         /// <param name="options">Options for query filters.</param>
+        /// <param name="autoLoad"></param>
         public PictureEntityCollection(PictureOptionsList options = null, bool autoLoad = false)
             : base(autoLoad, options) { }
 
@@ -54,7 +56,8 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
         /// </summary>
-        /// <param name="collection">>A collection of Album to paste in.</param>
+        /// <param name="fileNames"></param>
+        /// <param name="album"></param>
         public PictureEntityCollection(string[] fileNames, ref AlbumEntity album) : base()
         {
             PictureEntity[] items = FromFileNames(fileNames, ref album);
@@ -67,7 +70,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection Constructor.
         /// </summary>
-        /// <param name="collection">>A collection of Album to paste in.</param>
+        /// <param name="fileNames"></param>
         public PictureEntityCollection(string[] fileNames) : base()
         {
             AlbumEntity album = default(AlbumEntity);
@@ -87,7 +90,6 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <summary>
         /// Class method to load a list of Album from database.
         /// </summary>
-        /// <param name="options">Options for query filters.</param>
         public override void Load()
         {
             LoadOptions(null);
@@ -177,7 +179,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// Method to insert a list of Picture entities into the database.
         /// </summary>
         /// <param name="newItems">The list of items to add.</param>
-        /// <param name="album">The list of Albums, past on reference, to associate the items and update their informations.</param>
+        /// <param name="albums">The list of Albums, past on reference, to associate the items and update their informations.</param>
         /// <returns>The list of new items inserted in the database.</returns>
         public static IList<PictureEntity> DbInsert(IEnumerable<PictureEntity> newItems, ref IEnumerable<AlbumEntity> albums)
         {
@@ -276,7 +278,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, $"Adding {newItems.Count()}/{newItems.Count()} picture{(newItems.Count() > 1 ? "s" : "")} : Failed.");
+                MessageBoxs.Fatal(ex, $"Adding {newItems.Count()}/{newItems.Count()} picture{(newItems.Count() > 1 ? "s" : "")} : Failed.");
             }
 
             log.Debug("----------------------------------------------------------------------------------------------------------");
@@ -286,7 +288,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <summary>
         /// Method to delete a list of Picture entities from the database.
         /// </summary>
-        /// <param name="newItems">The list of items to remove.</param>
+        /// <param name="oldItems">The list of items to remove.</param>
         public static async Task<IList<PictureEntity>> DbDeleteAsync(IEnumerable<PictureEntity> oldItems)
         {
             if(oldItems == null)
@@ -322,7 +324,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, $"Deleting {oldItems.Count() - itemsDeleted.Count()}/{oldItems.Count()} picture{(oldItems.Count() > 1 ? "s" : "")} : Failed.");
+                MessageBoxs.Fatal(ex, $"Deleting {oldItems.Count() - itemsDeleted.Count()}/{oldItems.Count()} picture{(oldItems.Count() > 1 ? "s" : "")} : Failed.");
             }
 
             return itemsDeleted;
@@ -332,6 +334,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// Method to update a list of Picture entities into the database.
         /// </summary>
         /// <param name="newItems">The list of items to update.</param>
+        /// <param name="oldItems"></param>
         public static async void DbUpdateAsync(List<PictureEntity> newItems, List<PictureEntity> oldItems)
         {
             // Check for Replace | Edit items.
@@ -355,7 +358,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Replacing Picture(s) failed !");
+                MessageBoxs.Fatal(ex, "Replacing Picture(s) failed !");
             }
         }
 

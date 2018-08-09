@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Fotootof\Packages\Debug\</OutputPath>
+    <OutputPath>..\..\Build\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,44 +24,32 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Fotootof\Packages\Release\</OutputPath>
+    <OutputPath>..\..\Build\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\Fotootof\Packages\Release\FotootofServer.Controls.ListViews.Storage.xml</DocumentationFile>
+    <DocumentationFile>..\..\Build\Release\Fotootof.Layouts.Windows.About.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="XtrmAddons.Net.Application">
-      <HintPath>..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
-    </Reference>
     <Reference Include="XtrmAddons.Net.Common">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Picture">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Picture.dll</HintPath>
     </Reference>
-    <Reference Include="XtrmAddons.Net.Windows">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Windows.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\WindowAboutLayout.xaml.cs">
+    <Compile Include="Layouts\WindowAboutLayout.xaml.cs">
       <DependentUpon>WindowAboutLayout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\WindowAboutModel.cs" />
@@ -83,13 +71,9 @@
       <Project>{C76E2008-3DA1-4600-A889-BF08AF796F7F}</Project>
       <Name>Fotootof.Theme</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fotootof\Fotootof.Culture\Fotootof.Local.csproj">
+    <ProjectReference Include="..\..\Fotootof\Fotootof.Local\Fotootof.Local.csproj">
       <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
       <Name>Fotootof.Local</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Fotootof\Fotootof.Libraries\Fotootof.Libraries.csproj">
-      <Project>{7D666EA6-7F61-4C3C-A112-E707072E9205}</Project>
-      <Name>Fotootof.Libraries</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Fotootof\Fotootof.Models\Fotootof.Libraries.Models.csproj">
       <Project>{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}</Project>
@@ -97,7 +81,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\WindowAboutLayout.xaml">
+    <Page Include="Layouts\WindowAboutLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

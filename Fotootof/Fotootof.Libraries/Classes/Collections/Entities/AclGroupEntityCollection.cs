@@ -1,4 +1,5 @@
-﻿using Fotootof.Libraries.Systems;
+﻿using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Managers;
 using System;
@@ -77,7 +78,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception e)
             {
                 log.Error(e.Output(), e);
-                MessageBase.Fatal(e, "Adding AclGroup(s) failed !");
+                MessageBoxs.Fatal(e, "Adding AclGroup(s) failed !");
             }
         }
 
@@ -110,7 +111,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Deleting AclGroup(s) list failed !");
+                MessageBoxs.Fatal(ex, "Deleting AclGroup(s) list failed !");
             }
         }
 
@@ -146,15 +147,14 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Replacing AclGroup(s) failed !");
+                MessageBoxs.Fatal(ex, "Replacing AclGroup(s) failed !");
             }
         }
 
         /// <summary>
         /// Method to update a list of AclGroup entities into the database.
         /// </summary>
-        /// <param name="newItems">Thee list of items to update.</param>
-        /// <param name="oldItems"></param>
+        /// <param name="newItem"></param>
         public static void SetDefault(AclGroupEntity newItem)
         {
             log.Info("Setting default User Group. Please wait...");
@@ -172,7 +172,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Setting default User Group failed !");
+                MessageBoxs.Fatal(ex, "Setting default User Group failed !");
             }
         }
 

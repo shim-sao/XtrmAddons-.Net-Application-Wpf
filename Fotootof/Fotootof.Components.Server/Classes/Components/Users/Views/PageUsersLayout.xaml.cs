@@ -1,7 +1,7 @@
-﻿using Fotootof.Components.Server.Users.Layouts;
-using Fotootof.Libraries.Collections.Entities;
+﻿using Fotootof.Collections.Entities;
+using Fotootof.Components.Server.Users.Layouts;
+using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Components;
-using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Event;
 using System;
@@ -17,7 +17,7 @@ namespace Fotootof.Components.Server.Users
     /// <summary>
     /// Class Server Components Users Layout.
     /// </summary>
-    public partial class PageUsersLayout : PageBase
+    public partial class PageUsersLayout : ComponentView
     {
         #region Variable
 
@@ -46,10 +46,10 @@ namespace Fotootof.Components.Server.Users
 
         /// <summary>
         /// Class XtrmAddons PhotoAlbum Server Views Users Page constructor.
-        /// </summary
+        /// </summary>
         public PageUsersLayout()
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Users"));
 
             // Constuct page component.
@@ -57,7 +57,7 @@ namespace Fotootof.Components.Server.Users
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Users"));
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace Fotootof.Components.Server.Users
         /// <param name="e">Event arguments.</param>
         private void UcDataGridUsers_UserAdded(object sender, EntityChangesEventArgs e)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Adding or editing User informations. Please wait...");
 
             try
@@ -232,12 +232,12 @@ namespace Fotootof.Components.Server.Users
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Error(ex);
+                MessageBoxs.Error(ex);
             }
             finally
             {
                 log.Warn("Adding or editing User informations. End.");
-                MessageBase.IsBusy = false;
+                MessageBoxs.IsBusy = false;
             }
         }
 
@@ -248,7 +248,7 @@ namespace Fotootof.Components.Server.Users
         /// <param name="e">Event arguments.</param>
         private void UcDataGridUsers_UserChanged(object sender, EntityChangesEventArgs e)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Editing User informations. Please wait...");
 
             try
@@ -259,12 +259,12 @@ namespace Fotootof.Components.Server.Users
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Error(ex);
+                MessageBoxs.Error(ex);
             }
             finally
             {
                 log.Warn("Editing User informations. End.");
-                MessageBase.IsBusy = false;
+                MessageBoxs.IsBusy = false;
             }
         }
 
@@ -275,24 +275,24 @@ namespace Fotootof.Components.Server.Users
         /// <param name="e"></param>
         private void UcDataGridUsers_UserDeleled(object sender, EntityChangesEventArgs e)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Info("Deleting selected Users. Please wait...");
 
             try
             {
                 Model.DeleleUser((UserEntity)e.NewEntity);
-                log.Info(MessageBase.BusyContent = "Deleting selected Users. Done.");
+                log.Info(MessageBoxs.BusyContent = "Deleting selected Users. Done.");
             }
             catch (Exception ex)
             {
-                MessageBase.BusyContent = "Deleting selected Users. failed !";
-                log.Fatal(MessageBase.BusyContent, ex);
-                MessageBase.Fatal(ex, (string)MessageBase.BusyContent);
+                MessageBoxs.BusyContent = "Deleting selected Users. failed !";
+                log.Fatal(MessageBoxs.BusyContent, ex);
+                MessageBoxs.Fatal(ex, (string)MessageBoxs.BusyContent);
             }
             finally
             {
-                log.Warn(MessageBase.BusyContent = "Deleting selected Users. End.");
-                MessageBase.IsBusy = false;
+                log.Warn(MessageBoxs.BusyContent = "Deleting selected Users. End.");
+                MessageBoxs.IsBusy = false;
             }
         }
 
@@ -330,10 +330,10 @@ namespace Fotootof.Components.Server.Users
         /// </summary>
         private void ArrangeSizeMiddleContents()
         {
-            Block_MiddleContents.Width = Math.Max(this.Width, 0);
-            Block_MiddleContents.Height = Math.Max(this.Height, 0);
+            BlockMiddleContentsName.Width = Math.Max(this.Width, 0);
+            BlockMiddleContentsName.Height = Math.Max(this.Height, 0);
 
-            TraceSize(Block_MiddleContents);
+            TraceSize(BlockMiddleContentsName);
 
             (FindName("UcDataGridAclGroupsServerName") as FrameworkElement).Height = Math.Max(this.Height, 0);
             UcDataGridUsers.Height = Math.Max(this.Height, 0);

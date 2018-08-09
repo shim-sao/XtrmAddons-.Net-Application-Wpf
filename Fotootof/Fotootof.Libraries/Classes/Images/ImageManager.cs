@@ -9,6 +9,9 @@ using XtrmAddons.Net.SystemIO;
 
 namespace Fotootof.Libraries.Images
 {
+    /// <summary>
+    /// Class Fotootof Libraries Images Manager.
+    /// </summary>
     public class ImageManager
     {
         /// <summary>
@@ -104,6 +107,8 @@ namespace Fotootof.Libraries.Images
         /// Method to get a path to an album.
         /// </summary>
         /// <param name="albumId">The primary key of the album.</param>
+        /// <param name="imgType"></param>
+        /// <param name="fileExt"></param>
         /// <returns>The path to the album directory.</returns>
         public static string GetAlbumImageAbsolutePath(int albumId, ImageType imgType, string fileExt)
         {
@@ -114,6 +119,8 @@ namespace Fotootof.Libraries.Images
         /// Method to get a path to an album.
         /// </summary>
         /// <param name="albumId">The primary key of the album.</param>
+        /// <param name="imgType"></param>
+        /// <param name="fileExt"></param>
         /// <returns>The path to the album directory.</returns>
         public static async Task<string> GetAbsolutePathAlbumImageAsync(int albumId, ImageType imgType, string fileExt)
         {
@@ -133,7 +140,7 @@ namespace Fotootof.Libraries.Images
         /// <summary>
         /// Method to get a path to an album.
         /// </summary>
-        /// <param name="imagePath"></param>
+        /// <param name="imageRelativePath"></param>
         /// <returns></returns>
         public static async Task<string> GetAbsolutePathAlbumImageAsync(string imageRelativePath)
         {
@@ -144,6 +151,8 @@ namespace Fotootof.Libraries.Images
         /// Method to get a path to an album.
         /// </summary>
         /// <param name="albumId">The primary key of the album.</param>
+        /// <param name="imgType"></param>
+        /// <param name="fileExt"></param>
         /// <returns>The path to the album directory.</returns>
         public static string GetRelativePathAlbumImage(int albumId, ImageType imgType, string fileExt)
         {

@@ -1,5 +1,5 @@
-﻿using Fotootof.Libraries.Components;
-using Fotootof.Libraries.Systems;
+﻿using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.Components;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
 using Fotootof.SQLite.EntityManager.Event;
@@ -16,7 +16,7 @@ namespace Fotootof.Components.Server.Album
     /// <para>Class XtrmAddons Fotootof Component Views Server Page Album.</para>
     /// <para>This page provides the entire display for server administration of an image album.</para>
     /// </summary>
-    public partial class PageAlbumLayout : PageBase
+    public partial class PageAlbumLayout : ComponentView
     {
         #region Variables
 
@@ -63,7 +63,7 @@ namespace Fotootof.Components.Server.Album
         /// </summary>
         public PageAlbumLayout(int albumId)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Album"));
 
             // Store Album primary key.
@@ -74,7 +74,7 @@ namespace Fotootof.Components.Server.Album
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Album"));
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         #endregion
@@ -134,7 +134,7 @@ namespace Fotootof.Components.Server.Album
             try
             {
                 //// Start to busy application.
-                //MessageBase.IsBusy = true;
+                //MessageBoxs.IsBusy = true;
                 //log.Warn("Starting deleting Picture(s). Please wait...");
 
                 //// Get item from list.
@@ -142,12 +142,12 @@ namespace Fotootof.Components.Server.Album
 
                 //// Stop to busy application.
                 //log.Warn("Ending deleting Picture(s).");
-                //MessageBase.IsBusy = false;
+                //MessageBoxs.IsBusy = false;
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Error(ex.Output());
+                MessageBoxs.Error(ex.Output());
             }
         }
 
@@ -161,7 +161,7 @@ namespace Fotootof.Components.Server.Album
             try
             {
                 //// Start to busy application.
-                //MessageBase.IsBusy = true;
+                //MessageBoxs.IsBusy = true;
                 //log.Warn("Starting adding Picture(s). Please wait...");
 
                 //// Get item from list.
@@ -169,12 +169,12 @@ namespace Fotootof.Components.Server.Album
 
                 //// Stop to busy application.
                 //log.Warn("Ending adding Picture(s).");
-                //MessageBase.IsBusy = false;
+                //MessageBoxs.IsBusy = false;
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Error(ex.Output());
+                MessageBoxs.Error(ex.Output());
             }
         }
 
@@ -194,14 +194,14 @@ namespace Fotootof.Components.Server.Album
             this.Width = Math.Max(MainBlockContent.ActualWidth, 0);
             this.Height = Math.Max(MainBlockContent.ActualHeight, 0);
 
-            Block_MiddleContents.Width = Math.Max(this.Width, 0);
-            Block_MiddleContents.Height = Math.Max(this.Height, 0);
+            BlockMiddleContentsName.Width = Math.Max(this.Width, 0);
+            BlockMiddleContentsName.Height = Math.Max(this.Height, 0);
 
             PicturesCollection.Height = Math.Max(this.Height, 0);
 
             TraceSize(MainBlockContent);
             TraceSize(this);
-            TraceSize(Block_MiddleContents);
+            TraceSize(BlockMiddleContentsName);
             TraceSize(PicturesCollection);
         }
 

@@ -1,13 +1,13 @@
-﻿using Fotootof.Layouts.Controls.ListViews;
-using Fotootof.Libraries.Collections.Entities;
+﻿using Fotootof.Collections.Entities;
+using Fotootof.Layouts.Controls.ListViews;
+using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Logs;
-using Fotootof.Libraries.Systems;
+using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XtrmAddons.Fotootof.Culture;
-using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 
@@ -18,6 +18,18 @@ namespace Fotootof.Components.Server.Section.Layouts
     /// </summary>
     public partial class ListViewAlbumsLayout : ListViewAlbumsControl
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
@@ -81,7 +93,7 @@ namespace Fotootof.Components.Server.Section.Layouts
             {
                 NullReferenceException ex = Exceptions.GetReferenceNull(nameof(SelectedItems), SelectedItems);
                 log.Warn(ex.Output(), ex);
-                MessageBase.Warning(ex.Output());
+                MessageBoxs.Warning(ex.Output());
                 return;
             }
 
@@ -103,7 +115,7 @@ namespace Fotootof.Components.Server.Section.Layouts
             try
             {
                 // Start to busy application.
-                MessageBase.IsBusy = true;
+                MessageBoxs.IsBusy = true;
                 log.Warn("Starting deleting Album(s). Please wait...");
 
                 // Delete item from database.
@@ -126,12 +138,12 @@ namespace Fotootof.Components.Server.Section.Layouts
 
                 // Stop to busy application.
                 log.Warn("Ending deleting Album(s).");
-                MessageBase.IsBusy = false;
+                MessageBoxs.IsBusy = false;
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Error(ex.Output());
+                MessageBoxs.Error(ex.Output());
             }
         }
 

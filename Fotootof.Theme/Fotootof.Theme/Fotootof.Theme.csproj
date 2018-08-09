@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ValueConverters\IsThemeValueConverter.cs" />
     <Compile Include="Classes\ThemeLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -189,8 +190,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Fotootof\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj">
-      <Project>{FC62EC35-A6A3-4391-9A01-26C159CE1FFD}</Project>
+      <Project>{fc62ec35-a6a3-4391-9a01-26c159ce1ffd}</Project>
       <Name>Fotootof.Libraries.Logs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof\Fotootof.Settings\Fotootof.Settings.csproj">
+      <Project>{70a4c255-1b1c-498b-8689-ad4504ae8ab9}</Project>
+      <Name>Fotootof.Settings</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

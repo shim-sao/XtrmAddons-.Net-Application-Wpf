@@ -54,7 +54,6 @@ namespace Fotootof.Libraries.Controls.DataGrids
         /// <summary>
         /// Class XtrmAddons Fotootof Server Libraries Common Models DataGrids Constructor.
         /// </summary>
-        /// <param name="control">A Data Grid Base User Control.</param>
         public DataGridBaseModel() : base()
         {
             InitializeModel();

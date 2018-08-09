@@ -2,11 +2,14 @@
 
 namespace Fotootof.Libraries.HttpHelpers.HttpClient.Responses
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ServerResponseSection : ServerResponseBase<SectionJson>
-    {
+    {/*
         /// <summary>
         /// 
         /// </summary>
-        //public SectionJson Response { get; set; }
+        //public SectionJson Response { get; set; }*/
     }
 }

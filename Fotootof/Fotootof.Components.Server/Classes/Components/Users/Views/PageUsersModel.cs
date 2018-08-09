@@ -1,8 +1,8 @@
-﻿using Fotootof.Components.Server.Users.Layouts;
+﻿using Fotootof.Collections.Entities;
+using Fotootof.Components.Server.Users.Layouts;
 using Fotootof.Layouts.Controls.DataGrids;
-using Fotootof.Libraries.Collections.Entities;
+using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Components;
-using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
 using Fotootof.SQLite.EntityManager.Managers;
@@ -15,7 +15,7 @@ namespace Fotootof.Components.Server.Users
     /// <summary>
     /// Class XtrmAddons Fotootof Component Server Models List Users.
     /// </summary>
-    public class PageUsersModel : PageBaseModel<PageUsersLayout>
+    public class PageUsersModel : ComponentModel<PageUsersLayout>
     {
         #region Variables
 
@@ -108,7 +108,7 @@ namespace Fotootof.Components.Server.Users
         /// </summary>
         public void LoadAclGroups()
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Info("Loading Acl Groups list : Start. Please wait...");
 
             try
@@ -119,12 +119,12 @@ namespace Fotootof.Components.Server.Users
             {
                 string message = "Loading Acl Groups list failed !";
                 log.Fatal(message, e);
-                MessageBase.Fatal(e, message);
+                MessageBoxs.Fatal(e, message);
             }
             finally
             {
                 log.Info("Loading Acl Groups list : End.");
-                MessageBase.IsBusy = false;
+                MessageBoxs.IsBusy = false;
             }
         }
 
@@ -133,8 +133,8 @@ namespace Fotootof.Components.Server.Users
         /// </summary>
         public void LoadUsers()
         {
-            MessageBase.IsBusy = true;
-            log.Warn(MessageBase.BusyContent = "Loading Users list. Please wait...");
+            MessageBoxs.IsBusy = true;
+            log.Warn(MessageBoxs.BusyContent = "Loading Users list. Please wait...");
 
             try
             {
@@ -152,18 +152,18 @@ namespace Fotootof.Components.Server.Users
                 users.Load();
                 Users.Items = users;
 
-                log.Info(MessageBase.BusyContent = "Loading Users list. Done.");
+                log.Info(MessageBoxs.BusyContent = "Loading Users list. Done.");
             }
             catch (Exception e)
             {
-                MessageBase.BusyContent = "Loading Users list. failed !";
-                log.Fatal(MessageBase.BusyContent, e);
-                MessageBase.Fatal(e, (string)MessageBase.BusyContent);
+                MessageBoxs.BusyContent = "Loading Users list. failed !";
+                log.Fatal(MessageBoxs.BusyContent, e);
+                MessageBoxs.Fatal(e, (string)MessageBoxs.BusyContent);
             }
             finally
             {
-                log.Warn(MessageBase.BusyContent = "Loading Users list. Done.");
-                MessageBase.IsBusy = false;
+                log.Warn(MessageBoxs.BusyContent = "Loading Users list. Done.");
+                MessageBoxs.IsBusy = false;
             }
         }
 

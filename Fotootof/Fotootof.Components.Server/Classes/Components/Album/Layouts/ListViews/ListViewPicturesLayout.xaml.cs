@@ -1,9 +1,9 @@
-﻿using Fotootof.Layouts.Controls.ListViews;
+﻿using Fotootof.Collections.Entities;
+using Fotootof.Layouts.Controls.ListViews;
+using Fotootof.Layouts.Dialogs;
 using Fotootof.Layouts.Dialogs.Win32;
 using Fotootof.Layouts.Windows.Slideshow;
-using Fotootof.Libraries.Collections.Entities;
 using Fotootof.Libraries.Logs;
-using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Data.Tables.Interfaces;
 using System;
@@ -26,6 +26,18 @@ namespace Fotootof.Components.Server.Album.Layouts
     /// </summary>
     public partial class ListViewPicturesLayout : ListViewPicturesControl, IAlbumEntity
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
@@ -101,7 +113,7 @@ namespace Fotootof.Components.Server.Album.Layouts
             }
 
             // Start to busy application.
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn($"Starting adding {pfdb.FileNames.Length} Pictures. Please wait...");
 
             var album = AlbumEntity;
@@ -158,7 +170,7 @@ namespace Fotootof.Components.Server.Album.Layouts
 
             // Stop to busy application.
             log.Warn($"Ending adding {pictAdded?.ToArray()?.Length ?? 0} Picture(s).");
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         /// <summary>
@@ -173,7 +185,7 @@ namespace Fotootof.Components.Server.Album.Layouts
             {
                 NullReferenceException ex = Exceptions.GetReferenceNull(nameof(SelectedItems), SelectedItems);
                 log.Warn(ex.Output(), ex);
-                MessageBase.Warning(ex.Output());
+                MessageBoxs.Warning(ex.Output());
                 return;
             }
 
@@ -195,7 +207,7 @@ namespace Fotootof.Components.Server.Album.Layouts
             try
             {
                 // Start to busy application.
-                MessageBase.IsBusy = true;
+                MessageBoxs.IsBusy = true;
                 log.Warn("Starting deleting Picture(s). Please wait...");
 
                 // Delete item from database.
@@ -227,12 +239,12 @@ namespace Fotootof.Components.Server.Album.Layouts
 
                 // Stop to busy application.
                 log.Warn($"Ending of deleting  {SelectedItems?.Count} of Pictures.");
-                MessageBase.IsBusy = false;
+                MessageBoxs.IsBusy = false;
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Error(ex.Output());
+                MessageBoxs.Error(ex.Output());
             }
         }
 
@@ -268,7 +280,7 @@ namespace Fotootof.Components.Server.Album.Layouts
                 return;
             }
 
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Info("Refreshing pictures list. Please wait...");
 
             await Task.Delay(3000);
@@ -333,7 +345,7 @@ namespace Fotootof.Components.Server.Album.Layouts
             ItemsCollection.ItemsSource = new PictureEntityCollection(newItems);
 
             log.Info("Saving pictures list. Done...");
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         /// <summary>
@@ -420,7 +432,7 @@ namespace Fotootof.Components.Server.Album.Layouts
             catch (Exception e)
             {
                 log.Error(e);
-                MessageBase.Error(string.Format("Searching Picture {0} failed !\n\r {1}", propertyPathName, e.Message));
+                MessageBoxs.Error(string.Format("Searching Picture {0} failed !\n\r {1}", propertyPathName, e.Message));
             }
 
             return IsChanged;
@@ -468,7 +480,7 @@ namespace Fotootof.Components.Server.Album.Layouts
 
         /// <summary>
         /// Method called on items collection selection changed click event.
-        /// </summary
+        /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Selection changed event arguments.</param>
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)

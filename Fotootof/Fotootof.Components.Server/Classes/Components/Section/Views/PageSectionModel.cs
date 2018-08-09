@@ -1,6 +1,6 @@
-﻿using Fotootof.Layouts.Controls.DataGrids;
+﻿using Fotootof.Collections.Entities;
+using Fotootof.Layouts.Controls.DataGrids;
 using Fotootof.Layouts.Controls.ListViews;
-using Fotootof.Libraries.Collections.Entities;
 using Fotootof.Libraries.Components;
 
 namespace Fotootof.Components.Server.Section
@@ -8,7 +8,7 @@ namespace Fotootof.Components.Server.Section
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Server Side View Catalog Model.
     /// </summary>
-    public class PageSectionModel : PageBaseModel<PageSectionLayout>
+    public class PageSectionModel : ComponentModel<PageSectionLayout>
     {
         #region Variables
 

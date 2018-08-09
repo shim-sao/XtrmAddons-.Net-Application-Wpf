@@ -1,4 +1,5 @@
-﻿using Fotootof.Libraries.Systems;
+﻿using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
 using Fotootof.SQLite.EntityManager.Managers;
@@ -16,6 +17,9 @@ namespace Fotootof.Libraries.Collections.Entities
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override bool IsAutoloadEnabled => true;
 
         #endregion
@@ -26,6 +30,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Section Collections.
         /// </summary>
+        /// <param name="autoLoad"></param>
         /// <param name="options">Options for query filters.</param>
         public InfoEntityCollection(bool autoLoad = false, InfoOptionsList options = null) : base(autoLoad, options) { }
 
@@ -49,7 +54,6 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <summary>
         /// Class method to load a list of entities from database.
         /// </summary>
-        /// <param name="options">Options for query filters.</param>
         public override void Load()
         {
             base.Load();
@@ -129,14 +133,14 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Adding Info(s) failed !");
+                MessageBoxs.Fatal(ex, "Adding Info(s) failed !");
             }
         }
 
         /// <summary>
         /// Method to delete a list of Info entities from the database.
         /// </summary>
-        /// <param name="newItems">The list of items to remove.</param>
+        /// <param name="oldItems">The list of items to remove.</param>
         public static void DbDelete(List<InfoEntity> oldItems)
         {
             // Check for Removing items.
@@ -162,7 +166,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Deleting Section(s) list failed !");
+                MessageBoxs.Fatal(ex, "Deleting Section(s) list failed !");
             }
         }
 
@@ -196,7 +200,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Replacing Info(s) failed !");
+                MessageBoxs.Fatal(ex, "Replacing Info(s) failed !");
             }
         }
 

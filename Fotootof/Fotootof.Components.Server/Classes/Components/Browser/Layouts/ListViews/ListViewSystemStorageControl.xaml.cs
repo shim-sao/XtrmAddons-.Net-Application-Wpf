@@ -1,6 +1,6 @@
-﻿using Fotootof.Layouts.Controls.DataGrids;
-using Fotootof.Libraries.Collections;
-using Fotootof.Libraries.Collections.Entities;
+﻿using Fotootof.Collections;
+using Fotootof.Collections.Entities;
+using Fotootof.Layouts.Controls.DataGrids;
 using Fotootof.Libraries.Controls.ListViews;
 using Fotootof.Libraries.Models.Systems;
 using Fotootof.Libraries.Systems;

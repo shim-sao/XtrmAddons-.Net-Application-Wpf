@@ -16,20 +16,20 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Fotootof\Packages\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>..\..\Build\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Fotootof\Packages\Release\</OutputPath>
+    <OutputPath>..\..\Build\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\Fotootof\Packages\Release\FotootofServer.Controls.ListViews.Storage.xml</DocumentationFile>
+    <DocumentationFile>..\..\Build\Release\Fotootof.Libraries.Components.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -55,8 +55,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\PageBase.cs" />
-    <Compile Include="Classes\PageBaseModel.cs" />
+    <Compile Include="Classes\ComponentModel.cs" />
+    <Compile Include="Classes\ComponentView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,13 +65,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj">
+      <Project>{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}</Project>
+      <Name>Fotootof.Layouts.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.Services\Fotootof.SQLite.Services.csproj">
       <Project>{E3958E7E-076C-4865-B586-ECB282748FFF}</Project>
       <Name>Fotootof.SQLite.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj">
-      <Project>{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}</Project>
-      <Name>Fotootof.Layouts.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fotootof.Models\Fotootof.Libraries.Models.csproj">
       <Project>{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}</Project>

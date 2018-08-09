@@ -1,4 +1,4 @@
-﻿using Fotootof.Libraries.Systems;
+﻿using Fotootof.Layouts.Dialogs;
 using System;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Culture;
@@ -22,6 +22,9 @@ namespace Fotootof.Libraries.HttpHelpers.HttpServer
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static object NetworkAclChecker { get; private set; }
 
         #endregion
@@ -97,7 +100,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpServer
                 }
                 catch (Exception ex)
                 {
-                    MessageBase.Warning(ex.Output(), ex.GetType().Name);
+                    MessageBoxs.Warning(ex.Output(), ex.GetType().Name);
                     log.Error(ex.Output(), ex);
 
                     NotifyServerFailed();
@@ -123,8 +126,6 @@ namespace Fotootof.Libraries.HttpHelpers.HttpServer
         /// <summary>
         /// Method called on add server to firewall click.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The routed event arguments.</param>
         public static void AddNetworkAcl()
         {
             log.Info("Enabling external server access. Please wait.");
@@ -146,8 +147,6 @@ namespace Fotootof.Libraries.HttpHelpers.HttpServer
         /// <summary>
         /// Method called on remove server from firwall click.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The routed event arguments.</param>
         public static void RemoveNetworkAcl()
         {
             log.Info("Disabling external server access. Please wait.");
@@ -169,7 +168,6 @@ namespace Fotootof.Libraries.HttpHelpers.HttpServer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="handler">Event handler.</param>
         public static event EventHandler NotifyServerStartedHandlerOnce
         {
             add
@@ -194,7 +192,6 @@ namespace Fotootof.Libraries.HttpHelpers.HttpServer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="handler">Event handler.</param>
         public static event EventHandler NotifyServerStoppedHandlerOnce
         {
             add

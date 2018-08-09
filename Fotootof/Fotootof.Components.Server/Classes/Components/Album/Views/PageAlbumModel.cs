@@ -9,7 +9,7 @@ namespace Fotootof.Components.Server.Album
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Page Album Model.
     /// </summary>
-    public class PageAlbumModel : PageBaseModel<PageAlbumLayout>, IAlbumEntity
+    public class PageAlbumModel : ComponentModel<PageAlbumLayout>, IAlbumEntity
     {
         #region Variables
 
@@ -58,7 +58,7 @@ namespace Fotootof.Components.Server.Album
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Page Album Model Constructor.
         /// </summary>
-        /// <param name="page">The page associated to the model.</param>
+        /// <param name="controlView">The page associated to the model.</param>
         public PageAlbumModel(PageAlbumLayout controlView) : base(controlView) { }
 
         #endregion

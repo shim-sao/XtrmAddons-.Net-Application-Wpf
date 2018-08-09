@@ -7,8 +7,8 @@
 		DataGrids Template
 		- Custom brush are tested and woking fine.
 	-->
-	<Style TargetType="DataGrid">
-		<Setter Property="Background" Value="Transparent" />
+    <Style TargetType="DataGrid">
+        <Setter Property="Background" Value="Transparent" />
 		<Setter Property="BorderThickness" Value="0" />
 	</Style>
 
@@ -26,12 +26,12 @@
 		<Setter Property="BorderThickness" Value="0" />
 	</Style>
 
-	<Style TargetType="DataGridCell">
-		<Setter Property="BorderThickness" Value="1,0,1,1" />
-		
-		<Style.Triggers>
+    <Style TargetType="DataGridCell">
+        <Setter Property="BorderThickness" Value="1,0,1,1" />
+
+        <Style.Triggers>
 			<Trigger Property="IsSelected" Value="False">
-				<Setter Property="Background" Value="{DynamicResource CustomDataGridRowBrush}" />
+                <Setter Property="Background" Value="{DynamicResource CustomDataGridRowBrush}" />
 				<Setter Property="BorderBrush" Value="{DynamicResource CustomDataGridRowBorderBrush}" />
 				<Setter Property="Foreground" Value="{DynamicResource CustomDataGridRowTextBrush}" />
 			</Trigger>

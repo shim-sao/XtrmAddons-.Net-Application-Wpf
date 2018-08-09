@@ -155,8 +155,14 @@
     <!-- ListView -->
     <SolidColorBrush x:Key="CustomListViewThumbBrush" Color="{StaticResource ChromeLow}" />
     <SolidColorBrush x:Key="CustomListViewThumbTextBrush" Color="{StaticResource ColorWindowText}" />
+    
+    
 
     <!-- DataGrid -->
+
+    <Color x:Key="CustomDataGridRowColor">#FF2B2B2B</Color>
+
+
     <SolidColorBrush x:Key="CustomDataGridBrush" Color="Transparent" />
     <SolidColorBrush x:Key="CustomDataGridBorderBrush" Color="#FF333333" />
     <SolidColorBrush x:Key="CustomDataGridCellBrush" Color="#FF3DD1FC" />

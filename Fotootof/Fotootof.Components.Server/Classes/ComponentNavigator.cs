@@ -1,10 +1,12 @@
-﻿using Fotootof.Libraries.Systems;
-using Fotootof.Components.Server.Album;
+﻿using Fotootof.Components.Server.Album;
 using Fotootof.Components.Server.Browser;
+using Fotootof.Components.Server.Plugin;
+using Fotootof.Components.Server.Remote;
 using Fotootof.Components.Server.Section;
-using Fotootof.Components.Server.Users;
-using System.Windows.Controls;
 using Fotootof.Components.Server.Slideshow;
+using Fotootof.Components.Server.Users;
+using Fotootof.Navigator;
+using System.Windows.Controls;
 
 namespace Fotootof.Components.Server
 {
@@ -53,15 +55,21 @@ namespace Fotootof.Components.Server
             => Navigate(new PageUsersLayout());
 
         /// <summary>
+        /// Method to navigate to a <see cref="PageRemoteLayout"/>.
+        /// </summary>
+        public static void NavigateToRemote()
+            => Navigate(new PageRemoteLayout());
+
+        /// <summary>
         /// Method to navigate to a <see cref="PagePluginLayout"/>.
         /// </summary>
-        public static void Plugin(UserControl uc)
-        {  return; }
+        public static void NavigateToPlugin(UserControl uc)
+            => Navigate(new PagePluginLayout(uc));
 
         /// <summary>
         /// Method to navigate to a <see cref="PageSlideshowLayout"/>.
         /// </summary>
-        public static void Slideshow(int albumPk)
+        public static void NavigateToSlideshow(int albumPk)
             => Navigate(new PageSlideshowLayout(albumPk));
 
         #endregion Methods

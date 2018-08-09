@@ -11,14 +11,14 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.Libraries.Windows
 {
     /// <summary>
-    /// Class Fotootof Libraries Window Layout.
+    /// Class XtmAddons Fotootof Libraries Window Layout.
     /// </summary>
     public abstract partial class WindowLayout : Window
     {
         #region Variables
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -30,7 +30,7 @@ namespace Fotootof.Libraries.Windows
         #region Properties
 
         /// <summary>
-        /// Property alias to access to the main database connector.
+        /// Property alias to access to the main database service connector <see cref="SQLiteSvc"/>.
         /// </summary>
         public static SQLiteSvc Db
             => (SQLiteSvc)ApplicationSession.Properties.Database;
@@ -42,7 +42,7 @@ namespace Fotootof.Libraries.Windows
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Libraries Base Windows Form Constructor.
+        /// Class XtmAddons Fotootof Libraries Window Layout Constructor.
         /// </summary>
         public WindowLayout() : base()
         {
@@ -50,6 +50,7 @@ namespace Fotootof.Libraries.Windows
             Resources.MergedDictionaries.Add(XtrmAddons.Fotootof.Culture.Translation.Words);
             Resources.MergedDictionaries.Add(XtrmAddons.Fotootof.Culture.Translation.Logs);
 
+            // Merge custom theme to the resources.
             ThemeLoader.MergeThemeTo(Resources);
         }
 
@@ -60,11 +61,11 @@ namespace Fotootof.Libraries.Windows
         #region Methods
 
         /// <summary>
-        /// 
+        /// Method to find an child element by its name.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">The Type of element to get.</typeparam>
+        /// <param name="name">The name of the element to searh.</param>
+        /// <returns>The lement to be found or null.</returns>
         public T FindName<T>(string name) where T : class
         {
             return (T)FindName(name);
@@ -75,8 +76,8 @@ namespace Fotootof.Libraries.Windows
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="fe">An <see cref="object"/> inherited from <see cref="FrameworkElement"/>.</param>
-        /// <param name="defaut"></param>
-        /// <returns></returns>
+        /// <param name="defaut">A value by default.</param>
+        /// <returns>The Tag value of the element or a default value if null.</returns>
         public static T GetTag<T>(object fe, T defaut = null) where T : class
         {
             if (fe is null)

@@ -1,5 +1,9 @@
 ﻿namespace Fotootof.Libraries.HttpHelpers.HttpClient.Responses
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ServerResponseBase<T>
     {
         /// <summary>

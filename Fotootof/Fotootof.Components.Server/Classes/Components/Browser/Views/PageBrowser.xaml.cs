@@ -1,8 +1,8 @@
-﻿using Fotootof.Libraries.Collections;
+﻿using Fotootof.Collections;
+using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Components;
 using Fotootof.Libraries.Enums;
 using Fotootof.Libraries.Models.Systems;
-using Fotootof.Libraries.Systems;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -17,7 +17,7 @@ namespace Fotootof.Components.Server.Browser
     /// <para>Class XtrmAddons Fotootof Server Side Component Browser View.</para>
     /// <para>This page is design to display a simple file browser for media manangement.</para>
     /// </summary>
-    public partial class PageBrowserLayout : PageBase
+    public partial class PageBrowserLayout : ComponentView
     {
         #region Variables
 
@@ -72,7 +72,7 @@ namespace Fotootof.Components.Server.Browser
         /// </summary>
         public PageBrowserLayout()
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Browser"));
 
             // Constuct page component.
@@ -80,7 +80,7 @@ namespace Fotootof.Components.Server.Browser
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Browser"));
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         #endregion
@@ -131,11 +131,11 @@ namespace Fotootof.Components.Server.Browser
         /// <param name="dirInfo">A directory info.</param>
         private void DisplayHeaderDirectory(object dirInfo)
         {
-            Breadcrumbs.Text = Model.GetText(dirInfo);
+            (FindName("TextBox_Breadcrumbs_Name") as TextBox).Text = Model.GetText(dirInfo);
         }
 
         /// <summary>
-        /// Method to clear the <see cref="StorageCollection"/> of files displayed in the view.
+        /// Method to clear the <see cref="CollectionStorage"/> of files displayed in the view.
         /// </summary>
         [Obsolete("use Model.ClearFilesCollection()")]
         private void ClearFilesCollection()
@@ -150,12 +150,12 @@ namespace Fotootof.Components.Server.Browser
         /// <param name="e"></param>
         private void TreeViewDirectories_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            (FindName("Button_Forward") as Button).IsEnabled = false;
+            (FindName("Button_Forward_Name") as Button).IsEnabled = false;
 
             Model.ChangeCurrentItem(((e.NewValue) as TreeViewItem)?.Tag);
             if (Model.PreviewStack.Count > 1)
             {
-                (FindName("Button_Back") as Button).IsEnabled = true;
+                (FindName("Button_Back_Name") as Button).IsEnabled = true;
             }
             
             Refresh_UcListViewStoragesServer();
@@ -169,14 +169,14 @@ namespace Fotootof.Components.Server.Browser
         private void OnBack_Click(object sender, RoutedEventArgs e)
         {
             Model.NextStack.Push(Model.CurrentItem);
-            Button_Forward.IsEnabled = true;
+            (FindName("Button_Forward_Name") as Button).IsEnabled = true;
 
             Model.CurrentItem = Model.PreviewStack.Pop();
             Refresh_UcListViewStoragesServer();
 
             if (Model.PreviewStack.Count <= 1)
             {
-                Button_Back.IsEnabled = false;
+                (FindName("Button_Back_Name") as Button).IsEnabled = false;
             }
         }
 
@@ -188,22 +188,22 @@ namespace Fotootof.Components.Server.Browser
         private void OnForward_Click(object sender, RoutedEventArgs e)
         {
             Model.PreviewStack.Push(Model.CurrentItem);
-            Button_Back.IsEnabled = true;
+            (FindName("Button_Back_Name") as Button).IsEnabled = true;
 
             Model.CurrentItem = Model.NextStack.Pop();
             Refresh_UcListViewStoragesServer();
 
             if (Model.NextStack.Count == 0)
             {
-                Button_Forward.IsEnabled = false;
+                (FindName("Button_Forward_Name") as Button).IsEnabled = false;
             }
         }
 
         /// <summary>
-        /// 
+        /// Method called on upward click event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         private void OnUpward_Click(object sender, RoutedEventArgs e)
         {
             DirectoryInfo di = Model.GetCurrentDirectoryInfo();
@@ -213,10 +213,10 @@ namespace Fotootof.Components.Server.Browser
                 if(di.Parent != null)
                 {
                     Model.PreviewStack.Push(Model.CurrentItem);
-                    Button_Back.IsEnabled = true;
+                    (FindName("Button_Back_Name") as Button).IsEnabled = true;
 
                     Model.NextStack.Clear();
-                    Button_Forward.IsEnabled = false;
+                    (FindName("Button_Forward_Name") as Button).IsEnabled = false;
 
                     Model.CurrentItem = new DirectoryInfo(di.Parent.FullName);
                     Refresh_UcListViewStoragesServer();
@@ -227,8 +227,6 @@ namespace Fotootof.Components.Server.Browser
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
         private void Refresh_UcListViewStoragesServer()
         {
             UcListViewStoragesServer?.Items?.Clear();
@@ -283,7 +281,7 @@ namespace Fotootof.Components.Server.Browser
         /// <summary>
         /// Method to load files informations.
         /// </summary>
-        /// <param name="infoFiles">A list of files</param>
+        /// <param name="dirInfos">A list of files</param>
         [Obsolete("use Model.LoadDirectoriesInfos();")]
         private void LoadDirectoriesInfosToListView(DirectoryInfo[] dirInfos)
         {
@@ -334,12 +332,12 @@ namespace Fotootof.Components.Server.Browser
                 else if (item.DirectoryInfo != null)
                 {
                     Model.NextStack.Clear();
-                    Button_Forward.IsEnabled = false;
+                    (FindName("Button_Forward_Name") as Button).IsEnabled = false;
 
                     Model.PreviewStack.Push(Model.CurrentItem);
                     if (Model.PreviewStack.Count > 1)
                     {
-                        Button_Back.IsEnabled = true;
+                        (FindName("Button_Back_Name") as Button).IsEnabled = true;
                     }
 
                     Model.CurrentItem = item.DirectoryInfo;
@@ -377,8 +375,8 @@ namespace Fotootof.Components.Server.Browser
 
             double TopCtrlHeight = (FindName("Block_TopControls") as FrameworkElement).RenderSize.Height;
 
-            Block_MiddleContents.Width = Math.Max(Width, 0);
-            Block_MiddleContents.Height = Math.Max(Height - TopCtrlHeight, 0);
+            BlockMiddleContentsName.Width = Math.Max(Width, 0);
+            BlockMiddleContentsName.Height = Math.Max(Height - TopCtrlHeight, 0);
 
             UcTreeViewDirectories.Height = Math.Max(Height - TopCtrlHeight, 0);
             UcListViewStoragesServer.Height = Math.Max(Height - TopCtrlHeight, 0);
@@ -386,7 +384,7 @@ namespace Fotootof.Components.Server.Browser
             TraceSize(MainBlockContent);
             TraceSize(this);
             TraceSize(Block_TopControls);
-            TraceSize(Block_MiddleContents);
+            TraceSize(BlockMiddleContentsName);
             TraceSize(UcTreeViewDirectories);
             TraceSize(UcListViewStoragesServer);
         }

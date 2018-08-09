@@ -1,4 +1,4 @@
-﻿<base:PageBase
+﻿<base:ComponentView
     x:Class="Fotootof.Components.Server.Browser.PageBrowserLayout"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -34,17 +34,17 @@
 								Orientation="Horizontal"
 								Margin="2,0">
 						
-						<Button x:Name="Button_Back"
+						<Button x:Name="Button_Back_Name"
 								Style="{DynamicResource ButtonIcon24Back}"
 								IsEnabled="False"
 								Click="OnBack_Click"/>
 
-						<Button x:Name="Button_Forward"
+						<Button x:Name="Button_Forward_Name"
 								Style="{DynamicResource ButtonIcon24Forward}"
 								IsEnabled="False"
 								Click="OnForward_Click"/>
 
-						<Button x:Name="Button_Upward"
+						<Button x:Name="Button_Upward_Name"
 								Style="{DynamicResource ButtonIcon24Upward}"
 								Click="OnUpward_Click" />
 						
@@ -52,7 +52,7 @@
 
 					<Border Grid.Column="1">
 						<TextBox Background="White"
-								 x:Name="Breadcrumbs"
+								 x:Name="TextBox_Breadcrumbs_Name"
 								 Margin="2"
 								 Padding="10,0"
 								 FontSize="{StaticResource FontSizeNormal}"
@@ -72,7 +72,7 @@
 				</Grid>
 			</StackPanel>
 
-			<Grid x:Name="Block_MiddleContents"
+			<Grid x:Name="BlockMiddleContentsName"
 				  Style="{StaticResource GridMiddleContentStyle}">
 
 				<Grid.ColumnDefinitions>
@@ -85,9 +85,9 @@
                 </Grid.RowDefinitions>
 
                 <uc:TreeViewSystemStorageLayout Grid.Row="0"
-                                                 Grid.Column="0"
-                                                 x:Name="UcTreeViewDirectories"
-                                                 IsHeaderVisible="Visible"/>
+                                                Grid.Column="0"
+                                                x:Name="UcTreeViewDirectories"
+                                                IsHeaderVisible="Visible"/>
 
                 <GridSplitter BorderThickness="1,0"
 							  Grid.Row="0"
@@ -107,4 +107,4 @@
 
         </StackPanel>
     </Grid>
-</base:PageBase>
+</base:ComponentView>

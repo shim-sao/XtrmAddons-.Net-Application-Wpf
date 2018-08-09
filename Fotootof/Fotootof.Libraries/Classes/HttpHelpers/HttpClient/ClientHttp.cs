@@ -10,18 +10,19 @@ using XtrmAddons.Net.Common.Extensions;
 using System.Reflection;
 using XtrmAddons.Fotootof.Lib.HttpClient;
 using Fotootof.Libraries.Systems;
+using Fotootof.Layouts.Dialogs;
 
 namespace Fotootof.Libraries.HttpHelpers.HttpClient
 {
     /// <summary>
-    /// 
+    /// Class Fotootof Libraries Http Helpers Client.
     /// </summary>
     public class ClientHttp
     {
         #region Variables
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -33,9 +34,9 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
         #region Constructor
 
         /// <summary>
-        /// 
+        /// Class Fotootof Libraries Http Helpers Client Constructor.
         /// </summary>
-        /// <param name="server"></param>
+        /// <param name="server">A <see cref="Client"/> connector.</param>
         public ClientHttp(Client server)
         {
             Server = server;
@@ -216,7 +217,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
             catch (Exception e)
             {
                 log.Error("Initializing server connection failed.", e);
-                MessageBase.Fatal(e, "Initializing server connection failed.");
+                MessageBoxs.Fatal(e, "Initializing server connection failed.");
             }
         }
 
@@ -474,13 +475,13 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
                 else
                 {
                     RaiseSingleSectionFailed(Server, serverResponse);
-                    MessageBase.Error($"Server single section {Server.Host}:{Server.Port} failed !\n\r {response.StatusCode.ToString()} : {serverResponse.Error}");
+                    MessageBoxs.Error($"Server single section {Server.Host}:{Server.Port} failed !\n\r {response.StatusCode.ToString()} : {serverResponse.Error}");
                 }
             }
             catch (Exception e)
             {
                 RaiseSingleSectionFailed(Server, serverResponse);
-                MessageBase.Fatal(e, $"Server single section {Server.Host}:{Server.Port} failed !");
+                MessageBoxs.Fatal(e, $"Server single section {Server.Host}:{Server.Port} failed !");
             }
         }
     }

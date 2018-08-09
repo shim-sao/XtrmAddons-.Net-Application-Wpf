@@ -50,7 +50,7 @@ namespace Fotootof.Libraries.Enums
         /// <summary>
         /// Method to get an image size value.
         /// </summary>
-        /// <param name="ext">The image size.</param>
+        /// <param name="index">The image size.</param>
         /// <returns>The double value of the image size.</returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>

@@ -1,18 +1,17 @@
-﻿using Fotootof.Libraries.Collections.Entities;
+﻿using Fotootof.Collections.Entities;
 using Fotootof.Libraries.Components;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
 using Fotootof.SQLite.EntityManager.Managers;
 using System;
 using XtrmAddons.Net.Common.Extensions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Fotootof.Components.Server.Slideshow
 {
     /// <summary>
     /// 
     /// </summary>
-    public class PageSlideshowModel : PageBaseModel<PageSlideshowLayout>
+    public class PageSlideshowModel : ComponentModel<PageSlideshowLayout>
     {
         #region Variables
 

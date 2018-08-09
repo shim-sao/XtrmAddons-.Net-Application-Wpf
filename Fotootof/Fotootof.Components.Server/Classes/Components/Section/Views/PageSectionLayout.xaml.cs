@@ -1,9 +1,9 @@
-﻿using Fotootof.Components.Server.Section.Layouts;
+﻿using Fotootof.Collections.Entities;
+using Fotootof.Components.Server.Section.Layouts;
 using Fotootof.Layouts.Controls.DataGrids;
 using Fotootof.Layouts.Controls.ListViews;
-using Fotootof.Libraries.Collections.Entities;
+using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Components;
-using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
 using Fotootof.SQLite.EntityManager.Event;
@@ -22,7 +22,7 @@ namespace Fotootof.Components.Server.Section
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Server Side View Catalog Page.
     /// </summary>
-    public partial class PageSectionLayout : PageBase
+    public partial class PageSectionLayout : ComponentView
     {
         #region Variables
 
@@ -87,7 +87,7 @@ namespace Fotootof.Components.Server.Section
         /// </summary>
         public PageSectionLayout()
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Catalog"));
 
             // Constuct page component.
@@ -95,7 +95,7 @@ namespace Fotootof.Components.Server.Section
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Catalog"));
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         #endregion
@@ -157,7 +157,7 @@ namespace Fotootof.Components.Server.Section
         /// </summary>
         private void LoadSections()
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Loading Sections list : Start. Please wait...");
 
             try
@@ -174,12 +174,12 @@ namespace Fotootof.Components.Server.Section
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Loading Sections list failed !");
+                MessageBoxs.Fatal(ex, "Loading Sections list failed !");
             }
             finally
             {
                 log.Info("Loading Sections list : End.");
-                MessageBase.IsBusy = false;
+                MessageBoxs.IsBusy = false;
             }
         }
 
@@ -190,13 +190,13 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_Canceled(object sender, EntityChangesEventArgs e)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Adding or editing Section operation canceled. Please wait...");
 
             LoadSections();
 
             log.Info("Adding or editing Section operation canceled. Done.");
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_Added(object sender, EntityChangesEventArgs e)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Saving new Section informations. Please wait...");
 
             SectionEntity item = (SectionEntity)e.NewEntity;
@@ -214,7 +214,7 @@ namespace Fotootof.Components.Server.Section
             SectionEntityCollection.DbInsert(new List<SectionEntity> { item });
 
             log.Info("Saving new Section informations. Done.");
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_Changed(object sender, EntityChangesEventArgs e)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Saving Section informations. Please wait...");
 
             SectionEntity newEntity = (SectionEntity)e.NewEntity;
@@ -235,7 +235,7 @@ namespace Fotootof.Components.Server.Section
             LoadSections();
 
             log.Info("Saving Section informations. Done.");
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         /// <summary>
@@ -245,7 +245,7 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_Deleted(object sender, EntityChangesEventArgs e)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Deleting Section(s). Please wait...");
             
             // Remove item from list.
@@ -256,7 +256,7 @@ namespace Fotootof.Components.Server.Section
             SectionEntityCollection.DbDelete(new List<SectionEntity> { item });
 
             log.Info("Deleting Section(s). Done.");
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_DefaultChanged(object sender, EntityChangesEventArgs e)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Setting default Section. Please wait...");
 
             SectionEntity newEntity = (SectionEntity)e.NewEntity;
@@ -274,7 +274,7 @@ namespace Fotootof.Components.Server.Section
             LoadSections();
 
             log.Info("Setting default Section. Done.");
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         #endregion
@@ -288,7 +288,7 @@ namespace Fotootof.Components.Server.Section
         /// </summary>
         private void LoadAlbums()
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Loading Albums list. Please wait...");
 
             try
@@ -299,11 +299,11 @@ namespace Fotootof.Components.Server.Section
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Loading Albums list. Failed !");
+                MessageBoxs.Fatal(ex, "Loading Albums list. Failed !");
             }
             finally
             {
-                MessageBase.IsBusy = false;
+                MessageBoxs.IsBusy = false;
             }
         }
 
@@ -324,13 +324,13 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">Entity changes event arguments.</param>
         private void AlbumsListView_OnCancel(object sender, EntityChangesEventArgs e)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Adding or editing Album operation canceled. Please wait...");
 
             LoadAlbums();
 
             log.Info("Adding or editing Album operation canceled. Done.");
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         /// <summary>
@@ -340,7 +340,7 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">Event arguments.</param>
         private void AlbumsListView_OnAdd(object sender, EntityChangesEventArgs e)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Saving new Album informations. Please wait...");
 
             AlbumEntity item = (AlbumEntity)e.NewEntity;
@@ -348,7 +348,7 @@ namespace Fotootof.Components.Server.Section
             AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
 
             log.Info("Saving new Album informations. Done.");
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         /// <summary>
@@ -358,7 +358,7 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">Event arguments.</param>
         private async void AlbumsListView_OnChange(object sender, EntityChangesEventArgs e)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Saving Album informations. Please wait...");
 
             AlbumEntity newEntity = (AlbumEntity)e.NewEntity;
@@ -369,7 +369,7 @@ namespace Fotootof.Components.Server.Section
             LoadAlbums();
 
             log.Info("Saving Album informations. Done.");
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         /// <summary>
@@ -379,7 +379,7 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">Entity changes event arguments.</param>
         private async void AlbumsListView_OnDeleteAsync(object sender, EntityChangesEventArgs e)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Warn("Deleting Album(s). Please wait...");
 
             // Remove item from list.
@@ -391,7 +391,7 @@ namespace Fotootof.Components.Server.Section
             }
 
             log.Info("Deleting Album(s). Done.");
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
         #endregion
@@ -475,8 +475,8 @@ namespace Fotootof.Components.Server.Section
 
             double height = Math.Max(Height - Block_TopControls.RenderSize.Height, 0);
 
-            Block_MiddleContents.Width = this.Width;
-            Block_MiddleContents.Height = height;
+            BlockMiddleContentsName.Width = this.Width;
+            BlockMiddleContentsName.Height = height;
 
             UcDataGridSections.Height = height;
             UcListViewAlbums.Height = height;

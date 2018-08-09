@@ -69,8 +69,8 @@ namespace Fotootof.Components.Server.Browser.Layouts
         /// <summary>
         /// Class Fotootof Server Controls Storage System Model Constructor.
         /// </summary>
-        /// <param name="owner">The <see cref="SystemStorageControl"/> owner of the model.</param>
-        public TreeViewSystemStorageModel(TreeViewSystemStorageLayout owner) : base(owner)
+        /// <param name="controlView">The <see cref="TreeViewSystemStorageLayout"/> owner of the model.</param>
+        public TreeViewSystemStorageModel(TreeViewSystemStorageLayout controlView) : base(controlView)
         {
             InitializeModel();
         }

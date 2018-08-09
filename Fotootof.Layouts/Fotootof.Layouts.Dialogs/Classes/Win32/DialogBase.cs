@@ -14,7 +14,7 @@ namespace Fotootof.Layouts.Dialogs.Win32
         /// </summary>
         /// <param name="multiselect">Allow or not multiple selection.</param>
         /// <param name="folder">The initial folder to open for the selection.</param>
-        /// <returns>A result <see cref="string"/> or <see cref="IEnumerable{String}"/> for multiple selection. Return null if operation is canceled.</returns>
+        /// <returns>A result <see cref="string"/> or <see cref="System.Collections.IEnumerable"/> for multiple selection. Return null if operation is canceled.</returns>
         public static object FolderDialogBox(bool multiselect = false, string folder = "")
         {
             if(folder.IsNullOrWhiteSpace())

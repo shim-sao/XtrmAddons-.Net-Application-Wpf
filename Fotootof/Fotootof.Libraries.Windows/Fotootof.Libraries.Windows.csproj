@@ -16,20 +16,20 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Fotootof\Packages\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>..\..\Build\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Fotootof\Packages\Release\</OutputPath>
+    <OutputPath>..\..\Build\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\Fotootof\Packages\Release\FotootofServer.Controls.ListViews.Storage.xml</DocumentationFile>
+    <DocumentationFile>..\..\Build\Release\Fotootof.Libraries.Windows.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -105,13 +105,13 @@
       <Project>{C76E2008-3DA1-4600-A889-BF08AF796F7F}</Project>
       <Name>Fotootof.Theme</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Culture\Fotootof.Local.csproj">
-      <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
-      <Name>Fotootof.Local</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj">
       <Project>{FC62EC35-A6A3-4391-9A01-26C159CE1FFD}</Project>
       <Name>Fotootof.Libraries.Logs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Local\Fotootof.Local.csproj">
+      <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
+      <Name>Fotootof.Local</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fotootof.Models\Fotootof.Libraries.Models.csproj">
       <Project>{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}</Project>

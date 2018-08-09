@@ -10,11 +10,17 @@ namespace Fotootof.Libraries.Systems
     /// <summary>
     /// Class XtrmAddons Fotootof Lib Base Classes AppSystems Message Base.
     /// </summary>
+    [System.Obsolete("Fotootof.Layouts.Dialogs")]
     public class MessageBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private static Xceed.Wpf.Toolkit.BusyIndicator busyIndicator;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static Xceed.Wpf.Toolkit.BusyIndicator BusyIndicator
         {
             get

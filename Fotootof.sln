@@ -3,75 +3,79 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Local", "Fotootof.Culture\Fotootof.Local.csproj", "{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Settings", "Fotootof\Fotootof.Settings\Fotootof.Settings.csproj", "{70A4C255-1B1C-498B-8689-AD4504AE8AB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Settings", "Fotootof.Settings\Fotootof.Settings.csproj", "{70A4C255-1B1C-498B-8689-AD4504AE8AB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries", "Fotootof\Fotootof.Libraries\Fotootof.Libraries.csproj", "{7D666EA6-7F61-4C3C-A112-E707072E9205}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries", "Fotootof.Libraries\Fotootof.Libraries.csproj", "{7D666EA6-7F61-4C3C-A112-E707072E9205}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts.Windows.About", "Fotootof.Layouts\Fotootof.Layouts.Windows.About\Fotootof.Layouts.Windows.About.csproj", "{44E3916D-C6F1-4A36-B0BA-9C4F8FD7C6E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts.Windows.About", "..\Fotootof.Layouts\Fotootof.Layouts.Windows.About\Fotootof.Layouts.Windows.About.csproj", "{44E3916D-C6F1-4A36-B0BA-9C4F8FD7C6E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Windows", "Fotootof\Fotootof.Libraries.Windows\Fotootof.Libraries.Windows.csproj", "{02EFC769-E829-44F1-B601-780E7266E8CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Components.Server", "Fotootof.Server\Fotootof.Components.Server.csproj", "{CC881C8A-06D3-4362-9F83-1CFE28D95836}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Culture", "Fotootof\XtrmAddons.Fotootof.Culture\XtrmAddons.Fotootof.Culture.csproj", "{A0C828D6-9AFA-48E6-B279-713869EE07EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts", "Fotootof.Layouts\Fotootof.Layouts.csproj", "{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Lib.Api", "Fotootof\XtrmAddons.Fotootof.Lib.Api\XtrmAddons.Fotootof.Lib.Api.csproj", "{10851D07-11EA-4773-8B05-1228D9714FE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Windows", "Fotootof.Libraries.Windows\Fotootof.Libraries.Windows.csproj", "{02EFC769-E829-44F1-B601-780E7266E8CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Lib.HttpClient", "Fotootof\XtrmAddons.Fotootof.Lib.HttpClient\XtrmAddons.Fotootof.Lib.HttpClient.csproj", "{470D1482-F772-483E-A922-FA2AC4E517DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Culture", "XtrmAddons.Fotootof.Culture\XtrmAddons.Fotootof.Culture.csproj", "{A0C828D6-9AFA-48E6-B279-713869EE07EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Lib.HttpServer", "Fotootof\XtrmAddons.Fotootof.Lib.HttpServer\XtrmAddons.Fotootof.Lib.HttpServer.csproj", "{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Lib.Api", "XtrmAddons.Fotootof.Lib.Api\XtrmAddons.Fotootof.Lib.Api.csproj", "{10851D07-11EA-4773-8B05-1228D9714FE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Models", "Fotootof\Fotootof.Models\Fotootof.Libraries.Models.csproj", "{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Lib.Base", "XtrmAddons.Fotootof.Lib.Base\XtrmAddons.Fotootof.Lib.Base.csproj", "{9F2C8951-005F-41A7-9232-9A55D9E82B55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Models.Interfaces", "Fotootof\Fotootof.Libraries.Models.Interfaces\Fotootof.Libraries.Models.Interfaces.csproj", "{36FFB593-1A0A-4CD4-B83A-02DBFA33BF08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Lib.HttpClient", "XtrmAddons.Fotootof.Lib.HttpClient\XtrmAddons.Fotootof.Lib.HttpClient.csproj", "{470D1482-F772-483E-A922-FA2AC4E517DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof", "Fotootof\Fotootof\Fotootof.csproj", "{7274F279-6DA0-4265-BE1A-48EB41D64C7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Lib.HttpServer", "XtrmAddons.Fotootof.Lib.HttpServer\XtrmAddons.Fotootof.Lib.HttpServer.csproj", "{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.AddInsContracts", "Fotootof\Fotootof.AddInsContracts\Fotootof.AddInsContracts.csproj", "{E931B33D-606B-48E6-97A7-213F084C7BD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Lib.SQLite", "XtrmAddons.Fotootof.Lib.SQLite\XtrmAddons.Fotootof.Lib.SQLite.csproj", "{C2740C1D-4580-4216-9CAC-18580C02A383}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.AddInsContracts.Interfaces", "Fotootof\Fotootof.AddInsContracts.Interfaces\Fotootof.AddInsContracts.Interfaces.csproj", "{FE2397A2-4B52-480E-833F-984F901A1AB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Models", "Fotootof.Models\Fotootof.Libraries.Models.csproj", "{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Theme", "Fotootof.Theme\Fotootof.Theme\Fotootof.Theme.csproj", "{C76E2008-3DA1-4600-A889-BF08AF796F7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Models.Interfaces", "Fotootof.Libraries.Models.Interfaces\Fotootof.Libraries.Models.Interfaces.csproj", "{36FFB593-1A0A-4CD4-B83A-02DBFA33BF08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Theme.Light", "Fotootof.Theme\Fotootof.Theme.Light\Fotootof.Theme.Light.csproj", "{F91EC56B-DCB6-4225-A2CB-0992BA7D2EC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof", "Fotootof\Fotootof.csproj", "{7274F279-6DA0-4265-BE1A-48EB41D64C7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Theme.Dark", "Fotootof.Theme\Fotootof.Theme.Dark\Fotootof.Theme.Dark.csproj", "{DC669BAD-3D03-4744-BE6C-881A10CEF73B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.AddInsContracts", "Fotootof.AddInsContracts\Fotootof.AddInsContracts.csproj", "{E931B33D-606B-48E6-97A7-213F084C7BD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Logs", "Fotootof\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj", "{FC62EC35-A6A3-4391-9A01-26C159CE1FFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.AddInsContracts.Interfaces", "Fotootof.AddInsContracts.Interfaces\Fotootof.AddInsContracts.Interfaces.csproj", "{FE2397A2-4B52-480E-833F-984F901A1AB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts.Dialogs", "Fotootof.Layouts\Fotootof.Layouts.Dialogs\Fotootof.Layouts.Dialogs.csproj", "{06F82071-D500-4E6D-8734-373D1963C307}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Theme", "..\Fotootof.Theme\Fotootof.Theme\Fotootof.Theme.csproj", "{C76E2008-3DA1-4600-A889-BF08AF796F7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Interfaces", "Fotootof\Fotootof.Libraries.Interfaces\Fotootof.Libraries.Interfaces.csproj", "{3C73FBDE-434B-40DD-9E6D-D4CAC4220B95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Theme.Light", "..\Fotootof.Theme\Fotootof.Theme.Light\Fotootof.Theme.Light.csproj", "{F91EC56B-DCB6-4225-A2CB-0992BA7D2EC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Components", "Fotootof\Fotootof.Libraries.Components\Fotootof.Libraries.Components.csproj", "{2DF84F93-8390-42EE-BD61-A66CA77EFFB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Theme.Dark", "..\Fotootof.Theme\Fotootof.Theme.Dark\Fotootof.Theme.Dark.csproj", "{DC669BAD-3D03-4744-BE6C-881A10CEF73B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Controls", "Fotootof\Fotootof.Libraries.Controls\Fotootof.Libraries.Controls.csproj", "{6F733674-F83C-4707-BBE6-EA170D6420F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Logs", "Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj", "{FC62EC35-A6A3-4391-9A01-26C159CE1FFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.System.Messages", "Fotootof\Fotootof.Libraries.System.Messages\Fotootof.Libraries.System.Messages.csproj", "{2AF34F82-75AC-4586-8908-8D57286E30F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts.Dialogs", "..\Fotootof.Layouts\Fotootof.Layouts.Dialogs\Fotootof.Layouts.Dialogs.csproj", "{06F82071-D500-4E6D-8734-373D1963C307}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Components.Client", "Fotootof\Fotootof.Components.Client\Fotootof.Components.Client.csproj", "{C58A30D6-DA41-42E1-B979-3F02F5D98345}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts.Interfaces", "Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj", "{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.Connector", "Fotootof.SQLite\Fotootof.SQLite.Connector\Fotootof.SQLite.Connector.csproj", "{147DB53A-BB65-4402-9852-C257E4D051AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Interfaces", "Fotootof.Libraries.Interfaces\Fotootof.Libraries.Interfaces.csproj", "{3C73FBDE-434B-40DD-9E6D-D4CAC4220B95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.EntityConverters", "Fotootof.SQLite\Fotootof.SQLite.EntityConverters\Fotootof.SQLite.EntityConverters.csproj", "{56D75663-CFAD-4110-B565-7C7462043351}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Components", "Fotootof.Libraries.Components\Fotootof.Libraries.Components.csproj", "{2DF84F93-8390-42EE-BD61-A66CA77EFFB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.EntityManager", "Fotootof.SQLite\Fotootof.SQLite.EntityManager\Fotootof.SQLite.EntityManager.csproj", "{0136CD5B-63F9-400C-A881-4EF25699BEEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Controls", "Fotootof.Libraries.Controls\Fotootof.Libraries.Controls.csproj", "{6F733674-F83C-4707-BBE6-EA170D6420F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.EntityManager.Base", "Fotootof.SQLite\Fotootof.SQLite.EntityManager.Base\Fotootof.SQLite.EntityManager.Base.csproj", "{DC57DCE2-1975-445D-A7F4-16491C0A72B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.System.Messages", "Fotootof.Libraries.System.Messages\Fotootof.Libraries.System.Messages.csproj", "{2AF34F82-75AC-4586-8908-8D57286E30F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.EntityManager.Interfaces", "Fotootof.SQLite\Fotootof.SQLite.EntityManager.Interfaces\Fotootof.SQLite.EntityManager.Interfaces.csproj", "{FA432F87-DB16-4E8C-BBC8-1321583F027A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Components.Client", "Fotootof.Components.Client\Fotootof.Components.Client.csproj", "{C58A30D6-DA41-42E1-B979-3F02F5D98345}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.Services", "Fotootof.SQLite\Fotootof.SQLite.Services\Fotootof.SQLite.Services.csproj", "{E3958E7E-076C-4865-B586-ECB282748FFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.Connector", "..\Fotootof.SQLite\Fotootof.SQLite.Connector\Fotootof.SQLite.Connector.csproj", "{147DB53A-BB65-4402-9852-C257E4D051AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Components.Server", "Fotootof\Fotootof.Components.Server\Fotootof.Components.Server.csproj", "{CC881C8A-06D3-4362-9F83-1CFE28D95836}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.EntityConverters", "..\Fotootof.SQLite\Fotootof.SQLite.EntityConverters\Fotootof.SQLite.EntityConverters.csproj", "{56D75663-CFAD-4110-B565-7C7462043351}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.BuilderV1", "Fotootof.Builder\Fotootof.BuilderV1\Fotootof.BuilderV1.csproj", "{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.EntityManager", "..\Fotootof.SQLite\Fotootof.SQLite.EntityManager\Fotootof.SQLite.EntityManager.csproj", "{0136CD5B-63F9-400C-A881-4EF25699BEEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Collections", "Fotootof\Fotootof.Collections\Fotootof.Collections.csproj", "{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.EntityManager.Base", "..\Fotootof.SQLite\Fotootof.SQLite.EntityManager.Base\Fotootof.SQLite.EntityManager.Base.csproj", "{DC57DCE2-1975-445D-A7F4-16491C0A72B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts.Forms", "Fotootof.Layouts\Fotootof.Layouts.Forms\Fotootof.Layouts.Forms.csproj", "{F3377391-398A-4449-9A62-2C04C6821D71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.EntityManager.Interfaces", "..\Fotootof.SQLite\Fotootof.SQLite.EntityManager.Interfaces\Fotootof.SQLite.EntityManager.Interfaces.csproj", "{FA432F87-DB16-4E8C-BBC8-1321583F027A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Navigator", "Fotootof\Fotootof.Navigator\Fotootof.Navigator.csproj", "{C8EE1DED-4087-4659-A01E-5BCA9C24E116}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.Services", "..\Fotootof.SQLite\Fotootof.SQLite.Services\Fotootof.SQLite.Services.csproj", "{E3958E7E-076C-4865-B586-ECB282748FFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts", "Fotootof.Layouts\Fotootof.Layouts\Fotootof.Layouts.csproj", "{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts.Interfaces", "Fotootof.Layouts\Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj", "{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Local", "Fotootof\Fotootof.Local\Fotootof.Local.csproj", "{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,18 +87,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Debug|x64.Build.0 = Debug|Any CPU
-		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Debug|x86.Build.0 = Debug|Any CPU
-		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Release|x64.ActiveCfg = Release|Any CPU
-		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Release|x64.Build.0 = Release|Any CPU
-		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Release|x86.ActiveCfg = Release|Any CPU
-		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Release|x86.Build.0 = Release|Any CPU
 		{70A4C255-1B1C-498B-8689-AD4504AE8AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70A4C255-1B1C-498B-8689-AD4504AE8AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70A4C255-1B1C-498B-8689-AD4504AE8AB9}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -131,30 +123,6 @@ Global
 		{44E3916D-C6F1-4A36-B0BA-9C4F8FD7C6E4}.Release|x64.Build.0 = Release|Any CPU
 		{44E3916D-C6F1-4A36-B0BA-9C4F8FD7C6E4}.Release|x86.ActiveCfg = Release|Any CPU
 		{44E3916D-C6F1-4A36-B0BA-9C4F8FD7C6E4}.Release|x86.Build.0 = Release|Any CPU
-		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Debug|x64.Build.0 = Debug|Any CPU
-		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Debug|x86.Build.0 = Debug|Any CPU
-		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|x64.ActiveCfg = Release|Any CPU
-		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|x64.Build.0 = Release|Any CPU
-		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|x86.ActiveCfg = Release|Any CPU
-		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|x86.Build.0 = Release|Any CPU
-		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Debug|x64.Build.0 = Debug|Any CPU
-		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Debug|x86.Build.0 = Debug|Any CPU
-		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Release|x64.ActiveCfg = Release|Any CPU
-		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Release|x64.Build.0 = Release|Any CPU
-		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Release|x86.ActiveCfg = Release|Any CPU
-		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Release|x86.Build.0 = Release|Any CPU
 		{02EFC769-E829-44F1-B601-780E7266E8CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{02EFC769-E829-44F1-B601-780E7266E8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02EFC769-E829-44F1-B601-780E7266E8CA}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -191,18 +159,6 @@ Global
 		{10851D07-11EA-4773-8B05-1228D9714FE1}.Release|x64.Build.0 = Release|Any CPU
 		{10851D07-11EA-4773-8B05-1228D9714FE1}.Release|x86.ActiveCfg = Release|Any CPU
 		{10851D07-11EA-4773-8B05-1228D9714FE1}.Release|x86.Build.0 = Release|Any CPU
-		{9F2C8951-005F-41A7-9232-9A55D9E82B55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F2C8951-005F-41A7-9232-9A55D9E82B55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F2C8951-005F-41A7-9232-9A55D9E82B55}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9F2C8951-005F-41A7-9232-9A55D9E82B55}.Debug|x64.Build.0 = Debug|Any CPU
-		{9F2C8951-005F-41A7-9232-9A55D9E82B55}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9F2C8951-005F-41A7-9232-9A55D9E82B55}.Debug|x86.Build.0 = Debug|Any CPU
-		{9F2C8951-005F-41A7-9232-9A55D9E82B55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F2C8951-005F-41A7-9232-9A55D9E82B55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F2C8951-005F-41A7-9232-9A55D9E82B55}.Release|x64.ActiveCfg = Release|Any CPU
-		{9F2C8951-005F-41A7-9232-9A55D9E82B55}.Release|x64.Build.0 = Release|Any CPU
-		{9F2C8951-005F-41A7-9232-9A55D9E82B55}.Release|x86.ActiveCfg = Release|Any CPU
-		{9F2C8951-005F-41A7-9232-9A55D9E82B55}.Release|x86.Build.0 = Release|Any CPU
 		{470D1482-F772-483E-A922-FA2AC4E517DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{470D1482-F772-483E-A922-FA2AC4E517DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{470D1482-F772-483E-A922-FA2AC4E517DF}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -227,18 +183,6 @@ Global
 		{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}.Release|x64.Build.0 = Release|Any CPU
 		{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}.Release|x86.ActiveCfg = Release|x86
 		{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}.Release|x86.Build.0 = Release|x86
-		{C2740C1D-4580-4216-9CAC-18580C02A383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2740C1D-4580-4216-9CAC-18580C02A383}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2740C1D-4580-4216-9CAC-18580C02A383}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C2740C1D-4580-4216-9CAC-18580C02A383}.Debug|x64.Build.0 = Debug|Any CPU
-		{C2740C1D-4580-4216-9CAC-18580C02A383}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C2740C1D-4580-4216-9CAC-18580C02A383}.Debug|x86.Build.0 = Debug|Any CPU
-		{C2740C1D-4580-4216-9CAC-18580C02A383}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2740C1D-4580-4216-9CAC-18580C02A383}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C2740C1D-4580-4216-9CAC-18580C02A383}.Release|x64.ActiveCfg = Release|Any CPU
-		{C2740C1D-4580-4216-9CAC-18580C02A383}.Release|x64.Build.0 = Release|Any CPU
-		{C2740C1D-4580-4216-9CAC-18580C02A383}.Release|x86.ActiveCfg = Release|Any CPU
-		{C2740C1D-4580-4216-9CAC-18580C02A383}.Release|x86.Build.0 = Release|Any CPU
 		{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -359,18 +303,6 @@ Global
 		{06F82071-D500-4E6D-8734-373D1963C307}.Release|x64.Build.0 = Release|Any CPU
 		{06F82071-D500-4E6D-8734-373D1963C307}.Release|x86.ActiveCfg = Release|Any CPU
 		{06F82071-D500-4E6D-8734-373D1963C307}.Release|x86.Build.0 = Release|Any CPU
-		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Debug|x64.Build.0 = Debug|Any CPU
-		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Debug|x86.Build.0 = Debug|Any CPU
-		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Release|x64.ActiveCfg = Release|Any CPU
-		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Release|x64.Build.0 = Release|Any CPU
-		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Release|x86.ActiveCfg = Release|Any CPU
-		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Release|x86.Build.0 = Release|Any CPU
 		{3C73FBDE-434B-40DD-9E6D-D4CAC4220B95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3C73FBDE-434B-40DD-9E6D-D4CAC4220B95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C73FBDE-434B-40DD-9E6D-D4CAC4220B95}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -503,6 +435,102 @@ Global
 		{E3958E7E-076C-4865-B586-ECB282748FFF}.Release|x64.Build.0 = Release|Any CPU
 		{E3958E7E-076C-4865-B586-ECB282748FFF}.Release|x86.ActiveCfg = Release|Any CPU
 		{E3958E7E-076C-4865-B586-ECB282748FFF}.Release|x86.Build.0 = Release|Any CPU
+		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Debug|x64.Build.0 = Debug|Any CPU
+		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Debug|x86.Build.0 = Debug|Any CPU
+		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|x64.ActiveCfg = Release|Any CPU
+		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|x64.Build.0 = Release|Any CPU
+		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|x86.Build.0 = Release|Any CPU
+		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Debug|x64.Build.0 = Debug|Any CPU
+		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Debug|x86.Build.0 = Debug|Any CPU
+		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Release|x64.ActiveCfg = Release|Any CPU
+		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Release|x64.Build.0 = Release|Any CPU
+		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Release|x86.ActiveCfg = Release|Any CPU
+		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Release|x86.Build.0 = Release|Any CPU
+		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Debug|x64.Build.0 = Debug|Any CPU
+		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Debug|x86.Build.0 = Debug|Any CPU
+		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Release|x64.ActiveCfg = Release|Any CPU
+		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Release|x64.Build.0 = Release|Any CPU
+		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Release|x86.ActiveCfg = Release|Any CPU
+		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Release|x86.Build.0 = Release|Any CPU
+		{F3377391-398A-4449-9A62-2C04C6821D71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3377391-398A-4449-9A62-2C04C6821D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3377391-398A-4449-9A62-2C04C6821D71}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F3377391-398A-4449-9A62-2C04C6821D71}.Debug|x64.Build.0 = Debug|Any CPU
+		{F3377391-398A-4449-9A62-2C04C6821D71}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F3377391-398A-4449-9A62-2C04C6821D71}.Debug|x86.Build.0 = Debug|Any CPU
+		{F3377391-398A-4449-9A62-2C04C6821D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3377391-398A-4449-9A62-2C04C6821D71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3377391-398A-4449-9A62-2C04C6821D71}.Release|x64.ActiveCfg = Release|Any CPU
+		{F3377391-398A-4449-9A62-2C04C6821D71}.Release|x64.Build.0 = Release|Any CPU
+		{F3377391-398A-4449-9A62-2C04C6821D71}.Release|x86.ActiveCfg = Release|Any CPU
+		{F3377391-398A-4449-9A62-2C04C6821D71}.Release|x86.Build.0 = Release|Any CPU
+		{C8EE1DED-4087-4659-A01E-5BCA9C24E116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8EE1DED-4087-4659-A01E-5BCA9C24E116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8EE1DED-4087-4659-A01E-5BCA9C24E116}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C8EE1DED-4087-4659-A01E-5BCA9C24E116}.Debug|x64.Build.0 = Debug|Any CPU
+		{C8EE1DED-4087-4659-A01E-5BCA9C24E116}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C8EE1DED-4087-4659-A01E-5BCA9C24E116}.Debug|x86.Build.0 = Debug|Any CPU
+		{C8EE1DED-4087-4659-A01E-5BCA9C24E116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8EE1DED-4087-4659-A01E-5BCA9C24E116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8EE1DED-4087-4659-A01E-5BCA9C24E116}.Release|x64.ActiveCfg = Release|Any CPU
+		{C8EE1DED-4087-4659-A01E-5BCA9C24E116}.Release|x64.Build.0 = Release|Any CPU
+		{C8EE1DED-4087-4659-A01E-5BCA9C24E116}.Release|x86.ActiveCfg = Release|Any CPU
+		{C8EE1DED-4087-4659-A01E-5BCA9C24E116}.Release|x86.Build.0 = Release|Any CPU
+		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Debug|x64.Build.0 = Debug|Any CPU
+		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Debug|x86.Build.0 = Debug|Any CPU
+		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Release|x64.ActiveCfg = Release|Any CPU
+		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Release|x64.Build.0 = Release|Any CPU
+		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Release|x86.ActiveCfg = Release|Any CPU
+		{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}.Release|x86.Build.0 = Release|Any CPU
+		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Debug|x64.Build.0 = Debug|Any CPU
+		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Debug|x86.Build.0 = Debug|Any CPU
+		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Release|x64.ActiveCfg = Release|Any CPU
+		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Release|x64.Build.0 = Release|Any CPU
+		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Release|x86.ActiveCfg = Release|Any CPU
+		{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}.Release|x86.Build.0 = Release|Any CPU
+		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Debug|x64.Build.0 = Debug|Any CPU
+		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Debug|x86.Build.0 = Debug|Any CPU
+		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Release|x64.ActiveCfg = Release|Any CPU
+		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Release|x64.Build.0 = Release|Any CPU
+		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Release|x86.ActiveCfg = Release|Any CPU
+		{E34EDCEA-B5E7-4BFD-9972-2B1D60F95A30}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

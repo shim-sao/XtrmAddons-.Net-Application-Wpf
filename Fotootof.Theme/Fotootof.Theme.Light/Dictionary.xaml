@@ -163,6 +163,10 @@
     <SolidColorBrush x:Key="CustomListViewThumbTextBrush" Color="#FF000000" />
 
     <!-- DataGrid -->
+
+    <Color x:Key="CustomDataGridRowColor">#FFF7F7F7</Color>
+
+
     <SolidColorBrush x:Key="CustomDataGridBrush" Color="Transparent" />
     <SolidColorBrush x:Key="CustomDataGridBorderBrush" Color="#FFBDBDBD" />
     <SolidColorBrush x:Key="CustomDataGridCellBrush" Color="#FF3DD1FC" />

@@ -1,4 +1,4 @@
-﻿using Fotootof.Libraries.Collections;
+﻿using Fotootof.Collections;
 using Fotootof.Libraries.Models.Systems;
 using System.Windows;
 using System.Windows.Input;

@@ -1,5 +1,5 @@
-﻿using Fotootof.Libraries.Controls;
-using Fotootof.Libraries.Systems;
+﻿using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.Controls;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,7 +17,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
         /// <summary>
         /// Variable logger.
         /// </summary>
-        private new static readonly log4net.ILog log =
+        private static readonly log4net.ILog log =
         	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
@@ -92,7 +92,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
             catch(Exception ex)
             {
                 log.Debug(ex.Output(), ex);
-                MessageBase.Error(ex);
+                MessageBoxs.Error(ex);
             }
         }
 

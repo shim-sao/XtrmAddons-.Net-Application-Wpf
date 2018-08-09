@@ -62,6 +62,7 @@ namespace Fotootof.Libraries.Collections
         /// Class XtrmAddons Fotootof Libraries Base Collections Constructor.
         /// </summary>
         /// <param name="autoLoad">Auto load data from database ?</param>
+        /// <param name="options"></param>
         public CollectionBaseEntity(bool autoLoad = false, U options = default(U))
         {
             if(options != null && !options.Equals(default(U)))
@@ -105,7 +106,6 @@ namespace Fotootof.Libraries.Collections
         /// <summary>
         /// Class method to load a list of AclGroup from database.
         /// </summary>
-        /// <param name="options">Options for query filters.</param>
         public override void Load()
         {
             LoadOptions(default(U));

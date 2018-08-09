@@ -1,8 +1,8 @@
-﻿using Fotootof.Libraries.Collections;
+﻿using Fotootof.Collections;
+using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Components;
 using Fotootof.Libraries.Enums;
 using Fotootof.Libraries.Models.Systems;
-using Fotootof.Libraries.Systems;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +16,7 @@ namespace Fotootof.Components.Server.Browser
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Server Side Component Browser View Model.</para>
     /// </summary>
-    internal class PageBrowserModel : PageBaseModel<PageBrowserLayout>
+    internal class PageBrowserModel : ComponentModel<PageBrowserLayout>
     {
         #region Variables
 
@@ -249,7 +249,7 @@ namespace Fotootof.Components.Server.Browser
                 catch (Exception e)
                 {
                     log.Error(e);
-                    MessageBase.Error(e);
+                    MessageBoxs.Error(e);
                 }
             }
 
@@ -274,7 +274,7 @@ namespace Fotootof.Components.Server.Browser
                 catch (Exception e)
                 {
                     log.Error(e);
-                    MessageBase.Error(e);
+                    MessageBoxs.Error(e);
                 }
             }
 

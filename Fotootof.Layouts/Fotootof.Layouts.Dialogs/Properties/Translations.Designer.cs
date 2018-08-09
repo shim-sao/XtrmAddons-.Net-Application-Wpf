@@ -61,11 +61,29 @@ namespace Fotootof.Layouts.Dialogs.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à To perform this action, it is necessary to restart the application. Do you want to continue ?.
+        /// </summary>
+        public static string ApplicationRestartRequired {
+            get {
+                return ResourceManager.GetString("ApplicationRestartRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à XtrmAddons FotootoF Image Selector.
         /// </summary>
         public static string DialogBoxTitle_PictureFileSelector {
             get {
                 return ResourceManager.GetString("DialogBoxTitle_PictureFileSelector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Functionalities currently unavailable.
+        /// </summary>
+        public static string FunctionalitiesCurrentlyUnavailable {
+            get {
+                return ResourceManager.GetString("FunctionalitiesCurrentlyUnavailable", resourceCulture);
             }
         }
     }

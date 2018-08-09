@@ -16,20 +16,20 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Fotootof\Packages\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>..\..\Build\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Fotootof\Packages\Release\</OutputPath>
+    <OutputPath>..\..\Build\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\Fotootof\Packages\Release\Fotootof.ServerSide.Component.Browser.xml</DocumentationFile>
+    <DocumentationFile>..\..\Build\Release\Fotootof.Components.Server.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -58,6 +58,9 @@
     </Reference>
     <Reference Include="XtrmAddons.Net.Picture">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Picture.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.SystemIO">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.SystemIO.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Windows">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Windows.dll</HintPath>
@@ -89,6 +92,10 @@
     <Compile Include="Classes\Components\Logs\Views\PageLogsLayout.xaml.cs">
       <DependentUpon>PageLogsLayout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Components\Plugin\Views\PagePluginLayout.xaml.cs">
+      <DependentUpon>PagePluginLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Components\Plugin\Views\PagePluginModel.cs" />
     <Compile Include="Classes\Components\Remote\Layouts\DataGrids\DatagridHttpClientLayout.xaml.cs">
       <DependentUpon>DatagridHttpClientLayout.xaml</DependentUpon>
     </Compile>
@@ -161,15 +168,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="log4net">
-      <Version>2.0.8</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Classes\Components\ACL\Layouts\DataGrids\" />
     <Folder Include="Classes\Components\ACL\Views\" />
     <Folder Include="Classes\Components\Catalog\" />
-    <Folder Include="Classes\Components\Plugin\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Classes\Components\Album\Layouts\ListViews\ListViewPicturesLayout.xaml">
@@ -193,6 +194,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Classes\Components\Logs\Views\PageLogsLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Components\Plugin\Views\PagePluginLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -246,6 +251,14 @@
       <Project>{06F82071-D500-4E6D-8734-373D1963C307}</Project>
       <Name>Fotootof.Layouts.Dialogs</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj">
+      <Project>{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}</Project>
+      <Name>Fotootof.Layouts.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts\Fotootof.Layouts.csproj">
+      <Project>{f2cc7ece-4623-43f6-bcc7-de4c41005ebe}</Project>
+      <Name>Fotootof.Layouts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityManager.Base\Fotootof.SQLite.EntityManager.Base.csproj">
       <Project>{DC57DCE2-1975-445D-A7F4-16491C0A72B3}</Project>
       <Name>Fotootof.SQLite.EntityManager.Base</Name>
@@ -266,17 +279,9 @@
       <Project>{C76E2008-3DA1-4600-A889-BF08AF796F7F}</Project>
       <Name>Fotootof.Theme</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Culture\Fotootof.Local.csproj">
-      <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
-      <Name>Fotootof.Local</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj">
-      <Project>{cb4c3960-2bb1-4567-b1af-88216ab66a3f}</Project>
-      <Name>Fotootof.Layouts.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Layouts\Fotootof.Layouts.csproj">
-      <Project>{f2cc7ece-4623-43f6-bcc7-de4c41005ebe}</Project>
-      <Name>Fotootof.Layouts</Name>
+    <ProjectReference Include="..\Fotootof.Collections\Fotootof.Collections.csproj">
+      <Project>{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}</Project>
+      <Name>Fotootof.Collections</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fotootof.Libraries.Components\Fotootof.Libraries.Components.csproj">
       <Project>{2df84f93-8390-42ee-bd61-a66ca77effb4}</Project>
@@ -306,9 +311,17 @@
       <Project>{7d666ea6-7f61-4c3c-a112-e707072e9205}</Project>
       <Name>Fotootof.Libraries</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Local\Fotootof.Local.csproj">
+      <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
+      <Name>Fotootof.Local</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fotootof.Models\Fotootof.Libraries.Models.csproj">
       <Project>{f9adb6b5-f96a-48d7-8a1c-2e37d48854bc}</Project>
       <Name>Fotootof.Libraries.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Navigator\Fotootof.Navigator.csproj">
+      <Project>{C8EE1DED-4087-4659-A01E-5BCA9C24E116}</Project>
+      <Name>Fotootof.Navigator</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fotootof.Settings\Fotootof.Settings.csproj">
       <Project>{70a4c255-1b1c-498b-8689-ad4504ae8ab9}</Project>
@@ -352,6 +365,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Logs.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="log4net">
+      <Version>2.0.8</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,15 +16,15 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Fotootof\Packages\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>..\..\Build\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Fotootof\Packages\Release\</OutputPath>
+    <OutputPath>..\..\Build\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -68,16 +68,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Collections\CollectionBase.cs" />
-    <Compile Include="Classes\Collections\CollectionBaseEntity.cs" />
-    <Compile Include="Classes\Collections\CollectionStorage.cs" />
-    <Compile Include="Classes\Collections\Entities\AclActionEntityCollection.cs" />
-    <Compile Include="Classes\Collections\Entities\AclGroupEntityCollection.cs" />
-    <Compile Include="Classes\Collections\Entities\AlbumEntityCollection.cs" />
-    <Compile Include="Classes\Collections\Entities\InfoEntityCollection.cs" />
-    <Compile Include="Classes\Collections\Entities\PictureEntityCollection.cs" />
-    <Compile Include="Classes\Collections\Entities\SectionEntityCollection.cs" />
-    <Compile Include="Classes\Collections\Entities\UserEntityCollection.cs" />
     <Compile Include="Classes\Controls\DataGrids\DataGridBase.cs" />
     <Compile Include="Classes\Controls\DataGrids\DataGridBaseModel.cs" />
     <Compile Include="Classes\Controls\ListViews\ListViewBase.cs" />
@@ -92,10 +82,10 @@
     <Compile Include="Classes\HttpHelpers\HttpClient\Responses\ServerResponseSections.cs" />
     <Compile Include="Classes\HttpHelpers\HttpServer\HttpServerBase.cs" />
     <Compile Include="Classes\Images\ImageManager.cs" />
+    <Compile Include="Classes\ValueConverters\IsCultureConverter.cs" />
     <Compile Include="Enums\ImageSizeExtensions.cs" />
     <Compile Include="Enums\ImageSize.cs" />
     <Compile Include="Enums\ImageType.cs" />
-    <Compile Include="Classes\Systems\AppNavigatorBase.cs" />
     <Compile Include="Classes\Systems\AppSettings.cs" />
     <Compile Include="Classes\Systems\ExceptionBase.cs" />
     <Compile Include="Classes\Systems\MessageBase.cs" />
@@ -117,6 +107,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Dialogs\Fotootof.Layouts.Dialogs.csproj">
+      <Project>{06F82071-D500-4E6D-8734-373D1963C307}</Project>
+      <Name>Fotootof.Layouts.Dialogs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj">
+      <Project>{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}</Project>
+      <Name>Fotootof.Layouts.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityManager.Base\Fotootof.SQLite.EntityManager.Base.csproj">
       <Project>{DC57DCE2-1975-445D-A7F4-16491C0A72B3}</Project>
       <Name>Fotootof.SQLite.EntityManager.Base</Name>
@@ -133,13 +131,9 @@
       <Project>{E3958E7E-076C-4865-B586-ECB282748FFF}</Project>
       <Name>Fotootof.SQLite.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Culture\Fotootof.Local.csproj">
-      <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
-      <Name>Fotootof.Local</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj">
-      <Project>{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}</Project>
-      <Name>Fotootof.Layouts.Interfaces</Name>
+    <ProjectReference Include="..\Fotootof.Collections\Fotootof.Collections.csproj">
+      <Project>{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}</Project>
+      <Name>Fotootof.Collections</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fotootof.Libraries.Controls\Fotootof.Libraries.Controls.csproj">
       <Project>{6f733674-f83c-4707-bbe6-ea170d6420f2}</Project>
@@ -153,9 +147,17 @@
       <Project>{FC62EC35-A6A3-4391-9A01-26C159CE1FFD}</Project>
       <Name>Fotootof.Libraries.Logs</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Local\Fotootof.Local.csproj">
+      <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
+      <Name>Fotootof.Local</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fotootof.Models\Fotootof.Libraries.Models.csproj">
       <Project>{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}</Project>
       <Name>Fotootof.Libraries.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Navigator\Fotootof.Navigator.csproj">
+      <Project>{c8ee1ded-4087-4659-a01e-5bca9c24e116}</Project>
+      <Name>Fotootof.Navigator</Name>
     </ProjectReference>
     <ProjectReference Include="..\XtrmAddons.Fotootof.Culture\XtrmAddons.Fotootof.Culture.csproj">
       <Project>{a0c828d6-9afa-48e6-b279-713869ee07ef}</Project>

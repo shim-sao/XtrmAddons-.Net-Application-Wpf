@@ -1,5 +1,8 @@
 ﻿namespace Fotootof.SQLite.EntityManager.Enums.EntityHelper
 {
+    /// <summary>
+    /// Enumerable Fotootof SQLite Entity Manager Entities Dependencies.
+    /// </summary>
     public enum EnumEntitiesDependencies
     {
         /// <summary>

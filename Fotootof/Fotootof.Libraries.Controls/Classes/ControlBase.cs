@@ -21,7 +21,7 @@ namespace Fotootof.Libraries.Controls
         /// <summary>
         /// Variable logger.
         /// </summary>
-        protected static readonly log4net.ILog log =
+        private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion

@@ -9,7 +9,7 @@
         /// <summary>
         /// Method to get the name string value of a Edition Mode.
         /// </summary>
-        /// <param name="EditionMode">The Edition Mode.</param>
+        /// <param name="editionMode">The Edition Mode.</param>
         /// <returns>The string name of the Edition Mode.</returns>
         public static string Name(this EditionMode editionMode)
         {
@@ -33,7 +33,7 @@
         /// <summary>
         /// Method to get the int value of a Edition Mode.
         /// </summary>
-        /// <param name="EditionMode">The Edition Mode.</param>
+        /// <param name="editionMode">The Edition Mode.</param>
         /// <returns>The int value of the Edition Mode.</returns>
         public static int Value(this EditionMode editionMode)
         {

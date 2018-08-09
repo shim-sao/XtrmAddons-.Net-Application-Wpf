@@ -7,7 +7,7 @@ namespace Fotootof.Components.Server.Remote
     /// <summary>
     /// Class XtrmAddons Fotootof Component ServerSide Views Page Server Model.
     /// </summary>
-    public class PageRemoteModel : PageBaseModel<PageRemoteLayout>
+    public class PageRemoteModel : ComponentModel<PageRemoteLayout>
     {
         #region Variables
 

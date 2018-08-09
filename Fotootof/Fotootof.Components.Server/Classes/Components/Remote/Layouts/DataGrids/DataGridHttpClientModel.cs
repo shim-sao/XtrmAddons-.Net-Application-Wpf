@@ -16,7 +16,6 @@ namespace Fotootof.Components.Server.Remote.Layouts
         /// <summary>
         /// Class XtrmAddons Fotootof Server Libraries Common Models DataGrids Sections Constructor.
         /// </summary>
-        /// <param name="control"></param>
         public DataGridHttpClientModel() : base()
         {
             InitializeModel();

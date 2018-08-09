@@ -1,4 +1,5 @@
 ﻿using Fotootof.Layouts.Controls.DataGrids;
+using Fotootof.Theme;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,6 +29,8 @@ namespace Fotootof.Components.Server.Users.Layouts
         /// </summary>
         public DataGridUsersLayout()
         {
+            ThemeLoader.MergeThemeTo(Resources);
+
             InitializeComponent();
         }
 

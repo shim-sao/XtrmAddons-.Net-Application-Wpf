@@ -1,4 +1,5 @@
-﻿using Fotootof.Libraries.Systems;
+﻿using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
 using Fotootof.SQLite.EntityManager.Interfaces;
@@ -31,6 +32,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Section Collections.
         /// </summary>
+        /// <param name="autoLoad"></param>
         /// <param name="options">Options for query filters.</param>
         public SectionEntityCollection(bool autoLoad = false, SectionOptionsList options = null) : base(autoLoad, options) { }
 
@@ -72,7 +74,6 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <summary>
         /// Class method to load a list of Section from database.
         /// </summary>
-        /// <param name="options">Options for query filters.</param>
         public override void Load()
         {
             LoadOptions(null);
@@ -140,7 +141,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Adding Section(s) to database. Fail !");
+                MessageBoxs.Fatal(ex, "Adding Section(s) to database. Fail !");
             }
         }
 
@@ -148,7 +149,6 @@ namespace Fotootof.Libraries.Collections.Entities
         /// Method to format the Alias property of an entity.
         /// </summary>
         /// <param name="entity">An entity with an Alias property derived from IAlias.</param>
-        /// <param name="items">The list of entities to check in.</param>
         /// <returns></returns>
         protected static SectionEntity FormatAlias(SectionEntity entity)
         {
@@ -182,7 +182,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <summary>
         /// Method to delete a list of Section entities from the database.
         /// </summary>
-        /// <param name="newItems">The list of items to remove.</param>
+        /// <param name="oldItems">The list of items to remove.</param>
         public static void DbDelete(List<SectionEntity> oldItems)
         {
             log.Info("Deleting Section(s). Please wait...");
@@ -205,7 +205,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Deleting Section(s) list failed !");
+                MessageBoxs.Fatal(ex, "Deleting Section(s) list failed !");
             }
         }
 
@@ -237,15 +237,14 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Replacing Section(s) failed !");
+                MessageBoxs.Fatal(ex, "Replacing Section(s) failed !");
             }
         }
 
         /// <summary>
         /// Method to update a list of Section entities into the database.
         /// </summary>
-        /// <param name="newItems">Thee list of items to update.</param>
-        /// <param name="oldItems"></param>
+        /// <param name="newItem"></param>
         public static void SetDefault(SectionEntity newItem)
         {
             log.Info("Setting default Section. Please wait...");
@@ -262,7 +261,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Setting default Section. Failed !");
+                MessageBoxs.Fatal(ex, "Setting default Section. Failed !");
             }
         }
 

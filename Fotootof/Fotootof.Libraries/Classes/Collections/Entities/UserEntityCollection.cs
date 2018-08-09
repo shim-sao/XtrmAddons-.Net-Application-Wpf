@@ -1,4 +1,5 @@
-﻿using Fotootof.Libraries.Systems;
+﻿using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Managers;
 using System;
@@ -14,6 +15,9 @@ namespace Fotootof.Libraries.Collections.Entities
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override bool IsAutoloadEnabled => true;
 
         #endregion
@@ -31,6 +35,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// Class XtrmAddons Fotootof Server Component Users Collections Constructor.
         /// </summary>
         /// <param name="options">Options for query filters.</param>
+        /// <param name="autoLoad"></param>
         public UserEntityCollection(UserOptionsList options = null, bool autoLoad = false) : base(autoLoad, options) { }
 
         /// <summary>
@@ -54,7 +59,6 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <summary>
         /// Class method to load a list of AclGroup from database.
         /// </summary>
-        /// <param name="options">Options for query filters.</param>
         public override void Load()
         {
             LoadOptionsAsync(null);
@@ -82,7 +86,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// <param name="newItems">Thee list of items to add.</param>
         public static void DbInsert(List<UserEntity> newItems)
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Info("Adding User(s). Please wait...");
 
             try
@@ -105,18 +109,18 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception e)
             {
                 log.Error(e);
-                MessageBase.Fatal(e, "Adding User(s) failed !");
+                MessageBoxs.Fatal(e, "Adding User(s) failed !");
             }
             finally
             {
-                MessageBase.IsBusy = false;
+                MessageBoxs.IsBusy = false;
             }
         }
 
         /// <summary>
         /// Method called asynchronously on User entities collection changed.
         /// </summary>
-        /// <param name="newItems">The list of items to remove.</param>
+        /// <param name="oldItems">The list of items to remove.</param>
         public static void DbDelete(List<UserEntity> oldItems)
         {
             log.Info("Deleting User(s). Please wait...");
@@ -141,7 +145,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Deleting User(s) list failed !");
+                MessageBoxs.Fatal(ex, "Deleting User(s) list failed !");
             }
         }
 
@@ -149,6 +153,7 @@ namespace Fotootof.Libraries.Collections.Entities
         /// Method to update User entities database collection asynchronously.
         /// </summary>
         /// <param name="newItems">Thee list of items to update.</param>
+        /// <param name="oldItems"></param>
         public async static void DbUpdate(List<UserEntity> newItems, List<UserEntity> oldItems)
         {
             log.Info("Updating User(s). Please wait...");
@@ -174,7 +179,7 @@ namespace Fotootof.Libraries.Collections.Entities
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                MessageBase.Fatal(ex, "Updating User(s) failed !");
+                MessageBoxs.Fatal(ex, "Updating User(s) failed !");
             }
         }
 

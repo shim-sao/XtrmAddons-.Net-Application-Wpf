@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fotootof.Layouts.Dialogs;
+using System;
 using System.Reflection;
 using System.Windows.Controls;
 using XtrmAddons.Net.Application;
@@ -6,7 +7,7 @@ using XtrmAddons.Net.Application.Serializable.Elements.Ui;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Libraries.Systems
-{ 
+{
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Lib Base Classes AppSystems Settings Base.</para>
     /// <para>This class provides easy accesses to store and retrive application settings.</para>
@@ -95,7 +96,9 @@ namespace Fotootof.Libraries.Systems
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="ctrl"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">Occurs if Control or Property Name argument are null.</exception>
         public static object GetValueObject(Control ctrl, string propertyName, object defaultValue = default(object))
@@ -120,7 +123,9 @@ namespace Fotootof.Libraries.Systems
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="ctrl"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
         public static bool GetBool(Control ctrl, string propertyName, bool defaultValue = default(bool))
         {
@@ -144,7 +149,9 @@ namespace Fotootof.Libraries.Systems
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="ctrl"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
         public static int GetInt(Control ctrl, string propertyName, int defaultValue = default(int))
         {
@@ -192,14 +199,16 @@ namespace Fotootof.Libraries.Systems
             // Invalid object to convert as long.
             InvalidCastException e = new InvalidCastException($"Invalid cast conversion type : {val.GetType()} => int");
             log.Error(e.Output());
-            MessageBase.DebugFatal(e);
+            MessageBoxs.DebugFatal(e);
             throw e;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="ctrl"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
         public static string GetString(Control ctrl, string propertyName, string defaultValue = default(string))
         {
@@ -223,7 +232,9 @@ namespace Fotootof.Libraries.Systems
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="ctrl"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
         public static long GetLong(Control ctrl, string propertyName, long defaultValue = default(long))
         {
@@ -272,7 +283,7 @@ namespace Fotootof.Libraries.Systems
             InvalidCastException e = new InvalidCastException($"Invalid cast conversion type : {val.GetType()} => long");
             log.Error(e.Output());
             log.Error($"{MethodBase.GetCurrentMethod().Name} : {ctrl.Uid}.{ctrl.Name}.{propertyName} => {val.GetType()}");
-            MessageBase.DebugFatal(e);
+            MessageBoxs.DebugFatal(e);
             throw e;
         }
 
@@ -281,7 +292,7 @@ namespace Fotootof.Libraries.Systems
         /// </summary>
         /// <param name="ctrl">The Control to find.</param>
         /// <param name="propertyName">The property name to store in settings.</param>
-        /// <param name="propertyValue">The property value to store in settings.</param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
         public static BindingProperty<object> GetBindingProperty(Control ctrl, string propertyName, object defaultValue = null)
         {

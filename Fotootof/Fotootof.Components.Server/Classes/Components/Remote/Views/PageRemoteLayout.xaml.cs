@@ -1,13 +1,12 @@
-﻿using Fotootof.Libraries.Components;
+﻿using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.Components;
 using Fotootof.Libraries.HttpHelpers.HttpServer;
-using Fotootof.Libraries.Systems;
 using System;
 using System.Globalization;
 using System.Windows;
 using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Net.Application;
-using ServerData = XtrmAddons.Net.Application.Serializable.Elements.Remote.Server;
 using XtrmAddons.Net.Windows.Tools;
 
 namespace Fotootof.Components.Server.Remote
@@ -15,7 +14,7 @@ namespace Fotootof.Components.Server.Remote
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Page Server.
     /// </summary>
-    public partial class PageRemoteLayout : PageBase
+    public partial class PageRemoteLayout : ComponentView
     {
         #region Variables
 
@@ -42,7 +41,7 @@ namespace Fotootof.Components.Server.Remote
         /// </summary>
         public PageRemoteLayout()
         {
-            MessageBase.IsBusy = true;
+            MessageBoxs.IsBusy = true;
             log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Server"));
 
             // Constuct page component.
@@ -50,7 +49,7 @@ namespace Fotootof.Components.Server.Remote
             AfterInitializedComponent();
 
             log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Server"));
-            MessageBase.IsBusy = false;
+            MessageBoxs.IsBusy = false;
         }
 
 
