@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+	xmlns:p="clr-namespace:Fotootof.Properties"
 	xmlns:s="clr-namespace:Fotootof.Settings;assembly=Fotootof.Settings"
 	mc:Ignorable="d"
 	Loaded="FrameworkElement_Loaded">
@@ -20,13 +20,13 @@
 
 
 			<!-- #region FILE -->
-			<MenuItem Header="{x:Static p:Resources._File}"
+			<MenuItem Header="{x:Static p:Translations._File}"
 					  Style="{DynamicResource MenuItemMainStyle}"
 					  Template="{DynamicResource MenuItemMainControlTemplate}">
 
 				<MenuItem x:Name="MenuItemFileExitName"
 						  Command="ApplicationCommands.Close"
-						  Header="{x:Static p:Resources._Exit}"
+						  Header="{x:Static p:Translations._Exit}"
 						  InputGestureText="Alt+F4"
 						  Style="{DynamicResource MenuItemMainLevel1Style}">
 					<MenuItem.Icon>
@@ -40,7 +40,7 @@
 
 			
 			<!-- #region EDITION -->
-			<MenuItem Header="{x:Static p:Resources._Edition}"
+			<MenuItem Header="{x:Static p:Translations._Edition}"
 					  Style="{DynamicResource MenuItemMainStyle}"
 					  Template="{DynamicResource MenuItemMainControlTemplate}">
 				
@@ -56,7 +56,7 @@
 				<Separator />
 
 				<MenuItem x:Name="MenuItemEditionPreferencesName"
-						  Header="{x:Static p:Resources._Preferences}"
+						  Header="{x:Static p:Translations._Preferences}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="EditionPreferences_Click">
 					<MenuItem.Icon>
@@ -69,12 +69,12 @@
 
 
 			<!-- #region SERVER -->
-			<MenuItem Header="{x:Static p:Resources._Server}"
+			<MenuItem Header="{x:Static p:Translations._Server}"
 					  Style="{DynamicResource MenuItemMainStyle}"
 					  Template="{DynamicResource MenuItemMainControlTemplate}">
 
 				<MenuItem x:Name="MenuItemServerRemoteName"
-						  Header="{x:Static p:Resources._ServerRemote}"
+						  Header="{x:Static p:Translations._ServerRemote}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="NavigateToRemote_Click">
 				</MenuItem>
@@ -82,13 +82,13 @@
 				<Separator />
 
 				<MenuItem x:Name="MenuItemServerSettingsName"
-						  Header="{x:Static p:Resources._ServerSettings}"
+						  Header="{x:Static p:Translations._ServerSettings}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="ServerSettings_Click">
 				</MenuItem>
 
 
-				<MenuItem Header="{x:Static p:Resources._ClientNew}"
+				<MenuItem Header="{x:Static p:Translations._ClientNew}"
 						  Name="MenuItemServerClientNewName"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="AddClient_Click">
@@ -99,10 +99,10 @@
                 <!-- #region Server -->
 				<MenuItem x:Name="MenuItem_ServerStart_Name"
 						  Click="ServerStart_Click"
-						  Header="{x:Static p:Resources._Start}"
+						  Header="{x:Static p:Translations._Start}"
                           IsEnabled="{Binding IsServerStopped}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
-						  ToolTip="Start Http server.">
+						  ToolTip="{x:Static p:Translations.MenuItemTooltip_ServerStart}">
 
 					<MenuItem.Icon>
 						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ServerStart}}" />
@@ -111,10 +111,10 @@
 
 				<MenuItem x:Name="MenuItem_ServerStop_Name"
 						  Click="ServerStop_Click"
-						  Header="{x:Static p:Resources._Stop}"
+						  Header="{x:Static p:Translations._Stop}"
                           IsEnabled="{Binding IsServerStarted}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
-						  ToolTip="{x:Static p:Resources.Tooltip_MenuItem_Server_Stop}">
+						  ToolTip="{x:Static p:Translations.MenuItemTooltip_ServerStop}">
 
 					<MenuItem.Icon>
 						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ServerStop}}" />
@@ -123,7 +123,7 @@
 
 				<MenuItem x:Name="MenuItem_ServerRestart_Name"
 						  Click="ServerRestart_Click"
-						  Header="{x:Static p:Resources._Restart}"
+						  Header="{x:Static p:Translations._Restart}"
                           IsEnabled="{Binding IsServerStarted}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  ToolTip="Restart Http server.">
@@ -137,13 +137,13 @@
 				<Separator />
 
 				<MenuItem Name="MenuItemServerAddToFirewallName"
-						  Header="{x:Static p:Resources._AddToFirewall}"
+						  Header="{x:Static p:Translations._AddToFirewall}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="OnServerAddToFirewall_Click"
 						  ToolTip="Add Http server URL to the firewall rules. Enable external access."/>
 
 				<MenuItem Name="MenuItemServerRemoveFromFirewallName"
-						  Header="{x:Static p:Resources._RemoveFromFirewall}"
+						  Header="{x:Static p:Translations._RemoveFromFirewall}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="OnServerRemoveFromFirewall_Click"
 						  ToolTip="Remove Http server URL to the firewall rules. Disable external access."/>
@@ -154,12 +154,12 @@
 
 
 			<!-- #region USERS -->
-			<MenuItem Header="{x:Static p:Resources._Users}"
+			<MenuItem Header="{x:Static p:Translations._Users}"
 					  Style="{DynamicResource MenuItemMainStyle}"
 					  Template="{DynamicResource MenuItemMainControlTemplate}">
 
 				<MenuItem x:Name="UI_MI_Users"
-						  Header="{x:Static p:Resources._UsersList}"
+						  Header="{x:Static p:Translations._UsersList}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="NavigateToUsers_Click">
 					<MenuItem.Icon>
@@ -168,7 +168,7 @@
 				</MenuItem>
 
 				<MenuItem x:Name="MenuItem_AddUser"
-						  Header="{x:Static p:Resources._UsersNew}"
+						  Header="{x:Static p:Translations._UsersNew}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="AddUser_Click">
 
@@ -182,18 +182,18 @@
 
 
 			<!-- #region CATALOG -->
-			<MenuItem Header="{x:Static p:Resources._Catalog}"
+			<MenuItem Header="{x:Static p:Translations._Catalog}"
 					  Style="{DynamicResource MenuItemMainStyle}"
 					  Template="{DynamicResource MenuItemMainControlTemplate}">
 
 				<MenuItem x:Name="MenuItemCatalogNavigateToName"
-						  Header="{x:Static p:Resources._Catalog}"
+						  Header="{x:Static p:Translations._Catalog}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="NavigateToSection_Click">
 				</MenuItem>
 
 				<MenuItem x:Name="MenuItem_AddSection"
-						  Header="{x:Static p:Resources._AddNewSection}"
+						  Header="{x:Static p:Translations._AddNewSection}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="AddSection_Click">
 					<MenuItem.Icon>
@@ -201,7 +201,7 @@
 					</MenuItem.Icon>
 				</MenuItem>
 
-				<MenuItem Header="{x:Static p:Resources._AddNewAlbum}"
+				<MenuItem Header="{x:Static p:Translations._AddNewAlbum}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  x:Name="MenuItem_AddAlbum"
 						  Click="AddAlbum_Click">
@@ -216,18 +216,18 @@
 
 			<!-- #region DISPLAY -->
 			<MenuItem x:Name="MenuItemDisplay"
-					  Header="{x:Static p:Resources._Display}"
+					  Header="{x:Static p:Translations._Display}"
 					  Style="{DynamicResource MenuItemMainStyle}"
 					  Template="{DynamicResource MenuItemMainControlTemplate}">
 
                 <!-- #region Theme -->
                 <MenuItem x:Name="MenuItemDisplayTheme"
-						  Header="{x:Static p:Resources._Theme}"
+						  Header="{x:Static p:Translations._Theme}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Template="{DynamicResource MenuItemControlTemplateLevel1}">
 
 					<MenuItem Name="MenuItem_ThemeLight"
-							  Header="{x:Static p:Resources._ThemeLight}"
+							  Header="{x:Static p:Translations._ThemeLight}"
 							  Style="{DynamicResource ControlMenuGeneric}"
 							  Click="ThemeChanged_Click"
 							  IsCheckable="True"
@@ -236,7 +236,7 @@
 
 					<MenuItem x:Name="MenuItem_ThemeDark_Name"
 							  Click="ThemeChanged_Click"
-							  Header="{x:Static p:Resources._ThemeDark}"
+							  Header="{x:Static p:Translations._ThemeDark}"
 							  IsCheckable="True"
                               IsChecked="{Binding RelativeSource={RelativeSource Self}, Path=Tag, Converter={StaticResource IsTheme}, Mode=OneTime}"
 							  Style="{DynamicResource ControlMenuGeneric}"
@@ -246,19 +246,19 @@
                 
                 <!-- #region Language -->
                 <MenuItem x:Name="MenuItemDisplayLanguage"
-						  Header="{x:Static p:Resources._Language}"
+						  Header="{x:Static p:Translations._Language}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Template="{DynamicResource MenuItemControlTemplateLevel1}">
 
                     <MenuItem x:Name="MenuItem_LanguageFR_Name"
-							  Header="{x:Static p:Resources.French}"
+							  Header="{x:Static p:Translations._French}"
 							  Style="{DynamicResource ControlMenuGeneric}"
 							  Click="LanguageChanged_Click"
                               IsChecked="{Binding RelativeSource={RelativeSource Self}, Path=Tag, Converter={StaticResource IsLang}, Mode=OneTime}"
 							  Tag="fr-FR"/>
 
 					<MenuItem x:Name="MenuItem_LanguageEN_Name"
-							  Header="{x:Static p:Resources.English}"
+							  Header="{x:Static p:Translations._English}"
 							  Style="{DynamicResource ControlMenuGeneric}"
 							  Click="LanguageChanged_Click"
                               IsChecked="{Binding RelativeSource={RelativeSource Self}, Path=Tag, Converter={StaticResource IsLang}, Mode=OneTime}"
@@ -270,7 +270,7 @@
                 <!-- #region Logs -->
                 <MenuItem x:Name="MenuItem_DisplayLogs_Name"
 						  Click="ShowLogsFrame_Click"
-						  Header="{x:Static p:Resources._LogsWindow}"
+						  Header="{x:Static p:Translations._LogsWindow}"
 						  IsCheckable="True"
 						  IsChecked="{Binding Source={x:Static s:Controls.Default}, Path=MainMenuMenuItemDisplayLogsIsChecked, Mode=TwoWay}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"/>
@@ -293,12 +293,12 @@
 
 			<!-- #region HELP -->
 			<MenuItem x:Name="MenuItemHelp"
-					  Header="{x:Static p:Resources._Help}"
+					  Header="{x:Static p:Translations._Help}"
 					  Style="{DynamicResource MenuItemMainStyle}"
 					  Template="{DynamicResource MenuItemMainControlTemplate}">
 
 				<MenuItem x:Name="MenuItemHelpAbout"
-						  Header="{x:Static p:Resources._About}"
+						  Header="{x:Static p:Translations._About}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="HelpAbout_Click"/>
 			</MenuItem>

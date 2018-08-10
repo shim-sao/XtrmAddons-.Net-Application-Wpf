@@ -127,7 +127,7 @@ namespace Fotootof.Collections.Entities
                         FormatAlias(entity);
 
                         // Finally add the entity into the database.
-                        Db.Sections.Add(entity);
+                        Db.Sections.AddAsync(entity);
                         i++;
 
                         log.Info(string.Format("Section [{0}:{1}] added to database.", entity.PrimaryKey, entity.Name));
@@ -253,7 +253,7 @@ namespace Fotootof.Collections.Entities
             {
                 if (newItem != null)
                 {
-                    Db.Sections.SetDefault(newItem.PrimaryKey);
+                    Db.Sections.SetDefaultAsync(newItem.PrimaryKey);
                 }
 
                 AppNavigatorBase.Clear();

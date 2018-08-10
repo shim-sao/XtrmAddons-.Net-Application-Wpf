@@ -111,7 +111,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         /// </summary>
         /// <param name="Section">The Section entity to add.</param>
         /// <returns>The added Section entity.</returns>
-        public SectionEntity Add(SectionEntity entity)
+        public async Task<SectionEntity> AddAsync(SectionEntity entity)
         {
             using (Db.Context)
             {
@@ -119,21 +119,11 @@ namespace Fotootof.SQLite.Services.QueryManagers
 
                 if (entity.IsDefault)
                 {
-                    SetDefault(entity.PrimaryKey);
+                    await SetDefaultAsync(entity.PrimaryKey);
                 }
 
                 return entity;
             }
-        }
-
-        /// <summary>
-        /// Method to add new Section asynchronous.
-        /// </summary>
-        /// <param name="Section">The Section entity to add.</param>
-        /// <returns>The added Section entity.</returns>
-        public Task<SectionEntity> Section_Add_Async(SectionEntity entity)
-        {
-            return Task.Run(() => Add(entity));
         }
 
         #endregion
@@ -185,7 +175,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         /// </summary>
         /// <param name="entity">A Section entity.</param>
         /// <param name="save">Save database changes ?</param>
-        /// <returns>The updated Section entity.</returns>
+        /// <returns>The updated <see cref="SectionEntity"/>.</returns>
         public async Task<SectionEntity> UpdateAsync(SectionEntity entity, bool save = true)
         {
             using (Db.Context)
@@ -202,31 +192,31 @@ namespace Fotootof.SQLite.Services.QueryManagers
                 }
 
                 // Update entity.
-                entity = SectionManager.Update(entity, save);
+                entity = await SectionManager.UpdateAsync(entity);
 
                 // Check if entity is set to default.
                 if (entity.IsDefault)
                 {
-                    SetDefault(entity.PrimaryKey);
+                    await SetDefaultAsync(entity.PrimaryKey);
                 }
 
                 // Hack to delete unassociated dependencies.
-                await CleanDependenciesAsync("SectionsInACLGroups", "AclGroupId", entity.PrimaryKey, entity.AclGroupsPKeys);
-                await CleanDependenciesAsync("AlbumsInSections", "AlbumId", entity.PrimaryKey, entity.AlbumsPKeys);
+                //await CleanDependenciesAsync("SectionsInACLGroups", "AclGroupId", entity.PrimaryKey, entity.AclGroupsPKeys);
+                //await CleanDependenciesAsync("AlbumsInSections", "AlbumId", entity.PrimaryKey, entity.AlbumsPKeys);
 
                 return entity;
             }
         }
 
         /// <summary>
-        /// Method to set default Section.
+        /// Method to set a <see cref="SectionEntity"/> to default.
         /// </summary>
-        /// <param name="entityPK">A Section primary key.</param>
-        public void SetDefault(int entityPK)
+        /// <param name="entityPK">A <see cref="SectionEntity"/> unique id or primary key.</param>
+        public async Task<int> SetDefaultAsync(int entityPK)
         {
             using (Db.Context)
             {
-                SectionManager.SetDefaultAsync("Sections", "SectionId", entityPK);
+                return await SectionManager.SetDefaultAsync("Sections", "SectionId", entityPK);
             }
         }
 
@@ -242,6 +232,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         /// <param name="SectionId"></param>
         /// <param name="aclGroupIds"></param>
         /// <returns></returns>
+        [System.Obsolete("")]
         public async Task<int> DeleteDependenciesAsync(string entityPK, int sectionId, List<int> entityPKs)
         {
             using (Db.Context)
@@ -263,6 +254,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         /// <param name="sectionId"></param>
         /// <param name="dependenciesPKs"></param>
         /// <returns></returns>
+        [System.Obsolete("")]
         public async Task<int> CleanDependenciesAsync(string dependencyName, string dependencyPKName, int sectionId, IEnumerable<int> dependenciesPKs)
         {
             using (Db.Context)

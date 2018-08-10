@@ -159,7 +159,7 @@ namespace Fotootof.SQLite.EntityManager.Connector
                 log.Fatal(s);
                 log.Fatal(e.Output(), e);
 
-                throw e;
+                throw;
             }
         }
 
@@ -207,7 +207,7 @@ namespace Fotootof.SQLite.EntityManager.Connector
             {
                 log.Error("SQLite Initializing Tables content. Exception.");
                 log.Error(ex.Output(), ex);
-                throw ex;
+                throw;
             }
         }
 

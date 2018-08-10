@@ -7,7 +7,7 @@ namespace Fotootof.Libraries.Controls.ListViews
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="U"></typeparam>
-    public abstract class ListViewBaseModel<T, U> : ControlBaseModel<T>
+    public abstract class ListViewBaseModel<T, U> : ControlLayoutModel<T> where T : class
     {
         #region Variables
 

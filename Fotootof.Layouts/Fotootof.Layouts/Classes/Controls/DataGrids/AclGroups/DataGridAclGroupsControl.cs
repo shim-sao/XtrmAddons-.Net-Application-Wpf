@@ -1,6 +1,6 @@
 ﻿using Fotootof.Collections.Entities;
 using Fotootof.Layouts.Dialogs;
-using Fotootof.Layouts.Windows.Forms.AclGroup;
+using Fotootof.Layouts.Forms.AclGroup;
 using Fotootof.Libraries.Controls.DataGrids;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using System;
@@ -54,17 +54,19 @@ namespace Fotootof.Layouts.Controls.DataGrids
         public override void AddItem_Click(object sender, RoutedEventArgs e)
         {
             // Show open file dialog box 
-            WindowFormAclGroupLayout dlg = new WindowFormAclGroupLayout();
-            bool? result = dlg.ShowDialog();
+            using (WindowFormAclGroupLayout dlg = new WindowFormAclGroupLayout())
+            {
+                bool? result = dlg.ShowDialog();
 
-            // Process open file dialog box results 
-            if (result == true)
-            {
-                NotifyAdded(dlg.NewFormData);
-            }
-            else
-            {
-                NotifyCanceled(dlg.NewFormData);
+                // Process open file dialog box results 
+                if (result == true)
+                {
+                    NotifyAdded(dlg.NewFormData);
+                }
+                else
+                {
+                    NotifyCanceled(dlg.NewFormData);
+                }
             }
         }
 

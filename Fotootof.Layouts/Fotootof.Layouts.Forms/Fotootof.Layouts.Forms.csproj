@@ -70,6 +70,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AclGroup\WindowFormAclGroupLayout.xaml.cs">
+      <DependentUpon>WindowFormAclGroupLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\AclGroup\WindowFormAclGroupModel.cs" />
     <Compile Include="Classes\Section\WindowFormSectionLayout.xaml.cs">
       <DependentUpon>WindowFormSectionLayout.xaml</DependentUpon>
     </Compile>
@@ -172,13 +176,13 @@
       <Project>{10851D07-11EA-4773-8B05-1228D9714FE1}</Project>
       <Name>XtrmAddons.Fotootof.Lib.Api</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fotootof\XtrmAddons.Fotootof.Lib.HttpClient\XtrmAddons.Fotootof.Lib.HttpClient.csproj">
+    <ProjectReference Include="..\..\Fotootof\Fotootof.HttpClient\Fotootof.HttpClient.csproj">
       <Project>{470D1482-F772-483E-A922-FA2AC4E517DF}</Project>
-      <Name>XtrmAddons.Fotootof.Lib.HttpClient</Name>
+      <Name>Fotootof.HttpClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fotootof\XtrmAddons.Fotootof.Lib.HttpServer\XtrmAddons.Fotootof.Lib.HttpServer.csproj">
+    <ProjectReference Include="..\..\Fotootof\Fotootof.HttpServer\Fotootof.HttpServer.csproj">
       <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
-      <Name>XtrmAddons.Fotootof.Lib.HttpServer</Name>
+      <Name>Fotootof.HttpServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj">
       <Project>{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}</Project>
@@ -200,6 +204,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Classes\AclGroup\WindowFormAclGroupLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Classes\Section\WindowFormSectionLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

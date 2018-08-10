@@ -15,7 +15,7 @@ namespace Fotootof.Libraries.Controls.DataGrids
     /// </summary>
     /// <typeparam name="T">The collection items type.</typeparam>
     /// <typeparam name="U">The item type.</typeparam>
-    public abstract class DataGridBase<T, U> : ControlBaseCollection, IListItems<T>
+    public abstract class DataGridBase<T, U> : ControlLayoutCollection, IListItems<T>
     {
         #region Events
 

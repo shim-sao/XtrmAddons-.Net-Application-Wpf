@@ -149,7 +149,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
             {
                 log.Error("SQLite Initializing Table `Infos`. Exception.");
                 log.Error(ex.Output(), ex);
-                throw ex;
+                throw;
             }
 
             // Infos Types
@@ -165,7 +165,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
             {
                 log.Error("SQLite Initializing Table `InfoTypes`. Exception.");
                 log.Error(ex.Output(), ex);
-                throw ex;
+                throw;
             }
         }
 

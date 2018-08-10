@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net;
 using XtrmAddons.Fotootof.Lib.Api.Models.Json;
-using XtrmAddons.Fotootof.Lib.HttpServer;
+using Fotootof.HttpServer;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.HttpWebServer.Requests;
 using XtrmAddons.Net.HttpWebServer.Responses;

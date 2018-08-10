@@ -87,10 +87,6 @@
     <Compile Include="Classes\Controls\ListViews\Albums\ListViewAlbumsModel.cs" />
     <Compile Include="Classes\Controls\ListViews\Pictures\ListViewPicturesControl..cs" />
     <Compile Include="Classes\Controls\ListViews\Pictures\ListViewPicturesModel.cs" />
-    <Compile Include="Classes\Windows\Forms\AclGroup\WindowFormAclGroupLayout.xaml.cs">
-      <DependentUpon>WindowFormAclGroupLayout.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\Windows\Forms\AclGroup\WindowFormAclGroupModel.cs" />
     <Compile Include="Classes\Windows\Forms\Album\WindowFormAlbumLayout.xaml.cs">
       <DependentUpon>WindowFormAlbumLayout.xaml</DependentUpon>
     </Compile>
@@ -156,6 +152,10 @@
       <Project>{C76E2008-3DA1-4600-A889-BF08AF796F7F}</Project>
       <Name>Fotootof.Theme</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj">
+      <Project>{FC62EC35-A6A3-4391-9A01-26C159CE1FFD}</Project>
+      <Name>Fotootof.Libraries.Logs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fotootof\Fotootof.Libraries.Windows\Fotootof.Libraries.Windows.csproj">
       <Project>{02EFC769-E829-44F1-B601-780E7266E8CA}</Project>
       <Name>Fotootof.Libraries.Windows</Name>
@@ -208,13 +208,13 @@
       <Project>{a0c828d6-9afa-48e6-b279-713869ee07ef}</Project>
       <Name>XtrmAddons.Fotootof.Culture</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fotootof\XtrmAddons.Fotootof.Lib.HttpClient\XtrmAddons.Fotootof.Lib.HttpClient.csproj">
+    <ProjectReference Include="..\..\Fotootof\Fotootof.HttpClient\Fotootof.HttpClient.csproj">
       <Project>{470d1482-f772-483e-a922-fa2ac4e517df}</Project>
-      <Name>XtrmAddons.Fotootof.Lib.HttpClient</Name>
+      <Name>Fotootof.HttpClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fotootof\XtrmAddons.Fotootof.Lib.HttpServer\XtrmAddons.Fotootof.Lib.HttpServer.csproj">
+    <ProjectReference Include="..\..\Fotootof\Fotootof.HttpServer\Fotootof.HttpServer.csproj">
       <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
-      <Name>XtrmAddons.Fotootof.Lib.HttpServer</Name>
+      <Name>Fotootof.HttpServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj">
       <Project>{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}</Project>
@@ -227,10 +227,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Classes\Controls\DataGrids\Albums\DataGridAlbumsWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Classes\Windows\Forms\AclGroup\WindowFormAclGroupLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

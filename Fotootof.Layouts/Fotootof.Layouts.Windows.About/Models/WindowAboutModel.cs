@@ -1,4 +1,4 @@
-﻿using Fotootof.Libraries.Models;
+﻿using Fotootof.Libraries.Controls;
 using System.Reflection;
 using System.Windows.Media.Imaging;
 using XtrmAddons.Net.Picture.Extensions;
@@ -8,7 +8,7 @@ namespace Fotootof.Layouts.Windows.About
     /// <summary>
     /// Class Fotootof Layouts Window About Model.
     /// </summary>
-    public class WindowAboutModel : ModelBase<WindowAboutLayout>
+    public class WindowAboutModel : ControlLayoutModel<WindowAboutLayout>
     {
         #region Variables
 

@@ -35,14 +35,10 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="XtrmAddons.Net.Application">
       <HintPath>..\..\Fotootof\Packages\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
@@ -55,9 +51,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\ControlBase.cs" />
-    <Compile Include="Classes\ControlBaseCollection.cs" />
-    <Compile Include="Classes\ControlBaseModel.cs" />
+    <Compile Include="Classes\ControlLayout.cs" />
+    <Compile Include="Classes\ControlLayoutCollection.cs" />
+    <Compile Include="Classes\ControlLayoutModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using Fotootof.AddInsContracts.Interfaces;
+using Fotootof.Libraries.Logs;
 using Fotootof.Libraries.Systems;
 using System;
 using System.Collections.Generic;
@@ -192,7 +193,7 @@ namespace Fotootof.AddInsContracts.Catalog
             // Check if the assembly name is a valid string.
             if (assemblyName.IsNullOrWhiteSpace())
             {
-                ArgumentNullException ex = ExceptionBase.ArgNull(nameof(assemblyName), assemblyName);
+                ArgumentNullException ex = Exceptions.GetArgumentNull(nameof(assemblyName), assemblyName);
                 log.Error(ex.Output(), ex);
                 return null;
             }

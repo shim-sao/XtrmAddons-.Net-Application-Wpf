@@ -60,6 +60,11 @@ namespace Fotootof.SQLite.EntityManager.Connector
         public DbSet<SectionEntity> Sections { get; set; }
 
         /// <summary>
+        /// Property database table Storage entity queries link.
+        /// </summary>
+        public DbSet<StorageEntity> Storages { get; set; }
+
+        /// <summary>
         /// Property database table Users entity queries link.
         /// </summary>
         public DbSet<UserEntity> Users { get; set; }
@@ -77,7 +82,7 @@ namespace Fotootof.SQLite.EntityManager.Connector
         public DbSet<AclGroupsInAclActions> AclGroupsInAclActions { get; set; }
 
         /// <summary>
-        /// Property database table Albums In Sections entity queries link.
+        /// Property database table Albums in Sections entity queries link.
         /// </summary>
         public DbSet<AlbumsInSections> AlbumsInSections { get; set; }
 
@@ -100,6 +105,11 @@ namespace Fotootof.SQLite.EntityManager.Connector
         /// Property database Sections in ACLGroups entity queries link.
         /// </summary>
         public DbSet<SectionsInAclGroups> SectionsInAclGroups { get; set; }
+
+        /// <summary>
+        /// Property database table Storages in Albums entity queries link.
+        /// </summary>
+        public DbSet<StoragesInAlbums> StoragesInAlbums { get; set; }
 
         /// <summary>
         /// Property database Users in ACLGroups entity queries link.
@@ -142,6 +152,7 @@ namespace Fotootof.SQLite.EntityManager.Connector
             ModelCreateUsersInAclGroupsDependencies(modelBuilder);
             ModelCreateInfosInAlbumsDependencies(modelBuilder);
             ModelCreateInfosInPicturesDependencies(modelBuilder);
+            ModelCreateStoragesInAlbumsDependencies(modelBuilder);
         }
 
         /// <summary>
@@ -337,6 +348,34 @@ namespace Fotootof.SQLite.EntityManager.Connector
             {
                 log.Fatal(e);
                 throw new Exception("Method to add Infos in Pictures dependencies failed !", e);
+            }
+        }
+
+        /// <summary>
+        /// Method to add Storages In Albums dependencies.
+        /// </summary>
+        /// <param name="modelBuilder">The model builder.</param>
+        private void ModelCreateStoragesInAlbumsDependencies(ModelBuilder modelBuilder)
+        {
+            try
+            {
+                modelBuilder.Entity<StoragesInAlbums>()
+                .HasKey(x => new { x.AlbumId, x.StorageId });
+
+                modelBuilder.Entity<StoragesInAlbums>()
+                    .HasOne(d => d.AlbumEntity)
+                    .WithMany(x => x.StoragesInAlbums)
+                    .HasForeignKey(d => d.AlbumId);
+
+                modelBuilder.Entity<StoragesInAlbums>()
+                    .HasOne(d => d.StorageEntity)
+                    .WithMany(x => x.StoragesInAlbums)
+                    .HasForeignKey(d => d.StorageId);
+            }
+            catch (Exception e)
+            {
+                log.Fatal(e);
+                throw new Exception("Method to add Storages In Albums dependencies failed !", e);
             }
         }
 

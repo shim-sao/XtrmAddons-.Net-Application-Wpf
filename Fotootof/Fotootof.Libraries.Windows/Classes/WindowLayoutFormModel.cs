@@ -1,9 +1,9 @@
 ﻿namespace Fotootof.Libraries.Windows
 {
     /// <summary>
-    /// Class Fotootof Libraries Window Form Model Base.
+    /// Class XtrmAddons Libraries Window Form Layout Model.
     /// </summary>
-    public class WindowLayoutFormModel<T> : WindowLayoutModel<T>
+    public class WindowLayoutFormModel<T> : WindowLayoutModel<T> where T : class
     {
         #region Variables
 
@@ -49,8 +49,8 @@
         /// <summary>
         /// Class Fotootof Libraries Window Form Model Base Constructor.
         /// </summary>
-        /// <param name="owner">The <see cref="object"/> owner associated to the model.</param>
-        public WindowLayoutFormModel(T owner) : base(owner) { }
+        /// <param name="controlView">The <see cref="object"/> owner associated to the model.</param>
+        public WindowLayoutFormModel(T controlView) : base(controlView) { }
 
         #endregion
     }

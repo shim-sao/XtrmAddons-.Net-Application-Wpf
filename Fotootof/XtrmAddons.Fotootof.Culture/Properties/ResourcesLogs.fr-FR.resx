@@ -119,6 +119,7 @@
   </resheader>
   <data name="AddingApplicationToSystemTrayDone" xml:space="preserve">
     <value>Ajout d'une application à la barre d'état système. Terminé !</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="AppIntLanguage" xml:space="preserve">
     <value>Initialisation du langage de l'application. Veuillez patienter, s'il vous plaît...</value>
@@ -161,9 +162,11 @@
   </data>
   <data name="InitializingApplicationWindowComponentDone" xml:space="preserve">
     <value>Initialisation du composant de la fenêtre d'application. Terminé !</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="InitializingDatabaseConnection" xml:space="preserve">
     <value>Initialisation de la connexion à la base de données. Veuillez patienter, s'il vous plaît...</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="InitializingPageDone" xml:space="preserve">
     <value>Initialisation du contenu de la Page {0}. Terminé !</value>

@@ -191,9 +191,11 @@
   </data>
   <data name="Create" xml:space="preserve">
     <value>Créer</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Created" xml:space="preserve">
     <value>Création</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Datas" xml:space="preserve">
     <value>Données</value>

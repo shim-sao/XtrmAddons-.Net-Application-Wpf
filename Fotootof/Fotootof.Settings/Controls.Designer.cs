@@ -64,5 +64,68 @@ namespace Fotootof.Settings {
                 return ((bool)(this["MainMenuMenuItemDisplayLogsIsCheckedDefault"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowFrameLogs {
+            get {
+                return ((bool)(this["ShowFrameLogs"]));
+            }
+            set {
+                this["ShowFrameLogs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowFrameLogsDefault {
+            get {
+                return ((bool)(this["ShowFrameLogsDefault"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowFrameInfos {
+            get {
+                return ((bool)(this["ShowFrameInfos"]));
+            }
+            set {
+                this["ShowFrameInfos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowFrameInfosDefault {
+            get {
+                return ((bool)(this["ShowFrameInfosDefault"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowTooltipBrowser {
+            get {
+                return ((bool)(this["ShowTooltipBrowser"]));
+            }
+            set {
+                this["ShowTooltipBrowser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public string ShowTooltipBrowserDefault {
+            get {
+                return ((string)(this["ShowTooltipBrowserDefault"]));
+            }
+        }
     }
 }

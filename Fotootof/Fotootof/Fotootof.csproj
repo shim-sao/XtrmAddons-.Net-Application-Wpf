@@ -262,13 +262,13 @@
     <Compile Include="AppLogger.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Menus\MainMenuHorizontalModel.cs" />
-    <Compile Include="Properties\Resources.en-GB.Designer.cs">
-      <DependentUpon>Resources.en-GB.resx</DependentUpon>
+    <Compile Include="Properties\Translations.en-GB.Designer.cs">
+      <DependentUpon>Translations.en-GB.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Properties\Resources.fr-FR.Designer.cs">
-      <DependentUpon>Resources.fr-FR.resx</DependentUpon>
+    <Compile Include="Properties\Translations.fr-FR.Designer.cs">
+      <DependentUpon>Translations.fr-FR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -303,22 +303,22 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="Properties\Translations.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>Translations.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.en-GB.resx">
+    <EmbeddedResource Include="Properties\Translations.en-GB.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.en-GB.Designer.cs</LastGenOutput>
+      <LastGenOutput>Translations.en-GB.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.fr-FR.resx">
+    <EmbeddedResource Include="Properties\Translations.fr-FR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.fr-FR.Designer.cs</LastGenOutput>
+      <LastGenOutput>Translations.fr-FR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Include="Properties\Translations.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Translations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <SplashScreen Include="Assets\Images\Default\splashscreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -597,21 +597,17 @@
       <Project>{70a4c255-1b1c-498b-8689-ad4504ae8ab9}</Project>
       <Name>Fotootof.Settings</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.Culture\XtrmAddons.Fotootof.Culture.csproj">
-      <Project>{A0C828D6-9AFA-48E6-B279-713869EE07EF}</Project>
-      <Name>XtrmAddons.Fotootof.Culture</Name>
-    </ProjectReference>
     <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.Api\XtrmAddons.Fotootof.Lib.Api.csproj">
       <Project>{10851d07-11ea-4773-8b05-1228d9714fe1}</Project>
       <Name>XtrmAddons.Fotootof.Lib.Api</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.HttpClient\XtrmAddons.Fotootof.Lib.HttpClient.csproj">
+    <ProjectReference Include="..\Fotootof.HttpClient\Fotootof.HttpClient.csproj">
       <Project>{470d1482-f772-483e-a922-fa2ac4e517df}</Project>
-      <Name>XtrmAddons.Fotootof.Lib.HttpClient</Name>
+      <Name>Fotootof.HttpClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.HttpServer\XtrmAddons.Fotootof.Lib.HttpServer.csproj">
+    <ProjectReference Include="..\Fotootof.HttpServer\Fotootof.HttpServer.csproj">
       <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
-      <Name>XtrmAddons.Fotootof.Lib.HttpServer</Name>
+      <Name>Fotootof.HttpServer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -640,9 +636,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\Release\Newtonsoft.Json.dll" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

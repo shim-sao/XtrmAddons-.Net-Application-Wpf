@@ -12,6 +12,11 @@ namespace Fotootof.SQLite.Services
         #region Variables
 
         /// <summary>
+        /// Property database connector core using EntityFramework.
+        /// </summary>
+        public static SQLiteSvc instance;
+
+        /// <summary>
         /// Variable database connector core using EntityFramework.
         /// </summary>
         private static DatabaseCore db;
@@ -83,6 +88,19 @@ namespace Fotootof.SQLite.Services
         /// 
         /// </summary>
         public void Main() { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static SQLiteSvc GetInstance()
+        {
+            if(instance == null)
+            {
+                instance = new SQLiteSvc();
+            }
+
+            return instance;
+        }
 
         #endregion
     }

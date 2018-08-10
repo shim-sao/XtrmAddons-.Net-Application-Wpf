@@ -168,6 +168,7 @@
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Catalog" xml:space="preserve">
     <value>Catalog</value>
@@ -196,9 +197,11 @@
   </data>
   <data name="Create" xml:space="preserve">
     <value>Create</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Created" xml:space="preserve">
     <value>Created</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Datas" xml:space="preserve">
     <value>Data</value>
@@ -267,6 +270,7 @@
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Informations" xml:space="preserve">
     <value>Informations</value>
@@ -355,6 +359,7 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Section" xml:space="preserve">
     <value>Section</value>

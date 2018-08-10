@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Culture
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Lib.Api", "Fotootof\XtrmAddons.Fotootof.Lib.Api\XtrmAddons.Fotootof.Lib.Api.csproj", "{10851D07-11EA-4773-8B05-1228D9714FE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Lib.HttpClient", "Fotootof\XtrmAddons.Fotootof.Lib.HttpClient\XtrmAddons.Fotootof.Lib.HttpClient.csproj", "{470D1482-F772-483E-A922-FA2AC4E517DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.HttpClient", "Fotootof\Fotootof.HttpClient\Fotootof.HttpClient.csproj", "{470D1482-F772-483E-A922-FA2AC4E517DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Lib.HttpServer", "Fotootof\XtrmAddons.Fotootof.Lib.HttpServer\XtrmAddons.Fotootof.Lib.HttpServer.csproj", "{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.HttpServer", "Fotootof\Fotootof.HttpServer\Fotootof.HttpServer.csproj", "{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Models", "Fotootof\Fotootof.Models\Fotootof.Libraries.Models.csproj", "{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}"
 EndProject

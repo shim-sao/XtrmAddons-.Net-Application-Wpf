@@ -135,8 +135,29 @@
   <data name="Comment" xml:space="preserve">
     <value>Comment</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Creation" xml:space="preserve">
+    <value>Creation</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Edited" xml:space="preserve">
+    <value>Edited</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -162,6 +183,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="Rights" xml:space="preserve">
+    <value>Rights</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
@@ -192,6 +216,9 @@
   </data>
   <data name="UsersGroups" xml:space="preserve">
     <value>Users groups</value>
+  </data>
+  <data name="Watch" xml:space="preserve">
+    <value>View</value>
   </data>
   <data name="WindowAboutTitle" xml:space="preserve">
     <value>XtrmAddons FotootoF About</value>

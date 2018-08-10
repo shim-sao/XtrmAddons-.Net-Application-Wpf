@@ -8,7 +8,7 @@ namespace Fotootof.Layouts.Controls.DataGrids
     /// Class XtrmAddons Fotootof Server Libraries Common Models DataGrids Sections.
     /// </summary>
     /// <typeparam name="T">The type of data grid control associated to the model.</typeparam>
-    public class DataGridSectionsModel<T> : DataGridBaseModel<T, SectionEntityCollection>
+    public class DataGridSectionsModel<T> : DataGridBaseModel<T, SectionEntityCollection> where T : class
     {
         #region Constructor
 

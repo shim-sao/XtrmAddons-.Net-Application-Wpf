@@ -70,6 +70,87 @@ namespace Fotootof.Local.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Adding application to system tray. Done !.
+        /// </summary>
+        public static string ApplicationToSystemTray {
+            get {
+                return ResourceManager.GetString("ApplicationToSystemTray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Adding new default database parameters to the preferences..
+        /// </summary>
+        public static string DbAddingDefault {
+            get {
+                return ResourceManager.GetString("DbAddingDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Connecting to the database. Fail !.
+        /// </summary>
+        public static string DbConnectionFail {
+            get {
+                return ResourceManager.GetString("DbConnectionFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Database connection ready..
+        /// </summary>
+        public static string DbConnectionReady {
+            get {
+                return ResourceManager.GetString("DbConnectionReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Database file found..
+        /// </summary>
+        public static string DbFileFound {
+            get {
+                return ResourceManager.GetString("DbFileFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Database file not found..
+        /// </summary>
+        public static string DbFileNotFound {
+            get {
+                return ResourceManager.GetString("DbFileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Initializing database connection. Please wait....
+        /// </summary>
+        public static string DbInitializingConnection {
+            get {
+                return ResourceManager.GetString("DbInitializingConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Initializing database connection. Done..
+        /// </summary>
+        public static string DbInitializingConnectionDone {
+            get {
+                return ResourceManager.GetString("DbInitializingConnectionDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Initializing application window component. Done !.
+        /// </summary>
+        public static string InitializingApplicationWindowComponent {
+            get {
+                return ResourceManager.GetString("InitializingApplicationWindowComponent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Initializing Log4Net Configurator. Please wait....
         /// </summary>
         public static string InitializingLog4NetConfigurator {
@@ -93,6 +174,15 @@ namespace Fotootof.Local.Properties {
         public static string ItemDeleted {
             get {
                 return ResourceManager.GetString("ItemDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Server address.
+        /// </summary>
+        public static string ServerAddress {
+            get {
+                return ResourceManager.GetString("ServerAddress", resourceCulture);
             }
         }
         

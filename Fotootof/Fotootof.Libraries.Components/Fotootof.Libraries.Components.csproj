@@ -73,6 +73,10 @@
       <Project>{E3958E7E-076C-4865-B586-ECB282748FFF}</Project>
       <Name>Fotootof.SQLite.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Libraries.Controls\Fotootof.Libraries.Controls.csproj">
+      <Project>{6F733674-F83C-4707-BBE6-EA170D6420F2}</Project>
+      <Name>Fotootof.Libraries.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fotootof.Models\Fotootof.Libraries.Models.csproj">
       <Project>{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}</Project>
       <Name>Fotootof.Libraries.Models</Name>

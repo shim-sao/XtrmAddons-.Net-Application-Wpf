@@ -1,4 +1,5 @@
-﻿using Fotootof.Libraries.HttpHelpers.HttpServer;
+﻿using Fotootof.HttpServer;
+using Fotootof.Libraries.HttpHelpers.HttpServer;
 using Fotootof.SQLite.EntityManager.Connector;
 using Fotootof.SQLite.Services;
 using System;
@@ -6,8 +7,6 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Windows;
-using XtrmAddons.Fotootof.Culture;
-using XtrmAddons.Fotootof.Lib.HttpServer;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.Data;
 using XtrmAddons.Net.Common.Extensions;
@@ -68,7 +67,7 @@ namespace Fotootof.Startup
             }
 
             server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
-            Trace.TraceInformation("Server address : http://" + server.Host + ":" + server.Host);
+            Trace.TraceInformation($"{Local.Properties.Logs.ServerAddress} : http://{server.Host}:{server.Host}");
 
             return server;
         }
@@ -79,7 +78,7 @@ namespace Fotootof.Startup
         [SuppressMessage("Microsoft.Security", "CA2100", Justification = "Do not to fix it !", Scope = "Not supported by DLL")]
         public void InitializeDatabase()
         {
-            log.Info((string)Translation.DLogs.InitializingDatabaseConnection);
+            log.Info(Local.Properties.Logs.DbInitializingConnection);
 
             // Get the default database in preferences if exists.
             Database database = ApplicationBase.Options.Data.Databases.FindDefaultFirst();
@@ -98,7 +97,7 @@ namespace Fotootof.Startup
 
                 };
 
-                log.Info("Adding new default database parameters to preferences");
+                log.Info(Local.Properties.Logs.DbAddingDefault);
                 ApplicationBase.Options.Data.Databases.Add(database);
             }
 
@@ -110,28 +109,28 @@ namespace Fotootof.Startup
                 // Check for the database updates.
                 if (File.Exists(database.Source))
                 {
-                    log.Info((string)Translation.DLogs.DatabaseFileFound);
-                    log.Info((string)Translation.DLogs.DatabaseConnectionReady);
+                    log.Info(Local.Properties.Logs.DbFileFound);
+                    log.Info(Local.Properties.Logs.DbConnectionReady);
                 }
 
                 // ... create new database from scheme.
                 else
                 {
-                    log.Info((string)Translation.DLogs.DatabaseNotFileFound);
+                    log.Info(Local.Properties.Logs.DbFileNotFound);
                 }
 
                 // Add connection to SQLite Service.
                 SQLiteSvc.Db = new DatabaseCore(database.Source);
 
                 // Add SQLite Service to the main window | application session for dependencies..
-                MainWindow.Database = new SQLiteSvc();
+                MainWindow.Database = SQLiteSvc.GetInstance();
             }
 
             // Catch connection to the database exceptions.
             catch (Exception e)
             {
-                log.Fatal("Connecting to the database. Fail !", e);
-                MessageBox.Show("Connecting to the database. Fail !", Translation.DWords.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
+                log.Fatal(Local.Properties.Logs.DbConnectionFail, e);
+                MessageBox.Show(Local.Properties.Logs.DbConnectionFail, Local.Properties.Translations.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             //Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, UpdateDatabaseDelegate());
@@ -140,7 +139,7 @@ namespace Fotootof.Startup
             //UpdateDatabase();
 
             // End of database initilization.
-            log.Info("Initializing database connection. Done !");
+            log.Info(Local.Properties.Logs.DbInitializingConnectionDone);
         }
 
         //public delegate void UpdateDatabaseDelegate(SQLiteConnection db, string updateFile);
@@ -220,7 +219,7 @@ namespace Fotootof.Startup
             catch (Exception e)
             {
                 log.Error("Auto start HTTP server connection failed : [" + server?.Host + ":" + server?.Port + "]", e);
-                MessageBox.Show("Starting server : [" + server?.Host + ":" + server?.Port + "] failed !", Translation.DWords.Application, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Starting server : [" + server?.Host + ":" + server?.Port + "] failed !", Local.Properties.Translations.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             log.Info("Auto start HTTP server connection. Done !");

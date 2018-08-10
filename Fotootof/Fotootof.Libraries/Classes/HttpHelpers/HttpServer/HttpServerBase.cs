@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using XtrmAddons.Fotootof.Culture;
-using XtrmAddons.Fotootof.Lib.HttpServer;
+using Fotootof.HttpServer;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
 using ServerData = XtrmAddons.Net.Application.Serializable.Elements.Remote.Server;

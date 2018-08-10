@@ -8,7 +8,7 @@ namespace Fotootof.Layouts.Controls.DataGrids
     /// Class XtrmAddons Fotootof Libraries Common Models DataGrids Users.
     /// </summary>
     /// <typeparam name="T">The type of data grid control associated to the model.</typeparam>
-    public class DataGridUsersModel<T> : DataGridBaseModel<T, UserEntityCollection>
+    public class DataGridUsersModel<T> : DataGridBaseModel<T, UserEntityCollection> where T : class
     {
         #region Constructor
 

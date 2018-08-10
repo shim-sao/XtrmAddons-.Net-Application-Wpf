@@ -7,7 +7,7 @@ namespace Fotootof.Libraries.Controls.DataGrids
     /// </summary>
     /// <typeparam name="U">The <see cref="object"/> User Control.</typeparam>
     /// <typeparam name="T">The Type of data grid base child.</typeparam>
-    public class DataGridBaseModel<T, U> : ControlBaseModel<T>
+    public class DataGridBaseModel<T, U> : ControlLayoutModel<T> where T : class
     {
         #region Variables
 

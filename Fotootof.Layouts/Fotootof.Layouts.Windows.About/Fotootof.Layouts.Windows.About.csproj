@@ -71,6 +71,10 @@
       <Project>{C76E2008-3DA1-4600-A889-BF08AF796F7F}</Project>
       <Name>Fotootof.Theme</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof\Fotootof.Libraries.Controls\Fotootof.Libraries.Controls.csproj">
+      <Project>{6F733674-F83C-4707-BBE6-EA170D6420F2}</Project>
+      <Name>Fotootof.Libraries.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fotootof\Fotootof.Local\Fotootof.Local.csproj">
       <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
       <Name>Fotootof.Local</Name>

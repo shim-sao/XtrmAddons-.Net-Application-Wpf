@@ -14,7 +14,7 @@ namespace Fotootof.Libraries.Controls.ListViews
     /// </summary>
     /// <typeparam name="T">The collection items type.</typeparam>
     /// <typeparam name="U">The item type.</typeparam>
-    public abstract class ListViewBase<T, U> : ControlBaseCollection
+    public abstract class ListViewBase<T, U> : ControlLayoutCollection
     {
         #region Properties Events Handlers
 

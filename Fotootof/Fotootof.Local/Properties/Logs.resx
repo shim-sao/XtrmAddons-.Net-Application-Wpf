@@ -120,6 +120,27 @@
   <data name="ApplicationClosed" xml:space="preserve">
     <value>Application closed.</value>
   </data>
+  <data name="ApplicationToSystemTray" xml:space="preserve">
+    <value>Adding application to system tray. Done !</value>
+  </data>
+  <data name="DbConnectionFail" xml:space="preserve">
+    <value>Connecting to the database. Fail !</value>
+  </data>
+  <data name="DbConnectionReady" xml:space="preserve">
+    <value>Database connection ready.</value>
+  </data>
+  <data name="DbFileFound" xml:space="preserve">
+    <value>Database file found.</value>
+  </data>
+  <data name="DbFileNotFound" xml:space="preserve">
+    <value>Database file not found.</value>
+  </data>
+  <data name="InitializingApplicationWindowComponent" xml:space="preserve">
+    <value>Initializing application window component. Done !</value>
+  </data>
+  <data name="DbInitializingConnection" xml:space="preserve">
+    <value>Initializing database connection. Please wait...</value>
+  </data>
   <data name="InitializingLog4NetConfigurator" xml:space="preserve">
     <value>Initializing Log4Net Configurator. Please wait...</value>
   </data>
@@ -143,5 +164,14 @@
   </data>
   <data name="WindowClosing" xml:space="preserve">
     <value>Closing window : {0}</value>
+  </data>
+  <data name="DbInitializingConnectionDone" xml:space="preserve">
+    <value>Initializing database connection. Done.</value>
+  </data>
+  <data name="ServerAddress" xml:space="preserve">
+    <value>Server address</value>
+  </data>
+  <data name="DbAddingDefault" xml:space="preserve">
+    <value>Adding new default database parameters to the preferences.</value>
   </data>
 </root>

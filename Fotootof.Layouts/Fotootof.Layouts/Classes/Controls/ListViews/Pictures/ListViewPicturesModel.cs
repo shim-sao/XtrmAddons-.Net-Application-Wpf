@@ -6,7 +6,7 @@ namespace Fotootof.Layouts.Controls.ListViews
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries Common Models List View Pictures Constructor.
     /// </summary>
-    public class ListViewPicturesModel<T> : ListViewBaseModel<T, PictureEntityCollection>
+    public class ListViewPicturesModel<T> : ListViewBaseModel<T, PictureEntityCollection> where T : class
     {
         #region Constructor
 

@@ -27,7 +27,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <summary>
         /// 
         /// </summary>
-        public DatabaseContextCore Db => Connector as DatabaseContextCore;
+        //public DatabaseContextCore Db => Connector as DatabaseContextCore;
 
         #endregion
 

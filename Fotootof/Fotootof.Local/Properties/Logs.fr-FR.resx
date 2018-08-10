@@ -120,6 +120,27 @@
   <data name="ApplicationClosed" xml:space="preserve">
     <value>Fermeture de l'application.</value>
   </data>
+  <data name="ApplicationToSystemTray" xml:space="preserve">
+    <value>Ajout d'une application à la barre d'état système. Terminé !</value>
+  </data>
+  <data name="DbconnectionFail" xml:space="preserve">
+    <value>Echec de connexion à la base de données !</value>
+  </data>
+  <data name="DbConnectionReady" xml:space="preserve">
+    <value>Connexion à la base de données prête.</value>
+  </data>
+  <data name="DbFileFound" xml:space="preserve">
+    <value>Fichier de base de données trouvé.</value>
+  </data>
+  <data name="DbFileNotFound" xml:space="preserve">
+    <value>Fichier de base de données non trouvé.</value>
+  </data>
+  <data name="InitializingApplicationWindowComponent" xml:space="preserve">
+    <value>Initialisation du composant de la fenêtre d'application. Terminé !</value>
+  </data>
+  <data name="DbInitializingConnection" xml:space="preserve">
+    <value>Initialisation de la connexion à la base de données. Veuillez patienter, s'il vous plaît...</value>
+  </data>
   <data name="InitializingLog4NetConfigurator" xml:space="preserve">
     <value>Initialisation de Log4Net Configurator. Veuillez patienter, s'il vous plaît...</value>
   </data>
@@ -143,5 +164,14 @@
   </data>
   <data name="WindowClosing" xml:space="preserve">
     <value>Fermeture de la fenêtre : {0}</value>
+  </data>
+  <data name="DbInitializingConnectionDone" xml:space="preserve">
+    <value>Initialisation de la connexion à la base de données. Terminé.</value>
+  </data>
+  <data name="ServerAddress" xml:space="preserve">
+    <value>Adresse du serveur</value>
+  </data>
+  <data name="DbAddingDefault" xml:space="preserve">
+    <value>Ajout des paramètres par défaut de la base de données aux préférences de l'application.</value>
   </data>
 </root>

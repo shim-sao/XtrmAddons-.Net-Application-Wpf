@@ -8,7 +8,7 @@ namespace Fotootof.Layouts.Controls.DataGrids
     /// Class XtrmAddons Fotootof Libraries Common Models DataGrids AclGroups.
     /// </summary>
     /// <typeparam name="T">The type of data grid control associated to the model.</typeparam>
-    public class DataGridAclGroupsModel<T> : DataGridBaseModel<T, AclGroupEntityCollection>
+    public class DataGridAclGroupsModel<T> : DataGridBaseModel<T, AclGroupEntityCollection> where T : class
     {
         #region Constructor
 

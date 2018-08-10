@@ -10,7 +10,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
     /// <summary>
     /// Class XtrmAddons Fotootof Server UI Control Browser Tree View Directory.
     /// </summary>
-    public partial class TreeViewSystemStorageLayout : ControlBase
+    public partial class TreeViewSystemStorageLayout : ControlLayout
     {
         #region Variables
         

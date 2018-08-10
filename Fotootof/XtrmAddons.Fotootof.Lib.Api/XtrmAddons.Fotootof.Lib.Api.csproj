@@ -106,9 +106,9 @@
       <Project>{E3958E7E-076C-4865-B586-ECB282748FFF}</Project>
       <Name>Fotootof.SQLite.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.HttpServer\XtrmAddons.Fotootof.Lib.HttpServer.csproj">
+    <ProjectReference Include="..\Fotootof.HttpServer\Fotootof.HttpServer.csproj">
       <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
-      <Name>XtrmAddons.Fotootof.Lib.HttpServer</Name>
+      <Name>Fotootof.HttpServer</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

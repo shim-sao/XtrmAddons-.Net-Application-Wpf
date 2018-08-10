@@ -335,9 +335,9 @@
       <Project>{10851D07-11EA-4773-8B05-1228D9714FE1}</Project>
       <Name>XtrmAddons.Fotootof.Lib.Api</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.HttpServer\XtrmAddons.Fotootof.Lib.HttpServer.csproj">
+    <ProjectReference Include="..\Fotootof.HttpServer\Fotootof.HttpServer.csproj">
       <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
-      <Name>XtrmAddons.Fotootof.Lib.HttpServer</Name>
+      <Name>Fotootof.HttpServer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

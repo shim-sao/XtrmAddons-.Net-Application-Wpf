@@ -70,15 +70,6 @@ namespace Fotootof.Layouts.Forms.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à FotootoF Users group.
-        /// </summary>
-        public static string WindowAclGroupFormTitle {
-            get {
-                return ResourceManager.GetString("WindowAclGroupFormTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à FotootoF Album.
         /// </summary>
         public static string WindowAlbumFormTitle {
@@ -93,6 +84,15 @@ namespace Fotootof.Layouts.Forms.Properties {
         public static string WindowClientFormTitle {
             get {
                 return ResourceManager.GetString("WindowClientFormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à FotootoF Users group.
+        /// </summary>
+        public static string WindowFormAclGroupLayoutTitle {
+            get {
+                return ResourceManager.GetString("WindowFormAclGroupLayoutTitle", resourceCulture);
             }
         }
         

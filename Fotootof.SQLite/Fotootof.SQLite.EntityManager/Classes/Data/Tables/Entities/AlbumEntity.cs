@@ -649,6 +649,50 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
 
 
 
+        #region Properties Dependency Storage
+
+        /// <summary>
+        /// Property Picture id.
+        /// </summary>
+        [NotMapped]
+        public int StorageId { get; set; }
+
+        /// <summary>
+        /// Propertiy to access to the list of Storage dependencies primary key.
+        /// </summary>
+        [NotMapped]
+        public ObservableCollection<int> StoragesPKs
+        {
+            get
+            {
+                StoragesInAlbums.Populate();
+                return StoragesInAlbums.DepPKeys;
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the list of Storages associated to the Album.
+        /// </summary>
+        [NotMapped]
+        public ObservableCollection<StorageEntity> Storages
+        {    
+            get
+            {
+                StoragesInAlbums.Populate();
+                return StoragesInAlbums.DepReferences;
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the collection of relationship Storages In Albums entities.
+        /// </summary>
+        public ObservableStoragesInAlbums<AlbumEntity, StorageEntity> StoragesInAlbums { get; set; }
+            = new ObservableStoragesInAlbums<AlbumEntity, StorageEntity>();
+
+        #endregion
+
+
+
         #region Properties Dependency Info
 
         /// <summary>

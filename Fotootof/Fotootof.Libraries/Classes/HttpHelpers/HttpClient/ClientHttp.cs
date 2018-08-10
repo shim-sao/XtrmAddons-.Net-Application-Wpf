@@ -8,7 +8,7 @@ using XtrmAddons.Net.Application.Serializable.Elements.Remote;
 using System.Threading.Tasks;
 using XtrmAddons.Net.Common.Extensions;
 using System.Reflection;
-using XtrmAddons.Fotootof.Lib.HttpClient;
+using Fotootof.HttpClient;
 using Fotootof.Libraries.Systems;
 using Fotootof.Layouts.Dialogs;
 

@@ -5,6 +5,7 @@ using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.SQLite.EntityManager.Managers
@@ -110,6 +111,44 @@ namespace Fotootof.SQLite.EntityManager.Managers
             }
 
             return default(SectionEntity);
+        }
+
+        /// <summary>
+        /// Method to update an Entity.
+        /// </summary>
+        /// <param name="entity">An Entity to update.</param>
+        /// <returns>The updated Entity.</returns>
+        public async Task<SectionEntity> UpdateAsync(SectionEntity entity)
+        {
+            // Remove Users In AclGroups dependencies.
+            if (entity.SectionsInAclGroups.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "SectionsInAclGroups", key = "SectionId", keyList = "AclGroupId" },
+                    entity.PrimaryKey,
+                    entity.SectionsInAclGroups.DepPKeysRemoved
+                );
+                entity.SectionsInAclGroups.DepPKeysRemoved.Clear();
+            }
+
+            // Remove Users In Albums dependencies.
+            if (entity.AlbumsInSections.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "AlbumsInSections", key = "SectionId", keyList = "AlbumId" },
+                    entity.PrimaryKey,
+                    entity.AlbumsInSections.DepPKeysRemoved
+                );
+                entity.AlbumsInSections.DepPKeysRemoved.Clear();
+            }
+
+            // Update item informations.
+            entity = Connector.Update(entity).Entity;
+
+            await SaveAsync();
+
+            // Return the updated item.
+            return entity;
         }
 
         #endregion

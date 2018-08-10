@@ -1,16 +1,16 @@
-﻿using Fotootof.Libraries.Models;
+﻿using Fotootof.Libraries.Controls;
 
 namespace Fotootof.Libraries.Components
 {
     /// <summary>
-    /// Class Fotootof Libraries Component component View Model.
+    /// Class XtrmAddons Fotootof Libraries Component View Model.
     /// </summary>
-    public class ComponentModel<T> : ModelBase<T>
+    public class ComponentModel<T> : ControlLayoutModel<T> where T : class
     {
         #region Constructor
 
         /// <summary>
-        /// Class Fotootof Libraries Component component View Model Constructor.
+        /// Class XtrmAddons Fotootof Libraries Component View Model Constructor.
         /// </summary>
         /// <param name="controlView">The <see cref="object"/> associated to the model.</param>
         public ComponentModel(T controlView) : base(controlView) { }

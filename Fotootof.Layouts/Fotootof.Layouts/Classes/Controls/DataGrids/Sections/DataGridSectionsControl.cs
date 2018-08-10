@@ -1,6 +1,8 @@
 ﻿using Fotootof.Collections.Entities;
 using Fotootof.Layouts.Dialogs;
+using Fotootof.Layouts.Forms.Section;
 using Fotootof.Libraries.Controls.DataGrids;
+using Fotootof.Libraries.Logs;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using System;
 using System.Windows;
@@ -20,7 +22,7 @@ namespace Fotootof.Layouts.Controls.DataGrids
         /// </summary>
         private static readonly log4net.ILog log =
         	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+
         #endregion
 
 
@@ -52,29 +54,29 @@ namespace Fotootof.Layouts.Controls.DataGrids
         /// <param name="e">Routed event arguments.</param>
         public override void AddItem_Click(object sender, RoutedEventArgs e)
         {
-            /*
             // Show open file dialog box 
-            WindowFormSectionLayout dlg = new WindowFormSectionLayout(new SectionEntity());
-            bool? result = dlg.ShowDialog();
+            using (WindowFormSectionLayout dlg = new WindowFormSectionLayout(new SectionEntity()))
+            {
+                bool? result = dlg.ShowDialog();
 
-            if(!dlg.Activate())
-            {
-                string message = "Sections edit file dialog box is busy. Please try again.";
-                log.Warn(message);
-                MessageBoxs.Warning(message);
-                dlg.Close();
-            }
+                if (!dlg.Activate())
+                {
+                    string message = "Sections edit file dialog box is busy. Please try again.";
+                    log.Warn(message);
+                    MessageBoxs.Warning(message);
+                    dlg.Close();
+                }
 
-            // Process open file dialog box results 
-            if (result == true)
-            {
-                NotifyAdded(dlg.NewForm);
+                // Process open file dialog box results 
+                if (result == true)
+                {
+                    NotifyAdded(dlg.NewForm);
+                }
+                else
+                {
+                    NotifyCanceled(dlg.NewForm);
+                }
             }
-            else
-            {
-                NotifyCanceled(dlg.NewForm);
-            }
-            */
         }
 
         /// <summary>
@@ -87,25 +89,25 @@ namespace Fotootof.Layouts.Controls.DataGrids
             // Check if an AclGroup is founded. 
             if (SelectedItem != null)
             {
-                /*
                 // Show open file dialog box 
-                WindowFormSectionLayout dlg = new WindowFormSectionLayout(SelectedItem);
-                bool? result = dlg.ShowDialog();
+                using (WindowFormSectionLayout dlg = new WindowFormSectionLayout(SelectedItem))
+                {
+                    bool? result = dlg.ShowDialog();
 
-                // Process open file dialog box results 
-                if (result == true)
-                {
-                    NotifyChanged(dlg.NewForm);
+                    // Process open file dialog box results 
+                    if (result == true)
+                    {
+                        NotifyChanged(dlg.NewForm);
+                    }
+                    else
+                    {
+                        NotifyCanceled(dlg.NewForm);
+                    }
                 }
-                else
-                {
-                    NotifyCanceled(dlg.NewForm);
-                }
-                */
             }
             else
             {
-                string message = string.Format("{0} not found !", nameof(SectionEntity));
+                string message = Exceptions.GetReferenceNull(nameof(SectionEntity), SelectedItem).Message;
                 log.Warn(message);
                 MessageBoxs.Warning(message);
             }
@@ -142,7 +144,7 @@ namespace Fotootof.Layouts.Controls.DataGrids
             }
             else
             {
-                string message = string.Format("{0} not found !", nameof(SectionEntity));
+                string message = Exceptions.GetReferenceNull(nameof(SectionEntity), SelectedItem).Message;
                 log.Warn(message);
                 MessageBoxs.Warning(message);
             }

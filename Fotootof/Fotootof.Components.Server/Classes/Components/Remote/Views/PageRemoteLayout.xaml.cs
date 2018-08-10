@@ -5,7 +5,7 @@ using System;
 using System.Globalization;
 using System.Windows;
 using XtrmAddons.Fotootof.Culture;
-using XtrmAddons.Fotootof.Lib.HttpServer;
+using Fotootof.HttpServer;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Windows.Tools;
 

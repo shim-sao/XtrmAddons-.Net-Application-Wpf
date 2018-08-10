@@ -1,11 +1,11 @@
-﻿using Fotootof.Libraries.Models;
+﻿using Fotootof.Libraries.Controls;
 
 namespace Fotootof.Libraries.Windows
 {
     /// <summary>
     /// Class Fotootof Libraries Window Model Base.
     /// </summary>
-    public class WindowLayoutModel<T> : ModelBase<T>
+    public class WindowLayoutModel<T> : ControlLayoutModel<T> where T : class
     {
         #region Constructor
 

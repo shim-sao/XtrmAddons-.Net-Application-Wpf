@@ -5,7 +5,7 @@ using Fotootof.SQLite.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using XtrmAddons.Fotootof.Lib.HttpServer;
+using Fotootof.HttpServer;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.HttpWebServer.Requests;
 using XtrmAddons.Net.HttpWebServer.Responses;

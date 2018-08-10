@@ -6,7 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Collections
@@ -34,7 +33,7 @@ namespace Fotootof.Collections
         /// Property wrapper to access to the main database connector.
         /// </summary>
         public static SQLiteSvc Db
-            => (SQLiteSvc)ApplicationSession.Properties.Database;
+            => SQLiteSvc.GetInstance();
 
         /// <summary>
         /// Property to access to the collection options filters.

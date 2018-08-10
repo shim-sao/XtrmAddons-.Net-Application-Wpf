@@ -34,12 +34,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="XtrmAddons.Net.Application">
@@ -61,6 +56,10 @@
     <ProjectReference Include="..\Fotootof.AddInsContracts.Interfaces\Fotootof.AddInsContracts.Interfaces.csproj">
       <Project>{fe2397a2-4b52-480e-833f-984f901a1ab6}</Project>
       <Name>Fotootof.AddInsContracts.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj">
+      <Project>{FC62EC35-A6A3-4391-9A01-26C159CE1FFD}</Project>
+      <Name>Fotootof.Libraries.Logs</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fotootof.Libraries\Fotootof.Libraries.csproj">
       <Project>{7D666EA6-7F61-4C3C-A112-E707072E9205}</Project>

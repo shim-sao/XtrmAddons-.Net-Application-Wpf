@@ -9,7 +9,7 @@ namespace Fotootof.Components.Server.Remote.Layouts
     /// Class XtrmAddons Fotootof Server Libraries Common Models DataGrids Sections.
     /// </summary>
     /// <typeparam name="T">The type of data grid control associated to the model.</typeparam>
-    public class DataGridHttpClientModel<T> : DataGridBaseModel<T, ObservableCollection<Client>>
+    public class DataGridHttpClientModel<T> : DataGridBaseModel<T, ObservableCollection<Client>> where T : class
     {
         #region Constructor
 

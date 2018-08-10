@@ -1,4 +1,4 @@
-﻿<base:ControlBase
+﻿<base:ControlLayout
     x:Class="Fotootof.Components.Server.Remote.Layouts.ServerInfosLayout"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -156,4 +156,4 @@
         </StackPanel>
     </Grid>
 
-</base:ControlBase>
+</base:ControlLayout>

@@ -10,7 +10,7 @@ namespace Fotootof.Components.Server.Remote.Layouts
     /// <summary>
     /// Logique d'interaction pour DatagridHttpClient.xaml
     /// </summary>
-    public partial class DatagridHttpClientLayout : ControlBase
+    public partial class DatagridHttpClientLayout : ControlLayout
     {
         #region Properties
 

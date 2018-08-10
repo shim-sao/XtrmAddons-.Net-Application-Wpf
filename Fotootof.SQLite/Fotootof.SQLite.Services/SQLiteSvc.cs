@@ -9,5 +9,9 @@ namespace Fotootof.SQLite.Services
         // Main Service contract
         [OperationContract(Name = "Contract")]
         void Main();
+
+        // Main Service contract
+        //[OperationContract(Name = "GetInstance")]
+        // SQLiteSvc GetInstance();
     }
 }

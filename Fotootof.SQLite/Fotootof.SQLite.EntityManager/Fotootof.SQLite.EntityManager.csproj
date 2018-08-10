@@ -61,6 +61,8 @@
     <Compile Include="Classes\Data\Base\ObservableDependencyBase.cs" />
     <Compile Include="Classes\Data\Tables\Dependencies\AclGroupsInAclActions.cs" />
     <Compile Include="Classes\Data\Tables\Dependencies\AlbumsInSections.cs" />
+    <Compile Include="Classes\Data\Tables\Dependencies\Observables\ObservableStoragesInAlbum.cs" />
+    <Compile Include="Classes\Data\Tables\Dependencies\StoragesInAlbums.cs" />
     <Compile Include="Classes\Data\Tables\Dependencies\InfosInAlbums.cs" />
     <Compile Include="Classes\Data\Tables\Dependencies\InfosInPictures.cs" />
     <Compile Include="Classes\Data\Tables\Dependencies\Observables\ObservableAclGroupsInAclActions.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Classes\Data\Tables\Entities\AclGroupEntity.cs" />
     <Compile Include="Classes\Data\Tables\Entities\AlbumEntity.cs" />
     <Compile Include="Classes\Data\Tables\Entities\CommonEntity.cs" />
+    <Compile Include="Classes\Data\Tables\Entities\StorageEntity.cs" />
     <Compile Include="Classes\Data\Tables\Entities\InfoEntity.cs" />
     <Compile Include="Classes\Data\Tables\Entities\InfoTypeEntity.cs" />
     <Compile Include="Classes\Data\Tables\Entities\PictureEntity.cs" />

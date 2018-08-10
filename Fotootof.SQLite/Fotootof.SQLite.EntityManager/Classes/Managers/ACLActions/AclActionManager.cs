@@ -202,7 +202,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
             {
                 log.Error("SQLite Initializing Table `AclActions`. Exception.");
                 log.Error(ex.Output(), ex);
-                throw ex;
+                throw;
             }
         }
 

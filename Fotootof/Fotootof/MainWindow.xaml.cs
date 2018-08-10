@@ -1,7 +1,6 @@
 ﻿using Fotootof.Components.Server.Logs;
 using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Logs.Log4net;
-using Fotootof.Libraries.Systems;
 using Fotootof.SQLite.Services;
 using Fotootof.Theme;
 using System;
@@ -9,7 +8,6 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.NotifyIcons;
 
@@ -79,17 +77,13 @@ namespace Fotootof
         /// </summary>
         public MainWindow()
         {
-            // Merge application culture translation resources.
-            Resources.MergedDictionaries.Add(XtrmAddons.Fotootof.Culture.Translation.Words);
-            Resources.MergedDictionaries.Add(XtrmAddons.Fotootof.Culture.Translation.Logs);
-
             // Merge dynamic custom 
             ThemeLoader.MergeThemeTo(Resources, false);
 
             // Initialize window component.
             InitializeComponent();
 
-            log.Info(Translation.DLogs.InitializingApplicationWindowComponentDone);
+            log.Info(Local.Properties.Logs.InitializingApplicationWindowComponent);
 
             // Main Window to application session.
             ApplicationSession.Properties.MainWindow = this;
@@ -140,7 +134,7 @@ namespace Fotootof
 
             // Add application to system tray.
             NotifyIconManager.AddToTray();
-            log.Info(XtrmAddons.Fotootof.Culture.Translation.DLogs.AddingApplicationToSystemTrayDone);
+            log.Info(Local.Properties.Logs.ApplicationToSystemTray);
 
             // Add application log watcher event handler.
             AppLogger.UpdateLogTextbox(logWatcher.LogContent);
@@ -161,7 +155,7 @@ namespace Fotootof
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             NotifyIconManager.Dispose();
-            log.Info(string.Format(Translation.DLogs.WindowClosing, GetType().Name));
+            log.Info(string.Format(Local.Properties.Logs.WindowClosing, GetType().Name));
         }
 
         /// <summary>

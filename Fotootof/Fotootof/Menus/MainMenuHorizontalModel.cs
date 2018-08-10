@@ -1,15 +1,15 @@
-﻿using Fotootof.Libraries.HttpHelpers.HttpServer;
-using Fotootof.Libraries.Models;
+﻿using Fotootof.HttpServer;
+using Fotootof.Libraries.Controls;
+using Fotootof.Libraries.HttpHelpers.HttpServer;
 using System;
 using System.Windows.Controls;
-using XtrmAddons.Fotootof.Lib.HttpServer;
 
 namespace Fotootof.Menus
 {
     /// <summary>
     /// Class Fotootof Main Menu Horizontal Model.
     /// </summary>
-    public class MainMenuHorizontalModel : ModelBase<MainMenuHorizontalLayout>
+    public class MainMenuHorizontalModel : ControlLayoutModel<MainMenuHorizontalLayout>
     {
         #region Variables
 
@@ -24,16 +24,16 @@ namespace Fotootof.Menus
         /// </summary>
         public bool isServerStarted;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private Grid moduleContainer = new Grid();
+
         #endregion
 
 
 
         #region Properties
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private Grid moduleContainer = new Grid();
 
         /// <summary>
         /// 
@@ -87,6 +87,17 @@ namespace Fotootof.Menus
         /// <summary>
         /// Class Fotootof Main Menu Horizontal Model Constructor.
         /// </summary>
+        public MainMenuHorizontalModel()
+        {
+            HttpServerBase.NotifyServerStartedHandlerOnce += HttpServerBase_NotifyServerHandlerOnce;
+            HttpServerBase.NotifyServerStoppedHandlerOnce += HttpServerBase_NotifyServerHandlerOnce;
+            IsServerStarted = HttpWebServerApplication.IsStarted;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="controlView"></param>
         public MainMenuHorizontalModel(MainMenuHorizontalLayout controlView) : base(controlView)
         {
             HttpServerBase.NotifyServerStartedHandlerOnce += HttpServerBase_NotifyServerHandlerOnce;
@@ -95,6 +106,7 @@ namespace Fotootof.Menus
         }
 
         #endregion
+
 
 
         #region Methods
@@ -107,6 +119,52 @@ namespace Fotootof.Menus
         private void HttpServerBase_NotifyServerHandlerOnce(object sender, EventArgs e)
         {
             IsServerStarted = HttpWebServerApplication.IsStarted;
+        }
+
+        #endregion
+
+
+
+        #region IDisposable
+
+        /// <summary>
+        /// Variable to track whether Dispose has been called.
+        /// </summary>
+        private bool disposed = false;
+
+        /// <summary>
+        /// Dispose(bool disposing) executes in two distinct scenarios.
+        /// If disposing equals true, the method has been called directly
+        /// or indirectly by a user's code. Managed and unmanaged resources
+        /// can be disposed.
+        /// If disposing equals false, the method has been called by the
+        /// runtime from inside the finalizer and you should not reference
+        /// other objects. Only unmanaged resources can be disposed.
+        /// </summary>
+        /// <param name="disposing">Track whether Dispose has been called.</param>
+        protected override void Dispose(bool disposing)
+        {
+            // Check to see if Dispose has already been called.
+            if (!disposed)
+            {
+                // If disposing equals true, dispose all managed
+                // and unmanaged resources.
+                if (disposing)
+                {
+                    // Dispose managed resources.
+                    ModuleContainer = null;
+                }
+
+                // Call the appropriate methods to clean up unmanaged resources here.
+                // If disposing is false, only the following code is executed.
+
+
+                // Note disposing has been done.
+                disposed = true;
+
+                // Call base class implementation.
+                base.Dispose(disposing);
+            }
         }
 
         #endregion

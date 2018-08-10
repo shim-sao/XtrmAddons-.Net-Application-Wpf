@@ -1,7 +1,7 @@
 ﻿using Fotootof.Libraries.Controls;
 using Fotootof.Libraries.HttpHelpers.HttpServer;
 using System.Windows;
-using XtrmAddons.Fotootof.Lib.HttpServer;
+using Fotootof.HttpServer;
 using XtrmAddons.Net.Application;
 
 namespace Fotootof.Components.Server.Remote.Layouts
@@ -9,7 +9,7 @@ namespace Fotootof.Components.Server.Remote.Layouts
     /// <summary>
     /// Class XtrmAddons Fotootof Server UI Control Server Infos User Control.
     /// </summary>
-    public partial class ServerInfosLayout : ControlBase
+    public partial class ServerInfosLayout : ControlLayout
     {
         #region Properties
 
