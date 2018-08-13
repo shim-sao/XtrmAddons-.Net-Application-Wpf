@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Fotootof.SQLite.Services.QueryManagers
 {
     /// <summary>
-    /// Class Fotootof.SQLite.Services.
+    /// Class XtrmAddons Fotootof SQLite Services Query Manager AclGroup.
     /// </summary>
     public partial class QuerierAclGroup : Queriers
     {
@@ -42,11 +42,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Select
 
         /// <summary>
-        /// Method to select an AclGroup entity.
+        /// Method to select an <see cref="AclGroupEntity"/>.
         /// </summary>
-        /// <param name="op">AclGroup entities select options to perform query.</param>
-        /// <returns>An AclGroup entity or null if not found.</returns>
-
+        /// <param name="op"><see cref="AclGroupOptionsSelect"/> options to perform query.</param>
+        /// <returns>An <see cref="AclGroupEntity"/> or null if not found.</returns>
         public AclGroupEntity SingleOrNull(AclGroupOptionsSelect op)
         {
             using (Db.Context)
@@ -56,11 +55,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// Method to select asynchronously an AclGroup entity.
+        /// Method to select an <see cref="AclGroupEntity"/> asynchronously.
         /// </summary>
-        /// <param name="op">AclGroup entities select options to perform query.</param>
-        /// <returns>An AclGroup entity or null if not found.</returns>
-
+        /// <param name="op"><see cref="AclGroupOptionsSelect"/> options to perform query.</param>
+        /// <returns>An <see cref="AclGroupEntity"/> or null if not found.</returns>
         public Task<AclGroupEntity> SingleOrNull_Async(AclGroupOptionsSelect op)
         {
             return Task.Run(() =>
@@ -70,11 +68,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// Method to select an AclGroup entity.
+        /// Method to select an <see cref="AclGroupEntity"/>.
         /// </summary>
-        /// <param name="op">AclGroup entities select options to perform query.</param>
-        /// <returns>An AclGroup entity or null if not found.</returns>
-
+        /// <param name="op"><see cref="AclGroupOptionsSelect"/> options to perform query.</param>
+        /// <returns>An <see cref="AclGroupEntity"/> or null if not found.</returns>
         public AclGroupEntity SingleOrDefault(AclGroupOptionsSelect op)
         {
             using (Db.Context)
@@ -84,11 +81,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// Method to select asynchronously an AclGroup entity.
+        /// Method to select an <see cref="AclGroupEntity"/> asynchronously.
         /// </summary>
-        /// <param name="op">AclGroup entities select options to perform query.</param>
-        /// <returns>An AclGroup entity or null if not found.</returns>
-
+        /// <param name="op"><see cref="AclGroupOptionsSelect"/> options to perform query.</param>
+        /// <returns>An <see cref="AclGroupEntity"/> or null if not found.</returns>
         public Task<AclGroupEntity> SingleOrDefault_Async(AclGroupOptionsSelect op)
             => Task.Run(() => SingleOrDefault(op));
 
@@ -99,10 +95,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Add
 
         /// <summary>
-        /// Method to add new AclGroup.
+        /// Method to add new <see cref="AclGroupEntity"/>.
         /// </summary>
-        /// <param name="AclGroup">The AclGroup entity to add.</param>
-        /// <returns>The added AclGroup entity.</returns>
+        /// <param name="AclGroup">The <see cref="AclGroupEntity"/> to add.</param>
+        /// <returns>The added <see cref="AclGroupEntity"/>.</returns>
         public AclGroupEntity Add(AclGroupEntity entity)
         {
             using (Db.Context)
@@ -119,17 +115,12 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// Method to add new AclGroup asynchronous.
+        /// Method to add new <see cref="AclGroupEntity"/> asynchronously.
         /// </summary>
-        /// <param name="AclGroup">The AclGroup entity to add.</param>
-        /// <returns>The added AclGroup entity.</returns>
-        public Task<AclGroupEntity> Add_Async(AclGroupEntity entity)
-        {
-            return Task.Run(() =>
-            {
-                return Add(entity);
-            });
-        }
+        /// <param name="AclGroup">The <see cref="AclGroupEntity"/> to add.</param>
+        /// <returns>The added <see cref="AclGroupEntity"/>.</returns>
+        public Task<AclGroupEntity> AddAsync(AclGroupEntity entity)
+            => Task.Run(() => { return Add(entity); });
 
         #endregion
 
@@ -138,10 +129,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Delete
 
         /// <summary>
-        /// 
+        /// Method to delete an <see cref="AclGroupEntity"/>.
         /// </summary>
-        /// <param name="AclGroupId"></param>
-        /// <returns></returns>
+        /// <param name="aclGroupId">An <see cref="AclGroupEntity"/> primary key.</param>
+        /// <returns>The deleted <see cref="AclGroupEntity"/>.</returns>
         public AclGroupEntity Delete(int alGroupId)
         {
             AclGroupEntity item = SingleOrNull(new AclGroupOptionsSelect { PrimaryKey = alGroupId });
@@ -155,18 +146,12 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// 
+        /// Method to delete an <see cref="AclGroupEntity"/> asynchronously.
         /// </summary>
-        /// <param name="AclGroupId"></param>
-        /// <returns></returns>
-
-        public Task<AclGroupEntity> Delete_Async(int aclGroupId)
-        {
-            return Task.Run(() =>
-            {
-                return Delete(aclGroupId);
-            });
-        }
+        /// <param name="aclGroupId">An <see cref="AclGroupEntity"/> primary key.</param>
+        /// <returns>The deleted <see cref="AclGroupEntity"/>.</returns>
+        public Task<AclGroupEntity> DeleteAsync(int aclGroupId)
+            => Task.Run(() => { return Delete(aclGroupId); });
 
         #endregion
 
@@ -175,12 +160,11 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Update
 
         /// <summary>
-        /// Method to update an AclGroup.
+        /// Method to update an <see cref="AclGroupEntity"/>.
         /// </summary>
-        /// <param name="AclGroup">The AclGroup Entity</param>
-        /// <param name="save">Save database context changes ?</param>
-        /// <returns>The updated AclGroup entity.</returns>
-        public async Task<AclGroupEntity> Update_Async(AclGroupEntity entity, bool save = true)
+        /// <param name="entity">The AclGroup Entity</param>
+        /// <returns>The updated <see cref="AclGroupEntity"/>.</returns>
+        public async Task<AclGroupEntity> UpdateAsync(AclGroupEntity entity)
         {
             using (Db.Context)
             {
@@ -205,9 +189,9 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// Method to set default AclGroup.
+        /// Method to set default <see cref="AclGroupEntity"/>.
         /// </summary>
-        /// <param name="entityPK">A AclGroup primary key.</param>
+        /// <param name="entityPK">A <see cref="AclGroupEntity"/> primary key.</param>
         public async void SetDefault(int entityPK)
         {
             using (Db.Context)
@@ -230,6 +214,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         /// <param name="aclGroupId"></param>
         /// <param name="dependenciesPKs"></param>
         /// <returns></returns>
+        [System.Obsolete("")]
         public async Task<int> CleanDependencies_Async(string dependencyName, string dependencyPKName, int aclGroupId, IEnumerable<int> dependenciesPKs)
         {
             using (Db.Context)

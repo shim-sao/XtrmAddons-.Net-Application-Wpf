@@ -11,25 +11,28 @@ using XtrmAddons.Net.Picture.Extensions;
 namespace Fotootof.Components.Server.Browser.Layouts.Helpers
 {
     /// <summary>
-    /// 
+    /// Class Fotootof Components Server Browser Layouts Helper Tree View Item Directory Info.
     /// </summary>
     internal class TreeViewItemDirectoryInfo : TreeViewItem
     {
         #region Variables
-        
+
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
         	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+
         #endregion
 
 
+
+        #region Constructor
+
         /// <summary>
-        /// 
+        /// Class Fotootof Components Server Browser Layouts Helper Tree View Item Directory Info Constructor.
         /// </summary>
-        /// <param name="di"></param>
+        /// <param name="di">A <see cref="DirectoryInfo"/> create as <see cref="TreeViewItem"/>.</param>
         public TreeViewItemDirectoryInfo(DirectoryInfo di)
         {
             // Get the icon image of the Drive.
@@ -108,5 +111,8 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
 
             Items.Add("Loading...");
         }
+
+        #endregion
+
     }
 }

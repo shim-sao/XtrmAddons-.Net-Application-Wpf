@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,7 +34,7 @@ namespace Fotootof.Components.Server.Album.Layouts
         /// </summary>
         private static readonly log4net.ILog log =
         	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+
         #endregion
 
 
@@ -41,12 +42,21 @@ namespace Fotootof.Components.Server.Album.Layouts
         #region Properties
 
         /// <summary>
-        /// Property to access to the main items data grid.
+        /// Property to access to the <see cref="ListViewPicturesModel"/> of the layout.
         /// </summary>
-        public AlbumEntity AlbumEntity { get => (AlbumEntity)GetValue(propertyAlbumEntity); set => SetValue(propertyAlbumEntity, value); }
+        internal ListViewPicturesModel Model { get; private set; }
 
         /// <summary>
-        /// Property Using a DependencyProperty as the backing store for Entities.
+        /// Property to access to the <see cref="AlbumEntity"/>.
+        /// </summary>
+        public AlbumEntity AlbumEntity
+        {
+            get => (AlbumEntity)GetValue(propertyAlbumEntity);
+            set => SetValue(propertyAlbumEntity, value);
+        }
+
+        /// <summary>
+        /// Property Using a <see cref="DependencyProperty"/> as the backing store for <see cref="AlbumEntity"/>.
         /// </summary>
         public static readonly DependencyProperty propertyAlbumEntity =
             DependencyProperty.Register
@@ -78,6 +88,17 @@ namespace Fotootof.Components.Server.Album.Layouts
         public ListViewPicturesLayout()
         {
             InitializeComponent();
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Control_Loaded(object sender, RoutedEventArgs e)
+        {
+            Model = new ListViewPicturesModel(this);
         }
 
         #endregion
@@ -210,23 +231,33 @@ namespace Fotootof.Components.Server.Album.Layouts
                 MessageBoxs.IsBusy = true;
                 log.Warn("Starting deleting Picture(s). Please wait...");
 
-                // Delete item from database.
-                //var pictDeleted = await PictureEntityCollection.DbDeleteAsync(SelectedItems);
-
                 // Important : No need to defer for list view items refresh.
                 log.Warn("Updating Picture(s) list view items...");
-
-                /*foreach (PictureEntity item in SelectedItems)
+                
+                if (log.IsDebugEnabled)
                 {
-                     AlbumEntity.UnLinkPicture(item.PrimaryKey);
-                }*/
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : AlbumEntity.PicturesInAlbums = {AlbumEntity?.PicturesInAlbums?.Count ?? 0}");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : AlbumEntity.PicturesInAlbums.DepPKeys.Count = {AlbumEntity?.PicturesInAlbums?.DepPKeys?.Count ?? 0}");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : AlbumEntity.PicturesInAlbums.DepPKeysRemoved.Count = {AlbumEntity?.PicturesInAlbums?.DepPKeysRemoved?.Count ?? 0}");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : AlbumEntity.PicturesInAlbums.DepReferences.Count = {AlbumEntity?.PicturesInAlbums?.DepReferences?.Count ?? 0}");
+                }
 
+                // Removing Picture the dependency from the Album.
                 foreach (PictureEntity item in SelectedItems)
                 {
+                    AlbumEntity.PicturesPKs.Remove(item.PrimaryKey);
                     AlbumEntity.Pictures.Remove(item);
                 }
 
+                if (log.IsDebugEnabled)
+                {
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : AlbumEntity.PicturesInAlbums = {AlbumEntity?.PicturesInAlbums?.Count ?? 0}");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : AlbumEntity.PicturesInAlbums.DepPKeys.Count = {AlbumEntity?.PicturesInAlbums?.DepPKeys?.Count ?? 0}");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : AlbumEntity.PicturesInAlbums.DepPKeysRemoved.Count = {AlbumEntity?.PicturesInAlbums?.DepPKeysRemoved?.Count ?? 0}");
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : AlbumEntity.PicturesInAlbums.DepReferences.Count = {AlbumEntity?.PicturesInAlbums?.DepReferences?.Count ?? 0}");
+                }
 
+                // Saving new album informations into the database.
                 AlbumEntity = (await AlbumEntityCollection.DbUpdateAsync(AlbumEntity, AlbumEntity))[0];
                 
                 // Refresh of the list view items source.
@@ -249,21 +280,28 @@ namespace Fotootof.Components.Server.Album.Layouts
         }
 
         /// <summary>
-        /// 
+        /// Method called on collection item mouse double click event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The Mouse button event arguments <see cref="MouseButtonEventArgs"/></param>
         private async void ItemsCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            PictureEntity pict = ItemsCollection.SelectedItem as PictureEntity;
-
-            WindowSlideshowLayout ws = new WindowSlideshowLayout(Items, pict);
-            ws.Show();
-            ws.Activate();
-            ws.Topmost = true;
-            await Task.Delay(10);
-            ws.Topmost = false;
-            ws.Focus();
+           if(ItemsCollection.SelectedItem is PictureEntity pict)
+            {
+                WindowSlideshowLayout ws = new WindowSlideshowLayout(Items, pict);
+                ws.Show();
+                ws.Activate();
+                ws.Topmost = true;
+                await Task.Delay(10);
+                ws.Topmost = false;
+                ws.Focus();
+            }
+            else
+            {
+                NullReferenceException ex = Exceptions.GetReferenceNull(nameof(ItemsCollection.SelectedItem), ItemsCollection.SelectedItem);
+                log.Debug(ex);
+                MessageBoxs.Error(ex);
+            }
         }
 
         /// <summary>
@@ -296,19 +334,19 @@ namespace Fotootof.Components.Server.Album.Layouts
                 if (!pe.OriginalPath.IsNullOrWhiteSpace() && !File.Exists(pe.OriginalPath))
                 {
                     log.Info($"OriginalPath : {pe.OriginalPath}");
-                    IsChanged = DirSearch(pe, "OriginalPath", fileName);
+                    IsChanged = Model.DirSearch(pe, "OriginalPath", fileName);
                 }
 
                 if (!pe.PicturePath.IsNullOrWhiteSpace() && !File.Exists(pe.PicturePath))
                 {
                     log.Info($"PicturePath : {pe.PicturePath}");
-                    IsChanged = DirSearch(pe, "PicturePath", fileName);
+                    IsChanged = Model.DirSearch(pe, "PicturePath", fileName);
                 }
 
                 if (!pe.ThumbnailPath.IsNullOrWhiteSpace() && !File.Exists(pe.ThumbnailPath))
                 {
                     log.Info($"ThumbnailPath : {pe.ThumbnailPath}");
-                    IsChanged = DirSearch(pe, "ThumbnailPath", fileName);
+                    IsChanged = Model.DirSearch(pe, "ThumbnailPath", fileName);
                 }
 
                 if (pe.OriginalPath.IsNullOrWhiteSpace())
@@ -346,96 +384,6 @@ namespace Fotootof.Components.Server.Album.Layouts
 
             log.Info("Saving pictures list. Done...");
             MessageBoxs.IsBusy = false;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pe"></param>
-        /// <param name="propertyPathName"></param>
-        /// <param name="SelectedPath"></param>
-        /// <returns></returns>
-        private bool DirSearch(PictureEntity pe, string propertyPathName, string SelectedPath)
-        {
-            if(FileSearch(pe, propertyPathName, SelectedPath))
-            {
-                return true;
-            }
-
-            /*
-             * Search on all drives : to be optimize something like that.
-             * 
-            string root = Path.GetPathRoot((string)pe.GetPropertyValue(propertyPathName));
-            Trace.TraceInformation(root);
-
-            if (FileSearch(pe, propertyPathName, root))
-            {
-                return true;
-            }
-
-            foreach (DriveInfo di in DriveInfo.GetDrives())
-            {
-                if(di.Name == root)
-                {
-                    continue;
-                }
-
-                Trace.TraceInformation(di.Name);
-                return FileSearch(pe, propertyPathName, di.Name);
-            }
-            */
-
-            return false;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pe"></param>
-        /// <param name="propertyPathName"></param>
-        /// <param name="sDir"></param>
-        /// <returns></returns>
-        private bool FileSearch(PictureEntity pe, string propertyPathName, string sDir)
-        {
-            bool IsChanged = false;
-
-            try
-            {
-                string filename = Path.Combine(sDir, Path.GetFileName(pe.GetPropertyValue(propertyPathName).ToString()));
-
-                log.Info(string.Format("Searching Picture : {0}", filename));
-                Trace.TraceInformation(filename);
-
-                if (File.Exists(filename))
-                {
-                    FileInfo fi = new FileInfo(filename);
-                    string lProp = propertyPathName.Replace("Path", "Length");
-                    long? l = (long)pe.GetPropertyValue(lProp);
-
-                    if (l == null || l == 0 || fi.Length == l)
-                    {
-                        pe.SetPropertyValue(propertyPathName, fi.FullName);
-                        pe.SetPropertyValue(lProp, fi.Length);
-                        return true;
-                    }
-                }
-
-                foreach (string d in Directory.GetDirectories(sDir))
-                {
-                    IsChanged = FileSearch(pe, propertyPathName, d);
-                }
-            }
-            catch (UnauthorizedAccessException uae)
-            {
-                log.Info(uae.Message);
-            }
-            catch (Exception e)
-            {
-                log.Error(e);
-                MessageBoxs.Error(string.Format("Searching Picture {0} failed !\n\r {1}", propertyPathName, e.Message));
-            }
-
-            return IsChanged;
         }
 
         /// <summary>
@@ -486,8 +434,6 @@ namespace Fotootof.Components.Server.Album.Layouts
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             base.ItemsCollection_SelectionChanged(sender, e);
-
-            //((TextBlock)FindName("Counter_SelectedNumber")).Text = SelectedItems.Count.ToString();
         }
 
         #endregion
@@ -512,7 +458,7 @@ namespace Fotootof.Components.Server.Album.Layouts
         /// </summary>
         private void ArrangeBlockRoot()
         {
-            var blockRoot = FindName("GridBlockRootName") as FrameworkElement;
+            var blockRoot = (FrameworkElement)FindName("GridBlockRootName");
             blockRoot.Arrange(new Rect(new Size(ActualWidth, ActualHeight)));
             DebugTraceSize(blockRoot);
         }
@@ -522,8 +468,8 @@ namespace Fotootof.Components.Server.Album.Layouts
         /// </summary>
         private void ArrangeBlockItems()
         {
-            var blockHeader = FindName("StackPanelBlockHeaderName") as FrameworkElement;
-            var blockItems = FindName("GridBlockItemsName") as FrameworkElement;
+            var blockHeader = (FrameworkElement)FindName("StackPanelBlockHeaderName");
+            var blockItems = (FrameworkElement)FindName("GridBlockItemsName");
 
             double height = Math.Max(ActualHeight - blockHeader.RenderSize.Height, 0);
 

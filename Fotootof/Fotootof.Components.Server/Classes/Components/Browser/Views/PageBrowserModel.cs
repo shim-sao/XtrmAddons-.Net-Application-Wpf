@@ -14,26 +14,26 @@ using ImgSize = Fotootof.Libraries.Enums.ImageSize;
 namespace Fotootof.Components.Server.Browser
 {
     /// <summary>
-    /// <para>Class XtrmAddons Fotootof Server Side Component Browser View Model.</para>
+    /// Class XtrmAddons Fotootof Server Components Browser Model.
     /// </summary>
     internal class PageBrowserModel : ComponentModel<PageBrowserLayout>
     {
         #region Variables
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// Variable to store the thumbnail image size to display. Vignette by default.
+        /// Variable to store the thumbnail image <see cref="Size"/> to display. Vignette by default.
         /// </summary>
         public Size imageSize
             = new Size { Height = ImgSize.Vignette.ToDouble(), Width = ImgSize.Vignette.ToDouble() };
 
         /// <summary>
-        /// Variable collection of directories and files informations.
+        /// Variable <see cref="CollectionStorage"/> collection of directories and files informations.
         /// </summary>
         private CollectionStorage filesCollection;
 
@@ -75,7 +75,7 @@ namespace Fotootof.Components.Server.Browser
         }
 
         /// <summary>
-        /// Property to access to the image size to display.
+        /// Property to access to the image <see cref="Size"/> to display.
         /// </summary>
         public Size ImageSize
         {
@@ -91,7 +91,7 @@ namespace Fotootof.Components.Server.Browser
         }
 
         /// <summary>
-        /// Property to access to the collection of directories and files informations.
+        /// Property to access to the <see cref="CollectionStorage"/> collection of directories and files informations.
         /// </summary>
         public CollectionStorage FilesCollection
         {
@@ -113,9 +113,9 @@ namespace Fotootof.Components.Server.Browser
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Component Page Browser Model Constructor.
+        /// Class XtrmAddons Fotootof Server Components Browser Model Constructor.
         /// </summary>
-        /// <param name="controlView"></param>
+        /// <param name="controlView">The <see cref="object"/> associated to the model.</param>
         public PageBrowserModel(PageBrowserLayout controlView) : base(controlView) { }
 
         #endregion
@@ -172,9 +172,9 @@ namespace Fotootof.Components.Server.Browser
 
 
         /// <summary>
-        /// Method to load files informations.
+        /// Method to load directories informations <see cref="DirectoryInfo"/> into the files collection.
         /// </summary>
-        /// <param name="dirInfos">A list of files</param>
+        /// <param name="dirInfos">An array of directories informations <see cref="DirectoryInfo"/>.</param>
         public void LoadDirectoriesInfo(DirectoryInfo[] dirInfos)
         {
             if (dirInfos == null)
@@ -190,9 +190,9 @@ namespace Fotootof.Components.Server.Browser
         }
 
         /// <summary>
-        /// Method to load files informations.
+        /// Method to load files informations <see cref="FileInfo"/> into the files collection.
         /// </summary>
-        /// <param name="infoFiles">A list of files</param>
+        /// <param name="infoFiles">An array of files informations <see cref="FileInfo"/>.</param>
         public void LoadFilesInfo(FileInfo[] infoFiles)
         {
             if (infoFiles == null)
@@ -215,7 +215,7 @@ namespace Fotootof.Components.Server.Browser
         }
 
         /// <summary>
-        /// 
+        /// Method to load informations of a directory <see cref="DirectoryInfo"/>.
         /// </summary>
         public void LoadInfos()
         {
@@ -231,12 +231,13 @@ namespace Fotootof.Components.Server.Browser
         }
 
         /// <summary>
-        /// 
+        /// Method to get an array of sub <see cref="FileInfo"/> in a <see langword="abstract"/><see cref="DirectoryInfo"/>.
         /// </summary>
-        /// <param name="dirInfo"></param>
-        /// <param name="option"></param>
+        /// <param name="dirInfo">A <see cref="DirectoryInfo"/>.</param>
+        /// <param name="option">The directory search options <see cref="SearchOption"/>.</param>
+        /// <param name="pattern">The files pattern to search.</param>
         /// <returns></returns>
-        public FileInfo[] GetInfoFiles(DirectoryInfo dirInfo, SearchOption option = SearchOption.TopDirectoryOnly)
+        public FileInfo[] GetInfoFiles(DirectoryInfo dirInfo, SearchOption option = SearchOption.TopDirectoryOnly, string pattern = "*.*")
         {
             FileInfo[] info = null;
 
@@ -244,7 +245,7 @@ namespace Fotootof.Components.Server.Browser
             {
                 try
                 {
-                    info = dirInfo.GetFiles("*.*", SearchOption.TopDirectoryOnly);
+                    info = dirInfo.GetFiles(pattern, SearchOption.TopDirectoryOnly);
                 }
                 catch (Exception e)
                 {
@@ -257,10 +258,10 @@ namespace Fotootof.Components.Server.Browser
         }
 
         /// <summary>
-        /// 
+        /// Method to get an array of sub <see cref="DirectoryInfo"/> in a <see langword="abstract"/><see cref="DirectoryInfo"/>.
         /// </summary>
-        /// <param name="dirInfo"></param>
-        /// <returns></returns>
+        /// <param name="dirInfo">A <see cref="DirectoryInfo"/>.</param>
+        /// <returns>An array of <see cref="DirectoryInfo"/> or null.</returns>
         public DirectoryInfo[] GetInfoDirectories(DirectoryInfo dirInfo)
         {
             DirectoryInfo[] info = null;
@@ -282,9 +283,9 @@ namespace Fotootof.Components.Server.Browser
         }
 
         /// <summary>
-        /// Method to display header title of directory.
+        /// Method to display the header title of a directory.
         /// </summary>
-        /// <param name="dirInfo">A directory info.</param>
+        /// <param name="dirInfo">A <see cref="DirectoryInfo"/>.</param>
         public string GetText(object dirInfo)
         {
             if (dirInfo != null)

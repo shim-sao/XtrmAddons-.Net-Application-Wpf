@@ -11,7 +11,7 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.SQLite.EntityManager.Managers
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Lib SQLite Versions Entities Manager.
+    /// Class XtrmAddons Fotootof SQLite Entities Manager Versions.
     /// </summary>
     public partial class VersionManager : EntitiesManager
     {
@@ -30,9 +30,9 @@ namespace Fotootof.SQLite.EntityManager.Managers
         #region Constructors
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Libraries SQLite Users Entities Manager Constructor.
+        /// Class XtrmAddons Fotootof SQLite Entities Manager Users Constructor.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">A database connector <see cref="DatabaseContextCore"/></param>
         public VersionManager(DatabaseContextCore context) : base(context) { }
 
         #endregion

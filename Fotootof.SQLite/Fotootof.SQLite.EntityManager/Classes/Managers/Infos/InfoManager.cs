@@ -9,7 +9,7 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.SQLite.EntityManager.Managers
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite Info Types Entities Manager.
+    /// Class XtrmAddons Fotootof SQLite Entities Manager Info.
     /// </summary>
     public partial class InfoManager : EntitiesManager
     {
@@ -20,7 +20,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// </summary>
         private static readonly log4net.ILog log =
         	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+
         #endregion
 
 
@@ -28,9 +28,9 @@ namespace Fotootof.SQLite.EntityManager.Managers
         #region Constructors
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Libraries SQLite Infos Entities Manager Constructor.
+        /// Class XtrmAddons Fotootof SQLite Entities Manager Constructor.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">A database connector <see cref="DatabaseContextCore"/></param>
         public InfoManager(DatabaseContextCore context) : base(context) { }
 
         #endregion

@@ -12,18 +12,18 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.SQLite.EntityManager.Managers
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite Users Entities Manager.
+    /// Class XtrmAddons Fotootof SQLite Entity Manager Users.
     /// </summary>
     public partial class UserManager : EntitiesManager
     {
         #region Variables
-        
+
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
         	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+
         #endregion
 
 
@@ -31,9 +31,9 @@ namespace Fotootof.SQLite.EntityManager.Managers
         #region Constructors
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Libraries SQLite Users Entities Manager Constructor.
+        /// Class XtrmAddons Fotootof SQLite Entity Manager Users Constructor.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">A database connector <see cref="DatabaseContextCore"/></param>
         public UserManager(DatabaseContextCore context) : base(context) { }
 
         #endregion
@@ -169,15 +169,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         public async Task<UserEntity> UpdateAsync(UserEntity entity)
         {
             // Remove Users In AclGroups dependencies.
-            if (entity.UsersInAclGroups.DepPKeysRemoved.Count > 0)
-            { 
-                await DeleteDependencyAsync(
-                    new EntityManagerDeleteDependency { Name = "UsersInAclGroups", key = "UserId", keyList = "AclGroupId" },
-                    entity.PrimaryKey,
-                    entity.UsersInAclGroups.DepPKeysRemoved
-                );
-                entity.UsersInAclGroups.DepPKeysRemoved.Clear();
-            }
+            DeleteDependencyAclGroups(entity);
 
             // Update item informations.
             entity = Connector.Update(entity).Entity;
@@ -186,6 +178,24 @@ namespace Fotootof.SQLite.EntityManager.Managers
 
             // Return the updated item.
             return entity;
+        }
+
+        /// <summary>
+        /// Method to delete <see cref="UsersInAclGroups"/> associations.
+        /// </summary>
+        /// <param name="entity">The <see cref="UserEntity"/> to process with.</param>
+        private async void DeleteDependencyAclGroups(UserEntity entity)
+        {
+            // Remove Users In AclGroups dependencies.
+            if (entity.UsersInAclGroups.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "UsersInAclGroups", key = "UserId", keyList = "AclGroupId" },
+                    entity.PrimaryKey,
+                    entity.UsersInAclGroups.DepPKeysRemoved
+                );
+                entity.UsersInAclGroups.DepPKeysRemoved.Clear();
+            }
         }
 
         /// <summary>

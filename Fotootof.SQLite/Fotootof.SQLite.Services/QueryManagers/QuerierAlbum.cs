@@ -1,4 +1,5 @@
-﻿using Fotootof.SQLite.EntityManager.Base;
+﻿using Fotootof.Libraries.Logs;
+using Fotootof.SQLite.EntityManager.Base;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Managers;
 using Fotootof.SQLite.Services.QueryManagers.Interfaces;
@@ -11,7 +12,7 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.SQLite.Services.QueryManagers
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof SQLite Service Albums.
+    /// Class XtrmAddons Fotootof SQLite Services Query Manager Albums.
     /// </summary>
     public partial class QuerierAlbum : Queriers,
         IQuerierList<AlbumEntity, AlbumOptionsList>,
@@ -20,7 +21,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Variables
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -32,16 +33,16 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods List
 
         /// <summary>
-        /// Method to get a list of Album entities. 
+        /// Method to get a list of <see cref="AlbumEntity"/>. 
         /// </summary>
-        /// <param name="op">Album filters options for query.</param>
-        /// <returns>A list of Album entities.</returns>
+        /// <param name="op"><see cref="AlbumOptionsList"/> filters options for the query.</param>
+        /// <returns>An <see cref="ObservableCollection{AlbumEntity}"/>.</returns>
         public ObservableCollection<AlbumEntity> List(AlbumOptionsList op)
         {
             if (op == null)
             {
-                ArgumentNullException e = new ArgumentNullException(nameof(op));
-                log.Error(e.Output(), e);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(op), op);
+                log.Error(e.Output());
                 throw e;
             }
 
@@ -52,10 +53,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// Method to get a list of Album entities asynchronous. 
+        /// Method to get a list of <see cref="AlbumEntity"/> asynchronously. 
         /// </summary>
-        /// <param name="op">Album filters options for query.</param>
-        /// <returns>A list of Album entities.</returns>
+        /// <param name="op"><see cref="AlbumOptionsList"/> filters options for the query.</param>
+        /// <returns>An <see cref="ObservableCollection{AlbumEntity}"/>.</returns>
         public Task<ObservableCollection<AlbumEntity>> ListAsync(AlbumOptionsList op)
             => Task.Run(() => { return List(op); });
 
@@ -66,10 +67,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Single
 
         /// <summary>
-        /// Method to get a single Album entity.
+        /// Method to get a single <see cref="AlbumEntity"/>.
         /// </summary>
-        /// <param name="op">Album filters options for query.</param>
-        /// <returns>An Album entity or null.</returns>
+        /// <param name="op"><see cref="AlbumOptionsSelect"/> filters options for the query.</param>
+        /// <returns>An <see cref="AlbumEntity"/> or null.</returns>
         public AlbumEntity SingleOrNull(AlbumOptionsSelect op)
         {
             if (op == null)
@@ -86,18 +87,18 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// Method to get a single Album entity.
+        /// Method to get a single <see cref="AlbumEntity"/> asynchronously.
         /// </summary>
-        /// <param name="op">Album filters options for query.</param>
-        /// <returns>An Album entity or null.</returns>
+        /// <param name="op"><see cref="AlbumOptionsSelect"/> filters options for the query.</param>
+        /// <returns>An <see cref="AlbumEntity"/> or null.</returns>
         public Task<AlbumEntity> SingleOrNullAsync(AlbumOptionsSelect op)
             => Task.Run(() => SingleOrNull(op));
 
         /// <summary>
-        /// Method to get a single Album entity.
+        /// Method to get a single <see cref="AlbumEntity"/>.
         /// </summary>
-        /// <param name="op">Album filters options for query.</param>
-        /// <returns>An Album entity or a dafault entity.</returns>
+        /// <param name="op"><see cref="AlbumOptionsSelect"/> filters options for the query.</param>
+        /// <returns>An <see cref="AlbumEntity"/> or a dafault entity.</returns>
         public AlbumEntity SingleOrDefault(AlbumOptionsSelect op)
         {
             if (op == null)
@@ -114,10 +115,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// Method to get a single Album entity.
+        /// Method to get a single <see cref="AlbumEntity"/>.
         /// </summary>
-        /// <param name="op">Album filters options for query.</param>
-        /// <returns>An Album entity or a dafault entity.</returns>
+        /// <param name="op"><see cref="AlbumOptionsSelect"/> filters options for the query.</param>
+        /// <returns>An <see cref="AlbumEntity"/> or a dafault entity.</returns>
         public Task<AlbumEntity> SingleOrDefaultAsync(AlbumOptionsSelect op)
             => Task.Run(() => SingleOrDefault(op));
 
@@ -128,10 +129,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Add
 
         /// <summary>
-        /// Method to add new album.
+        /// Method to add new <see cref="AlbumEntity"/>.
         /// </summary>
-        /// <param name="entity">The Album Entity.</param>
-        /// <returns>The new Album entity.</returns>
+        /// <param name="entity">The <see cref="AlbumEntity"/>.</param>
+        /// <returns>The new <see cref="AlbumEntity"/>.</returns>
         public AlbumEntity Add(AlbumEntity entity)
         {
             using (Db.Context)
@@ -141,11 +142,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// Method to add new album asynchronous.
+        /// Method to add new <see cref="AlbumEntity"/> asynchronously.
         /// </summary>
-        /// <param name="entity">The album Entity.</param>
-        /// <returns>The new Album entity.</returns>
-
+        /// <param name="entity">The <see cref="AlbumEntity"/>.</param>
+        /// <returns>The new <see cref="AlbumEntity"/>.</returns>
         public Task<AlbumEntity> AddAsync(AlbumEntity entity)
         {
             return Task.Run(() => Add(entity));
@@ -158,13 +158,18 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Delete
 
         /// <summary>
-        /// Method to delete an Album.
+        /// Method to delete an <see cref="AlbumEntity"/>.
         /// </summary>
-        /// <param name="album">The Album to delete.</param>
+        /// <param name="entity">The <see cref="AlbumEntity"/> to delete.</param>
         /// <param name="save">Save changes ?</param>
-        /// <returns>The deleted Album entity.</returns>
-        public AlbumEntity Delete(AlbumEntity entity, bool save = true)
+        /// <returns>The deleted <see cref="AlbumEntity"/>.</returns>
+        public AlbumEntity Delete(AlbumEntity entity)
         {
+            if (entity == null)
+            {
+                return null;
+            }
+
             using (Db.Context)
             {
                 Db.Context.Albums.Attach(entity);
@@ -173,12 +178,12 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// Method to delete an Album asynchronous.
+        /// Method to delete an <see cref="AlbumEntity"/> asynchronously.
         /// </summary
-        /// <param name="album">The Album to delete.</param>
+        /// <param name="album">The <see cref="AlbumEntity"/> to delete.</param>
         /// <param name="save">Save changes ?</param>
-        /// <returns>The deleted Album entity.</returns>
-        public async Task<AlbumEntity> DeleteAsync(AlbumEntity entity, bool save = true)
+        /// <returns>The deleted <see cref="AlbumEntity"/>.</returns>
+        public async Task<AlbumEntity> DeleteAsync(AlbumEntity entity)
         {
             return await Task.Run(() => Delete(entity));
         }
@@ -190,46 +195,39 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Update
 
         /// <summary>
-        /// Method to update a album asynchronous.
+        /// Method to update a <see cref="AlbumEntity"/> asynchronous.
         /// </summary>
-        /// <param name="entity">The Album to update.</param>
-        /// <param name="save">Save changes ?</param>
+        /// <param name="entity">An <see cref="AlbumEntity"/> to update.</param>
         /// <param name="autoDate">Auto initialize dates.</param>
-        /// <returns>The updated Album entity.</returns>
-        public AlbumEntity Update(AlbumEntity entity, bool save = true, bool autoDate = true)
+        /// <returns>The updated <see cref="AlbumEntity"/>.</returns>
+        public async Task<AlbumEntity> UpdateAsync(AlbumEntity entity, bool autoDate = true)
         {
+            if(entity == null)
+            {
+                return null;
+            }
+
             using (Db.Context)
             {
                 // Try to attach entity to the database context.
-                try { Db.Context.Attach(entity); } catch { throw new Exception("Error on database Context Attach Album"); }
+                try { Db.Context.Attach(entity); }
+                catch (Exception e)
+                {
+                    InvalidOperationException i = new InvalidOperationException($"Error on database Context Attach {entity?.GetType()}", e);
+                    log.Error(i.Output());
+                    throw;
+                }
 
                 // Update entity.
-                entity = AlbumManager.Update(entity, true);
-
-                // Hack to delete unassociated dependencies. 
-                CleanDependencyAllAsync(entity);
-
-                return entity;
+                return await AlbumManager.UpdateAsync(entity, autoDate);
             }
-        }
-
-        /// <summary>
-        /// Method to update a album asynchronous.
-        /// </summary>
-        /// <param name="entity">The Album to update.</param>
-        /// <param name="save">Save changes ?</param>
-        /// <param name="autoDate">Auto initialize dates.</param>
-        /// <returns>The updated Album entity.</returns>
-        public async Task<AlbumEntity> UpdateAsync(AlbumEntity entity, bool save = true, bool autoDate = true)
-        {
-            return await Task.Run(() => Update(entity, save, autoDate));
         }
 
         #endregion
 
 
 
-        #region Methods Dependency
+        #region Obsoletes
 
         /// <summary>
         /// 
@@ -239,6 +237,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         /// <param name="aclGroupId"></param>
         /// <param name="dependenciesPKs"></param>
         /// <returns></returns>
+        [System.Obsolete("", true)]
         public async Task<int> CleanDependencyAsync(string dependencyName, string dependencyPKName, int albumId, IEnumerable<int> dependenciesPKs)
         {
             using (Db.Context)
@@ -256,6 +255,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         /// 
         /// </summary>
         /// <param name="entity"></param>
+        [System.Obsolete("", true)]
         public async void CleanDependencyAllAsync(AlbumEntity entity)
         {
             // Hack to delete unassociated dependencies. 

@@ -208,7 +208,7 @@ namespace Fotootof.Layouts.Windows.Forms.Album
 
             if (dlg != null && dlg.FileName != "")
             {
-                Model.UpdateAlbumPictureProperty((string)((Button)sender).Tag, dlg.FileName);
+                Model.UpdateAlbumPicturePropertyAsync((string)((Button)sender).Tag, dlg.FileName);
             }
         }
 

@@ -12,7 +12,7 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.SQLite.EntityManager.Managers
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite AclGroups Entities Manager.
+    /// Class XtrmAddons Fotootof SQLite Entity Manager AclGroups.
     /// </summary>
     public partial class AclGroupManager : EntitiesManager
     {
@@ -36,9 +36,9 @@ namespace Fotootof.SQLite.EntityManager.Managers
         #region Constructors
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Libraries SQLite AclGroups Entities Manager Constructor.
+        /// Class XtrmAddons Fotootof SQLite Entity Manager AclGroups Constructor.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">A database connector <see cref="DatabaseContextCore"/></param>
         public AclGroupManager(DatabaseContextCore context) : base(context) { }
 
         #endregion
@@ -228,6 +228,9 @@ namespace Fotootof.SQLite.EntityManager.Managers
         public async Task<AclGroupEntity> UpdateAsync(AclGroupEntity entity)
         {
             // Remove Users In AclGroups dependencies.
+            DeleteDependencyUsers(entity);
+
+            // Remove Sections In AclGroups dependencies.
             if (entity.UsersInAclGroups.DepPKeysRemoved.Count > 0)
             {
                 await DeleteDependencyAsync(
@@ -245,6 +248,43 @@ namespace Fotootof.SQLite.EntityManager.Managers
 
             // Return the updated item.
             return entity;
+        }
+
+        /// <summary>
+        /// Method to delete <see cref="UsersInAclGroups"/> associations.
+        /// </summary>
+        /// <param name="entity">The entity to process with.</param>
+        private async void DeleteDependencyUsers(AclGroupEntity entity)
+        {
+            if (entity.UsersInAclGroups.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "UsersInAclGroups", key = "AclGroupId", keyList = "UserId" },
+                    entity.PrimaryKey,
+                    entity.UsersInAclGroups.DepPKeysRemoved
+                );
+                entity.UsersInAclGroups.DepPKeysRemoved.Clear();
+
+                log.Debug("Delete users in aclgroups associations. Done.");
+            }
+        }
+
+        /// <summary>
+        /// Method to delete sections in aclgroups associations.
+        /// </summary>
+        /// <param name="entity">The entity to process with.</param>
+        private async void DeleteDependencySections(AclGroupEntity entity)
+        {
+            // Remove Sections In AclGroups dependencies.
+            if (entity.SectionsInAclGroups.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "SectionsInAclGroups", key = "AclGroupId", keyList = "SectionId" },
+                    entity.PrimaryKey,
+                    entity.SectionsInAclGroups.DepPKeysRemoved
+                );
+                entity.SectionsInAclGroups.DepPKeysRemoved.Clear();
+            }
         }
 
         /// <summary>

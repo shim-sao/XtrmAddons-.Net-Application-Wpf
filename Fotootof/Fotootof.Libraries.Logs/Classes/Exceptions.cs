@@ -4,7 +4,7 @@ using System.Globalization;
 namespace Fotootof.Libraries.Logs
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Lib Base Classes AppSystems Message Base.
+    /// Class XtrmAddons Fotootof Libraries Logs Exceptions.
     /// </summary>
     public class Exceptions
     {
@@ -13,6 +13,8 @@ namespace Fotootof.Libraries.Logs
         /// <summary>
         /// Method to get a formated object argument null exception.
         /// </summary>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <param name="argument">The property.</param>
         /// <returns>A formated argument null exception.</returns>
         public static ArgumentNullException GetArgumentNull(string propertyName, object argument)
         {
@@ -34,10 +36,12 @@ namespace Fotootof.Libraries.Logs
         /// <summary>
         /// Method to get a formated object reference null exception.
         /// </summary>
-        /// <returns>A formated argument null exception.</returns>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <param name="argument">The property.</param>
+        /// <returns>A formated null reference exception.</returns>
         public static NullReferenceException GetReferenceNull(string propertyName, object argument)
         {
-            if(argument.GetType() == typeof(string))
+            if(argument?.GetType() == typeof(string))
             {
                 return new NullReferenceException(
                     string.Format(

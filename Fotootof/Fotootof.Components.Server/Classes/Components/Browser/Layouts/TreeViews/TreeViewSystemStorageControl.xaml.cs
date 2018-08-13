@@ -8,14 +8,14 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.Components.Server.Browser.Layouts
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server UI Control Browser Tree View Directory.
+    /// Class XtrmAddons Fotootof Components Server Browser Storage System Browser Tree View Directory.
     /// </summary>
     public partial class TreeViewSystemStorageLayout : ControlLayout
     {
         #region Variables
-        
+
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
         	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -27,7 +27,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
         #region Properties
 
         /// <summary>
-        /// Accessors to Window AclGroup Form model.
+        /// Property to access to the <see cref="TreeViewSystemStorageModel"/> of the layout.
         /// </summary>
         internal TreeViewSystemStorageModel Model { get; private set; }
 
@@ -45,18 +45,27 @@ namespace Fotootof.Components.Server.Browser.Layouts
                 (FindName("StackPanelBlockHeaderName") as FrameworkElement).Visibility = value;
             }
         }
-        
+
         #endregion
 
 
+
+        #region Constructors
+
         /// <summary>
-        /// Class XtrmAddons Fotootof Server UI Control Browser Tree View Directory Constructor.
+        /// Class XtrmAddons Fotootof Components Server Browser Storage System Browser Tree View Directory Constructor.
         /// </summary>
-        public TreeViewSystemStorageLayout() : base ()
+        public TreeViewSystemStorageLayout() : base()
         {
             InitializeComponent();
             InitializeContent();
         }
+
+        #endregion
+
+
+
+        #region Methods
 
         /// <summary>
         /// Method called on user control loaded event.
@@ -89,13 +98,18 @@ namespace Fotootof.Components.Server.Browser.Layouts
             {
                 Model.ExpandTreeViewItem(e.Source as TreeViewItem);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.Debug(ex.Output(), ex);
                 MessageBoxs.Error(ex);
             }
         }
 
+        /// <summary>
+        /// Method called on clear collection click event.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
         private void ClearSelection_Click(object sender, RoutedEventArgs e)
         {
             Model.Reinitialize();
@@ -113,7 +127,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
 
             // Process resize of the tree view.
             tv.Height = root.ActualHeight;
-            if(header.IsVisible)
+            if (header.IsVisible)
             {
                 tv.Height -= header.ActualHeight;
             }
@@ -128,5 +142,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
         {
             ArrangeTreeView();
         }
+
+        #endregion
     }
 }

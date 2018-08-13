@@ -1,43 +1,54 @@
-﻿using Fotootof.SQLite.EntityManager.Base;
+﻿using Fotootof.Libraries.Logs;
+using Fotootof.SQLite.EntityManager.Base;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Managers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.SQLite.Services.QueryManagers
 {
     /// <summary>
-    /// Class Fotootof.SQLite.Services Pictures.
+    /// Class XtrmAddons Fotootof SQLite Services Query Manager  Pictures.
     /// </summary>
     public partial class QuerierPicture : Queriers
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Methods List
 
         /// <summary>
-        /// 
+        /// Method to get a list of <see cref="PictureEntity"/>. 
         /// </summary>
-        /// <param name="dependencies"></param>
-        /// <returns></returns>
-        public ObservableCollection<PictureEntity> List(PictureOptionsList options = null)
+        /// <param name="op"><see cref="PictureOptionsList"/> filters options for the query.</param>
+        /// <returns>An <see cref="ObservableCollection{PictureEntity}"/>.</returns>
+        public ObservableCollection<PictureEntity> List(PictureOptionsList op)
         {
             using (Db.Context)
             {
-                return new ObservableCollection<PictureEntity>(PictureManager.List(options));
+                return new ObservableCollection<PictureEntity>(PictureManager.List(op));
             }
         }
 
         /// <summary>
-        /// 
+        /// Method to get a list of <see cref="PictureEntity"/> asynchronously. 
         /// </summary>
-        /// <returns></returns>
-        public Task<ObservableCollection<PictureEntity>> ListAsync(PictureOptionsList options = null)
-        {
-            return Task.Run(() =>
-            {
-                return List(options);
-            });
-        }
+        /// <param name="op"><see cref="PictureOptionsList"/> filters options for the query.</param>
+        /// <returns>An <see cref="ObservableCollection{PictureEntity}"/>.</returns>
+        public Task<ObservableCollection<PictureEntity>> ListAsync(PictureOptionsList options = null) 
+            => Task.Run(() => { return List(options); });
 
         #endregion
 
@@ -46,12 +57,19 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Single
 
         /// <summary>
-        /// 
+        /// Method to get a single <see cref="PictureEntity"/>.
         /// </summary>
-        /// <param name="op"></param>
-        /// <returns></returns>
+        /// <param name="op"><see cref="PictureOptionsSelect"/> filters options for the query.</param>
+        /// <returns>An <see cref="PictureEntity"/> or null.</returns>
         public PictureEntity SingleOrNull(PictureOptionsSelect op)
         {
+            if (op == null)
+            {
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(op), op);
+                log.Error(e.Output());
+                throw e;
+            }
+
             using (Db.Context)
             {
                 return PictureManager.Select(op);
@@ -59,11 +77,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// 
+        /// Method to get a single <see cref="PictureEntity"/> asynchronously.
         /// </summary>
-        /// <param name="pictureId"></param>
-        /// <param name="dependencies"></param>
-        /// <returns></returns>
+        /// <param name="op"><see cref="PictureOptionsSelect"/> filters options for the query.</param>
+        /// <returns>An <see cref="PictureEntity"/> or null.</returns>
         public Task<PictureEntity> SingleOrNullAsync(PictureOptionsSelect op)
             => Task.Run(() => SingleOrNull(op));
 
@@ -101,27 +118,25 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Update
 
         /// <summary>
-        /// 
+        /// Method to update a <see cref="PictureEntity"/> asynchronous.
         /// </summary>
-        /// <param name="picture"></param>
-        /// <returns></returns>
-        public PictureEntity Update(PictureEntity picture)
+        /// <param name="entity">An <see cref="PictureEntity"/> to update.</param>
+        /// <returns>The updated <see cref="PictureEntity"/>.</returns>
+        public Task<PictureEntity> UpdateAsync(PictureEntity entity)
         {
+            if (entity == null)
+            {
+                return null;
+            }
+
             using (Db.Context)
             {
-                try { Db.Context.Attach(picture); } catch { }
-                return PictureManager.Update(picture);
+                // Try to attach entity to the database context.
+                try { Db.Context.Attach(entity); } catch { throw new Exception($"Error on database Context Attach {entity?.GetType()}"); }
+
+                return PictureManager.UpdateAsync(entity);
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="login"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public Task<PictureEntity> UpdateAsync(PictureEntity picture)
-            => Task.Run(() => Update(picture));
 
         #endregion
 
@@ -191,6 +206,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         /// <param name="aclGroupId"></param>
         /// <param name="dependenciesPKs"></param>
         /// <returns></returns>
+        [System.Obsolete("", true)]
         public async Task<int> CleanDependencyAsync(string dependencyName, string dependencyPKName, int pictureId, IEnumerable<int> dependenciesPKs)
         {
             using (Db.Context)
@@ -208,6 +224,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         /// 
         /// </summary>
         /// <param name="entity"></param>
+        [System.Obsolete("", true)]
         public async void CleanDependencyAllAsync(PictureEntity entity)
         {
             // Hack to delete unassociated dependencies. 

@@ -1,14 +1,18 @@
 ﻿using Fotootof.Collections.Entities;
 using Fotootof.Layouts.Controls.DataGrids;
 using Fotootof.Layouts.Controls.ListViews;
+using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Components;
+using System;
+using System.Linq;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Components.Server.Section
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Server Side View Catalog Model.
     /// </summary>
-    public class PageSectionModel : ComponentModel<PageSectionLayout>
+    internal class PageSectionModel : ComponentModel<PageSectionLayout>
     {
         #region Variables
 
@@ -119,6 +123,37 @@ namespace Fotootof.Components.Server.Section
         /// </summary>
         /// <param name="controlView">The page associated to the model.</param>
         public PageSectionModel(PageSectionLayout controlView) : base(controlView) { }
+
+        #endregion
+
+
+
+        #region Methods Sections
+
+        /// <summary>
+        /// Method to load the <see cref="SectionEntityCollection"/> from the database.
+        /// </summary>
+        public void LoadSections()
+        {
+            MessageBoxs.IsBusy = true;
+            log.Warn("Loading Sections list : Start. Please wait...");
+
+            try
+            {
+                var collec = new SectionEntityCollection(true);
+                Sections.Items = new SectionEntityCollection(collec.OrderBy(x => x.Name));
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Loading Sections list failed !");
+            }
+            finally
+            {
+                log.Info("Loading Sections list : End.");
+                MessageBoxs.IsBusy = false;
+            }
+        }
 
         #endregion
     }

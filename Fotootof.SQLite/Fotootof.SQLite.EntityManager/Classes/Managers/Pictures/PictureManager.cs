@@ -7,36 +7,49 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.SQLite.EntityManager.Managers
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite Database Pictures Manager.
+    /// Class XtrmAddons Fotootof SQLite Entity Manager Pictures.
     /// </summary>
     public partial class PictureManager : EntitiesManager
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Constructors
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Libraries SQLite Pictures Entities Manager Constructor.
+        /// Class XtrmAddons Fotootof SQLite Entity Manager Pictures Constructor.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">A database connector <see cref="DatabaseContextCore"/></param>
         public PictureManager(DatabaseContextCore context) : base(context) { }
 
         #endregion
 
 
 
-        #region Methods
+        #region Methods Add
 
         /// <summary>
-        /// Method to add a Picture entity.
+        /// Method to add a <see cref="PictureEntity"/>.
         /// </summary>
-        /// <param name="albumId">The album primary key for association.</param>
-        /// <param name="picture">The Picture entity to add.</param>
+        /// <param name="albumId">The <see cref="AlbumEntity"/> primary key for association filter.</param>
+        /// <param name="picture">The <see cref="PictureEntity"/> to add.</param>
         /// <param name="insertId"></param>
-        /// <returns>An added Picture entity.</returns>
+        /// <returns>The added <see cref="PictureEntity"/>.</returns>
         public PictureEntity Add(int albumId, PictureEntity picture, int insertId = 0)
         {
             // Search if item is already in database.
@@ -108,14 +121,14 @@ namespace Fotootof.SQLite.EntityManager.Managers
         }
 
         /// <summary>
-        /// Method to add a list of Picture entities.
+        /// Method to add an <see cref="IEnumerable{T}"/> list of <see cref="PictureEntity"/>.
         /// </summary>
-        /// <param name="albumId">The album primary key for association.</param>
-        /// <param name="pictures">The list of Picture entities to add.</param>
-        /// <returns>A list of added Picture entities.</returns>
-        public List<PictureEntity> Add(int albumId, List<PictureEntity> pictures)
+        /// <param name="albumId">The <see cref="AlbumEntity"/> primary key for association.</param>
+        /// <param name="pictures"><see cref="IEnumerable{T}"/> list of <see cref="PictureEntity"/> to add.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> list of <see cref="PictureEntity"/>.</returns>
+        public IEnumerable<PictureEntity> Add(int albumId, IEnumerable<PictureEntity> pictures)
         {
-            List<PictureEntity> lp = new List<PictureEntity>();
+            IList<PictureEntity> lp = new List<PictureEntity>();
             int insertId = InsertId(Connector.Pictures, x => x.PictureId);
 
             foreach (PictureEntity p in pictures)
@@ -127,12 +140,18 @@ namespace Fotootof.SQLite.EntityManager.Managers
             return lp;
         }
 
+        #endregion
+
+
+
+        #region Methods
+
         /// <summary>
-        /// Method to get a list of picture entities.
+        /// Method to get a <see cref="IEnumerable{T}"/> list of <see cref="PictureEntity"/> from database.
         /// </summary>
-        /// <param name="op"></param>
-        /// <returns>A list of user entities.</returns>
-        public List<PictureEntity> List(PictureOptionsList op = null)
+        /// <param name="op">The <see cref="PictureOptionsList"/> list of options for filter the query.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> list of <see cref="PictureEntity"/>.</returns>
+        public IEnumerable<PictureEntity> List(PictureOptionsList op = default(PictureOptionsList))
         {
             // Initialize default option list.
             op = op ?? new PictureOptionsList { };
@@ -159,18 +178,23 @@ namespace Fotootof.SQLite.EntityManager.Managers
         }
 
         /// <summary>
-        /// Method to get a list of Section entities.
+        /// Method to filter by <see cref="AlbumEntity"/> a <see cref="IQueryable"/> query of <see cref="PictureEntity"/>.
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="op"></param>
+        /// <param name="query">A <see cref="IQueryable"/> query of <see cref="PictureEntity"/>.</param>
+        /// <param name="op">The <see cref="PictureOptionsList"/> list of options for filter the query.</param>
         /// <returns>A list of Section entities.</returns>
-        private void QueryFilterAlbums(ref IQueryable<PictureEntity> query, PictureOptionsList op = null)
+        private void QueryFilterAlbums(ref IQueryable<PictureEntity> query, PictureOptionsList op = default(PictureOptionsList))
         {
+            // Initialize default option list.
+            op = op ?? new PictureOptionsList { };
+
+            // Check for the desired album associations.
             if (op.IncludeAlbumId != null && op.IncludeAlbumId.Count > 0)
             {
                 query.Where(x => x.PicturesInAlbums.Any(y => op.IncludeAlbumId.Contains(y.AlbumId)));
             }
 
+            // Check for the undesired album association.
             if (op.ExcludeAlbumId != null && op.ExcludeAlbumId.Count > 0)
             {
                 query.Where(x => !x.PicturesInAlbums.Any(y => op.IncludeAlbumId.Contains(y.AlbumId)));
@@ -178,13 +202,16 @@ namespace Fotootof.SQLite.EntityManager.Managers
         }
 
         /// <summary>
-        /// Method to get a list of Section entities.
+        /// Method to include dependencies to a <see cref="IQueryable"/> query of <see cref="PictureEntity"/>.
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="op"></param>
+        /// <param name="query">A <see cref="IQueryable"/> query of <see cref="PictureEntity"/>.</param>
+        /// <param name="op">The <see cref="EntitiesOptions"/> list of options for filter the query.</param>
         /// <returns>A list of Section entities.</returns>
-        private void QueryDependencies(ref IQueryable<PictureEntity> query, EntitiesOptions op = null)
+        private void QueryDependencies(ref IQueryable<PictureEntity> query, EntitiesOptions op = default(PictureOptionsList))
         {
+            // Initialize default option select.
+            op = op ?? new PictureOptionsSelect();
+
             // Load Album dependency if required.
             if (op.IsDependOn(EnumEntitiesDependencies.PicturesInAlbums))
             {
@@ -199,7 +226,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         }
 
         /// <summary>
-        /// Method to select a Picture entity.
+        /// Method to select a <see cref="PictureEntity"/>.
         /// </summary>
         /// <param name="op">Picture entities select options to perform query.</param>
         /// <param name="nullable"></param>
@@ -226,11 +253,11 @@ namespace Fotootof.SQLite.EntityManager.Managers
         }
 
         /// <summary>
-        /// Method to select an Picture by id.
+        /// Method to select a <see cref="PictureEntity"/> by its unique identifier or primar key.
         /// </summary>
-        /// <param name="query">A Pictures query.</param>
-        /// <param name="op">A select picture options filters.</param>
-        /// <returns>An Picture entity or null if not found.</returns>
+        /// <param name="query">A <see cref="IQueryable"/> query of <see cref="PictureEntity"/>.</param>
+        /// <param name="op">The <see cref="PictureOptionsSelect"/> options filters.</param>
+        /// <returns>A <see cref="PictureEntity"/> or null if not found.</returns>
         private PictureEntity SingleIdOrNull(IQueryable<PictureEntity> query, PictureOptionsSelect op)
         {
             PictureEntity entity = query.SingleOrDefault(x => x.PictureId == op.PrimaryKey);
@@ -247,13 +274,72 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <summary>
         /// Method to get max pictures ordering.
         /// </summary>
-        /// <param name="albumId">An album primary key.</param>
+        /// <param name="albumId">An <see cref="AlbumEntity"/> unique identifier or primary key.</param>
         public int MaxOrder(int albumId = 0)
         {
             return Connector.PicturesInAlbums
                 .Where(d => d.AlbumId == albumId)
                 .Select(d => d.Ordering)
                 .DefaultIfEmpty(0).Max();
+        }
+        
+        /// <summary>
+        /// Method to update an <see cref="PictureEntity"/>.
+        /// </summary>
+        /// <param name="entity">An <see cref="PictureEntity"/> to update.</param>
+        /// <param name="autoDate">Automatic set default dates ?</param>
+        /// <returns>The updated <see cref="PictureEntity"/>.</returns>
+        public async Task<PictureEntity> UpdateAsync(PictureEntity entity, bool autoDate = true)
+        {
+            // Remove Albums in Sections dependencies.
+            DeleteDependencyAlbums(entity);
+            DeleteDependencyInfos(entity);
+
+            // Update item informations.
+            entity = Connector.Update(entity).Entity;
+
+            await SaveAsync();
+
+            // Return the updated item.
+            return entity;
+        }
+
+        /// <summary>
+        /// Method to delete <see cref="PicturesInAlbums"/> associations.
+        /// </summary>
+        /// <param name="entity">The <see cref="PictureEntity"/> to process with.</param>
+        private async void DeleteDependencyAlbums(PictureEntity entity)
+        {
+            if (entity.PicturesInAlbums.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "PicturesInAlbums", key = "PictureId", keyList = "AlbumId" },
+                    entity.PrimaryKey,
+                    entity.PicturesInAlbums.DepPKeysRemoved
+                );
+                entity.PicturesInAlbums.DepPKeysRemoved.Clear();
+
+                log.Debug("Delete Pictures in Albums associations. Done.");
+            }
+        }
+
+        /// <summary>
+        /// Method to delete <see cref="PicturesInAlbums"/> associations.
+        /// </summary>
+        /// <param name="entity">The <see cref="PictureEntity"/> to process with.</param>
+        private async void DeleteDependencyInfos(PictureEntity entity)
+        {
+            if (entity.InfosInPictures.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "InfosInPictures", key = "PictureId", keyList = "InfoId" },
+                    entity.PrimaryKey,
+                    entity.InfosInPictures.DepPKeysRemoved
+                );
+                entity.InfosInPictures.DepPKeysRemoved.Clear();
+
+                log.Debug("Delete Infos in Pictures associations. Done.");
+            }
         }
 
         #endregion

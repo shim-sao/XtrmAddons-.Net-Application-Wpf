@@ -11,7 +11,7 @@ using XtrmAddons.Net.Picture.Extensions;
 namespace Fotootof.Components.Server.Browser.Layouts.Helpers
 {
     /// <summary>
-    /// 
+    /// Class Fotootof Components Server Browser Layouts Helper Tree View Item DriveInfo.
     /// </summary>
     internal class TreeViewItemDriveInfo : TreeViewItem
     {
@@ -22,14 +22,16 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
         /// </summary>
         private static readonly log4net.ILog log =
         	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+
         #endregion
 
 
+        #region Constructor
+
         /// <summary>
-        /// 
+        /// Class Fotootof Components Server Browser Layouts Helper Tree View Item DriveInfo Constructor.
         /// </summary>
-        /// <param name="di"></param>
+        /// <param name="di">A <see cref="DriveInfo"/> create as <see cref="TreeViewItem"/>.</param>
         public TreeViewItemDriveInfo(DriveInfo di)
         {
             // Get the icon image of the Drive.
@@ -61,7 +63,7 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
 
                     new TextBlock
                     {
-                        Text = di.Name.ToString(),
+                        Text = $"{di.VolumeLabel} ({di.Name.ToString()})",
                         Margin = new Thickness(5,0,0,0)
                     }
                 }
@@ -102,5 +104,7 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
 
             Items.Add("Loading...");
         }
+        
+        #endregion
     }
 }

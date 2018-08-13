@@ -130,7 +130,7 @@ namespace Fotootof.Collections.Entities
                 {
                     foreach (AclGroupEntity entity in newItems)
                     {
-                        await Db.AclGroups.Update_Async(entity);
+                        await Db.AclGroups.UpdateAsync(entity);
 
                         if (entity.IsDefault)
                         {

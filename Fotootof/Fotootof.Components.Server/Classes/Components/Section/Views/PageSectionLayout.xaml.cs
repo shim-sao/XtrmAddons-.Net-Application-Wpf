@@ -46,7 +46,7 @@ namespace Fotootof.Components.Server.Section
         /// <summary>
         /// Property to access to the page model.
         /// </summary>
-        public PageSectionModel Model { get; private set; }
+        internal PageSectionModel Model { get; private set; }
 
         /// <summary>
         /// Accessors to page user model.
@@ -127,7 +127,7 @@ namespace Fotootof.Components.Server.Section
                 Albums = new ListViewAlbumsModel(UcListViewAlbums)
             };
             
-            LoadSections();
+            Model.LoadSections();
             LoadAlbums();
 
             Model.FiltersQuality = InfoEntityCollection.TypesQuality();
@@ -153,37 +153,6 @@ namespace Fotootof.Components.Server.Section
         #region Methods : Section
 
         /// <summary>
-        /// Method to load the list of Section from database.
-        /// </summary>
-        private void LoadSections()
-        {
-            MessageBoxs.IsBusy = true;
-            log.Warn("Loading Sections list : Start. Please wait...");
-
-            try
-            {
-                /*SectionOptionsList op = new SectionOptionsList
-                {
-                    Dependencies = { EnumEntitiesDependencies.AlbumsInSections, EnumEntitiesDependencies.SectionsInAclGroups }
-                };
-
-                Model.Sections.Items = new SectionEntityCollection(true, op);*/
-
-                Model.Sections.Items = new SectionEntityCollection(true);
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Output(), ex);
-                MessageBoxs.Fatal(ex, "Loading Sections list failed !");
-            }
-            finally
-            {
-                log.Info("Loading Sections list : End.");
-                MessageBoxs.IsBusy = false;
-            }
-        }
-
-        /// <summary>
         /// Method called on Section view candel event.
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
@@ -193,7 +162,7 @@ namespace Fotootof.Components.Server.Section
             MessageBoxs.IsBusy = true;
             log.Warn("Adding or editing Section operation canceled. Please wait...");
 
-            LoadSections();
+            Model.LoadSections();
 
             log.Info("Adding or editing Section operation canceled. Done.");
             MessageBoxs.IsBusy = false;
@@ -232,7 +201,7 @@ namespace Fotootof.Components.Server.Section
             /*int index = model.Sections.Items.IndexOf(old);
             model.Sections.Items[index] = newEntity;*/
             SectionEntityCollection.DbUpdateAsync(new List<SectionEntity> { newEntity }, new List<SectionEntity> { old });
-            LoadSections();
+            Model.LoadSections();
 
             log.Info("Saving Section informations. Done.");
             MessageBoxs.IsBusy = false;
@@ -271,7 +240,7 @@ namespace Fotootof.Components.Server.Section
 
             SectionEntity newEntity = (SectionEntity)e.NewEntity;
             SectionEntityCollection.SetDefault(newEntity);
-            LoadSections();
+            Model.LoadSections();
 
             log.Info("Setting default Section. Done.");
             MessageBoxs.IsBusy = false;
@@ -312,16 +281,16 @@ namespace Fotootof.Components.Server.Section
         /// </summary>
         private void RefreshAlbums()
         {
-            (FindName("ListViewAlbumsLayoutName") as ListViewAlbumsLayout).Visibility = Visibility.Hidden;
+            FindName<ListViewAlbumsLayout>("ListViewAlbumsLayoutName").Visibility = Visibility.Hidden;
             LoadAlbums();
-            (FindName("ListViewAlbumsLayoutName") as ListViewAlbumsLayout).Visibility = Visibility.Visible;
+            FindName<ListViewAlbumsLayout>("ListViewAlbumsLayoutName").Visibility = Visibility.Visible;
         }
 
         /// <summary>
-        /// Method called on Album view candel event.
+        /// Method called on <see cref="ListView"/> <see cref="AlbumEntity"/> candeled event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Entity changes event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private void AlbumsListView_OnCancel(object sender, EntityChangesEventArgs e)
         {
             MessageBoxs.IsBusy = true;
@@ -334,10 +303,10 @@ namespace Fotootof.Components.Server.Section
         }
 
         /// <summary>
-        /// Method called on Album add event.
+        /// Method called on <see cref="ListView"/> <see cref="AlbumEntity"/> added event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private void AlbumsListView_OnAdd(object sender, EntityChangesEventArgs e)
         {
             MessageBoxs.IsBusy = true;
@@ -352,10 +321,10 @@ namespace Fotootof.Components.Server.Section
         }
 
         /// <summary>
-        /// Method called on Album change event.
+        /// Method called on <see cref="ListView"/> <see cref="AlbumEntity"/> changed event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private async void AlbumsListView_OnChange(object sender, EntityChangesEventArgs e)
         {
             MessageBoxs.IsBusy = true;
@@ -373,10 +342,10 @@ namespace Fotootof.Components.Server.Section
         }
 
         /// <summary>
-        /// Method called on Album delete event.
+        /// Method called on <see cref="ListView"/> <see cref="AlbumEntity"/> deleted event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Entity changes event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private async void AlbumsListView_OnDeleteAsync(object sender, EntityChangesEventArgs e)
         {
             MessageBoxs.IsBusy = true;
@@ -401,10 +370,10 @@ namespace Fotootof.Components.Server.Section
         #region Methods Filters
 
         /// <summary>
-        /// 
+        /// Method called on quality filter selection changed event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The celection changed event arguments <see cref="SelectionChangedEventArgs"/></param>
         private void FiltersQuality_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ((FindName("ListViewAlbumsLayoutName") as ListViewAlbumsLayout)
@@ -428,10 +397,10 @@ namespace Fotootof.Components.Server.Section
         }
 
         /// <summary>
-        /// 
+        /// Method called on color filter selection changed event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The celection changed event arguments <see cref="SelectionChangedEventArgs"/></param>
         private void FiltersColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ((FindName("ListViewAlbumsLayoutName") as ListViewAlbumsLayout)
@@ -461,10 +430,10 @@ namespace Fotootof.Components.Server.Section
         #region Methods Size Changed
 
         /// <summary>
-        /// Method called on page size changed event.
+        /// Method called on <see cref="FrameworkElement"/> size changed event.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Size changed event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The size changed event arguments <see cref="SizeChangedEventArgs"/>.</param>
         public override void Layout_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             var UcDataGridSections = FindName("DataGridSectionsLayoutName") as DataGridSectionsLayout;

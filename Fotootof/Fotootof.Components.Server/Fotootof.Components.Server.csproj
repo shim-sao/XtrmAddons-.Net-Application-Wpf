@@ -20,6 +20,7 @@
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\Build\Debug\Fotootof.Components.Server.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,7 +30,8 @@
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\Build\Release\Fotootof.Components.Server.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -71,6 +73,7 @@
     <Compile Include="Classes\Components\Album\Layouts\ListViews\ListViewPicturesLayout.xaml.cs">
       <DependentUpon>ListViewPicturesLayout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Components\Album\Layouts\ListViews\ListViewPicturesModel.cs" />
     <Compile Include="Classes\Components\Browser\Layouts\ListViews\ListViewSystemStorageControl.xaml.cs">
       <DependentUpon>ListViewSystemStorageControl.xaml</DependentUpon>
     </Compile>

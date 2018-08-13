@@ -31,6 +31,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
         #endregion
 
 
+
         #region Properties
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
 
 
 
-        #region Constructor
+        #region Constructors
 
         /// <summary>
         /// Class XtrmAddons Fotootof Components Server Browser Storage System Tree View Model Constructor.
@@ -67,7 +68,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
         }
 
         /// <summary>
-        /// Class Fotootof Server Controls Storage System Model Constructor.
+        /// Class XtrmAddons Fotootof Components Server Browser Storage System Tree View Model Constructor.
         /// </summary>
         /// <param name="controlView">The <see cref="TreeViewSystemStorageLayout"/> owner of the model.</param>
         public TreeViewSystemStorageModel(TreeViewSystemStorageLayout controlView) : base(controlView)
@@ -170,7 +171,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
         /// other objects. Only unmanaged resources can be disposed.
         /// </summary>
         /// <param name="disposing">Track whether Dispose has been called.</param>
-        protected new void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called.
             if (!disposed)
@@ -180,7 +181,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
                 if (disposing)
                 {
                     // Dispose managed resources.
-                    Drives = null;
+                    drives = null;
                 }
 
                 // Call the appropriate methods to clean up unmanaged resources here.

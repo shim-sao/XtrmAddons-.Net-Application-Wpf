@@ -2,7 +2,7 @@
 ProjectFileVersion = "1.1"
 [General]
 Program name = Fotootof
-Program version = 1.0.18211.1634
+Program version = 1.0.18223.0018
 Windows 2000 = 1
 Windows XP = 1
 Windows Server 2003 = 1
@@ -57,7 +57,7 @@ Time = 2
 PlaySound = 0
 Allow = 0
 [Build]
-File = G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build.Setup\XtrmAddons.Fotootof.Installer.1.0.18211.1634-alpha.exe
+File = C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build.Setup\XtrmAddons.Fotootof.Installer.1.0.18223.018-alpha.exe
 [Updater]
 Allow = 1
 1 = <appname>
@@ -67,43 +67,52 @@ Allow = 1
 5 = http://
 6 = Update
 Language = 0
-RunProg = XtrmAddons Fotootof.exe
+RunProg = Fotootof.exe
 RunProgs = 1
 Execdlls = 1
 [Languages]
 3
 5
 [Files/Dirs]
-G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\XtrmAddons Fotootof.exe
-1.4 MB
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Assets\
+n/a
+[Folder]
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Data\
+n/a
+[Folder]
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Local\
+n/a
+[Folder]
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Packages\
+n/a
+[Folder]
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Plugins\
+n/a
+[Folder]
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Public\
+n/a
+[Folder]
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\x64\
+n/a
+[Folder]
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\x86\
+n/a
+[Folder]
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Fotootof.exe
+549.5 KB
 exe
-G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\XtrmAddons Fotootof.exe.config
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Fotootof.exe.config
 24.5 KB
 config
-G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Assets\
-n/a
-[Folder]
-G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Data\
-n/a
-[Folder]
-G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Local\
-n/a
-[Folder]
-G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Packages\
-n/a
-[Folder]
-G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Plugins\
-n/a
-[Folder]
-G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Public\
-n/a
-[Folder]
-G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\x64\
-n/a
-[Folder]
-G:\git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\x86\
-n/a
-[Folder]
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Fotootof.Settings.dll.config
+3 KB
+config
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Fotootof.SQLite.EntityManager.Base.dll.config
+17.9 KB
+config
+C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build\Release\Fotootof.SQLite.Services.dll.config
+2.3 KB
+config
 [Licence_Begin]
 38636
 {\rtf1\ansi\ansicpg1252\deff0\deflang1036{\fonttbl{\f0\fnil\fcharset0 MS Shell Dlg;}}
@@ -788,7 +797,7 @@ Public License instead of this License.  But first, please read\par
 [SCs]
 Desktop
 Fotootof
-<installpath>\XtrmAddons Fotootof.exe
+<installpath>\<appname>.exe
 
 
 0
@@ -800,7 +809,7 @@ Fotootof Uninstall
 0
 Startmenu
 Fotootof
-<installpath>\XtrmAddons Fotootof.exe
+<installpath>\<appname>.exe
 
 
 0

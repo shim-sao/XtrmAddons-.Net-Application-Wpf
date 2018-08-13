@@ -1,22 +1,39 @@
 ﻿using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Managers;
+using Fotootof.SQLite.Services.QueryManagers.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.SQLite.Services.QueryManagers
 {
     /// <summary>
-    /// Class Fotootof.SQLite.Services : Users.
+    /// Class XtrmAddons Fotootof SQLite Services Query Manager Users.
     /// </summary>
-    public partial class QuerierUser : Queriers
+    public partial class QuerierUser : Queriers,
+        IQuerierList<UserEntity, UserOptionsList>
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         #region Methods List
 
         /// <summary>
-        /// 
+        /// Method to get a list of <see cref="UserEntity"/>. 
         /// </summary>
-        /// <returns></returns>
+        /// <param name="op"><see cref="UserOptionsList"/> filters options for the query.</param>
+        /// <returns>An <see cref="ObservableCollection{UserEntity}"/>.</returns>
         public ObservableCollection<UserEntity> List(UserOptionsList op = null)
         {
             using (Db.Context)
@@ -26,9 +43,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// 
+        /// Method to get a list of <see cref="UserEntity"/> asynchronously. 
         /// </summary>
-        /// <returns></returns>
+        /// <param name="op"><see cref="UserOptionsList"/> filters options for the query.</param>
+        /// <returns>An <see cref="ObservableCollection{UserEntity}"/>.</returns>
         public Task<ObservableCollection<UserEntity>> ListAsync(UserOptionsList op = null)
             => Task.Run(() => List(op));
 
@@ -39,10 +57,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Single
 
         /// <summary>
-        /// Method to select an User entity.
+        /// Method to get a single <see cref="UserEntity"/>.
         /// </summary>
-        /// <param name="op">Users entities select options to perform query.</param>
-        /// <returns>A user entity or null if not found.</returns>
+        /// <param name="op"><see cref="UserOptionsSelect"/> filters options for the query.</param>
+        /// <returns>An <see cref="UserEntity"/> or null.</returns>
         public UserEntity SingleOrNull(UserOptionsSelect op)
         {
             using (Db.Context)
@@ -52,10 +70,10 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// Method to select an User entity asynchronously.
+        /// Method to get a single <see cref="UserEntity"/> asynchronously.
         /// </summary>
-        /// <param name="op">Users entities select options to perform query.</param>
-        /// <returns>A user entity or null if not found.</returns>
+        /// <param name="op"><see cref="UserOptionsSelect"/> filters options for the query.</param>
+        /// <returns>An <see cref="UserEntity"/> or null.</returns>
         public Task<UserEntity> SingleOrNullAsync(UserOptionsSelect op)
             => Task.Run(() => SingleOrNull(op));
 
@@ -66,11 +84,11 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Add
 
         /// <summary>
-        /// Method to insert a new User.
+        /// Method to add new <see cref="UserEntity"/>.
         /// </summary>
-        /// <param name="entity">The User entity informations to insert.</param>
+        /// <param name="entity">The <see cref="UserEntity"/>.</param
         /// <param name="save">Should save database changes ?</param>
-        /// <returns></returns>
+        /// <returns>The new <see cref="UserEntity"/>.</returns>
         public UserEntity Add(UserEntity entity, bool save = true)
         {
             using (Db.Context)
@@ -80,10 +98,11 @@ namespace Fotootof.SQLite.Services.QueryManagers
         }
 
         /// <summary>
-        /// Method to insert a new User asynchronous.
+        /// Method to add new <see cref="UserEntity"/> asynchronously.
         /// </summary>
-        /// <param name="entity">The User entity informations to insert.</param>
+        /// <param name="entity">The <see cref="UserEntity"/>.</param
         /// <param name="save">Should save database changes ?</param>
+        /// <returns>The new <see cref="UserEntity"/>.</returns>
         public Task<UserEntity> AddAsync(UserEntity entity, bool save = true)
             => Task.Run(() => Add(entity, save));
 
@@ -94,29 +113,31 @@ namespace Fotootof.SQLite.Services.QueryManagers
         #region Methods Update
 
         /// <summary>
-        /// 
+        /// Method to update a <see cref="AlbumEntity"/> asynchronous.
         /// </summary>
-        /// <param name="login"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public async Task<UserEntity> Update(UserEntity user)
+        /// <param name="entity">An <see cref="AlbumEntity"/> to update.</param>
+        /// <param name="autoDate">Auto initialize dates.</param>
+        /// <returns>The updated <see cref="AlbumEntity"/>.</returns>
+        public async Task<UserEntity> UpdateAsync(UserEntity entity)
         {
+            if (entity == null)
+            {
+                return null;
+            }
+
             using (Db.Context)
             {
-                Db.Context.Users.Attach(user);
-                return await UserManager.UpdateAsync(user);
-            }
-        }
+                // Try to attach entity to the database context.
+                try { Db.Context.Attach(entity); }
+                catch (Exception e)
+                {
+                    InvalidOperationException i = new InvalidOperationException($"Error on database Context Attach {entity?.GetType()}", e);
+                    log.Error(i.Output());
+                    throw;
+                }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="login"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public async Task<UserEntity> UpdateAsync(UserEntity user)
-        {
-            return await Update(user);
+                return await UserManager.UpdateAsync(entity);
+            }
         }
 
         #endregion
@@ -124,40 +145,37 @@ namespace Fotootof.SQLite.Services.QueryManagers
 
 
         #region Methods Delete
+
         /// <summary>
-        /// 
+        /// Method to delete an <see cref="UserEntity"/>.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="entity">The <see cref="UserEntity"/> to delete.</param>
+        /// <returns>The deleted <see cref="UserEntity"/>.</returns>
         public UserEntity Delete(UserEntity entity)
         {
-            UserEntity item;
+            if (entity == null)
+            {
+                return null;
+            }
 
             using (Db.Context)
             {
-                item = UserManager.Delete(entity);
+                return UserManager.Delete(entity);
             }
-
-            return item;
         }
 
         /// <summary>
-        /// 
+        /// Method to delete an <see cref="UserEntity"/> asynchronously.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="entity">The <see cref="UserEntity"/> to delete.</param>
+        /// <returns>The deleted <see cref="UserEntity"/>.</returns>
         public Task<UserEntity> DeleteAsync(UserEntity entity)
-        {
-            return Task.Run(() =>
-            {
-                return Delete(entity);
-            });
-        }
+            => Task.Run(() => { return Delete(entity); });
         #endregion
 
 
 
-        #region Methods Dependency AclGroup
+        #region Obsoletes
 
         /// <summary>
         /// 

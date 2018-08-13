@@ -13,7 +13,7 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.SQLite.EntityManager.Managers
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite AclAction Entities Manager.
+    /// Class XtrmAddons Fotootof SQLite Entity Manager AclAction.
     /// </summary>
     public partial class AclActionManager : EntitiesManager
     {
@@ -32,9 +32,9 @@ namespace Fotootof.SQLite.EntityManager.Managers
         #region Constructors
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Libraries SQLite AclActions Entities Manager Constructor.
+        /// Class XtrmAddons Fotootof SQLite Entity Manager AclAction Constructor.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">A database connector <see cref="DatabaseContextCore"/></param>
         public AclActionManager(DatabaseContextCore context) : base(context) { }
 
         #endregion
@@ -50,6 +50,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <param name="aclGroupId"></param>
         /// <param name="save"></param>
         /// <returns>The added user entity.</returns>
+        [System.Obsolete("")]
         public AclActionEntity AddAclGroupDependency(int aclActionId, int aclGroupId, bool save = true)
         {
             AclActionOptionsSelect options = new AclActionOptionsSelect { PrimaryKey = aclActionId };
@@ -100,6 +101,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <param name="aclGroupId">The id of the AclGroup.</param>
         /// <param name="save"></param>
         /// <returns>Modified AclAction entity as result.</returns>
+        [System.Obsolete("")]
         public AclActionEntity RemoveAclGroupDependency(int aclActionId, int aclGroupId, bool save = true)
         {
             AclActionOptionsSelect options = new AclActionOptionsSelect { PrimaryKey = aclActionId };
@@ -118,6 +120,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <param name="aclGroupId">The id of the AclGroup.</param>
         /// <param name="save"></param>
         /// <returns>Asynchronous task with modified AclAction entity as result.</returns>
+        [System.Obsolete("")]
         public async Task<AclActionEntity> RemoveAclGroupDependenciesAsync(int aclActionId, int aclGroupId, bool save = true)
         {
             int result = await (Connector as DatabaseContextCore).Database.ExecuteSqlCommandAsync (
@@ -174,6 +177,44 @@ namespace Fotootof.SQLite.EntityManager.Managers
             }
 
             throw new ArgumentNullException(nameof(op), "AclActionOptionsSelect must contains no empty or null value Primary Key or Action for selection.");
+        }
+
+        /// <summary>
+        /// Method to update an <see cref="AclActionEntity"/>.
+        /// </summary>
+        /// <param name="entity">An Entity to update.</param>
+        /// <returns>The updated Entity.</returns>
+        public async Task<AclActionEntity> UpdateAsync(AclActionEntity entity)
+        {
+            // Remove AclGroups in AclActions dependencies.
+            DeleteDependencyAclGroups(entity);
+
+            // Update item informations.
+            entity = Connector.Update(entity).Entity;
+
+            await SaveAsync();
+
+            // Return the updated item.
+            return entity;
+        }
+
+        /// <summary>
+        /// Method to delete <see cref="AclGroupsInAclActions"/> associations.
+        /// </summary>
+        /// <param name="entity">The <see cref="AclActionEntity"/> to process with.</param>
+        private async void DeleteDependencyAclGroups(AclActionEntity entity)
+        {
+            if (entity.AclGroupsInAclActions.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "AclGroupsInAclActions", key = "AclActionId", keyList = "AclGroupId" },
+                    entity.PrimaryKey,
+                    entity.AclGroupsInAclActions.DepPKeysRemoved
+                );
+                entity.AclGroupsInAclActions.DepPKeysRemoved.Clear();
+
+                log.Debug("Delete AclGroups in AclActions associations. Done.");
+            }
         }
 
         /// <summary>

@@ -11,16 +11,16 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.SQLite.EntityManager.Managers
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite Sections Entities Manager.
+    /// Class XtrmAddons Fotootof SQLite Entities Manager Sections.
     /// </summary>
     public partial class SectionManager : EntitiesManager
     {
         #region Constructors
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Libraries SQLite Sections Entities Manager Constructor.
+        /// Class XtrmAddons Fotootof SQLite Entities Manager Sections Constructor.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">A database connector <see cref="DatabaseContextCore"/></param>
         public SectionManager(DatabaseContextCore context) : base(context) { }
 
         #endregion
@@ -120,6 +120,24 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <returns>The updated Entity.</returns>
         public async Task<SectionEntity> UpdateAsync(SectionEntity entity)
         {
+            DeleteDependencyAclGroups(entity);
+            DeleteDependencyAlbums(entity);
+
+            // Update item informations.
+            entity = Connector.Update(entity).Entity;
+
+            await SaveAsync();
+
+            // Return the updated item.
+            return entity;
+        }
+
+        /// <summary>
+        /// Method to delete <see cref="SectionsInAclGroups"/> associations.
+        /// </summary>
+        /// <param name="entity">The <see cref="SectionEntity"/> to process with.</param>
+        private async void DeleteDependencyAclGroups(SectionEntity entity)
+        {
             // Remove Users In AclGroups dependencies.
             if (entity.SectionsInAclGroups.DepPKeysRemoved.Count > 0)
             {
@@ -130,7 +148,14 @@ namespace Fotootof.SQLite.EntityManager.Managers
                 );
                 entity.SectionsInAclGroups.DepPKeysRemoved.Clear();
             }
+        }
 
+        /// <summary>
+        /// Method to delete <see cref="AlbumsInSections"/> associations.
+        /// </summary>
+        /// <param name="entity">The <see cref="SectionEntity"/> to process with.</param>
+        private async void DeleteDependencyAlbums(SectionEntity entity)
+        {
             // Remove Users In Albums dependencies.
             if (entity.AlbumsInSections.DepPKeysRemoved.Count > 0)
             {
@@ -141,14 +166,6 @@ namespace Fotootof.SQLite.EntityManager.Managers
                 );
                 entity.AlbumsInSections.DepPKeysRemoved.Clear();
             }
-
-            // Update item informations.
-            entity = Connector.Update(entity).Entity;
-
-            await SaveAsync();
-
-            // Return the updated item.
-            return entity;
         }
 
         #endregion

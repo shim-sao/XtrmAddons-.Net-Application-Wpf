@@ -1,7 +1,9 @@
 ﻿using Fotootof.Collections.Entities;
+using Fotootof.Libraries.Logs;
 using Fotootof.Libraries.Models.Systems;
 using Fotootof.Libraries.Windows;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
+using System;
 using System.IO;
 using XtrmAddons.Net.Common.Extensions;
 
@@ -13,6 +15,12 @@ namespace Fotootof.Layouts.Windows.Forms.Album
     internal class WindowFormAlbumModel : WindowLayoutFormModel<WindowFormAlbumLayout>
     {
         #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Variable Album entity.
@@ -115,13 +123,25 @@ namespace Fotootof.Layouts.Windows.Forms.Album
         #region Methods
 
         /// <summary>
-        /// 
+        /// Method to update a <see cref="PictureEntity"/> property of an <see cref="AlbumEntity"/>.
         /// </summary>
-        /// <param name="propertyName"></param>
-        /// <param name="filename"></param>
-        public void UpdateAlbumPictureProperty(string propertyName, string filename)
+        /// <param name="propertyName">The <see cref="object"/> property name.</param>
+        /// <param name="filename">The filename or full path of the image.</param>
+        public async void UpdateAlbumPicturePropertyAsync(string propertyName, string filename)
         {
-
+            if(propertyName.IsNullOrWhiteSpace())
+            {
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(propertyName), propertyName);
+                log.Error(e.Output());
+                throw e;
+            }
+            
+            if(filename.IsNullOrWhiteSpace())
+            {
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(filename), filename);
+                log.Error(e.Output());
+                throw e;
+            }
 
             // Check if Album has a Picture associated.
             if ((int)Album.GetPropertyValue(propertyName+"Id") <= 0)
@@ -135,7 +155,7 @@ namespace Fotootof.Layouts.Windows.Forms.Album
             Album.GetPropertyValue<PictureEntity>(propertyName).Bind((new StorageInfoModel(new FileInfo(filename))).ToPicture(), new string[] { "PrimaryKey", "PictureId" });
 
             // Update image properties in database.
-            Album.SetPropertyValue(propertyName, Db.Pictures.Update(Album.GetPropertyValue<PictureEntity>(propertyName)));
+            Album.SetPropertyValue(propertyName, await Db.Pictures.UpdateAsync(Album.GetPropertyValue<PictureEntity>(propertyName)));
         }
 
         #endregion

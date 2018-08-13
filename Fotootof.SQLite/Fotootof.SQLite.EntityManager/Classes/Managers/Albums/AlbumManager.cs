@@ -14,18 +14,18 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.SQLite.EntityManager.Managers
 {
     /// <summary>
-    /// Class XtrmAddons PhotoAlbum Libraries SQLite Albums Entities Manager.
+    /// Class XtrmAddons Fotootof SQLite Entity Manager Albums.
     /// </summary>
     public partial class AlbumManager : EntitiesManager
     {
         #region Variables
-        
+
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
         	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+
         #endregion
 
 
@@ -33,9 +33,9 @@ namespace Fotootof.SQLite.EntityManager.Managers
         #region Constructors
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Libraries SQLite Albums Entities Manager Constructor.
+        /// Class XtrmAddons Fotootof SQLite Entity Manager Albums Constructor.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">A database connector <see cref="DatabaseContextCore"/></param>
         public AlbumManager(DatabaseContextCore context) : base(context) { }
 
         #endregion
@@ -45,9 +45,9 @@ namespace Fotootof.SQLite.EntityManager.Managers
         #region Methods
 
         /// <summary>
-        /// Method to add new album.
+        /// Method to add new <see cref="AlbumEntity"/>.
         /// </summary>
-        /// <param name="entity">A album entity to add.</param>
+        /// <param name="entity">An <see cref="AlbumEntity"/> to add.</param>
         /// <param name="sectionId"></param>
         /// <param name="save"></param>
         /// <returns>The added album entity.</returns>
@@ -256,6 +256,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <param name="pictureId">The id of the picture.</param>
         /// <param name="save"></param>
         /// <returns></returns>
+        [System.Obsolete("")]
         public AlbumEntity RemovePictureDependency(int albumId, int pictureId, bool save = true)
         {
             AlbumOptionsSelect options = new AlbumOptionsSelect { PrimaryKey = albumId };
@@ -275,6 +276,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <param name="pictureId">The id of the picture.</param>
         /// <param name="save"></param>
         /// <returns>Async task with modified Album entity as result.</returns>
+        [System.Obsolete("")]
         public async Task<AlbumEntity> RemovePictureDependenciesAsync(int albumId, int pictureId, bool save = true)
         {
             int result = await Connector.Database.ExecuteSqlCommandAsync(
@@ -296,6 +298,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <param name="sectionId">The id of the Section.</param>
         /// <param name="save"></param>
         /// <returns>The modified Album entity as result.</returns>
+        [System.Obsolete("")]
         public AlbumEntity RemoveSectionDependency(int albumId, int sectionId, bool save = true)
         {
             AlbumOptionsSelect options = new AlbumOptionsSelect { PrimaryKey = albumId };
@@ -314,6 +317,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <param name="sectionId">The id of the Section.</param>
         /// <param name="save"></param>
         /// <returns>Async task with modified Album entity as result.</returns>
+        [System.Obsolete("")]
         public async Task<AlbumEntity> RemoveSectionDependenciesAsync(int albumId, int sectionId, bool save = true)
         {
             int result = await Connector.Database.ExecuteSqlCommandAsync(
@@ -419,12 +423,152 @@ namespace Fotootof.SQLite.EntityManager.Managers
         }
 
         /// <summary>
-        /// Method to update an album.
+        /// Method to update an <see cref="AlbumEntity"/>.
+        /// </summary>
+        /// <param name="entity">An <see cref="AlbumEntity"/> to update.</param>
+        /// <param name="autoDate">Automatic set default dates ?</param>
+        /// <returns>The updated <see cref="AlbumEntity"/>.</returns>
+        public async Task<AlbumEntity> UpdateAsync(AlbumEntity entity, bool autoDate = true)
+        {
+            // Remove Albums in Sections dependencies.
+            DeleteDependencySections(entity);
+            DeleteDependencyStorages(entity);
+            DeleteDependencyPictures(entity);
+
+            // Update dates according picture list.
+            if (autoDate)
+            {
+                entity.DateStart = MinCreated(entity.AlbumId);
+                entity.DateEnd = MaxCreated(entity.AlbumId);
+            }
+
+            entity.Modified = DateTime.UtcNow;
+
+            // Update item informations.
+            entity = Connector.Update(entity).Entity;
+
+            await SaveAsync();
+
+            // Return the updated item.
+            return entity;
+        }
+
+        /// <summary>
+        /// Method to update a list of albums.
+        /// </summary>
+        /// <param name="albums">A list of Album entities to update.</param>
+        /// <param name="autoDate">Automatic set default dates ?</param>
+        /// <returns>The updated list of Album entity.</returns>
+        public async Task<List<AlbumEntity>> UpdateMultiAsync(List<AlbumEntity> albums, bool autoDate = true)
+        {
+            // New list for updated albums return.
+            List<AlbumEntity> entities = new List<AlbumEntity>();
+
+            // Loop over the list of albums to update.
+            foreach (AlbumEntity entity in albums)
+            {
+                entities.Add(await UpdateAsync(entity, autoDate));
+            }
+
+            // Return updates albums.
+            return entities;
+        }
+
+        /// <summary>
+        /// Method to delete <see cref="AlbumsInSections"/> associations.
+        /// </summary>
+        /// <param name="entity">The <see cref="AlbumEntity"/> to process with.</param>
+        private async void DeleteDependencySections(AlbumEntity entity)
+        {
+            if (entity.AlbumsInSections.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "AlbumsInSections", key = "AlbumId", keyList = "SectionId" },
+                    entity.PrimaryKey,
+                    entity.AlbumsInSections.DepPKeysRemoved
+                );
+                entity.AlbumsInSections.DepPKeysRemoved.Clear();
+
+                log.Debug("Delete Albums in Sections associations. Done.");
+            }
+        }
+
+        /// <summary>
+        /// Method to delete <see cref="StoragesInAlbums"/> associations.
+        /// </summary>
+        /// <param name="entity">The <see cref="AlbumEntity"/> to process with.</param>
+        private async void DeleteDependencyStorages(AlbumEntity entity)
+        {
+            if (entity.StoragesInAlbums.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "StoragesInAlbums", key = "AlbumId", keyList = "StorageId" },
+                    entity.PrimaryKey,
+                    entity.StoragesInAlbums.DepPKeysRemoved
+                );
+                entity.StoragesInAlbums.DepPKeysRemoved.Clear();
+
+                log.Debug("Delete Pictures in Albums associations. Done.");
+            }
+        }
+
+        /// <summary>
+        /// Method to delete <see cref="PicturesInAlbums"/> associations.
+        /// </summary>
+        /// <param name="entity">The <see cref="AlbumEntity"/> to process with.</param>
+        private async void DeleteDependencyPictures(AlbumEntity entity)
+        {
+            if (entity.PicturesInAlbums.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "PicturesInAlbums", key = "AlbumId", keyList = "PictureId" },
+                    entity.PrimaryKey,
+                    entity.PicturesInAlbums.DepPKeysRemoved
+                );
+                entity.PicturesInAlbums.DepPKeysRemoved.Clear();
+
+                log.Debug("Delete Pictures in Albums associations. Done.");
+            }
+        }
+
+        /// <summary>
+        /// Method to delete <see cref="InfosInAlbums"/> associations.
+        /// </summary>
+        /// <param name="entity">The <see cref="AlbumEntity"/> to process with.</param>
+        private async void DeleteDependencyInfos(AlbumEntity entity)
+        {
+            if (entity.InfosInAlbums.DepPKeysRemoved.Count > 0)
+            {
+                await DeleteDependencyAsync(
+                    new EntityManagerDeleteDependency { Name = "InfosInAlbums", key = "AlbumId", keyList = "InfoId" },
+                    entity.PrimaryKey,
+                    entity.InfosInAlbums.DepPKeysRemoved
+                );
+                entity.InfosInAlbums.DepPKeysRemoved.Clear();
+
+                log.Debug("Delete Infos in Albums associations. Done.");
+            }
+        }
+
+        #endregion
+
+
+
+
+
+
+
+
+        #region Methods obsolete
+
+        /// <summary>
+        /// Method to update an <see cref="AlbumEntity"/>.
         /// </summary>
         /// <param name="entity">A album entity to update.</param>
         /// <param name="save">Save changes after update ?</param>
         /// <param name="autoDate">Automatic set default dates ?</param>
         /// <returns>The updated Album entity.</returns>
+        [System.Obsolete("UpdateAsync()", true)]
         public AlbumEntity UpdateAlbum(AlbumEntity entity, bool save = true, bool autoDate = true)
         {
             // Update dates according picture list.
@@ -446,6 +590,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <param name="save">Save changes after update ?</param>
         /// <param name="autoDate">Automatic set default dates ?</param>
         /// <returns>The updated list of Album entity.</returns>
+        [System.Obsolete("UpdateAsync()", true)]
         public List<AlbumEntity> UpdateAlbum(List<AlbumEntity> albums, bool save = true, bool autoDate = true)
         {
             // New list for updated albums return.
