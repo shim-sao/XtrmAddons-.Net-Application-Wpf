@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Fotootof.Collections.Entities
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Component Users AclAction Collections.
+    /// Class XtrmAddons Fotootof Collections Entities AclAction Collection.
     /// </summary>
     public class AclActionEntityCollection : CollectionBaseEntity<AclActionEntity, AclActionOptionsList>
     {
@@ -26,21 +26,21 @@ namespace Fotootof.Collections.Entities
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Component Users AclAction Collections Constructor.
+        /// Class XtrmAddons Fotootof Collections Entities AclAction Collection Constructor.
         /// </summary>
         public AclActionEntityCollection(bool autoLoad = false, AclActionOptionsList options = null)
             : base(autoLoad, options) { }
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Component Users AclAction Collections Constructor.
+        /// Class XtrmAddons Fotootof Collections Entities AclAction Collection Constructor.
         /// </summary>
         /// <param name="list">A list of AclAction to paste in.</param>
         public AclActionEntityCollection(List<AclActionEntity> list) : base(list) { }
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Component Users AclAction Collections Constructor.
+        /// Class XtrmAddons Fotootof Collections Entities AclAction Collection Constructor.
         /// </summary>
-        /// <param name="collection">>A collection of AclAction to paste in.</param>
+        /// <param name="collection">A collection of AclAction to paste in.</param>
         public AclActionEntityCollection(IEnumerable<AclActionEntity> collection)
             : base(collection) { }
 
