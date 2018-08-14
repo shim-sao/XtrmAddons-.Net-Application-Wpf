@@ -20,6 +20,18 @@ namespace Fotootof.Collections.Entities
     /// </summary>
     public class AlbumEntityCollection : CollectionBaseEntity<AlbumEntity, AlbumOptionsList>
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
@@ -36,20 +48,20 @@ namespace Fotootof.Collections.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Common Albums Collection Constructor.
         /// </summary>
-        /// <param name="autoLoad"></param>
+        /// <param name="autoLoad">Auto load data from database ?</param>
         /// <param name="options">Options for query filters.</param>
         public AlbumEntityCollection(bool autoLoad = false, AlbumOptionsList options = null) : base(autoLoad, options) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Common Albums Collection Constructor.
         /// </summary>
-        /// <param name="list">A list of Album to paste in.</param>
+        /// <param name="list">A <see cref="List{AlbumEntity}"/> to paste in.</param>
         public AlbumEntityCollection(List<AlbumEntity> list) : base(list) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Common Albums Collection Constructor.
         /// </summary>
-        /// <param name="collection">>A collection of Album to paste in.</param>
+        /// <param name="collection">A <see cref="IEnumerable{AlbumEntity}"/> to paste in.</param>
         public AlbumEntityCollection(IEnumerable<AlbumEntity> collection) : base(collection) { }
 
         /// <summary>

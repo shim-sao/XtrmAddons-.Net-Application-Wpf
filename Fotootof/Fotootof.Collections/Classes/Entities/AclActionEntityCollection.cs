@@ -12,6 +12,18 @@ namespace Fotootof.Collections.Entities
     /// </summary>
     public class AclActionEntityCollection : CollectionBaseEntity<AclActionEntity, AclActionOptionsList>
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
@@ -28,19 +40,21 @@ namespace Fotootof.Collections.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Collections Entities AclAction Collection Constructor.
         /// </summary>
+        /// <param name="autoLoad">Auto load data from database ?</param>
+        /// <param name="options">Options for query filters.</param>
         public AclActionEntityCollection(bool autoLoad = false, AclActionOptionsList options = null)
             : base(autoLoad, options) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Collections Entities AclAction Collection Constructor.
         /// </summary>
-        /// <param name="list">A list of AclAction to paste in.</param>
+        /// <param name="list">A <see cref="List{AclActionEntity}"/> to paste in.</param>
         public AclActionEntityCollection(List<AclActionEntity> list) : base(list) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Collections Entities AclAction Collection Constructor.
         /// </summary>
-        /// <param name="collection">A collection of AclAction to paste in.</param>
+        /// <param name="collection">A <see cref="IEnumerable{AclActionEntity}"/> to paste in.</param>
         public AclActionEntityCollection(IEnumerable<AclActionEntity> collection)
             : base(collection) { }
 

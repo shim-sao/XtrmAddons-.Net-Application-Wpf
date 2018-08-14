@@ -9,10 +9,22 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.Collections.Entities
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Component Users AclGroup Collections.
+    /// Class XtrmAddons Fotootof Collections Entities AclGroup Collection.
     /// </summary>
     public class AclGroupEntityCollection : CollectionBaseEntity<AclGroupEntity, AclGroupOptionsList>
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
@@ -27,21 +39,23 @@ namespace Fotootof.Collections.Entities
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Component Users AclGroup Collections Constructor.
+        /// Class XtrmAddons Fotootof Collections Entities AclGroup Collection Constructor.
         /// </summary>
+        /// <param name="autoLoad">Auto load data from database ?</param>
+        /// <param name="options">Options for query filters.</param>
         public AclGroupEntityCollection(bool autoLoad = false, AclGroupOptionsList options = null)
             : base(autoLoad, options) { }
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Component Users AclGroup Collections Constructor.
+        /// Class XtrmAddons Fotootof Collections Entities AclGroup Collection Constructor.
         /// </summary>
-        /// <param name="list">A list of AclGroup to paste in.</param>
+        /// <param name="list">A <see cref="List{AclGroupEntity}"/> to paste in.</param>
         public AclGroupEntityCollection(List<AclGroupEntity> list) : base(list) { }
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Component Users AclGroup Collections Constructor.
+        /// Class XtrmAddons Fotootof Collections Entities AclGroup Collection Constructor.
         /// </summary>
-        /// <param name="collection">>A collection of AclGroup to paste in.</param>
+        /// <param name="collection">A <see cref="IEnumerable{AclGroupEntity}"/> to paste in.</param>
         public AclGroupEntityCollection(IEnumerable<AclGroupEntity> collection)
             : base(collection) { }
 

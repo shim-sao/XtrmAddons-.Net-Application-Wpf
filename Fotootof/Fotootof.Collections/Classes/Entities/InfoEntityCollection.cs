@@ -15,6 +15,18 @@ namespace Fotootof.Collections.Entities
     /// </summary>
     public class InfoEntityCollection : CollectionBaseEntity<InfoEntity, InfoOptionsList>
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
@@ -30,20 +42,20 @@ namespace Fotootof.Collections.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Section Collections.
         /// </summary>
-        /// <param name="autoLoad"></param>
+        /// <param name="autoLoad">Auto load data from database ?</param>
         /// <param name="options">Options for query filters.</param>
         public InfoEntityCollection(bool autoLoad = false, InfoOptionsList options = null) : base(autoLoad, options) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Section Collections.
         /// </summary>
-        /// <param name="list">A list of Section to paste in.</param>
+        /// <param name="list">A <see cref="List{InfoEntity}"/> to paste in.</param>
         public InfoEntityCollection(List<InfoEntity> list) : base(list) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Section Collections.
         /// </summary>
-        /// <param name="collection">>A collection of Section to paste in.</param>
+        /// <param name="collection">A <see cref="IEnumerable{InfoEntity}"/> to paste in.</param>
         public InfoEntityCollection(IEnumerable<InfoEntity> collection) : base(collection) { }
 
         #endregion
@@ -66,10 +78,10 @@ namespace Fotootof.Collections.Entities
                     string key = entity.Name.RemoveWhitespace().RemoveDiacritics();
                     //Trace.WriteLine(key);
 
-                    if (XtrmAddons.Fotootof.Culture.Translation.Words.Contains(key))
+                    /*if (XtrmAddons.Fotootof.Culture.Translation.Words.Contains(key))
                     {
                         this[i].Name = (string)XtrmAddons.Fotootof.Culture.Translation.Words[key];
-                    }
+                    */
 
                 }
                 catch (Exception ex)

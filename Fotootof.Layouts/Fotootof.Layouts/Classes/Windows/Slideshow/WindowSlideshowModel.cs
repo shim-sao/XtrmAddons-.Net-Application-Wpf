@@ -7,11 +7,17 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.Layouts.Windows.Slideshow
 {
     /// <summary>
-    /// 
+    /// Class Fotootof Layouts Windows Slideshow.
     /// </summary>
     public class WindowSlideshowModel : WindowLayoutModel<WindowSlideshowLayout>
     {
         #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// 
@@ -57,8 +63,11 @@ namespace Fotootof.Layouts.Windows.Slideshow
             get => pictures;
             set
             {
-                pictures = value;
-                NotifyPropertyChanged();
+                if(pictures != value)
+                {
+                    pictures = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -70,15 +79,18 @@ namespace Fotootof.Layouts.Windows.Slideshow
             get => currentPicture;
             set
             {
-                if(value != null)
+                if (currentPicture != value)
                 {
-                    value.OriginalPath = !value.OriginalPath.IsNullOrWhiteSpace() ? value.OriginalPath : value.PicturePath;
-                    value.OriginalWidth = value.OriginalWidth == 0 ? value.OriginalWidth : value.PictureWidth;
-                    value.OriginalHeight = value.OriginalHeight == 0 ? value.OriginalHeight : value.PictureHeight;
-                }
+                    if (value != null)
+                    {
+                        value.OriginalPath = !value.OriginalPath.IsNullOrWhiteSpace() ? value.OriginalPath : value.PicturePath;
+                        value.OriginalWidth = value.OriginalWidth == 0 ? value.OriginalWidth : value.PictureWidth;
+                        value.OriginalHeight = value.OriginalHeight == 0 ? value.OriginalHeight : value.PictureHeight;
+                    }
 
-                currentPicture = value;
-                NotifyPropertyChanged();
+                    currentPicture = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -90,8 +102,11 @@ namespace Fotootof.Layouts.Windows.Slideshow
             get => delay;
             set
             {
-                delay = value;
-                NotifyPropertyChanged();
+                if (delay != value)
+                {
+                    delay = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -103,8 +118,11 @@ namespace Fotootof.Layouts.Windows.Slideshow
             get => isPlaying;
             set
             {
-                isPlaying = value;
-                NotifyPropertyChanged();
+                if (isPlaying != value)
+                {
+                    isPlaying = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -116,8 +134,11 @@ namespace Fotootof.Layouts.Windows.Slideshow
             get => startIndex;
             set
             {
-                startIndex = value;
-                NotifyPropertyChanged();
+                if (startIndex != value)
+                {
+                    startIndex = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -129,8 +150,11 @@ namespace Fotootof.Layouts.Windows.Slideshow
             get => currentIndex;
             set
             {
-                currentIndex = value;
-                NotifyPropertyChanged();
+                if (currentIndex != value)
+                {
+                    currentIndex = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -141,11 +165,10 @@ namespace Fotootof.Layouts.Windows.Slideshow
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Component Page Slideshow Model Constructor.
+        /// Class Fotootof Layouts Windows Slideshow Constructor.
         /// </summary>
-        /// <param name="pageBase"></param>
-        public WindowSlideshowModel(WindowSlideshowLayout pageBase)
-            : base(pageBase) { }
+        /// <param name="controlView">The page associated to the model.</param>
+        public WindowSlideshowModel(WindowSlideshowLayout controlView) : base(controlView) { }
 
         #endregion
 
@@ -154,7 +177,7 @@ namespace Fotootof.Layouts.Windows.Slideshow
         #region Constructor
 
         /// <summary>
-        /// 
+        /// Method to move to the next Picture.
         /// </summary>
         public async void NextAsync()
         {
@@ -186,7 +209,7 @@ namespace Fotootof.Layouts.Windows.Slideshow
         }
 
         /// <summary>
-        /// 
+        /// Method to move to the preview Picture.
         /// </summary>
         public async void PreviewAsync()
         {

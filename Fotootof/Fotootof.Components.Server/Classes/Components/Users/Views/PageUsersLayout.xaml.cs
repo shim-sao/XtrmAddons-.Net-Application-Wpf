@@ -60,6 +60,12 @@ namespace Fotootof.Components.Server.Users
             MessageBoxs.IsBusy = false;
         }
 
+        #endregion
+
+
+
+        #region Methods
+
         /// <summary>
         /// Method to initialize page content.
         /// </summary>

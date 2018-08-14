@@ -13,6 +13,18 @@ namespace Fotootof.Collections.Entities
     /// </summary>
     public class UserEntityCollection : CollectionBaseEntity<UserEntity, UserOptionsList>
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
@@ -34,20 +46,20 @@ namespace Fotootof.Collections.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Users Collections Constructor.
         /// </summary>
+        /// <param name="autoLoad">Auto load data from database ?</param>
         /// <param name="options">Options for query filters.</param>
-        /// <param name="autoLoad"></param>
         public UserEntityCollection(UserOptionsList options = null, bool autoLoad = false) : base(autoLoad, options) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Users Collections Constructor.
         /// </summary>
-        /// <param name="list">A list of User to paste in.</param>
+        /// <param name="list">A <see cref="List{T}"/> to paste in.</param>
         public UserEntityCollection(List<UserEntity> list) : base(list) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Users Collections Constructor.
         /// </summary>
-        /// <param name="collection">>A collection of User to paste in.</param>
+        /// <param name="collection">A <see cref="IEnumerable{T}"/> to paste in.</param>
         public UserEntityCollection(IEnumerable<UserEntity> collection) : base(collection) { }
 
         #endregion

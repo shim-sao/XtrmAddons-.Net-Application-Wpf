@@ -14,7 +14,7 @@ namespace Fotootof.Collections
         /// <summary>
         /// Variable logger.
         /// </summary>
-        protected static readonly log4net.ILog log =
+        private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
@@ -67,13 +67,13 @@ namespace Fotootof.Collections
         /// <summary>
         /// Class XtrmAddons Fotootof Libraries Base Collections.
         /// </summary>
-        /// <param name="list">A list of T to paste in.</param>
+        /// <param name="list">A <see cref="List{T}"/> to paste in.</param>
         public CollectionBase(List<T> list) : base(list) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Libraries Base Collections.
         /// </summary>
-        /// <param name="collection">>A collection of T to paste in.</param>
+        /// <param name="collection">A <see cref="IEnumerable{T}"/> to paste in.</param>
         public CollectionBase(IEnumerable<T> collection) : base(collection) { }
 
         #endregion

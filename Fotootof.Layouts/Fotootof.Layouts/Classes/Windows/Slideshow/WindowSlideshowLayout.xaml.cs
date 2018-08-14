@@ -8,7 +8,7 @@ using System.Windows.Input;
 namespace Fotootof.Layouts.Windows.Slideshow
 {
     /// <summary>
-    /// Class Fotootof Layouts Windows Slideshow.
+    /// Class XtrmAddons Fotootof Layouts Windows Slideshow.
     /// </summary>
     public partial class WindowSlideshowLayout : Window
     {
@@ -30,6 +30,8 @@ namespace Fotootof.Layouts.Windows.Slideshow
         /// <param name="picture"></param>
         public WindowSlideshowLayout(PictureEntityCollection collection, PictureEntity picture)
         {
+            Theme.ThemeLoader.MergeThemeTo(Resources);
+
             InitializeComponent();
 
             Model = new WindowSlideshowModel(this)
@@ -54,40 +56,40 @@ namespace Fotootof.Layouts.Windows.Slideshow
         /// 
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">Mouse button event arguments</param>
-        private void OnMenuTopMouseEnter(object sender, MouseEventArgs e)
+        /// <param name="e">The Mouse button event arguments <see cref="MouseEventArgs"/>.</param>
+        private void MenuTop_MouseEnter(object sender, MouseEventArgs e)
         {
-            (FindName("StackPanelMenuTop") as StackPanel).Visibility = Visibility.Visible;
+            ((UIElement)FindName("GridMenuTopName")).Visibility = Visibility.Visible;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">Mouse button event arguments</param>
-        private void OnMenuTopMouseLeave(object sender, MouseEventArgs e)
+        /// <param name="e">The Mouse button event arguments <see cref="MouseEventArgs"/>.</param>
+        private void MenuTop_MouseLeave(object sender, MouseEventArgs e)
         {
-            (FindName("StackPanelMenuTop") as StackPanel).Visibility = Visibility.Hidden;
+            ((UIElement)FindName("GridMenuTopName")).Visibility = Visibility.Hidden;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">Mouse button event arguments</param>
+        /// <param name="e">The Mouse button event arguments <see cref="MouseEventArgs"/>.</param>
         private void OnMenuBottomMouseEnter(object sender, MouseEventArgs e)
         {
-            (FindName("StackPanelMenuBottom") as StackPanel).Visibility = Visibility.Visible;
+            ((UIElement)FindName("GridMenuBottomName")).Visibility = Visibility.Visible;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">Mouse button event arguments</param>
+        /// <param name="e">The Mouse button event arguments <see cref="MouseEventArgs"/>.</param>
         private void OnMenuBottomMouseLeave(object sender, MouseEventArgs e)
         {
-            (FindName("StackPanelMenuBottom") as StackPanel).Visibility = Visibility.Hidden;
+            ((UIElement)FindName("GridMenuBottomName")).Visibility = Visibility.Hidden;
         }
 
 
@@ -95,7 +97,7 @@ namespace Fotootof.Layouts.Windows.Slideshow
         /// 
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">Mouse button event arguments</param>
+        /// <param name="e">The Mouse button event arguments <see cref="MouseButtonEventArgs"/>.</param>
         private void OnMinus_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             double dw = ImagePicture.ActualWidth * 0.80;
@@ -127,7 +129,7 @@ namespace Fotootof.Layouts.Windows.Slideshow
         /// 
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">Mouse button event arguments</param>
+        /// <param name="e">The Mouse button event arguments <see cref="MouseButtonEventArgs"/>.</param>
         private void OnPlay_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Model.PlayAsync();
@@ -137,11 +139,12 @@ namespace Fotootof.Layouts.Windows.Slideshow
         /// 
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">Mouse button event arguments</param>
+        /// <param name="e">The Mouse button event arguments <see cref="MouseButtonEventArgs"/>.</param>
         private void OnRefresh_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            ImagePicture.Width = Math.Max(GridSlideshow.ActualWidth, Model.CurrentPicture.OriginalWidth);
-            ImagePicture.Height = Math.Max(GridSlideshow.ActualHeight, Model.CurrentPicture.OriginalHeight);
+            var root = (Grid)FindName("GridBlockRootName");
+            ImagePicture.Width = Math.Max(root.ActualWidth, Model.CurrentPicture.OriginalWidth);
+            ImagePicture.Height = Math.Max(root.ActualHeight, Model.CurrentPicture.OriginalHeight);
             CurrentZoom.Reset();
         }
 
@@ -156,21 +159,21 @@ namespace Fotootof.Layouts.Windows.Slideshow
         }
 
         /// <summary>
-        /// Method called on preview preview mouse button event.
+        /// Method called on preview Picture preview mouse button event.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">The Mouse button event arguments <see cref="MouseButtonEventArgs"/></param>
-        private void OnPreview_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void PicturePreview_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Model.PreviewAsync();
         }
 
         /// <summary>
-        /// Method called on next preview mouse button event.
+        /// Method called on next Picture preview mouse button event.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">The Mouse button event arguments <see cref="MouseButtonEventArgs"/></param>
-        private void OnNext_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void PictureNext_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Model.NextAsync();
         }
@@ -179,7 +182,7 @@ namespace Fotootof.Layouts.Windows.Slideshow
         /// 
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="e">The routed property changed event arguments <see cref="RoutedPropertyChangedEventArgs{T}"/>.</param>
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if(Model != null)

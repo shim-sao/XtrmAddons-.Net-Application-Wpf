@@ -16,6 +16,18 @@ namespace Fotootof.Collections.Entities
     /// </summary>
     public class SectionEntityCollection : CollectionBaseEntity<SectionEntity, SectionOptionsList>
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
@@ -32,21 +44,15 @@ namespace Fotootof.Collections.Entities
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Section Collections.
         /// </summary>
-        /// <param name="autoLoad"></param>
+        /// <param name="autoLoad">Auto load data from database ?</param>
         /// <param name="options">Options for query filters.</param>
         public SectionEntityCollection(bool autoLoad = false, SectionOptionsList options = null) : base(autoLoad, options) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Section Collections.
         /// </summary>
-        /// <param name="list">A list of Section to paste in.</param>
+        /// <param name="list">A <see cref="List{SectionEntity}"/> to paste in.</param>
         public SectionEntityCollection(List<SectionEntity> list) : base(list) { }
-
-        /// <summary>
-        /// Class XtrmAddons Fotootof Server Component Section Collections.
-        /// </summary>
-        /// <param name="collection">>A collection of Section to paste in.</param>
-        public SectionEntityCollection(IEnumerable<SectionEntity> collection) : base(collection) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Server Component Section Collections.
@@ -64,6 +70,12 @@ namespace Fotootof.Collections.Entities
                 Add(sj.ToEntity());
             }
         }
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Server Component Section Collections.
+        /// </summary>
+        /// <param name="collection">A <see cref="IEnumerable{SectionEntity}"/> to paste in.</param>
+        public SectionEntityCollection(IEnumerable<SectionEntity> collection) : base(collection) { }
 
         #endregion
 

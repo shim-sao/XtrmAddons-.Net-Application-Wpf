@@ -2,7 +2,7 @@
 ProjectFileVersion = "1.1"
 [General]
 Program name = Fotootof
-Program version = 1.0.18223.0018
+Program version = 1.0.18225.1811
 Windows 2000 = 1
 Windows XP = 1
 Windows Server 2003 = 1
@@ -41,7 +41,7 @@ Licence dialog = 1
 Sart program = 1
 Reboot computer = 0
 Execute DLL: = 0
-Program = <installpath>\XtrmAddons Fotootof.exe
+Program = <installpath>\Fotootof.exe
 ProgramArguments = 
 Dll = 
 [Shortcuts]
@@ -57,13 +57,13 @@ Time = 2
 PlaySound = 0
 Allow = 0
 [Build]
-File = C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build.Setup\XtrmAddons.Fotootof.Installer.1.0.18223.018-alpha.exe
+File = C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build.Setup\XtrmAddons.Fotootof.Installer.1.0.18225.1811-alpha.exe
 [Updater]
 Allow = 1
 1 = <appname>
 2 = <appversion>
 3 = https://download.xtrmaddons.com/fotootof/Updates/Version-1.0/
-4 = http://
+4 = http://download.xtrmaddons.com/fotootof/Updates/Version-1.0/
 5 = http://
 6 = Update
 Language = 0

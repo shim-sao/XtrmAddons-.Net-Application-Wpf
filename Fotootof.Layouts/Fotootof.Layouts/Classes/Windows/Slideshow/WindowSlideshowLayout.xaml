@@ -13,19 +13,18 @@
     Height="600"
 	Loaded="Window_Loaded">
 
-    <Grid Background="Black"
-          x:Name="GridSlideshow">
+    <Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
           
-        <DockPanel  HorizontalAlignment="Stretch"
-                    VerticalAlignment="Top"
+        <DockPanel  Background="Transparent"
                     Height="55"
-                    MouseEnter="OnMenuTopMouseEnter"
-                    MouseLeave="OnMenuTopMouseLeave"
+                    HorizontalAlignment="Stretch"
+                    MouseEnter="MenuTop_MouseEnter"
+                    MouseLeave="MenuTop_MouseLeave"
                     Panel.ZIndex="1"
-                    Background="Transparent">
+                    VerticalAlignment="Top">
 
 
-            <Grid  x:Name="StackPanelMenuTop"
+            <Grid  x:Name="GridMenuTopName"
                    Height="55"
                    Background="#222222"
                    Visibility="Hidden"
@@ -36,14 +35,14 @@
                             Height="55">
 
                     <Button Content="{StaticResource Icon32LeftArrow}"
-							Style="{StaticResource Button_Icon32Default}"
 							Margin="10"
-							PreviewMouseLeftButtonUp="OnPreview_PreviewMouseLeftButtonUp"/>
+							PreviewMouseLeftButtonUp="PicturePreview_PreviewMouseLeftButtonUp"
+							Style="{StaticResource Button_Icon32Default}"/>
 
 					<Button Content="{StaticResource Icon32RightArrow}"
-							Style="{StaticResource Button_Icon32Default}"
 							Margin="10"
-							PreviewMouseLeftButtonUp="OnNext_PreviewMouseLeftButtonUp"/>
+							PreviewMouseLeftButtonUp="PictureNext_PreviewMouseLeftButtonUp"
+							Style="{StaticResource Button_Icon32Default}"/>
 
 					<DockPanel VerticalAlignment="Center"
 							   Margin="10">
@@ -97,7 +96,7 @@
                     Panel.ZIndex="1"
                     Background="Transparent">
 
-            <Grid x:Name="StackPanelMenuBottom"
+            <Grid x:Name="GridMenuBottomName"
                   Height="55"
                   Background="#222222"
                   HorizontalAlignment="Stretch"

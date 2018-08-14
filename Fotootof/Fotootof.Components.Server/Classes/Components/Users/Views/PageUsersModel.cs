@@ -20,7 +20,7 @@ namespace Fotootof.Components.Server.Users
         #region Variables
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -42,14 +42,14 @@ namespace Fotootof.Components.Server.Users
         #region Properties
 
         /// <summary>
-        /// Property to access to the data grid  collection of AclGroups.
+        /// Property to access to the data grid collection of AclGroups.
         /// </summary>
         public DataGridAclGroupsModel<DataGridAclGroupsControl> AclGroups
         {
             get { return aclGroups; }
             set
             {
-                if (aclGroups == value)
+                if (aclGroups != value)
                 {
                     aclGroups = value;
                     NotifyPropertyChanged();
@@ -65,7 +65,7 @@ namespace Fotootof.Components.Server.Users
             get { return users; }
             set
             {
-                if (users == value)
+                if (users != value)
                 {
                     users = value;
                     NotifyPropertyChanged();
