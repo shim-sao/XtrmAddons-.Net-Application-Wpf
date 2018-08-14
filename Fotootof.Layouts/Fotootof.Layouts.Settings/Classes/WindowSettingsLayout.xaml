@@ -1,21 +1,23 @@
 ﻿<base:WindowLayoutForm
-    x:Class="Fotootof.Layouts.Windows.Settings.WindowSettingsLayout"
+    x:Class="Fotootof.Layouts.Settings.WindowSettingsLayout"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
+    xmlns:t="clr-namespace:Fotootof.Layouts.Settings.Properties"
     xmlns:base="clr-namespace:Fotootof.Libraries.Windows;assembly=Fotootof.Libraries.Windows"
 	mc:Ignorable="d"
     Width="680"
     Height="480"
 	WindowStartupLocation="CenterScreen"
 	Loaded="Window_Load"
-    Title="{x:Static p:Resources.WindowSettingsTitle}"
-	Style="{StaticResource WindowFormStyle}">
+    Title="{x:Static t:Translations.WindowSettingsLayoutTitle}"
+	Style="{DynamicResource WindowFormStyle}"
+    ResizeMode="CanResize">
 
-	<Grid Background="{StaticResource LightGrey}">
-		<Grid.RowDefinitions>
+    <Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
+        <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
@@ -24,14 +26,14 @@
             <TabControl x:Name="TabControlFormContentName">
             
                 <!-- #region : Tabs General -->
-                <TabItem Header="{x:Static p:Resources.General}">
+                <TabItem Header="{x:Static l:Translations.General}">
                     <StackPanel>
                         
                         <!-- #region Base Directory -->
                         <Border Margin="5">
 							<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
-                                <TextBlock Text="{x:Static p:Resources.BaseDirectory}"
+                                <TextBlock Text="{x:Static l:Translations.BaseDirectory}"
 										   Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
 								<TextBox x:Name="InputDirectoriesBase"
@@ -66,13 +68,13 @@
             
                 
                 <!-- #region : Tabs Options -->
-                <TabItem Header="{x:Static p:Resources.Options}">
+                <TabItem Header="{x:Static l:Translations.Options}">
 					<StackPanel>
 
 						<!-- #region : Field Database -->
 						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
-							<TextBlock Text="{x:Static p:Resources.UserInterface}"
+							<TextBlock Text="{x:Static l:Translations.UserInterface}"
 									   Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
 							<TextBox x:Name="InputDatabaseSource"
@@ -89,7 +91,7 @@
                 
                 
                 <!-- #region Tabs Informations -->
-                <TabItem Header="{x:Static p:Resources.Preferences}">
+                <TabItem Header="{x:Static l:Translations.Preferences}">
                     <StackPanel>
 
                         <!-- #region Preferences files -->
@@ -109,7 +111,7 @@
                                     <!-- #region : Field Preferences file -->
 									<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
-                                        <TextBlock Text="{x:Static p:Resources.Preferences}"
+                                        <TextBlock Text="{x:Static l:Translations.Preferences}"
 												   Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
                                         <TextBox x:Name="InputFilePreferences"
@@ -124,7 +126,7 @@
 									<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
                                         <TextBlock
-                                            Text="{x:Static p:Resources.Options}"
+                                            Text="{x:Static l:Translations.Options}"
                                             Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
                                         <TextBox
@@ -140,7 +142,7 @@
 									<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
                                         <TextBlock
-                                            Text="{x:Static p:Resources.UserInterface}"
+                                            Text="{x:Static l:Translations.UserInterface}"
                                             Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
                                         <TextBox
@@ -177,7 +179,7 @@
                                     <StackPanel Orientation="Horizontal"
 												Style="{StaticResource Field}">
 
-                                        <TextBlock Text="{x:Static p:Resources.SettingsInputBinName}"
+                                        <TextBlock Text="{x:Static t:Translations.SettingsInputBinName}"
 												   Style="{StaticResource FieldLabelShort}" />
 
                                         <TextBlock Text="{}{Bin}"
@@ -208,7 +210,7 @@
                                     <StackPanel Orientation="Horizontal"
 												Style="{StaticResource Field}">
 
-                                        <TextBlock Text="{x:Static p:Resources.SettingsInputCacheName}"
+                                        <TextBlock Text="{x:Static t:Translations.SettingsInputCacheName}"
 												   Style="{StaticResource FieldLabelShort}"/>
 
                                         <TextBlock Text="{}{Cache}"
@@ -237,7 +239,7 @@
                                     <!-- #region Config Directory -->
 									<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
-                                        <TextBlock Text="{x:Static p:Resources.SettingsInputConfigName}"
+                                        <TextBlock Text="{x:Static t:Translations.SettingsInputConfigName}"
 												   Style="{StaticResource FieldLabelShort}"/>
 
                                         <TextBlock Text="{}{Config}"
@@ -268,7 +270,7 @@
                                     <StackPanel Orientation="Horizontal"
 												Style="{StaticResource Field}">
 
-                                        <TextBlock Text="{x:Static p:Resources.SettingsInputDataName}"
+                                        <TextBlock Text="{x:Static t:Translations.SettingsInputDataName}"
 												   Style="{StaticResource FieldLabelShort}"/>
 
                                         <TextBlock Text="{}{Data}"
@@ -299,7 +301,7 @@
                                     <StackPanel Orientation="Horizontal"
 												Style="{StaticResource Field}">
 
-                                        <TextBlock Text="{x:Static p:Resources.SettingsInputThemeName}"
+                                        <TextBlock Text="{x:Static t:Translations.SettingsInputThemeName}"
 												   Style="{StaticResource FieldLabelShort}"/>
 
                                         <TextBlock Text="{}{Theme}"
@@ -345,14 +347,14 @@
 			<Grid>
 				<StackPanel Style="{StaticResource StackPanelFormValidatorStyle}">
 
-					<Button x:Name="Button_Save"
-							Content="{x:Static p:Resources.Save}"
+					<Button x:Name="ButtonSaveName"
+							Content="{x:Static l:Translations.Save}"
 							Style="{StaticResource Button_Save}"
 							IsEnabled="{Binding IsSaveEnabled, UpdateSourceTrigger=Explicit, Mode=TwoWay, IsAsync=True}"
 							Click="DialogSave_Click"/>
 
-					<Button x:Name="Button_Cancel"
-							Content="{x:Static p:Resources.Cancel}"
+					<Button x:Name="ButtonCancelName"
+							Content="{x:Static l:Translations.Cancel}"
 							Style="{StaticResource Button_Cancel}"/>
 
 				</StackPanel>

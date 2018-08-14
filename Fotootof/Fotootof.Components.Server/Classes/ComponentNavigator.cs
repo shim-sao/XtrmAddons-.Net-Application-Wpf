@@ -3,7 +3,7 @@ using Fotootof.Components.Server.Browser;
 using Fotootof.Components.Server.Plugin;
 using Fotootof.Components.Server.Remote;
 using Fotootof.Components.Server.Section;
-using Fotootof.Components.Server.Slideshow;
+//using Fotootof.Components.Server.Slideshow;
 using Fotootof.Components.Server.Users;
 using Fotootof.Navigator;
 using System.Windows.Controls;
@@ -66,11 +66,14 @@ namespace Fotootof.Components.Server
         public static void NavigateToPlugin(UserControl uc)
             => Navigate(new PagePluginLayout(uc));
 
+        /*
+         * Not include in project
         /// <summary>
         /// Method to navigate to a <see cref="PageSlideshowLayout"/>.
         /// </summary>
         public static void NavigateToSlideshow(int albumPk)
             => Navigate(new PageSlideshowLayout(albumPk));
+        */
 
         #endregion Methods
     }

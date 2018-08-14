@@ -37,16 +37,12 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="XtrmAddons.Net.Application">
@@ -121,10 +117,6 @@
       <DependentUpon>ServerInfosLayout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Components\Remote\Layouts\Lists\ServerInfosModel.cs" />
-    <Compile Include="Classes\Components\Slideshow\PageSlideshowLayout.xaml.cs">
-      <DependentUpon>PageSlideshowLayout.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\Components\Slideshow\PageSlideshowModel.cs" />
     <Compile Include="Classes\Components\Users\Layouts\DataGrids\DataGridAclGroupsLayout.xaml.cs">
       <DependentUpon>DataGridAclGroupsLayout.xaml</DependentUpon>
     </Compile>
@@ -225,10 +217,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Classes\Components\Remote\Layouts\Lists\ServerInfosLayout.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Classes\Components\Slideshow\PageSlideshowLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

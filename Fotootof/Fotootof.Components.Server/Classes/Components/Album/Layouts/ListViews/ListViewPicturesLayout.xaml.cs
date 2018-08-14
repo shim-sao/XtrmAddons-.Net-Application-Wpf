@@ -288,7 +288,7 @@ namespace Fotootof.Components.Server.Album.Layouts
         {
            if(ItemsCollection.SelectedItem is PictureEntity pict)
             {
-                WindowSlideshowLayout ws = new WindowSlideshowLayout(Items, pict);
+                WindowSlideshowLayout ws = new WindowSlideshowLayout(new PictureEntityCollection(AlbumEntity.Pictures), pict);
                 ws.Show();
                 ws.Activate();
                 ws.Topmost = true;

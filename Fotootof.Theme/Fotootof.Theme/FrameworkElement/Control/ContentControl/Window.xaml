@@ -30,5 +30,16 @@
 		<!--<Setter Property="WindowStartupLocation" Value="CenterScreen"/>-->
 		<Setter Property="WindowStyle" Value="ToolWindow"/>
 	</Style>
+	
+	<!-- Window Layout -->
+    <Style x:Key="WindowLayoutStyle" TargetType="{x:Type Window}" BasedOn="{StaticResource WindowStyle}">
+		<Setter Property="Background" Value="{DynamicResource ChromeLowBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ChromeAltLowBrush}" />
+        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="ResizeMode" Value="CanResize"/>
+        <Setter Property="Topmost" Value="True"/>
+        <!--WARNING : WindowStartupLocation property null Exception => set it directly in Window Xaml-->
+		<!--<Setter Property="WindowStartupLocation" Value="CenterScreen"/>-->
+	</Style>
 
 </ResourceDictionary>

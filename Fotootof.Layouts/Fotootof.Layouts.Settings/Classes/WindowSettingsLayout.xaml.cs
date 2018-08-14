@@ -10,10 +10,10 @@ using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.SystemIO;
 
-namespace Fotootof.Layouts.Windows.Settings
+namespace Fotootof.Layouts.Settings
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Layouts Windows Settings.
+    /// Class XtrmAddons Fotootof Layouts Settings.
     /// </summary>
     public partial class WindowSettingsLayout : WindowLayoutForm
     {
@@ -47,7 +47,7 @@ namespace Fotootof.Layouts.Windows.Settings
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Layouts Windows Settings Constructor.
+        /// Class XtrmAddons Fotootof Layouts Settings Constructor.
         /// </summary>
         public WindowSettingsLayout()
         {

@@ -6,12 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Fotootof.Layouts.Windows.Slideshow"
     mc:Ignorable="d"
-    Title="Slideshow"
-    ShowInTaskbar="False"
-    WindowStartupLocation="CenterOwner"
-    Width="800"
     Height="600"
-	Loaded="Window_Loaded">
+	Loaded="Window_Loaded"
+    ShowInTaskbar="False"
+	Style="{DynamicResource WindowLayoutStyle}"
+    Title="Slideshow"
+    Width="800"
+    WindowStartupLocation="CenterOwner">
 
     <Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
           
@@ -47,19 +48,20 @@
 					<DockPanel VerticalAlignment="Center"
 							   Margin="10">
 						
-						<Slider x:Name="Slider_Delay"
-								VerticalAlignment="Center"
-								Maximum="120"
-								Width="240"
+						<Slider x:Name="SliderDelayName"
 								Height="32"
-								TickPlacement="BottomRight"
-								TickFrequency="1"
-								Value="3"
 								IsSnapToTickEnabled="True"
+								Maximum="120"
+                                Minimum="1"
+								TickFrequency="1"
+								TickPlacement="BottomRight"
 								ToolTipService.ToolTip="Time of the slideshow."
-								ValueChanged="Slider_ValueChanged"/>
+								Value="3"
+								ValueChanged="Slider_ValueChanged"
+								VerticalAlignment="Center"
+								Width="240"/>
 
-						<TextBox Text="{Binding ElementName=Slider_Delay, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                        <TextBox Text="{Binding ElementName=SliderDelayName, Path=Value, UpdateSourceTrigger=PropertyChanged}"
 								 DockPanel.Dock="Right"
 								 TextAlignment="Right"
 								 Width="40"/>
@@ -67,21 +69,21 @@
 					</DockPanel>
 					
 					<Button Content="{StaticResource Icon32Pause}"
-							Style="{StaticResource Button_Icon32Default}"
 							Margin="10"
-							PreviewMouseLeftButtonUp="OnStop_PreviewMouseLeftButtonUp"/>
+							PreviewMouseLeftButtonUp="OnStop_PreviewMouseLeftButtonUp"
+							Style="{StaticResource Button_Icon32Default}"/>
 
 
 					<Button Content="{StaticResource Icon32Play}"
-							Style="{StaticResource Button_Icon32Default}"
+							PreviewMouseLeftButtonUp="OnPlay_PreviewMouseLeftButtonUp"
 							Margin="10"
-							PreviewMouseLeftButtonUp="OnPlay_PreviewMouseLeftButtonUp"/>
+							Style="{StaticResource Button_Icon32Default}"/>
 
 
 					<Button Content="{StaticResource Icon32Refresh}"
-							Style="{StaticResource Button_Icon32Default}"
 							Margin="10"
-							PreviewMouseLeftButtonUp="OnRefresh_PreviewMouseLeftButtonUp"/>
+							PreviewMouseLeftButtonUp="OnRefresh_PreviewMouseLeftButtonUp"
+							Style="{StaticResource Button_Icon32Default}"/>
 					
 				</StackPanel>
             </Grid>
@@ -91,8 +93,8 @@
         <DockPanel  HorizontalAlignment="Stretch"
                     VerticalAlignment="Bottom"
                     Height="55"
-                    MouseEnter="OnMenuBottomMouseEnter"
-                    MouseLeave="OnMenuBottomMouseLeave"
+                    MouseEnter="MenuBottom_MouseEnter"
+                    MouseLeave="MenuBottom_MouseLeave"
                     Panel.ZIndex="1"
                     Background="Transparent">
 

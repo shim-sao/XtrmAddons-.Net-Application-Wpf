@@ -162,6 +162,7 @@
   </data>
   <data name="BaseDirectory" xml:space="preserve">
     <value>Base Directory</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Browser" xml:space="preserve">
     <value>Browser</value>
@@ -255,6 +256,7 @@
   </data>
   <data name="General" xml:space="preserve">
     <value>General</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Group" xml:space="preserve">
     <value>Group</value>
@@ -326,36 +328,47 @@
   </data>
   <data name="Options" xml:space="preserve">
     <value>Options</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Order" xml:space="preserve">
     <value>Order</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Parent" xml:space="preserve">
     <value>Parent</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Picture" xml:space="preserve">
     <value>Picture</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Port" xml:space="preserve">
     <value>Port</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Preferences" xml:space="preserve">
     <value>Preferences</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Quality" xml:space="preserve">
     <value>Quality</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Restart" xml:space="preserve">
     <value>Restart</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Rights" xml:space="preserve">
     <value>Rights</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
@@ -384,21 +397,27 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
+    <comment>Fotootof.Layouts.Settings</comment>
   </data>
   <data name="SettingsInputBinName" xml:space="preserve">
     <value>Bin</value>
+    <comment>Fotootof.Layouts.Settings</comment>
   </data>
   <data name="SettingsInputCacheName" xml:space="preserve">
     <value>Cache</value>
+    <comment>Fotootof.Layouts.Settings</comment>
   </data>
   <data name="SettingsInputConfigName" xml:space="preserve">
     <value>Config</value>
+    <comment>Fotootof.Layouts.Settings</comment>
   </data>
   <data name="SettingsInputDataName" xml:space="preserve">
     <value>Data</value>
+    <comment>Fotootof.Layouts.Settings</comment>
   </data>
   <data name="SettingsInputThemeName" xml:space="preserve">
     <value>Theme</value>
+    <comment>Fotootof.Layouts.Settings</comment>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
@@ -420,33 +439,43 @@
   </data>
   <data name="UnselectAll" xml:space="preserve">
     <value>Unselect All</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="UserDirectory" xml:space="preserve">
     <value>User directory</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="UserInterface" xml:space="preserve">
     <value>User Interface</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>User name</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="UsersGroups" xml:space="preserve">
     <value>Users groups</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="View" xml:space="preserve">
     <value>View</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Vignette" xml:space="preserve">
     <value>Vignette</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="WindowAclGroupFormTitle" xml:space="preserve">
     <value>FotootoF Users group</value>
@@ -478,144 +507,30 @@
   </data>
   <data name="XLarge" xml:space="preserve">
     <value>Extra-Large</value>
-  </data>
-  <data name="_About" xml:space="preserve">
-    <value>_About XtrmAddons FotootoF</value>
-  </data>
-  <data name="_AddNewSection" xml:space="preserve">
-    <value>Add _Section</value>
-  </data>
-  <data name="_AddToFirewall" xml:space="preserve">
-    <value>_Add to Firewall</value>
-  </data>
-  <data name="_Albums" xml:space="preserve">
-    <value>_Albums</value>
-  </data>
-  <data name="_AlbumsList" xml:space="preserve">
-    <value>_List of Albums</value>
-  </data>
-  <data name="_AlbumsNew" xml:space="preserve">
-    <value>_Add new Album</value>
-  </data>
-  <data name="_Cancel" xml:space="preserve">
-    <value>_Cancel</value>
-  </data>
-  <data name="_Categories" xml:space="preserve">
-    <value>_Categories</value>
-  </data>
-  <data name="_CategoriesList" xml:space="preserve">
-    <value>_List of Categories</value>
-  </data>
-  <data name="_CategoriesNew" xml:space="preserve">
-    <value>_Add new Categories</value>
-  </data>
-  <data name="_Client" xml:space="preserve">
-    <value>Client</value>
-  </data>
-  <data name="_ClientNew" xml:space="preserve">
-    <value>New Client</value>
-  </data>
-  <data name="_Display" xml:space="preserve">
-    <value>Display</value>
-  </data>
-  <data name="_Edit" xml:space="preserve">
-    <value>_Edit</value>
-  </data>
-  <data name="_Edition" xml:space="preserve">
-    <value>Edition</value>
-  </data>
-  <data name="_Exit" xml:space="preserve">
-    <value>_Exit</value>
-  </data>
-  <data name="_File" xml:space="preserve">
-    <value>_File</value>
-  </data>
-  <data name="_Folders" xml:space="preserve">
-    <value>_Folders</value>
-  </data>
-  <data name="_FoldersList" xml:space="preserve">
-    <value>_List of Folders</value>
-  </data>
-  <data name="_FoldersNew" xml:space="preserve">
-    <value>_Add new Folder</value>
-  </data>
-  <data name="_Help" xml:space="preserve">
-    <value>_Help</value>
-  </data>
-  <data name="_Language" xml:space="preserve">
-    <value>_Language</value>
-  </data>
-  <data name="_LogsWindow" xml:space="preserve">
-    <value>Logs Window</value>
-  </data>
-  <data name="_No" xml:space="preserve">
-    <value>_No</value>
-  </data>
-  <data name="_Ok" xml:space="preserve">
-    <value>_Ok</value>
-  </data>
-  <data name="_Preferences" xml:space="preserve">
-    <value>Preferences</value>
-  </data>
-  <data name="_RemoveFromFirewall" xml:space="preserve">
-    <value>Remove From _Firewall</value>
-  </data>
-  <data name="_Restart" xml:space="preserve">
-    <value>_Restart</value>
-  </data>
-  <data name="_Sections" xml:space="preserve">
-    <value>Sections</value>
-  </data>
-  <data name="_Server" xml:space="preserve">
-    <value>_Server</value>
-  </data>
-  <data name="_Settings" xml:space="preserve">
-    <value>_Settings</value>
-  </data>
-  <data name="_Start" xml:space="preserve">
-    <value>_Start</value>
-  </data>
-  <data name="_Stop" xml:space="preserve">
-    <value>_Stop</value>
-  </data>
-  <data name="_User" xml:space="preserve">
-    <value>_User</value>
-  </data>
-  <data name="_Users" xml:space="preserve">
-    <value>_Users</value>
-  </data>
-  <data name="_UsersList" xml:space="preserve">
-    <value>_List of Users</value>
-  </data>
-  <data name="_UsersNew" xml:space="preserve">
-    <value>_Add new User</value>
-  </data>
-  <data name="_Windows" xml:space="preserve">
-    <value>Windows</value>
-  </data>
-  <data name="_Yes" xml:space="preserve">
-    <value>_Yes</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Pictures" xml:space="preserve">
     <value>Pictures</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="RefreshPictures" xml:space="preserve">
     <value>Refresh pictures.</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="FormFieldRequired" xml:space="preserve">
     <value>The field {0} is required and must be not empty.</value>
   </data>
-  <data name="_AutoStart" xml:space="preserve">
-    <value>A_uto start</value>
-  </data>
   <data name="Undefine" xml:space="preserve">
     <value>Undefine</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Various" xml:space="preserve">
     <value>Various</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="BlackWhite" xml:space="preserve">
     <value>Black &amp; White</value>
@@ -631,6 +546,7 @@
   </data>
   <data name="TrueColor" xml:space="preserve">
     <value>True Color</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="WindowAboutTitle" xml:space="preserve">
     <value>FotootoF About</value>
@@ -644,9 +560,11 @@
   </data>
   <data name="ProductName" xml:space="preserve">
     <value>Product name</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="WindowsDataGridAlbumsTitle" xml:space="preserve">
     <value>Fotootof Albums</value>
@@ -655,29 +573,5 @@
   <data name="FunctionalitiesCurrentlyUnavailable" xml:space="preserve">
     <value>Functionalities currently unavailable</value>
     <comment>Fotootof.Layouts.Dialogs</comment>
-  </data>
-  <data name="_Catalog" xml:space="preserve">
-    <value>_Catalog</value>
-  </data>
-  <data name="_AddNewAlbum" xml:space="preserve">
-    <value>Add _Album</value>
-  </data>
-  <data name="_ServerSettings" xml:space="preserve">
-    <value>_Server settings</value>
-  </data>
-  <data name="_Theme" xml:space="preserve">
-    <value>Theme</value>
-  </data>
-  <data name="_ThemeDark" xml:space="preserve">
-    <value>_Dark</value>
-  </data>
-  <data name="_ThemeLight" xml:space="preserve">
-    <value>_Light</value>
-  </data>
-  <data name="_Plugin" xml:space="preserve">
-    <value>_Plugin</value>
-  </data>
-  <data name="_ServerRemote" xml:space="preserve">
-    <value>_Remote access...</value>
   </data>
 </root>

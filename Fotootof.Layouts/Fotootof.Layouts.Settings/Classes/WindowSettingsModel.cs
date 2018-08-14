@@ -3,7 +3,7 @@ using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Helpers;
 using XtrmAddons.Net.Application.Serializable.Elements.Storage;
 
-namespace Fotootof.Layouts.Windows.Settings
+namespace Fotootof.Layouts.Settings
 {
     /// <summary>
     /// 

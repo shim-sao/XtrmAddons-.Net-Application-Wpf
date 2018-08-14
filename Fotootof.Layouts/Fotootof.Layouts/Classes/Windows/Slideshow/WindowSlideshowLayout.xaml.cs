@@ -12,22 +12,42 @@ namespace Fotootof.Layouts.Windows.Slideshow
     /// </summary>
     public partial class WindowSlideshowLayout : Window
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
+        #region Properties
+
         /// <summary>
         /// Property to access to the <see cref="WindowSlideshowModel"/>.
         /// </summary>
         public WindowSlideshowModel Model { get; private set; }
 
         /// <summary>
-        /// Accessors page slideshow view model.
+        /// Property to access to the <see cref="ZoomBorder"/>.
         /// </summary>
         public ZoomBorder CurrentZoom
-            => FindName("ZoomBorderCurrentPictureName") as ZoomBorder;
+            => (ZoomBorder)FindName("ZoomBorderCurrentPictureName");
+
+        #endregion
+
+
+
+        #region Constructors
 
         /// <summary>
-        /// Class Fotootof Layouts Windows Slideshow Constructor.
+        /// Class XtrmAddons Fotootof Layouts Windows Constructor.
         /// </summary>
-        /// <param name="collection"></param>
-        /// <param name="picture"></param>
+        /// <param name="collection">A <see cref="PictureEntityCollection"/>.</param>
+        /// <param name="picture">A <see cref="PictureEntity"/>.</param>
         public WindowSlideshowLayout(PictureEntityCollection collection, PictureEntity picture)
         {
             Theme.ThemeLoader.MergeThemeTo(Resources);
@@ -41,6 +61,12 @@ namespace Fotootof.Layouts.Windows.Slideshow
                 CurrentIndex = collection.IndexOf(picture)
             };
         }
+        
+        #endregion
+
+
+
+        #region Methods
 
         /// <summary>
         /// Method called on <see cref="Window"/> <see cref="FrameworkElement"/> loaded event.
@@ -53,7 +79,7 @@ namespace Fotootof.Layouts.Windows.Slideshow
         }
 
         /// <summary>
-        /// 
+        /// Method called on <see cref="UIElement"/> menu top mouse enter event.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">The Mouse button event arguments <see cref="MouseEventArgs"/>.</param>
@@ -63,7 +89,7 @@ namespace Fotootof.Layouts.Windows.Slideshow
         }
 
         /// <summary>
-        /// 
+        /// Method called on <see cref="UIElement"/> menu top mouse leave event.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">The Mouse button event arguments <see cref="MouseEventArgs"/>.</param>
@@ -73,21 +99,21 @@ namespace Fotootof.Layouts.Windows.Slideshow
         }
 
         /// <summary>
-        /// 
+        /// Method called on <see cref="UIElement"/> menu bottom mouse enter event.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">The Mouse button event arguments <see cref="MouseEventArgs"/>.</param>
-        private void OnMenuBottomMouseEnter(object sender, MouseEventArgs e)
+        private void MenuBottom_MouseEnter(object sender, MouseEventArgs e)
         {
             ((UIElement)FindName("GridMenuBottomName")).Visibility = Visibility.Visible;
         }
 
         /// <summary>
-        /// 
+        /// Method called on <see cref="UIElement"/> menu bottom mouse enter event.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">The Mouse button event arguments <see cref="MouseEventArgs"/>.</param>
-        private void OnMenuBottomMouseLeave(object sender, MouseEventArgs e)
+        private void MenuBottom_MouseLeave(object sender, MouseEventArgs e)
         {
             ((UIElement)FindName("GridMenuBottomName")).Visibility = Visibility.Hidden;
         }
@@ -190,5 +216,7 @@ namespace Fotootof.Layouts.Windows.Slideshow
                 Model.Delay = 1000 * (int)((Slider)sender).Value;
             }
         }
+        
+        #endregion
     }
 }

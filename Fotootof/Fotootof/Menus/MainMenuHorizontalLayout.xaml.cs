@@ -10,7 +10,7 @@ using Fotootof.Layouts.Interfaces;
 using Fotootof.Layouts.Windows.About;
 using Fotootof.Layouts.Windows.Forms.Album;
 using Fotootof.Layouts.Windows.Forms.Client;
-using Fotootof.Layouts.Windows.Settings;
+using Fotootof.Layouts.Settings;
 using Fotootof.Libraries.HttpHelpers.HttpServer;
 using Fotootof.Libraries.Logs;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;

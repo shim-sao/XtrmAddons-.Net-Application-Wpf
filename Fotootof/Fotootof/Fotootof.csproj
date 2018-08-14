@@ -493,6 +493,10 @@
       <Project>{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}</Project>
       <Name>Fotootof.Layouts.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Settings\Fotootof.Layouts.Settings.csproj">
+      <Project>{20DDCF36-E71E-42B7-9804-8407150164D4}</Project>
+      <Name>Fotootof.Layouts.Settings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Windows.About\Fotootof.Layouts.Windows.About.csproj">
       <Project>{44E3916D-C6F1-4A36-B0BA-9C4F8FD7C6E4}</Project>
       <Name>Fotootof.Layouts.Windows.About</Name>

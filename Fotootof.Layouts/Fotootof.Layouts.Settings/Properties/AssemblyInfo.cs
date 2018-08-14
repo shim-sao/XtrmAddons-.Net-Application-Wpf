@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("Fotootof.SQLite.EntityManager.Base")]
+[assembly: AssemblyTitle("Fotootof.Layouts.Settings")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Fotootof.SQLite.EntityManager.Base")]
+[assembly: AssemblyProduct("Fotootof.Layouts.Settings")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("dc57dce2-1975-445d-a7f4-16491c0a72b3")]
+[assembly: Guid("75323DEE-1C87-4019-9459-E846DBC484DA")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.18226.1551")]
-[assembly: AssemblyFileVersion("0.0.18226.1551")]
+[assembly: AssemblyVersion("0.0.18226.1817")]
+[assembly: AssemblyFileVersion("0.0.18226.1817")]
