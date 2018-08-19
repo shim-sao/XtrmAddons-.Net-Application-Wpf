@@ -117,23 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="SettingsInputBinName" xml:space="preserve">
+  <data name="InputDirectoryBinName" xml:space="preserve">
     <value>Bin</value>
   </data>
-  <data name="SettingsInputCacheName" xml:space="preserve">
+  <data name="InputDirectoryCacheName" xml:space="preserve">
     <value>Cache</value>
   </data>
-  <data name="SettingsInputConfigName" xml:space="preserve">
+  <data name="InputDirectoryConfigName" xml:space="preserve">
     <value>Config</value>
   </data>
-  <data name="SettingsInputDataName" xml:space="preserve">
+  <data name="InputDirectoryDataName" xml:space="preserve">
     <value>Data</value>
   </data>
-  <data name="SettingsInputThemeName" xml:space="preserve">
+  <data name="InputDirectoryThemeName" xml:space="preserve">
     <value>Theme</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="WindowSettingsLayoutTitle" xml:space="preserve">
     <value>FotootoF Preferences</value>

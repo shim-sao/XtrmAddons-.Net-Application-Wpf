@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Fotootof.Layouts.Dialogs;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Picture.Classes;
@@ -15,8 +17,19 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
     /// </summary>
     internal class TreeViewItemDriveInfo : TreeViewItem
     {
+        #region Constants
+
+        /// <summary>
+        /// Constant header height.
+        /// </summary>
+        private const int headerHeight = 20;
+
+        #endregion
+
+
+
         #region Variables
-        
+
         /// <summary>
         /// Variable logger.
         /// </summary>
@@ -24,6 +37,7 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
         	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
+
 
 
         #region Constructor
@@ -34,40 +48,15 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
         /// <param name="di">A <see cref="DriveInfo"/> create as <see cref="TreeViewItem"/>.</param>
         public TreeViewItemDriveInfo(DriveInfo di)
         {
-            // Get the icon image of the Drive.
-            BitmapImage icon = Win32Icon.IconFromHandle(di.Name).ToBitmap().ToBitmapImage();
+            // Create the main Grid container.
+            Grid header = GetHeader();
+            StackPanel title = GetTitle(di);
 
-            // Create the main content Grid.
-            Grid header = new Grid();
-            header.Height = 20;
-            ColumnDefinition gr1 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
-            header.ColumnDefinitions.Add(gr1);
-            header.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-
-            // Create the Title.
-            StackPanel title = new StackPanel
+            // The volume is not found or ready.
+            if (title == null)
             {
-                Orientation = Orientation.Horizontal,
-                Height = 20,
-                Children =
-                {
-                    new Border()
-                    {
-                        Child = new Image
-                        {
-                            Width = icon.Width,
-                            Height = icon.Height,
-                            Source = icon
-                        }
-                    },
-
-                    new TextBlock
-                    {
-                        Text = $"{di.VolumeLabel} ({di.Name.ToString()})",
-                        Margin = new Thickness(5,0,0,0)
-                    }
-                }
-            };
+                return;
+            }
 
             // Create Drive special informations.
             string inf = "NaN";
@@ -79,7 +68,7 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
             }
             catch (Exception e)
             {
-                log.Debug(e.Output(), e);
+                log.Debug(e.Output());
                 log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {di?.Name}");
             }
 
@@ -104,7 +93,101 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
 
             Items.Add("Loading...");
         }
-        
+
+        /// <summary>
+        /// Method to create the <see cref="Grid"/> header container.
+        /// </summary>
+        /// <returns>A <see cref="Grid"/> as header container.</returns>
+        private static Grid GetHeader()
+        {
+            ColumnDefinition gr1 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+            Grid header = new Grid
+            {
+                Height = headerHeight
+            };
+            header.ColumnDefinitions.Add(gr1);
+            header.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+            return header;
+        }
+
+        /// <summary>
+        /// Method to create the <see cref="StackPanel"/> title container.
+        /// </summary>
+        /// <returns>A <see cref="StackPanel"/> as title container.</returns>
+        private static StackPanel GetTitle(DriveInfo di)
+        {
+            // Get the icon image of the Drive.
+            BitmapImage icon = Win32Icon.IconFromHandle(di.Name).ToBitmap().ToBitmapImage();
+            StackPanel title = null;
+
+            try
+            {
+                // Create the Title.
+                title = new StackPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    Height = 20,
+                    Children =
+                    {
+                        new Border()
+                        {
+                            Child = new Image
+                            {
+                                Width = icon.Width,
+                                Height = icon.Height,
+                                Source = icon
+                            }
+                        },
+
+                        new TextBlock
+                        {
+                            Text = $"{di.VolumeLabel} ({di.Name.ToString()})",
+                            Margin = new Thickness(5,0,0,0)
+                        }
+                    }
+                };
+            }
+            catch (IOException io)
+            {
+                log.Debug(io.Output());
+                MessageBoxs.Error(io);
+
+                // Create the Title.
+                title = new StackPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    Height = 20,
+                    Opacity = 0.5,
+                    Children =
+                    {
+                        new Border()
+                        {
+                            Child = new Image
+                            {
+                                Width = icon.Width,
+                                Height = icon.Height,
+                                Source = icon
+                            }
+                        },
+
+                        new TextBlock
+                        {
+                            Text = $"Volume not ready !",
+                            Margin = new Thickness(5,0,0,0),
+                            Foreground = Brushes.Red
+                        }
+                    }
+                };
+            }
+            catch (Exception e)
+            {
+                log.Debug(e.Output());
+                MessageBoxs.Fatal(e);
+            }
+
+            return title;
+        }
+
         #endregion
     }
 }

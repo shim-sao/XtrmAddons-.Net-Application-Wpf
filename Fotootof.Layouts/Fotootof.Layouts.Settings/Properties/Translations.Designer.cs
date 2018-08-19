@@ -61,56 +61,56 @@ namespace Fotootof.Layouts.Settings.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Settings.
-        /// </summary>
-        public static string Settings {
-            get {
-                return ResourceManager.GetString("Settings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Bin.
         /// </summary>
-        public static string SettingsInputBinName {
+        public static string InputDirectoryBinName {
             get {
-                return ResourceManager.GetString("SettingsInputBinName", resourceCulture);
+                return ResourceManager.GetString("InputDirectoryBinName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Cache.
         /// </summary>
-        public static string SettingsInputCacheName {
+        public static string InputDirectoryCacheName {
             get {
-                return ResourceManager.GetString("SettingsInputCacheName", resourceCulture);
+                return ResourceManager.GetString("InputDirectoryCacheName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Config.
         /// </summary>
-        public static string SettingsInputConfigName {
+        public static string InputDirectoryConfigName {
             get {
-                return ResourceManager.GetString("SettingsInputConfigName", resourceCulture);
+                return ResourceManager.GetString("InputDirectoryConfigName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Data.
         /// </summary>
-        public static string SettingsInputDataName {
+        public static string InputDirectoryDataName {
             get {
-                return ResourceManager.GetString("SettingsInputDataName", resourceCulture);
+                return ResourceManager.GetString("InputDirectoryDataName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Theme.
         /// </summary>
-        public static string SettingsInputThemeName {
+        public static string InputDirectoryThemeName {
             get {
-                return ResourceManager.GetString("SettingsInputThemeName", resourceCulture);
+                return ResourceManager.GetString("InputDirectoryThemeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         

@@ -76,6 +76,14 @@
       <DependentUpon>WindowFormAclGroupLayout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\AclGroup\WindowFormAclGroupModel.cs" />
+    <Compile Include="Classes\Album\WindowFormAlbumLayout.xaml.cs">
+      <DependentUpon>WindowFormAlbumLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Album\WindowFormAlbumModel.cs" />
+    <Compile Include="Classes\Client\WindowFormClientLayout.xaml.cs">
+      <DependentUpon>WindowFormClientLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Client\WindowFormClientModel.cs" />
     <Compile Include="Classes\Section\WindowFormSectionLayout.xaml.cs">
       <DependentUpon>WindowFormSectionLayout.xaml</DependentUpon>
     </Compile>
@@ -207,6 +215,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Classes\AclGroup\WindowFormAclGroupLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Album\WindowFormAlbumLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Client\WindowFormClientLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

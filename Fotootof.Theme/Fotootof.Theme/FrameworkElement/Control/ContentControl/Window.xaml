@@ -23,7 +23,7 @@
 	<Style x:Key="WindowFormStyle" TargetType="{x:Type Window}" BasedOn="{StaticResource WindowStyle}">
 		<Setter Property="Background" Value="{DynamicResource ChromeLowBrush}" />
 		<Setter Property="BorderBrush" Value="{DynamicResource ChromeAltLowBrush}" />
-		<Setter Property="BorderThickness" Value="3"/>
+		<Setter Property="BorderThickness" Value="1"/>
 		<Setter Property="ResizeMode" Value="NoResize"/>
 		<Setter Property="Topmost" Value="True"/>
 		<!--WARNING : WindowStartupLocation property null Exception => set it directly in Window Xaml-->
@@ -35,7 +35,7 @@
     <Style x:Key="WindowLayoutStyle" TargetType="{x:Type Window}" BasedOn="{StaticResource WindowStyle}">
 		<Setter Property="Background" Value="{DynamicResource ChromeLowBrush}" />
 		<Setter Property="BorderBrush" Value="{DynamicResource ChromeAltLowBrush}" />
-        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="ResizeMode" Value="CanResize"/>
         <Setter Property="Topmost" Value="True"/>
         <!--WARNING : WindowStartupLocation property null Exception => set it directly in Window Xaml-->

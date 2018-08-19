@@ -7,6 +7,21 @@
     <!-- UWP Colors Theme -->
     <!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/controls-and-patterns/xaml-theme-resources -->
     <!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/style/color -->
+    
+    <!-- #region UWP System.Base -->
+    <Color x:Key="BaseHigh">#FF000000</Color>
+    <Color x:Key="BaseMediumHigh">#CC000000</Color>
+    <Color x:Key="BaseMedium">#99000000</Color>
+    <Color x:Key="BaseMediumLow">#66000000</Color>
+    <Color x:Key="BaseLow">#33000000</Color>
+
+    <SolidColorBrush x:Key="BaseHighBrush" Color="{StaticResource BaseHigh}" />
+    <SolidColorBrush x:Key="BaseMediumHighBrush" Color="{StaticResource BaseMediumHigh}" />
+    <SolidColorBrush x:Key="BaseMediumBrush" Color="{StaticResource BaseMedium}" />
+    <SolidColorBrush x:Key="BaseMediumLowBrush" Color="{StaticResource BaseMediumLow}" />
+    <SolidColorBrush x:Key="BaseLowBrush" Color="{StaticResource BaseLow}" />
+    <!-- #endregion UWP System.Base -->
+
 
     <!-- #region UWP System.Alt -->
     <Color x:Key="AltHigh">#FFFFFFFF</Color>
@@ -23,57 +38,34 @@
     <!-- #endregion UWP System.Alt -->
 
 
-    <!-- #region UWP System.Base -->
-    <Color x:Key="BaseHigh">#FF000000</Color>
-    <Color x:Key="BaseMediumHigh">#CC000000</Color>
-    <Color x:Key="BaseMedium">#99000000</Color>
-    <Color x:Key="BaseMediumLow">#66000000</Color>
-    <Color x:Key="BaseLow">#33000000</Color>
-
-    <SolidColorBrush x:Key="BaseHighBrush" Color="{StaticResource BaseHigh}" />
-    <SolidColorBrush x:Key="BaseMediumHighBrush" Color="{StaticResource BaseMediumHigh}" />
-    <SolidColorBrush x:Key="BaseMediumBrush" Color="{StaticResource BaseMedium}" />
-    <SolidColorBrush x:Key="BaseMediumLowBrush" Color="{StaticResource BaseMediumLow}" />
-    <SolidColorBrush x:Key="BaseLowBrush" Color="{StaticResource BaseLow}" />
-    <!-- #endregion UWP System.Base -->
-
-
     <!-- #region UWP System.Chrome -->
     <Color x:Key="ChromeAltLow">#FF171717</Color>
-    <SolidColorBrush x:Key="ChromeAltLowBrush" Color="{StaticResource ChromeAltLow}" />
-
+    <Color x:Key="ChromeHigh">#FFCCCCCC</Color>
+    <Color x:Key="ChromeMedium">#FFE6E6E6</Color>
+    <Color x:Key="ChromeMediumLow">#FFF2F2F2</Color>
+    <Color x:Key="ChromeLow">#FFF2F2F2</Color>
     <Color x:Key="ChromeBlackHigh">#FF000000</Color>
-    <SolidColorBrush x:Key="ChromeBlackHighBrush" Color="{StaticResource ChromeBlackHigh}" />
-
-    <Color x:Key="ChromeBlackLow">#33000000</Color>
-    <SolidColorBrush x:Key="ChromeBlackLowBrush" Color="{StaticResource ChromeBlackLow}" />
-
-    <Color x:Key="ChromeBlackMediumLow">#66000000</Color>
-    <SolidColorBrush x:Key="ChromeBlackMediumLowBrush" Color="{StaticResource ChromeBlackMediumLow}" />
-
     <Color x:Key="ChromeBlackMedium">#CC000000</Color>
-    <SolidColorBrush x:Key="ChromeBlackMediumBrush" Color="{StaticResource ChromeBlackMedium}" />
-
+    <Color x:Key="ChromeBlackMediumLow">#66000000</Color>
+    <Color x:Key="ChromeBlackLow">#33000000</Color>
+    <Color x:Key="ChromeWhite">#FFFFFFFF</Color>
     <Color x:Key="ChromeDisabledHigh">#FFCCCCCC</Color>
-    <SolidColorBrush x:Key="ChromeDisabledHighBrush" Color="{StaticResource ChromeDisabledHigh}" />
-
     <Color x:Key="ChromeDisabledLow">#FF7A7A7A</Color>
+
+
+    <SolidColorBrush x:Key="ChromeAltLowBrush" Color="{StaticResource ChromeAltLow}" />
+    <SolidColorBrush x:Key="ChromeHighBrush" Color="{StaticResource ChromeHigh}" />
+    <SolidColorBrush x:Key="ChromeMediumBrush" Color="{StaticResource ChromeMedium}" />
+    <SolidColorBrush x:Key="ChromeMediumLowBrush" Color="{StaticResource ChromeMediumLow}" />
+    <SolidColorBrush x:Key="ChromeLowBrush" Color="{StaticResource ChromeLow}" />
+    <SolidColorBrush x:Key="ChromeBlackHighBrush" Color="{StaticResource ChromeBlackHigh}" />
+    <SolidColorBrush x:Key="ChromeBlackMediumBrush" Color="{StaticResource ChromeBlackMedium}" />
+    <SolidColorBrush x:Key="ChromeBlackMediumLowBrush" Color="{StaticResource ChromeBlackMediumLow}" />
+    <SolidColorBrush x:Key="ChromeBlackLowBrush" Color="{StaticResource ChromeBlackLow}" />
+    <SolidColorBrush x:Key="ChromeWhiteBrush" Color="{StaticResource ChromeWhite}" />
+    <SolidColorBrush x:Key="ChromeDisabledHighBrush" Color="{StaticResource ChromeDisabledHigh}" />
     <SolidColorBrush x:Key="ChromeDisabledLowBrush" Color="{StaticResource ChromeDisabledLow}" />
 
-    <Color x:Key="ChromeHigh">#FFCCCCCC</Color>
-    <SolidColorBrush x:Key="ChromeHighBrush" Color="{StaticResource ChromeHigh}" />
-
-    <Color x:Key="ChromeLow">#FFF2F2F2</Color>
-    <SolidColorBrush x:Key="ChromeLowBrush" Color="{StaticResource ChromeLow}" />
-
-    <Color x:Key="ChromeMedium">#FFE6E6E6</Color>
-    <SolidColorBrush x:Key="ChromeMediumBrush" Color="{StaticResource ChromeMedium}" />
-
-    <Color x:Key="ChromeMediumLow">#FFF2F2F2</Color>
-    <SolidColorBrush x:Key="ChromeMediumLowBrush" Color="{StaticResource ChromeMediumLow}" />
-
-    <Color x:Key="ChromeWhite">#FFFFFFFF</Color>
-    <SolidColorBrush x:Key="ChromeWhiteBrush" Color="{StaticResource ChromeWhite}" />
     <!-- #endregion UWP System.Chrome -->
 
 
@@ -212,9 +204,9 @@
 
     <!-- Menu -->
     <Color x:Key="CustomMenuTextColor">#FF000000</Color>
-    <SolidColorBrush x:Key="CustomMenuTextBrush" Color="#FF000000" />
-
     <Color x:Key="CustomSubMenuTextColor">#FF111111</Color>
+    
+    <SolidColorBrush x:Key="CustomMenuTextBrush" Color="#FF000000" />
     <SolidColorBrush x:Key="CustomSubMenuTextBrush" Color="#FF111111" />
     <!-- #endregion -->
 

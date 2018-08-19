@@ -49,6 +49,7 @@
 		<ResourceDictionary Source="Panel/Grid.xaml"/>
 		<ResourceDictionary Source="Panel/StackPanel.xaml"/>
 		<!-- Common Text Styles -->
+		<ResourceDictionary Source="Text/Label.xaml"/>
 		<ResourceDictionary Source="Text/TextBlock.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

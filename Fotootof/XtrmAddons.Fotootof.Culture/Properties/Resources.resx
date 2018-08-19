@@ -166,6 +166,7 @@
   </data>
   <data name="Browser" xml:space="preserve">
     <value>Browser</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -173,15 +174,19 @@
   </data>
   <data name="Catalog" xml:space="preserve">
     <value>Catalog</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Categories" xml:space="preserve">
     <value>Categories</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Category" xml:space="preserve">
     <value>Category</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Color</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Comment" xml:space="preserve">
     <value>Comment</value>
@@ -189,12 +194,15 @@
   </data>
   <data name="ConfigurationFile" xml:space="preserve">
     <value>Configuration file</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Connect" xml:space="preserve">
     <value>Connect</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Cover" xml:space="preserve">
     <value>Cover</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Create</value>
@@ -206,15 +214,19 @@
   </data>
   <data name="Datas" xml:space="preserve">
     <value>Data</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Default</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="DeletePictures" xml:space="preserve">
     <value>Delete Pictures</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -260,15 +272,19 @@
   </data>
   <data name="Group" xml:space="preserve">
     <value>Group</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Host" xml:space="preserve">
     <value>Host</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Icon" xml:space="preserve">
     <value>Icon</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
@@ -537,6 +553,7 @@
   </data>
   <data name="High" xml:space="preserve">
     <value>High</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Low" xml:space="preserve">
     <value>Low</value>
@@ -554,9 +571,11 @@
   </data>
   <data name="Company" xml:space="preserve">
     <value>Company</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Copyright" xml:space="preserve">
     <value>Copyright</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="ProductName" xml:space="preserve">
     <value>Product name</value>

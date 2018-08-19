@@ -1,6 +1,6 @@
 ﻿using Fotootof.Collections.Entities;
 using Fotootof.Layouts.Dialogs;
-using Fotootof.Layouts.Windows.Forms.Album;
+using Fotootof.Layouts.Forms.Album;
 using Fotootof.Libraries.Controls.DataGrids;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using System;

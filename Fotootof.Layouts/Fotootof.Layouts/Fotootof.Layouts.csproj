@@ -89,14 +89,6 @@
     <Compile Include="Classes\Controls\ListViews\Albums\ListViewAlbumsModel.cs" />
     <Compile Include="Classes\Controls\ListViews\Pictures\ListViewPicturesControl..cs" />
     <Compile Include="Classes\Controls\ListViews\Pictures\ListViewPicturesModel.cs" />
-    <Compile Include="Classes\Windows\Forms\Album\WindowFormAlbumLayout.xaml.cs">
-      <DependentUpon>WindowFormAlbumLayout.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\Windows\Forms\Album\WindowFormAlbumModel.cs" />
-    <Compile Include="Classes\Windows\Forms\Client\WindowFormClientLayout.xaml.cs">
-      <DependentUpon>WindowFormClientLayout.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\Windows\Forms\Client\WindowFormClientModel.cs" />
     <Compile Include="Classes\Windows\Forms\Server\WindowFormServerLayout.xaml.cs">
       <DependentUpon>WindowFormServerLayout.xaml</DependentUpon>
     </Compile>
@@ -225,14 +217,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Classes\Controls\DataGrids\Albums\DataGridAlbumsWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Classes\Windows\Forms\Album\WindowFormAlbumLayout.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Classes\Windows\Forms\Client\WindowFormClientLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

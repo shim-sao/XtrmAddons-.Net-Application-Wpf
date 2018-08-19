@@ -120,10 +120,10 @@
   <data name="WindowFormAclGroupLayoutTitle" xml:space="preserve">
     <value>FotootoF Groupes d'Utilisateurs</value>
   </data>
-  <data name="WindowAlbumFormTitle" xml:space="preserve">
+  <data name="WindowAlbumFormLayoutTitle" xml:space="preserve">
     <value>FotootoF Album</value>
   </data>
-  <data name="WindowClientFormTitle" xml:space="preserve">
+  <data name="WindowFormClientLayoutTitle" xml:space="preserve">
     <value>FotootoF Client</value>
   </data>
   <data name="WindowFormSectionLayoutTitle" xml:space="preserve">
@@ -132,10 +132,10 @@
   <data name="WindowsDataGridAlbumsTitle" xml:space="preserve">
     <value>Fotootof Albums</value>
   </data>
-  <data name="WindowServerFormTitle" xml:space="preserve">
+  <data name="WindowServerFormLayoutTitle" xml:space="preserve">
     <value>FotootoF Serveur</value>
   </data>
-  <data name="WindowUserFormTitle" xml:space="preserve">
+  <data name="WindowUserFormLayoutTitle" xml:space="preserve">
     <value>FotootoF Utilisateur</value>
   </data>
   <data name="FormFieldRequired" xml:space="preserve">

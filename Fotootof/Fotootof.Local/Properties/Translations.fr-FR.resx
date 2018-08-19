@@ -135,8 +135,26 @@
   <data name="Cancel" xml:space="preserve">
     <value>Annuler</value>
   </data>
+  <data name="ColorSelector" xml:space="preserve">
+    <value>-- Selection Couleur --</value>
+  </data>
   <data name="Comment" xml:space="preserve">
     <value>Commentaire</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Compagnie</value>
+  </data>
+  <data name="ConfigurationFile" xml:space="preserve">
+    <value>Fichier de configuration</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Connecter</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Couverture</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Créer</value>
@@ -147,11 +165,20 @@
   <data name="Creation" xml:space="preserve">
     <value>Creation</value>
   </data>
+  <data name="Datas" xml:space="preserve">
+    <value>Données</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Défaut</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Supprimer</value>
   </data>
   <data name="Deleted" xml:space="preserve">
     <value>Supprimé</value>
+  </data>
+  <data name="DeletePictures" xml:space="preserve">
+    <value>Supprimer les Images</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -217,6 +244,9 @@
   <data name="Quality" xml:space="preserve">
     <value>Qualité</value>
   </data>
+  <data name="QualitySelector" xml:space="preserve">
+    <value>-- Selection Qualité --</value>
+  </data>
   <data name="Refresh" xml:space="preserve">
     <value>Rafraichir</value>
   </data>
@@ -249,6 +279,12 @@
   </data>
   <data name="Theme" xml:space="preserve">
     <value>Theme</value>
+  </data>
+  <data name="ToolTipAlbumColorSelector" xml:space="preserve">
+    <value>Sélectionnez la Couleur associée à l'album.</value>
+  </data>
+  <data name="ToolTipAlbumQualitySelector" xml:space="preserve">
+    <value>Sélectionner la Qualité associée à l'Album.</value>
   </data>
   <data name="TrueColor" xml:space="preserve">
     <value>Couleur Vraies</value>
@@ -303,5 +339,35 @@
   </data>
   <data name="XLarge" xml:space="preserve">
     <value>Extra-Large</value>
+  </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Catalogue</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Catégories</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Couleur</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Groupe</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="Host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Ouvrir</value>
   </data>
 </root>

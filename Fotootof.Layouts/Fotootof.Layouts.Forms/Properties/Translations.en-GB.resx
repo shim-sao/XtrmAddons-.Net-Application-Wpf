@@ -120,10 +120,10 @@
   <data name="WindowFormAclGroupLayoutTitle" xml:space="preserve">
     <value>FotootoF Users group</value>
   </data>
-  <data name="WindowAlbumFormTitle" xml:space="preserve">
+  <data name="WindowFormAlbumLayoutTitle" xml:space="preserve">
     <value>FotootoF Album</value>
   </data>
-  <data name="WindowClientFormTitle" xml:space="preserve">
+  <data name="WindowFormClientLayoutTitle" xml:space="preserve">
     <value>FotootoF Client</value>
   </data>
   <data name="WindowFormSectionLayoutTitle" xml:space="preserve">

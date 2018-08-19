@@ -7,7 +7,7 @@ using System;
 using System.IO;
 using XtrmAddons.Net.Common.Extensions;
 
-namespace Fotootof.Layouts.Windows.Forms.Album
+namespace Fotootof.Layouts.Forms.Album
 {
     /// <summary>
     /// Class XtrmAddons Fotootof Libraries Common Window Form Model Album.

@@ -12,7 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Net.Common.Extensions;
 
-namespace Fotootof.Layouts.Windows.Forms.Album
+namespace Fotootof.Layouts.Forms.Album
 {
     /// <summary>
     /// <para>Class XtrmAddons Fotootof Libraries Common Window Form Album.</para>
