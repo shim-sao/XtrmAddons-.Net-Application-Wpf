@@ -73,27 +73,41 @@
 					  Style="{DynamicResource MenuItemMainStyle}"
 					  Template="{DynamicResource MenuItemMainControlTemplate}">
 
-				<MenuItem x:Name="MenuItemServerRemoteName"
+                <!-- #region Remote -->
+                <MenuItem x:Name="MenuItemServerRemoteName"
 						  Header="{x:Static p:Translations._ServerRemote}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="NavigateToRemote_Click">
-				</MenuItem>
+                </MenuItem>
 
-				<Separator />
-
-				<MenuItem x:Name="MenuItemServerSettingsName"
-						  Header="{x:Static p:Translations._ServerSettings}"
-						  Style="{DynamicResource MenuItemMainLevel1Style}"
-						  Click="ServerSettings_Click">
-				</MenuItem>
-
-
-				<MenuItem Header="{x:Static p:Translations._ClientNew}"
+                <MenuItem Header="{x:Static p:Translations._ClientNew}"
 						  Name="MenuItemServerClientNewName"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="AddClient_Click">
-				</MenuItem>
+                </MenuItem>
 
+                <Separator />
+
+                <MenuItem x:Name="MenuItem_Users"
+						  Header="{x:Static p:Translations._UsersList}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="NavigateToUsers_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24UsersSetting}}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem x:Name="MenuItem_AddUser"
+						  Header="{x:Static p:Translations._UsersNew}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"
+						  Click="AddUser_Click">
+
+                    <MenuItem.Icon>
+                        <Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24UserPlus}}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <!-- #endregion -->
+                
 				<Separator />
                 
                 <!-- #region Server -->
@@ -133,10 +147,10 @@
 					</MenuItem.Icon>
 				</MenuItem>
                 <!-- #endregion -->
-                
-				<Separator />
 
-				<MenuItem Name="MenuItemServerAddToFirewallName"
+                <Separator />
+
+                <MenuItem Name="MenuItemServerAddToFirewallName"
 						  Header="{x:Static p:Translations._AddToFirewall}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  Click="OnServerAddToFirewall_Click"
@@ -148,35 +162,11 @@
 						  Click="OnServerRemoveFromFirewall_Click"
 						  ToolTip="Remove Http server URL to the firewall rules. Disable external access."/>
 
-			</MenuItem>
-			<!-- #endregion -->
-
-
-
-			<!-- #region USERS -->
-			<MenuItem Header="{x:Static p:Translations._Users}"
-					  Style="{DynamicResource MenuItemMainStyle}"
-					  Template="{DynamicResource MenuItemMainControlTemplate}">
-
-				<MenuItem x:Name="UI_MI_Users"
-						  Header="{x:Static p:Translations._UsersList}"
-						  Style="{DynamicResource MenuItemMainLevel1Style}"
-						  Click="NavigateToUsers_Click">
-					<MenuItem.Icon>
-						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24UsersSetting}}" />
-					</MenuItem.Icon>
-				</MenuItem>
-
-				<MenuItem x:Name="MenuItem_AddUser"
-						  Header="{x:Static p:Translations._UsersNew}"
-						  Style="{DynamicResource MenuItemMainLevel1Style}"
-						  Click="AddUser_Click">
-
-					<MenuItem.Icon>
-						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24UserPlus}}" />
-					</MenuItem.Icon>
-				</MenuItem>
-			</MenuItem>
+                <MenuItem x:Name="MenuItemServerSettingsName"
+						  Click="ServerSettings_Click"
+						  Header="{x:Static p:Translations._ServerSettings}"
+						  Style="{DynamicResource MenuItemMainLevel1Style}"/>
+            </MenuItem>
 			<!-- #endregion -->
 
 

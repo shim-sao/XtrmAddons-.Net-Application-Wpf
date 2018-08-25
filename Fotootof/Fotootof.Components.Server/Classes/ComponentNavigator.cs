@@ -5,7 +5,9 @@ using Fotootof.Components.Server.Remote;
 using Fotootof.Components.Server.Section;
 //using Fotootof.Components.Server.Slideshow;
 using Fotootof.Components.Server.Users;
+using Fotootof.Libraries.HttpHelpers.HttpClient;
 using Fotootof.Navigator;
+using System;
 using System.Windows.Controls;
 
 namespace Fotootof.Components.Server
@@ -65,6 +67,13 @@ namespace Fotootof.Components.Server
         /// </summary>
         public static void NavigateToPlugin(UserControl uc)
             => Navigate(new PagePluginLayout(uc));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clientHttp"></param>
+        public static void NavigateToSectionClient(ClientHttp clientHttp)
+            => Navigate(new Client.Section.PageSectionLayout(clientHttp));
 
         /*
          * Not include in project

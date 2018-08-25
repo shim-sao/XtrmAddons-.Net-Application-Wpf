@@ -26,6 +26,8 @@ using System.Windows.Controls;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Serializable.Elements.Remote;
 using XtrmAddons.Net.Common.Extensions;
+using Fotootof.Layouts.Forms.Server;
+using Fotootof.HttpServer;
 
 namespace Fotootof.Menus
 {
@@ -37,7 +39,7 @@ namespace Fotootof.Menus
         #region Variables
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -49,23 +51,24 @@ namespace Fotootof.Menus
         #region Properties
 
         /// <summary>
-        /// Property to access to the application main window.
+        /// Property to access to the <see cref="Application"/> <see cref="MainWindow"/>.
         /// </summary>
-        public static MainWindow AppWindow => Application.Current.MainWindow as MainWindow;
+        public static MainWindow AppWindow
+            => Application.Current.MainWindow as MainWindow;
 
         /// <summary>
-        /// Property to access to the main application frame.
+        /// Property to access to the main <see cref="Application"/> <see cref="Frame"/>.
         /// </summary>
         public static Frame MainFrame
             => AppWindow.FindName("Frame_Content") as Frame;
 
         /// <summary>
-        /// Property client added routed event handler.
+        /// Event handler for added client <see cref="RoutedEventHandler"/>.
         /// </summary>
         public static event RoutedEventHandler ClientAdded = delegate { };
 
         /// <summary>
-        /// 
+        /// Property to access to the layout model <see cref="MainMenuHorizontalModel"/>.
         /// </summary>
         public MainMenuHorizontalModel Model { get; private set; }
 
@@ -127,12 +130,14 @@ namespace Fotootof.Menus
         }
 
         /// <summary>
-        /// Method to convert a <see cref="FrameworkElement"/> Tag to an <see cref="object"/> of <see cref="Type"/> T.
+        /// Method to convert a <see cref="FrameworkElement"/> Tag to an <see cref="object"/> as value of <see cref="Type"/> T.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="fe">An <see cref="object"/> inherited from <see cref="FrameworkElement"/>.</param>
-        /// <param name="defaut"></param>
-        /// <returns></returns>
+        /// <param name="defaut">A default value.</param>
+        /// <returns>The tag value of the <see cref="FrameworkElement"/>.</returns>
+        /// <exception cref="ArgumentNullException">Occurs if the <see cref="FrameworkElement"/> fe is null.</exception>
+        /// <exception cref="TypeAccessException">Occurs if fe is not a <see cref="FrameworkElement"/>.</exception>
         public static T GetTag<T>(object fe, T defaut = null) where T : class
         {
             if (fe is null)
@@ -208,7 +213,7 @@ namespace Fotootof.Menus
         /// <summary>
         /// Method called on client added routed event.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">The routed event.</param>
         private void RaiseClientAdded(object sender, RoutedEvent routedEvent)
         {
@@ -218,7 +223,7 @@ namespace Fotootof.Menus
         /// <summary>
         /// Method called on <see cref="FrameworkElement"/> loaded event.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">The routed event arguments.</param>
         private void FrameworkElement_Loaded(object sender, RoutedEventArgs e)
         {
@@ -503,17 +508,38 @@ namespace Fotootof.Menus
         }
 
         /// <summary>
-        /// 
+        /// Method called on sever edit settings event click.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
         private void ServerSettings_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxs.NotImplemented();
+            using (WindowFormServerLayout dlg = new WindowFormServerLayout(ApplicationBase.Options.Remote.Servers.FindDefaultFirst()))
+            {
+                try
+                {
+                    bool? result = dlg.ShowDialog();
+
+                    if (result == true)
+                    {
+                        ApplicationBase.Options.Remote.Servers.ReplaceDefault(dlg.NewForm);
+                        ApplicationBase.SaveOptions();
+                        if(HttpWebServerApplication.IsStarted)
+                        {
+                            ServerRestart_Click(sender, e);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Error(ex.Output(), ex);
+                    MessageBoxs.Error(ex);
+                }
+            }
         }
 
         /// <summary>
-        /// Method called on custom theme changed click event.
+        /// Method called on theme changed event click.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>

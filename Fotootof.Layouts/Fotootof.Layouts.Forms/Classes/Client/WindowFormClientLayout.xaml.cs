@@ -60,12 +60,14 @@ namespace Fotootof.Layouts.Forms.Client
         /// <summary>
         /// Property to access to the main form save button.
         /// </summary>
-        public Button ButtonSave => FindName("ButtonSaveName") as Button;
+        public Button ButtonSave 
+            => (Button)FindName("ButtonSaveName");
 
         /// <summary>
         /// Property to access to the main form cancel button.
         /// </summary>
-        public Button ButtonCancel => FindName("ButtonCancelName") as Button;
+        public Button ButtonCancel 
+            => (Button)FindName("ButtonCancelName");
 
         /// <summary>
         /// Variable to store the secure Password.
@@ -306,6 +308,66 @@ namespace Fotootof.Layouts.Forms.Client
             IsSaveEnabled = !IsValidPassword(sender as PasswordBox) ? false : IsValidInputs();
         }
 
+        #endregion
+
+
+
+        #region IDisposable
+        
+        /// <summary>
+        /// Variable to track whether Dispose has been called.
+        /// </summary>
+        private bool disposed = false;
+        
+        /// <summary>
+        /// Dispose(bool disposing) executes in two distinct scenarios.
+        /// If disposing equals true, the method has been called directly
+        /// or indirectly by a user's code. Managed and unmanaged resources
+        /// can be disposed.
+        /// If disposing equals false, the method has been called by the
+        /// runtime from inside the finalizer and you should not reference
+        /// other objects. Only unmanaged resources can be disposed.
+        /// </summary>
+        /// <param name="disposing">Track whether Dispose has been called.</param>
+        protected override void Dispose(bool disposing)
+        {
+            // Check to see if Dispose has already been called.
+            if (!disposed)
+            {
+                // If disposing equals true, dispose all managed
+                // and unmanaged resources.
+                if (disposing)
+                {
+                    // Dispose managed resources.
+                    Model.Dispose();
+                    OldForm = null;
+                    NewForm = null;
+                }
+        
+                // Call the appropriate methods to clean up unmanaged resources here.
+                // If disposing is false, only the following code is executed.
+        
+        
+                // Note disposing has been done.
+                disposed = true;
+            }
+        }
+        
+        /// <summary>
+        /// Use C# destructor syntax for finalization code.
+        /// This destructor will run only if the Dispose method
+        /// does not get called.
+        /// It gives your base class the opportunity to finalize.
+        /// Do not provide destructors in types derived from this class.
+        /// </summary>
+        ~WindowFormClientLayout()
+        {
+            // Do not re-create Dispose clean-up code here.
+            // Calling Dispose(false) is optimal in terms of
+            // readability and maintainability.
+            Dispose(false);
+        }
+        
         #endregion
     }
 }

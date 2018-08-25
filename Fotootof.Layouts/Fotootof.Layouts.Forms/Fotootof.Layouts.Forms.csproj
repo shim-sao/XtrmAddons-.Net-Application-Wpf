@@ -88,6 +88,10 @@
       <DependentUpon>WindowFormSectionLayout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Section\WindowFormSectionModel.cs" />
+    <Compile Include="Classes\Server\WindowFormServerLayout.xaml.cs">
+      <DependentUpon>WindowFormServerLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Server\WindowFormServerModel.cs" />
     <Compile Include="Classes\User\ValidationRules.cs" />
     <Compile Include="Classes\User\WindowFormUserLayout.xaml.cs">
       <DependentUpon>WindowFormUserLayout.xaml</DependentUpon>
@@ -122,6 +126,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Fotootof.Theme\Fotootof.Theme\Fotootof.Theme.csproj">
+      <Project>{c76e2008-3da1-4600-a889-bf08af796f7f}</Project>
+      <Name>Fotootof.Theme</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fotootof\Fotootof.Collections\Fotootof.Collections.csproj">
       <Project>{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}</Project>
       <Name>Fotootof.Collections</Name>
@@ -227,6 +235,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Classes\Section\WindowFormSectionLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Server\WindowFormServerLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

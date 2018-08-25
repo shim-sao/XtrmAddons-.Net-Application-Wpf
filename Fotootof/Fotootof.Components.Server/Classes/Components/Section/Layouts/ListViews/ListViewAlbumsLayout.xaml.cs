@@ -37,7 +37,7 @@ namespace Fotootof.Components.Server.Section.Layouts
         /// </summary>
         public override AlbumEntityCollection Items
         { 
-            get => (AlbumEntityCollection) DataContext.GetPropertyValue("Items");
+            get => (AlbumEntityCollection)DataContext.GetPropertyValue("Items");
             set => DataContext.SetPropertyValue("Items",  value);
         }
 
@@ -46,8 +46,8 @@ namespace Fotootof.Components.Server.Section.Layouts
         /// </summary>
         public event SelectionChangedEventHandler FilterQualityChanged
         {
-            add { (FindName("FiltersQualitySelector") as ComboBox).SelectionChanged += value; }
-            remove { (FindName("FiltersQualitySelector") as ComboBox).SelectionChanged -= value; }
+            add { ((ComboBox)FindName("FiltersQualitySelector")).SelectionChanged += value; }
+            remove { ((ComboBox)FindName("FiltersQualitySelector")).SelectionChanged -= value; }
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace Fotootof.Components.Server.Section.Layouts
         /// </summary>
         public event SelectionChangedEventHandler FilterColorChanged
         {
-            add { (FindName("FiltersColorSelector") as ComboBox).SelectionChanged += value; }
-            remove { (FindName("FiltersColorSelector") as ComboBox).SelectionChanged -= value; }
+            add { ((ComboBox)FindName("FiltersColorSelector")).SelectionChanged += value; }
+            remove { ((ComboBox)FindName("FiltersColorSelector")).SelectionChanged -= value; }
         }
 
         #endregion

@@ -174,4 +174,10 @@
   <data name="DbAddingDefault" xml:space="preserve">
     <value>Adding new default database parameters to the preferences.</value>
   </data>
+  <data name="InitializingPageDone" xml:space="preserve">
+    <value>Initializing Page {0} content. Done !</value>
+  </data>
+  <data name="InitializingPageWaiting" xml:space="preserve">
+    <value>Initializing Page {0} content. Please wait...</value>
+  </data>
 </root>

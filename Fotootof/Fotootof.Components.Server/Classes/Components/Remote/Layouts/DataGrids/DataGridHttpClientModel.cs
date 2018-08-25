@@ -1,7 +1,7 @@
 ﻿using Fotootof.Libraries.Controls.DataGrids;
 using System.Collections.ObjectModel;
 using XtrmAddons.Net.Application;
-using XtrmAddons.Net.Application.Serializable.Elements.Remote;
+using RemoteClient = XtrmAddons.Net.Application.Serializable.Elements.Remote.Client;
 
 namespace Fotootof.Components.Server.Remote.Layouts
 {
@@ -9,7 +9,7 @@ namespace Fotootof.Components.Server.Remote.Layouts
     /// Class XtrmAddons Fotootof Server Libraries Common Models DataGrids Sections.
     /// </summary>
     /// <typeparam name="T">The type of data grid control associated to the model.</typeparam>
-    public class DataGridHttpClientModel<T> : DataGridBaseModel<T, ObservableCollection<Client>> where T : class
+    public class DataGridHttpClientModel<T> : DataGridBaseModel<T, ObservableCollection<RemoteClient>> where T : class
     {
         #region Constructor
 
@@ -51,7 +51,7 @@ namespace Fotootof.Components.Server.Remote.Layouts
         /// </summary>
         public void Reset()
         {
-            Items = new ObservableCollection<Client>(ApplicationBase.Options.Remote.Clients);
+            Items = new ObservableCollection<RemoteClient>(ApplicationBase.Options.Remote.Clients);
         }
 
         #endregion

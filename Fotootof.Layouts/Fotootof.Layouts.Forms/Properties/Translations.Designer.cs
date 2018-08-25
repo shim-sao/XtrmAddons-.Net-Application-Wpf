@@ -106,20 +106,20 @@ namespace Fotootof.Layouts.Forms.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à FotootoF Server.
+        /// </summary>
+        public static string WindowFormServerLayoutTitle {
+            get {
+                return ResourceManager.GetString("WindowFormServerLayoutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Fotootof Albums.
         /// </summary>
         public static string WindowsDataGridAlbumsTitle {
             get {
                 return ResourceManager.GetString("WindowsDataGridAlbumsTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à FotootoF Server.
-        /// </summary>
-        public static string WindowServerFormTitle {
-            get {
-                return ResourceManager.GetString("WindowServerFormTitle", resourceCulture);
             }
         }
         

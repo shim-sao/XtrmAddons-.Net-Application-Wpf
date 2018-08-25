@@ -118,66 +118,62 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
         {
             // Get the icon image of the Drive.
             BitmapImage icon = Win32Icon.IconFromHandle(di.Name).ToBitmap().ToBitmapImage();
-            StackPanel title = null;
+            StackPanel title = title = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                Height = 20,
+                Children =
+                {
+                    new Border()
+                    {
+                        Child = new Image
+                        {
+                            Width = icon.Width,
+                            Height = icon.Height,
+                            Source = icon
+                        }
+                    }
+                }
+            };
 
             try
             {
-                // Create the Title.
-                title = new StackPanel
-                {
-                    Orientation = Orientation.Horizontal,
-                    Height = 20,
-                    Children =
-                    {
-                        new Border()
-                        {
-                            Child = new Image
-                            {
-                                Width = icon.Width,
-                                Height = icon.Height,
-                                Source = icon
-                            }
-                        },
+                TextBlock volName = null;
 
-                        new TextBlock
-                        {
-                            Text = $"{di.VolumeLabel} ({di.Name.ToString()})",
-                            Margin = new Thickness(5,0,0,0)
-                        }
-                    }
-                };
+                if (di.IsReady)
+                {
+                    volName = new TextBlock
+                    {
+                        Text = $"{di.VolumeLabel} ({di.Name.ToString()})",
+                        Margin = new Thickness(5, 0, 0, 0)
+                    };
+                }
+                else
+                {
+                    volName = new TextBlock
+                    {
+                        Text = $"Volume not ready ! ({di.Name.ToString()})",
+                        Margin = new Thickness(5, 0, 0, 0),
+                        Foreground = Brushes.Red
+                    };
+                }
+
+                title.Children.Add(volName);
             }
             catch (IOException io)
             {
                 log.Debug(io.Output());
                 MessageBoxs.Error(io);
 
-                // Create the Title.
-                title = new StackPanel
-                {
-                    Orientation = Orientation.Horizontal,
-                    Height = 20,
-                    Opacity = 0.5,
-                    Children =
-                    {
-                        new Border()
+                title.Children.Add(
+                    new TextBlock
                         {
-                            Child = new Image
-                            {
-                                Width = icon.Width,
-                                Height = icon.Height,
-                                Source = icon
-                            }
-                        },
-
-                        new TextBlock
-                        {
-                            Text = $"Volume not ready !",
+                            Text = $"Volume not ready ! ({di.Name.ToString()})",
                             Margin = new Thickness(5,0,0,0),
                             Foreground = Brushes.Red
                         }
-                    }
-                };
+                    );
+                title.ToolTip = io.Message;
             }
             catch (Exception e)
             {

@@ -392,21 +392,27 @@
   </data>
   <data name="Section" xml:space="preserve">
     <value>Section</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Sections" xml:space="preserve">
     <value>Sections</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Select All</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Selector_SelectColor" xml:space="preserve">
     <value>-- Select Color --</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Selector_SelectQuality" xml:space="preserve">
     <value>-- Select Quality --</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="Server" xml:space="preserve">
     <value>Server</value>
+    <comment>Fotootof.Local</comment>
   </data>
   <data name="ServerInformations" xml:space="preserve">
     <value>Server Informations</value>

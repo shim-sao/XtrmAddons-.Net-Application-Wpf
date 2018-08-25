@@ -11,19 +11,33 @@ namespace Fotootof.Layouts.Dialogs
     /// </summary>
     public class MessageBoxs
     {
+        #region Variables
+        
         /// <summary>
-        /// 
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
+        /// Variable busy indicator.
         /// </summary>
         private static Xceed.Wpf.Toolkit.BusyIndicator busyIndicator;
 
+        #endregion
+
+
+
+        #region Properties
+
         /// <summary>
-        /// 
+        /// Property to access to the <see cref="Application"/> <see cref="Xceed.Wpf.Toolkit.BusyIndicator"/>.
         /// </summary>
         public static Xceed.Wpf.Toolkit.BusyIndicator BusyIndicator
         {
             get
             {
-                if(busyIndicator == null)
+                if (busyIndicator == null)
                 {
                     ApplicationBase.BeginInvokeIfRequired(new Action(() =>
                     {
@@ -33,14 +47,11 @@ namespace Fotootof.Layouts.Dialogs
 
                 return busyIndicator;
             }
-            set
-            {
-                busyIndicator = value;
-            }
+            set => busyIndicator = value;
         }
 
         /// <summary>
-        /// 
+        /// Property to check if the <see cref="Application"/> is busy.
         /// </summary>
         public static bool IsBusy
         {
@@ -49,7 +60,7 @@ namespace Fotootof.Layouts.Dialogs
         }
 
         /// <summary>
-        /// 
+        /// Property to access to the <see cref="Xceed.Wpf.Toolkit.BusyIndicator"/> content.
         /// </summary>
         public static object BusyContent
         {
@@ -57,12 +68,18 @@ namespace Fotootof.Layouts.Dialogs
             set => ApplicationBase.BeginInvokeIfRequired(() => { BusyIndicator.BusyContent = value; });
         }
 
+        #endregion
+
+
+
+        #region Methods
+
         /// <summary>
         /// Method to display a simple message in a dialog box.
         /// </summary>
         /// <param name="s">The message to display.</param>
-        /// <param name="title"></param>
-        /// <param name="img"></param>
+        /// <param name="title">The title of the <see cref="MessageBox"/></param>
+        /// <param name="img">The icon <see cref="MessageBoxImage"/> of the <see cref="MessageBox"/></param>
         public static void Ok(string s, string title = "", MessageBoxImage img = MessageBoxImage.None)
         {
             ApplicationBase.BeginInvokeIfRequired(new Action(() =>
@@ -75,8 +92,8 @@ namespace Fotootof.Layouts.Dialogs
         /// Method to display a simple message in a dialog box.
         /// </summary>
         /// <param name="s">The message to display.</param>
-        /// <param name="title"></param>
-        /// <param name="img"></param>
+        /// <param name="title">The title of the <see cref="MessageBox"/></param>
+        /// <param name="img">The icon <see cref="MessageBoxImage"/> of the <see cref="MessageBox"/></param>
         public static MessageBoxResult YesNo(string s, string title = "", MessageBoxImage img = MessageBoxImage.Question)
         {
             MessageBoxResult result = MessageBoxResult.None;
@@ -91,7 +108,7 @@ namespace Fotootof.Layouts.Dialogs
         /// Method to display an error message in a dialog box.
         /// </summary>
         /// <param name="s">The message to display.</param>
-        /// <param name="title"></param>
+        /// <param name="title">The title of the <see cref="MessageBox"/></param>
         public static void Error(string s, string title = "Error")
         {
             Ok(s, title, MessageBoxImage.Error);
@@ -100,17 +117,17 @@ namespace Fotootof.Layouts.Dialogs
         /// <summary>
         /// Method to display an error message in a dialog box.
         /// </summary>
-        /// <param name="e">The exception to add to the message box.</param>
+        /// <param name="e">The <see cref="Exception"/> to add to the <see cref="MessageBox"/>.</param>
         public static void Error(Exception e)
         {
-            Ok(e.Output(), e.GetType().Name, MessageBoxImage.Error);
+            Ok(e.Message, e.GetType().Name, MessageBoxImage.Error);
         }
 
         /// <summary>
         /// Method to display a warning message in a dialog box.
         /// </summary>
         /// <param name="s">The message to display.</param>
-        /// <param name="title"></param>
+        /// <param name="title">The title of the <see cref="MessageBox"/></param>
         public static void Warning(string s, string title = "Warning")
         {
             Ok(s, title, MessageBoxImage.Warning);
@@ -120,7 +137,7 @@ namespace Fotootof.Layouts.Dialogs
         /// Method to display a warning message in a dialog box.
         /// </summary>
         /// <param name="s">The message to display.</param>
-        /// <param name="title"></param>
+        /// <param name="title">The title of the <see cref="MessageBox"/></param>
         public static void Info(string s, string title = "Information")
         {
             Ok(s, title, MessageBoxImage.Information);
@@ -146,8 +163,8 @@ namespace Fotootof.Layouts.Dialogs
         /// Method to display a warning message in a dialog box.
         /// Application will be shutdown.
         /// </summary>
-        /// <param name="e">The Exception to display.</param>
-        /// <param name="s">The message to add before exception.</param>
+        /// <param name="e">The <see cref="Exception"/> to display.</param>
+        /// <param name="s">The message to add before <see cref="Exception"/>.</param>
         public static void Fatal(Exception e, string s = "")
         {
             if(s.IsNotNullOrWhiteSpace())
@@ -161,10 +178,13 @@ namespace Fotootof.Layouts.Dialogs
 
             ApplicationBase.BeginInvokeIfRequired(new Action(() =>
             {
-                MessageBox.Show(s, Local.Properties.Translations.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show(s, Local.Properties.Translations.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("The application will be shutdown", Local.Properties.Translations.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Stop);
                 Application.Current.Shutdown();
             }));
         }
+        
+        #endregion
 
 
 
@@ -174,8 +194,8 @@ namespace Fotootof.Layouts.Dialogs
         /// Method to display a warning message in a dialog box.
         /// Application will be shutdown.
         /// </summary>
-        /// <param name="e">The Exception to display.</param>
-        /// <param name="s">The message to add before exception.</param>
+        /// <param name="e">The <see cref="Exception"/> to display.</param>
+        /// <param name="s">A custom message to add before the <see cref="Exception"/>.</param>
         [Conditional("DEBUG")]
         public static void DebugFatal(Exception e, string s = "")
         {

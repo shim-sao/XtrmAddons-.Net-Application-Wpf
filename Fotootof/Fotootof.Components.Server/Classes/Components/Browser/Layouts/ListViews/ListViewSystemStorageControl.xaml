@@ -108,8 +108,8 @@
 								IsEnabled="False"/>
 					</Border>
 
-					<Border Grid.Column="2"
-							x:Name="MenuRight"
+					<Border x:Name="MenuRight"
+                            Grid.Column="2"
 							Margin="5,0">
 
 						<StackPanel Orientation="Horizontal">
@@ -121,8 +121,7 @@
 
 								<ComboBoxItem Content="{x:Static p:Resources.Icon}" />
 								<ComboBoxItem Content="{x:Static p:Resources.Thumbnail}" />
-								<ComboBoxItem Content="{x:Static p:Resources.Vignette}"
-											  IsSelected="True" />
+								<ComboBoxItem Content="{x:Static p:Resources.Vignette}" IsSelected="True" />
 								<ComboBoxItem Content="{x:Static p:Resources.Large}" />
 								<ComboBoxItem Content="{x:Static p:Resources.XLarge}" />
 							</ComboBox>
@@ -134,14 +133,14 @@
 
 							<Button Grid.Column="1"
 									x:Name="Button_UnselectAll"
-									Style="{StaticResource ButtonIcon24ImageUnselect}"
 									PreviewMouseLeftButtonUp="OnUnselectAll_Click"
+									Style="{StaticResource ButtonIcon24ImageUnselect}"
 									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"/>
 
 							<Button Grid.Column="2"
 									x:Name="Button_Refresh"
-									Style="{StaticResource ButtonIcon24ImageRefresh}"
 									PreviewMouseLeftButtonUp="OnRefresh_Click"
+									Style="{StaticResource ButtonIcon24ImageRefresh}"
 									ToolTipService.ToolTip="{x:Static p:Resources.Refresh}"/>
 
 
@@ -253,7 +252,7 @@
 									<Viewbox.ToolTip>
 										<Grid MaxWidth="{StaticResource DoubleIcon512}"
 											  MaxHeight="{StaticResource DoubleIcon512}"
-											  Background="Red">
+                                              Background="{DynamicResource CustomWindowBrush}">
 
 											<Image Source="{Binding ImageFullName, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource StringIcon512}, IsAsync=True, Mode=OneWay}"
 												   Stretch="Uniform"
@@ -277,7 +276,7 @@
 													<TextBlock Text="{Binding Name}"
 															   HorizontalAlignment="left"
 															   Panel.ZIndex="1"
-															   Style="{StaticResource TextBlockTooltipStyle}"
+															   Style="{DynamicResource TextBlockTooltipStyle}"
 															   TextWrapping="Wrap" />
 
 												</StackPanel>
@@ -287,16 +286,16 @@
 															Margin="5">
 
 													<TextBlock Text="{Binding DateCreated, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateSQLParameter}}"
-															   Style="{StaticResource TextBlockTooltipStyle}"
+															   Style="{DynamicResource TextBlockTooltipStyle}"
 															   FontStyle="Oblique" />
 
 													<TextBlock Text="-"
-															   Style="{StaticResource TextBlockTooltipStyle}"
+															   Style="{DynamicResource TextBlockTooltipStyle}"
 															   FontStyle="Oblique"
 															   Margin="3,0" />
 
 													<TextBlock Text="{Binding DateModified, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateSQLParameter}}"
-															   Style="{StaticResource TextBlockTooltipStyle}"
+															   Style="{DynamicResource TextBlockTooltipStyle}"
 															   FontStyle="Oblique" />
 
 												</StackPanel>

@@ -619,6 +619,15 @@ namespace Fotootof.Local.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Select All.
+        /// </summary>
+        public static string SelectAll {
+            get {
+                return ResourceManager.GetString("SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Server.
         /// </summary>
         public static string Server {

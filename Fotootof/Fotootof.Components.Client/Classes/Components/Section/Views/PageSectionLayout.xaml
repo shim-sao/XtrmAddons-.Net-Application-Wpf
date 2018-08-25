@@ -1,0 +1,70 @@
+﻿<base:ComponentView
+    x:Class="Fotootof.Components.Client.Section.PageSectionLayout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:base="clr-namespace:Fotootof.Libraries.Components;assembly=Fotootof.Libraries.Components"
+    xmlns:local="clr-namespace:Fotootof.Components.Client.Section.Layouts"
+    xmlns:this="clr-namespace:Fotootof.Components.Client.Section"
+    mc:Ignorable="d"
+	Loaded="Control_Loaded"
+    ShowsNavigationUI="False"
+    SizeChanged="Layout_SizeChanged"
+    Title="{x:Static p:Resources.Sections}">
+
+    <Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
+
+        <StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
+					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
+
+			<StackPanel x:Name="Block_TopControls"
+						Style="{StaticResource StackPanelTopControls}">
+				<Border Background="{StaticResource LightGrey}">
+					<TextBlock x:Name="Breadcrumbs"
+							   Margin="5"
+							   Padding="10,0"
+							   FontSize="{StaticResource FontSizeTitle}"
+							   Text="{Binding SelectedSection.Name}"/>
+				</Border>
+			</StackPanel>
+
+
+            <Grid x:Name="BlockMiddleContentsName"
+				  Style="{StaticResource GridMiddleContentStyle}"
+				  Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type this:PageSectionLayout}}}"
+                  Background="red">
+
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" MinWidth="240" x:Name="ColSections"/>
+					<ColumnDefinition x:Name="ColumnGridSplitter" Width="5"/>
+					<ColumnDefinition Width="3*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="1*" />
+				</Grid.RowDefinitions>
+
+				<local:DataGridSectionsLayout x:Name="UcDataGridSections"
+												 DataContext="{Binding Sections}" />
+
+				<GridSplitter Grid.Row="0"
+							  Grid.Column="1"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch" />
+
+				<Grid Grid.Row="0"
+					  Grid.Column="2"
+					  x:Name="GridAlbums">
+
+					<local:ListViewAlbumsLayout x:Name="UcListViewAlbums"
+												 DataContext="{Binding Albums}"/>
+					<!--FilterColorChanged="FiltersColor_SelectionChanged"
+												 FilterQualityChanged="FiltersQuality_SelectionChanged" />-->
+				</Grid>
+			</Grid>
+
+		</StackPanel>
+	</Grid>
+
+</base:ComponentView>

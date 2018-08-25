@@ -160,6 +160,24 @@ namespace Fotootof.Local.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Initializing Page {0} content. Done !.
+        /// </summary>
+        public static string InitializingPageDone {
+            get {
+                return ResourceManager.GetString("InitializingPageDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Initializing Page {0} content. Please wait....
+        /// </summary>
+        public static string InitializingPageWaiting {
+            get {
+                return ResourceManager.GetString("InitializingPageWaiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Initializing application language. Please wait....
         /// </summary>
         public static string IntializingApplicationLanguage {

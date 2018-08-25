@@ -20,12 +20,12 @@ namespace Fotootof.Menus
         	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// 
+        /// Variable is Http server started.
         /// </summary>
         public bool isServerStarted;
 
         /// <summary>
-        /// 
+        /// Variable <see cref="Grid"/> container for the plugin module.
         /// </summary>
         private Grid moduleContainer = new Grid();
 
@@ -36,17 +36,14 @@ namespace Fotootof.Menus
         #region Properties
 
         /// <summary>
-        /// 
+        /// Property to access to the <see cref="Grid"/> container for the plugin module.
         /// </summary>
         public Grid ModuleContainer
         {
-            get
-            {
-                return moduleContainer;
-            }
+            get => moduleContainer;
             set
             {
-                if(moduleContainer != value)
+                if (moduleContainer != value)
                 {
                     moduleContainer = value;
                     NotifyPropertyChanged();
@@ -55,14 +52,11 @@ namespace Fotootof.Menus
         }
 
         /// <summary>
-        /// 
+        /// Property to check if the Http server is started.
         /// </summary>
         public bool IsServerStarted
         {
-            get
-            {
-                return isServerStarted;
-            }
+            get => isServerStarted;
             set
             {
                 if (isServerStarted != value)
@@ -75,7 +69,7 @@ namespace Fotootof.Menus
         }
 
         /// <summary>
-        /// 
+        /// Property to check if the Http server is stopped.
         /// </summary>
         public bool IsServerStopped => !IsServerStarted;
 
@@ -112,10 +106,10 @@ namespace Fotootof.Menus
         #region Methods
 
         /// <summary>
-        /// 
+        /// Method to handle notification when theHttp server is started. 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The event arguments <see cref="EventArgs"/></param>
         private void HttpServerBase_NotifyServerHandlerOnce(object sender, EventArgs e)
         {
             IsServerStarted = HttpWebServerApplication.IsStarted;

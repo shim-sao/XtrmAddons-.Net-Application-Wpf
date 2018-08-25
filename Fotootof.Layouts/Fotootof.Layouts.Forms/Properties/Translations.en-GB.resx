@@ -132,7 +132,7 @@
   <data name="WindowsDataGridAlbumsTitle" xml:space="preserve">
     <value>Fotootof Albums</value>
   </data>
-  <data name="WindowServerFormTitle" xml:space="preserve">
+  <data name="WindowFormServerLayoutTitle" xml:space="preserve">
     <value>FotootoF Server</value>
   </data>
   <data name="WindowSettingsTitle" xml:space="preserve">

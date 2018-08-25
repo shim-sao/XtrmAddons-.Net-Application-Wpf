@@ -174,4 +174,10 @@
   <data name="DbAddingDefault" xml:space="preserve">
     <value>Ajout des paramètres par défaut de la base de données aux préférences de l'application.</value>
   </data>
+  <data name="InitializingPageDone" xml:space="preserve">
+    <value>Initialisation du contenu de la Page {0}. Terminé !</value>
+  </data>
+  <data name="InitializingPageWaiting" xml:space="preserve">
+    <value>Initialisation du contenu de la Page {0}. Veuillez patienter, s'il vous plaît...</value>
+  </data>
 </root>

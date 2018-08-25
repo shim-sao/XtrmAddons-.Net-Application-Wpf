@@ -88,13 +88,13 @@ namespace Fotootof.Components.Server.Section
         public PageSectionLayout()
         {
             MessageBoxs.IsBusy = true;
-            log.Warn(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Catalog"));
+            log.Warn(string.Format(CultureInfo.CurrentCulture, Local.Properties.Logs.InitializingPageWaiting, "Section Server"));
 
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Catalog"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Local.Properties.Logs.InitializingPageDone, "Section Server"));
             MessageBoxs.IsBusy = false;
         }
 
@@ -376,12 +376,12 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">The celection changed event arguments <see cref="SelectionChangedEventArgs"/></param>
         private void FiltersQuality_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ((FindName("ListViewAlbumsLayoutName") as ListViewAlbumsLayout)
-                .FindName("FiltersQualitySelector") as ComboBox).IsEditable = false;
+            ((ComboBox)((ListViewAlbumsLayout)FindName("ListViewAlbumsLayoutName"))
+                .FindName("FiltersQualitySelector")).IsEditable = false;
 
             string alias = "quality";
 
-            if ((sender as ComboBox).SelectedItem is InfoEntity info && info.Alias != "various-quality")
+            if (((ComboBox)sender).SelectedItem is InfoEntity info && info.Alias != "various-quality")
             {
                 if (filters.Keys.Contains(alias))
                     filters[alias] = info.PrimaryKey;
@@ -403,8 +403,8 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">The celection changed event arguments <see cref="SelectionChangedEventArgs"/></param>
         private void FiltersColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ((FindName("ListViewAlbumsLayoutName") as ListViewAlbumsLayout)
-                .FindName("FiltersColorSelector") as ComboBox).IsEditable = false;
+            ((ComboBox)((ListViewAlbumsLayout)FindName("ListViewAlbumsLayoutName"))
+                .FindName("FiltersColorSelector")).IsEditable = false;
 
             string alias = "color";
 
@@ -436,19 +436,27 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">The size changed event arguments <see cref="SizeChangedEventArgs"/>.</param>
         public override void Layout_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            var UcDataGridSections = FindName("DataGridSectionsLayoutName") as DataGridSectionsLayout;
-            var UcListViewAlbums = (FindName("ListViewAlbumsLayoutName") as ListViewAlbumsLayout);
+            try
+            {
+                var UcDataGridSections = (DataGridSectionsLayout)FindName("DataGridSectionsLayoutName");
+                var UcListViewAlbums = (ListViewAlbumsLayout)FindName("ListViewAlbumsLayoutName");
+                var BlockMiddleContents = (Grid)FindName("BlockMiddleContentsName");
+            
+                Width = MainBlockContent.ActualWidth;
+                Height = MainBlockContent.ActualHeight;
 
-            this.Width = MainBlockContent.ActualWidth;
-            this.Height = MainBlockContent.ActualHeight;
+                double height = Math.Max(Height - Block_TopControls.RenderSize.Height, 0);
 
-            double height = Math.Max(Height - Block_TopControls.RenderSize.Height, 0);
+                BlockMiddleContents.Width = Width;
+                BlockMiddleContents.Height = height;
 
-            BlockMiddleContentsName.Width = this.Width;
-            BlockMiddleContentsName.Height = height;
-
-            UcDataGridSections.Height = height;
-            UcListViewAlbums.Height = height;
+                UcDataGridSections.Height = height;
+                UcListViewAlbums.Height = height;
+            }
+            catch(Exception ex)
+            {
+                log.Debug(ex.Output());
+            }
         }
 
         #endregion

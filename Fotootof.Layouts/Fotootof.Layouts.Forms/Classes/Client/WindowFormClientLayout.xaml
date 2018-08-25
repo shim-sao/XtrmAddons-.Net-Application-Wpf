@@ -32,22 +32,19 @@
             <!-- #region : Tabs Informations -->
             <TabItem Header="{x:Static l:Translations.Informations}">
 
-
                 <StackPanel Style="{StaticResource StackPanelFormStyle}">
 
                     <!-- #region : Field Name -->
                     <StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
-                        <Label Content="{x:Static l:Translations.Name}"
-                                   Style="{StaticResource LabelInputStyle}"/>
-
+                        <Label Content="{x:Static l:Translations.Name}" Style="{StaticResource LabelInputStyle}"/>
                         <TextBox x:Name="InputName"
-									 Style="{StaticResource TextBoxFieldInputRequiredStyle}"
-									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
-									 Validation.Error="OnInput_ValidationError"
-									 SourceUpdated="OnInputStringRequired_SourceUpdated"
-									 TargetUpdated="OnInput_TargetUpdated"
-									 TextChanged="OnInputStringRequired_TextChanged">
+								Style="{StaticResource TextBoxFieldInputRequiredStyle}"
+								Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
+								Validation.Error="OnInput_ValidationError"
+								SourceUpdated="OnInputStringRequired_SourceUpdated"
+								TargetUpdated="OnInput_TargetUpdated"
+								TextChanged="OnInputStringRequired_TextChanged">
 
                             <TextBox.Text>
                                 <Binding Path="Client.Name"
@@ -68,16 +65,13 @@
                         </TextBox>
 
                     </StackPanel>
-                    <!-- #endregion : Field Name -->
+                    <!-- #endregion -->
 
 
                     <!-- #region : Field Host -->
-                    <StackPanel Orientation="Horizontal"
-									Style="{StaticResource StackPanelFieldStyle}">
+                    <StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
-                        <Label Content="{x:Static l:Translations.Host}"
-                                   Style="{StaticResource LabelInputStyle}"/>
-
+                        <Label Content="{x:Static l:Translations.Host}" Style="{StaticResource LabelInputStyle}"/>
                         <TextBox x:Name="InputHost"
 								Style="{StaticResource TextBoxFieldInputRequiredStyle}"
 								Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
@@ -105,22 +99,20 @@
                         </TextBox>
 
                     </StackPanel>
-                    <!-- #endregion : Field Host -->
+                    <!-- #endregion -->
 
 
                     <!-- #region : Field Port -->
                     <StackPanel Style="{StaticResource StackPanelFieldStyle}">
 
-                        <Label Content="{x:Static l:Translations.Port}"
-                                   Style="{StaticResource LabelInputStyle}"/>
-
+                        <Label Content="{x:Static l:Translations.Port}" Style="{StaticResource LabelInputStyle}"/>
                         <TextBox x:Name="InputPort"
-									 Style="{StaticResource TextBoxFieldInputRequiredStyle}"
-									 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
-									 Validation.Error="OnInput_ValidationError"
-									 SourceUpdated="OnInputStringRequired_SourceUpdated"
-									 TargetUpdated="OnInput_TargetUpdated"
-									 TextChanged="OnInputStringRequired_TextChanged">
+								Style="{StaticResource TextBoxFieldInputRequiredStyle}"
+								Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
+								Validation.Error="OnInput_ValidationError"
+								SourceUpdated="OnInputStringRequired_SourceUpdated"
+								TargetUpdated="OnInput_TargetUpdated"
+								TextChanged="OnInputStringRequired_TextChanged">
 
                             <TextBox.Text>
                                 <Binding Path="Client.Port"
@@ -141,7 +133,7 @@
                         </TextBox>
 
                     </StackPanel>
-                    <!-- #endregion : Field Port -->
+                    <!-- #endregion -->
 
 
                     <!-- #region : Field UserName -->

@@ -52,7 +52,7 @@ namespace Fotootof.Components.Server.Section.Layouts
         /// </summary>
         private void ArrangeBlockRoot()
         {
-            var blockRoot = FindName("GridBlockRootName") as FrameworkElement;
+            var blockRoot = FindName<FrameworkElement>("GridBlockRootName");
             blockRoot.Arrange(new Rect(new Size(ActualWidth, ActualHeight)));
             DebugTraceSize(blockRoot);
         }
@@ -62,12 +62,12 @@ namespace Fotootof.Components.Server.Section.Layouts
         /// </summary>
         private void ArrangeBlockItems()
         {
-            var blockHeader = FindName("StackPanelBlockHeaderName") as FrameworkElement;
-            var blockItems = FindName("GridBlockItemsName") as FrameworkElement;
-            var itemsLayout = FindName("ItemsLayout") as FrameworkElement;
+            var blockHeader = FindName<FrameworkElement>("StackPanelBlockHeaderName");
+            var blockItems = FindName<FrameworkElement>("GridBlockItemsName");
+            var itemsLayout = FindName<FrameworkElement>("ItemsLayout");
 
             double height = Math.Max(ActualHeight - blockHeader.RenderSize.Height, 0);
-            double width = Math.Max(this.ActualWidth, 0);
+            double width = Math.Max(ActualWidth, 0);
 
             blockHeader.Width = width;
             blockItems.Height = height;

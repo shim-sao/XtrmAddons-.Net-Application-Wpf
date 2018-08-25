@@ -3,7 +3,7 @@ using Fotootof.Libraries.Controls;
 using Fotootof.Libraries.HttpHelpers.HttpClient;
 using System.Windows;
 using System.Windows.Controls;
-using XtrmAddons.Net.Application.Serializable.Elements.Remote;
+using RemoteClient = XtrmAddons.Net.Application.Serializable.Elements.Remote.Client;
 
 namespace Fotootof.Components.Server.Remote.Layouts
 {
@@ -64,12 +64,17 @@ namespace Fotootof.Components.Server.Remote.Layouts
             (AppWindow.FindName("AppMainMenu") as IMenuMain).AddClient_Click(sender, e);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Explore_Click(object sender, RoutedEventArgs e)
         {
-            Client client = ((FrameworkElement)sender).Tag as Client;
+            RemoteClient client = ((FrameworkElement)sender).Tag as RemoteClient;
             ClientHttp clientHttp = new ClientHttp(client);
 
-           // ComponentNavigator.NavigateToPageCatalogClient(clientHttp);
+           ComponentNavigator.NavigateToSectionClient(clientHttp);
         }
 
         /// <summary>

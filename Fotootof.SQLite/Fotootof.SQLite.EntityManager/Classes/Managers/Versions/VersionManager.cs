@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.SQLite.EntityManager.Managers
@@ -207,6 +208,8 @@ namespace Fotootof.SQLite.EntityManager.Managers
         {
             try
             {
+                
+
                 // Get the latest update version inserted.
                 var versionId = Connector.Versions.Max(x => x.PrimaryKey);
                 var version = Connector.Versions.Single(x => x.PrimaryKey == versionId);

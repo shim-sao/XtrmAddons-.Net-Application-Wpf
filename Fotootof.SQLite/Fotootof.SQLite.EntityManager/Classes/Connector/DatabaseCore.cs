@@ -30,6 +30,11 @@ namespace Fotootof.SQLite.EntityManager.Connector
         /// </summary>
         private readonly string dbname = "";
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private static bool checkVersion = true;
+
         #endregion
 
 
@@ -98,7 +103,11 @@ namespace Fotootof.SQLite.EntityManager.Connector
                     }
                     else
                     {
-                        Versions.CheckVersion();
+                        if(checkVersion == true)
+                        {
+                            Versions.CheckVersion();
+                            checkVersion = false;
+                        }
                     }
                 }
                 

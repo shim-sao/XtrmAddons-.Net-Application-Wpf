@@ -274,6 +274,10 @@
       <Project>{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}</Project>
       <Name>Fotootof.Collections</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Components.Client\Fotootof.Components.Client.csproj">
+      <Project>{c58a30d6-da41-42e1-b979-3f02f5d98345}</Project>
+      <Name>Fotootof.Components.Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fotootof.Libraries.Components\Fotootof.Libraries.Components.csproj">
       <Project>{2df84f93-8390-42ee-bd61-a66ca77effb4}</Project>
       <Name>Fotootof.Libraries.Components</Name>

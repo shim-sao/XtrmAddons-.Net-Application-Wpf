@@ -1,19 +1,19 @@
-﻿using RemoteClient = XtrmAddons.Net.Application.Serializable.Elements.Remote.Client;
-using Fotootof.Libraries.Windows;
+﻿using Fotootof.Libraries.Windows;
+using ServerInfo = XtrmAddons.Net.Application.Serializable.Elements.Remote.Server;
 
-namespace Fotootof.Layouts.Windows.Forms.Client
+namespace Fotootof.Layouts.Forms.Server
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Window Client Form Model.
+    /// Class XtrmAddons Fotootof Server Window Server Form Model.
     /// </summary>
-    public class WindowFormClientModel : WindowLayoutFormModel<WindowFormClientLayout>
+    public class WindowFormServerModel : WindowLayoutFormModel<WindowFormServerLayout>
     {
         #region Variables
 
         /// <summary>
-        /// Variable Client.
+        /// Variable server.
         /// </summary>
-        public RemoteClient client;
+        public ServerInfo server;
 
         #endregion
 
@@ -24,12 +24,12 @@ namespace Fotootof.Layouts.Windows.Forms.Client
         /// <summary>
         /// Property to access to the Client.
         /// </summary>
-        public RemoteClient Client
+        public ServerInfo Server
         {
-            get => client;
+            get => server;
             set
             {
-                client = value;
+                server = value;
                 NotifyPropertyChanged();
             }
         }
@@ -44,7 +44,7 @@ namespace Fotootof.Layouts.Windows.Forms.Client
         /// Class XtrmAddons Fotootof Server Window Client Form Model Constructor.
         /// </summary>
         /// <param name="controlView"></param>
-        public WindowFormClientModel(WindowFormClientLayout controlView) : base(controlView) { }
+        public WindowFormServerModel(WindowFormServerLayout controlView) : base(controlView) { }
 
         #endregion
     }
