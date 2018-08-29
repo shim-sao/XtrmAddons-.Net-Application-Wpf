@@ -1,11 +1,10 @@
-﻿using Fotootof.Layouts.Dialogs;
+﻿using Fotootof.HttpServer;
+using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Components;
 using Fotootof.Libraries.HttpHelpers.HttpServer;
 using System;
 using System.Globalization;
 using System.Windows;
-using XtrmAddons.Fotootof.Culture;
-using Fotootof.HttpServer;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Windows.Tools;
 
@@ -42,21 +41,23 @@ namespace Fotootof.Components.Server.Remote
         public PageRemoteLayout()
         {
             MessageBoxs.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Server"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Local.Properties.Logs.InitializingPageWaiting, "Server Server"));
 
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Server"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Local.Properties.Logs.InitializingPageDone, "Server Server"));
             MessageBoxs.IsBusy = false;
         }
 
 
 
         /// <summary>
-        /// Method to initialize page content.
+        /// Method called on <see cref="FrameworkElement"/> loaded event.
         /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = Model;

@@ -5,13 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:base="clr-namespace:Fotootof.Libraries.Controls;assembly=Fotootof.Libraries.Controls"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
     mc:Ignorable="d" 
-    MinWidth="600"
     Height="auto"
     HorizontalAlignment="Stretch"
-    VerticalAlignment="Stretch"
-    Background="White">
+    MinWidth="600"
+    VerticalAlignment="Stretch">
     
     <Grid x:Name="MainContainer"
 		  Background="DarkGray"
@@ -34,7 +33,7 @@
 
             <TextBlock
                 x:Name="ServerNameTitle"
-                Text="{x:Static p:Resources.ServerInformations}"
+                Text="{x:Static l:Translations.ServerInformations}"
                 FontSize="{StaticResource ResourceKey=FontSizeH2}"
                 Foreground="{StaticResource ResourceKey=DarkGrey}"
                 Margin="10,5"/>
@@ -46,7 +45,7 @@
                     <TextBlock
                         Grid.Row="0"
                         Grid.Column="0"
-                        Text="{x:Static p:Resources.Host}"
+                        Text="{x:Static l:Translations.Host}"
                         FontSize="{StaticResource FontSizeBig}"
                         Style="{StaticResource FieldLabel}"
                         Width="auto"/>
@@ -74,7 +73,7 @@
                     <TextBlock
                         Grid.Row="0"
                         Grid.Column="0"
-                        Text="{x:Static p:Resources.Port}"
+                        Text="{x:Static l:Translations.Port}"
                         FontSize="{StaticResource FontSizeBig}"
                         Style="{StaticResource FieldLabel}"
                         Width="auto"/>
@@ -109,33 +108,29 @@
             HorizontalAlignment="right"
             Margin="0,5">
 
-            <StackPanel
-                Orientation="Horizontal"
-                Margin="10,5">
+            <StackPanel Orientation="Horizontal"
+                        Margin="10,5">
 
-                <Button 
-                    x:Name="Button_Start"
-                    Tag="start"
-                    Click="OnServerStart_Click"
-                    Content="{x:Static p:Resources.Start}"
-                    Style="{StaticResource BtnR5Gray}"
-                    MinWidth="60"
-                    Height="30"/>
+                <Button x:Name="Button_Start"
+                        Click="OnServerStart_Click"
+                        Content="{x:Static l:Translations.Start}"
+                        Height="30"
+                        MinWidth="60"
+                        Style="{StaticResource BtnR5Gray}"
+                        Tag="start"/>
 
             </StackPanel>
 
-            <StackPanel
-                Orientation="Horizontal"
-                Margin="10,5">
+            <StackPanel Orientation="Horizontal"
+                        Margin="10,5">
 
-                <Button 
-                    x:Name="Button_Stop"
-                    Tag="stop"
-                    Click="OnServerStop_Click"
-                    Content="{x:Static p:Resources.Stop}"
-                    Style="{StaticResource BtnR5Gray}"
-                    MinWidth="60"
-                    Height="30"/>
+                <Button x:Name="Button_Stop"
+                        Click="OnServerStop_Click"
+                        Content="{x:Static l:Translations.Stop}"
+                        Height="30"
+                        MinWidth="60"
+                        Style="{StaticResource BtnR5Gray}"
+                        Tag="stop"/>
 
             </StackPanel>
 
@@ -147,7 +142,7 @@
                     x:Name="Button_Restart"
                     Tag="restart"
                     Click="OnServerRestart_Click"
-                    Content="{x:Static p:Resources.Restart}"
+                    Content="{x:Static l:Translations.Restart}"
                     Style="{StaticResource BtnR5Gray}"
                     MinWidth="60"
                     Height="30"/>

@@ -14,9 +14,9 @@ namespace Fotootof.Layouts.Forms.User
     public class WindowFormUserModel : WindowLayoutFormModel<WindowFormUserLayout>
     {
         #region Variables
-        
+
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
         	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -47,7 +47,7 @@ namespace Fotootof.Layouts.Forms.User
         /// </summary>
         public UserEntity User
         {
-            get { return user; }
+            get => user;
             set
             {
                 user = value;
@@ -60,7 +60,7 @@ namespace Fotootof.Layouts.Forms.User
         /// </summary>
         public UserEntity OldUser
         {
-            get { return oldUser; }
+            get => oldUser;
             set
             {
                 oldUser = value;
@@ -69,11 +69,11 @@ namespace Fotootof.Layouts.Forms.User
         }
 
         /// <summary>
-        /// Property to access to the AclGroup entities.
+        /// Property to access to the AclGroups list <see cref="AclGroupEntityCollection"/>.
         /// </summary>
         public AclGroupEntityCollection AclGroups
         {
-            get { return aclGroups; }
+            get => aclGroups;
             set
             {
                 aclGroups = value;
@@ -90,13 +90,13 @@ namespace Fotootof.Layouts.Forms.User
         /// <summary>
         /// Class XtrmAddons Fotootof Layouts Window User Form Model Constructor.
         /// </summary>
-        /// <param name="controlView"></param>
+        /// <param name="controlView">The <see cref="object"/> owner associated to the model.</param>
         public WindowFormUserModel(WindowFormUserLayout controlView) : base(controlView) { }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Layouts Window User Form Model Constructor.
         /// </summary>
-        /// <param name="controlView"></param>
+        /// <param name="controlView">The <see cref="object"/> owner associated to the model.</param>
         /// <param name="UserId">An <see cref="UserEntity"/> unique id or primary key.</param>
         public WindowFormUserModel(WindowFormUserLayout controlView, int UserId) : this(controlView)
         {
@@ -110,9 +110,9 @@ namespace Fotootof.Layouts.Forms.User
         }
 
         /// <summary>
-        /// 
+        /// Method to load the informations of a user <see cref="UserEntity"/>
         /// </summary>
-        /// <param name="UserId"></param>
+        /// <param name="UserId">An unique identifier or primary key.</param>
         public void LoadUser(int UserId)
         {
             User = null;

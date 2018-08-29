@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:base="clr-namespace:Fotootof.Layouts.Controls.DataGrids;assembly=Fotootof.Layouts"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
     mc:Ignorable="d"
 	HorizontalAlignment="Stretch"
 	SizeChanged="Layout_SizeChanged">
@@ -24,7 +24,7 @@
 							   FontWeight="SemiBold"
 							   Foreground="{DynamicResource CustomWindowTextBrush}"
 							   Margin="5"
-							   Text="{x:Static p:Resources.Sections}" />
+							   Text="{x:Static l:Translations.Sections}" />
 				</Border>
 
 
@@ -45,20 +45,20 @@
 
 							<Button x:Name="ButtonAddName"
 									Style="{StaticResource ButtonIcon24ListPlus}"
-									ToolTipService.ToolTip="{x:Static p:Resources.Add}"
+									ToolTipService.ToolTip="{x:Static l:Translations.Add}"
 									Click="AddItem_Click" />
 
 							<Button Grid.Column="1"
 									x:Name="ButtonEditName"
 									Style="{StaticResource ButtonIcon24ListEdit}"
-									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
+									ToolTipService.ToolTip="{x:Static l:Translations.Edit}"
 									Click="EditItem_Click"
 									IsEnabled="False"/>
 
 							<Button Grid.Column="2"
 									x:Name="ButtonDeleteName"
 									Style="{StaticResource ButtonIcon24ListMinus}"
-									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
+									ToolTipService.ToolTip="{x:Static l:Translations.Delete}"
 									Click="DeleteItems_Click"
 									IsEnabled="False"/>
 						</Grid>
@@ -95,7 +95,7 @@
                         <DataGridTemplateColumn IsReadOnly="True"
 												Width="30"
 												CanUserSort="True"
-												Header="{x:Static p:Resources.Id}"
+												Header="{x:Static l:Translations.Id}"
 												SortMemberPath="PrimaryKey">
 
                             <DataGridTemplateColumn.CellTemplate>
@@ -137,7 +137,7 @@
                             IsReadOnly="True"
                             MinWidth="160"
                             CanUserSort="True"
-                            Header="{x:Static p:Resources.Name}"
+                            Header="{x:Static l:Translations.Name}"
                             SortMemberPath="Name">
 
                             <DataGridTemplateColumn.CellTemplate>
@@ -147,15 +147,15 @@
                                         <TextBlock.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem x:Name="MenuItemOnAdd"
-														  Header="{x:Static p:Resources.Add}"
+														  Header="{x:Static l:Translations.Add}"
 														  Click="AddItem_Click"/>
 
                                                 <MenuItem x:Name="MenuItemOnEdit"
-														  Header="{x:Static p:Resources.Edit}"
+														  Header="{x:Static l:Translations.Edit}"
 														  Click="EditItem_Click"/>
 
 												<MenuItem x:Name="MenuItemOnDelete"
-														  Header="{x:Static p:Resources.Delete}"
+														  Header="{x:Static l:Translations.Delete}"
 														  Click="DeleteItems_Click"/>
 											</ContextMenu>
                                         </TextBlock.ContextMenu>

@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
-using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Components.Server.Users
@@ -50,13 +49,13 @@ namespace Fotootof.Components.Server.Users
         public PageUsersLayout()
         {
             MessageBoxs.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Users"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Local.Properties.Logs.InitializingPageWaiting, "Server Users"));
 
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Users"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Local.Properties.Logs.InitializingPageDone, "Server Users"));
             MessageBoxs.IsBusy = false;
         }
 
@@ -67,8 +66,10 @@ namespace Fotootof.Components.Server.Users
         #region Methods
 
         /// <summary>
-        /// Method to initialize page content.
+        /// Method called on <see cref="FrameworkElement"/> loaded event.
         /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = Model;

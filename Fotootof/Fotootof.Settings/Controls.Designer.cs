@@ -12,7 +12,7 @@ namespace Fotootof.Settings {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
     public sealed partial class Controls : global::System.Configuration.ApplicationSettingsBase {
         
         private static Controls defaultInstance = ((Controls)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Controls())));
@@ -125,6 +125,27 @@ namespace Fotootof.Settings {
         public string ShowTooltipBrowserDefault {
             get {
                 return ((string)(this["ShowTooltipBrowserDefault"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ServerSectionLayoutShowAllAlbums {
+            get {
+                return ((bool)(this["ServerSectionLayoutShowAllAlbums"]));
+            }
+            set {
+                this["ServerSectionLayoutShowAllAlbums"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ServerSectionLayoutShowAllAlbumsDefault {
+            get {
+                return ((bool)(this["ServerSectionLayoutShowAllAlbumsDefault"]));
             }
         }
     }

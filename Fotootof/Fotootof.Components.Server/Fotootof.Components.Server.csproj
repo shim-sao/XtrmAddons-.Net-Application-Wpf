@@ -44,7 +44,6 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
     <Reference Include="XtrmAddons.Net.Application">
       <HintPath>..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
@@ -322,10 +321,6 @@
       <Project>{70a4c255-1b1c-498b-8689-ad4504ae8ab9}</Project>
       <Name>Fotootof.Settings</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.Culture\XtrmAddons.Fotootof.Culture.csproj">
-      <Project>{a0c828d6-9afa-48e6-b279-713869ee07ef}</Project>
-      <Name>XtrmAddons.Fotootof.Culture</Name>
-    </ProjectReference>
     <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.Api\XtrmAddons.Fotootof.Lib.Api.csproj">
       <Project>{10851D07-11EA-4773-8B05-1228D9714FE1}</Project>
       <Name>XtrmAddons.Fotootof.Lib.Api</Name>
@@ -364,6 +359,9 @@
   <ItemGroup>
     <PackageReference Include="log4net">
       <Version>2.0.8</Version>
+    </PackageReference>
+    <PackageReference Include="WindowsBase">
+      <Version>4.6.1055</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

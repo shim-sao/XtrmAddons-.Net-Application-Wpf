@@ -4,7 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
 	xmlns:base="clr-namespace:Fotootof.Layouts.Controls.ListViews;assembly=Fotootof.Layouts"
 	xmlns:local="clr-namespace:Fotootof.Components.Server.Album.Layouts"
 	mc:Ignorable="d"
@@ -15,14 +15,11 @@
           Style="{StaticResource FrameworkElementRootStyle}"
 		  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewPicturesLayout}}}">
 
-		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
-                    Style="{StaticResource StackPanelFieldsetVerticalStyle}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<StackPanel x:Name="StackPanelBlockHeaderName"
-			          Style="{StaticResource StackPanelFieldsetHeader}">
+			<StackPanel x:Name="StackPanelBlockHeaderName" Style="{StaticResource StackPanelFieldsetHeader}">
 
-				<Border x:Name="BorderFieldsetTitleName"
-					  Style="{StaticResource BorderFieldsetTitleStyle}">
+				<Border x:Name="BorderFieldsetTitleName" Style="{StaticResource BorderFieldsetTitleStyle}">
 
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -82,20 +79,20 @@
 							<Button x:Name="ButtonAddName"
 									Style="{StaticResource ButtonIcon24ImagePlus}"
 									PreviewMouseLeftButtonUp="AddItem_Click"
-									ToolTipService.ToolTip="{x:Static p:Resources.Add}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.Add}"/>
 
 							<Button Grid.Column="1"
 									x:Name="ButtonEditName"
 									Style="{StaticResource ButtonIcon24ImageEdit}"
 									PreviewMouseLeftButtonUp="EditItem_Click"
-									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
+									ToolTipService.ToolTip="{x:Static l:Translations.Edit}"
 									IsEnabled="False"/>
 
 							<Button Grid.Column="2"
 									x:Name="ButtonDeleteName"
 									Style="{StaticResource ButtonIcon24ImageMinus}"
 									PreviewMouseLeftButtonUp="DeleteItems_Click"
-									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
+									ToolTipService.ToolTip="{x:Static l:Translations.Delete}"
 									IsEnabled="False"/>
 						</Grid>
 					</Border>
@@ -113,19 +110,19 @@
 							<Button x:Name="Button_SelectAll"
 									Style="{StaticResource ButtonIcon24ImageSelect}"
 									PreviewMouseLeftButtonUp="SelectAll_Click"
-									ToolTipService.ToolTip="{x:Static p:Resources.SelectAll}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.SelectAll}"/>
 
 							<Button Grid.Column="1"
 									x:Name="Button_UnselectAll"
 									Style="{StaticResource ButtonIcon24ImageUnselect}"
 									PreviewMouseLeftButtonUp="UnselectAll_Click"
-									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.UnselectAll}"/>
 
 							<Button Grid.Column="2"
 									x:Name="Button_Refresh"
 									Style="{StaticResource ButtonIcon24ImageRefresh}"
 									PreviewMouseLeftButtonUp="OnRefresh_Click"
-									ToolTipService.ToolTip="{x:Static p:Resources.Refresh}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.Refresh}"/>
 
 						</Grid>
 					</Border>
@@ -152,13 +149,13 @@
 
 					<ListView.ContextMenu>
 						<ContextMenu>
-							<MenuItem Header="{x:Static p:Resources.SelectAll}"
+							<MenuItem Header="{x:Static l:Translations.SelectAll}"
 									  Click="SelectAll_Click" />
 
-							<MenuItem Header="{x:Static p:Resources.UnselectAll}"
+							<MenuItem Header="{x:Static l:Translations.UnselectAll}"
 									  Click="UnselectAll_Click" />
 
-							<MenuItem Header="{x:Static p:Resources.Refresh}"
+							<MenuItem Header="{x:Static l:Translations.Refresh}"
 									  Click="OnRefresh_Click" />
 
 						</ContextMenu>
@@ -201,7 +198,7 @@
 
 									<Grid.ContextMenu>
 										<ContextMenu>
-											<MenuItem Header="{x:Static p:Resources.Refresh}"
+											<MenuItem Header="{x:Static l:Translations.Refresh}"
 													  Click="OnImageRefresh_Click"/>
 
 										</ContextMenu>

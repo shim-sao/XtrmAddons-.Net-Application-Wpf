@@ -126,4 +126,7 @@
   <data name="FunctionalitiesCurrentlyUnavailable" xml:space="preserve">
     <value>Fonctionnalités actuellement indisponibles</value>
   </data>
+  <data name="MessageBox_Acceptation_DeleteGeneric" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer le groupe {0} : {1} ?</value>
+  </data>
 </root>

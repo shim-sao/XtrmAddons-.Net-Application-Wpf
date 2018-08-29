@@ -522,13 +522,33 @@ namespace Fotootof.Menus
 
                     if (result == true)
                     {
-                        ApplicationBase.Options.Remote.Servers.ReplaceDefault(dlg.NewForm);
+                        dlg.NewFormData.IsDefault = true;
+                        
+                        var def = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
+                        if(def == null)
+                        {
+                            ApplicationBase.Options.Remote.Servers.Add(dlg.NewFormData);
+                        }
+                        else
+                        {
+                            ApplicationBase.Options.Remote.Servers.ReplaceDefault(dlg.NewFormData);
+                        }
+
+
+                        var eee = ApplicationBase.Options.Remote.Servers;
+
                         ApplicationBase.SaveOptions();
                         if(HttpWebServerApplication.IsStarted)
                         {
                             ServerRestart_Click(sender, e);
                         }
                     }
+                    else
+                    {
+                        var def = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
+                        def.Bind(dlg.OldFormData);
+                    }
+
                 }
                 catch (Exception ex)
                 {

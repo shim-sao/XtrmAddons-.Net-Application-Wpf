@@ -86,5 +86,14 @@ namespace Fotootof.Layouts.Dialogs.Properties {
                 return ResourceManager.GetString("FunctionalitiesCurrentlyUnavailable", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Are you sure you want to delete the {0} : {1} ?.
+        /// </summary>
+        public static string MessageBox_Acceptation_DeleteGeneric {
+            get {
+                return ResourceManager.GetString("MessageBox_Acceptation_DeleteGeneric", resourceCulture);
+            }
+        }
     }
 }

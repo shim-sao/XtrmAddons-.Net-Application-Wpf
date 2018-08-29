@@ -20,7 +20,7 @@ namespace Fotootof.Layouts.Forms.AclGroup
         #region Variable
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -52,12 +52,14 @@ namespace Fotootof.Layouts.Forms.AclGroup
         /// <summary>
         /// Property to access to the main form save button.
         /// </summary>
-        public Button ButtonSave => (Button)FindName("Button_Save") ?? new Button();
+        public Button ButtonSave 
+            => (Button)FindName("ButtonSaveName");
 
         /// <summary>
         /// Property to access to the main form cancel button.
         /// </summary>
-        public Button ButtonCancel => (Button)FindName("Button_Cancel") ?? new Button();
+        public Button ButtonCancel 
+            => (Button)FindName("ButtonCancelName");
 
         #endregion
 
@@ -321,7 +323,7 @@ namespace Fotootof.Layouts.Forms.AclGroup
 
             InputAlias.Text = NewFormData.Alias;
 
-            Button_Save.IsEnabled = IsSaveEnabled;
+            ButtonSave.IsEnabled = IsSaveEnabled;
         }
 
         /*

@@ -8,12 +8,6 @@
         #region Variables
 
         /// <summary>
-        /// Variable logger <see cref="log4net"/>.
-        /// </summary>
-        private static readonly log4net.ILog log =
-            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-        /// <summary>
         /// Variable to define if form save is enabled.
         /// </summary>
         private bool isSaveEnabled = false;

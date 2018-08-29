@@ -9,7 +9,6 @@ using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using XtrmAddons.Fotootof.Culture;
 
 namespace Fotootof.Components.Server.Browser
 {
@@ -73,13 +72,13 @@ namespace Fotootof.Components.Server.Browser
         public PageBrowserLayout()
         {
             MessageBoxs.IsBusy = true;
-            log.Warn(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Browser"));
+            log.Warn(string.Format(CultureInfo.CurrentCulture, Local.Properties.Logs.InitializingPageWaiting, "Browser"));
 
             // Constuct page component.
             InitializeComponent();
             AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Browser"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Local.Properties.Logs.InitializingPageDone, "Browser"));
             MessageBoxs.IsBusy = false;
         }
 
@@ -90,8 +89,10 @@ namespace Fotootof.Components.Server.Browser
         #region Methods
 
         /// <summary>
-        /// Method to initialize page content.
+        /// Method called on <see cref="FrameworkElement"/> loaded event.
         /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = Model;

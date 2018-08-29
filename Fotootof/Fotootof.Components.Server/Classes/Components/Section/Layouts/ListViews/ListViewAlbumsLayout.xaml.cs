@@ -7,7 +7,6 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 
@@ -100,8 +99,8 @@ namespace Fotootof.Components.Server.Section.Layouts
             // Alert user for acceptation.
             MessageBoxResult result = MessageBox.Show
             (
-                String.Format(Translation.DWords.MessageBox_Acceptation_DeleteGeneric, Translation.DWords.Album, SelectedItems.Count),
-                Translation.DWords.ApplicationName,
+                String.Format(Fotootof.Layouts.Dialogs.Properties.Translations.MessageBox_Acceptation_DeleteGeneric, Local.Properties.Translations.Album, SelectedItems.Count),
+                Local.Properties.Translations.ApplicationName,
                 MessageBoxButton.YesNoCancel
             );
 

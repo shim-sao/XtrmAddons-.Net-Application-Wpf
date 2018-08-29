@@ -102,6 +102,8 @@ namespace Fotootof.Layouts.Forms.Client
         /// <summary>
         /// Method called on window loaded event.
         /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         private void Window_Load(object sender, RoutedEventArgs e)
         { 
             // Assign model to data context for display.

@@ -290,13 +290,13 @@
 		<!-- #region BLOCK FORM VALIDATOR -->
 		<Grid Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource GridFormValidatorStyle}">
 			<StackPanel Style="{StaticResource StackPanelFormValidatorStyle}">
-				<Button x:Name="Button_Save"
+				<Button x:Name="ButtonSaveName"
 						Click="DialogSave_Click"
 						Content="{x:Static l:Translations.Save}"
 						IsEnabled="{Binding IsSaveEnabled, UpdateSourceTrigger=Explicit, Mode=TwoWay, IsAsync=True}"
 						Style="{StaticResource ButtonSaveStyle}"/>
 
-				<Button x:Name="Button_Cancel"
+                <Button x:Name="ButtonCancelName"
                         IsDefault="True"
 						Content="{x:Static l:Translations.Cancel}"
 						Style="{StaticResource ButtonCancelStyle}"/>

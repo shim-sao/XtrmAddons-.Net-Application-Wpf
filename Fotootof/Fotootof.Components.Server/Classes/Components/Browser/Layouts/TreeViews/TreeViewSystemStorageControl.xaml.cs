@@ -36,14 +36,8 @@ namespace Fotootof.Components.Server.Browser.Layouts
         /// </summary>
         public Visibility IsHeaderVisible
         {
-            get
-            {
-                return (FindName("StackPanelBlockHeaderName") as FrameworkElement).Visibility;
-            }
-            set
-            {
-                (FindName("StackPanelBlockHeaderName") as FrameworkElement).Visibility = value;
-            }
+            get => FindName<FrameworkElement>("StackPanelBlockHeaderName").Visibility;
+            set => FindName<FrameworkElement>("StackPanelBlockHeaderName").Visibility = value;
         }
 
         #endregion
@@ -121,9 +115,9 @@ namespace Fotootof.Components.Server.Browser.Layouts
         private void ArrangeTreeView()
         {
             // Get framework elements.
-            var root = (FindName("GridBlockRootName") as FrameworkElement);
-            var header = (FindName("StackPanelBlockHeaderName") as FrameworkElement);
-            var tv = (FindName("TreeViewDirectoryInfoName") as System.Windows.Controls.TreeView);
+            var root = FindName<FrameworkElement>("GridBlockRootName");
+            var header = FindName<FrameworkElement>("StackPanelBlockHeaderName");
+            var tv = FindName<TreeView>("TreeViewDirectoryInfoName");
 
             // Process resize of the tree view.
             tv.Height = root.ActualHeight;

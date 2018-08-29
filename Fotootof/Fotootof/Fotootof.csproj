@@ -194,6 +194,9 @@
     <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
     <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.2" />
     <PackageReference Include="System.Threading" Version="4.3.0" />
+    <PackageReference Include="WindowsBase">
+      <Version>4.6.1055</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

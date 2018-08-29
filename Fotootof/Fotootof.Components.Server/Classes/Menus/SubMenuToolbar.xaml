@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
     mc:Ignorable="d"
     Height="32">
 
@@ -17,7 +17,7 @@
 			<Border x:Name="BorderServerName" VerticalAlignment="Stretch">
 				<Button x:Name="ButtonServerName"
 						Click="NavigateToRemote_Click"
-						Content="{x:Static p:Resources.Server}"
+						Content="{x:Static l:Translations.Server}"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"
 						Style="{StaticResource ButtonSubMenuStyle}"/>
@@ -26,7 +26,7 @@
 			<Border x:Name="BorderBrowserName" VerticalAlignment="Stretch">
 				<Button x:Name="ButtonBrowserName"
 						Click="NavigateToBrowser_Click"
-						Content="{x:Static p:Resources.Browser}"
+						Content="{x:Static l:Translations.Browser}"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"
 						Style="{StaticResource ButtonSubMenuStyle}"/>
@@ -35,7 +35,7 @@
 			<Border x:Name="BorderCatalogName" VerticalAlignment="Stretch">
 				<Button x:Name="ButtonCatalogNName"
 						Click="NavigateToSection_Click"
-						Content="{x:Static p:Resources.Catalog}"
+						Content="{x:Static l:Translations.Catalog}"
 						MouseEnter="ItemButton_MouseEnter"
 						MouseLeave="ItemButton_MouseLeave"
 						Style="{StaticResource ButtonSubMenuStyle}"/>

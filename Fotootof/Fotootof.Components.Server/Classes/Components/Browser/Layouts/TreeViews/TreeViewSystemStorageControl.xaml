@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:base="clr-namespace:Fotootof.Libraries.Controls;assembly=Fotootof.Libraries.Controls"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
     mc:Ignorable="d"
     SizeChanged="Layout_SizeChanged"
 	Loaded="Control_Loaded">
@@ -18,7 +18,7 @@
 
                 <!-- Block Title -->
                 <Border x:Name="BorderFieldsetTitleName" Style="{StaticResource BorderFieldsetTitleStyle}">
-                    <TextBlock Text="{x:Static p:Resources.Folders}"
+                    <TextBlock Text="{x:Static l:Translations.Folders}"
 							   FontSize="{StaticResource FontSizeHeader}"
 							   Foreground="{DynamicResource BaseHighBrush}"
 							   FontWeight="SemiBold"
@@ -42,7 +42,7 @@
 
                             <Button x:Name="ButtonClearSelectionName"
 									Style="{DynamicResource ButtonIcon24Minus}"
-									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"
+									ToolTipService.ToolTip="{x:Static l:Translations.UnselectAll}"
 									Click="ClearSelection_Click"/>
                         </Grid>
                     </Border>

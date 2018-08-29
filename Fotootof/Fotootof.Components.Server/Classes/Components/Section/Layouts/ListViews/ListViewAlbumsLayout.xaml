@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
 	xmlns:base="clr-namespace:Fotootof.Layouts.Controls.ListViews;assembly=Fotootof.Layouts"
     mc:Ignorable="d"
     SizeChanged="Layout_SizeChanged">
@@ -12,14 +12,11 @@
 	<Grid x:Name="GridBlockRootName"
 		  Style="{DynamicResource FrameworkElementRootStyle}">
 		
-		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
-					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 			
-			<StackPanel x:Name="StackPanelBlockHeaderName"
-						Style="{StaticResource StackPanelFieldsetHeader}">
+			<StackPanel x:Name="StackPanelBlockHeaderName" Style="{StaticResource StackPanelFieldsetHeader}">
 
-				<Border x:Name="BorderFieldsetTitleName"
-						Style="{StaticResource BorderFieldsetTitleStyle}">
+				<Border x:Name="BorderFieldsetTitleName" Style="{StaticResource BorderFieldsetTitleStyle}">
 					<Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
@@ -27,8 +24,8 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- #region Title -->
-						<TextBlock x:Name="Title_Text"
-								   Text="{x:Static p:Resources.Albums}"
+                        <TextBlock x:Name="TextBlockTitleName"
+								   Text="{x:Static l:Translations.Albums}"
 								   FontSize="{StaticResource FontSizeHeader}"
 								   FontWeight="SemiBold"
 							   Foreground="{DynamicResource CustomWindowTextBrush}"
@@ -63,8 +60,7 @@
                 </Border>
 
 
-				<Grid x:Name="GridBlockMenuName"
-					  Style="{StaticResource GridFieldsetMenuStyle}">
+				<Grid x:Name="GridBlockMenuName" Style="{StaticResource GridFieldsetMenuStyle}">
 					
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto" />
@@ -83,29 +79,28 @@
 							</Grid.ColumnDefinitions>
 
 							<Button x:Name="Button_Add"
-									Style="{StaticResource ButtonIcon24FolderPlus}"
 									PreviewMouseLeftButtonUp="AddItem_Click"
-									ToolTipService.ToolTip="{x:Static p:Resources.AddNewAlbum}"/>
+									Style="{StaticResource ButtonIcon24FolderPlus}"
+									ToolTipService.ToolTip="{x:Static l:Translations.AddNewAlbum}"/>
 
 							<Button x:Name="Button_Edit"
 									Grid.Column="1"
-									Style="{DynamicResource ButtonIcon24FolderEdit}"
+									IsEnabled="False"
 									PreviewMouseLeftButtonUp="EditItem_Click"
-									ToolTipService.ToolTip="{x:Static p:Resources.Edit}"
-									IsEnabled="False"/>
+									Style="{DynamicResource ButtonIcon24FolderEdit}"
+									ToolTipService.ToolTip="{x:Static l:Translations.Edit}"/>
 
 							<Button x:Name="Button_Delete"
 									Grid.Column="2"
-									Style="{DynamicResource ButtonIcon24FolderDelete}"
+									IsEnabled="False"
 									PreviewMouseLeftButtonUp="DeleteItems_Click"
-									ToolTipService.ToolTip="{x:Static p:Resources.Delete}"
-									IsEnabled="False"/>
+									Style="{DynamicResource ButtonIcon24FolderDelete}"
+									ToolTipService.ToolTip="{x:Static l:Translations.Delete}"/>
 						</Grid>
 					</Border>
 
 
-					<Border x:Name="MenuRight"
-							Grid.Column="2">
+					<Border x:Name="MenuRight" Grid.Column="2">
 						<Grid Margin="2">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="1*" />
@@ -148,13 +143,13 @@
 									x:Name="Button_SelectAll"
 									Style="{StaticResource ButtonIcon24FolderSelect}"
 									PreviewMouseLeftButtonUp="OnSelectAll_Click"
-									ToolTipService.ToolTip="{x:Static p:Resources.SelectAll}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.SelectAll}"/>
 
 							<Button Grid.Column="3"
 									x:Name="Button_ClearSelection"
 									Style="{StaticResource ButtonIcon24FolderUnselect}"
 									PreviewMouseLeftButtonUp="OnUnselectAll_Click"
-									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.UnselectAll}"/>
 
 						</Grid>
 					</Border>
@@ -179,15 +174,15 @@
 
 					<ListView.ContextMenu>
 						<ContextMenu>
-							<MenuItem Header="{x:Static p:Resources.AddNewAlbum}"
+							<MenuItem Header="{x:Static l:Translations.AddNewAlbum}"
 									  Click="AddItem_Click" />
 
 							<Separator />
 
-							<MenuItem Header="{x:Static p:Resources.SelectAll}"
+							<MenuItem Header="{x:Static l:Translations.SelectAll}"
 									  Click="OnSelectAll_Click" />
 
-							<MenuItem Header="{x:Static p:Resources.UnselectAll}"
+							<MenuItem Header="{x:Static l:Translations.UnselectAll}"
 									  Click="OnUnselectAll_Click" />
 
 						</ContextMenu>
@@ -230,21 +225,21 @@
 
 									<Grid.ContextMenu>
 										<ContextMenu>
-											<MenuItem Header="{x:Static p:Resources.AddNewAlbum }"
+											<MenuItem Header="{x:Static l:Translations.AddNewAlbum }"
 													  Click="AddItem_Click" />
 											
-											<MenuItem Header="{x:Static p:Resources.Edit}"
+											<MenuItem Header="{x:Static l:Translations.Edit}"
 													  Click="EditItem_Click" />
 											
-											<MenuItem Header="{x:Static p:Resources.Delete}"
+											<MenuItem Header="{x:Static l:Translations.Delete}"
 													  Click="DeleteItems_Click" />
 
 											<Separator />
 
-											<MenuItem Header="{x:Static p:Resources.SelectAll}"
+											<MenuItem Header="{x:Static l:Translations.SelectAll}"
 													  Click="OnSelectAll_Click" />
 
-											<MenuItem Header="{x:Static p:Resources.UnselectAll}"
+											<MenuItem Header="{x:Static l:Translations.UnselectAll}"
 													  Click="OnUnselectAll_Click" />
 
 										</ContextMenu>

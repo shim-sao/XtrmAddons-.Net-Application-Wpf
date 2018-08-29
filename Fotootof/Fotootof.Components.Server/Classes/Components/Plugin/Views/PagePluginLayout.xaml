@@ -7,10 +7,9 @@
     xmlns:base="clr-namespace:Fotootof.Libraries.Components;assembly=Fotootof.Libraries.Components"
 	mc:Ignorable="d"
 	ShowsNavigationUI="False"
-	Title="Plugin"
-	Style="{StaticResource PageContentStyle}"
+	Loaded="Control_Loaded"
 	SizeChanged="Layout_SizeChanged"
-	Loaded="Control_Loaded">
+	Style="{StaticResource PageContentStyle}">
 
     <Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
 

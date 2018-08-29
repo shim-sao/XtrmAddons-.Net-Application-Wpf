@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:Fotootof.Libraries.Controls;assembly=Fotootof.Libraries.Controls"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
     mc:Ignorable="d"
     MinHeight="300"
     MinWidth="300">
@@ -32,7 +32,7 @@
                         IsReadOnly="True"
                         Width="1*"
                         CanUserSort="True"
-                        Header="{x:Static p:Resources.Name}"
+                        Header="{x:Static l:Translations.Name}"
                         SortMemberPath="Name">
 
                     <DataGridTemplateColumn.CellTemplate>
@@ -51,7 +51,7 @@
                         IsReadOnly="True"
                         Width="1*"
                         CanUserSort="True"
-                        Header="{x:Static p:Resources.Host}"
+                        Header="{x:Static l:Translations.Host}"
                         SortMemberPath="Host">
 
                     <DataGridTemplateColumn.CellTemplate>
@@ -70,7 +70,7 @@
                         IsReadOnly="True"
                         Width="1*"
                         CanUserSort="True"
-                        Header="{x:Static p:Resources.Port}"
+                        Header="{x:Static l:Translations.Port}"
                         SortMemberPath="Port">
 
                     <DataGridTemplateColumn.CellTemplate>
@@ -89,7 +89,7 @@
                         IsReadOnly="True"
                         Width="1*"
                         CanUserSort="True"
-                        Header="{x:Static p:Resources.User}"
+                        Header="{x:Static l:Translations.User}"
                         SortMemberPath="UserName">
 
                     <DataGridTemplateColumn.CellTemplate>
@@ -108,7 +108,7 @@
                         IsReadOnly="True"
                         Width="1*"
                         CanUserSort="True"
-                        Header="{x:Static p:Resources.Email}"
+                        Header="{x:Static l:Translations.Email}"
                         SortMemberPath="Email">
 
                     <DataGridTemplateColumn.CellTemplate>
@@ -128,12 +128,12 @@
                         Width="60"
                         CanUserResize="False"
                         CanUserSort="False"
-                        Header="{x:Static p:Resources.Edit}">
+                        Header="{x:Static l:Translations.Edit}">
 
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
 
-                            <Button Content="{x:Static p:Resources.Edit}" Click="Edit_Click" Tag="{Binding}"/>
+                            <Button Content="{x:Static l:Translations.Edit}" Click="Edit_Click" Tag="{Binding}"/>
 
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -147,12 +147,12 @@
                         Width="60"
                         CanUserResize="False"
                         CanUserSort="False"
-                        Header="{x:Static p:Resources.Explore}">
+                        Header="{x:Static l:Translations.Explore}">
 
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
 
-                            <Button Content="{x:Static p:Resources.Explore}" Click="Explore_Click" Tag="{Binding}"/>
+                            <Button Content="{x:Static l:Translations.Explore}" Click="Explore_Click" Tag="{Binding}"/>
 
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

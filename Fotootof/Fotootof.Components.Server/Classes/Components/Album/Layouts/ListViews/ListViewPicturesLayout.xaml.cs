@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Picture;
 
@@ -115,7 +114,7 @@ namespace Fotootof.Components.Server.Album.Layouts
         public override async void AddItem_Click(object sender, RoutedEventArgs e)
         {
             // Open file dialog box for picture selection.
-            Microsoft.Win32.OpenFileDialog pfdb = PictureFileDialogBox.Show(true, Translation.DWords.DialogBoxTitle_PictureFileSelector);
+            Microsoft.Win32.OpenFileDialog pfdb = PictureFileDialogBox.Show(true, Fotootof.Layouts.Dialogs.Properties.Translations.DialogBoxTitle_PictureFileSelector);
 
             // Check if refence to the album is not null.
             if (AlbumEntity == null)
@@ -213,8 +212,8 @@ namespace Fotootof.Components.Server.Album.Layouts
             // Alert user for acceptation.
             MessageBoxResult result = MessageBox.Show
             (
-                String.Format(Translation.DWords.MessageBox_Acceptation_DeleteGeneric, Translation.DWords.Picture, SelectedItems.Count),
-                Translation.DWords.ApplicationName,
+                String.Format(Fotootof.Layouts.Dialogs.Properties.Translations.MessageBox_Acceptation_DeleteGeneric, Local.Properties.Translations.Picture, SelectedItems.Count),
+                Local.Properties.Translations.ApplicationName,
                 MessageBoxButton.YesNoCancel
             );
 

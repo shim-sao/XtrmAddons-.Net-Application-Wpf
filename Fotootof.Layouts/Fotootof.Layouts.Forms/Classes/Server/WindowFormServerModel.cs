@@ -4,16 +4,27 @@ using ServerInfo = XtrmAddons.Net.Application.Serializable.Elements.Remote.Serve
 namespace Fotootof.Layouts.Forms.Server
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Window Server Form Model.
+    /// Class XtrmAddons Fotootof Layouts Server Window Form Model.
     /// </summary>
     public class WindowFormServerModel : WindowLayoutFormModel<WindowFormServerLayout>
     {
         #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// Variable server.
+        ///  Variable new server informations <see cref="ServerInfo"/>.
         /// </summary>
-        public ServerInfo server;
+        private ServerInfo newFormData;
+
+        /// <summary>
+        /// Variable old server informations <see cref="ServerInfo"/>.
+        /// </summary>
+        private ServerInfo oldFormData;
 
         #endregion
 
@@ -22,15 +33,34 @@ namespace Fotootof.Layouts.Forms.Server
         #region Properties
 
         /// <summary>
-        /// Property to access to the Client.
+        /// Property to access to the new server informations <see cref="ServerInfo"/>.
         /// </summary>
-        public ServerInfo Server
+        public ServerInfo NewFormData
         {
-            get => server;
+            get => newFormData;
             set
             {
-                server = value;
-                NotifyPropertyChanged();
+                if (newFormData != value)
+                {
+                    newFormData = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Property to access to the old server informations <see cref="ServerInfo"/>.
+        /// </summary>
+        public ServerInfo OldFormData
+        {
+            get => oldFormData;
+            set
+            {
+                if (oldFormData != value)
+                {
+                    oldFormData = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -41,9 +71,9 @@ namespace Fotootof.Layouts.Forms.Server
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Window Client Form Model Constructor.
+        /// Class XtrmAddons Fotootof Layouts Server Window Form Model.
         /// </summary>
-        /// <param name="controlView"></param>
+        /// <param name="controlView">The <see cref="object"/> owner associated to the model.</param>
         public WindowFormServerModel(WindowFormServerLayout controlView) : base(controlView) { }
 
         #endregion

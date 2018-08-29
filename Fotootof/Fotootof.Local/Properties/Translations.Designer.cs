@@ -61,6 +61,42 @@ namespace Fotootof.Local.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add a new album.
+        /// </summary>
+        public static string AddNewAlbum {
+            get {
+                return ResourceManager.GetString("AddNewAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add Pictures.
+        /// </summary>
+        public static string AddPictures {
+            get {
+                return ResourceManager.GetString("AddPictures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add to Album.
+        /// </summary>
+        public static string AddPicturesToAlbum {
+            get {
+                return ResourceManager.GetString("AddPicturesToAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Album.
         /// </summary>
         public static string Album {
@@ -102,6 +138,15 @@ namespace Fotootof.Local.Properties {
         public static string BaseDirectory {
             get {
                 return ResourceManager.GetString("BaseDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Browser.
+        /// </summary>
+        public static string Browser {
+            get {
+                return ResourceManager.GetString("Browser", resourceCulture);
             }
         }
         
@@ -331,6 +376,69 @@ namespace Fotootof.Local.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à End.
+        /// </summary>
+        public static string End {
+            get {
+                return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à English.
+        /// </summary>
+        public static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Explore.
+        /// </summary>
+        public static string Explore {
+            get {
+                return ResourceManager.GetString("Explore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à File.
+        /// </summary>
+        public static string File {
+            get {
+                return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Files.
+        /// </summary>
+        public static string Files {
+            get {
+                return ResourceManager.GetString("Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Folder.
+        /// </summary>
+        public static string Folder {
+            get {
+                return ResourceManager.GetString("Folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Folders.
+        /// </summary>
+        public static string Folders {
+            get {
+                return ResourceManager.GetString("Folders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à The field {0} is required and must not be empty..
         /// </summary>
         public static string FormFieldRequired {
@@ -426,6 +534,15 @@ namespace Fotootof.Local.Properties {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Large.
+        /// </summary>
+        public static string Large {
+            get {
+                return ResourceManager.GetString("Large", resourceCulture);
             }
         }
         
@@ -637,6 +754,15 @@ namespace Fotootof.Local.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Server Informations.
+        /// </summary>
+        public static string ServerInformations {
+            get {
+                return ResourceManager.GetString("ServerInformations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Servers.
         /// </summary>
         public static string Servers {
@@ -646,11 +772,47 @@ namespace Fotootof.Local.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Start.
+        /// </summary>
+        public static string Start {
+            get {
+                return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Stop.
+        /// </summary>
+        public static string Stop {
+            get {
+                return ResourceManager.GetString("Stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Theme.
         /// </summary>
         public static string Theme {
             get {
                 return ResourceManager.GetString("Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Thumbnail.
+        /// </summary>
+        public static string Thumbnail {
+            get {
+                return ResourceManager.GetString("Thumbnail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Thumbnails.
+        /// </summary>
+        public static string Thumbnails {
+            get {
+                return ResourceManager.GetString("Thumbnails", resourceCulture);
             }
         }
         

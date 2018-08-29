@@ -51,7 +51,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
         /// Property to access to the <see cref="TreeView"/> of the <see cref="UserControl"/>.
         /// </summary>
         public TreeView TreeViewDirectoryInfo 
-            => ControlView.FindName("TreeViewDirectoryInfoName") as TreeView;
+            => (TreeView)ControlView.FindName("TreeViewDirectoryInfoName");
 
         #endregion
 
@@ -145,7 +145,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
                 catch (Exception ex)
                 {
                     log.Debug(ex.Output(), ex);
-                    throw ex;
+                    throw;
                 }
             }
         }

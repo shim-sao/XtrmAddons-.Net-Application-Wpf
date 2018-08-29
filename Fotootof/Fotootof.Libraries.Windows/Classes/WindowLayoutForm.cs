@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Libraries.Windows
@@ -239,9 +238,10 @@ namespace Fotootof.Libraries.Windows
             {
                 ArgumentNullException e = new ArgumentNullException(
                     string.Format(
-                        CultureInfo.CurrentUICulture, 
-                        Local.Properties.Translations.FormFieldRequired, 
-                        Translation.Words[propertyName]
+                        CultureInfo.CurrentUICulture,
+                        Local.Properties.Translations.FormFieldRequired,
+                        propertyName
+                        //Translation.Words[propertyName]
                     )
                 );
                 log.Debug(e.Output());
@@ -263,8 +263,9 @@ namespace Fotootof.Libraries.Windows
                 ArgumentNullException e = new ArgumentNullException(
                     string.Format(
                         CultureInfo.CurrentUICulture, 
-                        Local.Properties.Translations.FormFieldRequired, 
-                        Translation.Words[propertyName]
+                        Local.Properties.Translations.FormFieldRequired,
+                        propertyName
+                        //Translation.Words[propertyName]
                     )
                 );
                 log.Debug(e.Output());

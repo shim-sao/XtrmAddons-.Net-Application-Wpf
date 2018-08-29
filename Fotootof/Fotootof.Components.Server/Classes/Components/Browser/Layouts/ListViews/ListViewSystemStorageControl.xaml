@@ -4,23 +4,19 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
 	xmlns:base="clr-namespace:Fotootof.Libraries.Controls.ListViews;assembly=Fotootof.Libraries"
 	mc:Ignorable="d"
 	Loaded="Control_Loaded"
 	SizeChanged="Layout_SizeChanged">
 
-	<Grid x:Name="GridBlockRootName"
-		  Style="{StaticResource GridRootStyle}">
+	<Grid x:Name="GridBlockRootName" Style="{StaticResource GridRootStyle}">
 		
-		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
-					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<StackPanel x:Name="StackPanelBlockHeaderName"
-						Style="{StaticResource StackPanelFieldsetHeader}">
+			<StackPanel x:Name="StackPanelBlockHeaderName" Style="{StaticResource StackPanelFieldsetHeader}">
 
-				<Border x:Name="BorderFieldsetTitleName"
-						Style="{StaticResource BorderFieldsetTitleStyle}">
+				<Border x:Name="BorderFieldsetTitleName" Style="{StaticResource BorderFieldsetTitleStyle}">
 					
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -30,7 +26,7 @@
 
 						<!-- #region Title -->
 						<TextBlock x:Name="Title_Text"
-								   Text="{x:Static p:Resources.Files}"
+								   Text="{x:Static l:Translations.Files}"
 								   FontSize="{StaticResource FontSizeH4}"
 								   Foreground="{DynamicResource CustomWindowTextBrush}"
 								   FontWeight="SemiBold"
@@ -104,7 +100,7 @@
 						<Button x:Name="ButtonAddPicturesToAlbumName"
 								Style="{StaticResource ButtonIcon24ImagePlus}"
 								PreviewMouseLeftButtonUp="OnAddPicturesToAlbum_Click"
-								ToolTipService.ToolTip="{x:Static p:Resources.AddPicturesToAlbum}"
+								ToolTipService.ToolTip="{x:Static l:Translations.AddPicturesToAlbum}"
 								IsEnabled="False"/>
 					</Border>
 
@@ -119,29 +115,29 @@
 									  Grid.Column="2"
 									  SelectionChanged="ComboBoxImageSize_SelectionChanged">
 
-								<ComboBoxItem Content="{x:Static p:Resources.Icon}" />
-								<ComboBoxItem Content="{x:Static p:Resources.Thumbnail}" />
-								<ComboBoxItem Content="{x:Static p:Resources.Vignette}" IsSelected="True" />
-								<ComboBoxItem Content="{x:Static p:Resources.Large}" />
-								<ComboBoxItem Content="{x:Static p:Resources.XLarge}" />
+								<ComboBoxItem Content="{x:Static l:Translations.Icon}" />
+								<ComboBoxItem Content="{x:Static l:Translations.Thumbnail}" />
+								<ComboBoxItem Content="{x:Static l:Translations.Vignette}" IsSelected="True" />
+								<ComboBoxItem Content="{x:Static l:Translations.Large}" />
+								<ComboBoxItem Content="{x:Static l:Translations.XLarge}" />
 							</ComboBox>
 
 							<Button x:Name="Button_SelectAll"
 									Style="{StaticResource ButtonIcon24ImageSelect}"
 									PreviewMouseLeftButtonUp="OnSelectAll_Click"
-									ToolTipService.ToolTip="{x:Static p:Resources.SelectAll}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.SelectAll}"/>
 
 							<Button Grid.Column="1"
 									x:Name="Button_UnselectAll"
 									PreviewMouseLeftButtonUp="OnUnselectAll_Click"
 									Style="{StaticResource ButtonIcon24ImageUnselect}"
-									ToolTipService.ToolTip="{x:Static p:Resources.UnselectAll}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.UnselectAll}"/>
 
 							<Button Grid.Column="2"
 									x:Name="Button_Refresh"
 									PreviewMouseLeftButtonUp="OnRefresh_Click"
 									Style="{StaticResource ButtonIcon24ImageRefresh}"
-									ToolTipService.ToolTip="{x:Static p:Resources.Refresh}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.Refresh}"/>
 
 
 						</StackPanel>
@@ -180,13 +176,13 @@
 
 					<ListView.ContextMenu>
 						<ContextMenu>
-							<MenuItem Header="{x:Static p:Resources.SelectAll}"
+							<MenuItem Header="{x:Static l:Translations.SelectAll}"
 									  Click="OnSelectAll_Click" />
 
-							<MenuItem Header="{x:Static p:Resources.UnselectAll}"
+							<MenuItem Header="{x:Static l:Translations.UnselectAll}"
 									  Click="OnUnselectAll_Click" />
 
-							<MenuItem Header="{x:Static p:Resources.Refresh}"
+							<MenuItem Header="{x:Static l:Translations.Refresh}"
 									  Click="OnRefresh_Click" />
 						</ContextMenu>
 					</ListView.ContextMenu>
@@ -221,15 +217,15 @@
 
 										<Grid.ContextMenu>
 											<ContextMenu>
-												<MenuItem Header="{x:Static p:Resources.AddPicturesToAlbum}"
+												<MenuItem Header="{x:Static l:Translations.AddPicturesToAlbum}"
 														  Click="OnAddPicturesToAlbum_Click"
 														  IsEnabled="true" />
 
-												<!--<MenuItem Header="{x:Static p:Resources.Edit}"
+												<!--<MenuItem Header="{x:Static l:Translations.Edit}"
 														  Click="OnEditItem_Click"
 														  IsEnabled="False" />
 
-												<MenuItem Header="{x:Static p:Resources.Delete}"
+												<MenuItem Header="{x:Static l:Translations.Delete}"
 														  Click="OnDeleteItems_Click"
 														  IsEnabled="False" />-->
 											</ContextMenu>

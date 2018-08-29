@@ -376,4 +376,58 @@
   <data name="SelectAll" xml:space="preserve">
     <value>Select All</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddNewAlbum" xml:space="preserve">
+    <value>Add a new album</value>
+  </data>
+  <data name="AddPictures" xml:space="preserve">
+    <value>Add Pictures</value>
+  </data>
+  <data name="AddPicturesToAlbum" xml:space="preserve">
+    <value>Add to Album</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Explore</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>Folders</value>
+  </data>
+  <data name="Thumbnail" xml:space="preserve">
+    <value>Thumbnail</value>
+  </data>
+  <data name="Thumbnails" xml:space="preserve">
+    <value>Thumbnails</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Large</value>
+  </data>
+  <data name="ServerInformations" xml:space="preserve">
+    <value>Server Informations</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>Browser</value>
+  </data>
 </root>

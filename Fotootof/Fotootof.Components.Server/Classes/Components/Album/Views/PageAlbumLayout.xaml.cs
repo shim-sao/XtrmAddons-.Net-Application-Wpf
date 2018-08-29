@@ -7,7 +7,6 @@ using Fotootof.SQLite.EntityManager.Managers;
 using System;
 using System.Globalization;
 using System.Windows;
-using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Components.Server.Album
@@ -54,17 +53,18 @@ namespace Fotootof.Components.Server.Album
         public PageAlbumLayout()
         {
             NotSupportedException e = new NotSupportedException("An Album Primary Key must be specify as argument. Uses PageAlbum.PageAlbum(int albumId)");
-            log.Fatal(e.Output(), e);
+            log.Fatal(e.Output());
             throw e;
         }
 
         /// <summary>
         /// Class XtrmAddons Fotootof Component Views Server Page Album Constructor.
         /// </summary>
+        /// <param name="albumId">An <see cref="AlbumEntity"/> unique identifier or primary key.</param>
         public PageAlbumLayout(int albumId)
         {
             MessageBoxs.IsBusy = true;
-            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageWaiting, "Album"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Local.Properties.Logs.InitializingPageWaiting, "Server Album"));
 
             // Store Album primary key.
             ItemId = albumId;
@@ -73,7 +73,7 @@ namespace Fotootof.Components.Server.Album
             InitializeComponent();
             AfterInitializedComponent();
 
-            log.Info(string.Format(CultureInfo.CurrentCulture, Translation.DLogs.InitializingPageDone, "Album"));
+            log.Info(string.Format(CultureInfo.CurrentCulture, Local.Properties.Logs.InitializingPageDone, "Server Album"));
             MessageBoxs.IsBusy = false;
         }
 
@@ -84,8 +84,10 @@ namespace Fotootof.Components.Server.Album
         #region Methods
 
         /// <summary>
-        /// Method to initialize page content.
+        /// Method called on <see cref="FrameworkElement"/> loaded event.
         /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         public override void Control_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = Model;
@@ -127,8 +129,8 @@ namespace Fotootof.Components.Server.Album
         /// <summary>
         /// Method called on Section delete event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Entity changes event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private void PicturesCollection_Deleted(object sender, EntityChangesEventArgs e)
         {
             try
@@ -154,8 +156,8 @@ namespace Fotootof.Components.Server.Album
         /// <summary>
         /// Method called on Section delete event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Entity changes event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private void PicturesCollection_Added(object sender, EntityChangesEventArgs e)
         {
             try
@@ -187,8 +189,8 @@ namespace Fotootof.Components.Server.Album
         /// <summary>
         /// Method called on user control size changed event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Size changed event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Size changed event arguments <see cref="SizeChangedEventArgs"/>.</param>
         public override void Layout_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             this.Width = Math.Max(MainBlockContent.ActualWidth, 0);

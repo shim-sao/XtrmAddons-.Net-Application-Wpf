@@ -373,4 +373,58 @@
   <data name="SelectAll" xml:space="preserve">
     <value>Tout Sélectionner</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="AddNewAlbum" xml:space="preserve">
+    <value>Ajouter un album</value>
+  </data>
+  <data name="AddPictures" xml:space="preserve">
+    <value>Ajouter des Images</value>
+  </data>
+  <data name="AddPicturesToAlbum" xml:space="preserve">
+    <value>Ajouter à l'Album</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>Fin</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Explorer</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Fichier</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Fichiers</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Répertoire</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>Répertoires</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Large</value>
+  </data>
+  <data name="Thumbnail" xml:space="preserve">
+    <value>Thumbnail</value>
+  </data>
+  <data name="Thumbnails" xml:space="preserve">
+    <value>Thumbnails</value>
+  </data>
+  <data name="ServerInformations" xml:space="preserve">
+    <value>État du Serveur</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Début</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>Explorateur</value>
+  </data>
 </root>

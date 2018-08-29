@@ -11,14 +11,14 @@ using ServerInfo = XtrmAddons.Net.Application.Serializable.Elements.Remote.Serve
 namespace Fotootof.Layouts.Forms.Server
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries Common Windows Client Form.
+    /// Class XtrmAddons Fotootof Layouts Server Window Form Layout.
     /// </summary>
     public partial class WindowFormServerLayout : WindowLayoutForm, IValidator
     {
         #region Variables
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -30,7 +30,7 @@ namespace Fotootof.Layouts.Forms.Server
         #region Properties
 
         /// <summary>
-        /// Property to access to the Window model.
+        /// Property to access to the Window model <see cref="WindowFormServerModel"/>.
         /// </summary>
         public new WindowFormServerModel Model
         {
@@ -39,32 +39,25 @@ namespace Fotootof.Layouts.Forms.Server
         }
 
         /// <summary>
-        /// Property to access to the old Client backuped informations.
+        /// Property to access to the old <see cref="ServerInfo"/> backuped informations.
         /// </summary>
-        public ServerInfo OldForm { get; set; }
+        public ServerInfo OldFormData
+            => Model.OldFormData;
 
         /// <summary>
-        /// Property to access to the new Client informations.
+        /// Property to access to the new <see cref="ServerInfo"/> informations.
         /// </summary>
-        public ServerInfo NewForm
-        {
-            get => Model.Server;
-            set => Model.Server = value;
-        }
+        public ServerInfo NewFormData
+            => Model.NewFormData;
 
         /// <summary>
-        /// Variable to store the secure Password.
-        /// </summary>
-        public bool IsNewForm { get; private set; } = true;
-
-        /// <summary>
-        /// Property to access to the main form save button.
+        /// Property to access to the main form save <see cref="Button"/>.
         /// </summary>
         public Button ButtonSave
             => (Button)FindName("ButtonSaveName");
 
         /// <summary>
-        /// Property to access to the main form cancel button.
+        /// Property to access to the main form cancel <see cref="Button"/>.
         /// </summary>
         public Button ButtonCancel
             => (Button)FindName("ButtonCancelName");
@@ -76,9 +69,9 @@ namespace Fotootof.Layouts.Forms.Server
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Libraries Common Windows Client Form Constructor.
+        ///Class XtrmAddons Fotootof Layouts Server Window Form Layout Constructor.
         /// </summary>
-        /// <param name="svr">An application Server configuration.</param>
+        /// <param name="svr">An application server configuration <see cref="ServerInfo"/>.</param>
         public WindowFormServerLayout(ServerInfo svr = default(ServerInfo))
         {
             // Initialize window component.
@@ -97,6 +90,8 @@ namespace Fotootof.Layouts.Forms.Server
         /// <summary>
         /// Method called on window loaded event.
         /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         private void Window_Load(object sender, RoutedEventArgs e)
         { 
             // Assign model to data context for display.
@@ -106,29 +101,18 @@ namespace Fotootof.Layouts.Forms.Server
         /// <summary>
         /// Method called on Window loaded event.
         /// </summary>
-        /// <param name="svr">A client server preferences.</param>
+        /// <param name="svr">An application server configuration <see cref="ServerInfo"/>.</param>
         protected void InitializeModel(ServerInfo svr = default(ServerInfo))
         {
-            // 1 - Initialize view model.
-            Model = new WindowFormServerModel(this);
-
-            // 2 - Make sure entity is not null.
+            // 1 - Make sure the entity is not null.
             svr = svr ?? new ServerInfo();
 
-            // 3 - Store current entity data in a new entity.
-            OldForm = svr;
-
-            // 4 - Assign entity to the model.
-            NewForm = svr;
-
-            if (NewForm.Key.IsNotNullOrWhiteSpace())
+            // 2 - Initialize the layout model.
+            Model = new WindowFormServerModel(this)
             {
-                IsNewForm = false;
-            }
-            else
-            {
-                NewForm.Key = string.Empty.GuidToBase64();
-            }
+                OldFormData = svr.Clone(),
+                NewFormData = svr
+            };
         }
 
         #endregion
@@ -142,8 +126,6 @@ namespace Fotootof.Layouts.Forms.Server
         /// </summary>
         protected override bool IsValidInputs()
         {
-            
-
             // Check if the Name is not empty.
             Trace.WriteLine("Checking if the Name is not empty...");
             if (!IsValidInput((TextBox)FindName("InputName")))
@@ -182,16 +164,16 @@ namespace Fotootof.Layouts.Forms.Server
         {
             try
             {
-                IsValidFormNotNullOrWhiteSpace(NewForm, "Name");
-                IsValidFormNotNullOrWhiteSpace(NewForm, "Host");
-                IsValidFormNotNullOrWhiteSpace(NewForm, "Port");
+                IsValidFormNotNullOrWhiteSpace(NewFormData, "Name");
+                IsValidFormNotNullOrWhiteSpace(NewFormData, "Host");
+                IsValidFormNotNullOrWhiteSpace(NewFormData, "Port");
 
                 return true;
             }
             catch (ArgumentNullException e)
             {
-                log.Error(e);
-                throw new ArgumentNullException(e.Message);
+                log.Error(e.Output());
+                throw;
             }
         }
 
@@ -204,15 +186,15 @@ namespace Fotootof.Layouts.Forms.Server
         /// <summary>
         /// Method to check and validate input server host text changes.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Data transfer event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Data transfer event arguments <see cref="DataTransferEventArgs"/>.</param>
         private void OnInputHost_SourceChanged(object sender, DataTransferEventArgs e)
         {
             TextBox tb = FindName("InputName") as TextBox;
 
             if (tb.Text.IsNullOrWhiteSpace())
             {
-                NewForm.Name = GetTag<TextBox>(sender).Text;
+                NewFormData.Name = GetTag<TextBox>(sender).Text;
                 OnInputStringRequired_SourceUpdated(tb, e);
             }
 
@@ -251,8 +233,6 @@ namespace Fotootof.Layouts.Forms.Server
                 {
                     // Dispose managed resources.
                     Model.Dispose();
-                    OldForm = null;
-                    NewForm = null;
                 }
 
                 // Call the appropriate methods to clean up unmanaged resources here.

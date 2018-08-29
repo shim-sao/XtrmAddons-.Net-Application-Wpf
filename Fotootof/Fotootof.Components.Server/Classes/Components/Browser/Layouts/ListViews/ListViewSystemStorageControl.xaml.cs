@@ -30,15 +30,16 @@ namespace Fotootof.Components.Server.Browser.Layouts
         /// <summary>
         /// Property to access to the items collection.
         /// </summary>
-        public override ListView ItemsCollection => FindName<ListView>("ItemsCollectionStorages");
+        public override ListView ItemsCollection
+            => FindName<ListView>("ItemsCollectionStorages");
 
         /// <summary>
         /// Property proxy to the combo box selection changed event handler.
         /// </summary>
         public event SelectionChangedEventHandler ImageSize_SelectionChanged
         {
-            add => (FindName("ComboBoxImageSizeName") as ComboBox).SelectionChanged += value;
-            remove => (FindName("ComboBoxImageSizeName") as ComboBox).SelectionChanged -= value;
+            add => (FindName<ComboBox>("ComboBoxImageSizeName")).SelectionChanged += value;
+            remove => (FindName<ComboBox>("ComboBoxImageSizeName")).SelectionChanged -= value;
         }
 
         /// <summary>
@@ -53,12 +54,14 @@ namespace Fotootof.Components.Server.Browser.Layouts
         /// <summary>
         /// 
         /// </summary>
-        public TextBlock CounterTotalImages => FindName("TextBlockCounterTotalImagesName") as TextBlock;
+        public TextBlock CounterTotalImages 
+            => FindName<TextBlock>("TextBlockCounterTotalImagesName");
 
         /// <summary>
         /// 
         /// </summary>
-        public TextBlock CounterTotalDirectories => FindName("TextBlockCounterTotalDirectoriesName") as TextBlock;
+        public TextBlock CounterTotalDirectories
+            => FindName<TextBlock>("TextBlockCounterTotalDirectoriesName");
 
         #endregion
 
@@ -93,15 +96,15 @@ namespace Fotootof.Components.Server.Browser.Layouts
                 Items = ItemsCollection.ItemsSource as CollectionStorage
             };
 
-            ComboBox selectorImgSize = ((ComboBox)FindName("ComboBoxImageSizeName"));
+            ComboBox selectorImgSize = (FindName<ComboBox>("ComboBoxImageSizeName"));
             selectorImgSize.SelectedIndex = AppSettings.GetInt(selectorImgSize, "SelectedIndex", selectorImgSize.SelectedIndex);
         }
 
         /// <summary>
         /// Method called on items collection selection changed.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Selection changed arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The selection changed arguments <see cref="SelectionChangedEventArgs"/>.</param>
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             base.ItemsCollection_SelectionChanged(sender, e);
@@ -127,10 +130,10 @@ namespace Fotootof.Components.Server.Browser.Layouts
         }
 
         /// <summary>
-        /// 
+        /// Method called on add pictures to album click event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Routed event arguments <see cref="RoutedEventArgs"/></param>
         private void OnAddPicturesToAlbum_Click(object sender, RoutedEventArgs e)
         {
             // Show open file dialog box 

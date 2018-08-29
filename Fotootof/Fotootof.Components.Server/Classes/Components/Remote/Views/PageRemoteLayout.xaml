@@ -5,12 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ucserver="clr-namespace:Fotootof.Components.Server.Remote.Layouts"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
     xmlns:base="clr-namespace:Fotootof.Libraries.Components;assembly=Fotootof.Libraries.Components"
     mc:Ignorable="d"
     ShowsNavigationUI="False"
-    Title="{x:Static p:Resources.Server}"
-    Style="{StaticResource ResourceKey=PageContentStyle}"
+    Style="{StaticResource PageContentStyle}"
     SizeChanged="Layout_SizeChanged"
 	Loaded="Control_Loaded">
 

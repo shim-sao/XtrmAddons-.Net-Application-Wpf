@@ -6,13 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:base="clr-namespace:Fotootof.Libraries.Components;assembly=Fotootof.Libraries.Components"
     xmlns:dgserver="clr-namespace:Fotootof.Components.Server.Users.Layouts"
-    xmlns:p="clr-namespace:Fotootof.Components.Server.Properties"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
     mc:Ignorable="d"
 	Loaded="Control_Loaded"
     ShowsNavigationUI="False"
     SizeChanged="Layout_SizeChanged"
     Style="{StaticResource PageContentStyle}"
-    Title="{x:Static p:Translations.Users}">
+    Title="{x:Static l:Translations.Users}">
 
 	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
 		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">

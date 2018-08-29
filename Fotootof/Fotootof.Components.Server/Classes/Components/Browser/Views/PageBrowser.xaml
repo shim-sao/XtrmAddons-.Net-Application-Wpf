@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
     xmlns:base="clr-namespace:Fotootof.Libraries.Components;assembly=Fotootof.Libraries.Components"
     xmlns:uc="clr-namespace:Fotootof.Components.Server.Browser.Layouts"
     mc:Ignorable="d"
@@ -12,16 +12,13 @@
     ShowsNavigationUI="False"
     SizeChanged="Layout_SizeChanged"
     Style="{StaticResource FrameworkElementRootStyle}"
-    Title="{x:Static p:Resources.Browser}">
+    Title="{x:Static l:Translations.Browser}">
 
-    <Grid x:Name="GridBlockRootName"
-		  Style="{StaticResource FrameworkElementRootStyle}">
+    <Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
 		
-		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
-					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<StackPanel x:Name="Block_TopControls"
-						Style="{StaticResource StackPanelTopControls}">
+			<StackPanel x:Name="Block_TopControls" Style="{StaticResource StackPanelTopControls}">
 
 				<Grid>
 					<Grid.ColumnDefinitions>
@@ -51,13 +48,13 @@
 					</StackPanel>
 
 					<Border Grid.Column="1">
-						<TextBox Background="White"
-								 x:Name="TextBox_Breadcrumbs_Name"
+						<TextBox x:Name="TextBox_Breadcrumbs_Name"
+								 Background="White"
+								 FontSize="{StaticResource FontSizeNormal}"
+								 Height="24"
+								 HorizontalAlignment="Stretch"
 								 Margin="2"
 								 Padding="10,0"
-								 FontSize="{StaticResource FontSizeNormal}"
-								 HorizontalAlignment="Stretch"
-								 Height="24"
 								 VerticalContentAlignment="Center"/>
 					</Border>
 
@@ -72,8 +69,7 @@
 				</Grid>
 			</StackPanel>
 
-			<Grid x:Name="BlockMiddleContentsName"
-				  Style="{StaticResource GridMiddleContentStyle}">
+			<Grid x:Name="BlockMiddleContentsName" Style="{StaticResource GridMiddleContentStyle}">
 
 				<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColStorages"/>
@@ -84,9 +80,9 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <uc:TreeViewSystemStorageLayout Grid.Row="0"
+                <uc:TreeViewSystemStorageLayout x:Name="UcTreeViewDirectories"
+                                                Grid.Row="0"
                                                 Grid.Column="0"
-                                                x:Name="UcTreeViewDirectories"
                                                 IsHeaderVisible="Visible"/>
 
                 <GridSplitter BorderThickness="1,0"

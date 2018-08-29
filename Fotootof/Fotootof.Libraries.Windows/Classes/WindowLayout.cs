@@ -46,10 +46,6 @@ namespace Fotootof.Libraries.Windows
         /// </summary>
         public WindowLayout() : base()
         {
-            // Merge application culture translation resources.
-            Resources.MergedDictionaries.Add(XtrmAddons.Fotootof.Culture.Translation.Words);
-            Resources.MergedDictionaries.Add(XtrmAddons.Fotootof.Culture.Translation.Logs);
-
             // Merge custom theme to the resources.
             ThemeLoader.MergeThemeTo(Resources);
         }

@@ -106,10 +106,10 @@ namespace Fotootof.Layouts.Forms.User
         #region Methods
 
         /// <summary>
-        /// Method called on Window loaded event.
+        /// Method called on window loaded event.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Routed event atguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         protected void Window_Load(object sender, RoutedEventArgs e)
         {
             // Add model to data context for binding.

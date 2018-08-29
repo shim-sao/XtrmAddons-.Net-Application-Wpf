@@ -38,24 +38,24 @@
 
                         <Label Content="{x:Static l:Translations.Name}" Style="{StaticResource LabelInputStyle}"/>
                         <TextBox x:Name="InputName"
-									Style="{StaticResource TextBoxFieldInputRequiredStyle}"
-									Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
-									Validation.Error="OnInput_ValidationError"
-									SourceUpdated="OnInputStringRequired_SourceUpdated"
-									TargetUpdated="OnInput_TargetUpdated"
-									TextChanged="OnInputStringRequired_TextChanged"
-									Width="310">
+                                 Style="{StaticResource TextBoxFieldInputRequiredStyle}"
+                                 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
+                                 Validation.Error="OnInput_ValidationError"
+                                 SourceUpdated="OnInputStringRequired_SourceUpdated"
+                                 TargetUpdated="OnInput_TargetUpdated"
+                                 TextChanged="OnInputStringRequired_TextChanged"
+                                 Width="310">
 
                             <TextBox.Text>
-                                <Binding Path="Server.Name"
-											Mode="TwoWay"
-											UpdateSourceTrigger="LostFocus"
-											IsAsync="True"
-											ValidatesOnDataErrors="True"
-											ValidatesOnExceptions="True"
-											NotifyOnValidationError="True"
-											NotifyOnSourceUpdated="True"
-											NotifyOnTargetUpdated="True">
+                                <Binding Path="NewFormData.Name"
+                                         Mode="TwoWay"
+                                         UpdateSourceTrigger="LostFocus"
+                                         IsAsync="True"
+                                         ValidatesOnDataErrors="True"
+                                         ValidatesOnExceptions="True"
+                                         NotifyOnValidationError="True"
+                                         NotifyOnSourceUpdated="True"
+                                         NotifyOnTargetUpdated="True">
 
                                     <Binding.ValidationRules>
                                         <rrString:StringRequired />
@@ -73,24 +73,24 @@
 
                         <Label Content="{x:Static l:Translations.Host}" Style="{StaticResource LabelInputStyle}"/>
                         <TextBox x:Name="InputHost"
-								Style="{StaticResource TextBoxFieldInputRequiredStyle}"
-								Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
-								Validation.Error="OnInput_ValidationError"
-								SourceUpdated="OnInputHost_SourceChanged"
-								TargetUpdated="OnInput_TargetUpdated"
-								TextChanged="OnInputStringRequired_TextChanged"
-								Width="310">
+                                 Style="{StaticResource TextBoxFieldInputRequiredStyle}"
+                                 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}"
+                                 Validation.Error="OnInput_ValidationError"
+                                 SourceUpdated="OnInputHost_SourceChanged"
+                                 TargetUpdated="OnInput_TargetUpdated"
+                                 TextChanged="OnInputStringRequired_TextChanged"
+                                 Width="310">
 
                             <TextBox.Text>
-                                <Binding Path="Server.Host"
-											Mode="TwoWay"
-											UpdateSourceTrigger="LostFocus"
-											IsAsync="True"
-											ValidatesOnDataErrors="True"
-											ValidatesOnExceptions="True"
-											NotifyOnValidationError="True"
-											NotifyOnSourceUpdated="True"
-											NotifyOnTargetUpdated="True">
+                                <Binding Path="NewFormData.Host"
+                                         Mode="TwoWay"
+                                         UpdateSourceTrigger="LostFocus"
+                                         IsAsync="True"
+                                         ValidatesOnDataErrors="True"
+                                         ValidatesOnExceptions="True"
+                                         NotifyOnValidationError="True"
+                                         NotifyOnSourceUpdated="True"
+                                         NotifyOnTargetUpdated="True">
 
                                     <Binding.ValidationRules>
                                         <rrString:StringRequired />
@@ -117,15 +117,15 @@
 								Width="310">
 
                             <TextBox.Text>
-                                <Binding Path="Server.Port"
-										Mode="TwoWay"
-										UpdateSourceTrigger="LostFocus"
-										IsAsync="True"
-										ValidatesOnDataErrors="True"
-										ValidatesOnExceptions="True"
-										NotifyOnValidationError="True"
-										NotifyOnSourceUpdated="True"
-										NotifyOnTargetUpdated="True">
+                                <Binding Path="NewFormData.Port"
+                                         Mode="TwoWay"
+                                         UpdateSourceTrigger="LostFocus"
+                                         IsAsync="True"
+                                         ValidatesOnDataErrors="True"
+                                         ValidatesOnExceptions="True"
+                                         NotifyOnValidationError="True"
+                                         NotifyOnSourceUpdated="True"
+                                         NotifyOnTargetUpdated="True">
 
                                     <Binding.ValidationRules>
                                         <rrString:StringRequired />

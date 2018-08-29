@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
     xmlns:t="clr-namespace:Fotootof.Layouts.Settings.Properties"
+	xmlns:s="clr-namespace:Fotootof.Settings;assembly=Fotootof.Settings"
     xmlns:base="clr-namespace:Fotootof.Libraries.Windows;assembly=Fotootof.Libraries.Windows"
 	mc:Ignorable="d"
     Width="680"
@@ -95,14 +96,14 @@
 
                 <!-- #region Preferences files -->
                 <Expander x:Name="ExpanderInformationsFiles"
-						HorizontalAlignment="Stretch"
-						VerticalAlignment="Top"
-						Header="Storage : files"
-						ExpandDirection="Down"
-						IsExpanded="False"
-						FontSize="{StaticResource FontSizeH3}"
 						Background="{DynamicResource ChromeLowBrush}"
-						Foreground="{StaticResource DarkGrey}">
+						ExpandDirection="Down"
+						FontSize="{StaticResource FontSizeH3}"
+						Foreground="{StaticResource DarkGrey}"
+						Header="Storage : files"
+						HorizontalAlignment="Stretch"
+						IsExpanded="False"
+						VerticalAlignment="Top">
 
                         <Grid Margin="1" Background="{DynamicResource ChromeMediumLowBrush}">
                             
@@ -152,14 +153,14 @@
 
                 <!-- #region Preferences directories -->
                 <Expander x:Name="ExpanderInformationsStorage"
+                          Background="{DynamicResource ChromeLowBrush}"
                           ExpandDirection="Down"
-                          FontSize="{StaticResource ResourceKey=FontSizeH3}"
+                          FontSize="{StaticResource FontSizeH3}"
+                          Foreground="{DynamicResource ChromeMediumBrush}"
                           Header="Storage : special directories"
                           HorizontalAlignment="Stretch"
                           IsExpanded="False"
-                          VerticalAlignment="Top"
-                          Background="{StaticResource MediumGrey}"
-                          Foreground="{StaticResource DarkGrey}">
+                          VerticalAlignment="Top">
 
                     <Grid Margin="1">
                         <StackPanel Margin="5">
@@ -305,6 +306,25 @@
             </StackPanel>
         </TabItem>
         <!-- #endregion Tabs Informations -->
+
+
+        <!-- #region : Tabs Sections -->
+        <TabItem Header="{x:Static l:Translations.Sections}">
+            <StackPanel>
+
+                <!-- #region : Field Albums -->
+                <StackPanel Style="{StaticResource StackPanelFieldStyle}">
+
+                        <CheckBox IsChecked="{Binding Source={x:Static s:Controls.Default}, Path=ServerSectionLayoutShowAllAlbums, Mode=TwoWay}" />
+
+                        <Label Content="{x:Static l:Translations.Albums}" Style="{StaticResource LabelInputLongStyle}"/>
+
+                    </StackPanel>
+                <!-- #endregion -->
+
+            </StackPanel>
+        </TabItem>
+        <!-- #endregion -->
 
         </TabControl>
 

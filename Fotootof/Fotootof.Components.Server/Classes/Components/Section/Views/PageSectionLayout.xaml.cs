@@ -14,7 +14,6 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using XtrmAddons.Fotootof.Culture;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Components.Server.Section
@@ -128,8 +127,12 @@ namespace Fotootof.Components.Server.Section
             };
             
             Model.LoadSections();
-            LoadAlbums();
 
+            if (Settings.Controls.Default.ServerSectionLayoutShowAllAlbums)
+            {
+                LoadAlbums();
+            }
+            
             Model.FiltersQuality = InfoEntityCollection.TypesQuality();
             Model.FiltersColor = InfoEntityCollection.TypesColor();
 
