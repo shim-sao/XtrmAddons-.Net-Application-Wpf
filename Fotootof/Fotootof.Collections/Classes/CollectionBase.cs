@@ -31,22 +31,22 @@ namespace Fotootof.Collections
         /// <summary>
         /// Property alias to access to the translation words.
         /// </summary>
-        public dynamic Words => XtrmAddons.Fotootof.Culture.Translation.Words;
+        // public dynamic Words => XtrmAddons.Fotootof.Culture.Translation.Words;
 
         /// <summary>
         /// Property alias to access to the dynamic translation words.
         /// </summary>
-        public dynamic DWords => XtrmAddons.Fotootof.Culture.Translation.DWords;
+        // public dynamic DWords => XtrmAddons.Fotootof.Culture.Translation.DWords;
 
         /// <summary>
         /// Property alias to access to the translation logs.
         /// </summary>
-        public dynamic Logs => XtrmAddons.Fotootof.Culture.Translation.Logs;
+        // public dynamic Logs => XtrmAddons.Fotootof.Culture.Translation.Logs;
 
         /// <summary>
         /// Property alias to access to the dynamic translation logs.
         /// </summary>
-        public dynamic DLogs => XtrmAddons.Fotootof.Culture.Translation.DLogs;
+        // public dynamic DLogs => XtrmAddons.Fotootof.Culture.Translation.DLogs;
 
         #endregion
 

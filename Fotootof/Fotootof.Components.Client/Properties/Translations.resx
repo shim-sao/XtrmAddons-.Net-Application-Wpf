@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AuthenticationError" xml:space="preserve">
+    <value>Authentication error</value>
+  </data>
+  <data name="AuthenticationServerFailed" xml:space="preserve">
+    <value>Authentication to the server failed : {0}</value>
+  </data>
   <data name="ExceptionsArgumentNull" xml:space="preserve">
     <value>The argument Type '{0}' must be not null : '{1}'</value>
   </data>
@@ -131,5 +137,8 @@
   </data>
   <data name="Log4netMemoryAppender" xml:space="preserve">
     <value>Log4net memory appender not found !</value>
+  </data>
+  <data name="ServerNotResponding" xml:space="preserve">
+    <value>Authentication to the server failed : The server is not responding !\r\n1-Check your Client connection parameters and try again.2-Contact the server administrator if problem persists.</value>
   </data>
 </root>

@@ -321,10 +321,6 @@
       <Project>{70a4c255-1b1c-498b-8689-ad4504ae8ab9}</Project>
       <Name>Fotootof.Settings</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.Api\XtrmAddons.Fotootof.Lib.Api.csproj">
-      <Project>{10851D07-11EA-4773-8B05-1228D9714FE1}</Project>
-      <Name>XtrmAddons.Fotootof.Lib.Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fotootof.HttpServer\Fotootof.HttpServer.csproj">
       <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
       <Name>Fotootof.HttpServer</Name>

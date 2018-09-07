@@ -33,8 +33,8 @@ namespace Fotootof.Libraries.Controls
         public ControlLayout() : base()
         {
             // Merge application resources.
-            Resources.MergedDictionaries.Add(XtrmAddons.Fotootof.Culture.Translation.Words);
-            Resources.MergedDictionaries.Add(XtrmAddons.Fotootof.Culture.Translation.Logs);
+            //Resources.MergedDictionaries.Add(XtrmAddons.Fotootof.Culture.Translation.Words);
+            //Resources.MergedDictionaries.Add(XtrmAddons.Fotootof.Culture.Translation.Logs);
 
             ThemeLoader.MergeThemeTo(Resources);
         }

@@ -190,10 +190,6 @@
       <Project>{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}</Project>
       <Name>Fotootof.Libraries.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fotootof\XtrmAddons.Fotootof.Lib.Api\XtrmAddons.Fotootof.Lib.Api.csproj">
-      <Project>{10851D07-11EA-4773-8B05-1228D9714FE1}</Project>
-      <Name>XtrmAddons.Fotootof.Lib.Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Fotootof\Fotootof.HttpClient\Fotootof.HttpClient.csproj">
       <Project>{470D1482-F772-483E-A922-FA2AC4E517DF}</Project>
       <Name>Fotootof.HttpClient</Name>

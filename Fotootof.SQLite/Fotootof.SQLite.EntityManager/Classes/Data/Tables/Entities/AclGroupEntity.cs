@@ -311,7 +311,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
         /// Propertiy to access to the list of Section dependencies primary key.
         /// </summary>
         [NotMapped]
-        public ObservableCollection<int> SectionsPKs
+        public ObservableCollection<int> SectionsPKeys
         {
             get
             {

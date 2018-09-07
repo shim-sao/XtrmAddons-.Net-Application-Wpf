@@ -91,10 +91,6 @@
       <Project>{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}</Project>
       <Name>Fotootof.Libraries.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.Culture\XtrmAddons.Fotootof.Culture.csproj">
-      <Project>{a0c828d6-9afa-48e6-b279-713869ee07ef}</Project>
-      <Name>XtrmAddons.Fotootof.Culture</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

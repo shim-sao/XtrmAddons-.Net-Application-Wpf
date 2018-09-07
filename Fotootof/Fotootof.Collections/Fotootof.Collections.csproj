@@ -20,7 +20,8 @@
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\Build\Debug\Fotootof.Collections.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -97,14 +98,6 @@
     <ProjectReference Include="..\Fotootof.Navigator\Fotootof.Navigator.csproj">
       <Project>{C8EE1DED-4087-4659-A01E-5BCA9C24E116}</Project>
       <Name>Fotootof.Navigator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.Culture\XtrmAddons.Fotootof.Culture.csproj">
-      <Project>{a0c828d6-9afa-48e6-b279-713869ee07ef}</Project>
-      <Name>XtrmAddons.Fotootof.Culture</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XtrmAddons.Fotootof.Lib.Api\XtrmAddons.Fotootof.Lib.Api.csproj">
-      <Project>{10851D07-11EA-4773-8B05-1228D9714FE1}</Project>
-      <Name>XtrmAddons.Fotootof.Lib.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fotootof.HttpClient\Fotootof.HttpClient.csproj">
       <Project>{470D1482-F772-483E-A922-FA2AC4E517DF}</Project>

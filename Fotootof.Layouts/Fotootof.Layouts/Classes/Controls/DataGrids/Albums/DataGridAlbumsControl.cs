@@ -5,7 +5,6 @@ using Fotootof.Libraries.Controls.DataGrids;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using System;
 using System.Windows;
-using XtrmAddons.Fotootof.Culture;
 
 namespace Fotootof.Layouts.Controls.DataGrids
 {
@@ -121,11 +120,11 @@ namespace Fotootof.Layouts.Controls.DataGrids
                 MessageBoxResult result = MessageBox.Show
                 (
                     String.Format(
-                        (string)Translation.Words["MessageBox_Acceptation_DeleteGeneric"],
-                        (string)Translation.Words["Album"],
+                        Dialogs.Properties.Translations.MessageBox_Acceptation_DeleteGeneric,
+                        Local.Properties.Translations.Album,
                         SelectedItem.Name
                     ),
-                    (string)Translation.Words["ApplicationName"],
+                    Local.Properties.Translations.ApplicationName,
                     MessageBoxButton.YesNoCancel
                 );
 

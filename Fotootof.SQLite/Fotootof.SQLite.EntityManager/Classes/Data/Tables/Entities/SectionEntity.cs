@@ -19,7 +19,9 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
     /// Class XtrmAddons Fotootof Libraries SQLite Database Section Entity.
     /// </summary>
     [Table("Sections"), Serializable, JsonObject(MemberSerialization.OptIn)]
-    public partial class SectionEntity : EntityBase, IEntityNameAlias
+    public partial class SectionEntity : EntityBase,
+        IEntityNameAlias,
+        IEntityDescription
     {
         #region Variables
 

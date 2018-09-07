@@ -707,7 +707,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
         /// Method to get a list of associated Album of the Picture.
         /// </summary>
         /// <returns>A list of associated Album to the Picture.</returns>
-        [System.Obsolete("Use dependency References);")]
+        [System.Obsolete("Use dependency References")]
         private List<AlbumEntity> ListAlbums()
         {
             if (albums == null)
@@ -727,7 +727,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
         /// Method to get a list of associated Info to the Picture.
         /// </summary>
         /// <returns>A list of associated Info to the Picture.</returns>
-        [System.Obsolete("Use dependency References);")]
+        [System.Obsolete("Use dependency References")]
         private List<InfoEntity> ListInfos()
         {
             if (infos == null)

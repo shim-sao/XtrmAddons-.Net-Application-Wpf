@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using XtrmAddons.Fotootof.Lib.Api.Models.Json;
+﻿using Fotootof.SQLite.EntityManager.Data.Tables.Json.Models;
+using System.Collections.Generic;
 
 namespace Fotootof.Libraries.HttpHelpers.HttpClient.Responses
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ServerResponseAlbums : ServerResponseBase<List<AlbumJson>>
+    public class ServerResponseAlbums : ServerResponseBase<List<AlbumJsonModel>>
     {
         /*
         /// <summary>

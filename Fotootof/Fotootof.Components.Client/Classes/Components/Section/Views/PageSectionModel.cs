@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using XtrmAddons.Net.Common.Extensions;
-using System.Reflection;
-using Fotootof.Libraries.Components;
+﻿using Fotootof.Collections.Entities;
 using Fotootof.Layouts.Controls.DataGrids;
 using Fotootof.Layouts.Controls.ListViews;
-using Fotootof.Libraries.HttpHelpers.HttpClient;
-using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.Layouts.Dialogs;
-using Fotootof.Collections.Entities;
-using XtrmAddons.Fotootof.Lib.Api.Models.Json;
+using Fotootof.Libraries.Components;
+using Fotootof.Libraries.HttpHelpers.HttpClient;
 using Fotootof.Libraries.HttpHelpers.HttpClient.Responses;
+using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
+using Fotootof.SQLite.EntityManager.Data.Tables.Json.Models;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Components.Client.Section
 {
@@ -147,7 +147,7 @@ namespace Fotootof.Components.Client.Section
                 log.Warn(new ArgumentNullException(nameof(server)));
             }
             else
-            { 
+            {
                 // Add authentication success event handler.
                 server.OnAuthenticationSuccess -= Svr_OnAuthenticationSuccess;
                 server.OnAuthenticationSuccess += new EventHandler(Svr_OnAuthenticationSuccess);
@@ -185,11 +185,15 @@ namespace Fotootof.Components.Client.Section
 
             // Get and check the server response to verify if the server is connected.
             // Prevent bad response for the user.
-            if (!(e is ClientHttpEventArgs<ServerResponse> svrResp) || svrResp.Result == null)
-            {
-                MessageBoxs.Error("Authentication to the server failed : The server does not respond !");
-                return;
-            }
+            ServerResponse result = GetResult<ClientHttpEventArgs<ServerResponse>, ServerResponse>(sender, e);
+            if (result == null) return;
+
+            //if (!(e is ClientHttpEventArgs<ServerResponse> svrResp) || svrResp.Result == null)
+            //{
+            //    log.Debug(Properties.Translations.ServerNotResponding);
+            //    MessageBoxs.Error(Properties.Translations.ServerNotResponding);
+            //    return;
+            //}
 
             await Server.ListSections();
         }
@@ -205,22 +209,27 @@ namespace Fotootof.Components.Client.Section
 
             // Get and check the server response to verify if the server is connected.
             // Prevent bad response for the user.
-            if (!(e is ClientHttpEventArgs<ServerResponse> svrResp) || svrResp.Result == null)
-            {
-                MessageBoxs.Error("Authentication to the server failed : The server does not respond !");
-                return;
-            }
+            ServerResponse result = GetResult<ClientHttpEventArgs<ServerResponse>, ServerResponse>(sender, e);
+            if (result == null) return;
+
+            //if (!(e is ClientHttpEventArgs<ServerResponse> svrResp) || svrResp.Result == null)
+            //{
+            //    log.Debug(Properties.Translations.ServerNotResponding);
+            //    MessageBoxs.Error(Properties.Translations.ServerNotResponding);
+            //    return;
+            //}
 
             try
             {
-                log.Debug(svrResp.Result.Error);
-                System.Windows.MessageBox.Show($"Authentication to the server failed : {svrResp.Result.Error}", "Authentication error");
+                log.Debug(result.Error);
+                MessageBoxs.Error(String.Format(Properties.Translations.AuthenticationServerFailed, result.Error), Properties.Translations.AuthenticationError);
+                
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                log.Error(ex);
-                log.Error(svrResp);
-                System.Windows.MessageBox.Show($"Authentication to the server failed : {ex.Output()}", "Authentication error");
+                log.Error(ex.Output(), ex);
+                log.Error(e);
+                MessageBoxs.Error(String.Format(Properties.Translations.AuthenticationServerFailed, ex.Output()), Properties.Translations.AuthenticationError);
             }
         }
 
@@ -235,22 +244,25 @@ namespace Fotootof.Components.Client.Section
 
             // Get and check the server response to verify if the server is connected.
             // Prevent bad response for the user.
-            if (!(e is ClientHttpEventArgs<ServerResponse> svrResp) || svrResp.Result == null)
-            {
-                MessageBoxs.Error("Authentication to the server failed : The server does not respond !");
-                return;
-            }
+            ServerResponse result = GetResult<ClientHttpEventArgs<ServerResponse>, ServerResponse>(sender, e);
+            if (result == null) return;
+
+            //if (!(e is ClientHttpEventArgs<ServerResponse> svrResp) || svrResp.Result == null)
+            //{
+            //    MessageBoxs.Error("Authentication to the server failed : The server does not respond !");
+            //    return;
+            //}
 
             try
             {
-                log.Debug(svrResp.Result.Error);
-                MessageBoxs.Error($"Authentication to the server failed : {svrResp.Result.Error}");
+                log.Debug(result.Error);
+                MessageBoxs.Error(String.Format(Properties.Translations.AuthenticationServerFailed, result.Error), Properties.Translations.AuthenticationError);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
-                log.Error(svrResp);
-                MessageBoxs.Error($"Authentication to the server failed : {ex.Output()}");
+                log.Error(e);
+                MessageBoxs.Error(String.Format(Properties.Translations.AuthenticationServerFailed, ex.Output()), Properties.Translations.AuthenticationError);
             }
         }
 
@@ -265,13 +277,24 @@ namespace Fotootof.Components.Client.Section
 
             // Get and check the server response to verify if the server is connected.
             // Prevent bad response for the user.
-            if (!(e is ClientHttpEventArgs<ServerResponseSections> serverResponse) || serverResponse.Result == null)
-            {
-                MessageBoxs.Error("Authentication to the server failed : The server does not respond !");
-                return;
-            }
+            ServerResponseSections result = GetResult<ClientHttpEventArgs<ServerResponseSections>, ServerResponseSections>(sender, e);
+            if (result == null) return;
 
-            List<SectionJson> list = serverResponse.Result.Response ?? new List<SectionJson>();
+            /*
+            ClientHttpEventArgs<ServerResponseSections> r = e as ClientHttpEventArgs<ServerResponseSections>;
+            ServerResponseSections res = null;
+            List<SectionJsonModel> resp = null;
+            if (r != null) { res = r.Result; }
+            if (res != null) { resp = res.Response; }
+            */
+
+            //if (!(e is ClientHttpEventArgs<ServerResponseSections> serverResponse) || serverResponse.Result == null)
+            //{
+            //    MessageBoxs.Error("Authentication to the server failed : The server does not respond !");
+            //    return;
+            //}
+
+            List<SectionJsonModel> list = result.Response ?? new List<SectionJsonModel>();
             Sections.Items = new SectionEntityCollection(list);
         }
 
@@ -286,20 +309,23 @@ namespace Fotootof.Components.Client.Section
 
             // Get and check the server response to verify if the server is connected.
             // Prevent bad response for the user.
-            if (!(e is ClientHttpEventArgs<ServerResponseSections> serverResponse) || serverResponse.Result == null)
-            {
-                MessageBoxs.Error("Authentication to the server failed : The server does not respond !");
-                return;
-            }
+            ServerResponseSections result = GetResult<ClientHttpEventArgs<ServerResponseSections>, ServerResponseSections>(sender, e);
+            if (result == null) return;
+
+            //if (!(e is ClientHttpEventArgs<ServerResponseSections> serverResponse) || serverResponse.Result == null)
+            //{
+            //    MessageBoxs.Error("Authentication to the server failed : The server does not respond !");
+            //    return;
+            //}
 
             try
             {
-                log.Debug(serverResponse.Result.Error);
-                MessageBoxs.Error($"List sections from the server failed : {serverResponse.Result.Error}");
+                log.Debug(result.Error);
+                MessageBoxs.Error($"List sections from the server failed : {result.Error}");
             }
             catch (Exception ex)
             {
-                log.Error(serverResponse);
+                log.Error(e);
                 log.Error(ex.Output(), ex);
                 MessageBoxs.Error($"List sections from the server failed : {ex.Output()}");
             }
@@ -316,13 +342,18 @@ namespace Fotootof.Components.Client.Section
 
             // Get and check the server response to verify if the server is connected.
             // Prevent bad response for the user.
-            if (!(e is ClientHttpEventArgs<ServerResponseSection> svrResp) || svrResp.Result == null)
-            {
-                MessageBoxs.Error("Authentication to the server failed : The server does not respond !");
-                return;
-            }
+            ServerResponseSection result = GetResult<ClientHttpEventArgs<ServerResponseSection>, ServerResponseSection>(sender, e);
+            if (result == null) return;
 
-            if(Albums == null)
+            //if (!(e is ClientHttpEventArgs<ServerResponseSection> svrResp) || svrResp.Result == null)
+            //{
+            //    string msg = " to the server failed : The server does not respond !";
+            //    log.Debug(msg);
+            //    MessageBoxs.Error(msg);
+            //    return;
+            //}
+
+            if (Albums == null)
             {
                 Albums = new ListViewAlbumsModel();
             }
@@ -330,21 +361,49 @@ namespace Fotootof.Components.Client.Section
             try
             {
 
-                SectionJson section = svrResp.Result.Response;
+                SectionJsonModel section = result.Response;
 
                 var a = Albums.Items;
 
                 if (section != null && section.Albums != null)
                 {
-                    Albums.Items = new AlbumEntityCollection(section.Albums);
+                    //Albums.Items = new AlbumEntityCollection(section.Property("Albums"));
                 }
             }
             catch (Exception ex)
             {
-                log.Error(svrResp);
+                log.Error(e);
                 log.Error(ex.Output(), ex);
                 MessageBoxs.Error($"Single section from the server failed : {ex.Output()}");
             }
+        }
+
+        /// <summary>
+        /// Method called on server command single section success.
+        /// </summary>
+        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="e">The event arguments</param>
+        private U GetResult<T, U>(object sender, EventArgs e) where U : class where T : class
+        {
+            log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");
+
+            // Get and check the server response to verify if the server is connected.
+            // Prevent bad response for the user
+            T svrResp = e as T;
+            U result = null;
+
+            if (svrResp != null)
+            {
+                result = svrResp.GetPropertyValue<U>("Result");
+            }
+
+            if (result == null)
+            {
+                log.Debug(Properties.Translations.ServerNotResponding);
+                MessageBoxs.Error(Properties.Translations.ServerNotResponding);
+            }
+
+            return result;
         }
 
         #endregion

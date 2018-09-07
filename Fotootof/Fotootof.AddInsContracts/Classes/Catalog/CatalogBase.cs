@@ -1,6 +1,5 @@
 ﻿using Fotootof.AddInsContracts.Interfaces;
 using Fotootof.Libraries.Logs;
-using Fotootof.Libraries.Systems;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -89,10 +88,10 @@ namespace Fotootof.AddInsContracts.Catalog
         {
             log.Info("Initializing extensions catalog. Please wait...");
 
-            DirectoryInfo di = new DirectoryInfo("Plugins");
+            DirectoryInfo di = new DirectoryInfo("Plugins\\Extensions");
             log.Debug($"Directory assemblies : {di.FullName}");
 
-            if (File.Exists(di.FullName))
+            if (System.IO.Directory.Exists(di.FullName))
             {
                 DirectoryCatalog dc = new DirectoryCatalog(di.FullName);
                 InitializeModules(dc);
@@ -137,7 +136,7 @@ namespace Fotootof.AddInsContracts.Catalog
 
             if (dc == null)
             {
-                log.Info("Catalog directoty : empty.");
+                log.Info("Catalog directory : empty.");
                 return;
             }
 
@@ -178,7 +177,7 @@ namespace Fotootof.AddInsContracts.Catalog
         /// </summary>
         /// <param name="assemblyName"></param>
         /// <returns></returns>
-        [System.Obsolete("Use Extentions")]
+        [System.Obsolete("Use Extentions", true)]
         public static IEnumerable<IExtension> GetModules(string assemblyName)
         {
             // Check if modules are already loaded.

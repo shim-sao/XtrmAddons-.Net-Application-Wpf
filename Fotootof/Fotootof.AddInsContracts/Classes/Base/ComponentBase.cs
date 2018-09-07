@@ -1,8 +1,6 @@
-﻿using Microsoft.Win32.SafeHandles;
-using System;
+﻿using Fotootof.AddInsContracts.Interfaces;
 using System.ComponentModel.Composition;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Net.Common.Objects;
@@ -12,8 +10,8 @@ namespace Fotootof.AddInsContracts.Base
     /// <summary>
     /// Class XtrmAddons Fotootof AddInsContracts Base Component
     /// </summary>
-    [Export(typeof(Interfaces.IComponent))]
-    public abstract class ComponentBase : ObjectBaseNotifier, Interfaces.IComponent
+    // [Export(typeof(IComponent))]
+    public abstract class ComponentBase : ObjectBaseNotifier, IComponent
     {
         #region Variables
 
@@ -21,7 +19,7 @@ namespace Fotootof.AddInsContracts.Base
         /// Variable logger.
         /// </summary>
         private static readonly log4net.ILog log =
-            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Variable to store if the Component is already initialized.
@@ -115,17 +113,13 @@ namespace Fotootof.AddInsContracts.Base
         #endregion
 
 
+
         #region IDisposable Support
 
         /// <summary>
         /// Variable is disposed ?
         /// </summary>
         private bool disposedValue = false;
-
-        /// <summary>
-        /// Variable Instantiate a SafeHandle instance.
-        /// </summary>
-        private SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
 
         /// <summary>
         /// Method to dispose the object.
@@ -138,13 +132,12 @@ namespace Fotootof.AddInsContracts.Base
                 if (disposing)
                 {
                     // Dispose managed objects.
-                    handle.Dispose();
+                    Parent = null;
+                    Context = null;
+                    IsInitialized = false;
                 }
 
                 // Dispose not managed objects & big size variables = null.
-                Parent = null;
-                Context = null;
-                IsInitialized = false;
 
                 // Flag disposed value.
                 disposedValue = true;
@@ -164,7 +157,7 @@ namespace Fotootof.AddInsContracts.Base
             // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.
             Dispose(true);
             // TODO: supprimer les marques de commentaire pour la ligne suivante si le finaliseur est remplacé ci-dessus.
-            GC.SuppressFinalize(this);
+            // GC.SuppressFinalize(this);
         }
 
         #endregion

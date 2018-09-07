@@ -271,7 +271,7 @@
 
 
 			<!-- #region PLUGINS -->
-			<MenuItem x:Name="MainMenuItemPlugins"
+            <MenuItem x:Name="MenuItem_Plugins_Name"
 					  Header="Plugins"
 					  Style="{DynamicResource MenuItemMainStyle}"
 					  Template="{DynamicResource MenuItemMainControlTemplate}">

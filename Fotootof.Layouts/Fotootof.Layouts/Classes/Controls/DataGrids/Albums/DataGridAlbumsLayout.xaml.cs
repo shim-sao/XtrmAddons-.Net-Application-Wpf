@@ -60,101 +60,101 @@ namespace Fotootof.Layouts.Controls.DataGrids
 
         #region Methods
 
-/*
-        /// <summary>
-        /// Method called on click event to add a new Album.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Routed event arguments.</param>
-        public override void AddItem_Click(object sender, RoutedEventArgs e)
-        {
-            // Show open file dialog box 
-            WindowFormAlbumLayout dlg = new WindowFormAlbumLayout(new AlbumEntity());
-            bool? result = dlg.ShowDialog();
-
-            // Process open file dialog box results 
-            if (result == true)
-            {
-                NotifyAdded(dlg.NewForm);
-            }
-            else
-            {
-                NotifyCanceled(dlg.NewForm);
-            }
-        }
-*/
-
-/*
-        /// <summary>
-        /// Method called on edit click to navigate to a Album edit window.
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Routed event arguments.</param>
-        public override void EditItem_Click(object sender, RoutedEventArgs e)
-        {
-            AlbumEntity entity = (AlbumEntity)(FindName("DataGridCollectionName") as DataGrid).SelectedItem;
-
-            // Check if an AclGroup is founded. 
-            if (entity != null)
-            {
-                // Show open file dialog box 
-                WindowFormAlbumLayout dlg = new WindowFormAlbumLayout(entity);
-                bool? result = dlg.ShowDialog();
-
-                // Process open file dialog box results 
-                if (result == true)
+        /*
+                /// <summary>
+                /// Method called on click event to add a new Album.
+                /// </summary>
+                /// <param name="sender">The sender of the event.</param>
+                /// <param name="e">Routed event arguments.</param>
+                public override void AddItem_Click(object sender, RoutedEventArgs e)
                 {
-                    NotifyChanged(dlg.NewForm);
+                    // Show open file dialog box 
+                    WindowFormAlbumLayout dlg = new WindowFormAlbumLayout(new AlbumEntity());
+                    bool? result = dlg.ShowDialog();
+
+                    // Process open file dialog box results 
+                    if (result == true)
+                    {
+                        NotifyAdded(dlg.NewForm);
+                    }
+                    else
+                    {
+                        NotifyCanceled(dlg.NewForm);
+                    }
                 }
-                else
+        */
+
+        /*
+                /// <summary>
+                /// Method called on edit click to navigate to a Album edit window.
+                /// </summary>
+                /// <param name="sender">The object sender of the event.</param>
+                /// <param name="e">Routed event arguments.</param>
+                public override void EditItem_Click(object sender, RoutedEventArgs e)
                 {
-                    NotifyCanceled(dlg.NewForm);
+                    AlbumEntity entity = (AlbumEntity)(FindName("DataGridCollectionName") as DataGrid).SelectedItem;
+
+                    // Check if an AclGroup is founded. 
+                    if (entity != null)
+                    {
+                        // Show open file dialog box 
+                        WindowFormAlbumLayout dlg = new WindowFormAlbumLayout(entity);
+                        bool? result = dlg.ShowDialog();
+
+                        // Process open file dialog box results 
+                        if (result == true)
+                        {
+                            NotifyChanged(dlg.NewForm);
+                        }
+                        else
+                        {
+                            NotifyCanceled(dlg.NewForm);
+                        }
+                    }
+                    else
+                    {
+                        string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                        log.Warn(message);
+                        MessageBoxs.Warning(message);
+                    }
                 }
-            }
-            else
-            {
-                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
-                log.Warn(message);
-                MessageBoxs.Warning(message);
-            }
-        }
-*/
+        */
 
-/*
-        /// <summary>
-        /// Method called on delete click to delete a Album.
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Routed event arguments.</param>
-        public override void DeleteItems_Click(object sender, RoutedEventArgs e)
-        {
-            AlbumEntity entity = (AlbumEntity)(FindName("DataGridCollectionName") as DataGrid).SelectedItem;
-
-            // Check if an AclGroup is founded. 
-            if (entity != null)
-            {
-                // Alert user for acceptation.
-                MessageBoxResult result = MessageBox.Show
-                (
-                    String.Format(Translation.DWords.MessageBox_Acceptation_DeleteGeneric, Translation.DWords.Album, entity.Name),
-                    Translation.DWords.ApplicationName,
-                    MessageBoxButton.YesNoCancel
-                );
-
-                // If accepted, try to update page model collection.
-                if (result == MessageBoxResult.Yes)
+        /*
+                /// <summary>
+                /// Method called on delete click to delete a Album.
+                /// </summary>
+                /// <param name="sender">The object sender of the event.</param>
+                /// <param name="e">Routed event arguments.</param>
+                public override void DeleteItems_Click(object sender, RoutedEventArgs e)
                 {
-                    NotifyDeleted(entity);
+                    AlbumEntity entity = (AlbumEntity)(FindName("DataGridCollectionName") as DataGrid).SelectedItem;
+
+                    // Check if an AclGroup is founded. 
+                    if (entity != null)
+                    {
+                        // Alert user for acceptation.
+                        MessageBoxResult result = MessageBox.Show
+                        (
+                            String.Format(Dialogs.Properties.Translations.MessageBox_Acceptation_DeleteGeneric, Local.Properties.Translations.Album, entity.Name),
+                            Local.Properties.Translations.ApplicationName,
+                            MessageBoxButton.YesNoCancel
+                        );
+
+                        // If accepted, try to update page model collection.
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            NotifyDeleted(entity);
+                        }
+                    }
+                    else
+                    {
+                        string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                        log.Warn(message);
+                        MessageBoxs.Warning(message);
+                    }
                 }
-            }
-            else
-            {
-                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
-                log.Warn(message);
-                MessageBoxs.Warning(message);
-            }
-        }
-*/
+        */
         /// <summary>
         /// 
         /// </summary>

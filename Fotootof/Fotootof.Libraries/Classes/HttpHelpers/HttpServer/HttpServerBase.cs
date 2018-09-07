@@ -1,7 +1,6 @@
 ﻿using Fotootof.Layouts.Dialogs;
 using System;
 using System.Threading.Tasks;
-using XtrmAddons.Fotootof.Culture;
 using Fotootof.HttpServer;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
@@ -93,15 +92,15 @@ namespace Fotootof.Libraries.HttpHelpers.HttpServer
                     if (server != null)
                     {
                         HttpWebServerApplication.Start(server.Host, server.Port);
-                        log.Info(Translation.DLogs.ServerStarted);
+                        log.Info(Properties.Logs.ServerStarted);
                     }
 
                     NotifyServerStarted();
                 }
                 catch (Exception ex)
                 {
-                    MessageBoxs.Warning(ex.Output(), ex.GetType().Name);
                     log.Error(ex.Output(), ex);
+                    MessageBoxs.Warning(ex.Output(), ex.GetType().Name);
 
                     NotifyServerFailed();
                 }
@@ -118,7 +117,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpServer
         public static void Stop()
         {
             HttpWebServerApplication.Stop();
-            log.Info(Translation.DLogs.ServerStopped);
+            log.Info(Properties.Logs.ServerStopped);
 
             NotifyServerStopped();
         }

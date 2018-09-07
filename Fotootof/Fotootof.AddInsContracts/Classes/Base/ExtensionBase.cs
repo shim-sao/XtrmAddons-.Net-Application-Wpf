@@ -1,6 +1,5 @@
 ﻿using Fotootof.AddInsContracts.Interfaces;
 using Fotootof.Libraries.Enums;
-using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using XtrmAddons.Net.Common.Objects;
 
@@ -9,7 +8,7 @@ namespace Fotootof.AddInsContracts.Base
     /// <summary>
     /// Class XtrmAddons Fotootof AddInsContracts Base Extension.
     /// </summary>
-    [Export(typeof(IExtension))]
+    // [Export(typeof(IExtension))]
     public abstract class ExtensionBase : ObjectBaseNotifier, IExtension
     {
         #region Variables
@@ -23,6 +22,7 @@ namespace Fotootof.AddInsContracts.Base
         #endregion
 
 
+
         #region Properties
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Fotootof.AddInsContracts.Base
         /// <summary>
         /// Property to access to the extension module.
         /// </summary>
-        [Import]
+        // [Import]
         public abstract IModule Module { get; set; }
 
         /// <summary>

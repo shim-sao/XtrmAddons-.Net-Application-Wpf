@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
     xmlns:dg="clr-namespace:Fotootof.Layouts.Controls.DataGrids"
-    xmlns:p="clr-namespace:XtrmAddons.Fotootof.Culture.Properties;assembly=XtrmAddons.Fotootof.Culture"
     xmlns:base="clr-namespace:Fotootof.Libraries.Windows;assembly=Fotootof.Libraries.Windows"
     mc:Ignorable="d"
     Title="{StaticResource WindowsDataGridAlbumsTitle}"
@@ -26,12 +26,12 @@
 					Grid.Row="0">
 
             <!-- #region : Tabs Informations -->
-            <TabItem Header="{x:Static p:Resources.Albums}">
+            <TabItem Header="{x:Static l:Translations.Albums}">
 
                 <dg:DataGridAlbumsLayout x:Name="DataGridAlbumsControlName"
-                                          DataContext="{Binding}"
-                                          HorizontalAlignment="Stretch"
-                                          Grid.Row="0"/>
+                                         Grid.Row="0"
+                                         DataContext="{Binding}"
+                                         HorizontalAlignment="Stretch"/>
 
             </TabItem>
             <!-- #rendegion : Tabs Sections -->
@@ -39,20 +39,18 @@
         </TabControl>
 
 
-        <Border
-            Grid.Row="1"
-            Grid.RowSpan="2">
+        <Border Grid.Row="1" Grid.RowSpan="2">
 
             <Grid>
 				<StackPanel Style="{StaticResource StackPanelFormValidatorStyle}">
 
 					<Button x:Name="Button_Save"
 							Click="DialogSave_Click"
-							Content="{x:Static p:Resources.Save}"
+							Content="{x:Static l:Translations.Save}"
 							Style="{StaticResource ButtonSaveStyle}"/>
 
 					<Button x:Name="Button_Cancel"
-							Content="{x:Static p:Resources.Cancel}"
+							Content="{x:Static l:Translations.Cancel}"
 							Style="{StaticResource ButtonCancelStyle}"/>
 
 				</StackPanel>

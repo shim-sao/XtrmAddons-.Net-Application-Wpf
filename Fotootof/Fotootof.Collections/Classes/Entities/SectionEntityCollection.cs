@@ -1,12 +1,12 @@
 ﻿using Fotootof.Layouts.Dialogs;
 using Fotootof.Navigator;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
+using Fotootof.SQLite.EntityManager.Data.Tables.Json.Models;
 using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
 using Fotootof.SQLite.EntityManager.Interfaces;
 using Fotootof.SQLite.EntityManager.Managers;
 using System;
 using System.Collections.Generic;
-using XtrmAddons.Fotootof.Lib.Api.Models.Json;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Collections.Entities
@@ -58,14 +58,14 @@ namespace Fotootof.Collections.Entities
         /// Class XtrmAddons Fotootof Server Component Section Collections.
         /// </summary>
         /// <param name="list">A list of Section to paste in.</param>
-        public SectionEntityCollection(List<SectionJson> list) : base()
+        public SectionEntityCollection(List<SectionJsonModel> list) : base()
         {
             if (list == null)
             {
                 throw new ArgumentNullException(nameof(list));
             }
 
-            foreach (SectionJson sj in list)
+            foreach (SectionJsonModel sj in list)
             {
                 Add(sj.ToEntity());
             }

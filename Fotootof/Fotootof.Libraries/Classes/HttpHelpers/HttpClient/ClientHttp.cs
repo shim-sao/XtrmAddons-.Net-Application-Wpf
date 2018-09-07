@@ -1,16 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿using Fotootof.HttpClient;
+using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.HttpHelpers.HttpClient.Responses;
+using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Net.Http;
-using XtrmAddons.Fotootof.Culture;
-using Fotootof.Libraries.HttpHelpers.HttpClient.Responses;
-using XtrmAddons.Net.Application.Serializable.Elements.Remote;
-using System.Threading.Tasks;
-using XtrmAddons.Net.Common.Extensions;
 using System.Reflection;
-using Fotootof.HttpClient;
-using Fotootof.Libraries.Systems;
-using Fotootof.Layouts.Dialogs;
+using System.Threading.Tasks;
+using XtrmAddons.Net.Application.Serializable.Elements.Remote;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Libraries.HttpHelpers.HttpClient
 {
@@ -25,7 +23,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
         /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
-            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 
@@ -227,7 +225,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
         /// </summary>
         public async Task Ping()
         {
-            log.Info(string.Format(Translation.Logs["SendingClientCommand"].ToString(), MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
+            log.Info(string.Format(Properties.Logs.SendingClientCommand, MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
 
             // Initialize server response.
             ServerResponse serverResponse = null;
@@ -244,7 +242,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
                 // Raise ping success event on HTTP OK response.
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    log.Info(Translation.Logs["SendingPingCommandResponseOk"]);
+                    log.Info(Properties.Logs.SendingPingCommandResponseOk);
                     RaisePingSuccess(Server, serverResponse);
                 }
 
@@ -252,7 +250,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
                 // Todo : Adapt all http responses
                 else
                 {
-                    log.Error(Translation.Logs["SendingPingCommandResponseFailed"]);
+                    log.Error(Properties.Logs.SendingPingCommandResponseFailed);
                     log.Error(response.StatusCode.ToString() + " : " + serverResponse.Error);
 
                     RaisePingFailed(Server, serverResponse);
@@ -262,13 +260,13 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
             // Catch all exceptions.
             catch (Exception e)
             {
-                log.Error(Translation.Logs["SendingPingCommandException"]);
+                log.Error(Properties.Logs.SendingPingCommandException);
                 log.Fatal(e);
 
                 RaisePingFailed(Server, serverResponse);
             }
 
-            log.Info(Translation.Logs["SendingPingCommandDone"]);
+            log.Info(Properties.Logs.SendingPingCommandDone);
         }
 
 
@@ -278,7 +276,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
         /// </summary>
         public async Task<bool> Authentication()
         {
-            log.Info(string.Format(Translation.Logs["SendingClientCommand"].ToString(), MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
+            log.Info(string.Format(Properties.Logs.SendingClientCommand, MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
 
             // Initialize server response.
             ServerResponse serverResponse = null;
@@ -295,14 +293,14 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
                 // Raise authentication success event on HTTP OK response.
                 if (response.StatusCode == HttpStatusCode.OK && serverResponse.Authentication)
                 {
-                    log.Debug(Translation.DLogs.SendingAuthenticationCommandResponseOk);
+                    log.Debug(Properties.Logs.SendingAuthenticationCommandResponseOk);
                     RaiseAuthenticationSuccess(Server, serverResponse);
                 }
 
                 // Raise authentication unauthorized event unauthorized HTTP response.
                 else if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    log.Debug(Translation.DLogs.SendingAuthenticationCommandResponseUnauthorized);
+                    log.Debug(Properties.Logs.SendingAuthenticationCommandResponseUnauthorized);
                     RaiseAuthenticationUnauthorized(Server, serverResponse);
                 }
 
@@ -310,13 +308,13 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
                 // Todo : Adapt all http responses
                 else
                 {
-                    log.Error(Translation.DLogs.SendingAuthenticationCommandResponseFailed);
+                    log.Error(Properties.Logs.SendingAuthenticationCommandResponseFailed);
                     log.Error(response.StatusCode.ToString() + " : " + serverResponse.Error);
 
                     RaiseAuthenticationFailed(Server, serverResponse);
                 }
 
-                log.Info(Translation.Logs["SendingAuthenticationCommandDone"]);
+                log.Info(Properties.Logs.SendingAuthenticationCommandDone);
 
                 return true;
             }
@@ -324,7 +322,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
             // Catch Web exceptions.
             catch (WebException e)
             {
-                log.Error(Translation.Logs["SendingAuthenticationCommandException"]);
+                log.Error(Properties.Logs.SendingAuthenticationCommandException);
                 log.Fatal(e.Output());
 
                 RaiseAuthenticationFailed(Server, serverResponse);
@@ -335,7 +333,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
             // Catch all exceptions.
             catch (Exception e)
             {
-                log.Error(Translation.Logs["SendingAuthenticationCommandException"]);
+                log.Error(Properties.Logs.SendingAuthenticationCommandException);
                 log.Fatal(e.Output());
 
                 RaiseAuthenticationFailed(Server, serverResponse);
@@ -350,7 +348,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
         /// </summary>
         public async Task<bool> ListSections()
         {
-            log.Info(string.Format(Translation.Logs["SendingClientCommand"].ToString(), MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
+            log.Info(string.Format(Properties.Logs.SendingClientCommand, MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
 
             // Initialize sections server response.
             ServerResponseSections serverResponse = null;
@@ -366,14 +364,14 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
                 // Raise ListSections success event on HTTP OK response.
                 if (response.StatusCode == HttpStatusCode.OK && serverResponse.Authentication)
                 {
-                    log.Debug(Translation.Logs["SendingListSectionsCommandResponseOk"]);
+                    log.Debug(Properties.Logs.SendingListSectionsCommandResponseOk);
                     RaiseListSectionsSuccess(Server, serverResponse);
                 }
 
                 // Raise authentication unauthorized event unauthorized HTTP response.
                 else if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    log.Debug(Translation.Logs["SendingListSectionsCommandUnauthorized"]);
+                    log.Debug(Properties.Logs.SendingListSectionsCommandUnauthorized);
                     RaiseAuthenticationUnauthorized(Server, serverResponse);
                 }
 
@@ -381,13 +379,13 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
                 // Todo : Adapt all http responses
                 else
                 {
-                    log.Error(Translation.Logs["SendingListSectionsCommandResponseFailed"]);
+                    log.Error(Properties.Logs.SendingListSectionsCommandResponseFailed);
                     log.Error(response.StatusCode.ToString() + " : " + serverResponse.Error);
 
                     RaiseListSectionsFailed(Server, serverResponse);
                 }
 
-                log.Info(Translation.Logs["SendingListSectionsCommandDone"]);
+                log.Info(Properties.Logs.SendingListSectionsCommandDone);
 
                 return true;
             }
@@ -395,7 +393,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
             // Catch all exceptions.
             catch (Exception e)
             {
-                log.Error(Translation.Logs["SendingListSectionsCommandException"]);
+                log.Error(Properties.Logs.SendingListSectionsCommandException);
                 log.Fatal(e);
 
                 RaiseListSectionsFailed(Server, serverResponse);
@@ -410,7 +408,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
         /// </summary>
         public async Task ListAlbums()
         {
-            log.Info(string.Format(Translation.DLogs.SendingAlbumsCommand.ToString(), Server.Host, Server.Port));
+            log.Info(string.Format(Properties.Logs.SendingAlbumsCommand.ToString(), Server.Host, Server.Port));
 
             ServerResponseSections serverResponse = null;
 
@@ -441,7 +439,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
                 MessageBase.Fatal(e, $"Server list sections {Server.Host}:{Server.Port} failed !");
             }
 
-            log.Info(Translation.DLogs.SendingAlbumsCommandDone);
+            log.Info(Properties.Logs.SendingAlbumsCommandDone);
         }
         */
 
@@ -451,7 +449,7 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
         /// </summary>
         public async Task SingleSection(int pk)
         {
-            log.Info(string.Format(Translation.Logs["SendingClientCommand"].ToString(), MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
+            log.Info(string.Format(Properties.Logs.SendingClientCommand, MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
 
             // Initialize sections server response.
             ServerResponseSection serverResponse = null;

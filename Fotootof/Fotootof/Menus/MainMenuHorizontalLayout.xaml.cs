@@ -104,11 +104,18 @@ namespace Fotootof.Menus
         /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         private void MenuControl_Click(object sender, RoutedEventArgs e)
         {
-            IComponent ic = ((IModule)(sender as MenuItem).Tag).Component;
-
-            if (ic != null && ic.Context != null)
+            try
             {
-                ComponentNavigator.NavigateToPlugin(ic.Context);
+                IComponent ic = ((IModule)((MenuItem)sender).Tag).Component;
+                if (ic != null && ic.Context != null)
+                {
+                    ComponentNavigator.NavigateToPlugin(ic.Context);
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output());
+                MessageBoxs.Error(ex);
             }
         }
 

@@ -9,11 +9,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net;
-using XtrmAddons.Fotootof.Lib.Api.Models.Json;
 using Fotootof.HttpServer;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.HttpWebServer.Requests;
 using XtrmAddons.Net.HttpWebServer.Responses;
+using Fotootof.SQLite.EntityManager.Data.Tables.Json.Models;
 
 namespace XtrmAddons.Fotootof.Lib.Api.Router
 {
@@ -260,12 +260,12 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        protected List<SectionJson> ConvertJsonAuthSections(IEnumerable sections)
+        protected List<SectionJsonModel> ConvertJsonAuthSections(IEnumerable sections)
         {
-            List<SectionJson> items = new List<SectionJson>();
+            List<SectionJsonModel> items = new List<SectionJsonModel>();
             foreach (SectionEntity section in sections)
             {
-                items.Add(new SectionJson(section, false));
+                items.Add(new SectionJsonModel(section, false));
             }
 
             return items;
@@ -276,7 +276,7 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-       protected SectionJson ConvertJsonAuthSection(SectionEntity entity, bool auth = true)
+       protected SectionJsonModel ConvertJsonAuthSection(SectionEntity entity, bool auth = true)
         {
             if (entity == null)
             {
@@ -296,7 +296,7 @@ namespace XtrmAddons.Fotootof.Lib.Api.Router
             }
             */
 
-            return new SectionJson(entity, auth, true);
+            return new SectionJsonModel(entity, auth, true);
         }
     }
 }

@@ -7,6 +7,7 @@ namespace XtrmAddons.Fotootof.Lib.Api.Models.Json
     /// <summary>
     /// Class XtrmAddons Fotootof Lib Api Models Json Album.
     /// </summary>
+    [System.Obsolete("Fotootof.SQLite.EntityManager.Data.Tables.Json.Models", true)]
     public class AlbumJson : EntityJson
     {
         #region Properties

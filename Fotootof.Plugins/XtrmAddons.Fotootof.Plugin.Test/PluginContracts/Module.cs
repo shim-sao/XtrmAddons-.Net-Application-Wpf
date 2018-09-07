@@ -1,35 +1,38 @@
-﻿using System.ComponentModel.Composition;
-using XtrmAddons.Fotootof.AddInsContracts.Base;
-using XtrmAddons.Fotootof.AddInsContracts.Interfaces;
+﻿using Fotootof.AddInsContracts.Base;
+using Fotootof.AddInsContracts.Interfaces;
+using System.ComponentModel.Composition;
 
 namespace XtrmAddons.Fotootof.Plugin.Test.PluginContracts
 {
     /// <summary>
-    /// 
+    /// Class XtrmAddons Fotootof Plugin Test PluginContracts.
     /// </summary>
-    [Export(typeof(IModule))]
+    [Export("TestModule", typeof(IModule))]
     public class Module : ModuleBase
     {
+        #region Properties
+        
         /// <summary>
-        /// 
+        /// Property to access to the name of the module.
         /// </summary>
-        public override string Name { get => "Plugin test"; set => throw new System.NotImplementedException(); }
+        public override string Name
+        {
+            get => "Plugin test";
+            set => throw new System.NotImplementedException();
+        }
 
         /// <summary>
-        /// 
+        /// Property to access to the process <see cref="IProcess"/> of the module.
         /// </summary>
-        public override string ParentName { get; set; } = "MenuMain_MenuItem_Plugins";
-
-        /// <summary>
-        /// We do not need to create object of it. As it is imported.
-        /// </summary>
-        [Import]
+        [Import("TestProcessor")]
         public override IProcess Process { get; set; }
 
         /// <summary>
-        /// 
+        /// Property nto access to the process <see cref="IComponent"/> of the component.
         /// </summary>
-        [Import]
+        [Import("TestComponent")]
         public override IComponent Component { get; set; }// = new Component();
+        
+        #endregion
     }
 }

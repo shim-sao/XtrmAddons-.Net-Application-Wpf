@@ -1,9 +1,6 @@
 ﻿using Fotootof.AddInsContracts.Interfaces;
-using Microsoft.Win32.SafeHandles;
-using System;
 using System.ComponentModel.Composition;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Net.Common.Objects;
@@ -11,21 +8,21 @@ using XtrmAddons.Net.Common.Objects;
 namespace Fotootof.AddInsContracts.Base
 {
     /// <summary>
-    /// 
+    /// Class Fotootof AddInsContracts Module Base.
     /// </summary>
-    [Export(typeof(IModule))]
+    // [Export(typeof(IModule))]
     public abstract class ModuleBase : ObjectBaseNotifier, IModule
     {
         #region Variables
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// 
+        /// Variable to store the module <see cref="System.Windows.Controls.MenuItem"/>.
         /// </summary>
         private MenuItem menuItem;
 
@@ -35,17 +32,17 @@ namespace Fotootof.AddInsContracts.Base
         #region Properties
 
         /// <summary>
-        /// 
+        /// Property to access to the name of the module.
         /// </summary>
         public abstract string Name { get; set; }
 
         /// <summary>
-        /// 
+        /// Property to access to the parent <see cref="FrameworkElement"/> name.
         /// </summary>
-        public abstract string ParentName { get; set; }
+        public virtual string ParentName { get; set; } = "MenuItem_Plugins_Name";
 
         /// <summary>
-        /// 
+        /// Property to acces to the <see cref="System.Windows.Controls.MenuItem"/> of the module.
         /// </summary>
         public MenuItem MenuItem
         {
@@ -68,24 +65,25 @@ namespace Fotootof.AddInsContracts.Base
         }
 
         /// <summary>
-        /// 
+        /// Property to access to the <see cref="IComponent"/> associated to the model.
         /// </summary>
-        [Import]
-        public abstract Interfaces.IComponent Component { get; set; }
+        // [Import]
+        public abstract IComponent Component { get; set; }
 
         /// <summary>
-        /// 
+        /// Property to access to the <see cref="IProcess"/> associated to the model.
         /// </summary>
-        [Import]
+        // [Import]
         public abstract IProcess Process { get; set; }
 
         #endregion
 
 
+
         #region Methods
 
         /// <summary>
-        /// 
+        /// Method to initialize the module.
         /// </summary>
         private void InitializeModule()
         {
@@ -101,10 +99,10 @@ namespace Fotootof.AddInsContracts.Base
         }
 
         /// <summary>
-        /// 
+        /// Method 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
         private void InterfaceControl_Click(object sender, RoutedEventArgs e)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {Process}");
@@ -119,17 +117,13 @@ namespace Fotootof.AddInsContracts.Base
         #endregion
 
 
+
         #region IDisposable Support
 
         /// <summary>
         /// Variable is disposed ?
         /// </summary>
         private bool disposedValue = false;
-
-        /// <summary>
-        /// Variable Instantiate a SafeHandle instance.
-        /// </summary>
-        private SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
 
         /// <summary>
         /// Method to dispose the object.
@@ -142,32 +136,34 @@ namespace Fotootof.AddInsContracts.Base
                 if (disposing)
                 {
                     // Dispose managed objects.
-                    handle.Dispose();
+                    MenuItem = null;
+                    Component = null;
                 }
 
                 // Dispose not managed objects & big size variables = null.
-                MenuItem = null;
-                Component = null;
 
                 // Flag disposed value.
                 disposedValue = true;
             }
         }
 
-        // TODO: remplacer un finaliseur seulement si la fonction Dispose(bool disposing) ci-dessus a du code pour libérer les ressources non managées.
+        // TODO: replace a finalizer only if the Dispose (bool disposing) feature above has code to release unmanaged resources.
         // ~HttpWebClient()
         //{
-        //    // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.
+        //    // Do not modify this code. Place the cleaning code in Dispose (bool disposing) above.
         //    Dispose(false);
         //}
 
-        // Ce code est ajouté pour implémenter correctement le modèle supprimable.
+        /// <summary>
+        /// This code is added to properly implement the deleteable template.
+        /// </summary>
         public void Dispose()
         {
-            // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.
+            // Do not modify this code. Place the cleaning code in Dispose (bool disposing) above.
             Dispose(true);
-            // TODO: supprimer les marques de commentaire pour la ligne suivante si le finaliseur est remplacé ci-dessus.
-            GC.SuppressFinalize(this);
+
+            // TODO: remove comment marks for the next line if the finalizer is replaced above.
+            // GC.SuppressFinalize(this);
         }
 
         #endregion

@@ -24,7 +24,8 @@ namespace Fotootof.HttpServer
         /// <summary>
         /// Variable path to get route.
         /// </summary>
-        private readonly string _dll = "XtrmAddons.Fotootof.Lib.{0}";
+        // private readonly string _dll = "XtrmAddons.Fotootof.Lib.{0}";
+        private readonly string _dll = "Fotootof.Plugin.{0}";
 
         /// <summary>
         /// Variable object router.
@@ -45,7 +46,7 @@ namespace Fotootof.HttpServer
         /// <summary>
         /// 
         /// </summary>
-        public string Namespace { get; } = "XtrmAddons.Fotootof.Lib.{0}.Router.{1}Route";
+        public string Namespace { get; } = "Fotootof.Plugin.{0}.Router.{1}Route";
 
         /// <summary>
         /// 

@@ -1,11 +1,11 @@
-﻿using XtrmAddons.Fotootof.Lib.Api.Models.Json;
+﻿using Fotootof.SQLite.EntityManager.Data.Tables.Json.Models;
 
 namespace Fotootof.Libraries.HttpHelpers.HttpClient.Responses
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ServerResponseSection : ServerResponseBase<SectionJson>
+    public class ServerResponseSection : ServerResponseBase<SectionJsonModel>
     {/*
         /// <summary>
         /// 

@@ -2,6 +2,7 @@
 using Fotootof.Libraries.Logs;
 using Fotootof.Navigator;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
+using Fotootof.SQLite.EntityManager.Data.Tables.Json.Models;
 using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
 using Fotootof.SQLite.EntityManager.Interfaces;
 using Fotootof.SQLite.EntityManager.Managers;
@@ -10,7 +11,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using XtrmAddons.Fotootof.Lib.Api.Models.Json;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Collections.Entities
@@ -68,7 +68,7 @@ namespace Fotootof.Collections.Entities
         /// Class XtrmAddons Fotootof Common Albums Collection Constructor.
         /// </summary>
         /// <param name="list">A list of Album to paste in.</param>
-        public AlbumEntityCollection(List<AlbumJson> list) : base()
+        public AlbumEntityCollection(List<AlbumJsonModel> list) : base()
         {
             if (list == null)
             {
@@ -82,7 +82,7 @@ namespace Fotootof.Collections.Entities
                 return;
             }
 
-            foreach (AlbumJson item in list)
+            foreach (AlbumJsonModel item in list)
             {
                 Add(item.ToEntity());
             }

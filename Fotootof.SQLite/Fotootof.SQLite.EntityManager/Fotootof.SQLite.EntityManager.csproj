@@ -89,6 +89,11 @@
     <Compile Include="Classes\Data\Tables\Interfaces\IAlbum.cs" />
     <Compile Include="Classes\Data\Tables\Interfaces\IPictureEntity.cs" />
     <Compile Include="Classes\Data\Tables\Interfaces\ISectionEntity.cs" />
+    <Compile Include="Classes\Data\Tables\Json\AlbumJsonModel.cs" />
+    <Compile Include="Classes\Data\Tables\Json\EntityJsonModel.cs" />
+    <Compile Include="Classes\Data\Tables\Json\InfoJsonModel.cs" />
+    <Compile Include="Classes\Data\Tables\Json\PictureJsonModel.cs" />
+    <Compile Include="Classes\Data\Tables\Json\SectionJsonModel.cs" />
     <Compile Include="Classes\Event\EntityChangesEventArgs.cs" />
     <Compile Include="Classes\Managers\ACLActions\AclActionManager.cs" />
     <Compile Include="Classes\Managers\ACLActions\AclActionOptionsList.cs" />

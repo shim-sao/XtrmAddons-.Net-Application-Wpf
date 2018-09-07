@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Controls;
-
-namespace Fotootof.AddInsContracts.Interfaces
+﻿namespace Fotootof.AddInsContracts.Interfaces
 {
     /// <summary>
     /// Interface Fotootof Interfaces AddInsContracts Module.

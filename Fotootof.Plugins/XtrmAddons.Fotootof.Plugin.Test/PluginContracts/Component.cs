@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.Composition;
+﻿using Fotootof.AddInsContracts.Base;
+using Fotootof.AddInsContracts.Interfaces;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Reflection;
-using XtrmAddons.Fotootof.AddInsContracts.Base;
-using XtrmAddons.Fotootof.AddInsContracts.Interfaces;
-
 namespace XtrmAddons.Fotootof.Plugin.Test.PluginContracts
 {
-    [Export(typeof(IComponent))]
+    [Export("TestComponent", typeof(IComponent))]
     public class Component : ComponentBase
     {
         #region Variables
@@ -15,7 +14,7 @@ namespace XtrmAddons.Fotootof.Plugin.Test.PluginContracts
         /// Variable logger.
         /// </summary>
         private static readonly log4net.ILog log =
-        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        	log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         
         #endregion
 

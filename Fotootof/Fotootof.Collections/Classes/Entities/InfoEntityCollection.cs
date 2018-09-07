@@ -105,7 +105,7 @@ namespace Fotootof.Collections.Entities
             {
                 try
                 {
-                    this[i].Name = DWords[entity.Name.RemoveWhitespace().RemoveDiacritics()];
+                    // this[i].Name = DWords[entity.Name.RemoveWhitespace().RemoveDiacritics()];
 
                 }
                 catch (Exception ex)
