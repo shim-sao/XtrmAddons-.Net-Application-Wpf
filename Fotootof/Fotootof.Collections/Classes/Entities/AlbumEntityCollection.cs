@@ -68,7 +68,7 @@ namespace Fotootof.Collections.Entities
         /// Class XtrmAddons Fotootof Common Albums Collection Constructor.
         /// </summary>
         /// <param name="list">A list of Album to paste in.</param>
-        public AlbumEntityCollection(List<AlbumJsonModel> list) : base()
+        public AlbumEntityCollection(IEnumerable<AlbumJsonModel> list) : base()
         {
             if (list == null)
             {
@@ -77,7 +77,7 @@ namespace Fotootof.Collections.Entities
                 return;
             }
 
-            if (list.Count == 0)
+            if (list.Count() == 0)
             {
                 return;
             }
@@ -259,7 +259,7 @@ namespace Fotootof.Collections.Entities
         /// <returns></returns>
         protected static AlbumEntity FormatAlias(AlbumEntity entity)
         {
-            var obj = (IEntityNameAlias)entity;
+            var obj = (IColumnNameAlias)entity;
 
             // Check if the alias is empty. Set name if required.
             if (obj.Alias.IsNullOrWhiteSpace())
@@ -281,7 +281,7 @@ namespace Fotootof.Collections.Entities
                 obj.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss-fff");
             }
 
-            ((IEntityNameAlias)entity).Alias = obj.Alias;
+            ((IColumnNameAlias)entity).Alias = obj.Alias;
 
             return entity;
         }

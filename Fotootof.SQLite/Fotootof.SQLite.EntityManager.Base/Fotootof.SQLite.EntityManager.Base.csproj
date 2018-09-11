@@ -65,6 +65,7 @@
     <Compile Include="Classes\EntitiesQueryExtension.cs" />
     <Compile Include="Classes\EntityManagerDeleteDependency.cs" />
     <Compile Include="Enums\EntityHelper\EnumEntitiesDependencies.cs" />
+    <Compile Include="Enums\EnumPictureType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,6 +14,7 @@ using XtrmAddons.Net.Application;
 using XtrmAddons.Net.HttpWebServer.Requests;
 using XtrmAddons.Net.HttpWebServer.Responses;
 using Fotootof.SQLite.EntityManager.Data.Tables.Json.Models;
+using System.Collections.ObjectModel;
 
 namespace Fotootof.Plugin.Api.Router
 {
@@ -296,9 +297,65 @@ namespace Fotootof.Plugin.Api.Router
                 return null;
             }
 
-            if (entity.Albums == null)
+            SectionJsonModel section = new SectionJsonModel(entity, auth);
+            var keys = entity.AlbumsPKeys;
+
+            if (keys != null)
             {
-                return null;
+                section.Albums = new ObservableCollection<AlbumJsonModel>();
+
+                foreach (int k in keys)
+                {
+                    var album = Database.Albums.SingleOrNull(
+                        new AlbumOptionsSelect
+                        {
+                            PrimaryKey = k
+                        });
+
+                    var albJson = new AlbumJsonModel(album);
+
+                    // Thumbnail picture informations
+                    albJson.ThumbnailPicture = new PictureJsonModel(
+                        Database.Pictures.SingleOrNull(
+                            new PictureOptionsSelect
+                            {
+                                PrimaryKey = album.ThumbnailPictureId
+                            })
+                        );
+
+                    albJson.ThumbnailPicture.ThumbnailPath = GetPicturePath(albJson.ThumbnailPicture, "thumbnail");
+                    albJson.ThumbnailPicture.PicturePath = GetPicturePath(albJson.ThumbnailPicture, "picture");
+                    albJson.ThumbnailPicture.OriginalPath = GetPicturePath(albJson.ThumbnailPicture, "original");
+
+                    // Thumbnail picture informations
+                    albJson.BackgroundPicture = new PictureJsonModel(
+                        Database.Pictures.SingleOrNull(
+                            new PictureOptionsSelect
+                            {
+                                PrimaryKey = album.BackgroundPictureId
+                            })
+                        );
+
+                    albJson.BackgroundPicture.ThumbnailPath = GetPicturePath(albJson.BackgroundPicture, "thumbnail");
+                    albJson.BackgroundPicture.PicturePath = GetPicturePath(albJson.BackgroundPicture, "picture");
+                    albJson.BackgroundPicture.OriginalPath = GetPicturePath(albJson.BackgroundPicture, "original");
+
+                    // Preview picture informations
+                    albJson.PreviewPicture = new PictureJsonModel(
+                        Database.Pictures.SingleOrNull(
+                            new PictureOptionsSelect
+                            {
+                                PrimaryKey = album.PreviewPictureId
+                            })
+                        );
+
+                    albJson.PreviewPicture.ThumbnailPath = GetPicturePath(albJson.PreviewPicture, "thumbnail");
+                    albJson.PreviewPicture.PicturePath = GetPicturePath(albJson.PreviewPicture, "picture");
+                    albJson.PreviewPicture.OriginalPath = GetPicturePath(albJson.PreviewPicture, "original");
+
+
+                    section.Albums.Add(albJson);
+                }
             }
 
             /*
@@ -309,7 +366,18 @@ namespace Fotootof.Plugin.Api.Router
             }
             */
 
-            return new SectionJsonModel(entity, auth, true);
+            return section;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="pathType"></param>
+        /// <returns></returns>
+        private string GetPicturePath(PictureJsonModel p, string pathType)
+        {
+            return $"http://{Uri.Host}:{Uri.Port}/api/picture/{p.PrimaryKey}/{pathType}?sid={CookieString}";
         }
     }
 }

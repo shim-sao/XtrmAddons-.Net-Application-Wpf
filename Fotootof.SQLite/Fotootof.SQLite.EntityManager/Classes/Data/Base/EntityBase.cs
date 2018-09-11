@@ -19,7 +19,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Base
     /// <para>This class provide base properties and methods for database Entity object.</para>
     /// </summary>
     [Serializable, JsonObject(MemberSerialization.OptIn)]
-    public abstract class EntityBase : ObjectBaseNotifier, IEntityPrimaryKey
+    public abstract class EntityBase : ObjectBaseNotifier, IColumnPrimaryKey
     {
         #region Variables
 

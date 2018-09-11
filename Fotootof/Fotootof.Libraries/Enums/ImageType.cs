@@ -5,6 +5,7 @@ namespace Fotootof.Libraries.Enums
     /// <summary>
     /// XtrmAddons Net Picture Picture Type Enumerator.
     /// </summary>
+    [System.Obsolete("Fotootof.SQLite.EntityManager.Enums.EnumPictureType")]
     public enum ImageType
     {
         /// <summary>

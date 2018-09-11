@@ -51,6 +51,7 @@
     <Compile Include="Classes\Entities\PictureEntityCollection.cs" />
     <Compile Include="Classes\Entities\SectionEntityCollection.cs" />
     <Compile Include="Classes\Entities\UserEntityCollection.cs" />
+    <Compile Include="Classes\Models\AlbumModelCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

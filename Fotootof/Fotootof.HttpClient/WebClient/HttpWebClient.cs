@@ -400,30 +400,58 @@ namespace Fotootof.HttpClient.WebClient
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="pk"></param>
         /// <returns>An Http response message.</returns>
-        public HttpResponseMessage SinglePicture(string path)
+        public HttpResponseMessage SinglePicture(int pk)
         {
             try
             {
-                return Client.GetAsync(path).Result;
+                return Client.GetAsync("api/picture/get/" + pk.ToString() + "?" + _urlToken).Result;
             }
             catch (ArgumentNullException e)
             {
                 log.Fatal("ArgumentNullException : Http web client single picture ArgumentNullException !", e);
-                throw new ArgumentNullException("ArgumentNullException : Http web client single picture ArgumentNullException !", e);
+                throw;
             }
             catch (HttpRequestException e)
             {
                 log.Fatal("HttpRequestException : Http web client single picture HttpRequestException !", e);
-                throw new Exception("HttpRequestException : Http web client single picture HttpRequestException !", e);
+                throw;
             }
             catch (Exception e)
             {
                 log.Fatal("FATAL : Http web client single picture exception !", e);
-                throw new Exception("FATAL : Http web client single picture exception !", e);
+                throw;
             }
         }
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="path"></param>
+        ///// <returns>An Http response message.</returns>
+        //public HttpResponseMessage SinglePicture(string path)
+        //{
+        //    try
+        //    {
+        //        return Client.GetAsync(path).Result;
+        //    }
+        //    catch (ArgumentNullException e)
+        //    {
+        //        log.Fatal("ArgumentNullException : Http web client single picture ArgumentNullException !", e);
+        //        throw new ArgumentNullException("ArgumentNullException : Http web client single picture ArgumentNullException !", e);
+        //    }
+        //    catch (HttpRequestException e)
+        //    {
+        //        log.Fatal("HttpRequestException : Http web client single picture HttpRequestException !", e);
+        //        throw new Exception("HttpRequestException : Http web client single picture HttpRequestException !", e);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        log.Fatal("FATAL : Http web client single picture exception !", e);
+        //        throw new Exception("FATAL : Http web client single picture exception !", e);
+        //    }
+        //}
 
         #region IDisposable Support
 

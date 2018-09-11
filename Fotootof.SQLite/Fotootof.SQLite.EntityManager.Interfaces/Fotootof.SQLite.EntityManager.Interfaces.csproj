@@ -37,8 +37,27 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IEntityNameAlias.cs" />
-    <Compile Include="Interfaces\IEntityPrimaryKey.cs" />
+    <Compile Include="Interfaces\IColumnSectionId.cs" />
+    <Compile Include="Interfaces\IColumnCaptured.cs" />
+    <Compile Include="Interfaces\IColumnPictureId.cs" />
+    <Compile Include="Interfaces\IColumnAlbumId.cs" />
+    <Compile Include="Interfaces\IColumnBackgroundPictureId.cs" />
+    <Compile Include="Interfaces\IColumnComment.cs" />
+    <Compile Include="Interfaces\IColumnCreated.cs" />
+    <Compile Include="Interfaces\IColumnDateEnd.cs" />
+    <Compile Include="Interfaces\IColumnDateStart.cs" />
+    <Compile Include="Interfaces\IColumnDescription.cs" />
+    <Compile Include="Interfaces\IColumnIsDefault.cs" />
+    <Compile Include="Interfaces\IColumnModified.cs" />
+    <Compile Include="Interfaces\IColumnNameAlias.cs" />
+    <Compile Include="Interfaces\IColumnOrdering.cs" />
+    <Compile Include="Interfaces\IColumnParameters.cs" />
+    <Compile Include="Interfaces\IColumnPreviewPictureId.cs" />
+    <Compile Include="Interfaces\IColumnPrimaryKey.cs" />
+    <Compile Include="Interfaces\IColumnThumbnailPictureId.cs" />
+    <Compile Include="Interfaces\ITableSections.cs" />
+    <Compile Include="Interfaces\ITablePictures.cs" />
+    <Compile Include="Interfaces\ITableAlbums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

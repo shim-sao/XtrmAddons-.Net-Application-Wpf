@@ -98,6 +98,16 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
         /// 
         /// </summary>
         public event EventHandler OnSingleSectionFailed = delegate { };
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler OnSingleAlbumSuccess = delegate { };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler OnSingleAlbumFailed = delegate { };
 
         /// <summary>
         /// 
@@ -173,6 +183,22 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
         protected void RaiseSingleSectionFailed<T>(Client server, T response = null) where T : class
         {
             OnSingleSectionFailed?.Invoke(this, new ClientHttpEventArgs<T>(server, response));
+        }
+
+        /// <summary>
+        /// Method to raise single Album success event.
+        /// </summary>
+        protected void RaiseSingleAlbumSuccess<T>(Client server, T response = null) where T : class
+        {
+            OnSingleAlbumSuccess?.Invoke(this, new ClientHttpEventArgs<T>(server, response));
+        }
+
+        /// <summary>
+        /// Method to raise authentication failed event.
+        /// </summary>
+        protected void RaiseSingleAlbumFailed<T>(Client server, T response = null) where T : class
+        {
+            OnSingleAlbumFailed?.Invoke(this, new ClientHttpEventArgs<T>(server, response));
         }
 
         /// <summary>
@@ -479,6 +505,46 @@ namespace Fotootof.Libraries.HttpHelpers.HttpClient
             catch (Exception e)
             {
                 RaiseSingleSectionFailed(Server, serverResponse);
+                MessageBoxs.Fatal(e, $"Server single section {Server.Host}:{Server.Port} failed !");
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task SingleAlbum(int pk)
+        {
+            log.Info(string.Format(Properties.Logs.SendingClientCommand, MethodBase.GetCurrentMethod().Name, Server.Host, Server.Port));
+
+            // Initialize sections server response.
+            ServerResponseAlbum serverResponse = null;
+
+            try
+            {
+                // Send command SingleSection to the server.
+                // Decode response as JSon format to exploit sections list.
+                HttpResponseMessage response = WebClient.Client.SingleAlbum(pk);
+                string message = await WebClient.Client.Read(response);
+                serverResponse = JsonConvert.DeserializeObject<ServerResponseAlbum>(message);
+
+                if (response.StatusCode == HttpStatusCode.OK && serverResponse.Authentication)
+                {
+                    RaiseSingleAlbumSuccess(Server, serverResponse);
+                }
+                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    RaiseSingleAlbumFailed(Server, serverResponse);
+                }
+                else
+                {
+                    RaiseSingleAlbumFailed(Server, serverResponse);
+                    MessageBoxs.Error($"Server single section {Server.Host}:{Server.Port} failed !\n\r {response.StatusCode.ToString()} : {serverResponse.Error}");
+                }
+            }
+            catch (Exception e)
+            {
+                RaiseSingleAlbumFailed(Server, serverResponse);
                 MessageBoxs.Fatal(e, $"Server single section {Server.Host}:{Server.Port} failed !");
             }
         }

@@ -1,10 +1,7 @@
 ﻿namespace Fotootof.Libraries.HttpHelpers.HttpClient.Responses
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Libraries Base Http Client.
+    ///Class XtrmAddons Fotootof Libraries HttpHelpers HttpClient Response.
     /// </summary>
-    public class ServerResponse : ServerResponseBase<string>
-    {
-        //public override string Response { get; set; }
-    }
+    public class ServerResponse : ServerResponseBase<string> { }
 }

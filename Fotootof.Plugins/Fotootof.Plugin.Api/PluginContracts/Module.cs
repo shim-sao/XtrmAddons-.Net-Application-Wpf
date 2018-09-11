@@ -5,7 +5,7 @@ using System.ComponentModel.Composition;
 namespace Fotootof.Plugin.Api.PluginContracts
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Plugin Test Plugin Contracts Module.
+    /// Class Fotootof.Plugin.Test Plugin Contracts Module.
     /// </summary>
     [Export("ApiModule", typeof(IModule))]
     public class Module : ModuleBase

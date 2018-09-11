@@ -80,18 +80,30 @@ namespace Fotootof.Plugin.Api.Router
                 SectionEntity entity = null;
 
                 // Try to found section in dependencies.
-                foreach (AclGroupEntity group in user.AclGroups)
+                foreach (int groupPK in user.AclGroupsPKeys)
                 {
                     AclGroupEntity ag = Database.AclGroups.SingleOrDefault
+                    (
+                        new AclGroupOptionsSelect
+                        {
+                            PrimaryKey = groupPK,
+                            Dependencies = new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All }
+                        }
+                    );
+
+                    var dep = ag.SectionsInAclGroups.ToList().Find(x => x.SectionId == id);
+
+                    if(dep != null)
+                    {
+                        entity = Database.Sections.SingleOrDefault
                         (
-                            new AclGroupOptionsSelect
+                            new SectionOptionsSelect
                             {
-                                PrimaryKey = group.PrimaryKey,
+                                PrimaryKey = id,
                                 Dependencies = new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All }
                             }
                         );
-
-                    entity = ag.Sections.ToList().Find(x => x.PrimaryKey == id);
+                    }
 
                     if (entity != null)
                     {
@@ -117,7 +129,7 @@ namespace Fotootof.Plugin.Api.Router
                             Dependencies = new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All }
                         }
                     );
-
+               
                 Content["Authentication"] = true;
                 Content["Response"] = ConvertJsonAuthSection(entity);
                 return ResponseContentToJson();

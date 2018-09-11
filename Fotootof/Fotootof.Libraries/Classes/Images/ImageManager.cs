@@ -1,4 +1,4 @@
-﻿using Fotootof.Libraries.Enums;
+﻿using Fotootof.SQLite.EntityManager.Enums;
 using System;
 using System.Drawing;
 using System.IO;
@@ -110,7 +110,7 @@ namespace Fotootof.Libraries.Images
         /// <param name="imgType"></param>
         /// <param name="fileExt"></param>
         /// <returns>The path to the album directory.</returns>
-        public static string GetAlbumImageAbsolutePath(int albumId, ImageType imgType, string fileExt)
+        public static string GetAlbumImageAbsolutePath(int albumId, EnumPictureType imgType, string fileExt)
         {
             return Path.Combine(GetAlbumsDirectory(), GetRelativePathAlbumImage(albumId, imgType, fileExt));
         }
@@ -122,7 +122,7 @@ namespace Fotootof.Libraries.Images
         /// <param name="imgType"></param>
         /// <param name="fileExt"></param>
         /// <returns>The path to the album directory.</returns>
-        public static async Task<string> GetAbsolutePathAlbumImageAsync(int albumId, ImageType imgType, string fileExt)
+        public static async Task<string> GetAbsolutePathAlbumImageAsync(int albumId, EnumPictureType imgType, string fileExt)
         {
             return Path.Combine(await GetAlbumsDirectoryAsync(), GetRelativePathAlbumImage(albumId, imgType, fileExt));
         }
@@ -154,18 +154,18 @@ namespace Fotootof.Libraries.Images
         /// <param name="imgType"></param>
         /// <param name="fileExt"></param>
         /// <returns>The path to the album directory.</returns>
-        public static string GetRelativePathAlbumImage(int albumId, ImageType imgType, string fileExt)
+        public static string GetRelativePathAlbumImage(int albumId, EnumPictureType imgType, string fileExt)
         {
             // Format Album path by Primary Key
             int root = (int)Math.Floor((double)(albumId / 1024));
             string path = Path.Combine(root.ToString().PadLeft(4, '0'), albumId.ToString().PadLeft(4, '0'));
 
-            if (imgType == ImageType.Picture || imgType == ImageType.Original)
+            if (imgType == EnumPictureType.Background || imgType == EnumPictureType.Preview)
             {
                 return Path.Combine(path, "fanart" + fileExt);
             }
 
-            if (imgType == ImageType.Thumbnail)
+            if (imgType == EnumPictureType.Thumbnail)
             {
                 return Path.Combine(path, "cover" + fileExt);
             }
@@ -176,17 +176,17 @@ namespace Fotootof.Libraries.Images
         /// <summary>
         /// Method to get a picture path.
         /// </summary>
-        public static async Task<Image> CreateAlbumImage(string sourceFilename, ImageType imgType, int albumId)
+        public static async Task<Image> CreateAlbumImage(string sourceFilename, EnumPictureType imgType, int albumId)
         {
             string destFileName = await GetAbsolutePathAlbumImageAsync(albumId, imgType, Path.GetExtension(sourceFilename));
             File.Copy(sourceFilename, destFileName, true);
 
-            if (imgType == ImageType.Picture)
+            if (imgType == EnumPictureType.Preview)
             {
                 return Image.FromFile(destFileName);
             }
 
-            if (imgType == ImageType.Thumbnail)
+            if (imgType == EnumPictureType.Thumbnail)
             {
                 Image img;
                 using (Image src = Image.FromFile(destFileName))

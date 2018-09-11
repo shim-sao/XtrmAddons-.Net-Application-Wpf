@@ -76,6 +76,7 @@
     <Compile Include="Classes\HttpHelpers\HttpClient\Responses\ServerResponse.cs" />
     <Compile Include="Classes\HttpHelpers\HttpClient\Responses\ServerResponseAlbums.cs" />
     <Compile Include="Classes\HttpHelpers\HttpClient\Responses\ServerResponseBase.cs" />
+    <Compile Include="Classes\HttpHelpers\HttpClient\Responses\ServerResponseAlbum.cs" />
     <Compile Include="Classes\HttpHelpers\HttpClient\Responses\ServerResponseSection.cs" />
     <Compile Include="Classes\HttpHelpers\HttpClient\Responses\ServerResponseSections.cs" />
     <Compile Include="Classes\HttpHelpers\HttpServer\HttpServerBase.cs" />

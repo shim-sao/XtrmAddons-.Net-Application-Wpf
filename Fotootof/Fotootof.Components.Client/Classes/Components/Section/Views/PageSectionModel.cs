@@ -1,6 +1,7 @@
 ﻿using Fotootof.Collections.Entities;
+using Fotootof.Collections.Models;
+using Fotootof.Components.Client.Section.Layouts;
 using Fotootof.Layouts.Controls.DataGrids;
-using Fotootof.Layouts.Controls.ListViews;
 using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Components;
 using Fotootof.Libraries.HttpHelpers.HttpClient;
@@ -168,17 +169,29 @@ namespace Fotootof.Components.Client.Section
                 server.OnListSectionsFailed -= Svr_OnListSectionsFailed;
                 server.OnListSectionsFailed += new EventHandler(Svr_OnListSectionsFailed);
 
+                // Add single section failed event handler.
+                server.OnSingleSectionFailed -= Svr_OnSingleSectionFailed;
+                server.OnSingleSectionFailed += new EventHandler(Svr_OnSingleSectionFailed);
+
                 // Add single section success event handler.
                 server.OnSingleSectionSuccess -= Svr_OnSingleSectionSuccess;
                 server.OnSingleSectionSuccess += new EventHandler(Svr_OnSingleSectionSuccess);
+
+                // Add single album failed event handler.
+                server.OnSingleAlbumFailed -= Svr_OnSingleAlbumFailed;
+                server.OnSingleAlbumFailed += new EventHandler(Svr_OnSingleAlbumFailed);
+
+                // Add single album success event handler.
+                server.OnSingleAlbumSuccess -= Svr_OnSingleAlbumSuccess;
+                server.OnSingleAlbumSuccess += new EventHandler(Svr_OnSingleAlbumSuccess);
             }
         }
 
         /// <summary>
         /// Method called on server command authentication failed.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">The event arguments</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The event arguments <see cref="EventArgs"/>.</param>
         private async void Svr_OnAuthenticationSuccess(object sender, EventArgs e)
         {
             log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");
@@ -188,21 +201,14 @@ namespace Fotootof.Components.Client.Section
             ServerResponse result = GetResult<ClientHttpEventArgs<ServerResponse>, ServerResponse>(sender, e);
             if (result == null) return;
 
-            //if (!(e is ClientHttpEventArgs<ServerResponse> svrResp) || svrResp.Result == null)
-            //{
-            //    log.Debug(Properties.Translations.ServerNotResponding);
-            //    MessageBoxs.Error(Properties.Translations.ServerNotResponding);
-            //    return;
-            //}
-
             await Server.ListSections();
         }
 
         /// <summary>
         /// Method called on server command authentication failed.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">The event arguments</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The event arguments <see cref="EventArgs"/>.</param>
         private void Svr_OnAuthenticationFailed(object sender, EventArgs e)
         {
             log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");
@@ -211,13 +217,6 @@ namespace Fotootof.Components.Client.Section
             // Prevent bad response for the user.
             ServerResponse result = GetResult<ClientHttpEventArgs<ServerResponse>, ServerResponse>(sender, e);
             if (result == null) return;
-
-            //if (!(e is ClientHttpEventArgs<ServerResponse> svrResp) || svrResp.Result == null)
-            //{
-            //    log.Debug(Properties.Translations.ServerNotResponding);
-            //    MessageBoxs.Error(Properties.Translations.ServerNotResponding);
-            //    return;
-            //}
 
             try
             {
@@ -236,8 +235,8 @@ namespace Fotootof.Components.Client.Section
         /// <summary>
         /// Method called on server command authentication failed.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">The event arguments</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The event arguments <see cref="EventArgs"/>.</param>
         private void Svr_OnAuthenticationUnauthorized(object sender, EventArgs e)
         {
             log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");
@@ -246,12 +245,6 @@ namespace Fotootof.Components.Client.Section
             // Prevent bad response for the user.
             ServerResponse result = GetResult<ClientHttpEventArgs<ServerResponse>, ServerResponse>(sender, e);
             if (result == null) return;
-
-            //if (!(e is ClientHttpEventArgs<ServerResponse> svrResp) || svrResp.Result == null)
-            //{
-            //    MessageBoxs.Error("Authentication to the server failed : The server does not respond !");
-            //    return;
-            //}
 
             try
             {
@@ -269,8 +262,8 @@ namespace Fotootof.Components.Client.Section
         /// <summary>
         /// Method called on server command list sections success.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">The event arguments</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The event arguments <see cref="EventArgs"/>.</param>
         private void Svr_OnListSectionsSuccess(object sender, EventArgs e)
         {
             log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");
@@ -280,20 +273,6 @@ namespace Fotootof.Components.Client.Section
             ServerResponseSections result = GetResult<ClientHttpEventArgs<ServerResponseSections>, ServerResponseSections>(sender, e);
             if (result == null) return;
 
-            /*
-            ClientHttpEventArgs<ServerResponseSections> r = e as ClientHttpEventArgs<ServerResponseSections>;
-            ServerResponseSections res = null;
-            List<SectionJsonModel> resp = null;
-            if (r != null) { res = r.Result; }
-            if (res != null) { resp = res.Response; }
-            */
-
-            //if (!(e is ClientHttpEventArgs<ServerResponseSections> serverResponse) || serverResponse.Result == null)
-            //{
-            //    MessageBoxs.Error("Authentication to the server failed : The server does not respond !");
-            //    return;
-            //}
-
             List<SectionJsonModel> list = result.Response ?? new List<SectionJsonModel>();
             Sections.Items = new SectionEntityCollection(list);
         }
@@ -301,8 +280,8 @@ namespace Fotootof.Components.Client.Section
         /// <summary>
         /// Method called on server command list sections failed.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">The event arguments</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The event arguments <see cref="EventArgs"/>.</param>
         private void Svr_OnListSectionsFailed(object sender, EventArgs e)
         {
             log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");
@@ -312,30 +291,36 @@ namespace Fotootof.Components.Client.Section
             ServerResponseSections result = GetResult<ClientHttpEventArgs<ServerResponseSections>, ServerResponseSections>(sender, e);
             if (result == null) return;
 
-            //if (!(e is ClientHttpEventArgs<ServerResponseSections> serverResponse) || serverResponse.Result == null)
-            //{
-            //    MessageBoxs.Error("Authentication to the server failed : The server does not respond !");
-            //    return;
-            //}
-
             try
             {
                 log.Debug(result.Error);
-                MessageBoxs.Error($"List sections from the server failed : {result.Error}");
+                MessageBoxs.Error($"Loading list of sections from the server failed : {result.Error}");
             }
             catch (Exception ex)
             {
                 log.Error(e);
                 log.Error(ex.Output(), ex);
-                MessageBoxs.Error($"List sections from the server failed : {ex.Output()}");
+                MessageBoxs.Error($"Loading list of sections from the server failed : {ex.Output()}");
             }
+        }
+
+        /// <summary>
+        /// Method called on server command single Section fail.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The event arguments <see cref="EventArgs"/>.</param>
+        private void Svr_OnSingleSectionFailed(object sender, EventArgs e)
+        {
+            log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");
+
+            MessageBoxs.NotImplemented();
         }
 
         /// <summary>
         /// Method called on server command single section success.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">The event arguments</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The event arguments <see cref="EventArgs"/>.</param>
         private void Svr_OnSingleSectionSuccess(object sender, EventArgs e)
         {
             log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");
@@ -345,14 +330,6 @@ namespace Fotootof.Components.Client.Section
             ServerResponseSection result = GetResult<ClientHttpEventArgs<ServerResponseSection>, ServerResponseSection>(sender, e);
             if (result == null) return;
 
-            //if (!(e is ClientHttpEventArgs<ServerResponseSection> svrResp) || svrResp.Result == null)
-            //{
-            //    string msg = " to the server failed : The server does not respond !";
-            //    log.Debug(msg);
-            //    MessageBoxs.Error(msg);
-            //    return;
-            //}
-
             if (Albums == null)
             {
                 Albums = new ListViewAlbumsModel();
@@ -360,29 +337,48 @@ namespace Fotootof.Components.Client.Section
 
             try
             {
-
                 SectionJsonModel section = result.Response;
-
-                var a = Albums.Items;
-
-                if (section != null && section.Albums != null)
+                if (section?.AlbumsPKeys != null)
                 {
-                    //Albums.Items = new AlbumEntityCollection(section.Property("Albums"));
+                    Albums.Items = new AlbumModelCollection(section.Albums);
                 }
             }
             catch (Exception ex)
             {
-                log.Error(e);
                 log.Error(ex.Output(), ex);
-                MessageBoxs.Error($"Single section from the server failed : {ex.Output()}");
+                MessageBoxs.Error($"Loading single section from the server failed : {ex.Output()}");
             }
         }
 
         /// <summary>
-        /// Method called on server command single section success.
+        /// Method called on server command single Album fail.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">The event arguments</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The event arguments <see cref="EventArgs"/>.</param>
+        private void Svr_OnSingleAlbumFailed(object sender, EventArgs e)
+        {
+            log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");
+
+            MessageBoxs.NotImplemented();
+        }
+
+        /// <summary>
+        /// Method called on server command single Album success.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The event arguments <see cref="EventArgs"/>.</param>
+        private void Svr_OnSingleAlbumSuccess(object sender, EventArgs e)
+        {
+            log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");
+
+            MessageBoxs.NotImplemented();
+        }
+
+        /// <summary>
+        /// Method to get result of an HTTP request.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The event arguments <see cref="EventArgs"/>.</param>
         private U GetResult<T, U>(object sender, EventArgs e) where U : class where T : class
         {
             log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");

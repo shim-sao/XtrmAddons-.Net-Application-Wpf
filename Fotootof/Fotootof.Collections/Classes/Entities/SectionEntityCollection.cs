@@ -164,7 +164,7 @@ namespace Fotootof.Collections.Entities
         /// <returns></returns>
         protected static SectionEntity FormatAlias(SectionEntity entity)
         {
-            var obj = (IEntityNameAlias)entity;
+            var obj = (IColumnNameAlias)entity;
 
             // Check if the alias is empty. Set name if required.
             if (obj.Alias.IsNullOrWhiteSpace())
@@ -186,7 +186,7 @@ namespace Fotootof.Collections.Entities
                 obj.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss-fff");
             }
 
-            ((IEntityNameAlias)entity).Alias = obj.Alias;
+            ((IColumnNameAlias)entity).Alias = obj.Alias;
 
             return entity;
         }

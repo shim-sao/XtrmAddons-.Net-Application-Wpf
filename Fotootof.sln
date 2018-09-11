@@ -85,7 +85,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Local", "Fotootof\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts.Settings", "Fotootof.Layouts\Fotootof.Layouts.Settings\Fotootof.Layouts.Settings.csproj", "{20DDCF36-E71E-42B7-9804-8407150164D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Fotootof.Plugin.Test", "Fotootof.Plugins\XtrmAddons.Fotootof.Plugin.Test\XtrmAddons.Fotootof.Plugin.Test.csproj", "{05D1C7CF-F0B1-4520-A460-303C0A636C4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Plugin.Test", "Fotootof.Plugins\XtrmAddons.Fotootof.Plugin.Test\Fotootof.Plugin.Test.csproj", "{05D1C7CF-F0B1-4520-A460-303C0A636C4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Plugin.Api", "Fotootof.Plugins\Fotootof.Plugin.Api\Fotootof.Plugin.Api.csproj", "{566BCFB7-FC58-41AC-942E-6BEEB6A51B0C}"
 EndProject

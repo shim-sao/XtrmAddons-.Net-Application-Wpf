@@ -167,9 +167,9 @@ namespace Fotootof.Collections
         /// <param name="entity">An entity with an Alias property derived from IAlias.</param>
         /// <param name="items">The list of entities to check in.</param>
         /// <returns></returns>
-        protected static T FormatAlias(T entity, IList<IEntityNameAlias> items)
+        protected static T FormatAlias(T entity, IList<IColumnNameAlias> items)
         {
-            var obj = (IEntityNameAlias)entity;
+            var obj = (IColumnNameAlias)entity;
 
             // Check if the alias is empty. Set name if required.
             if (obj.Alias.IsNullOrWhiteSpace())
@@ -185,7 +185,7 @@ namespace Fotootof.Collections
                 obj.Alias += "-" + d.ToString("yyyy-MM-dd") + "-" + d.ToString("HH-mm-ss-fff");
             }
 
-            ((IEntityNameAlias)entity).Alias = obj.Alias;
+            ((IColumnNameAlias)entity).Alias = obj.Alias;
 
             return entity;
         }

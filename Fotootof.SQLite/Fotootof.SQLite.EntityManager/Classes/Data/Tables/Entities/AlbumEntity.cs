@@ -17,12 +17,12 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
 {
     /// <summary>
-    /// <para>Class XtrmAddons Fotootof Libraries SQLite Album Entity.</para>
+    /// <para>Class XtrmAddons Fotootof SQLite Entity Manager Data Tables Album.</para>
     /// </summary>
     [Serializable]
     [Table("Albums")]
     [JsonObject(MemberSerialization.OptIn)]
-    public partial class AlbumEntity : EntityBase, IEntityNameAlias
+    public partial class AlbumEntity : EntityBase, ITableAlbums
     {
         #region Variables
 
@@ -31,7 +31,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
         /// </summary>
         [NotMapped]
         private static readonly log4net.ILog log =
-            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Variable name of the Album.
@@ -85,31 +85,31 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
         /// Variable the background picture id.
         /// </summary>
         [NotMapped]
-        public int backgroundPictureId = 0;
+        private int backgroundPictureId = 0;
 
         /// <summary>
         /// Variable the preview picture id.
         /// </summary>
         [NotMapped]
-        public int previewPictureId = 0;
+        private int previewPictureId = 0;
 
         /// <summary>
         /// Variable the thumbnail picture id.
         /// </summary>
         [NotMapped]
-        public int thumbnailPictureId = 0;
+        private int thumbnailPictureId = 0;
 
         /// <summary>
         /// Variable comment for the item.
         /// </summary>
         [NotMapped]
-        public string comment = "";
+        private string comment = "";
 
         /// <summary>
         /// Variable parameters for the item.
         /// </summary>
         [NotMapped]
-        public string parameters = "";
+        private string parameters = "";
 
         #endregion
 

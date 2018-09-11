@@ -1,14 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using Fotootof.SQLite.EntityManager.Data.Base;
+using Fotootof.SQLite.EntityManager.Data.Tables.Dependencies.Observables;
+using Fotootof.SQLite.EntityManager.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Xml.Serialization;
-using Fotootof.SQLite.EntityManager.Data.Base;
-using Fotootof.SQLite.EntityManager.Data.Tables.Dependencies;
-using Fotootof.SQLite.EntityManager.Data.Tables.Dependencies.Observables;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
@@ -17,7 +16,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
     /// Class XtrmAddons Fotootof Libraries SQLite Picture Entity.
     /// </summary>
     [Table("Pictures"), Serializable, JsonObject(MemberSerialization.OptIn)]
-    public class PictureEntity : EntityBase
+    public class PictureEntity : EntityBase, ITablePictures
     {
         #region Variables
 
@@ -151,6 +150,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
         private string comment = "";
 
         #endregion
+
 
 
         #region Variables Dependencies Album

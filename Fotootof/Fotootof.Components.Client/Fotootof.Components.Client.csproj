@@ -39,6 +39,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xaml" />
@@ -48,6 +49,9 @@
     <Reference Include="XtrmAddons.Net.Common">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
+    <Reference Include="XtrmAddons.Net.Picture">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Picture.dll</HintPath>
+    </Reference>
     <Reference Include="XtrmAddons.Net.Windows">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Windows.dll</HintPath>
     </Reference>
@@ -56,9 +60,11 @@
     <Compile Include="Classes\Components\Section\Layouts\DataGrids\DataGridSectionsLayout.xaml.cs">
       <DependentUpon>DataGridSectionsLayout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Components\Section\Layouts\ListViews\Helpers\ConverterPicture.cs" />
     <Compile Include="Classes\Components\Section\Layouts\ListViews\ListViewAlbumsLayout.xaml.cs">
       <DependentUpon>ListViewAlbumsLayout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Components\Section\Layouts\ListViews\ListViewAlbumsModel.cs" />
     <Compile Include="Classes\Components\Section\Views\PageSectionLayout.xaml.cs">
       <DependentUpon>PageSectionLayout.xaml</DependentUpon>
     </Compile>

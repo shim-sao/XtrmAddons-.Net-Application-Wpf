@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
+    xmlns:this="clr-namespace:Fotootof.Components.Client.Section.Layouts"
 	xmlns:base="clr-namespace:Fotootof.Layouts.Controls.ListViews;assembly=Fotootof.Layouts"
     mc:Ignorable="d"
 	Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}, Mode=OneWay}"
@@ -195,9 +196,9 @@
           </ListView.ContextMenu>-->
 
           <ListView.Resources>
-            <Style TargetType="{x:Type ListViewItem}"
-							   BasedOn="{StaticResource ListViewItemDefault}" />
-          </ListView.Resources>
+            <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource ListViewItemDefault}" />
+            <this:ConverterPictureClient x:Key="CvPictureClient" />
+           </ListView.Resources>
 
           <ListView.ItemContainerStyle>
             <Style TargetType="{x:Type ListViewItem}">
@@ -223,11 +224,10 @@
           <ListView.ItemTemplate>
             <DataTemplate>
               <Viewbox x:Name="ViewboxFileName"
-									 Width="{Binding ActualWidth, ElementName=WrapPanelItemsContainer, Converter={StaticResource CvResponsiveListViewItem}}"
-									 MaxHeight="{Binding ActualWidth, ElementName=WrapPanelItemsContainer, Converter={StaticResource CvResponsiveListViewItem}}">
+                       Width="{Binding ActualWidth, ElementName=WrapPanelItemsContainer, Converter={StaticResource CvResponsiveListViewItem}}"
+                       MaxHeight="{Binding ActualWidth, ElementName=WrapPanelItemsContainer, Converter={StaticResource CvResponsiveListViewItem}}">
 
-                <Grid x:Name="GridFileBackgroundName"
-									  Style="{DynamicResource PanelSquare256Style}">
+                <Grid x:Name="GridFileBackgroundName" Style="{DynamicResource PanelSquare256Style}">
 
                   <!--<Grid.ContextMenu>
                     <ContextMenu>
@@ -252,24 +252,22 @@
                   </Grid.ContextMenu>-->
 
                   <Image x:Name="ImageFileBackgroundName"
-										   MouseEnter="OnAlbum_MouseEnter"
-										   Source="{Binding ThumbnailPicture.ThumbnailPath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource StringIcon256}, IsAsync=True, Mode=OneWay}"
-										   Stretch="UniformToFill"
-										   Tag="{Binding}"
-										   Width="{StaticResource DoubleIcon256}">
+                         MouseEnter="OnAlbum_MouseEnter"
+                         Source="{Binding ThumbnailPicture.ThumbnailPath, Converter={StaticResource CvPictureClient}, ConverterParameter={StaticResource StringIcon256}, IsAsync=True, Mode=OneWay}"
+                         Stretch="UniformToFill"
+                         Tag="{Binding}"
+                         Width="{StaticResource DoubleIcon256}">
 
                     <Image.ToolTip>
                       <ToolTip x:Name="ToolTipLargeName">
-                        <Grid x:Name="GridToolTipContentLargeName"
-													  Style="{DynamicResource GridToolTipLargeStyle}">
+                        <Grid x:Name="GridToolTipContentLargeName" Style="{DynamicResource GridToolTipLargeStyle}">
 
                           <Image x:Name="GridTooltipContentImageName"
-														   Source="{Binding PreviewPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource StringIcon512}, IsAsync=True, Mode=OneWay}"
-														   Stretch="Uniform"
-														   Panel.ZIndex="0" />
+                                 Source="{Binding PreviewPicture.PicturePath, Converter={StaticResource CvPictureClient}, ConverterParameter={StaticResource StringIcon512}, IsAsync=True, Mode=OneWay}"
+                                 Stretch="Uniform"
+                                 Panel.ZIndex="0" />
 
-                          <Grid x:Name="GridTooltipContentTextName"
-														  Style="{StaticResource FrameworkElementContentTextStyle}">
+                          <Grid x:Name="GridTooltipContentTextName" Style="{StaticResource FrameworkElementContentTextStyle}">
 
                             <Grid.ColumnDefinitions>
                               <ColumnDefinition Width="1*" />
@@ -281,58 +279,56 @@
                             </Grid.RowDefinitions>
 
                             <StackPanel Grid.Row="0"
-																	Orientation="Horizontal"
-																	VerticalAlignment="Top">
+                                        Orientation="Horizontal"
+                                        VerticalAlignment="Top">
 
                               <TextBlock Text="{Binding Name}"
-																	   VerticalAlignment="Center"
-																	   HorizontalAlignment="left"
-																	   Foreground="White"
-																	   TextAlignment="Center"
-																	   FontSize="18"
-																	   Panel.ZIndex="1"
-																	   TextWrapping="Wrap" />
+										VerticalAlignment="Center"
+										HorizontalAlignment="left"
+										Foreground="White"
+										TextAlignment="Center"
+										FontSize="18"
+										Panel.ZIndex="1"
+										TextWrapping="Wrap" />
 
                             </StackPanel>
 
-                            <StackPanel Grid.Row="1"
-																	Orientation="Horizontal">
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
 
                               <TextBlock Text="{Binding Description}"
-																	   VerticalAlignment="Center"
-																	   HorizontalAlignment="left"
-																	   Foreground="White"
-																	   TextAlignment="Center"
-																	   FontSize="14"
-																	   Panel.ZIndex="1"
-																	   TextWrapping="Wrap" />
+										VerticalAlignment="Center"
+										HorizontalAlignment="left"
+										Foreground="White"
+										TextAlignment="Center"
+										FontSize="14"
+										Panel.ZIndex="1"
+										TextWrapping="Wrap" />
 
                             </StackPanel>
 
-                            <StackPanel Grid.Row="2"
-																	Orientation="Horizontal">
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
 
                               <TextBlock Text="{Binding DateStart, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateTimeLongParameter}}"
-																	   VerticalAlignment="center"
-																	   Foreground="White"
-																	   TextAlignment="Center"
-																	   FontSize="12"
-																	   FontStyle="Oblique" />
+										VerticalAlignment="center"
+										Foreground="White"
+										TextAlignment="Center"
+										FontSize="12"
+										FontStyle="Oblique" />
 
                               <TextBlock Text="-"
-																	   Margin="3,0"
-																	   VerticalAlignment="Center"
-																	   Foreground="White"
-																	   TextAlignment="Center"
-																	   FontSize="12"
-																	   FontStyle="Oblique" />
+										Margin="3,0"
+										VerticalAlignment="Center"
+										Foreground="White"
+										TextAlignment="Center"
+										FontSize="12"
+										FontStyle="Oblique" />
 
                               <TextBlock Text="{Binding DateEnd, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateTimeLongParameter}}"
-																	   VerticalAlignment="center"
-																	   Foreground="White"
-																	   TextAlignment="Center"
-																	   FontSize="12"
-																	   FontStyle="Oblique" />
+										VerticalAlignment="center"
+										Foreground="White"
+										TextAlignment="Center"
+										FontSize="12"
+										FontStyle="Oblique" />
 
                             </StackPanel>
                           </Grid>
@@ -343,24 +339,24 @@
 
                   <!-- File Name -->
                   <Border x:Name="BorderFileName"
-											Opacity=".75"
-											VerticalAlignment="top"
-											HorizontalAlignment="Stretch">
+						Opacity=".75"
+						VerticalAlignment="top"
+						HorizontalAlignment="Stretch">
 
                     <TextBox x:Name="TextBoxFileName"
-												 Text="{Binding Name}"
-												 Style="{DynamicResource TextBoxListLargeTitle}"/>
+							Text="{Binding Name}"
+							Style="{DynamicResource TextBoxListLargeTitle}"/>
                   </Border>
 
                   <!-- File Date -->
                   <Border x:Name="BorderFileDateName"
-											Opacity=".75"
-											VerticalAlignment="Bottom"
-											HorizontalAlignment="Stretch">
+						Opacity=".75"
+						VerticalAlignment="Bottom"
+						HorizontalAlignment="Stretch">
 
                     <TextBlock x:Name="TextBoxFileDateName"
-												   Text="{Binding DateStart, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateTimeLongParameter}}"
-												   Style="{DynamicResource TextBoxListLargeDate}"/>
+							Text="{Binding DateStart, Converter={StaticResource CvDate}, ConverterParameter={StaticResource CvDateTimeLongParameter}}"
+							Style="{DynamicResource TextBoxListLargeDate}"/>
                   </Border>
                 </Grid>
               </Viewbox>

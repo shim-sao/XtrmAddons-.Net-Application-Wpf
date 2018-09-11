@@ -20,8 +20,14 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
     /// </summary>
     [Table("Sections"), Serializable, JsonObject(MemberSerialization.OptIn)]
     public partial class SectionEntity : EntityBase,
-        IEntityNameAlias,
-        IEntityDescription
+        IColumnNameAlias,
+        IColumnDescription,
+        IColumnIsDefault,
+        IColumnOrdering,
+        IColumnBackgroundPictureId,
+        IColumnPreviewPictureId,
+        IColumnThumbnailPictureId,
+        IColumnComment
     {
         #region Variables
 

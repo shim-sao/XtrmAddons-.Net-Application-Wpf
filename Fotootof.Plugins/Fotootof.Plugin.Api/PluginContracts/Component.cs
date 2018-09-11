@@ -7,7 +7,7 @@ using System.Reflection;
 namespace Fotootof.Plugin.Api.PluginContracts
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Plugin Test PluginContracts.
+    /// Class Fotootof.Plugin.Test PluginContracts.
     /// </summary>
     [Export("ApiComponent", typeof(IComponent))]
     public class Component : ComponentBase
