@@ -39,7 +39,10 @@ namespace Fotootof.Components.Client.Section.Layouts
         {
             // The value parameter is the data from the source object.
             string filename = (string)value;
-            BitmapImage bmp = null;
+            BitmapImage bmp = new BitmapImage(new Uri(filename));
+            //bmp.BeginInit();
+            //bmp.BaseUri = new Uri(filename);
+            //bmp.EndInit();
 
             try
             {

@@ -12,7 +12,7 @@ namespace Fotootof.Components.Client.Section.Layouts
     /// <summary>
     /// Class XtrmAddons Fotootof Server Common Controls Albums List View.
     /// </summary>
-    public partial class ListViewAlbumsLayout : ListViewAlbumsControl
+    public partial class ListViewAlbumsLayout : ListViewAlbumsControlClient
     {
         #region Properties
 
@@ -110,27 +110,6 @@ namespace Fotootof.Components.Client.Section.Layouts
         private void OnUnselectAll_Click(object sender, RoutedEventArgs e)
         {
             ItemsCollection.UnselectAll();
-        }
-
-        /// <summary>
-        /// Method called on items collection selection changed click event.
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Selection changed event arguments.</param>
-        public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
-
-            if (SelectedItems.Count > 0)
-            {
-                DeleteCtrl.IsEnabled = true;
-                EditCtrl.IsEnabled = true;
-            }
-            else
-            {
-                DeleteCtrl.IsEnabled = false;
-                EditCtrl.IsEnabled = false;
-            }
         }
 
         #endregion

@@ -86,6 +86,7 @@
     <Compile Include="Classes\Controls\DataGrids\Users\DataGridUsersControl.cs" />
     <Compile Include="Classes\Controls\DataGrids\Users\DataGridUsersModel.cs" />
     <Compile Include="Classes\Controls\ListViews\Albums\ListViewAlbumsControl.cs" />
+    <Compile Include="Classes\Controls\ListViews\Albums\ListViewAlbumsControlClient.cs" />
     <Compile Include="Classes\Controls\ListViews\Albums\ListViewAlbumsModel.cs" />
     <Compile Include="Classes\Controls\ListViews\Pictures\ListViewPicturesControl..cs" />
     <Compile Include="Classes\Controls\ListViews\Pictures\ListViewPicturesModel.cs" />

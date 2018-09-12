@@ -47,6 +47,7 @@
     <Reference Include="System.ComponentModel.Composition">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml">
       <Private>False</Private>
     </Reference>
@@ -73,7 +74,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Helpers\RouteHelper.cs" />
     <Compile Include="Classes\IndexRoute.cs" />
+    <Compile Include="Classes\PictureRoute.cs" />
     <Compile Include="Classes\Router.cs" />
     <Compile Include="Classes\SectionRoute.cs" />
     <Compile Include="Classes\SectionsRoute.cs" />
@@ -83,6 +86,11 @@
     <Compile Include="PluginContracts\Module.cs" />
     <Compile Include="PluginContracts\Processor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Images.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Images.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="log4net">
@@ -128,6 +136,15 @@
       <Name>Fotootof.Libraries</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\error-404.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Images.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

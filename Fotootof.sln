@@ -85,9 +85,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Local", "Fotootof\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts.Settings", "Fotootof.Layouts\Fotootof.Layouts.Settings\Fotootof.Layouts.Settings.csproj", "{20DDCF36-E71E-42B7-9804-8407150164D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Plugin.Test", "Fotootof.Plugins\XtrmAddons.Fotootof.Plugin.Test\Fotootof.Plugin.Test.csproj", "{05D1C7CF-F0B1-4520-A460-303C0A636C4D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Plugin.Api", "Fotootof.Plugins\Fotootof.Plugin.Api\Fotootof.Plugin.Api.csproj", "{566BCFB7-FC58-41AC-942E-6BEEB6A51B0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Plugin.Test", "Fotootof.Plugins\Fotootof.Plugin.Test\Fotootof.Plugin.Test.csproj", "{05D1C7CF-F0B1-4520-A460-303C0A636C4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -531,18 +531,6 @@ Global
 		{20DDCF36-E71E-42B7-9804-8407150164D4}.Release|x64.Build.0 = Release|Any CPU
 		{20DDCF36-E71E-42B7-9804-8407150164D4}.Release|x86.ActiveCfg = Release|Any CPU
 		{20DDCF36-E71E-42B7-9804-8407150164D4}.Release|x86.Build.0 = Release|Any CPU
-		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Debug|x64.Build.0 = Debug|Any CPU
-		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Debug|x86.Build.0 = Debug|Any CPU
-		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Release|x64.ActiveCfg = Release|Any CPU
-		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Release|x64.Build.0 = Release|Any CPU
-		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Release|x86.ActiveCfg = Release|Any CPU
-		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Release|x86.Build.0 = Release|Any CPU
 		{566BCFB7-FC58-41AC-942E-6BEEB6A51B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{566BCFB7-FC58-41AC-942E-6BEEB6A51B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{566BCFB7-FC58-41AC-942E-6BEEB6A51B0C}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -555,6 +543,18 @@ Global
 		{566BCFB7-FC58-41AC-942E-6BEEB6A51B0C}.Release|x64.Build.0 = Release|Any CPU
 		{566BCFB7-FC58-41AC-942E-6BEEB6A51B0C}.Release|x86.ActiveCfg = Release|Any CPU
 		{566BCFB7-FC58-41AC-942E-6BEEB6A51B0C}.Release|x86.Build.0 = Release|Any CPU
+		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Debug|x64.Build.0 = Debug|Any CPU
+		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Debug|x86.Build.0 = Debug|Any CPU
+		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Release|x64.ActiveCfg = Release|Any CPU
+		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Release|x64.Build.0 = Release|Any CPU
+		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Release|x86.ActiveCfg = Release|Any CPU
+		{05D1C7CF-F0B1-4520-A460-303C0A636C4D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

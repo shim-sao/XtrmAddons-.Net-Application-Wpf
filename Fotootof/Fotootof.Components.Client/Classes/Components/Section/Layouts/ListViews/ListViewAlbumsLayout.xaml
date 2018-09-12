@@ -1,4 +1,4 @@
-﻿<base:ListViewAlbumsControl
+﻿<base:ListViewAlbumsControlClient
     x:Class="Fotootof.Components.Client.Section.Layouts.ListViewAlbumsLayout"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -367,6 +367,6 @@
 
     </StackPanel>
   </Grid>
-</base:ListViewAlbumsControl>
+</base:ListViewAlbumsControlClient>
 
 

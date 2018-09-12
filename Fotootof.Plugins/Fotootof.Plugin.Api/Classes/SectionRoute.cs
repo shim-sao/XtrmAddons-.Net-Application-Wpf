@@ -1,4 +1,5 @@
-﻿using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
+﻿using Fotootof.Plugin.Api.Helpers;
+using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
 using Fotootof.SQLite.EntityManager.Managers;
 using System;
@@ -58,7 +59,7 @@ namespace Fotootof.Plugin.Api.Router
                 var a = Uri.QueryString;
 
                 // Check if request params are correct.
-                if(Uri.QueryString.Count == 0)
+                if (Uri.QueryString.Count == 0)
                 {
                     log.Info($"{MethodBase.GetCurrentMethod().Name} : Request empty.");
                     log.Info($"{MethodBase.GetCurrentMethod().Name} : Return response => Section not found or doesn't exists.");
@@ -66,7 +67,7 @@ namespace Fotootof.Plugin.Api.Router
                 }
 
                 // Check if request params are correct.
-                if(!Uri.QueryString.Keys.Cast<string>().Contains("id"))
+                if (!Uri.QueryString.Keys.Cast<string>().Contains("id"))
                 {
                     log.Info($"{MethodBase.GetCurrentMethod().Name} : Request param [id] not fount.");
                     log.Info($"{MethodBase.GetCurrentMethod().Name} : Return response => Section not found or doesn't exists.");
@@ -77,39 +78,7 @@ namespace Fotootof.Plugin.Api.Router
 
                 // Get user and dependencies.
                 UserEntity user = GetAuthUser();
-                SectionEntity entity = null;
-
-                // Try to found section in dependencies.
-                foreach (int groupPK in user.AclGroupsPKeys)
-                {
-                    AclGroupEntity ag = Database.AclGroups.SingleOrDefault
-                    (
-                        new AclGroupOptionsSelect
-                        {
-                            PrimaryKey = groupPK,
-                            Dependencies = new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All }
-                        }
-                    );
-
-                    var dep = ag.SectionsInAclGroups.ToList().Find(x => x.SectionId == id);
-
-                    if(dep != null)
-                    {
-                        entity = Database.Sections.SingleOrDefault
-                        (
-                            new SectionOptionsSelect
-                            {
-                                PrimaryKey = id,
-                                Dependencies = new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All }
-                            }
-                        );
-                    }
-
-                    if (entity != null)
-                    {
-                        break;
-                    }
-                }
+                SectionEntity entity = RouteHelper.GetUserSection(id, user);
 
                 // Check if folder is associated or not.
                 if (entity == null)
@@ -129,7 +98,7 @@ namespace Fotootof.Plugin.Api.Router
                             Dependencies = new List<EnumEntitiesDependencies> { EnumEntitiesDependencies.All }
                         }
                     );
-               
+
                 Content["Authentication"] = true;
                 Content["Response"] = ConvertJsonAuthSection(entity);
                 return ResponseContentToJson();

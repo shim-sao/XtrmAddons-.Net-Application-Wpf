@@ -105,7 +105,7 @@ namespace Fotootof.HttpServer
 
                 try
                 {
-                    route = ComponentPath.ToType().GetMethod(Uri.MethodName);
+                    route = ComponentPath.ToType().GetMethod(Uri.MethodName ?? "Index");
                 }
                 catch (Exception e)
                 {
