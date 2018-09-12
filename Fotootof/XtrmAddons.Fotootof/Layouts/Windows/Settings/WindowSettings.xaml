@@ -35,7 +35,7 @@
 										   Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
 								<TextBox x:Name="InputDirectoriesBase"
-										 Style="{StaticResource FieldInputLongTooltipOff}"
+										 Style="{StaticResource TextBoxFieldInputLongTooltipOffStyle}"
 										 Text="{Binding Directories.Base, Mode=OneWay}"
 										 ToolTipService.ToolTip="{Binding Directories.Base, Mode=OneWay}"
 										 Width="320"/>
@@ -113,7 +113,7 @@
 												   Style="{StaticResource TextBlockFieldLabelLongStyle}"/>
 
                                         <TextBox x:Name="InputFilePreferences"
-												 Style="{StaticResource FieldInputLongTooltipOff}"
+												 Style="{StaticResource TextBoxFieldInputLongTooltipOffStyle}"
 												 Text="{Binding Path=FilePreferencesXml, Mode=OneWay}"
 												 ToolTipService.ToolTip="{Binding Path=FilePreferencesXml}"/>
 
@@ -129,7 +129,7 @@
 
                                         <TextBox
                                             x:Name="InputFileOptions"
-                                            Style="{StaticResource FieldInputLongTooltipOff}"
+                                            Style="{StaticResource TextBoxFieldInputLongTooltipOffStyle}"
                                             Text="{Binding Path=FileOptionsXml, Mode=OneWay}"
                                             ToolTipService.ToolTip="{Binding Path=FileOptionsXml}"/>
 
@@ -145,7 +145,7 @@
 
                                         <TextBox
                                             x:Name="InputFileUi"
-                                            Style="{StaticResource FieldInputLongTooltipOff}"
+                                            Style="{StaticResource TextBoxFieldInputLongTooltipOffStyle}"
                                             Text="{Binding Path=FileUiXml, Mode=OneWay}"
                                             ToolTipService.ToolTip="{Binding Path=FileUiXml}"/>
 

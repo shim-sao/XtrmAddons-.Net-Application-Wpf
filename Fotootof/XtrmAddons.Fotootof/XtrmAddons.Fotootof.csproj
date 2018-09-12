@@ -187,6 +187,9 @@
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Fotootof.ServerSide.Component.Browser">
+      <HintPath>..\Packages\$(Configuration)\Fotootof.ServerSide.Component.Browser.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -210,39 +213,39 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="XtrmAddons.Net.Application">
-      <HintPath>..\Packages\XtrmAddons.Net.Application.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Common, Version=1.0.18176.1004, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\XtrmAddons.Net.Common.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.HttpWebServer">
-      <HintPath>..\Packages\XtrmAddons.Net.HttpWebServer.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.HttpWebServer.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Memory">
-      <HintPath>..\Packages\XtrmAddons.Net.Memory.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Memory.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Network">
-      <HintPath>..\Packages\XtrmAddons.Net.Network.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Network.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.NotifyIcons">
-      <HintPath>..\Packages\XtrmAddons.Net.NotifyIcons.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.NotifyIcons.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Picture">
-      <HintPath>..\Packages\XtrmAddons.Net.Picture.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Picture.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SQLiteBundle">
-      <HintPath>..\Packages\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SystemIO">
-      <HintPath>..\Packages\XtrmAddons.Net.SystemIO.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.SystemIO.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Windows">
-      <HintPath>..\Packages\XtrmAddons.Net.Windows.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Windows.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Xml, Version=1.0.18019.2352, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\XtrmAddons.Net.Xml.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Xml.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -255,35 +258,34 @@
     </Compile>
     <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponseAlbums.cs" />
     <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponseSection.cs" />
-    <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClientModel.cs" />
-    <Compile Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClient.xaml.cs">
+    <Compile Include="ComponentOld\ClientSide\Views\ViewCatalog\PageCatalogClientModel.cs" />
+    <Compile Include="ComponentOld\ClientSide\Views\ViewCatalog\PageCatalogClient.xaml.cs">
       <DependentUpon>PageCatalogClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Views\ViewBrowser\PageBrowserModel.cs" />
-    <Compile Include="Component\ServerSide\Views\ViewCatalog\PageCatalog.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Views\ViewCatalog\PageCatalog.xaml.cs">
       <DependentUpon>PageCatalog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Views\ViewCatalog\PageCatalogModel.cs" />
-    <Compile Include="Component\ServerSide\Views\ViewLogs\PageLogs.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Views\ViewCatalog\PageCatalogModel.cs" />
+    <Compile Include="ComponentOld\ServerSide\Views\ViewLogs\PageLogs.xaml.cs">
       <DependentUpon>PageLogs.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Views\ViewPlugin\PagePlugin.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Views\ViewPlugin\PagePlugin.xaml.cs">
       <DependentUpon>PagePlugin.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Component\ServerSide\Views\ViewPlugin\PagePluginModel.cs" />
-    <Compile Include="Component\ServerSide\Views\ViewServer\PageServer.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Views\ViewPlugin\PagePluginModel.cs" />
+    <Compile Include="ComponentOld\ServerSide\Views\ViewServer\PageServer.xaml.cs">
       <DependentUpon>PageServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Views\ViewServer\PageServerModel.cs" />
-    <Compile Include="Component\ServerSide\Views\ViewSlideshow\PageSlideshow.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Views\ViewServer\PageServerModel.cs" />
+    <Compile Include="ComponentOld\ServerSide\Views\ViewSlideshow\PageSlideshow.xaml.cs">
       <DependentUpon>PageSlideshow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Views\ViewSlideshow\PageSlideshowModel.cs" />
-    <Compile Include="Component\ServerSide\Views\ViewUsers\PageUsers.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Views\ViewSlideshow\PageSlideshowModel.cs" />
+    <Compile Include="ComponentOld\ServerSide\Views\ViewUsers\PageUsers.xaml.cs">
       <DependentUpon>PageUsers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Views\ViewUsers\PageUsersModel.cs" />
+    <Compile Include="ComponentOld\ServerSide\Views\ViewUsers\PageUsersModel.cs" />
     <Compile Include="Common\Collections\AclActionEntityCollection.cs" />
     <Compile Include="Common\Controls\DataGrids\DataGridUsersModel.cs" />
     <Compile Include="Common\Controls\ListViews\ListViewPictures.cs" />
@@ -291,7 +293,6 @@
     <Compile Include="Common\Controls\ListViews\ListViewStorages.cs" />
     <Compile Include="Layouts\Menu\MenuMainModel.cs" />
     <Compile Include="Common\Tools\AppLogger.cs" />
-    <Compile Include="Common\Tools\AppOverwork.cs" />
     <Compile Include="Common\Tools\AppNavigator.cs" />
     <Compile Include="Layouts\DataGrids\AclGroups\DataGridAclGroups.cs" />
     <Compile Include="Layouts\DataGrids\AclGroups\DataGridAclGroupsModel.cs" />
@@ -303,29 +304,30 @@
       <DependentUpon>WindowFormClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Layouts\Windows\Forms\ClientForm\WindowFormClientModel.cs" />
+    <Compile Include="Layouts\Windows\Forms\UserForm\ValidationRules.cs" />
     <Compile Include="Layouts\Windows\Slideshow\WindowSlideshow.xaml.cs">
       <DependentUpon>WindowSlideshow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Layouts\Windows\Slideshow\WindowSlideshowModel.cs" />
     <Compile Include="Layouts\Windows\Slideshow\ZoomBoder.cs" />
-    <Compile Include="Component\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml.cs">
       <DependentUpon>DataGridAclGroupsServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Controls\DataGrids\DataGridHttpClientModel.cs" />
-    <Compile Include="Component\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Controls\DataGrids\DataGridHttpClientModel.cs" />
+    <Compile Include="ComponentOld\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml.cs">
       <DependentUpon>DataGridUsersServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Controls\ListViews\ListViewPicturesServer.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Controls\ListViews\ListViewPicturesServer.xaml.cs">
       <DependentUpon>ListViewPicturesServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml.cs">
       <DependentUpon>ListViewStoragesServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Controls\ListViews\ListViewStoragesServerModel.cs" />
-    <Compile Include="Component\ServerSide\Controls\Menu\MenuMainServer.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Controls\ListViews\ListViewStoragesServerModel.cs" />
+    <Compile Include="ComponentOld\ServerSide\Controls\Menu\MenuMainServer.xaml.cs">
       <DependentUpon>MenuMainServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Controls\Servers\ServerInfos.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Controls\Servers\ServerInfos.xaml.cs">
       <DependentUpon>ServerInfos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\HttpHelpers\HttpClient\ClientHttp.cs" />
@@ -334,15 +336,12 @@
     <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponse.cs" />
     <Compile Include="Common\HttpHelpers\HttpClient\Responses\ServerResponseBase.cs" />
     <Compile Include="Common\Collections\StorageCollection.cs" />
-    <Compile Include="Component\ServerSide\Views\ViewBrowser\PageBrowser.xaml.cs">
-      <DependentUpon>PageBrowser.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Component\ServerSide\Views\ViewAlbum\PageAlbumModel.cs" />
-    <Compile Include="Component\ServerSide\Views\ViewAlbum\PageAlbum.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Views\ViewAlbum\PageAlbumModel.cs" />
+    <Compile Include="ComponentOld\ServerSide\Views\ViewAlbum\PageAlbum.xaml.cs">
       <DependentUpon>PageAlbum.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\HttpHelpers\HttpServer\HttpServerBase.cs" />
-    <Compile Include="Component\ClientSide\Controls\ListViews\ListViewAlbumsClient.xaml.cs">
+    <Compile Include="ComponentOld\ClientSide\Controls\ListViews\ListViewAlbumsClient.xaml.cs">
       <DependentUpon>ListViewAlbumsClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\Controls\DataGrids\DataGridUsers.cs" />
@@ -359,10 +358,10 @@
     <Compile Include="Layouts\Windows\Settings\WindowSettings.xaml.cs">
       <DependentUpon>WindowSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Controls\DataGrids\DatagridHttpClient.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Controls\DataGrids\DatagridHttpClient.xaml.cs">
       <DependentUpon>DatagridHttpClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Controls\DataGrids\DataGridSectionsServer.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Controls\DataGrids\DataGridSectionsServer.xaml.cs">
       <DependentUpon>DataGridSectionsServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\Collections\AlbumEntityCollection.cs" />
@@ -393,16 +392,13 @@
     <Compile Include="Layouts\Windows\Forms\UserForm\WindowFormUser.xaml.cs">
       <DependentUpon>WindowFormUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ClientSide\Controls\DataGrids\DataGridSectionsClient.xaml.cs">
+    <Compile Include="ComponentOld\ClientSide\Controls\DataGrids\DataGridSectionsClient.xaml.cs">
       <DependentUpon>DataGridSectionsClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Controls\ListViews\ListViewAlbumsServer.xaml.cs">
+    <Compile Include="ComponentOld\ServerSide\Controls\ListViews\ListViewAlbumsServer.xaml.cs">
       <DependentUpon>ListViewAlbumsServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ServerSide\Controls\Servers\ServerInfosModel.cs" />
-    <Compile Include="Component\ServerSide\Controls\TreeViews\TreeViewSystemStorage.xaml.cs">
-      <DependentUpon>TreeViewSystemStorage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ComponentOld\ServerSide\Controls\Servers\ServerInfosModel.cs" />
     <Compile Include="Layouts\Windows\About\WindowAbout.xaml.cs">
       <DependentUpon>WindowAbout.xaml</DependentUpon>
     </Compile>
@@ -419,46 +415,39 @@
     </Compile>
     <Compile Include="Settings\SettingsOptions.cs" />
     <Compile Include="Settings\SettingsPreferences.cs" />
-    <Compile Include="SideServer\Layouts\TreeViews\Sections\TreeViewSections.xaml.cs">
-      <DependentUpon>TreeViewSections.xaml</DependentUpon>
-    </Compile>
     <Page Include="Common\Controls\DataGrids\UCAlbumsDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="Component\ServerSide\Views\ViewBrowser\PageBrowser.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Component\ClientSide\Views\ViewCatalog\PageCatalogClient.xaml">
+    <Page Include="ComponentOld\ClientSide\Views\ViewCatalog\PageCatalogClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Component\ServerSide\Views\ViewAlbum\PageAlbum.xaml">
+    <Page Include="ComponentOld\ServerSide\Views\ViewAlbum\PageAlbum.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Views\ViewCatalog\PageCatalog.xaml">
+    <Page Include="ComponentOld\ServerSide\Views\ViewCatalog\PageCatalog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Views\ViewLogs\PageLogs.xaml">
+    <Page Include="ComponentOld\ServerSide\Views\ViewLogs\PageLogs.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Views\ViewPlugin\PagePlugin.xaml">
+    <Page Include="ComponentOld\ServerSide\Views\ViewPlugin\PagePlugin.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="Component\ServerSide\Views\ViewServer\PageServer.xaml">
+    <Page Include="ComponentOld\ServerSide\Views\ViewServer\PageServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Views\ViewSlideshow\PageSlideshow.xaml">
+    <Page Include="ComponentOld\ServerSide\Views\ViewSlideshow\PageSlideshow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Views\ViewUsers\PageUsers.xaml">
+    <Page Include="ComponentOld\ServerSide\Views\ViewUsers\PageUsers.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -466,7 +455,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ClientSide\Controls\ListViews\ListViewAlbumsClient.xaml">
+    <Page Include="ComponentOld\ClientSide\Controls\ListViews\ListViewAlbumsClient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -486,27 +475,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml">
+    <Page Include="ComponentOld\ServerSide\Controls\DataGrids\DataGridAclGroupsServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml">
+    <Page Include="ComponentOld\ServerSide\Controls\DataGrids\DataGridUsersServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Controls\ListViews\ListViewPicturesServer.xaml">
+    <Page Include="ComponentOld\ServerSide\Controls\ListViews\ListViewPicturesServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml">
+    <Page Include="ComponentOld\ServerSide\Controls\ListViews\ListViewStoragesServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Controls\Menu\MenuMainServer.xaml">
+    <Page Include="ComponentOld\ServerSide\Controls\Menu\MenuMainServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Controls\Servers\ServerInfos.xaml">
+    <Page Include="ComponentOld\ServerSide\Controls\Servers\ServerInfos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -518,11 +507,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Controls\DataGrids\DatagridHttpClient.xaml">
+    <Page Include="ComponentOld\ServerSide\Controls\DataGrids\DatagridHttpClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Component\ServerSide\Controls\DataGrids\DataGridSectionsServer.xaml">
+    <Page Include="ComponentOld\ServerSide\Controls\DataGrids\DataGridSectionsServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -542,15 +531,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ClientSide\Controls\DataGrids\DataGridSectionsClient.xaml">
+    <Page Include="ComponentOld\ClientSide\Controls\DataGrids\DataGridSectionsClient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Component\ServerSide\Controls\ListViews\ListViewAlbumsServer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Component\ServerSide\Controls\TreeViews\TreeViewSystemStorage.xaml">
+    <Page Include="ComponentOld\ServerSide\Controls\ListViews\ListViewAlbumsServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -570,10 +555,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SideServer\Layouts\TreeViews\Sections\TreeViewSections.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -698,7 +679,9 @@
     <Content Include="Assets\Images\Icons\Buttons\button-list-plus-24.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\Icons\Buttons\button-minus-24.png" />
+    <Content Include="Assets\Images\Icons\Buttons\button-minus-24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Images\Icons\Buttons\button-minus-32.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -827,7 +810,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
-    <Folder Include="SideClient\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Shell32">

@@ -249,16 +249,17 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             UserEntity item = null;
             try
             {
-                item = query.SingleOrDefault(x => x.Name == op.Name);
+                // Search not case sensible.
+                item = query.SingleOrDefault(x => x.Name.ToLower() == op.Name.ToLower());
             }
             catch (ArgumentNullException e)
             {
-                log.Error("User single NAME not found !", e);
+                log.Error(e.Output(), e);
                 return null;
             }
             catch (Exception e)
             {
-                log.Fatal("User single NAME not found !", e);
+                log.Fatal(e.Output(), e);
                 return null;
             }
 

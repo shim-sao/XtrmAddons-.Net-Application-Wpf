@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Reflection;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries SQLite Database Core Scheme.
+    /// Class XtrmAddons Fotootof Lib SQLite Database Core Connector.
     /// </summary>
     public class DatabaseCore : IDisposable
     {
@@ -15,15 +17,15 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
         /// Variable logger.
         /// </summary>
         protected static readonly log4net.ILog log =
-            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// Variable database context entity core.
+        /// Variable to store the database context entity core SQLite connector.
         /// </summary>
         private DatabaseContextCore context = null;
 
         /// <summary>
-        /// Variable database file name.
+        /// Variable to store the SQLite database file name.
         /// </summary>
         private readonly string dbname = "";
 
@@ -34,47 +36,47 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
         #region Properties
 
         /// <summary>
-        /// Property AclAction entities manager.
+        /// Property to access to the AclAction entities query manager.
         /// </summary>
         public AclActionManager AclActions { get; private set; }
 
         /// <summary>
-        /// Variable AclGroup entities manager.
+        /// Property to access to the AclGroup entities query manager.
         /// </summary>
         public AclGroupManager AclGroups { get; private set; }
 
         /// <summary>
-        /// Variable Album Entities manager.
+        /// Property to access to the Album Entities query manager.
         /// </summary>
         public AlbumManager Albums { get; private set; }
 
         /// <summary>
-        /// Variable Info Entities manager.
+        /// Property to access to the Info Entities query manager.
         /// </summary>
         public InfoManager Infos { get; private set; }
 
         /// <summary>
-        /// Variable Picture entities manager.
+        /// Property to access to the Picture entities query manager.
         /// </summary>
         public PictureManager Pictures { get; private set; }
 
         /// <summary>
-        /// Property Section entities manager.
+        /// Property to access to the Section entities query manager.
         /// </summary>
         public SectionManager Sections { get; private set; }
 
         /// <summary>
-        /// Variable User entities manager.
+        /// Property to access to the User entities query manager.
         /// </summary>
         public UserManager Users { get; private set; }
 
         /// <summary>
-        /// Variable Version entities manager.
+        /// Property to access to the Version entities query manager.
         /// </summary>
         public VersionManager Versions { get; private set; }
 
         /// <summary>
-        /// Accessors for database context entity core.
+        /// Property to access to the database context entity core connector.
         /// </summary>
         public DatabaseContextCore Context
         {
@@ -82,8 +84,13 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
             {
                 if (dbname != "")
                 {
+                    // Create the connection to the database.
                     bool isCreated = Connect();
+
+                    // Register all entities query managers with the database context.
                     RegisterContext();
+
+                    // Populate database if is new.
                     if(isCreated == true)
                     {
                         PopulateDatabase();
@@ -101,7 +108,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
         #region Constructor
 
         /// <summary>
-        /// <para>Class XtrmAddons PhotoAlbum Server SQLite Database Core constructor.</para>
+        /// <para>Class XtrmAddons Fotootof Lib SQLite Database Core Connector constructor.</para>
         /// <para>This class provide database connection and data management.</para>
         /// </summary>
         /// <param name="database">A database filename. Full path of the SQLite database.</param>
@@ -111,15 +118,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
         {
             if (filename == null)
             {
-                throw new ArgumentNullException(nameof(filename), "Database file name is null !");
+                throw new ArgumentNullException(nameof(filename), SQLiteTranslation.DLogs.SQLiteDatabaseFileNameNull);
             }
 
             if (filename == "")
             {
-                throw new ArgumentException(nameof(filename), "Database file name is empty !");
+                throw new ArgumentException(nameof(filename), SQLiteTranslation.DLogs.SQLiteDatabaseFileNameEmpty);
             }
 
+            // Store the file name of the database.
             dbname = filename;
+
+            // try to create connection.
             Context.Dispose();
         }
 
@@ -130,7 +140,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
         #region Methods
 
         /// <summary>
-        /// Method to connect to the database.
+        /// <para>Method to create a connection to the to the database.</para>
+        /// <para>The database is ensure to be created on connection request.</para>
         /// </summary>
         /// <exception cref="InvalidOperationException">Exception thrown if database connection fail.</exception>
         private bool Connect()
@@ -144,15 +155,11 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
             }
             catch (Exception e)
             {
-                string s = string.Format("Cannot open database : {0}", dbname);
+                string s = $"Cannot open database : {dbname}";
+                log.Fatal(s);
+                log.Fatal(e.Output(), e);
 
-                log.Fatal("FATAL : " + s);
-                log.Fatal(string.Format("{0} : {1}", e.HResult, e.Message));
-                log.Fatal(e.TargetSite);
-                log.Fatal(e.Source);
-                log.Fatal(e.StackTrace);
-
-                throw new InvalidOperationException(string.Format("Cannot open database : {0}", dbname), e);
+                throw e;
             }
         }
 
@@ -185,17 +192,42 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme
             Pictures = new PictureManager(context);
             Sections = new SectionManager(context);
             Users = new UserManager(context);
+            Versions = new VersionManager(context);
+        }
+
+        /// <summary>
+        /// Method to populate database after EnsureCreated()
+        /// </summary>
+        private void PopulateDatabase()
+        {
+            log.Warn($"SQLite Server Database version : {ServerVersion()}");
+            log.Warn($"SQLite Initializing Tables content. Please wait...");
+
+            try
+            {
+                AclActions.InitializeTable();
+                AclGroups.InitializeTable();
+                Infos.InitializeTable();
+                Versions.InitializeTable();
+
+                log.Warn($"SQLite Initializing Tables content. Done.");
+            }
+            catch (Exception ex)
+            {
+                log.Error("SQLite Initializing Tables content. Exception.");
+                log.Error(ex.Output(), ex);
+                throw ex;
+            }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private void PopulateDatabase()
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public string ServerVersion()
         {
-            AclActions.ServerVersion();
-            AclActions.InitializeTable();
-            AclGroups.InitializeTable();
-            Infos.InitializeTable();
+            return context.Database.GetDbConnection().ServerVersion;
         }
 
         #endregion

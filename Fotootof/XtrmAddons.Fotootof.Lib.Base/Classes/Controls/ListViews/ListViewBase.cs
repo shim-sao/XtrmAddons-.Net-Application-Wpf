@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using XtrmAddons.Fotootof.Lib.Base.Interfaces;
 using XtrmAddons.Fotootof.Lib.SQLite.Event;
 
 namespace XtrmAddons.Fotootof.Lib.Base.Classes.Controls.ListViews

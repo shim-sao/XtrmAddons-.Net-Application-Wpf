@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
     /// </summary>
     public partial class AclGroupManager : EntitiesManager
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private new static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
         #region Constructors
 
         /// <summary>
@@ -228,13 +241,58 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
         }
 
         /// <summary>
-        /// Method to inialize content of the table AclGroup after EnsureCreated()
+        /// <para>Method to inialize content of the table AclGroup after EnsureCreated()</para>
+        /// <para>Call this method after database construction.</para>
         /// </summary>
         internal void InitializeTable()
         {
-            Context.AclGroups.Add(new AclGroupEntity() { PrimaryKey = 1, Name = "Administrateur", Alias = "administrateur", Comment = "Groupe authorisés à gérer l'administration du serveur." });
-            Context.AclGroups.Add(new AclGroupEntity() { PrimaryKey = 2, Name = "Visiteurs", Alias = "visiteurs", Comment = "Groupe authorisé à visiter la librairie d'images.", IsDefault = true });
-            Save();
+            try
+            {
+                log.Info("SQLite Initializing Table `AclGroups`. Please wait...");
+                AclGroupEntity row;
+
+                // INSERT Administrator Group.
+                row = Context.AclGroups.Add(new AclGroupEntity
+                {
+                    PrimaryKey = 1,
+                    Name = SQLiteTranslation.DWords.Administrator,
+                    Alias = SQLiteTranslation.DWords.Administrator.ToLower(),
+                    Comment = SQLiteTranslation.DWords.AdministratorComment
+                }).Entity;
+                Save();
+                row.AclActionsPKeys.Add(1);
+                row.AclActionsPKeys.Add(2);
+                row.AclActionsPKeys.Add(3);
+                row.AclActionsPKeys.Add(4);
+                row.AclActionsPKeys.Add(5);
+                row.AclActionsPKeys.Add(6);
+                row.AclActionsPKeys.Add(7);
+                row.AclActionsPKeys.Add(8);
+                Update(row);
+
+                // INSERT Visitor Group.
+                row = Context.AclGroups.Add(new AclGroupEntity
+                {
+                    PrimaryKey = 2,
+                    Name = SQLiteTranslation.DWords.Visitor,
+                    Alias = SQLiteTranslation.DWords.Visitor.ToLower(),
+                    Comment = SQLiteTranslation.DWords.VisitorComment,
+                    IsDefault = true
+                }).Entity;
+                Save();
+                row.AclActionsPKeys.Add(4);
+                row.AclActionsPKeys.Add(8);
+                Update(row);
+
+                // Save content in database.
+                int result = Save();
+                log.Info($"SQLite Initializing Table `AclGroups`. {result} affected rows.");
+            }
+            catch (Exception ex)
+            {
+                log.Error("SQLite Initializing Table `AclGroups`. Exception.");
+                log.Error(ex.Output(), ex);
+            }
         }
 
         #endregion

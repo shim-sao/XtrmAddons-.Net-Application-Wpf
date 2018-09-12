@@ -1,8 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using XtrmAddons.Fotootof.Lib.Base.Classes.Controls.Systems;
 
+
 namespace XtrmAddons.Fotootof.Common.Collections
 {
+    [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Collections.CollectionStorage")]
     public class StorageCollection : ObservableCollection<StorageInfoModel>
     {
         public int DirectoriesCount => GetDirectoriesCount();
@@ -11,7 +13,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
         {
             int count = 0;
 
-            foreach (StorageInfoModel sim in this)
+            foreach (var sim in this)
             {
                 if (!sim.IsPicture)
                 {
@@ -28,7 +30,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
         {
             int count = 0;
 
-            foreach (StorageInfoModel sim in this)
+            foreach (var sim in this)
             {
                 if (sim.IsPicture)
                 {

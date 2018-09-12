@@ -3,41 +3,42 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 	
-	<!-- DataGrids -->
+	<!--
+		DataGrids Template
+		- Custom brush are tested and woking fine.
+	-->
 	<Style TargetType="DataGrid">
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="BorderThickness" Value="0" />
-		<Setter Property="Foreground" Value="{DynamicResource CustomWindowTextBrush}" />
 	</Style>
 
 	<Style TargetType="DataGridColumnHeader">
-		<Setter Property="Background" Value="{DynamicResource ChromeMediumBrush}" />
-		<Setter Property="BorderBrush" Value="{DynamicResource AltMediumBrush}" />
+		<Setter Property="Background" Value="{DynamicResource CustomDataGridHeaderBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource CustomDataGridHeaderBorderBrush}" />
 		<Setter Property="BorderThickness" Value="1" />
 		<Setter Property="FontWeight"  Value="Bold" />
+		<Setter Property="Foreground" Value="{DynamicResource CustomDataGridHeaderTextBrush}" />
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 		<Setter Property="Padding"  Value="3" />
 	</Style>
 
 	<Style TargetType="DataGridRow">
-		<Style.Resources>
-			<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{DynamicResource ListAccentMediumBrush}"/>
-			<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{DynamicResource ChromeMediumLowBrush}" />
-			<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource CustomWindowTextBrush}" />
-			<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{DynamicResource CustomWindowTextBrush}" />
-		</Style.Resources>
-
-		<!-- Warning message but color is present !? -->
-		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
-		<!--<Setter Property="Foreground" Value="{DynamicResource CustomWindowTextBrush}" />-->
+		<Setter Property="BorderThickness" Value="0" />
 	</Style>
-	
+
 	<Style TargetType="DataGridCell">
+		<Setter Property="BorderThickness" Value="1,0,1,1" />
+		
 		<Style.Triggers>
+			<Trigger Property="IsSelected" Value="False">
+				<Setter Property="Background" Value="{DynamicResource CustomDataGridRowBrush}" />
+				<Setter Property="BorderBrush" Value="{DynamicResource CustomDataGridRowBorderBrush}" />
+				<Setter Property="Foreground" Value="{DynamicResource CustomDataGridRowTextBrush}" />
+			</Trigger>
 			<Trigger Property="IsSelected" Value="True">
-				<Setter Property="Background" Value="{DynamicResource ListAccentLowBrush}" />
-				<Setter Property="BorderBrush" Value="{DynamicResource AltMediumBrush}" />
-				<Setter Property="Foreground" Value="{DynamicResource CustomWindowTextBrush}" />
+				<Setter Property="Background" Value="{DynamicResource CustomDataGridCellBrush}" />
+				<Setter Property="BorderBrush" Value="{DynamicResource CustomDataGridCellBorderBrush}" />
+				<Setter Property="Foreground" Value="{DynamicResource CustomDataGridCellTextBrush}" />
 			</Trigger>
 		</Style.Triggers>
 	</Style>

@@ -66,6 +66,20 @@ namespace XtrmAddons.Fotootof.Lib.Base.Classes.AppSystems
         }
 
         /// <summary>
+        /// Method to display a simple message in a dialog box.
+        /// </summary>
+        /// <param name="s">The message to display.</param>
+        public static MessageBoxResult YesNo(string s, string title = "", MessageBoxImage img = MessageBoxImage.Question)
+        {
+            MessageBoxResult result = MessageBoxResult.None;
+            ApplicationBase.BeginInvokeIfRequired(new Action(() =>
+            {
+                result = MessageBox.Show(s, $"{Translation.DWords.Application} - {title}", MessageBoxButton.YesNo, img);
+            }));
+            return result;
+        }
+
+        /// <summary>
         /// Method to display an error message in a dialog box.
         /// </summary>
         /// <param name="s">The message to display.</param>

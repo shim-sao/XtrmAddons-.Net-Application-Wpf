@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
@@ -11,6 +12,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
     /// </summary>
     [Serializable]
     [Table("Versions")]
+    [JsonObject(MemberSerialization.OptIn, Title = "Version")]
+    [XmlType(TypeName = "Version")]
     public partial class VersionEntity : EntityBase
     {
         #region Variables
@@ -18,29 +21,27 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Variable logger.
         /// </summary>
+        [XmlIgnore]
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Variable assembly version min.
         /// </summary>
-        [NotMapped]
-        [JsonIgnore]
+        [XmlIgnore]
         private string assemblyVersionMin = "";
 
         /// <summary>
         /// Variable assembly version max.
         /// </summary>
-        [NotMapped]
-        [JsonIgnore]
+        [XmlIgnore]
         private string assemblyVersionMax = "";
 
 
         /// <summary>
         /// Variable comment for the Version.
         /// </summary>
-        [NotMapped]
-        [JsonIgnore]
+        [XmlIgnore]
         private string comment = "";
 
         #endregion
@@ -54,6 +55,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// </summary>
         [Key]
         [Column(Order = 0)]
+        [XmlIgnore]
         public int VersionId
         {
             get { return primaryKey; }
@@ -61,7 +63,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
             {
                 if (value != primaryKey)
                 {
-                    primaryKey = value;
+                    PrimaryKey = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -71,6 +73,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the assembly version min.
         /// </summary>
         [Column(Order = 1)]
+        [JsonProperty(PropertyName = "AssemblyVersionMin")]
+        [XmlAttribute(DataType = "string", AttributeName = "AssemblyVersionMin")]
         public string AssemblyVersionMin
         {
             get { return assemblyVersionMin; }
@@ -88,6 +92,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the assembly version max.
         /// </summary>
         [Column(Order = 2)]
+        [JsonProperty(PropertyName = "AssemblyVersionMax")]
+        [XmlAttribute(DataType = "string", AttributeName = "AssemblyVersionMax")]
         public string AssemblyVersionMax
         {
             get { return assemblyVersionMax; }
@@ -105,6 +111,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property comment for the Version.
         /// </summary>
         [Column(Order = 3)]
+        [JsonProperty(PropertyName = "Comment")]
+        [XmlAttribute(DataType = "string", AttributeName = "Comment")]
         public string Comment
         {
             get { return comment; }

@@ -15,6 +15,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Info Collections.
     /// </summary>
+    [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities.InfoEntityCollection")]
     public class InfoEntityCollection : CollectionBaseEntity<InfoEntity, InfoOptionsList>
     {
         #region Properties

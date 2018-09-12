@@ -10,8 +10,8 @@ using XtrmAddons.Fotootof.AddInsContracts.Interfaces;
 using XtrmAddons.Fotootof.Common.Collections;
 using XtrmAddons.Fotootof.Common.HttpHelpers.HttpServer;
 using XtrmAddons.Fotootof.Common.Tools;
-using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewCatalog;
-using XtrmAddons.Fotootof.Component.ServerSide.Views.ViewUsers;
+using XtrmAddons.Fotootof.ComponentOld.ServerSide.Views.ViewCatalog;
+using XtrmAddons.Fotootof.ComponentOld.ServerSide.Views.ViewUsers;
 using XtrmAddons.Fotootof.Layouts.Windows.About;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.AlbumForm;
 using XtrmAddons.Fotootof.Layouts.Windows.Forms.ClientForm;
@@ -165,7 +165,7 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
             mi.IsChecked = AppSettings.GetBool(mi, "IsChecked", mi.IsChecked);
             if (mi.IsChecked)
             {
-                AppNavigator.MainWindow.ToggleLogs();
+                (Application.Current.MainWindow as MainWindow).ToggleLogs();
             }
         }
 
@@ -176,15 +176,15 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         {
             if (HttpWebServerApplication.IsStarted)
             {
-                ((MenuItem)FindName("MenuItem_Server_Start")).IsEnabled = false;
-                ((MenuItem)FindName("MenuItem_Server_Stop")).IsEnabled = true;
-                ((MenuItem)FindName("MenuItem_ServerRestart")).IsEnabled = true;
+                ((MenuItem)FindName("MenuItemServerStartName")).IsEnabled = false;
+                ((MenuItem)FindName("MenuItemServerStopName")).IsEnabled = true;
+                ((MenuItem)FindName("MenuItemServerRestartName")).IsEnabled = true;
             }
             else
             {
-                ((MenuItem)FindName("MenuItem_Server_Start")).IsEnabled = true;
-                ((MenuItem)FindName("MenuItem_Server_Stop")).IsEnabled = false;
-                ((MenuItem)FindName("MenuItem_ServerRestart")).IsEnabled = false;
+                ((MenuItem)FindName("MenuItemServerStartName")).IsEnabled = true;
+                ((MenuItem)FindName("MenuItemServerStopName")).IsEnabled = false;
+                ((MenuItem)FindName("MenuItemServerRestartName")).IsEnabled = false;
             }
         }
 
@@ -244,7 +244,7 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         /// <param name="e">The routed event arguments.</param>
         private void OnDisplayLogsWindowClick(object sender, RoutedEventArgs e)
         {
-            AppNavigator.MainWindow.ToggleLogs();
+            (Application.Current.MainWindow as MainWindow).ToggleLogs();
             MenuItem mi = (MenuItem)FindName("MenuItemDisplayLogs");
             AppSettings.SaveBool(mi, "IsChecked", mi.IsChecked);
         }
@@ -370,16 +370,17 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
             // Process open file dialog box results 
             if (result == true)
             {
-                log.Info("Adding or editing User informations. Please wait...");
+                MessageBase.IsBusy = true;
+                log.Warn("Adding or editing User informations. Please wait...");
 
                 UserEntityCollection.DbInsert(new List<UserEntity> { dlg.NewForm });
 
-                if(MainFrame.Content.GetType() == typeof(PageUsers))
+                if(MainFrame?.Content?.GetType() == typeof(PageUsers))
                 {
                     ((PageUsers)MainFrame.Content).Model.Users.Items.Add(dlg.NewForm);
                 }
 
-                log.Info("Adding or editing User informations. Done");
+                log.Warn("Adding or editing User informations. Done");
                 MessageBase.IsBusy = false;
             }
         }
@@ -457,6 +458,12 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
         private void ThemeChanged_Click(object sender, RoutedEventArgs e)
         {
+            var result = MessageBase.YesNo("This action require to restart application. Do you want to continue ?", "Theme");
+            if(result != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
             // Get the Theme name from the event sender.
             string theme = (string)((FrameworkElement)sender).Tag;
 
@@ -465,7 +472,11 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
             ApplicationBase.SaveUi();
 
             // Check the right theme MenuItem.
-            ToggleMenuItemTheme();
+            //ToggleMenuItemTheme
+
+            // Restart the application.
+            System.Windows.Forms.Application.Restart();
+            Application.Current.Shutdown();
         }
 
         /// <summary>
@@ -500,7 +511,17 @@ namespace XtrmAddons.Fotootof.Layouts.Menu
         /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
         private void CatalogNavigateTo_Click(object sender, RoutedEventArgs e)
         {
-            AppNavigator.LoadPage(nameof(PageCatalog), new PageCatalog());
+            AppNavigator.NavigateToPageCatalog();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
+        private void ServerRemote_Click(object sender, RoutedEventArgs e)
+        {
+            AppNavigator.NavigateToPageServer();
         }
 
         #endregion

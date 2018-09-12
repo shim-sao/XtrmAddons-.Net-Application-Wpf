@@ -102,7 +102,7 @@ namespace XtrmAddons.Fotootof.Settings
 
                 };
 
-                log.Info("dAdding new default database parameters to preferences");
+                log.Info("Adding new default database parameters to preferences");
                 ApplicationBase.Options.Data.Databases.Add(database);
             }
 

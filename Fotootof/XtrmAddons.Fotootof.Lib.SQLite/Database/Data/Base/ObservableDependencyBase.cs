@@ -899,15 +899,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Base
                     {
                         if (FindIndexInDepReferences(pkValue) == -1 && IsPopulated == true)
                         {
-                            E reference = EntityBase.Db.Context.Find<E>(pkValue);
-
-                            if (reference != null && !DepReferences.Contains(reference))
+                            if(EntityBase.Db != null)
                             {
-                                ApplicationBase.BeginInvokeIfRequired(new Action(() =>
+                                E reference = EntityBase.Db.Context.Find<E>(pkValue);
+
+                                if (reference != null && !DepReferences.Contains(reference))
                                 {
-                                    DepReferences.Add(reference);
-                                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {reference.GetType().Name} {(reference as EntityBase).PrimaryKey} to REFERENCES.");
-                                }));
+                                    ApplicationBase.BeginInvokeIfRequired(new Action(() =>
+                                    {
+                                        DepReferences.Add(reference);
+                                        log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Adding {reference.GetType().Name} {(reference as EntityBase).PrimaryKey} to REFERENCES.");
+                                    }));
+                                }
                             }
                         }
                     }

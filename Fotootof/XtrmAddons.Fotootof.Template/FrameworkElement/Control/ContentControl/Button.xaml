@@ -11,6 +11,15 @@
 		<Setter Property="Width" Value="auto" />
 	</Style>
 	
+	<Style x:Key="ButtonSubMenuStyle" TargetType="{x:Type Button}">
+		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="FontSize" Value="{StaticResource MenuFontSizeBig}" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="{DynamicResource CustomSubMenuTextBrush}" />
+		<Setter Property="Padding" Value="10,0" />
+	</Style>
+	
 	<Style x:Key="ButtonCancelStyle" TargetType="{x:Type Button}">
 		<Setter Property="FontSize" Value="{StaticResource FontSizeNormal}" />
 		<Setter Property="IsCancel" Value="True" />
@@ -47,13 +56,5 @@
 	
 	
 
-	<Style x:Key="ButtonSubMenu" TargetType="{x:Type Button}">
-		<Setter Property="Background" Value="{DynamicResource ChromeMediumLowBrush}" />
-		<Setter Property="BorderThickness" Value="0" />
-		<Setter Property="FontSize" Value="{StaticResource MenuFontSizeBig}" />
-		<Setter Property="FontWeight" Value="Bold" />
-		<Setter Property="Foreground" Value="{DynamicResource CustomSubMenuTextBrush}" />
-		<Setter Property="Padding" Value="10,0" />
-	</Style>
 
 </ResourceDictionary>

@@ -70,14 +70,14 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="XtrmAddons.Net.Common">
-      <HintPath>..\Packages\XtrmAddons.Net.Common.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.HttpWebServer">
-      <HintPath>..\Packages\XtrmAddons.Net.HttpWebServer.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.HttpWebServer.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Xml, Version=1.0.18019.2352, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\XtrmAddons.Net.Xml.dll</HintPath>
+      <HintPath>..\Packages\$(Configuration)\XtrmAddons.Net.Xml.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

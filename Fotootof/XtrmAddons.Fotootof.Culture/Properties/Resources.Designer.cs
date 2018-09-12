@@ -367,6 +367,15 @@ namespace XtrmAddons.Fotootof.Culture.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à _Remote access....
+        /// </summary>
+        public static string _ServerRemote {
+            get {
+                return ResourceManager.GetString("_ServerRemote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à _Server settings.
         /// </summary>
         public static string _ServerSettings {

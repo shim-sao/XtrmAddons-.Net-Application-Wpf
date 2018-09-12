@@ -11,6 +11,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Users AclAction Collections.
     /// </summary>
+    [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities.AclActionEntityCollection")]
     public class AclActionEntityCollection : CollectionBaseEntity<AclActionEntity, AclActionOptionsList>
     {
         #region Properties

@@ -28,7 +28,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Variable logger.
         /// </summary>
-        [NotMapped]
         [XmlIgnore]
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -36,42 +35,36 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Variable name of the User.
         /// </summary>
-        [NotMapped]
         [XmlIgnore]
         private string name = "";
 
         /// <summary>
         /// Variable password of the User.
         /// </summary>
-        [NotMapped]
         [XmlIgnore]
         private string password = "";
 
         /// <summary>
         /// Variable email of the User.
         /// </summary>
-        [NotMapped]
         [XmlIgnore]
         private string email = "";
 
         /// <summary>
         /// Variable server owner.
         /// </summary>
-        [NotMapped]
         [XmlIgnore]
         private string server = "";
 
         /// <summary>
         /// Variable date of creation of the User
         /// </summary>
-        [NotMapped]
         [XmlIgnore]
         private DateTime created = DateTime.Now;
 
         /// <summary>
         /// Variable date of modification of the User
         /// </summary>
-        [NotMapped]
         [XmlIgnore]
         private DateTime modified = DateTime.Now;
 
@@ -84,7 +77,6 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <summary>
         /// Variable AclGroup id (required for entity dependency).
         /// </summary>
-        [NotMapped]
         [XmlIgnore]
         private int aclGroupId = 0;
 
@@ -139,6 +131,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <para>Notify on property changed.</para>
         /// </summary>
         [Column(Order = 2)]
+        [JsonProperty(PropertyName = "Password")]
+        [XmlAttribute(DataType = "string", AttributeName = "Password")]
         public string Password
         {
             get => password;
@@ -157,6 +151,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <para>Notify on property changed.</para>
         /// </summary>
         [Column(Order = 3)]
+        [JsonProperty(PropertyName = "Email")]
+        [XmlAttribute(DataType = "string", AttributeName = "Email")]
         public string Email
         {
             get => email;
@@ -175,6 +171,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <para>Notify on property changed.</para>
         /// </summary>
         [Column(Order = 4)]
+        [JsonProperty(PropertyName = "Server")]
+        [XmlAttribute(DataType = "string", AttributeName = "Server")]
         public string Server
         {
             get => server;
@@ -193,6 +191,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <para>Notify on property changed.</para>
         /// </summary>
         [Column(Order = 5)]
+        [JsonProperty(PropertyName = "Created")]
+        [XmlAttribute(DataType = "string", AttributeName = "Created")]
         public DateTime Created
         {
             get => created;
@@ -211,6 +211,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <para>Notify on property changed.</para>
         /// </summary>
         [Column(Order = 6)]
+        [JsonProperty(PropertyName = "Modified")]
+        [XmlAttribute(DataType = "string", AttributeName = "Modified")]
         public DateTime Modified
         {
             get => modified;
@@ -235,7 +237,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// <para>Notify on property changes.</para>
         /// </summary>
         [NotMapped]
-        [JsonIgnore]
+        [XmlIgnore]
         public int AclGroupId
         {
             get => aclGroupId;
@@ -253,6 +255,8 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Property to access to the list of AclGroup dependencies primary key.
         /// </summary>
         [NotMapped]
+        [JsonProperty(PropertyName = "AclGroups")]
+        [XmlElement(DataType = "array", ElementName = "AclGroups")]
         public ObservableCollection<int> AclGroupsPKeys
         {
             get
@@ -263,8 +267,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// <para>Property to access to the list of AclGroup associated to the User.</para>
-        /// <para>Notify on property changes.</para>
+        /// Property to access to the list of AclGroup associated to the User.
         /// </summary>
         [NotMapped]
         public ObservableCollection<AclGroupEntity> AclGroups
@@ -277,9 +280,9 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         }
 
         /// <summary>
-        /// <para>Property to access to the collection of relationship Users in AclGroups.</para>
-        /// <para>Notify on property changes.</para>
+        /// Property to access to the collection of relationship Users in AclGroups.
         /// </summary>
+        [XmlIgnore]
         public ObservableUsersInAclGroups<UserEntity, AclGroupEntity> UsersInAclGroups { get; set; }
             = new ObservableUsersInAclGroups<UserEntity, AclGroupEntity>();
 
@@ -301,10 +304,26 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         #region Methods
 
         /// <summary>
+        /// Method to clone the <see cref="UserEntity"/>
+        /// </summary>
+        /// <returns>A deep copy of the <see cref="UserEntity"/></returns>
+        [System.Obsolete("Use CloneJson().", true)]
+        public UserEntity Clone()
+        {
+            try
+            {
+               return JsonConvert.DeserializeObject<UserEntity>(JsonConvert.SerializeObject(this));
+            }
+            catch { }
+            
+            return new UserEntity();
+        }
+
+        /// <summary>
         /// Method to associate a AclGroup to the User.
         /// </summary>
         /// <param name="AclGroupId">An AclGroup primary key.</param>
-        [System.Obsolete("Use dependency references.")]
+        [System.Obsolete("Use dependency references.", true)]
         public void LinkAclGroup(int aclGroupId)
         {
             try
@@ -323,7 +342,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities
         /// Method to unlink a AclGroup of the User.
         /// </summary>
         /// <param name="AclGroupId">An AclGroup primary key.</param>
-        [System.Obsolete("Use dependency references.")]
+        [System.Obsolete("Use dependency references.", true)]
         public void UnLinkAclGroup(int aclGroupId)
         {
             try

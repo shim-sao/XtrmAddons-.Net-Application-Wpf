@@ -7,6 +7,7 @@ using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Dependencies;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Data.Tables.Entities;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Manager.Base;
 using XtrmAddons.Fotootof.Lib.SQLite.Database.Scheme;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
 {
@@ -15,6 +16,18 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
     /// </summary>
     public partial class AclActionManager : EntitiesManager
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private new static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Constructors
 
         /// <summary>
@@ -131,8 +144,7 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
             {
                 query = query.Include(x => x.AclGroupsInAclActions);
             }
-
-            // Initialize
+            
             if (op.PrimaryKey > 0)
             {
                 if(nullable)
@@ -154,23 +166,35 @@ namespace XtrmAddons.Fotootof.Lib.SQLite.Database.Manager
                 return query.SingleOrDefault(x => x.Action == op.Action);
             }
 
-            throw new ArgumentNullException("AclActionOptionsSelect must contains no empty or null value Primary Key or Action for selection.");
+            throw new ArgumentNullException(nameof(op), "AclActionOptionsSelect must contains no empty or null value Primary Key or Action for selection.");
         }
 
         /// <summary>
-        /// Method to inialize content of the table AclGroup after EnsureCreated()
+        /// <para>Method to inialize content of the table AclGroup after EnsureCreated()</para>
+        /// <para>Call this method after database construction.</para>
         /// </summary>
         internal void InitializeTable()
         {
-            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 1, Action = "section.add" });
-            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 2, Action = "section.edit" });
-            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 3, Action = "section.delete" });
-            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 4, Action = "section.view" });
-            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 5, Action = "album.add" });
-            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 6, Action = "album.edit" });
-            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 7, Action = "album.delete" });
-            Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 8, Action = "album.view" });
-            Save();
+            try
+            {
+                log.Info("SQLite Initializing Table `AclActions`. Please wait...");
+                Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 1, Action = "section.add" });
+                Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 2, Action = "section.edit" });
+                Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 3, Action = "section.delete" });
+                Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 4, Action = "section.view" });
+                Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 5, Action = "album.add" });
+                Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 6, Action = "album.edit" });
+                Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 7, Action = "album.delete" });
+                Context.AclActions.Add(new AclActionEntity() { PrimaryKey = 8, Action = "album.view" });
+                int result = Save();
+                log.Info($"SQLite Initializing Table `AclActions`. {result} affected rows.");
+            }
+            catch (Exception ex)
+            {
+                log.Error("SQLite Initializing Table `AclActions`. Exception.");
+                log.Error(ex.Output(), ex);
+                throw ex;
+            }
         }
 
         #endregion Methods

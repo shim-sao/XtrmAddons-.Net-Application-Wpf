@@ -9,37 +9,31 @@
 
 	<!-- #region UWP System.Alt -->
 	<Color x:Key="AltHigh">#FF000000</Color>
-	<SolidColorBrush x:Key="AltHighBrush" Color="{StaticResource AltHigh}" />
-
-	<Color x:Key="AltLow">#33000000</Color>
-	<SolidColorBrush x:Key="AltLowBrush" Color="{StaticResource AltLow}" />
-
-	<Color x:Key="AltMedium">#99000000</Color>
-	<SolidColorBrush x:Key="AltMediumBrush" Color="{StaticResource AltMedium}" />
-
 	<Color x:Key="AltMediumHigh">#CC000000</Color>
-	<SolidColorBrush x:Key="AltMediumHighBrush" Color="{StaticResource AltMediumHigh}" />
-
+	<Color x:Key="AltMedium">#99000000</Color>
 	<Color x:Key="AltMediumLow">#66000000</Color>
-	<SolidColorBrush x:Key="AltMediumLowBrush" Color="{StaticResource AltMediumLow}" />
+	<Color x:Key="AltLow">#33000000</Color>
+
+    <SolidColorBrush x:Key="AltHighBrush" Color="{StaticResource AltHigh}" />
+    <SolidColorBrush x:Key="AltMediumHighBrush" Color="{StaticResource AltMediumHigh}" />
+    <SolidColorBrush x:Key="AltMediumBrush" Color="{StaticResource AltMedium}" />
+    <SolidColorBrush x:Key="AltMediumLowBrush" Color="{StaticResource AltMediumLow}" />
+	<SolidColorBrush x:Key="AltLowBrush" Color="{StaticResource AltLow}" />
 	<!-- #endregion UWP System.Alt -->
 
 
 	<!-- #region UWP System.Base -->
 	<Color x:Key="BaseHigh">#FFFFFFFF</Color>
-	<SolidColorBrush x:Key="BaseHighBrush" Color="{StaticResource BaseHigh}" />
-
-	<Color x:Key="BaseLow">#33FFFFFF</Color>
-	<SolidColorBrush x:Key="BaseLowBrush" Color="{StaticResource BaseLow}" />
-
-	<Color x:Key="BaseMedium">#99FFFFFF</Color>
-	<SolidColorBrush x:Key="BaseMediumBrush" Color="{StaticResource BaseMedium}" />
-
 	<Color x:Key="BaseMediumHigh">#CCFFFFFF</Color>
-	<SolidColorBrush x:Key="BaseMediumHighBrush" Color="{StaticResource BaseMediumHigh}" />
-
+	<Color x:Key="BaseMedium">#99FFFFFF</Color>
 	<Color x:Key="BaseMediumLow">#66FFFFFF</Color>
-	<SolidColorBrush x:Key="BaseMediumLowBrush" Color="{StaticResource BaseMediumLow}" />
+	<Color x:Key="BaseLow">#33FFFFFF</Color>
+
+    <SolidColorBrush x:Key="BaseHighBrush" Color="{StaticResource BaseHigh}" />
+    <SolidColorBrush x:Key="BaseMediumHighBrush" Color="{StaticResource BaseMediumHigh}" />
+    <SolidColorBrush x:Key="BaseMediumBrush" Color="{StaticResource BaseMedium}" />
+    <SolidColorBrush x:Key="BaseMediumLowBrush" Color="{StaticResource BaseMediumLow}" />
+	<SolidColorBrush x:Key="BaseLowBrush" Color="{StaticResource BaseLow}" />
 	<!-- #endregion UWP System.Base -->
 
 
@@ -137,42 +131,79 @@
 
 
 	<!-- #region WPF System.Color -->
+	<SolidColorBrush x:Key="CustomTestRedBrush" Color="Red" />
+	<SolidColorBrush x:Key="CustomTestBlueBrush" Color="Blue" />
 
 	<!-- Generic Transparent -->
 	<SolidColorBrush x:Key="TransparentBrush" Color="Transparent" />
 
 	<!-- CustomHighlightColor : Background color of the selected elements. -->
 	<Color x:Key="CustomHighlightColor">#FF21D6DE</Color>
-	<SolidColorBrush x:Key="CustomHighlightBrush" Color="#FF21D6DE" />
+    <SolidColorBrush x:Key="CustomHighlightBrush" Color="#FF21D6DE" />
 
-	<!-- CustomWindowColor : Background color in the client area of a window. -->
+    <!-- CustomHighlightTextColor : Text color of the selected elements. -->
+    <Color x:Key="CustomHighlightTextColor">#FF021E27</Color>
+    <SolidColorBrush x:Key="CustomHighlightTextBrush" Color="{StaticResource CustomHighlightTextColor}" />
+
+    <!-- CustomWindowColor : Background color in the client area of a window. -->
 	<SolidColorBrush x:Key="CustomWindowBrush" Color="{StaticResource ColorWindow}" />
 
-	<!-- CustomWindowTextColor : Text color in the client area of a window. -->
-	<SolidColorBrush x:Key="CustomWindowTextBrush" Color="{StaticResource ColorWindowText}" />
+    <!-- CustomWindowTextColor : Text color in the client area of a window. -->
+    <Color x:Key="CustomWindowTextColor">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="CustomWindowTextBrush" Color="{StaticResource CustomWindowTextColor}" />
 
 	<!-- ListView -->
 	<SolidColorBrush x:Key="CustomListViewThumbBrush" Color="{StaticResource ChromeLow}" />
 	<SolidColorBrush x:Key="CustomListViewThumbTextBrush" Color="{StaticResource ColorWindowText}" />
 
+	<!-- DataGrid -->
+	<SolidColorBrush x:Key="CustomDataGridBrush" Color="Transparent" />
+	<SolidColorBrush x:Key="CustomDataGridBorderBrush" Color="#FF333333" />
+	<SolidColorBrush x:Key="CustomDataGridCellBrush" Color="#FF3DD1FC" />
+    <SolidColorBrush x:Key="CustomDataGridCellBorderBrush" Color="#FF0E8BB0" />
+    <SolidColorBrush x:Key="CustomDataGridCellTextBrush" Color="{StaticResource CustomHighlightTextColor}" />
+    <SolidColorBrush x:Key="CustomDataGridHeaderBrush" Color="#FF1F1F1F" />
+	<SolidColorBrush x:Key="CustomDataGridHeaderBorderBrush" Color="#FF323232" />
+	<SolidColorBrush x:Key="CustomDataGridHeaderTextBrush" Color="#FFFEFEFE" />
+	<SolidColorBrush x:Key="CustomDataGridRowBrush" Color="#FF2B2B2B" />
+	<SolidColorBrush x:Key="CustomDataGridRowBorderBrush" Color="#FF323232" />
+	<SolidColorBrush x:Key="CustomDataGridRowTextBrush" Color="#FFFEFEFE" />
+	<SolidColorBrush x:Key="CustomDataGridTextBrush" Color="#FFFEFEFE" />
+
+	<!-- Input -->
+	<Color x:Key="CustomInputColor">#FF2B2B2B</Color>
+	<SolidColorBrush x:Key="CustomInputBrush" Color="#FF2B2B2B" />
+
+	<Color x:Key="CustomInputTextColor">#FFFFFFFF</Color>
+	<SolidColorBrush x:Key="CustomInputTextBrush" Color="#FFFFFFFF" />
+
 	
 	<!-- Generic colors messages -->
 	<Color x:Key="ColorError">#FFA80000</Color>
 	<SolidColorBrush x:Key="CustomErrorBrush" Color="#FFFF1D1D" />
+	
+	<Color x:Key="ColorErrorText">#FFA80000</Color>
+	<SolidColorBrush x:Key="CustomErrorTextBrush" Color="#FFFF1D1D" />
 
 	<Color x:Key="ColorReady">#FF1F1F1F</Color>
 	<SolidColorBrush x:Key="CustomReadyBrush" Color="#FF1F1F1F" />
 
+	<Color x:Key="ColorReadyText">#FF1F1F1F</Color>
+	<SolidColorBrush x:Key="CustomReadyTextBrush" Color="#FF1F1F1F" />
+
 	<Color x:Key="ColorWarning">#FFFF8000</Color>
 	<SolidColorBrush x:Key="CustomWarningBrush" Color="#FFFF8000" />
+
+	<Color x:Key="ColorWarningText">#FFFF8000</Color>
+	<SolidColorBrush x:Key="CustomWarningTextBrush" Color="#FFFF8000" />
 
 
 	<!-- Menu -->
 	<Color x:Key="CustomMenuTextColor">#FFFFFFFF</Color>
-	<SolidColorBrush x:Key="CustomMenuTextBrush" Color="{StaticResource CustomMenuTextColor}" />
+	<SolidColorBrush x:Key="CustomMenuTextBrush" Color="#FFFFFFFF" />
 	
 	<Color x:Key="CustomSubMenuTextColor">#FFEEEEEE</Color>
-	<SolidColorBrush x:Key="CustomSubMenuTextBrush" Color="{StaticResource CustomSubMenuTextColor}" />
+	<SolidColorBrush x:Key="CustomSubMenuTextBrush" Color="#FFEEEEEE" />
 	<!-- #endregion -->
 
 </ResourceDictionary>

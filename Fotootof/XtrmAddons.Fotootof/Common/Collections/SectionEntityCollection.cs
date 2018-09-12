@@ -15,6 +15,7 @@ namespace XtrmAddons.Fotootof.Common.Collections
     /// <summary>
     /// Class XtrmAddons Fotootof Server Component Users Section Collections.
     /// </summary>
+    [System.Obsolete("use XtrmAddons.Fotootof.Lib.Base.Classes.Collections.Entities.SectionEntityCollection")]
     public class SectionEntityCollection : CollectionBaseEntity<SectionEntity, SectionOptionsList>
     {
         #region Properties
