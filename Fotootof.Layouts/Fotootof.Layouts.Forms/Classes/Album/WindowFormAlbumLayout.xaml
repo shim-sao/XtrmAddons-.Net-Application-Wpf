@@ -1,0 +1,393 @@
+﻿<base:WindowLayoutForm 
+	x:Name="UCWindowFormAlbum"
+    x:Class="Fotootof.Layouts.Forms.Album.WindowFormAlbumLayout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:t="clr-namespace:Fotootof.Layouts.Forms.Properties"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
+    xmlns:base="clr-namespace:Fotootof.Libraries.Windows;assembly=Fotootof.Libraries.Windows"
+    xmlns:rrString="clr-namespace:XtrmAddons.Net.Windows.ValidationRules;assembly=XtrmAddons.Net.Windows"
+    mc:Ignorable="d"
+    Width="480"
+    Height="480"
+	Closing="Window_Closing"
+    FocusManager.FocusedElement="{Binding ElementName=InputName}"
+	Loaded="Window_Load"
+    ResizeMode="NoResize"
+	Style="{DynamicResource WindowFormStyle}"
+    Title="{x:Static t:Translations.WindowFormAlbumLayoutTitle}"
+    WindowStartupLocation="CenterScreen">
+
+	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="1*"/>
+			<RowDefinition Height="40"/>
+		</Grid.RowDefinitions>
+
+		<!-- #region BLOCK TAB CONTROL -->
+		<TabControl x:Name="TabControlFormContentName" Grid.Row="0">
+
+			<!-- #region : Tabs Informations -->
+			<TabItem Header="{x:Static l:Translations.Informations}">
+				<Grid>
+					<StackPanel Style="{StaticResource StackPanelFormStyle}">
+
+						<!-- #region : Field Name -->
+						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
+                            <TextBlock Text="{x:Static l:Translations.Name}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
+
+							<TextBox x:Name="InputName"
+										 SourceUpdated="OnInputStringRequired_SourceUpdated"
+										 Style="{StaticResource TextBoxFieldInputRequiredStyle}"
+										 TargetUpdated="OnInput_TargetUpdated"
+										 TextChanged="OnInputStringRequired_TextChanged"
+										 Validation.Error="OnInput_ValidationError"
+										 Validation.ErrorTemplate="{StaticResource ControlTemplateFormFieldValidation}">
+
+								<TextBox.Text>
+									<Binding Path="Album.Name"
+											IsAsync="True"
+											Mode="TwoWay"
+											NotifyOnSourceUpdated="True"
+											NotifyOnTargetUpdated="True"
+											NotifyOnValidationError="True"
+											ValidatesOnDataErrors="True"
+											ValidatesOnExceptions="True"
+											UpdateSourceTrigger="LostFocus">
+
+										<Binding.ValidationRules>
+											<rrString:StringRequired />
+										</Binding.ValidationRules>
+									</Binding>
+								</TextBox.Text>
+							</TextBox>
+
+						</StackPanel>
+						<!-- #endregion -->
+
+
+						<!-- #region : Field Alias -->
+						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
+                            <TextBlock Text="{x:Static l:Translations.Alias}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
+
+							<TextBox x:Name="InputAlias"
+									 Style="{StaticResource TextBoxFieldInputStyle}"
+									 Text="{Binding Path=Section.Alias, Mode=TwoWay, IsAsync=True}" />
+
+						</StackPanel>
+						<!-- #endregion -->
+
+
+						<!-- #region : Field Description -->
+						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
+							<TextBlock Text="{x:Static l:Translations.Description}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
+							<TextBox Style="{StaticResource TextBoxFieldInputAreaStyle}"
+									 Text="{Binding Path=Section.Description, Mode=TwoWay, IsAsync=True}"/>
+						</StackPanel>
+						<!-- #endregion -->
+
+
+						<!-- #region : Field Comment -->
+						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
+							<TextBlock Text="{x:Static l:Translations.Comment}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
+							<TextBox Style="{StaticResource TextBoxFieldInputAreaStyle}"
+									 Text="{Binding Path=Section.Comment, Mode=TwoWay, IsAsync=True}"/>
+						</StackPanel>
+						<!-- #endregion -->
+
+					</StackPanel>
+				</Grid>
+			</TabItem>
+			<!-- #endregion : Tabs Informations -->
+
+
+			<!-- #region : Tabs Sections -->
+			<TabItem Header="{x:Static l:Translations.Sections}">
+				<StackPanel VerticalAlignment="Top" Margin="3">
+
+					<DataGrid x:Name="DataGridCollectionSection"
+							  AutoGenerateColumns="False"
+							  CanUserAddRows="False"
+							  CanUserDeleteRows="False"
+							  CanUserResizeColumns="False"
+							  CanUserResizeRows="False"
+							  CanUserReorderColumns="False"
+							  CanUserSortColumns="True"
+							  ColumnWidth="*"
+							  Cursor="Hand"
+							  DataContext="{Binding DataContext, ElementName=UCWindowFormAlbum, IsAsync=True}"
+							  EnableRowVirtualization="false"
+							  EnableColumnVirtualization="false"
+							  Height="260"
+							  HorizontalAlignment="Stretch"
+							  ItemsSource="{Binding Sections, UpdateSourceTrigger=PropertyChanged}"
+							  RowHeight="22"
+							  SelectionMode="Extended"
+							  SelectionUnit="FullRow"
+							  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+							  Width="440">
+						
+						<DataGrid.Columns>
+
+							<!-- #region : Column PrimaryKey -->
+							<DataGridTemplateColumn CanUserSort="True"
+													Header="{x:Static l:Translations.Id}"
+													IsReadOnly="True"
+													SortMemberPath="AlbumId"
+													Width="30">
+
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock Margin="5,0"
+												   Text="{Binding PrimaryKey}"
+												   ToolTip="{Binding PrimaryKey}"/>
+
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<!-- #endregion -->
+
+							<!-- #region : Column Name -->
+							<DataGridTemplateColumn CanUserSort="True"
+													Header="{x:Static l:Translations.Name}"
+													IsReadOnly="True"
+													MinWidth="160"
+													SortMemberPath="Name">
+
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+
+										<TextBlock Margin="5,0"
+												   Text="{Binding Name, Mode=TwoWay}"
+												   ToolTip="{Binding Name}"/>
+
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<!-- #endregion -->
+
+							<!-- #region : Column CheckBox -->
+							<DataGridTemplateColumn CanUserSort="True"
+													IsReadOnly="True"
+													Width="20">
+
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+
+										<CheckBox Tag="{Binding}"
+												  IsChecked="{Binding PrimaryKey, Converter={StaticResource IsSectionInAlbum}}"
+												  Checked="CheckBoxSection_Checked"
+												  Unchecked="CheckBoxSection_UnChecked"/>
+
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<!-- #endregion -->
+
+						</DataGrid.Columns>
+					</DataGrid>
+
+				</StackPanel>
+			</TabItem>
+			<!-- #endregion : Tabs Sections -->
+
+
+			<!-- #region : Tabs Pictures -->
+			<TabItem Header="{x:Static l:Translations.Cover}">
+				<ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden">
+					<StackPanel Orientation="Vertical">
+
+						<!-- #region : Tab Thumbnail -->
+						<TextBlock	Text="Thumbnail"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Top"
+									Margin="0,15,0,5" />
+
+						<Button x:Uid="Button_AlbumThumbnail"
+								x:Name="Button_AlbumThumbnail"
+								Background="Gray"
+								Click="OnAlbumPicture_Click"
+								Width="{StaticResource DoubleIcon160}"
+								Height="{StaticResource DoubleIcon160}"
+								MaxWidth="{StaticResource DoubleIcon160}"
+								MaxHeight="{StaticResource DoubleIcon160}"
+								Tag="ThumbnailPicture"
+								VerticalAlignment="Top">
+
+							<Image x:Uid="Image_AlbumThumbnail"
+								   x:Name="Image_AlbumThumbnail"
+								   Source="{Binding Album.ThumbnailPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource StringIcon160}}"
+								   Width="{StaticResource DoubleIcon160}"
+								   Height="{StaticResource DoubleIcon160}"
+								   MaxWidth="{StaticResource DoubleIcon160}"
+								   MaxHeight="{StaticResource DoubleIcon160}"
+								   VerticalAlignment="Top"
+								   HorizontalAlignment="Left"
+								   Stretch="UniformToFill"/>
+						</Button>
+						<!-- #endregion : Tab Thumbnail -->
+
+
+						<!-- #region : Tab Preview -->
+						<TextBlock	Text="Preview"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Top"
+									Margin="0,15,0,5" />
+
+						<Button x:Uid="Button_AlbumPreview"
+								x:Name="Button_AlbumPreview"
+								Background="Gray"
+								Click="OnAlbumPicture_Click"
+								Tag="PreviewPicture"
+								Width="{StaticResource DoubleIcon256}"
+								Height="96"
+								MaxWidth="{StaticResource DoubleIcon256}"
+								MaxHeight="96">
+
+							<Image x:Uid="Button_AlbumPreview"
+								   x:Name="Image_AlbumPreview"
+								   Source="{Binding Album.PreviewPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource StringIcon256}}"
+								   Width="{StaticResource DoubleIcon256}"
+								   Height="96"
+								   MaxWidth="{StaticResource DoubleIcon256}"
+								   MaxHeight="96"
+								   VerticalAlignment="Top"
+								   HorizontalAlignment="Center"
+								   Stretch="UniformToFill"/>
+						</Button>
+						<!-- #endregion : Tab Preview -->
+
+
+						<!-- #region : Tab Background -->
+						<TextBlock	Text="Background"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Top"
+									Margin="0,15,0,5" />
+
+						<Button	x:Uid="Button_AlbumBackground"
+								x:Name="Button_AlbumBackground"
+								Background="Gray"
+								Click="OnAlbumPicture_Click"
+								Tag="BackgroundPicture"
+								Width="{StaticResource DoubleIcon256}"
+								Height="144"
+								MaxWidth="{StaticResource DoubleIcon256}"
+								MaxHeight="144">
+
+							<Image x:Uid="Button_AlbumBackground"
+								   x:Name="Image_AlbumBackground"
+								   Source="{Binding Album.BackgroundPicture.PicturePath, Converter={StaticResource CvPictureBase}, ConverterParameter={StaticResource StringIcon256}}"
+								   Width="{StaticResource DoubleIcon256}"
+								   Height="144"
+								   MaxWidth="{StaticResource DoubleIcon256}"
+								   MaxHeight="144"
+								   VerticalAlignment="Top"
+								   HorizontalAlignment="Center"
+								   Stretch="UniformToFill"/>
+						</Button>
+						<!-- #endregion : Tab Background -->
+					</StackPanel>
+				</ScrollViewer>
+					
+			</TabItem>
+			<!-- #endregion : Tabs Pictures -->
+
+
+			<!-- #region : Tabs Data -->
+			<TabItem Header="{x:Static l:Translations.Datas}">
+				<StackPanel Orientation="Vertical">
+
+					<StackPanel Style="{StaticResource Form}"
+								Background="White">
+
+						<!-- #region : Field Color -->
+						<StackPanel Orientation="Horizontal"
+									Style="{StaticResource Field}">
+
+							<TextBlock Text="{x:Static l:Translations.Color}"
+									   Style="{StaticResource FieldLabel}"/>
+
+							<ComboBox x:Name="FiltersColorSelector"
+									  ItemsSource="{Binding FiltersColor, Mode=OneWay, IsAsync=True}"
+									  Text="{x:Static l:Translations.ColorSelector}"
+									  SelectionChanged="Filters_SelectionChanged"
+									  ToolTip="{x:Static l:Translations.ToolTipAlbumColorSelector}"
+									  Loaded="FiltersColorSelector_Loaded"
+									  HorizontalAlignment="Right"
+									  Focusable="False"
+									  IsEditable="True"
+									  IsReadOnly="True"
+									  Width="160"
+									  Height="23">
+
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Tag="{Binding}" Text="{Binding Name}" TextAlignment="Center"/>
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+						</StackPanel>
+						<!-- #endregion : Field Color -->
+
+						<!-- #region : Field Quality -->
+						<StackPanel Orientation="Horizontal"
+									Style="{StaticResource Field}">
+
+							<TextBlock Text="{x:Static l:Translations.Quality}"
+									   Style="{StaticResource FieldLabel}"/>
+
+							<ComboBox x:Name="FiltersQualitySelector"
+									  ItemsSource="{Binding FiltersQuality, Mode=OneWay, IsAsync=True}"
+									  Text="{x:Static l:Translations.QualitySelector}"
+									  SelectionChanged="Filters_SelectionChanged"
+									  TextOptions.TextRenderingMode="ClearType"
+									  TextBlock.TextAlignment="Center"
+									  ToolTip="{x:Static l:Translations.ToolTipAlbumQualitySelector}"
+									  Loaded="FiltersQualitySelector_Loaded"
+									  HorizontalAlignment="Right"
+									  Focusable="False"
+									  IsEditable="True"
+									  IsReadOnly="True"
+									  Width="160"
+									  Height="23">
+
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Tag="{Binding}" Text="{Binding Name}" TextAlignment="Center"/>
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+						</StackPanel>
+						<!-- #endregion : Field Quality -->
+
+					</StackPanel>
+				</StackPanel>
+			</TabItem>
+			<!-- #endregion : Tabs Data -->
+
+		</TabControl>
+		<!-- region -->
+
+		
+		<!-- #region BLOCK FORM VALIDATOR -->
+		<Grid Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource GridFormValidatorStyle}">
+			<StackPanel Style="{StaticResource StackPanelFormValidatorStyle}">
+                <Button x:Name="ButtonSaveName"
+						Click="DialogSave_Click"
+						Content="{x:Static l:Translations.Save}"
+						IsEnabled="{Binding IsSaveEnabled, UpdateSourceTrigger=Explicit, Mode=TwoWay, IsAsync=True}"
+						Style="{StaticResource ButtonSaveStyle}"/>
+
+				<Button x:Name="ButtonCancelName"
+						Content="{x:Static l:Translations.Cancel}"
+						Style="{StaticResource ButtonCancelStyle}"/>
+
+			</StackPanel>
+		</Grid>
+		<!-- #endregion -->
+
+	</Grid>
+</base:WindowLayoutForm>

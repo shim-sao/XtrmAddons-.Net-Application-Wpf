@@ -1,0 +1,63 @@
+﻿<base:WindowLayoutForm 
+    x:Class="Fotootof.Layouts.Controls.DataGrids.DataGridAlbumsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
+    xmlns:dg="clr-namespace:Fotootof.Layouts.Controls.DataGrids"
+    xmlns:base="clr-namespace:Fotootof.Libraries.Windows;assembly=Fotootof.Libraries.Windows"
+    mc:Ignorable="d"
+    Title="{StaticResource WindowsDataGridAlbumsTitle}"
+    ResizeMode="NoResize"
+    Width="480"
+    Height="480"
+    Loaded="Window_Loaded">
+
+    <!-- #region : List Album -->
+	<Grid x:Name="GridBlockRootName" Style="{DynamicResource FrameworkElementRootStyle}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <TabControl x:Name="TabControlFormContentName"
+					Grid.Row="0">
+
+            <!-- #region : Tabs Informations -->
+            <TabItem Header="{x:Static l:Translations.Albums}">
+
+                <dg:DataGridAlbumsLayout x:Name="DataGridAlbumsControlName"
+                                         Grid.Row="0"
+                                         DataContext="{Binding}"
+                                         HorizontalAlignment="Stretch"/>
+
+            </TabItem>
+            <!-- #rendegion : Tabs Sections -->
+
+        </TabControl>
+
+
+        <Border Grid.Row="1" Grid.RowSpan="2">
+
+            <Grid>
+				<StackPanel Style="{StaticResource StackPanelFormValidatorStyle}">
+
+					<Button x:Name="Button_Save"
+							Click="DialogSave_Click"
+							Content="{x:Static l:Translations.Save}"
+							Style="{StaticResource ButtonSaveStyle}"/>
+
+					<Button x:Name="Button_Cancel"
+							Content="{x:Static l:Translations.Cancel}"
+							Style="{StaticResource ButtonCancelStyle}"/>
+
+				</StackPanel>
+            </Grid>
+        </Border>
+
+    </Grid>
+    <!-- #endregion -->
+    
+</base:WindowLayoutForm>

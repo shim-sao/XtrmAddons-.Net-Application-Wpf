@@ -1,0 +1,215 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- UWP Colors Theme -->
+    <!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/controls-and-patterns/xaml-theme-resources -->
+    <!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/style/color -->
+
+    <!-- #region UWP System.Alt -->
+    <Color x:Key="AltHigh">#FF000000</Color>
+    <Color x:Key="AltMediumHigh">#CC000000</Color>
+    <Color x:Key="AltMedium">#99000000</Color>
+    <Color x:Key="AltMediumLow">#66000000</Color>
+    <Color x:Key="AltLow">#33000000</Color>
+
+    <SolidColorBrush x:Key="AltHighBrush" Color="{StaticResource AltHigh}" />
+    <SolidColorBrush x:Key="AltMediumHighBrush" Color="{StaticResource AltMediumHigh}" />
+    <SolidColorBrush x:Key="AltMediumBrush" Color="{StaticResource AltMedium}" />
+    <SolidColorBrush x:Key="AltMediumLowBrush" Color="{StaticResource AltMediumLow}" />
+    <SolidColorBrush x:Key="AltLowBrush" Color="{StaticResource AltLow}" />
+    <!-- #endregion UWP System.Alt -->
+
+
+    <!-- #region UWP System.Base -->
+    <Color x:Key="BaseHigh">#FFFFFFFF</Color>
+    <Color x:Key="BaseMediumHigh">#CCFFFFFF</Color>
+    <Color x:Key="BaseMedium">#99FFFFFF</Color>
+    <Color x:Key="BaseMediumLow">#66FFFFFF</Color>
+    <Color x:Key="BaseLow">#33FFFFFF</Color>
+
+    <SolidColorBrush x:Key="BaseHighBrush" Color="{StaticResource BaseHigh}" />
+    <SolidColorBrush x:Key="BaseMediumHighBrush" Color="{StaticResource BaseMediumHigh}" />
+    <SolidColorBrush x:Key="BaseMediumBrush" Color="{StaticResource BaseMedium}" />
+    <SolidColorBrush x:Key="BaseMediumLowBrush" Color="{StaticResource BaseMediumLow}" />
+    <SolidColorBrush x:Key="BaseLowBrush" Color="{StaticResource BaseLow}" />
+    <!-- #endregion UWP System.Base -->
+
+
+    <!-- #region UWP System.Chrome -->
+    <Color x:Key="ChromeAltLow">#FFF2F2F2</Color>
+    <SolidColorBrush x:Key="ChromeAltLowBrush" Color="{StaticResource ChromeAltLow}" />
+
+    <Color x:Key="ChromeBlackHigh">#FF000000</Color>
+    <SolidColorBrush x:Key="ChromeBlackHighBrush" Color="{StaticResource ChromeBlackHigh}" />
+
+    <Color x:Key="ChromeBlackLow">#33000000</Color>
+    <SolidColorBrush x:Key="ChromeBlackLowBrush" Color="{StaticResource ChromeBlackLow}" />
+
+    <Color x:Key="ChromeBlackMediumLow">#66000000</Color>
+    <SolidColorBrush x:Key="ChromeBlackMediumLowBrush" Color="{StaticResource ChromeBlackMediumLow}" />
+
+    <Color x:Key="ChromeBlackMedium">#CC000000</Color>
+    <SolidColorBrush x:Key="ChromeBlackMediumBrush" Color="{StaticResource ChromeBlackMedium}" />
+
+    <Color x:Key="ChromeDisabledHigh">#FF333333</Color>
+    <SolidColorBrush x:Key="ChromeDisabledHighBrush" Color="{StaticResource ChromeDisabledHigh}" />
+
+    <Color x:Key="ChromeDisabledLow">#FF858585</Color>
+    <SolidColorBrush x:Key="ChromeDisabledLowBrush" Color="{StaticResource ChromeDisabledLow}" />
+
+    <Color x:Key="ChromeHigh">#FF767676</Color>
+    <SolidColorBrush x:Key="ChromeHighBrush" Color="{StaticResource ChromeHigh}" />
+
+    <Color x:Key="ChromeLow">#FF171717</Color>
+    <SolidColorBrush x:Key="ChromeLowBrush" Color="{StaticResource ChromeLow}" />
+
+    <Color x:Key="ChromeMedium">#FF1F1F1F</Color>
+    <SolidColorBrush x:Key="ChromeMediumBrush" Color="{StaticResource ChromeMedium}" />
+
+    <Color x:Key="ChromeMediumLow">#FF2B2B2B</Color>
+    <SolidColorBrush x:Key="ChromeMediumLowBrush" Color="{StaticResource ChromeMediumLow}" />
+
+    <Color x:Key="ChromeWhite">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="ChromeWhiteBrush" Color="{StaticResource ChromeWhite}" />
+    <!-- #endregion UWP System.Chrome -->
+
+
+    <!-- #region UWP System.List -->
+    <Color x:Key="ListLow">#19FFFFFF</Color>
+    <SolidColorBrush x:Key="ListLowBrush" Color="{StaticResource ListLow}" />
+
+    <Color x:Key="ListMedium">#33FFFFFF</Color>
+    <SolidColorBrush x:Key="ListMediumBrush" Color="{StaticResource ListMedium}" />
+
+    <Color x:Key="ListAccentLow">#FF188CE8</Color>
+    <SolidColorBrush x:Key="ListAccentLowBrush" Color="{StaticResource ListAccentLow}" />
+
+    <Color x:Key="ListAccentMedium">#FF1E78BF</Color>
+    <SolidColorBrush x:Key="ListAccentMediumBrush" Color="{StaticResource ListAccentMedium}" />
+
+    <Color x:Key="ListAccentHigh">#FF166AAC</Color>
+    <SolidColorBrush x:Key="ListAccentHighBrush" Color="{StaticResource ListAccentHigh}" />
+    <!-- #endregion UWP System.List -->
+
+
+    <!-- #region UWP System.Color -->
+    <!-- ButtonBackground : Button Background color -->
+    <Color x:Key="ColorButtonFace">#FF000000</Color>
+    <SolidColorBrush x:Key="ColorButtonFaceBrush" Color="{StaticResource ColorButtonFace}" />
+
+    <!-- ButtonForeground: Button Foreground color -->
+    <Color x:Key="ColorButtonText">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="ColorButtonTextBrush" Color="{StaticResource ColorButtonText}" />
+
+    <!-- TextDisabled : Disabled text color -->
+    <Color x:Key="ColorGrayText">#FF6D6D6D</Color>
+    <SolidColorBrush x:Key="ColorGrayTextBrush" Color="{StaticResource ColorGrayText}" />
+
+    <!-- Highlight : Selected text background color -->
+    <Color x:Key="ColorHighlight">#FF3399FF</Color>
+    <SolidColorBrush x:Key="ColorHighlightBrush" Color="{StaticResource ColorHighlight}" />
+
+    <!-- HighlightAlt : Selected text color -->
+    <Color x:Key="ColorHighlightText">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="ColorHighlightTextBrush" Color="{StaticResource ColorHighlightText}" />
+
+    <!-- Hyperlink : Selected text color -->
+    <Color x:Key="ColorHotlightText">#FF0066CC</Color>
+    <SolidColorBrush x:Key="ColorHotlightBrush" Color="{StaticResource ColorHotlight}" />
+
+    <!-- PageBackground : Main Body Text color -->
+    <Color x:Key="ColorWindow">#FF000000</Color>
+    <SolidColorBrush x:Key="ColorWindowBrush" Color="{StaticResource ColorWindow}" />
+
+    <!-- PageText : Main Body Text color -->
+    <Color x:Key="ColorWindowText">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="ColorWindowTextBrush" Color="{StaticResource ColorWindowText}" />
+    <!-- #endregion UWP System.Color -->
+
+
+
+    <!-- #region WPF System.Color -->
+    <SolidColorBrush x:Key="CustomTestRedBrush" Color="Red" />
+    <SolidColorBrush x:Key="CustomTestBlueBrush" Color="Blue" />
+
+    <!-- Generic Transparent -->
+    <SolidColorBrush x:Key="TransparentBrush" Color="Transparent" />
+
+    <!-- CustomHighlightColor : Background color of the selected elements. -->
+    <Color x:Key="CustomHighlightColor">#FF21D6DE</Color>
+    <SolidColorBrush x:Key="CustomHighlightBrush" Color="#FF21D6DE" />
+
+    <!-- CustomHighlightTextColor : Text color of the selected elements. -->
+    <Color x:Key="CustomHighlightTextColor">#FF021E27</Color>
+    <SolidColorBrush x:Key="CustomHighlightTextBrush" Color="{StaticResource CustomHighlightTextColor}" />
+
+    <!-- CustomWindowColor : Background color in the client area of a window. -->
+    <SolidColorBrush x:Key="CustomWindowBrush" Color="{StaticResource ColorWindow}" />
+
+    <!-- CustomWindowTextColor : Text color in the client area of a window. -->
+    <Color x:Key="CustomWindowTextColor">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="CustomWindowTextBrush" Color="{StaticResource CustomWindowTextColor}" />
+
+    <!-- ListView -->
+    <SolidColorBrush x:Key="CustomListViewThumbBrush" Color="{StaticResource ChromeLow}" />
+    <SolidColorBrush x:Key="CustomListViewThumbTextBrush" Color="{StaticResource ColorWindowText}" />
+    
+    
+
+    <!-- DataGrid -->
+
+    <Color x:Key="CustomDataGridRowColor">#FF2B2B2B</Color>
+
+
+    <SolidColorBrush x:Key="CustomDataGridBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="CustomDataGridBorderBrush" Color="#FF333333" />
+    <SolidColorBrush x:Key="CustomDataGridCellBrush" Color="#FF3DD1FC" />
+    <SolidColorBrush x:Key="CustomDataGridCellBorderBrush" Color="#FF0E8BB0" />
+    <SolidColorBrush x:Key="CustomDataGridCellTextBrush" Color="{StaticResource CustomHighlightTextColor}" />
+    <SolidColorBrush x:Key="CustomDataGridHeaderBrush" Color="#FF1F1F1F" />
+    <SolidColorBrush x:Key="CustomDataGridHeaderBorderBrush" Color="#FF323232" />
+    <SolidColorBrush x:Key="CustomDataGridHeaderTextBrush" Color="#FFFEFEFE" />
+    <SolidColorBrush x:Key="CustomDataGridRowBrush" Color="#FF2B2B2B" />
+    <SolidColorBrush x:Key="CustomDataGridRowBorderBrush" Color="#FF323232" />
+    <SolidColorBrush x:Key="CustomDataGridRowTextBrush" Color="#FFFEFEFE" />
+    <SolidColorBrush x:Key="CustomDataGridTextBrush" Color="#FFFEFEFE" />
+
+    <!-- Input -->
+    <Color x:Key="CustomInputColor">#FF2B2B2B</Color>
+    <SolidColorBrush x:Key="CustomInputBrush" Color="#FF2B2B2B" />
+
+    <Color x:Key="CustomInputTextColor">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="CustomInputTextBrush" Color="#FFFFFFFF" />
+
+
+    <!-- Generic colors messages -->
+    <Color x:Key="ColorError">#FFA80000</Color>
+    <SolidColorBrush x:Key="CustomErrorBrush" Color="#FFFF1D1D" />
+
+    <Color x:Key="ColorErrorText">#FFA80000</Color>
+    <SolidColorBrush x:Key="CustomErrorTextBrush" Color="#FFFF1D1D" />
+
+    <Color x:Key="ColorReady">#FF1F1F1F</Color>
+    <SolidColorBrush x:Key="CustomReadyBrush" Color="#FF1F1F1F" />
+
+    <Color x:Key="ColorReadyText">#FF1F1F1F</Color>
+    <SolidColorBrush x:Key="CustomReadyTextBrush" Color="#FF1F1F1F" />
+
+    <Color x:Key="ColorWarning">#FFFF8000</Color>
+    <SolidColorBrush x:Key="CustomWarningBrush" Color="#FFFF8000" />
+
+    <Color x:Key="ColorWarningText">#FFFF8000</Color>
+    <SolidColorBrush x:Key="CustomWarningTextBrush" Color="#FFFF8000" />
+
+
+    <!-- Menu -->
+    <Color x:Key="CustomMenuTextColor">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="CustomMenuTextBrush" Color="#FFFFFFFF" />
+
+    <Color x:Key="CustomSubMenuTextColor">#FFEEEEEE</Color>
+    <SolidColorBrush x:Key="CustomSubMenuTextBrush" Color="#FFEEEEEE" />
+    <!-- #endregion -->
+
+</ResourceDictionary>
