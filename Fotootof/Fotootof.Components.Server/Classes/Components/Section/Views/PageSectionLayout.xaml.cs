@@ -212,8 +212,7 @@ namespace Fotootof.Components.Server.Section
                 log.Warn("Saving Section informations. Please wait...");
 
                 SectionEntity newEntity = (SectionEntity)e.NewEntity;
-                SectionEntity oldEntity = Model.Sections.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
-                Model.UpdateSection(newEntity, oldEntity);
+                Model.UpdateSection(newEntity);
             }
 
             catch (Exception ex)

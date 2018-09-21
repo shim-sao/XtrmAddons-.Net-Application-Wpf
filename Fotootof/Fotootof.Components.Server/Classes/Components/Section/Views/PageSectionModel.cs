@@ -311,13 +311,13 @@ namespace Fotootof.Components.Server.Section
         /// Method to update a <see cref="SectionEntity"/>.
         /// </summary>
         /// <param name="newEntity"></param>
-        /// <param name="oldEntity"></param>
-        public void UpdateSection(SectionEntity newEntity, SectionEntity oldEntity)
+        public void UpdateSection(SectionEntity newEntity)
         {
             try
             {
+                SectionEntity oldEntity = Sections.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
                 SectionEntityCollection.DbUpdateAsync(new List<SectionEntity> { newEntity }, new List<SectionEntity> { oldEntity });
-                LoadSections();
+                oldEntity.Bind(newEntity);
             }
 
             catch (Exception ex)
