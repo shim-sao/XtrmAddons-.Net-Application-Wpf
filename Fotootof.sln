@@ -69,8 +69,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.SQLite.Services", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Components.Server", "Fotootof\Fotootof.Components.Server\Fotootof.Components.Server.csproj", "{CC881C8A-06D3-4362-9F83-1CFE28D95836}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.BuilderV1", "Fotootof.Builder\Fotootof.BuilderV1\Fotootof.BuilderV1.csproj", "{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Collections", "Fotootof\Fotootof.Collections\Fotootof.Collections.csproj", "{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts.Forms", "Fotootof.Layouts\Fotootof.Layouts.Forms\Fotootof.Layouts.Forms.csproj", "{F3377391-398A-4449-9A62-2C04C6821D71}"
@@ -435,18 +433,6 @@ Global
 		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|x64.Build.0 = Release|Any CPU
 		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|x86.ActiveCfg = Release|Any CPU
 		{CC881C8A-06D3-4362-9F83-1CFE28D95836}.Release|x86.Build.0 = Release|Any CPU
-		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Debug|x64.Build.0 = Debug|Any CPU
-		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Debug|x86.Build.0 = Debug|Any CPU
-		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Release|x64.ActiveCfg = Release|Any CPU
-		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Release|x64.Build.0 = Release|Any CPU
-		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Release|x86.ActiveCfg = Release|Any CPU
-		{5A8EFA0E-1EE7-4C3F-B19C-00CCD5C15EFA}.Release|x86.Build.0 = Release|Any CPU
 		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}.Debug|x64.ActiveCfg = Debug|Any CPU

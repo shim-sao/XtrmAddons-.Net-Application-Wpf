@@ -1,4 +1,5 @@
-﻿using Fotootof.SQLite.EntityManager.Base;
+﻿using Fotootof.Libraries.Logs;
+using Fotootof.SQLite.EntityManager.Base;
 using Fotootof.SQLite.EntityManager.Connector;
 using Fotootof.SQLite.EntityManager.Data.Tables.Dependencies;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
@@ -89,7 +90,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <param name="query"></param>
         /// <param name="op"></param>
         /// <returns></returns>
-        private IQueryable<AlbumEntity> Query_Dependencies(IQueryable<AlbumEntity> query, EntitiesOptions op)
+        private IQueryable<AlbumEntity> Query_Dependencies(ref IQueryable<AlbumEntity> query, EntitiesOptions op)
         {
             /*if (op.IsDependOn(EnumEntitiesDependencies.None))
             {
@@ -105,7 +106,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
             }
 
             // Load Sections dependencies if required.
-            if (op.IsDependOn(EnumEntitiesDependencies.AlbumsInSections))
+            if (op.IsDependOn(EnumEntitiesDependencies.AlbumsInSections) || op.UserId > 0)
             {
                 log.Debug($"{typeof(EntitiesQueryExtension).Name}.{MethodBase.GetCurrentMethod().Name} : EnumEntitiesDependencies.AlbumsInSections");
                 query = query.Include(x => x.AlbumsInSections);
@@ -185,7 +186,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
             // Initialize query.
             IQueryable<AlbumEntity> query = Connector.Albums;
 
-            query = Query_Dependencies(query, op);
+            Query_Dependencies(ref query, op);
 
             // Filter by entity primary keys.
             query.QueryListInclude(op, "AlbumId");
@@ -339,51 +340,164 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <returns>An album entity.</returns>
         public AlbumEntity Select(AlbumOptionsSelect op)
         {
+            log.Debug("---------------------------------------------------------------------------------");
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {op?.GetType()}");
+
             if (op == null)
             {
-                ArgumentNullException e = new ArgumentNullException(nameof(op));
-                log.Error(e.Output(), e);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(op), op);
+                log.Error($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {e.Output()}");
                 throw e;
             }
 
-            // Initialize query.
-            IQueryable<AlbumEntity> query = Connector.Albums;
-
-            // Load dependencies if required.
-            query = Query_Dependencies(query, op);
-
+            // Initialize entity result.
             AlbumEntity entity = null;
 
-            // Initialize Album
+            // Safe User
+            if (!SetSafeUser(op.UserId)) return null;
+
+            // Initialize query.
+            IQueryable<AlbumEntity> query = Connector.Albums;
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Initializing query => {Connector?.Albums?.Count()} item(s)");
+
+            // Load dependencies if required.
+            Query_Dependencies(ref query, op);
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Loading dependencies.");
+
+            // Filter by Album Primary Key property.
             if(op.PrimaryKey != 0)
             {
                 entity = SingleIdOrNull(query, op);
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Filter by Album Primary Key property => {entity?.PrimaryKey}");
+
+                if(entity == null)
+                {
+                    return null;
+                }
             }
 
+            // Filter by Album Alias property.
             if(op.Alias.IsNotNullOrWhiteSpace())
             {
                 entity = SingleAliasOrNull(query, op);
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Filter by Album Alias property => {entity?.PrimaryKey} | {entity?.Alias}");
+
+                if (entity == null)
+                {
+                    return null;
+                }
             }
 
-            //if (entity != null)
-            //{
-            //    if (op.IsDependOn(EnumEntitiesDependencies.PicturesInAlbums))
-            //    {
-            //        foreach (PictureEntity item in entity.Pictures)
-            //        {
-            //            if (item != null)
-            //            {
-            //                List<PicturesInAlbums> l = Context.PicturesInAlbums.Where(d => d.PictureId == item.PictureId && d.AlbumId == op.PrimaryKey).ToList();
-            //                if (l.Count > 0)
-            //                {
-            //                    item.Ordering = l[0].Ordering;
-            //                }
-            //            }
-            //        }
-            //    }
+            // Filter by Album BackgroundPictureId property.
+            if (op.BackgroundPictureId > 0)
+            {
+                entity = SingleBackgroundPictureIdOrNull(query, op);
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Filter by Album BackgroundPictureId property => {entity?.PrimaryKey} | {entity?.Alias}");
 
-            //    return entity;
-            //}
+                if (entity == null)
+                {
+                    return null;
+                }
+            }
+
+            // Filter by Album PreviewPictureId property.
+            if (op.PreviewPictureId > 0)
+            {
+                entity = SinglePreviewPictureIdOrNull(query, op);
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Filter by Album PreviewPictureId property => {entity?.PrimaryKey} | {entity?.Alias}");
+
+                if (entity == null)
+                {
+                    return null;
+                }
+            }
+
+            // Filter by Album ThumbnailPictureId property.
+            if (op.ThumbnailPictureId > 0)
+            {
+                entity = SingleThumbnailPictureIdOrNull(query, op);
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : Filter by Album ThumbnailPictureId property => {entity?.PrimaryKey} | {entity?.Alias}");
+
+                if (entity == null)
+                {
+                    return null;
+                }
+            }
+
+            // Filter by User. 
+            if(entity != null && User != null)
+            {
+                SectionEntity section = null;
+
+                foreach (AlbumsInSections sectDep in entity.AlbumsInSections)
+                {
+                    IQueryable<SectionEntity> sections = Connector.Sections;
+                    sections = sections.Include(x => x.SectionsInAclGroups);
+                    SectionEntity s = sections.SingleOrDefault(x => x.PrimaryKey == sectDep.SectionId);
+
+                    if(s.PrimaryKey == 0)
+                    {
+                        return null;
+                    }
+
+                    foreach (SectionsInAclGroups aclgDep in s.SectionsInAclGroups)
+                    {
+                        section = GetUserSection(aclgDep.SectionId, User);
+                        if (section != null && section.PrimaryKey > 0) break;
+                    }
+
+                    if (section != null && section.PrimaryKey > 0) break;
+                }
+
+                if(section == null)
+                {
+                    return null;
+                }
+            }
+
+            log.Debug("---------------------------------------------------------------------------------");
+            return entity;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">The primary key or id of the <see cref="SectionEntity"/></param>
+        /// <param name="user">The <see cref="UserEntity"/>.</param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        private SectionEntity GetUserSection(int id, UserEntity user)
+        {
+            SectionEntity entity = null;
+
+            // Try to found section in dependencies.
+            foreach (UsersInAclGroups group in user.UsersInAclGroups)
+            {
+                IQueryable<AclGroupEntity> groups = Connector.AclGroups;
+                groups = groups.Include(x => x.SectionsInAclGroups);
+                AclGroupEntity ag = groups.SingleOrDefault(x => x.PrimaryKey == group.AclGroupId);
+
+                if(ag.PrimaryKey == 0 || ag.SectionsInAclGroups.Count == 0)
+                {
+                    continue;
+                }
+
+                var dep = ag.SectionsInAclGroups.ToList().Find(x => x.SectionId == id);
+
+                if (dep != null)
+                {
+                    IQueryable<SectionEntity> sections = Connector.Sections;
+                    sections = sections.Include(x => x.SectionsInAclGroups);
+                    sections = sections.Include(x => x.AlbumsInSections);
+
+                    entity = sections.SingleOrDefault(x => x.PrimaryKey == id);
+                }
+
+                if (entity?.PrimaryKey > 0)
+                {
+                    break;
+                }
+            }
 
             return entity;
         }
@@ -412,6 +526,57 @@ namespace Fotootof.SQLite.EntityManager.Managers
         private AlbumEntity SingleAliasOrNull(IQueryable<AlbumEntity> query, AlbumOptionsSelect op)
         {
             AlbumEntity entity = query.SingleOrDefault(x => x.Alias == op.Alias);
+
+            // Check if user is found, return null instead of default.
+            if (entity == null || entity.AlbumId == 0)
+            {
+                return null;
+            }
+
+            return entity;
+        }
+
+        /// <summary>
+        /// Method to select an Album by BackgroundPictureId.
+        /// </summary>
+        /// <returns>An Album entity or null if not found.</returns>
+        private AlbumEntity SingleBackgroundPictureIdOrNull(IQueryable<AlbumEntity> query, AlbumOptionsSelect op)
+        {
+            AlbumEntity entity = query.SingleOrDefault(x => x.BackgroundPictureId == op.BackgroundPictureId);
+
+            // Check if user is found, return null instead of default.
+            if (entity == null || entity.AlbumId == 0)
+            {
+                return null;
+            }
+
+            return entity;
+        }
+
+        /// <summary>
+        /// Method to select an Album by PreviewPictureId.
+        /// </summary>
+        /// <returns>An Album entity or null if not found.</returns>
+        private AlbumEntity SinglePreviewPictureIdOrNull(IQueryable<AlbumEntity> query, AlbumOptionsSelect op)
+        {
+            AlbumEntity entity = query.SingleOrDefault(x => x.PreviewPictureId == op.PreviewPictureId);
+
+            // Check if user is found, return null instead of default.
+            if (entity == null || entity.AlbumId == 0)
+            {
+                return null;
+            }
+
+            return entity;
+        }
+
+        /// <summary>
+        /// Method to select an Album by ThumbnailPictureId.
+        /// </summary>
+        /// <returns>An Album entity or null if not found.</returns>
+        private AlbumEntity SingleThumbnailPictureIdOrNull(IQueryable<AlbumEntity> query, AlbumOptionsSelect op)
+        {
+            AlbumEntity entity = query.SingleOrDefault(x => x.ThumbnailPictureId == op.ThumbnailPictureId);
 
             // Check if user is found, return null instead of default.
             if (entity == null || entity.AlbumId == 0)

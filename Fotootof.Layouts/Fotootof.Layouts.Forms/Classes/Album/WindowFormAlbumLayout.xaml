@@ -75,7 +75,7 @@
 
 							<TextBox x:Name="InputAlias"
 									 Style="{StaticResource TextBoxFieldInputStyle}"
-									 Text="{Binding Path=Section.Alias, Mode=TwoWay, IsAsync=True}" />
+									 Text="{Binding Path=Album.Alias, Mode=TwoWay, IsAsync=True}" />
 
 						</StackPanel>
 						<!-- #endregion -->
@@ -85,7 +85,7 @@
 						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 							<TextBlock Text="{x:Static l:Translations.Description}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
 							<TextBox Style="{StaticResource TextBoxFieldInputAreaStyle}"
-									 Text="{Binding Path=Section.Description, Mode=TwoWay, IsAsync=True}"/>
+									 Text="{Binding Path=Album.Description, Mode=TwoWay, IsAsync=True}"/>
 						</StackPanel>
 						<!-- #endregion -->
 
@@ -94,7 +94,7 @@
 						<StackPanel Style="{StaticResource StackPanelFieldStyle}">
 							<TextBlock Text="{x:Static l:Translations.Comment}" Style="{StaticResource TextBlockFieldLabelStyle}"/>
 							<TextBox Style="{StaticResource TextBoxFieldInputAreaStyle}"
-									 Text="{Binding Path=Section.Comment, Mode=TwoWay, IsAsync=True}"/>
+									 Text="{Binding Path=Album.Comment, Mode=TwoWay, IsAsync=True}"/>
 						</StackPanel>
 						<!-- #endregion -->
 

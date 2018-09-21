@@ -4,7 +4,6 @@ using Fotootof.SQLite.EntityManager.Connector;
 using Fotootof.SQLite.Services;
 using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Windows;
 using XtrmAddons.Net.Application;
@@ -16,14 +15,14 @@ using ServerData = XtrmAddons.Net.Application.Serializable.Elements.Remote.Serve
 namespace Fotootof.Startup
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Settings Preferences.
+    /// Class XtrmAddons Fotootof Startup Settings Options.
     /// </summary>
     public class SettingsOptions
     {
         #region Variables
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -31,8 +30,11 @@ namespace Fotootof.Startup
         #endregion
 
 
+
+        #region Methods
+
         /// <summary>
-        /// Method to initialize server application.
+        /// Method to initialize application Server.
         /// </summary>
         public ServerData InitializeServer()
         {
@@ -73,15 +75,21 @@ namespace Fotootof.Startup
         }
 
         /// <summary>
-        /// Method to initialize application database.
+        /// Method to initialize application Database.
         /// </summary>
-        [SuppressMessage("Microsoft.Security", "CA2100", Justification = "Do not to fix it !", Scope = "Not supported by DLL")]
+        /// [SuppressMessage("Microsoft.Security", "CA2100", Justification = "Do not to fix it !", Scope = "Not supported by DLL")]
         public void InitializeDatabase()
         {
             log.Info(Local.Properties.Logs.DbInitializingConnection);
 
             // Get the default database in preferences if exists.
             Database database = ApplicationBase.Options.Data.Databases.FindDefaultFirst();
+
+#if DEBUG
+            string dbName = "default.debug.db3";
+#else
+            string dbName = "default.db3";
+#endif
 
             // Create default database parameters if not exists.
             if (database == null || database.Key == null)
@@ -91,10 +99,9 @@ namespace Fotootof.Startup
                     Key = "default",
                     Name = "default.db3",
                     Type = DatabaseType.SQLite,
-                    Source = Path.Combine(ApplicationBase.Directories.Data, "default.db3"),
+                    Source = Path.Combine(ApplicationBase.Directories.Data, dbName),
                     IsDefault = true,
                     Comment = "Default SQLite installed database."
-
                 };
 
                 log.Info(Local.Properties.Logs.DbAddingDefault);
@@ -130,59 +137,20 @@ namespace Fotootof.Startup
             catch (Exception e)
             {
                 log.Fatal(Local.Properties.Logs.DbConnectionFail, e);
-                MessageBox.Show(Local.Properties.Logs.DbConnectionFail, Local.Properties.Translations.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show
+                (
+                    Local.Properties.Logs.DbConnectionFail,
+                    Local.Properties.Translations.ApplicationName,
+                    MessageBoxButton.OK, MessageBoxImage.Error
+                );
             }
-
-            //Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, UpdateDatabaseDelegate());
-
-            // Update the database.
-            //UpdateDatabase();
 
             // End of database initilization.
             log.Info(Local.Properties.Logs.DbInitializingConnectionDone);
         }
 
-        //public delegate void UpdateDatabaseDelegate(SQLiteConnection db, string updateFile);
-
-        ///// <summary>
-        ///// Method to update application database.
-        ///// </summary>
-        ///// <param name="db">The database to update.</param>
-        //private void UpdateDatabase()
-        //{
-        //    log.Info("Updating database connection. Please wait...");
-
-        //    using (SQLiteConnection db = SQLiteManager.Instance().Db)
-        //    {
-        //        if (db != null)
-        //        {
-        //            ObservableCollection<VersionEntity> databaseVersions = MainWindow.Database.Versions.List();
-        //            string updateFile = "";
-
-        //            if (databaseVersions == null || databaseVersions.Count == 0)
-        //            {
-        //                updateFile = Path.Combine(ApplicationBase.Storage.Directories.FindKey("data.database").AbsolutePath, "update.1.0.18123.2149.sqlite");
-        //                Application.Current.Dispatcher.BeginInvoke(
-        //                new UpdateDatabaseDelegate(SQLiteManagerUpdateDatabase), new object[] { db, updateFile });
-        //                //WpfSQLiteData.RunFile(db, updateFile);
-        //            }
-        //        }
-        //    }
-
-        //    log.Info("Updating database connection. Done !");
-        //}
-
-        ///// <summary>
-        ///// Method to update application database.
-        ///// </summary>
-        ///// <param name="db">The database to update.</param>
-        //private void SQLiteManagerUpdateDatabase(SQLiteConnection db, string updateFile)
-        //{
-        //    WpfSQLiteData.RunFile(db, updateFile);
-        //}
-
         /// <summary>
-        /// Method to initialize server application.
+        /// Method to auto start the application Server.
         /// </summary>
         public void AutoStartServer()
         {
@@ -225,10 +193,17 @@ namespace Fotootof.Startup
             log.Info("Auto start HTTP server connection. Done !");
         }
 
+        #endregion
+
+
+
+        #region Obsoletes
+
         /// <summary>
         /// Method to add server mapping of DLL. 
         /// </summary>
         // Todo : write contract plugin for it.
+        [System.Obsolete("Do not use anymore.")]
         public void AddServerMap()
         {
             log.Info("Adding API mapping to server.");
@@ -241,5 +216,7 @@ namespace Fotootof.Startup
                 )
             );
         }
+
+        #endregion
     }
 }

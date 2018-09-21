@@ -14,25 +14,25 @@ using XtrmAddons.Net.NotifyIcons;
 namespace Fotootof
 {
     /// <summary>
-    /// <para>Class Fotootof Server Main Window.</para>
+    /// <para>Class XtrmAddons Fotootof Main Window.</para>
     /// </summary>
     public partial class MainWindow : Window
     {
         #region Variables
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// Variable memory log watcher for log4net memory appender management.
+        /// Variable memory log watcher <see cref="MemoryLogWatcher"/> for log4net memory appender management.
         /// </summary>
         private static readonly MemoryLogWatcher logWatcher = new MemoryLogWatcher();
 
         /// <summary>
-        /// Variable logs page.
+        /// Variable to store logs page <see cref="PageLogsLayout"/>.
         /// </summary>
         private static readonly PageLogsLayout pageLogs = new PageLogsLayout();
 
@@ -48,18 +48,14 @@ namespace Fotootof
         public PageLogsLayout BlockLogs => pageLogs;
 
         /// <summary>
-        /// Property alias to access to the text block container of logs stack.
-        /// </summary>
-        //public Border BlockContent => BlockContent;
-
-        /// <summary>
-        /// Property alias to access to the text block container of logs stack.
+        /// Property alias to the busy indicator <see cref="Xceed.Wpf.Toolkit.BusyIndicator"/>.
         /// </summary>
         public Xceed.Wpf.Toolkit.BusyIndicator BusyIndicator => XCTKBusyIndicator;
 
         /// <summary>
         /// Property to access to the SQLite Service.
         /// </summary>
+        [System.Obsolete("Use SQLiteSvc.GetInstance()")]
         public static SQLiteSvc Database
         {
             get => ApplicationSession.Properties.Database;
@@ -73,7 +69,7 @@ namespace Fotootof
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Main Window Constructor.
+        /// Class XtrmAddons Fotootof Main Window Constructor.
         /// </summary>
         public MainWindow()
         {
@@ -96,7 +92,7 @@ namespace Fotootof
         #region Methods
 
         /// <summary>
-        /// Method to initialize application content.
+        /// Method to initialize application content asynchronously.
         /// </summary>
         private async Task InitializeContentAsync()
         {
@@ -123,10 +119,10 @@ namespace Fotootof
         #region Methods Windows Events
 
         /// <summary>
-        /// Method called on window load event.
+        /// Method called on <see cref="Window"/> load event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e"></param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MessageBoxs.IsBusy = true;
@@ -148,10 +144,10 @@ namespace Fotootof
         }
 
         /// <summary>
-        /// Method called on window closing event.
+        /// Method called on <see cref="Window"/> closing event.
         /// </summary>
-        /// <param name="sender">The object sender.</param>
-        /// <param name="e">The cancel event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The cancel event arguments <see cref="CancelEventArgs"/>.</param>
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             NotifyIconManager.Dispose();
@@ -161,18 +157,18 @@ namespace Fotootof
         /// <summary>
         /// Method called on file exit click.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The routed event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The executed routed event arguments <see cref="ExecutedRoutedEventArgs"/>.</param>
         private void FileExit_Click(object sender, ExecutedRoutedEventArgs e)
         {
             Close();
         }
 
         /// <summary>
-        /// Method called on window size changed event.
+        /// Method called on <see cref="Window"/> size changed event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Size changed event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Size changed event arguments <see cref="SizeChangedEventArgs"/>.</param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
 #if DEBUG_SIZE
@@ -184,7 +180,6 @@ namespace Fotootof
             Trace.TraceInformation("Frame_Content.ActualSize = [" + Frame_Content.ActualWidth + "," + Frame_Content.ActualHeight + "]");
             Trace.TraceInformation("RowGridMain.Height = [" + RowGridMain.Height + "]");
             Trace.TraceInformation("-------------------------------------------------------------------------------------------------------");
-
 #endif
         }
 
@@ -194,10 +189,10 @@ namespace Fotootof
         #region Methods Logs Watcher
 
         /// <summary>
-        /// Method to watch logs for console & application page logs.
+        /// Method to watch logs for console and application page logs.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Event arguments <see cref="EventArgs"/>.</param>
         public void LogWatcher_Updated(object sender, EventArgs e)
         {
             AppLogger.UpdateLogTextbox(logWatcher.LogContent);

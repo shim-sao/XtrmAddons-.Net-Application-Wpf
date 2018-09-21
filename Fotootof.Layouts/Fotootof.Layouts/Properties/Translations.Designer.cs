@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fotootof.Libraries.Interfaces.Properties {
+namespace Fotootof.Layouts.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Fotootof.Libraries.Interfaces.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fotootof.Libraries.Interfaces.Properties.Translations", typeof(Translations).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fotootof.Layouts.Properties.Translations", typeof(Translations).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,51 +57,6 @@ namespace Fotootof.Libraries.Interfaces.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à The argument Type &apos;{0}&apos; must be not null : &apos;{1}&apos;.
-        /// </summary>
-        public static string ExceptionsArgumentNull {
-            get {
-                return ResourceManager.GetString("ExceptionsArgumentNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à The argument Type &apos;string&apos; must be not null, empty or whitespace..
-        /// </summary>
-        public static string ExceptionsArgumentNullString {
-            get {
-                return ResourceManager.GetString("ExceptionsArgumentNullString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à The reference Type &apos;{0}&apos; is null : &apos;{1}&apos;.
-        /// </summary>
-        public static string ExceptionsReferenceNull {
-            get {
-                return ResourceManager.GetString("ExceptionsReferenceNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à The reference Type &apos;string&apos; is null : &apos;{0}&apos;.
-        /// </summary>
-        public static string ExceptionsReferenceNullString {
-            get {
-                return ResourceManager.GetString("ExceptionsReferenceNullString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Log4net memory appender not found !.
-        /// </summary>
-        public static string Log4netMemoryAppender {
-            get {
-                return ResourceManager.GetString("Log4netMemoryAppender", resourceCulture);
             }
         }
     }

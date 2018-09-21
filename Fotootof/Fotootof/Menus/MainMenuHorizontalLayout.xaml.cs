@@ -221,17 +221,17 @@ namespace Fotootof.Menus
         /// Method called on client added routed event.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">The routed event.</param>
-        private void RaiseClientAdded(object sender, RoutedEvent routedEvent)
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
+        private void RaiseClientAdded(object sender, RoutedEvent e)
         {
-            ClientAdded?.Invoke(this, new RoutedEventArgs(routedEvent, sender));
+            ClientAdded?.Invoke(this, new RoutedEventArgs(e, sender));
         }
 
         /// <summary>
         /// Method called on <see cref="FrameworkElement"/> loaded event.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">The routed event arguments.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         private void FrameworkElement_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = Model;

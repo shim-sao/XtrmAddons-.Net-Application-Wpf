@@ -109,7 +109,28 @@ namespace Fotootof.SQLite.EntityManager.Base
         /// <param name="exp"></param>
         /// <param name="pk"></param>
         /// <returns>An entity entity or null if not found.</returns>
+        [System.Obsolete("")]
         public static T SingleOrNull<T>(this IQueryable<T> query, Func<T, bool> exp, string pk = "PrimaryKey") where T : class
+        {
+            T item = query.SingleOrDefault(exp);
+
+            // Check if user is found, return null instead of default.
+            if (item == default(T))
+            {
+                return null;
+            }
+
+            return item;
+        }
+
+        /// <summary>
+        /// Method to select an entity or null.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="exp"></param>
+        /// <returns>An entity entity or null if not found.</returns>
+        public static T SingleOrNull<T>(this IQueryable<T> query, Func<T, bool> exp) where T : class
         {
             T item = query.SingleOrDefault(exp);
 

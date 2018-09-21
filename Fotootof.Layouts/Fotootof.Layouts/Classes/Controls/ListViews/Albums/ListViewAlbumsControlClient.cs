@@ -1,4 +1,5 @@
 ﻿using Fotootof.Collections.Entities;
+using Fotootof.Collections.Models;
 using Fotootof.Layouts.Dialogs;
 using Fotootof.Layouts.Forms.Album;
 using Fotootof.Libraries.Controls.ListViews;
@@ -12,7 +13,7 @@ namespace Fotootof.Layouts.Controls.ListViews
     /// <summary>
     /// Class XtrmAddons Fotootof Server Common Controls Albums List View.
     /// </summary>
-    public abstract class ListViewAlbumsControlClient : ListViewBase<AlbumEntityCollection, AlbumJsonModel>
+    public abstract class ListViewAlbumsControlClient : ListViewBase<AlbumModelCollection, AlbumJsonModel>
     {
         #region Variables
 
@@ -35,9 +36,9 @@ namespace Fotootof.Layouts.Controls.ListViews
             DependencyProperty.Register
             (
                 "Items",
-                typeof(AlbumEntityCollection),
-                typeof(ListViewAlbumsControl),
-                new PropertyMetadata(new AlbumEntityCollection(false))
+                typeof(AlbumModelCollection),
+                typeof(ListViewAlbumsControlClient),
+                new PropertyMetadata(new AlbumModelCollection())
             );
 
         #endregion

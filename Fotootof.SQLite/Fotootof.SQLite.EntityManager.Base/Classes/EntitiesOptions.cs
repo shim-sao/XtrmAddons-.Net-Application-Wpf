@@ -16,6 +16,11 @@ namespace Fotootof.SQLite.EntityManager.Base
         public IList<EnumEntitiesDependencies> Dependencies { get; set; }
             = new List<EnumEntitiesDependencies>();
 
+        /// <summary>
+        /// Property to filter Album query by User.
+        /// </summary>
+        public int UserId { get; set; } = 0;
+
         #endregion
 
 

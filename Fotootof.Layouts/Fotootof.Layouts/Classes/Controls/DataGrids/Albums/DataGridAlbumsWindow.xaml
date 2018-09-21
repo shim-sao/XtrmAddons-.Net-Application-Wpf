@@ -8,12 +8,14 @@
     xmlns:dg="clr-namespace:Fotootof.Layouts.Controls.DataGrids"
     xmlns:base="clr-namespace:Fotootof.Libraries.Windows;assembly=Fotootof.Libraries.Windows"
     mc:Ignorable="d"
-    Title="{StaticResource WindowsDataGridAlbumsTitle}"
     ResizeMode="NoResize"
     Width="480"
     Height="480"
     Loaded="Window_Loaded">
 
+    <!--xmlns:t="clr-namespace:Fotootof.Layouts.Forms.Properties;assembly=Fotootof.Layouts.Forms"
+    Title="{x:Static t:Translations.WindowsDataGridAlbumsTitle}"-->
+    
     <!-- #region : List Album -->
 	<Grid x:Name="GridBlockRootName" Style="{DynamicResource FrameworkElementRootStyle}">
 
@@ -28,7 +30,7 @@
             <!-- #region : Tabs Informations -->
             <TabItem Header="{x:Static l:Translations.Albums}">
 
-                <dg:DataGridAlbumsLayout x:Name="DataGridAlbumsControlName"
+                <dg:DataGridAlbumsLayout x:Name="DataGridAlbumsLayoutName"
                                          Grid.Row="0"
                                          DataContext="{Binding}"
                                          HorizontalAlignment="Stretch"/>
@@ -44,12 +46,12 @@
             <Grid>
 				<StackPanel Style="{StaticResource StackPanelFormValidatorStyle}">
 
-					<Button x:Name="Button_Save"
+					<Button x:Name="ButtonSaveName"
 							Click="DialogSave_Click"
 							Content="{x:Static l:Translations.Save}"
 							Style="{StaticResource ButtonSaveStyle}"/>
 
-					<Button x:Name="Button_Cancel"
+					<Button x:Name="ButtonCancelName"
 							Content="{x:Static l:Translations.Cancel}"
 							Style="{StaticResource ButtonCancelStyle}"/>
 

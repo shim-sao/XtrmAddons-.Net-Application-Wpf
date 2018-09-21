@@ -17,6 +17,11 @@ namespace Fotootof.Components.Client.Section.Layouts
         #region Properties
 
         /// <summary>
+        /// Property to access to the <see cref="ListViewAlbumsModel"/>.
+        /// </summary>
+        public ListViewAlbumsModel Model { get; set; }
+
+        /// <summary>
         /// Property to access to the items collection.
         /// </summary>
         public override ListView ItemsCollection 
@@ -58,6 +63,8 @@ namespace Fotootof.Components.Client.Section.Layouts
         public ListViewAlbumsLayout()
         {
             InitializeComponent();
+            Model = new ListViewAlbumsModel();
+            DataContext = Model;
 
             ItemsCollection.KeyDown += ItemsCollection.AddKeyDownSelectAllItems;
         }
@@ -113,6 +120,7 @@ namespace Fotootof.Components.Client.Section.Layouts
         }
 
         #endregion
+
 
 
         #region Methods Size Changed

@@ -15,7 +15,7 @@
 	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
 		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<StackPanel x:Name="Block_TopControls" Style="{StaticResource StackPanelTopControls}" Height="0">
+			<StackPanel x:Name="BlockTopControlsName" Style="{StaticResource StackPanelTopControls}" Height="0">
 				<Border Background="{StaticResource LightGrey}" Visibility="Collapsed">
 					<TextBox Background="White"
 							 x:Name="Breadcrumbs"

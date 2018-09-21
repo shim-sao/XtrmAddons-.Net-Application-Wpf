@@ -1,12 +1,15 @@
-﻿using Fotootof.SQLite.EntityManager.Base;
+﻿using Fotootof.Libraries.Logs;
+using Fotootof.SQLite.EntityManager.Base;
 using Fotootof.SQLite.EntityManager.Connector;
 using Fotootof.SQLite.EntityManager.Data.Tables.Dependencies;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using XtrmAddons.Net.Common.Extensions;
 
@@ -213,7 +216,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
             op = op ?? new PictureOptionsSelect();
 
             // Load Album dependency if required.
-            if (op.IsDependOn(EnumEntitiesDependencies.PicturesInAlbums))
+            if (op.IsDependOn(EnumEntitiesDependencies.PicturesInAlbums) || User != null)
             {
                 query.Include(x => x.PicturesInAlbums);
             }
@@ -233,6 +236,17 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <returns>An Picture entity or null if not found.</returns>
         public PictureEntity Select(PictureOptionsSelect op, bool nullable = false)
         {
+            log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {op?.GetType()}");
+
+            if (op == null)
+            {
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(op), op);
+                log.Error($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {e.Output()}");
+                throw e;
+            }
+
+            if (!SetSafeUser(op.UserId)) return null;
+
             // Initialize query.
             IQueryable<PictureEntity> query = Connector.Pictures;
 
@@ -249,6 +263,37 @@ namespace Fotootof.SQLite.EntityManager.Managers
                 query = query.Where(x => x.Alias == op.Alias);
             }
 
+            // Filter by User. 
+            //if (entity != null && user != null)
+            //{
+            //    SectionEntity section = null;
+
+            //    foreach (AlbumsInSections sectDep in entity.AlbumsInSections)
+            //    {
+            //        IQueryable<SectionEntity> sections = Connector.Sections;
+            //        sections = sections.Include(x => x.SectionsInAclGroups);
+            //        SectionEntity s = sections.SingleOrDefault(x => x.PrimaryKey == sectDep.SectionId);
+
+            //        if (s.PrimaryKey == 0)
+            //        {
+            //            return null;
+            //        }
+
+            //        foreach (SectionsInAclGroups aclgDep in s.SectionsInAclGroups)
+            //        {
+            //            section = GetUserSection(aclgDep.SectionId, user);
+            //            if (section != null && section.PrimaryKey > 0) break;
+            //        }
+
+            //        if (section != null && section.PrimaryKey > 0) break;
+            //    }
+
+            //    if (section == null)
+            //    {
+            //        return null;
+            //    }
+            //}
+            
             return SingleDefaultOrNull(query, nullable);
         }
 

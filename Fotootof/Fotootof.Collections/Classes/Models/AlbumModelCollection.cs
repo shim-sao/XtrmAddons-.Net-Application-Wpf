@@ -38,6 +38,11 @@ namespace Fotootof.Collections.Models
         /// <summary>
         /// Class XtrmAddons Fotootof Common Albums Collection Constructor.
         /// </summary>
+        public AlbumModelCollection() : base() { }
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Common Albums Collection Constructor.
+        /// </summary>
         /// <param name="list">A <see cref="List{AlbumJsonModel}"/> to paste in.</param>
         public AlbumModelCollection(List<AlbumJsonModel> list) : base(list) { }
 

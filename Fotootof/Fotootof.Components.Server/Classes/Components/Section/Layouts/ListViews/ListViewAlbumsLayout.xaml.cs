@@ -30,7 +30,7 @@ namespace Fotootof.Components.Server.Section.Layouts
 
 
         #region Properties
-
+/*
         /// <summary>
         /// 
         /// </summary>
@@ -39,7 +39,7 @@ namespace Fotootof.Components.Server.Section.Layouts
             get => (AlbumEntityCollection)DataContext.GetPropertyValue("Items");
             set => DataContext.SetPropertyValue("Items",  value);
         }
-
+*/
         /// <summary>
         /// 
         /// </summary>
@@ -115,7 +115,7 @@ namespace Fotootof.Components.Server.Section.Layouts
             {
                 // Start to busy application.
                 MessageBoxs.IsBusy = true;
-                log.Warn("Starting deleting Album(s). Please wait...");
+                log.Warn("Deleting Album(s). Please wait...");
 
                 // Delete item from database.
                 await AlbumEntityCollection.DbDeleteAsync(SelectedItems);
@@ -134,15 +134,19 @@ namespace Fotootof.Components.Server.Section.Layouts
                 // Raise the on delete event.
                 log.Warn("Refreshing Album(s) list view...");
                 NotifyDeleted(SelectedItems.ToArray());
-
-                // Stop to busy application.
-                log.Warn("Ending deleting Album(s).");
-                MessageBoxs.IsBusy = false;
             }
+
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
                 MessageBoxs.Error(ex.Output());
+            }
+
+            // Stop to busy application.
+            finally
+            {
+                log.Warn("Deleting Album(s). Done.");
+                MessageBoxs.IsBusy = false;
             }
         }
 

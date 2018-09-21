@@ -8,20 +8,21 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Layouts.Controls.DataGrids
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Layouts Window Albums Data Grid.
+    /// Class XtrmAddons Fotootof Layouts Controls Window Albums Data Grid.
     /// </summary>
     public partial class DataGridAlbumsWindow : WindowLayoutForm
     {
         #region Variable
 
         /// <summary>
-        /// Variable logger.
+        /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -33,15 +34,15 @@ namespace Fotootof.Layouts.Controls.DataGrids
         #region Properties
 
         /// <summary>
-        /// Property to access to the Window model.
+        /// Property to access to the Window model <see cref="DataGridAlbumsWindowModel"/>.
         /// </summary>
         public new DataGridAlbumsWindowModel Model { get; private set; }
 
         /// <summary>
-        /// Proper to get selected Albums.
+        /// Property to get the selected Albums <see cref="ObservableCollection{AlbumEntity}"/>.
         /// </summary>
         public ObservableCollection<AlbumEntity> SelectedAlbums 
-            => (FindName("DataGridAlbumsControlName") as DataGridAlbumsLayout).SelectedAlbums;
+            => FindName<DataGridAlbumsLayout>("DataGridAlbumsLayoutName").SelectedAlbums;
 
         /// <summary>
         /// Variable old Album informations backup.
@@ -78,44 +79,75 @@ namespace Fotootof.Layouts.Controls.DataGrids
         #region Methods
 
         /// <summary>
-        /// Method called on Window load event.
+        /// Method called on <see cref="Window"/> load event.
         /// </summary>
-        public void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
+        public void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Assign Window closing event.
-            Closing += Window_Closing;
+            try
+            {
+                // Start to busy application.
+                MessageBoxs.IsBusy = true;
+                log.Warn("Window loading event. Please wait...");
 
-            // Assign list of AclGroup to the model.
-            Model = new DataGridAlbumsWindowModel(this);
-            LoadAlbums();
+                // Assign Window closing event.
+                Closing += Window_Closing;
 
-            // Add events handlers to the albums container.
-            //DataGridAlbumsControlName.OnAdd += UCAlbumsContainer_OnAdd;
-            //DataGridAlbumsControlName.OnCancel += UCAlbumsContainer_OnCancel;
-            //DataGridAlbumsControlName.OnChange += UCAlbumsContainer_OnChangeAsync;
-            //DataGridAlbumsControlName.OnDelete += UCAlbumsContainer_OnDeleteAsync;
+                // Assign list of AclGroup to the model.
+                Model = new DataGridAlbumsWindowModel(this);
+                LoadAlbums();
 
-            // Add model to the Window context.
-            DataContext = Model;
+                // Add events handlers to the albums container.
+                DataGridAlbumsLayout layout = FindName<DataGridAlbumsLayout>("DataGridAlbumsLayoutName");
+                layout.Added += UCAlbumsContainer_Added;
+                layout.Canceled += UCAlbumsContainer_Canceled;
+                layout.Changed += UCAlbumsContainer_ChangedAsync;
+                layout.Deleted += UCAlbumsContainer_DeletedAsync;
 
-            // Add selection changed handler
-            SelectedAlbums.CollectionChanged += SelectedAlbums_CollectionChanged;
+                // Add model to the Window context.
+                DataContext = Model;
+
+                // Add selection changed handler
+                SelectedAlbums.CollectionChanged += SelectedAlbums_CollectionChanged;
+            }
+            catch (Exception ex)
+            {
+                log.Fatal(ex.Output(), ex);
+                MessageBoxs.Fatal(ex);
+            }
+
+            // Stop to busy application.
+            finally
+            {
+                log.Warn("Window loading event. Done.");
+                MessageBoxs.IsBusy = false;
+            }
         }
 
         /// <summary>
         /// Method called on albums collection selection changed.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">Notify collection changed event arguments.</param>
         private void SelectedAlbums_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (SelectedAlbums.Count > 0)
+            try
             {
-                ((Button)FindName("Button_Save")).IsEnabled = true;
+                if (SelectedAlbums.Count > 0)
+                {
+                    ((Button)FindName("ButtonSaveName")).IsEnabled = true;
+                }
+                else
+                {
+                    ((Button)FindName("ButtonCancelName")).IsEnabled = false;
+                }
             }
-            else
+
+            catch (Exception ex)
             {
-                ((Button)FindName("Button_Save")).IsEnabled = false;
+                log.Fatal(ex.Output(), ex);
+                MessageBoxs.Error(ex);
             }
         }
 
@@ -128,7 +160,7 @@ namespace Fotootof.Layouts.Controls.DataGrids
             {
                 // Start to busy application.
                 MessageBoxs.IsBusy = true;
-                log.Warn("Starting loading Albums list. Please wait...");
+                log.Warn("Loading Albums list. Please wait...");
 
                 // Load Albums from database.
                 Model.Albums = new AlbumEntityCollection(true);
@@ -142,7 +174,38 @@ namespace Fotootof.Layouts.Controls.DataGrids
             // Stop to busy application.
             finally
             {
-                log.Warn("Ending loading Albums list.");
+                log.Warn("Loading Albums list. Please wait.");
+                MessageBoxs.IsBusy = false;
+            }
+        }
+
+        /// <summary>
+        /// Method called on Album add event.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Entity changes event arguments.</param>
+        private void UCAlbumsContainer_Added(object sender, EntityChangesEventArgs e)
+        {
+            try
+            {
+                // Start to busy application.
+                MessageBoxs.IsBusy = true;
+                log.Warn("Saving Album informations. Please wait...");
+
+                AlbumEntity item = (AlbumEntity)e.NewEntity;
+                Model.Albums.Add(item);
+                AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Error(ex.Output());
+            }
+
+            // Stop to busy application.
+            finally
+            {
+                log.Warn("Saving Album informations. Done.");
                 MessageBoxs.IsBusy = false;
             }
         }
@@ -150,69 +213,44 @@ namespace Fotootof.Layouts.Controls.DataGrids
         /// <summary>
         /// Method called on Album view cancel event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">Entity changes event arguments.</param>
-        private void UCAlbumsContainer_OnCancel(object sender, EntityChangesEventArgs e)
+        private void UCAlbumsContainer_Canceled(object sender, EntityChangesEventArgs e)
         {
             try
             {
                 // Start to busy application.
                 MessageBoxs.IsBusy = true;
-                log.Warn("Starting canceling operation. Please wait...");
+                log.Warn("Canceling operation. Please wait...");
 
                 // No operation at this moment.
-
-                // Stop to busy application.
-                log.Warn("Endind canceling operation.");
-                MessageBoxs.IsBusy = false;
             }
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
                 MessageBoxs.Error(ex.Output());
             }
-        }
 
-        /// <summary>
-        /// Method called on Album add event.
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Entity changes event arguments.</param>
-        private void UCAlbumsContainer_OnAdd(object sender, EntityChangesEventArgs e)
-        {
-            try
+            // Stop to busy application.
+            finally
             {
-                // Start to busy application.
-                MessageBoxs.IsBusy = true;
-                log.Info("Starting saving Album informations. Please wait...");
-
-                AlbumEntity item = (AlbumEntity)e.NewEntity;
-                Model.Albums.Add(item);
-                AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
-
-                // Stop to busy application.
-                log.Warn("Ending saving Album informations.");
+                log.Warn("Canceling operation. Done.");
                 MessageBoxs.IsBusy = false;
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Output(), ex);
-                MessageBoxs.Error(ex.Output());
             }
         }
 
         /// <summary>
         /// Method called on Album change event asynchounously.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">Entity changes event arguments.</param>
-        private async void UCAlbumsContainer_OnChangeAsync(object sender, EntityChangesEventArgs e)
+        private async void UCAlbumsContainer_ChangedAsync(object sender, EntityChangesEventArgs e)
         {
             try
             {
                 // Start to busy application.
                 MessageBoxs.IsBusy = true;
-                log.Info("Starting updating Album informations. Please wait...");
+                log.Warn("Updating Album informations. Please wait...");
 
                 // Get old & new entity informations.
                 AlbumEntity newEntity = (AlbumEntity)e.NewEntity;
@@ -224,30 +262,34 @@ namespace Fotootof.Layouts.Controls.DataGrids
                 // Replace the old entity in the model by the new one. 
                 int index = Model.Albums.IndexOf(old);
                 Model.Albums[index] = newEntity;
-
-                // Stop to busy application.
-                log.Warn("Ending updating Album informations.");
-                MessageBoxs.IsBusy = false;
             }
+
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
                 MessageBoxs.Error(ex.Output());
+            }
+
+            // Stop to busy application.
+            finally
+            {
+                log.Warn("Updating Album informations. Done.");
+                MessageBoxs.IsBusy = false;
             }
         }
 
         /// <summary>
         /// Method called on Album delete event asynchounously.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">Entity changes event arguments.</param>
-        private async void UCAlbumsContainer_OnDeleteAsync(object sender, EntityChangesEventArgs e)
+        private async void UCAlbumsContainer_DeletedAsync(object sender, EntityChangesEventArgs e)
         {
             try
             {
                 // Start to busy application.
                 MessageBoxs.IsBusy = true;
-                log.Warn("Starting deleting Album(s). Please wait...");
+                log.Warn("Deleting Album(s). Please wait...");
 
                 // Remove item from list.
                 AlbumEntity item = (AlbumEntity)e.NewEntity;
@@ -255,16 +297,19 @@ namespace Fotootof.Layouts.Controls.DataGrids
 
                 // Delete item from database.
                 await AlbumEntityCollection.DbDeleteAsync(new List<AlbumEntity> { item });
-
-                // Stop to busy application.
-                log.Warn("Ending deleting Album(s).");
-                MessageBoxs.IsBusy = false;
-
             }
+
             catch(Exception ex)
             {
                 log.Error(ex.Output(), ex);
                 MessageBoxs.Error(ex.Output());
+            }
+
+            // Stop to busy application.
+            finally
+            {
+                log.Warn("Deleting Album(s). Done.");
+                MessageBoxs.IsBusy = false;
             }
         }
 

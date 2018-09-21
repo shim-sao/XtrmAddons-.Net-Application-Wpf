@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fotootof.Layouts</RootNamespace>
     <AssemblyName>Fotootof.Layouts</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -107,10 +108,6 @@
       <Project>{06F82071-D500-4E6D-8734-373D1963C307}</Project>
       <Name>Fotootof.Layouts.Dialogs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Forms\Fotootof.Layouts.Forms.csproj">
-      <Project>{F3377391-398A-4449-9A62-2C04C6821D71}</Project>
-      <Name>Fotootof.Layouts.Forms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Windows.About\Fotootof.Layouts.Windows.About.csproj">
       <Project>{44E3916D-C6F1-4A36-B0BA-9C4F8FD7C6E4}</Project>
       <Name>Fotootof.Layouts.Windows.About</Name>
@@ -195,6 +192,10 @@
       <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
       <Name>Fotootof.HttpServer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Layouts.Forms\Fotootof.Layouts.Forms.csproj">
+      <Project>{f3377391-398a-4449-9a62-2c04c6821d71}</Project>
+      <Name>Fotootof.Layouts.Forms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj">
       <Project>{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}</Project>
       <Name>Fotootof.Layouts.Interfaces</Name>
@@ -214,6 +215,5 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
