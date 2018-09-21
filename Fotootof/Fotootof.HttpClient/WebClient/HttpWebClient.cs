@@ -456,18 +456,40 @@ namespace Fotootof.HttpClient.WebClient
         #region IDisposable Support
 
         /// <summary>
-        /// Variable is disposed ?
+        /// Variable to track whether Dispose has been called.
         /// </summary>
-        private bool disposedValue = false;
+        private bool disposed = false;
 
         /// <summary>
-        /// Method to dispose the object.
+        /// Implement IDisposable.
+        /// Do not make this method virtual.
+        /// A derived class should not be able to override this method.
         /// </summary>
-        /// <param name="disposing">Dispose managed objects ?</param>
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "<Handler>k__BackingField")]
+        public void Dispose()
+        {
+            Dispose(true);
+
+            // This object will be cleaned up by the Dispose method.
+            // Therefore, you should call GC.SupressFinalize to
+            // take this object off the finalization queue
+            // and prevent finalization code for this object
+            // from executing a second time.
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Dispose(bool disposing) executes in two distinct scenarios.
+        /// If disposing equals true, the method has been called directly
+        /// or indirectly by a user's code. Managed and unmanaged resources
+        /// can be disposed.
+        /// If disposing equals false, the method has been called by the
+        /// runtime from inside the finalizer and you should not reference
+        /// other objects. Only unmanaged resources can be disposed.
+        /// </summary>
+        /// <param name="disposing">Track whether Dispose has been called.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!disposed)
             {
                 if (disposing)
                 {
@@ -482,25 +504,24 @@ namespace Fotootof.HttpClient.WebClient
                 WebAuth = null;
 
                 // Flag disposed value.
-                disposedValue = true;
+                disposed = true;
             }
         }
 
-        // TODO: remplacer un finaliseur seulement si la fonction Dispose(bool disposing) ci-dessus a du code pour libérer les ressources non managées.
-        // ~HttpWebClient()
+        /// <summary>
+        /// Use C# destructor syntax for finalization code.
+        /// This destructor will run only if the Dispose method
+        /// does not get called.
+        /// It gives your base class the opportunity to finalize.
+        /// Do not provide destructors in types derived from this class.
+        /// </summary>
+        //~HttpWebClient()
         //{
-        //    // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.
+        //    // Do not re-create Dispose clean-up code here.
+        //    // Calling Dispose(false) is optimal in terms of
+        //    // readability and maintainability.
         //    Dispose(false);
         //}
-
-        // Ce code est ajouté pour implémenter correctement le modèle supprimable.
-        public void Dispose()
-        {
-            // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.
-            Dispose(true);
-            // TODO: supprimer les marques de commentaire pour la ligne suivante si le finaliseur est remplacé ci-dessus.
-            GC.SuppressFinalize(this);
-        }
 
         #endregion
 

@@ -1,5 +1,8 @@
 ﻿using Fotootof.SQLite.EntityManager.Base;
 using Fotootof.SQLite.EntityManager.Connector;
+using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
+using System.Data.Entity;
+using System.Linq;
 using System.Reflection;
 
 namespace Fotootof.SQLite.EntityManager.Managers
@@ -20,6 +23,16 @@ namespace Fotootof.SQLite.EntityManager.Managers
         #endregion
 
 
+        #region Properties
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public UserEntity User { get; protected set; }
+
+        #endregion
+
+
 
         #region Constructors
 
@@ -29,6 +42,33 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <param name="connector"></param>
         public EntitiesManager(DatabaseContextCore connector) : base(connector) { }
 
+        #endregion
+
+
+        #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        protected bool SetSafeUser(int id)
+        {
+            if (id > 0)
+            {
+                IQueryable<UserEntity> users = Connector.Users;
+                users = users.Include(x => x.UsersInAclGroups);
+                User = users.SingleOrNull(x => x.PrimaryKey == id);
+                
+                if (User == null)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        
         #endregion
     }
 }

@@ -1,5 +1,4 @@
-﻿using Fotootof.Components.Client.Section.Layouts;
-using Fotootof.Layouts.Controls.DataGrids;
+﻿using Fotootof.Layouts.Controls.DataGrids;
 using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Components;
 using Fotootof.Libraries.HttpHelpers.HttpClient;

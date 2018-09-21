@@ -8,11 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fotootof.Libraries.Interfaces.Properties
-{
+namespace Fotootof.Libraries.Interfaces.Properties {
     using System;
-
-
+    
+    
     /// <summary>
     ///   Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
     /// </summary>
@@ -23,103 +22,85 @@ namespace Fotootof.Libraries.Interfaces.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Translations
-    {
-
+    public class Translations {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Translations()
-        {
+        internal Translations() {
         }
-
+        
         /// <summary>
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if (object.ReferenceEquals(resourceMan, null))
-                {
+        public static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fotootof.Libraries.Interfaces.Properties.Translations", typeof(Translations).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Remplace la propriété CurrentUICulture du thread actuel pour toutes
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        public static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   Recherche une chaîne localisée semblable à The argument Type &apos;{0}&apos; must be not null : &apos;{1}&apos;.
         /// </summary>
-        public static string ExceptionsArgumentNull
-        {
-            get
-            {
+        public static string ExceptionsArgumentNull {
+            get {
                 return ResourceManager.GetString("ExceptionsArgumentNull", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Recherche une chaîne localisée semblable à The argument Type &apos;string&apos; must be not null, empty or whitespace..
         /// </summary>
-        public static string ExceptionsArgumentNullString
-        {
-            get
-            {
+        public static string ExceptionsArgumentNullString {
+            get {
                 return ResourceManager.GetString("ExceptionsArgumentNullString", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Recherche une chaîne localisée semblable à The reference Type &apos;{0}&apos; is null : &apos;{1}&apos;.
         /// </summary>
-        public static string ExceptionsReferenceNull
-        {
-            get
-            {
+        public static string ExceptionsReferenceNull {
+            get {
                 return ResourceManager.GetString("ExceptionsReferenceNull", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Recherche une chaîne localisée semblable à The reference Type &apos;string&apos; is null : &apos;{0}&apos;.
         /// </summary>
-        public static string ExceptionsReferenceNullString
-        {
-            get
-            {
+        public static string ExceptionsReferenceNullString {
+            get {
                 return ResourceManager.GetString("ExceptionsReferenceNullString", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Log4net memory appender not found !.
         /// </summary>
-        public static string Log4netMemoryAppender
-        {
-            get
-            {
+        public static string Log4netMemoryAppender {
+            get {
                 return ResourceManager.GetString("Log4netMemoryAppender", resourceCulture);
             }
         }

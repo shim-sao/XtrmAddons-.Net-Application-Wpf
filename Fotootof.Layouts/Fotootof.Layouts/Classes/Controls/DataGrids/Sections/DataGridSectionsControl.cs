@@ -58,13 +58,13 @@ namespace Fotootof.Layouts.Controls.DataGrids
             {
                 bool? result = dlg.ShowDialog();
 
-                if (!dlg.Activate())
-                {
-                    string message = "Sections edit file dialog box is busy. Please try again.";
-                    log.Warn(message);
-                    MessageBoxs.Warning(message);
-                    dlg.Close();
-                }
+                //if (!dlg.Activate())
+                //{
+                //    string message = "Sections edit file dialog box is busy. Please try again.";
+                //    log.Warn(message);
+                //    MessageBoxs.Warning(message);
+                //    dlg.Close();
+                //}
 
                 // Process open file dialog box results 
                 if (result == true)

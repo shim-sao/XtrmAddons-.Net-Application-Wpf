@@ -7,11 +7,11 @@ using System.Windows;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("Fotootof")]
-[assembly: AssemblyDescription("Photo albums manager Fotootof.")]
+[assembly: AssemblyDescription("Photography albums manager Fotootof.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("www.xtrmaddons.com")]
 [assembly: AssemblyProduct("XtrmAddons Fotootof")]
-[assembly: AssemblyCopyright("Copyright ©  2017 - 2018")]
+[assembly: AssemblyCopyright("Copyright ©  2017+")]
 [assembly: AssemblyTrademark("XtrmAddons")]
 [assembly: AssemblyCulture("")]
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -54,5 +54,5 @@ using System.Windows;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.18254.1341")]
-[assembly: AssemblyFileVersion("1.0.18254.1341")]
+[assembly: AssemblyVersion("1.0.18264.1524")]
+[assembly: AssemblyFileVersion("1.0.18264.1524")]

@@ -2,7 +2,7 @@
 ProjectFileVersion = "1.1"
 [General]
 Program name = Fotootof
-Program version = 1.0.18225.1811
+Program version = 1.0.18260.1235
 Windows 2000 = 1
 Windows XP = 1
 Windows Server 2003 = 1
@@ -57,7 +57,7 @@ Time = 2
 PlaySound = 0
 Allow = 0
 [Build]
-File = C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build.Setup\XtrmAddons.Fotootof.Installer.1.0.18225.1811-alpha.exe
+File = C:\_git\shim-sao\XtrmAddons-.Net-Fotootof-Wpf\Build.Setup\XtrmAddons.Fotootof.Installer.1.0.18260.1235-alpha.exe
 [Updater]
 Allow = 1
 1 = <appname>

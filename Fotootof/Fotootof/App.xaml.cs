@@ -7,15 +7,16 @@ using System.Windows;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Helpers;
 
-/// <summary>
-/// Globals Conditionals :
-/// - DEBUG_SIZE => Use this variable to enable some size trace in DEBUG mode.
-/// </summary>
+
 namespace Fotootof
 {
     /// <summary>
     /// <para>Class Fotootof Application.</para>
     /// <para>This class defines the entire application</para>
+    /// <para>
+    /// Globals Conditionals :
+    /// - DEBUG_SIZE => Use this variable to enable some size trace in DEBUG mode.
+    /// </para>
     /// </summary>
     public partial class App : Application
     {
@@ -257,7 +258,7 @@ namespace Fotootof
 
             options.InitializeDatabase();
             options.InitializeServer();
-            options.AddServerMap();
+            //options.AddServerMap();
             options.AutoStartServer();
 
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");

@@ -39,51 +39,77 @@ namespace Fotootof.HttpClient
         #endregion
 
 
-
-        #region IDisposable Support
-
-        private bool disposedValue = false; // Pour détecter les appels redondants
-                                            // Instantiate a SafeHandle instance.
-        SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: supprimer l'état managé (objets managés).
-                    Client.Dispose();
-                    handle.Dispose();
-                }
-
-                // TODO: libérer les ressources non managées (objets non managés) et remplacer un finaliseur ci-dessous.
-                // TODO: définir les champs de grande taille avec la valeur Null.
-
-                disposedValue = true;
-
-                Client = null;
-            }
-
-            Client.Dispose();
-        }
-
-        // TODO: remplacer un finaliseur seulement si la fonction Dispose(bool disposing) ci-dessus a du code pour libérer les ressources non managées.
-        // ~HttpWebClientApplication()
-        //{
-        //    // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.
-        //    Dispose(false);
-        //}
-
-        // Ce code est ajouté pour implémenter correctement le modèle supprimable.
+        #region IDisposable
+        
+        /// <summary>
+        /// Variable to track whether Dispose has been called.
+        /// </summary>
+        private bool disposed = false;
+        
+        /// <summary>
+        /// Implement IDisposable.
+        /// Do not make this method virtual.
+        /// A derived class should not be able to override this method.
+        /// </summary>
         public void Dispose()
         {
-            // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.
             Dispose(true);
-            // TODO: supprimer les marques de commentaire pour la ligne suivante si le finaliseur est remplacé ci-dessus.
+        
+            // This object will be cleaned up by the Dispose method.
+            // Therefore, you should call GC.SupressFinalize to
+            // take this object off the finalization queue
+            // and prevent finalization code for this object
+            // from executing a second time.
             GC.SuppressFinalize(this);
         }
+        
+        /// <summary>
+        /// Dispose(bool disposing) executes in two distinct scenarios.
+        /// If disposing equals true, the method has been called directly
+        /// or indirectly by a user's code. Managed and unmanaged resources
+        /// can be disposed.
+        /// If disposing equals false, the method has been called by the
+        /// runtime from inside the finalizer and you should not reference
+        /// other objects. Only unmanaged resources can be disposed.
+        /// </summary>
+        /// <param name="disposing">Track whether Dispose has been called.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            // Check to see if Dispose has already been called.
+            if (!disposed)
+            {
+                // If disposing equals true, dispose all managed
+                // and unmanaged resources.
+                if (disposing)
+                {
+                    // Dispose managed resources.
+                    Client?.Dispose();
+                }
 
+                // Call the appropriate methods to clean up unmanaged resources here.
+                // If disposing is false, only the following code is executed.
+                Client = null;
+
+                // Note disposing has been done.
+                disposed = true;
+            }
+        }
+        
+        /// <summary>
+        /// Use C# destructor syntax for finalization code.
+        /// This destructor will run only if the Dispose method
+        /// does not get called.
+        /// It gives your base class the opportunity to finalize.
+        /// Do not provide destructors in types derived from this class.
+        /// </summary>
+        //~HttpWebClientApplication()
+        //{
+        //    // Do not re-create Dispose clean-up code here.
+        //    // Calling Dispose(false) is optimal in terms of
+        //    // readability and maintainability.
+        //    Dispose(false);
+        //}
+        
         #endregion
     }
 }

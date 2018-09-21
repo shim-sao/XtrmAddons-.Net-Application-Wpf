@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
+using XtrmAddons.Net.Picture;
 using XtrmAddons.Net.Picture.ExtractLargeIconFromFile;
 
 namespace Fotootof.Components.Client.Section.Layouts
@@ -39,8 +40,11 @@ namespace Fotootof.Components.Client.Section.Layouts
         {
             // The value parameter is the data from the source object.
             string filename = (string)value;
-            BitmapImage bmp = null;
-
+            //BitmapImage bmp = new BitmapImage(new Uri(filename));
+            //bmp.BeginInit();
+            //bmp.BaseUri = new Uri(filename);
+            //bmp.EndInit();
+            BitmapImage bmp = PictureMemoryCache.Set(filename, Width, false, new TimeSpan(), true);
             try
             {
                 //if (Extensions.Contains(ext.ToLower()))

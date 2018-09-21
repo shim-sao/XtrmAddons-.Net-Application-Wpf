@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System.Collections;
+using System.Reflection;
+using System.Linq;
 
 namespace Fotootof.Libraries.Controls.ListViews
 {
@@ -63,6 +65,7 @@ namespace Fotootof.Libraries.Controls.ListViews
             {
                 items = value;
                 NotifyPropertyChanged();
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : NotifyPropertyChanged {items?.GetType()} => {items}");
             }
         }
 

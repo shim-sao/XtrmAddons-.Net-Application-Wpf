@@ -12,9 +12,14 @@ namespace Fotootof.Components.Client.Section.Layouts
     /// <summary>
     /// Class XtrmAddons Fotootof Server Common Controls Albums List View.
     /// </summary>
-    public partial class ListViewAlbumsLayout : ListViewAlbumsControl
+    public partial class ListViewAlbumsLayout : ListViewAlbumsControlClient
     {
         #region Properties
+
+        /// <summary>
+        /// Property to access to the <see cref="ListViewAlbumsModel"/>.
+        /// </summary>
+        public ListViewAlbumsModel Model { get; set; }
 
         /// <summary>
         /// Property to access to the items collection.
@@ -58,6 +63,8 @@ namespace Fotootof.Components.Client.Section.Layouts
         public ListViewAlbumsLayout()
         {
             InitializeComponent();
+            Model = new ListViewAlbumsModel();
+            DataContext = Model;
 
             ItemsCollection.KeyDown += ItemsCollection.AddKeyDownSelectAllItems;
         }
@@ -112,28 +119,8 @@ namespace Fotootof.Components.Client.Section.Layouts
             ItemsCollection.UnselectAll();
         }
 
-        /// <summary>
-        /// Method called on items collection selection changed click event.
-        /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Selection changed event arguments.</param>
-        public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //Counter_SelectedNumber.Text = SelectedItems.Count.ToString();
-
-            if (SelectedItems.Count > 0)
-            {
-                DeleteCtrl.IsEnabled = true;
-                EditCtrl.IsEnabled = true;
-            }
-            else
-            {
-                DeleteCtrl.IsEnabled = false;
-                EditCtrl.IsEnabled = false;
-            }
-        }
-
         #endregion
+
 
 
         #region Methods Size Changed

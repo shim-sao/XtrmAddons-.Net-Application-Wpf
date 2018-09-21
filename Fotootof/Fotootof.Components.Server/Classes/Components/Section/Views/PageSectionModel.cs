@@ -1,16 +1,22 @@
 ﻿using Fotootof.Collections.Entities;
+using Fotootof.Components.Client.Section.Layouts;
 using Fotootof.Layouts.Controls.DataGrids;
-using Fotootof.Layouts.Controls.ListViews;
 using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Components;
+using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
+using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
+using Fotootof.SQLite.EntityManager.Managers;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using XtrmAddons.Net.Common.Extensions;
+using ListViewAlbumsModel = Fotootof.Layouts.Controls.ListViews.ListViewAlbumsModel;
 
 namespace Fotootof.Components.Server.Section
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Component Server Side View Catalog Model.
+    /// Class XtrmAddons Fotootof Component Server Page Section Model.
     /// </summary>
     internal class PageSectionModel : ComponentModel<PageSectionLayout>
     {
@@ -42,11 +48,22 @@ namespace Fotootof.Components.Server.Section
         /// </summary>
         private InfoEntityCollection colorFilters;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly Dictionary<string, int> filters = new Dictionary<string, int>();
+
         #endregion
 
 
 
         #region Properties
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private DataGridSectionsLayout SectionsLayout
+            => (DataGridSectionsLayout)ControlView.FindName("DataGridSectionsLayoutName");
 
         /// <summary>
         /// Property to access to the observable collection of Section.
@@ -112,6 +129,50 @@ namespace Fotootof.Components.Server.Section
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Dictionary<string, int> Filters
+        {
+            get => filters;
+            set
+            {
+                if (filters != value)
+                {
+                    filters.Clear();
+                    filters.AppendDictionary(value);
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Accessors to page user model.
+        /// </summary>
+        public AlbumOptionsList AlbumOptionsListFilters
+        {
+            get
+            {
+                SectionEntity a = SectionsLayout.SelectedItem;
+                AlbumOptionsList op = new AlbumOptionsList
+                {
+                    Dependencies = { EnumEntitiesDependencies.AlbumsInSections, EnumEntitiesDependencies.InfosInAlbums }
+                };
+
+                if (a != null)
+                {
+                    op.IncludeSectionKeys = new List<int>() { a.PrimaryKey };
+                }
+
+                if (filters.Count > 0)
+                {
+                    op.IncludeInfoKeys = filters.Values.ToList();
+                }
+
+                return op;
+            }
+        }
+
         #endregion
 
 
@@ -128,6 +189,76 @@ namespace Fotootof.Components.Server.Section
 
 
 
+        #region Methods Albums
+
+        /// <summary>
+        /// Method to load the collection of Albums <see cref="AlbumEntityCollection"/>.
+        /// </summary>
+        public void LoadAlbums()
+        {
+            MessageBoxs.IsBusy = true;
+            log.Warn("Loading Albums list. Please wait...");
+
+            try
+            {
+                Albums.Items = new AlbumEntityCollection(true, AlbumOptionsListFilters);
+                log.Info($"Loading {Albums?.Items?.Count()} Albums. Done.");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Loading Albums list. Failed !");
+            }
+            finally
+            {
+                log.Warn("Loading Albums list. Done.");
+                MessageBoxs.IsBusy = false;
+            }
+        }
+
+        /// <summary>
+        /// Method to add a <see cref="AlbumEntity"/>.
+        /// </summary>
+        /// <param name="item"></param>
+        public void AddAlbum(AlbumEntity item)
+        {
+            try
+            {
+                
+            }
+
+            catch (Exception ex)
+            {
+                log.Error(ex.Output());
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Method to update a <see cref="AlbumEntity"/>.
+        /// </summary>
+        /// <param name="newEntity"></param>
+        public async void UpdateAlbum(AlbumEntity newEntity)
+        {
+            try
+            {
+                AlbumEntity oldEntity = Albums.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
+                await AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { oldEntity });
+                oldEntity.Bind(newEntity);
+                //LoadAlbums();
+            }
+
+            catch (Exception ex)
+            {
+                log.Error(ex.Output());
+                throw;
+            }
+        }
+
+        #endregion
+
+
+
         #region Methods Sections
 
         /// <summary>
@@ -136,22 +267,136 @@ namespace Fotootof.Components.Server.Section
         public void LoadSections()
         {
             MessageBoxs.IsBusy = true;
-            log.Warn("Loading Sections list : Start. Please wait...");
+            log.Warn("Loading Sections list. Please wait...");
 
             try
             {
                 var collec = new SectionEntityCollection(true);
                 Sections.Items = new SectionEntityCollection(collec.OrderBy(x => x.Name));
             }
+
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
                 MessageBoxs.Fatal(ex, "Loading Sections list failed !");
             }
+
             finally
             {
-                log.Info("Loading Sections list : End.");
+                log.Warn("Loading Sections list. Done.");
                 MessageBoxs.IsBusy = false;
+            }
+        }
+
+        /// <summary>
+        /// Method to add a <see cref="SectionEntity"/>.
+        /// </summary>
+        /// <param name="item"></param>
+        public void AddSection(SectionEntity item)
+        {
+            try
+            {
+                Sections.Items.Add(item);
+                SectionEntityCollection.DbInsert(new List<SectionEntity> { item });
+            }
+
+            catch (Exception ex)
+            {
+                log.Error(ex.Output());
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Method to update a <see cref="SectionEntity"/>.
+        /// </summary>
+        /// <param name="newEntity"></param>
+        /// <param name="oldEntity"></param>
+        public void UpdateSection(SectionEntity newEntity, SectionEntity oldEntity)
+        {
+            try
+            {
+                SectionEntityCollection.DbUpdateAsync(new List<SectionEntity> { newEntity }, new List<SectionEntity> { oldEntity });
+                LoadSections();
+            }
+
+            catch (Exception ex)
+            {
+                log.Error(ex.Output());
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Method to delete a <see cref="SectionEntity"/>.
+        /// </summary>
+        /// <param name="item"></param>
+        public void DeleteSection(SectionEntity item)
+        {
+            try
+            {
+                if(item == null)
+                {
+                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : No item selected.");
+                    return;
+                }
+
+                Sections.Items.Remove(item);
+                SectionEntityCollection.DbDelete(new List<SectionEntity> { item });
+            }
+
+            catch (Exception ex)
+            {
+                log.Error(ex.Output());
+                throw;
+            }
+        }
+
+        #endregion
+
+
+
+        #region Methods Filters
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="info"></param>
+        public void ChangeFiltersQuality(InfoEntity info)
+        {
+            string alias = "quality";
+
+            if (info.Alias != "various-quality")
+            {
+                if (filters.Keys.Contains(alias))
+                    filters[alias] = info.PrimaryKey;
+                else
+                    filters.Add(alias, info.PrimaryKey);
+            }
+            else if (filters.Keys.Contains(alias))
+            {
+                filters.Remove(alias);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="info"></param>
+        public void ChangeFiltersColor(InfoEntity info)
+        {
+            string alias = "color";
+
+            if (info.Alias != "various-color")
+            {
+                if (filters.Keys.Contains(alias))
+                    filters[alias] = info.PrimaryKey;
+                else
+                    filters.Add(alias, info.PrimaryKey);
+            }
+            else if (filters.Keys.Contains(alias))
+            {
+                filters.Remove(alias);
             }
         }
 

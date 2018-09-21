@@ -1,4 +1,5 @@
-﻿using Fotootof.Layouts.Interfaces;
+﻿using Fotootof.Layouts.Dialogs;
+using Fotootof.Layouts.Interfaces;
 using Fotootof.SQLite.EntityManager.Event;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Libraries.Controls.DataGrids
 {
@@ -17,7 +19,19 @@ namespace Fotootof.Libraries.Controls.DataGrids
     /// <typeparam name="U">The item type.</typeparam>
     public abstract class DataGridBase<T, U> : ControlLayoutCollection, IListItems<T>
     {
-        #region Events
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
+        #region Event Handlers
 
         /// <summary>
         /// Delegate property event changes handler for an Section.
@@ -68,7 +82,7 @@ namespace Fotootof.Libraries.Controls.DataGrids
         /// <summary>
         /// Property to access to the datagrid selected item.
         /// </summary>
-        public U SelectedItem => (U)ItemsDataGrid.SelectedItem;
+        public U SelectedItem => (U)ItemsDataGrid?.SelectedItem;
 
         /// <summary>
         /// Property to access to the datagrid selected items.
@@ -96,25 +110,34 @@ namespace Fotootof.Libraries.Controls.DataGrids
         /// <param name="e">Selection changed arguments.</param>
         public override void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : SelectedItems Count = > {SelectedItems.Count}");
+            Trace.TraceInformation($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : SelectedItems Count = > {SelectedItems?.Count ?? 0}");
 
-            if (SelectedItems.Count == 0)
+            try
             {
-                if (EditCtrl != null) EditCtrl.IsEnabled = false;
-                if (DeleteCtrl != null) DeleteCtrl.IsEnabled = false;
-            }
-            else
-            {
-                if (DeleteCtrl != null) DeleteCtrl.IsEnabled = true;
-
-                if (SelectedItems.Count > 1)
+                if (SelectedItems?.Count == 0)
                 {
                     if (EditCtrl != null) EditCtrl.IsEnabled = false;
+                    if (DeleteCtrl != null) DeleteCtrl.IsEnabled = false;
                 }
                 else
                 {
-                    if (EditCtrl != null) EditCtrl.IsEnabled = true;
+                    if (DeleteCtrl != null) DeleteCtrl.IsEnabled = true;
+
+                    if (SelectedItems.Count > 1)
+                    {
+                        if (EditCtrl != null) EditCtrl.IsEnabled = false;
+                    }
+                    else
+                    {
+                        if (EditCtrl != null) EditCtrl.IsEnabled = true;
+                    }
                 }
+            }
+
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Error(ex.Output());
             }
         }
 

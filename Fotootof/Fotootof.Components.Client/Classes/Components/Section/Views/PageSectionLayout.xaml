@@ -55,8 +55,7 @@
 					  Grid.Column="2"
 					  x:Name="GridAlbums">
 
-					<local:ListViewAlbumsLayout x:Name="UcListViewAlbums"
-												 DataContext="{Binding Albums}"/>
+					<local:ListViewAlbumsLayout x:Name="UcListViewAlbums" />
 					<!--FilterColorChanged="FiltersColor_SelectionChanged"
 												 FilterQualityChanged="FiltersQuality_SelectionChanged" />-->
 				</Grid>

@@ -6,7 +6,7 @@ using System.Windows.Controls;
 namespace Fotootof.Components.Server.Section.Layouts
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Component Server Side Control Data Grid Sections List.
+    /// Class XtrmAddons Fotootof Components Server Sections Layouts Sections Data Grid Layout.
     /// </summary>
     public partial class DataGridSectionsLayout : DataGridSectionsControl
     {
@@ -23,7 +23,7 @@ namespace Fotootof.Components.Server.Section.Layouts
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Libraries Client Control DataGrid Sections List Constructor.
+        /// Class XtrmAddons Fotootof Components Server Sections Layouts Sections Data Grid Layout Constructor.
         /// </summary>
         public DataGridSectionsLayout()
         {

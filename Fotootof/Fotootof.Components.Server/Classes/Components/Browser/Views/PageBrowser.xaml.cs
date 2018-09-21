@@ -40,19 +40,19 @@ namespace Fotootof.Components.Server.Browser
         /// <summary>
         /// Property to access to the preview directory system informations.
         /// </summary>
-        [Obsolete("Use Model.PreviewStack")]
+        [Obsolete("Use Model.PreviewStack", true)]
         public Stack<object> PreviewStack => Model.PreviewStack;
 
         /// <summary>
         /// Property to access to the preview directory system informations.
         /// </summary>
-        [Obsolete("Use Model.PreviewStack")]
+        [Obsolete("Use Model.PreviewStack", true)]
         public Stack<object> NextStack => Model.PreviewStack;
 
         /// <summary>
         /// Property to access to the current drive system informations.
         /// </summary>
-        [Obsolete("Use Model.CurrentItem")]
+        [Obsolete("Use Model.CurrentItem", true)]
         public object CurrentItem => Model.CurrentItem;
 
         private TreeView TreeViewStorage

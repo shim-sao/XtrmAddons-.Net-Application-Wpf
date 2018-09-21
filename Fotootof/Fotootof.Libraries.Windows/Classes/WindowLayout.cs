@@ -1,11 +1,10 @@
 ﻿using Fotootof.Libraries.Logs;
+using Fotootof.SQLite.Services;
 using Fotootof.Theme;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
-using Fotootof.SQLite.Services;
-using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Libraries.Windows
@@ -32,8 +31,7 @@ namespace Fotootof.Libraries.Windows
         /// <summary>
         /// Property alias to access to the main database service connector <see cref="SQLiteSvc"/>.
         /// </summary>
-        public static SQLiteSvc Db
-            => (SQLiteSvc)ApplicationSession.Properties.Database;
+        public static SQLiteSvc Db => SQLiteSvc.GetInstance();
 
         #endregion
 

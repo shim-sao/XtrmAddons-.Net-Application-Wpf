@@ -19,7 +19,7 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.Components.Server.Section
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Component Server Side View Catalog Page.
+    /// Class XtrmAddons Fotootof Component Server Page Section Model.
     /// </summary>
     public partial class PageSectionLayout : ComponentView
     {
@@ -116,8 +116,8 @@ namespace Fotootof.Components.Server.Section
         /// </summary>
         public override void InitializeModel()
         {
-            var UcDataGridSections = FindName("DataGridSectionsLayoutName") as DataGridSectionsLayout;
-            var UcListViewAlbums = FindName("ListViewAlbumsLayoutName") as ListViewAlbumsLayout;
+            var UcDataGridSections = (DataGridSectionsLayout)FindName("DataGridSectionsLayoutName");
+            var UcListViewAlbums = (ListViewAlbumsLayout)FindName("ListViewAlbumsLayoutName");
 
             // Paste page to the model & child elements.
             Model = new PageSectionModel(this)
@@ -130,7 +130,7 @@ namespace Fotootof.Components.Server.Section
 
             if (Settings.Controls.Default.ServerSectionLayoutShowAllAlbums)
             {
-                LoadAlbums();
+                Model.LoadAlbums();
             }
             
             Model.FiltersQuality = InfoEntityCollection.TypesQuality();
@@ -165,7 +165,7 @@ namespace Fotootof.Components.Server.Section
             MessageBoxs.IsBusy = true;
             log.Warn("Adding or editing Section operation canceled. Please wait...");
 
-            Model.LoadSections();
+            //Model.LoadSections();
 
             log.Info("Adding or editing Section operation canceled. Done.");
             MessageBoxs.IsBusy = false;
@@ -178,15 +178,25 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_Added(object sender, EntityChangesEventArgs e)
         {
-            MessageBoxs.IsBusy = true;
-            log.Warn("Saving new Section informations. Please wait...");
+            try
+            {
+                MessageBoxs.IsBusy = true;
+                log.Warn("Saving new Section informations. Please wait...");
 
-            SectionEntity item = (SectionEntity)e.NewEntity;
-            Model.Sections.Items.Add(item);
-            SectionEntityCollection.DbInsert(new List<SectionEntity> { item });
+                Model.AddSection((SectionEntity)e.NewEntity);
+            }
 
-            log.Info("Saving new Section informations. Done.");
-            MessageBoxs.IsBusy = false;
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Saving new Section informations. Fail.");
+            }
+
+            finally
+            {
+                log.Warn("Saving new Section informations. Done.");
+                MessageBoxs.IsBusy = false;
+            }
         }
 
         /// <summary>
@@ -196,18 +206,27 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_Changed(object sender, EntityChangesEventArgs e)
         {
-            MessageBoxs.IsBusy = true;
-            log.Warn("Saving Section informations. Please wait...");
+            try
+            {
+                MessageBoxs.IsBusy = true;
+                log.Warn("Saving Section informations. Please wait...");
 
-            SectionEntity newEntity = (SectionEntity)e.NewEntity;
-            SectionEntity old = Model.Sections.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
-            /*int index = model.Sections.Items.IndexOf(old);
-            model.Sections.Items[index] = newEntity;*/
-            SectionEntityCollection.DbUpdateAsync(new List<SectionEntity> { newEntity }, new List<SectionEntity> { old });
-            Model.LoadSections();
+                SectionEntity newEntity = (SectionEntity)e.NewEntity;
+                SectionEntity oldEntity = Model.Sections.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
+                Model.UpdateSection(newEntity, oldEntity);
+            }
 
-            log.Info("Saving Section informations. Done.");
-            MessageBoxs.IsBusy = false;
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Saving Section informations. Fail.");
+            }
+
+            finally
+            {
+                log.Warn("Saving Section informations. Done.");
+                MessageBoxs.IsBusy = false;
+            }
         }
 
         /// <summary>
@@ -217,18 +236,25 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">Entity changes event arguments.</param>
         private void SectionsDataGrid_Deleted(object sender, EntityChangesEventArgs e)
         {
-            MessageBoxs.IsBusy = true;
-            log.Warn("Deleting Section(s). Please wait...");
-            
-            // Remove item from list.
-            SectionEntity item = (SectionEntity)e.NewEntity;
-            Model.Sections.Items.Remove(item);
+            try
+            {
+                MessageBoxs.IsBusy = true;
+                log.Warn("Deleting Section informations. Please wait...");
 
-            // Delete item from database.
-            SectionEntityCollection.DbDelete(new List<SectionEntity> { item });
+                Model.DeleteSection((SectionEntity)e.OldEntity);
+            }
 
-            log.Info("Deleting Section(s). Done.");
-            MessageBoxs.IsBusy = false;
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Deleting Section informations. Fail.");
+            }
+
+            finally
+            {
+                log.Warn("Deleting Section informations. Done.");
+                MessageBoxs.IsBusy = false;
+            }
         }
 
         /// <summary>
@@ -260,19 +286,21 @@ namespace Fotootof.Components.Server.Section
         /// </summary>
         private void LoadAlbums()
         {
-            MessageBoxs.IsBusy = true;
-            log.Warn("Loading Albums list. Please wait...");
-
             try
             {
+                MessageBoxs.IsBusy = true;
+                log.Warn("Loading Albums list. Please wait...");
+
                 Model.Albums.Items = new AlbumEntityCollection(true, AlbumOptionsListFilters);
                 log.Info($"Loading {Model?.Albums?.Items?.Count()} Albums. Done.");
             }
+
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);
                 MessageBoxs.Fatal(ex, "Loading Albums list. Failed !");
             }
+
             finally
             {
                 MessageBoxs.IsBusy = false;
@@ -328,20 +356,27 @@ namespace Fotootof.Components.Server.Section
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">The entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
-        private async void AlbumsListView_OnChange(object sender, EntityChangesEventArgs e)
+        private void AlbumsListView_OnChange(object sender, EntityChangesEventArgs e)
         {
-            MessageBoxs.IsBusy = true;
-            log.Warn("Saving Album informations. Please wait...");
+            try
+            {
+                MessageBoxs.IsBusy = true;
+                log.Warn("Saving Album informations. Please wait...");
 
-            AlbumEntity newEntity = (AlbumEntity)e.NewEntity;
-            AlbumEntity old = Model.Albums.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
-            /*int index = model.Albums.Items.IndexOf(old);
-            model.Albums.Items[index] = newEntity;*/
-            await AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { old });
-            LoadAlbums();
+                Model.UpdateAlbum((AlbumEntity)e.NewEntity);
+            }
 
-            log.Info("Saving Album informations. Done.");
-            MessageBoxs.IsBusy = false;
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Saving Album informations. Fail.");
+            }
+
+            finally
+            {
+                log.Warn("Saving Album informations. Done.");
+                MessageBoxs.IsBusy = false;
+            }
         }
 
         /// <summary>
@@ -382,18 +417,9 @@ namespace Fotootof.Components.Server.Section
             ((ComboBox)((ListViewAlbumsLayout)FindName("ListViewAlbumsLayoutName"))
                 .FindName("FiltersQualitySelector")).IsEditable = false;
 
-            string alias = "quality";
-
-            if (((ComboBox)sender).SelectedItem is InfoEntity info && info.Alias != "various-quality")
+            if (((ComboBox)sender).SelectedItem is InfoEntity info)
             {
-                if (filters.Keys.Contains(alias))
-                    filters[alias] = info.PrimaryKey;
-                else
-                    filters.Add(alias, info.PrimaryKey);
-            }
-            else if (filters.Keys.Contains(alias))
-            {
-                filters.Remove(alias);
+                Model.ChangeFiltersQuality(info);
             }
 
             RefreshAlbums();
@@ -409,18 +435,9 @@ namespace Fotootof.Components.Server.Section
             ((ComboBox)((ListViewAlbumsLayout)FindName("ListViewAlbumsLayoutName"))
                 .FindName("FiltersColorSelector")).IsEditable = false;
 
-            string alias = "color";
-
-            if ((sender as ComboBox).SelectedItem is InfoEntity info && info.Alias != "various-color")
+            if (((ComboBox)sender).SelectedItem is InfoEntity info)
             {
-                if (filters.Keys.Contains(alias))
-                    filters[alias] = info.PrimaryKey;
-                else
-                    filters.Add(alias, info.PrimaryKey);
-            }
-            else if (filters.Keys.Contains(alias))
-            {
-                filters.Remove(alias);
+                Model.ChangeFiltersColor(info);
             }
 
             RefreshAlbums();
@@ -441,14 +458,14 @@ namespace Fotootof.Components.Server.Section
         {
             try
             {
-                var UcDataGridSections = (DataGridSectionsLayout)FindName("DataGridSectionsLayoutName");
-                var UcListViewAlbums = (ListViewAlbumsLayout)FindName("ListViewAlbumsLayoutName");
-                var BlockMiddleContents = (Grid)FindName("BlockMiddleContentsName");
+                var UcDataGridSections = FindName<DataGridSectionsLayout>("DataGridSectionsLayoutName");
+                var UcListViewAlbums = FindName<ListViewAlbumsLayout>("ListViewAlbumsLayoutName");
+                var BlockMiddleContents = FindName<Grid>("BlockMiddleContentsName");
             
                 Width = MainBlockContent.ActualWidth;
                 Height = MainBlockContent.ActualHeight;
 
-                double height = Math.Max(Height - Block_TopControls.RenderSize.Height, 0);
+                double height = Math.Max(Height - FindName<StackPanel>("BlockTopControlsName").RenderSize.Height, 0);
 
                 BlockMiddleContents.Width = Width;
                 BlockMiddleContents.Height = height;
@@ -456,6 +473,7 @@ namespace Fotootof.Components.Server.Section
                 UcDataGridSections.Height = height;
                 UcListViewAlbums.Height = height;
             }
+
             catch(Exception ex)
             {
                 log.Debug(ex.Output());

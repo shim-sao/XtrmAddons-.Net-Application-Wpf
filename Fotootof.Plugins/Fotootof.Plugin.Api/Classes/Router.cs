@@ -15,11 +15,12 @@ using XtrmAddons.Net.HttpWebServer.Requests;
 using XtrmAddons.Net.HttpWebServer.Responses;
 using Fotootof.SQLite.EntityManager.Data.Tables.Json.Models;
 using System.Collections.ObjectModel;
+using System.Reflection;
 
 namespace Fotootof.Plugin.Api.Router
 {
     /// <summary>
-    /// <para>Class Fotootof.Plugin.Api Router.</para>
+    /// <para>Class XtrmAddons Fotootof Plugin Api Router Constructor.</para>
     /// <para>List of formatted routes :</para>
     /// <para>/index</para>
     /// </summary>
@@ -31,7 +32,7 @@ namespace Fotootof.Plugin.Api.Router
         /// Variable logger.
         /// </summary>
         private static readonly log4net.ILog log =
-            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 
@@ -57,29 +58,27 @@ namespace Fotootof.Plugin.Api.Router
             = new NameValueCollection { { "sid", "" }, { "token", "" }};
 
         /// <summary>
-        /// Accessors database core manager.
+        /// Property to access to the application database service <see cref="SQLiteSvc"/>.
         /// </summary>
-        /// <returns></returns>
-        protected SQLiteSvc Database => ApplicationSession.Properties.Database;
+        protected static SQLiteSvc Database
+            => SQLiteSvc.GetInstance();
 
         #endregion
 
 
 
+        #region Constructors
+
         /// <summary>
-        /// Class Fotootof.Plugin.Api Router Constructor.
+        /// Class XtrmAddons Fotootof Plugin Api Router Constructor.
         /// </summary>
         public Router() : base()
         {
-            Content.Add("Status", "Ready");
-            Content.Add("Authentication", false);
-            Content.Add("Response", "");
-            Content.Add("Error", "");
-            Content.Add("Version", "");
+            ResponseInitialize();
         }
 
         /// <summary>
-        /// Class Fotootof.Plugin.Api Router Constructor.
+        /// Class XtrmAddons Fotootof Plugin Api Router Constructor.
         /// </summary>
         /// <param name="uri"></param>
         public Router(WebServerRequestUrl uri) : base(uri)
@@ -88,7 +87,22 @@ namespace Fotootof.Plugin.Api.Router
             Content.Add("Authentication", false);
             Content.Add("Response", "");
             Content.Add("Error", "");
-            Content.Add("Version", "");
+            Content.Add("Version", Assembly.GetAssembly(GetType()).GetName().Version);
+        }
+
+        #endregion
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ResponseInitialize()
+        {
+            Content.Add("Status", "Ready");
+            Content.Add("Authentication", false);
+            Content.Add("Response", "");
+            Content.Add("Error", "");
+            Content.Add("Version", Assembly.GetAssembly(GetType()).GetName().Version);
         }
 
         /// <summary>
@@ -377,7 +391,7 @@ namespace Fotootof.Plugin.Api.Router
         /// <returns></returns>
         private string GetPicturePath(PictureJsonModel p, string pathType)
         {
-            return $"http://{Uri.Host}:{Uri.Port}/api/picture/{p.PrimaryKey}/{pathType}?sid={CookieString}";
+            return $"http://{Uri.Host}:{Uri.Port}/api/picture?id={p.PrimaryKey}&type={pathType}&sid={CookieString}";
         }
     }
 }

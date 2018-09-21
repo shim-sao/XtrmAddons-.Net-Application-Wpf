@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 
 namespace Fotootof.SQLite.Services
 {
+    /// <summary>
+    /// Interface XtrmAddons Fotootof SQLite Service.
+    /// </summary>
     [ServiceContract()]
     public partial interface ISQLiteSvc
     {
-        // Main Service contract
-        [OperationContract(Name = "Contract")]
-        void Main();
-
-        // Main Service contract
-        //[OperationContract(Name = "GetInstance")]
-        // SQLiteSvc GetInstance();
+        /// <summary>
+        /// Method Main Service contract.
+        /// </summary>
+        [OperationContract(Name = "GetVersion")]
+        string GetVersion();
     }
 }

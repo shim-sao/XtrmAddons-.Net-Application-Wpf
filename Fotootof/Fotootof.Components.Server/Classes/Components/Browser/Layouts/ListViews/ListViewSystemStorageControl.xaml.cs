@@ -137,40 +137,42 @@ namespace Fotootof.Components.Server.Browser.Layouts
         private void OnAddPicturesToAlbum_Click(object sender, RoutedEventArgs e)
         {
             // Show open file dialog box 
-            DataGridAlbumsWindow dlg = new DataGridAlbumsWindow();
-            bool? result = dlg.ShowDialog();
-
-            // Process open file dialog box results 
-            if (result == true)
+            using (DataGridAlbumsWindow dlg = new DataGridAlbumsWindow())
             {
-                // Do nothing, no files are selected.
-                if (dlg.SelectedAlbums.Count == 0)
-                {
-                    return;
-                }
+                bool? result = dlg.ShowDialog();
 
-                // Process adding for each selected storage informations.
-                List<PictureEntity> pictures = new List<PictureEntity>();
-                foreach (StorageInfoModel item in ItemsCollection.SelectedItems)
+                // Process open file dialog box results 
+                if (result == true)
                 {
-                    // Create Picture entity.
-                    PictureEntity picture = item.ToPicture();
-
-                    // Check if storage information is and return a picture information.
-                    if (picture != null)
+                    // Do nothing, no files are selected.
+                    if (dlg.SelectedAlbums.Count == 0)
                     {
-                        // Add Picture to the list for Pictures.
-                        pictures.Add(picture);
+                        return;
                     }
+
+                    // Process adding for each selected storage informations.
+                    List<PictureEntity> pictures = new List<PictureEntity>();
+                    foreach (StorageInfoModel item in ItemsCollection.SelectedItems)
+                    {
+                        // Create Picture entity.
+                        PictureEntity picture = item.ToPicture();
+
+                        // Check if storage information is and return a picture information.
+                        if (picture != null)
+                        {
+                            // Add Picture to the list for Pictures.
+                            pictures.Add(picture);
+                        }
+                    }
+
+                    // Insert Pictures into the database.
+                    IEnumerable<AlbumEntity> albums = dlg.SelectedAlbums.ToList();
+                    PictureEntityCollection.DbInsert(pictures, ref albums);
                 }
 
-                // Insert Pictures into the database.
-                IEnumerable<AlbumEntity> albums = dlg.SelectedAlbums.ToList();
-                PictureEntityCollection.DbInsert(pictures, ref albums);
+                // Clear user selection.
+                ItemsCollection.SelectedItems.Clear();
             }
-            
-            // Clear user selection.
-            ItemsCollection.SelectedItems.Clear();
         }
 
         /// <summary>

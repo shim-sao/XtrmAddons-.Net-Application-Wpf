@@ -10,7 +10,9 @@ using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Data.Tables.Json.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Reflection;
+using System.Windows;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Components.Client.Section
@@ -32,11 +34,6 @@ namespace Fotootof.Components.Client.Section
         /// Variable observable collection of Sections.
         /// </summary>
         private DataGridSectionsModel<DataGridSectionsControl> sections;
-
-        /// <summary>
-        /// Variable observable collection of Albums.
-        /// </summary>
-        private ListViewAlbumsModel albums;
 
         /// <summary>
         /// Variable client http server.
@@ -90,17 +87,7 @@ namespace Fotootof.Components.Client.Section
         /// Property to access to the observable collection of Albums
         /// </summary>
         public ListViewAlbumsModel Albums
-        {
-            get => albums;
-            set
-            {
-                if (albums != value)
-                {
-                    albums = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
+            => ControlView.UcListViewAlbums.Model;
 
         /// <summary>
         /// Property to access to the observable collection of Albums
@@ -325,22 +312,30 @@ namespace Fotootof.Components.Client.Section
         {
             log.Debug($"{GetType().Name} event handler : {MethodBase.GetCurrentMethod().Name}");
 
+            ControlView.UcListViewAlbums.ListViewCollectionName.Visibility = Visibility.Hidden;
+            log.Debug("Hidding Albums list. Done.");
+
+            if (Albums.Items is AlbumModelCollection)
+            {
+                Albums.Items.Clear();
+                log.Debug("Clearing Albums list. Done.");
+            }
+
             // Get and check the server response to verify if the server is connected.
             // Prevent bad response for the user.
             ServerResponseSection result = GetResult<ClientHttpEventArgs<ServerResponseSection>, ServerResponseSection>(sender, e);
             if (result == null) return;
 
-            if (Albums == null)
-            {
-                Albums = new ListViewAlbumsModel();
-            }
-
             try
             {
                 SectionJsonModel section = result.Response;
-                if (section?.AlbumsPKeys != null)
+                if (section?.AlbumsPKeys?.Count > 0)
                 {
                     Albums.Items = new AlbumModelCollection(section.Albums);
+                    log.Debug($"Loading {Albums?.Items?.Count ?? 0} Album(s). Done.");
+
+                    ControlView.UcListViewAlbums.ListViewCollectionName.Visibility = Visibility.Visible;
+                    log.Debug("Displaying Albums list. Done.");
                 }
             }
             catch (Exception ex)

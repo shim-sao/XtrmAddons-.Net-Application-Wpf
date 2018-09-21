@@ -25,7 +25,7 @@ namespace Fotootof.Components.Client.Section.Layouts
         #endregion
 
 
-        
+
         #region Properties
 
         /// <summary>

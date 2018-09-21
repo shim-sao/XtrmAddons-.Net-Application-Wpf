@@ -164,18 +164,6 @@ namespace Fotootof.Layouts.Forms.Section
                 log.Error(e.Output(), e);
                 throw;
             }
-            
-            //log.Info($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
-
-            //// Check if the name is not empty.
-            //if (NewForm.Name.IsNullOrWhiteSpace())
-            //{
-            //    log.Warn($"The entity form name is invalid : {NewForm.Name}");
-            //    return false;
-            //}
-
-            //log.Info("The entity form has been verified !");
-            //return true;
         }
 
         #endregion
