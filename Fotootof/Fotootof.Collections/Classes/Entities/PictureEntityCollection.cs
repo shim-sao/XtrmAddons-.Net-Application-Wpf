@@ -199,8 +199,7 @@ namespace Fotootof.Collections.Entities
 
             if (newItems == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(newItems), newItems);
-                log.Error(e.Output());
+                log.Error(Exceptions.GetArgumentNull(nameof(newItems), newItems).Output());
                 return null;
             }
 
@@ -212,8 +211,7 @@ namespace Fotootof.Collections.Entities
 
             if (albums == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(albums), albums);
-                log.Error(e.Output());
+                log.Error(Exceptions.GetArgumentNull(nameof(albums), albums).Output());
                 return null;
             }
 
@@ -233,7 +231,7 @@ namespace Fotootof.Collections.Entities
                         continue;
                     }
 
-                    // Process association for each albums.
+                    // Process association to each AlbumEntity.
                     if (albums != null && albums.Count() > 0)
                     {
                         foreach (AlbumEntity a in albums)
@@ -258,7 +256,7 @@ namespace Fotootof.Collections.Entities
                                     }
                                 );
 
-                                log.Info(string.Format("Picture [{0}:{1}] associated to Album [{2}:{3}].", entity.PrimaryKey, entity.Name, a.PrimaryKey, a.Name));
+                                log.Info($"Picture [{entity.PrimaryKey}:{entity.Name}] associated to Album [{a.PrimaryKey}:{a.Name}].");
                             }
                         }
                     }
@@ -285,8 +283,9 @@ namespace Fotootof.Collections.Entities
 
                 AppNavigatorBase.Clear();
                 log.Debug("Application navigator cleared.");
-                log.Info($"Adding {itemsAdded.Count()} picture{(itemsAdded.Count() > 1 ? "s" : "")} : Done.");
+                log.Info($"Adding {itemsAdded?.Count() ?? 0} picture{(itemsAdded?.Count() > 1 ? "s" : "")} : Done.");
             }
+
             catch (Exception ex)
             {
                 log.Error(ex.Output(), ex);

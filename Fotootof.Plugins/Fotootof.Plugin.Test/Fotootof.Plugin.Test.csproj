@@ -105,11 +105,6 @@
       <Name>Fotootof.AddInsContracts</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fotootof\Fotootof.Libraries\Fotootof.Libraries.csproj">
-      <Project>{7D666EA6-7F61-4C3C-A112-E707072E9205}</Project>
-      <Name>Fotootof.Libraries</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

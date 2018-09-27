@@ -160,13 +160,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj">
+      <Project>{FC62EC35-A6A3-4391-9A01-26C159CE1FFD}</Project>
+      <Name>Fotootof.Libraries.Logs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fotootof.SQLite.EntityManager.Interfaces\Fotootof.SQLite.EntityManager.Interfaces.csproj">
       <Project>{FA432F87-DB16-4E8C-BBC8-1321583F027A}</Project>
       <Name>Fotootof.SQLite.EntityManager.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Fotootof\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj">
-      <Project>{FC62EC35-A6A3-4391-9A01-26C159CE1FFD}</Project>
-      <Name>Fotootof.Libraries.Logs</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fotootof.SQLite.EntityManager.Base\Fotootof.SQLite.EntityManager.Base.csproj">
       <Project>{DC57DCE2-1975-445D-A7F4-16491C0A72B3}</Project>

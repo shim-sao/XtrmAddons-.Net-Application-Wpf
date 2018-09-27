@@ -132,11 +132,6 @@
       <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
       <Name>Fotootof.HttpServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fotootof\Fotootof.Libraries\Fotootof.Libraries.csproj">
-      <Project>{7D666EA6-7F61-4C3C-A112-E707072E9205}</Project>
-      <Name>Fotootof.Libraries</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\error-404.png" />

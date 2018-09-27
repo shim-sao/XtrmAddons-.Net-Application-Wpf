@@ -1,16 +1,14 @@
 ﻿using Fotootof.Collections;
 using Fotootof.Collections.Entities;
 using Fotootof.Layouts.Controls.DataGrids;
+using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Controls.ListViews;
-using Fotootof.Libraries.Models.Systems;
 using Fotootof.Libraries.Systems;
-using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Windows.Controls.Extensions;
 
 namespace Fotootof.Components.Server.Browser.Layouts
@@ -20,6 +18,18 @@ namespace Fotootof.Components.Server.Browser.Layouts
     /// </summary>
     public partial class ListViewSystemStorageControl : ListViewStorages
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
         #region Properties
 
         /// <summary>
@@ -96,7 +106,7 @@ namespace Fotootof.Components.Server.Browser.Layouts
                 Items = ItemsCollection.ItemsSource as CollectionStorage
             };
 
-            ComboBox selectorImgSize = (FindName<ComboBox>("ComboBoxImageSizeName"));
+            ComboBox selectorImgSize = FindName<ComboBox>("ComboBoxImageSizeName");
             selectorImgSize.SelectedIndex = AppSettings.GetInt(selectorImgSize, "SelectedIndex", selectorImgSize.SelectedIndex);
         }
 
@@ -136,42 +146,44 @@ namespace Fotootof.Components.Server.Browser.Layouts
         /// <param name="e">Routed event arguments <see cref="RoutedEventArgs"/></param>
         private void OnAddPicturesToAlbum_Click(object sender, RoutedEventArgs e)
         {
-            // Show open file dialog box 
-            using (DataGridAlbumsWindow dlg = new DataGridAlbumsWindow())
+            try
             {
-                bool? result = dlg.ShowDialog();
+                MessageBoxs.IsBusy = true;
+                log.Warn("Adding Picture(s) to Album(s). Please wait...");
 
-                // Process open file dialog box results 
-                if (result == true)
+                // Show open file dialog box 
+                using (DataGridAlbumsWindow dlg = new DataGridAlbumsWindow())
                 {
-                    // Do nothing, no files are selected.
-                    if (dlg.SelectedAlbums.Count == 0)
-                    {
-                        return;
-                    }
+                    bool? result = dlg.ShowDialog();
 
-                    // Process adding for each selected storage informations.
-                    List<PictureEntity> pictures = new List<PictureEntity>();
-                    foreach (StorageInfoModel item in ItemsCollection.SelectedItems)
+                    // Process open file dialog box results 
+                    if (result == true)
                     {
-                        // Create Picture entity.
-                        PictureEntity picture = item.ToPicture();
-
-                        // Check if storage information is and return a picture information.
-                        if (picture != null)
+                        // Do nothing, no files are selected.
+                        if (dlg.SelectedAlbums.Count == 0)
                         {
-                            // Add Picture to the list for Pictures.
-                            pictures.Add(picture);
+                            return;
                         }
+
+                        AlbumEntityCollection.AddPicturesToAlbums(SelectedItems, dlg.SelectedAlbums);
                     }
 
-                    // Insert Pictures into the database.
-                    IEnumerable<AlbumEntity> albums = dlg.SelectedAlbums.ToList();
-                    PictureEntityCollection.DbInsert(pictures, ref albums);
+                    // Clear user selection.
+                    ItemsCollection.SelectedItems.Clear();
                 }
 
-                // Clear user selection.
-                ItemsCollection.SelectedItems.Clear();
+                log.Warn("Adding Picture(s) to Album(s). Done.");
+
+            }
+            catch (Exception ex)
+            {
+                log.Fatal(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Adding Picture(s) to Album(s). Fail.");
+            }
+
+            finally
+            {
+                MessageBoxs.IsBusy = false;
             }
         }
 

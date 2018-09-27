@@ -1,7 +1,9 @@
 ﻿using Fotootof.Collections.Entities;
 using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.Logs;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using System.Collections.ObjectModel;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -39,6 +41,15 @@ namespace Fotootof.Layouts.Controls.DataGrids
         /// Property to access to the list of selected albums.
         /// </summary>
         public ObservableCollection<AlbumEntity> SelectedAlbums { get; } = new ObservableCollection<AlbumEntity>();
+
+        /// <summary>
+        /// Property to access to the main items data grid.
+        /// </summary>
+        public override DataGrid ItemsDataGrid
+        {
+            get => FindName<DataGrid>("DataGridCollectionName");
+            set { throw new NotImplementedException(); }
+        }
 
         #endregion
 

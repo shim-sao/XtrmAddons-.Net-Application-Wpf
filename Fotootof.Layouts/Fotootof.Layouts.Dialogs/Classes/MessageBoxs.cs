@@ -165,7 +165,8 @@ namespace Fotootof.Layouts.Dialogs
         /// </summary>
         /// <param name="e">The <see cref="Exception"/> to display.</param>
         /// <param name="s">The message to add before <see cref="Exception"/>.</param>
-        public static void Fatal(Exception e, string s = "")
+        /// <param name="shutdown">True to shutdown the <see cref="Application"/>, false by default.</param>
+        public static void Fatal(Exception e, string s = "", bool shutdown = false)
         {
             if(s.IsNotNullOrWhiteSpace())
             {
@@ -176,12 +177,15 @@ namespace Fotootof.Layouts.Dialogs
                 s = e.Output();
             }
 
-            ApplicationBase.BeginInvokeIfRequired(new Action(() =>
+            if(shutdown)
             {
-                MessageBox.Show(s, Local.Properties.Translations.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
-                MessageBox.Show("The application will be shutdown", Local.Properties.Translations.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Stop);
-                Application.Current.Shutdown();
-            }));
+                ApplicationBase.BeginInvokeIfRequired(new Action(() =>
+                {
+                    MessageBox.Show(s, Local.Properties.Translations.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("The application will be shutdown", Local.Properties.Translations.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Stop);
+                    Application.Current.Shutdown();
+                }));
+            }
         }
         
         #endregion

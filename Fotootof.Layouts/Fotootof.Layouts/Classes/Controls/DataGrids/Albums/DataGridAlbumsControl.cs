@@ -100,7 +100,7 @@ namespace Fotootof.Layouts.Controls.DataGrids
         }
 
         /// <summary>
-        /// Method called on edit item click event.
+        /// Method called on edit <see cref="AlbumEntity"/> click event.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">Routed event arguments <see cref="RoutedEventArgs"/>.</param>
@@ -128,10 +128,12 @@ namespace Fotootof.Layouts.Controls.DataGrids
                     {
                         NotifyCanceled(dlg.NewForm);
                     }
+
+                    log.Warn("Editing Album informations. Done.");
                 }
                 else
                 {
-                    string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+                    string message = $"{typeof(AlbumEntity).Name} not found !";
                     log.Warn(message);
                     MessageBoxs.Warning(message);
                 }
@@ -147,7 +149,6 @@ namespace Fotootof.Layouts.Controls.DataGrids
             // Stop to busy application.
             finally
             {
-                log.Warn("Editing Album informations. Done.");
                 MessageBoxs.IsBusy = false;
             }
         }

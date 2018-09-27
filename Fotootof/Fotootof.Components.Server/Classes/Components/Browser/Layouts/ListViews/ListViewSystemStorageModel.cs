@@ -1,5 +1,9 @@
 ﻿using Fotootof.Collections;
+using Fotootof.Collections.Entities;
 using Fotootof.Libraries.Controls.ListViews;
+using Fotootof.Libraries.Models.Systems;
+using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
+using System.Collections.Generic;
 
 namespace Fotootof.Components.Server.Browser.Layouts
 {

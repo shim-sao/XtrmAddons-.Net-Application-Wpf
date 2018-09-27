@@ -156,26 +156,39 @@ namespace Fotootof.Components.Server.Section
         #region Methods : Section
 
         /// <summary>
-        /// Method called on Section view candel event.
+        /// Method called on <see cref="SectionEntity"/> edit view cancel event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Entity changes event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private void SectionsDataGrid_Canceled(object sender, EntityChangesEventArgs e)
         {
-            MessageBoxs.IsBusy = true;
-            log.Warn("Adding or editing Section operation canceled. Please wait...");
+            try
+            {
+                MessageBoxs.IsBusy = true;
+                log.Warn("Canceling Section informations edit. Please wait...");
 
-            //Model.LoadSections();
+                //Model.LoadSections();
 
-            log.Info("Adding or editing Section operation canceled. Done.");
-            MessageBoxs.IsBusy = false;
+                log.Warn("Canceling Section informations edit. Done.");
+            }
+
+            catch (Exception ex)
+            {
+                log.Fatal(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Canceling Section informations edit. Fail.");
+            }
+
+            finally
+            {
+                MessageBoxs.IsBusy = false;
+            }
         }
 
         /// <summary>
-        /// Method called on Section add event.
+        /// Method called on <see cref="SectionEntity"/> add view save event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Entity changes event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private void SectionsDataGrid_Added(object sender, EntityChangesEventArgs e)
         {
             try
@@ -184,35 +197,38 @@ namespace Fotootof.Components.Server.Section
                 log.Warn("Saving new Section informations. Please wait...");
 
                 Model.AddSection((SectionEntity)e.NewEntity);
+
+                log.Warn("Saving new Section informations. Done.");
             }
 
             catch (Exception ex)
             {
-                log.Error(ex.Output(), ex);
+                log.Fatal(ex.Output(), ex);
                 MessageBoxs.Fatal(ex, "Saving new Section informations. Fail.");
             }
 
             finally
             {
-                log.Warn("Saving new Section informations. Done.");
                 MessageBoxs.IsBusy = false;
             }
         }
 
         /// <summary>
-        /// Method called on Section change event.
+        /// Method called on <see cref="SectionEntity"/> update view save event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Entity changes event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private void SectionsDataGrid_Changed(object sender, EntityChangesEventArgs e)
         {
             try
             {
                 MessageBoxs.IsBusy = true;
                 log.Warn("Saving Section informations. Please wait...");
+                
+                Model.UpdateSection((SectionEntity)e.NewEntity);
+                RefreshAlbums();
 
-                SectionEntity newEntity = (SectionEntity)e.NewEntity;
-                Model.UpdateSection(newEntity);
+                log.Warn("Saving Section informations. Done.");
             }
 
             catch (Exception ex)
@@ -223,16 +239,15 @@ namespace Fotootof.Components.Server.Section
 
             finally
             {
-                log.Warn("Saving Section informations. Done.");
                 MessageBoxs.IsBusy = false;
             }
         }
 
         /// <summary>
-        /// Method called on Section delete event.
+        /// Method called on <see cref="SectionEntity"/> delete event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Entity changes event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private void SectionsDataGrid_Deleted(object sender, EntityChangesEventArgs e)
         {
             try
@@ -241,37 +256,51 @@ namespace Fotootof.Components.Server.Section
                 log.Warn("Deleting Section informations. Please wait...");
 
                 Model.DeleteSection((SectionEntity)e.OldEntity);
+
+                log.Warn("Deleting Section informations. Done.");
             }
 
             catch (Exception ex)
             {
-                log.Error(ex.Output(), ex);
+                log.Fatal(ex.Output(), ex);
                 MessageBoxs.Fatal(ex, "Deleting Section informations. Fail.");
             }
 
             finally
             {
-                log.Warn("Deleting Section informations. Done.");
                 MessageBoxs.IsBusy = false;
             }
         }
 
         /// <summary>
-        /// Method called on Section default change event.
+        /// Method called on <see cref="SectionEntity"/> default change event.
         /// </summary>
-        /// <param name="sender">The object sender of the event.</param>
-        /// <param name="e">Entity changes event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">Entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private void SectionsDataGrid_DefaultChanged(object sender, EntityChangesEventArgs e)
         {
-            MessageBoxs.IsBusy = true;
-            log.Warn("Setting default Section. Please wait...");
+            try
+            {
+                MessageBoxs.IsBusy = true;
+                log.Warn("Setting default Section. Please wait...");
 
-            SectionEntity newEntity = (SectionEntity)e.NewEntity;
-            SectionEntityCollection.SetDefault(newEntity);
-            Model.LoadSections();
+                SectionEntity newEntity = (SectionEntity)e.NewEntity;
+                SectionEntityCollection.SetDefault(newEntity);
+                Model.LoadSections();
 
-            log.Info("Setting default Section. Done.");
-            MessageBoxs.IsBusy = false;
+                log.Warn("Setting default Section. Done.");
+            }
+
+            catch (Exception ex)
+            {
+                log.Fatal(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Setting default Section. Fail.");
+            }
+
+            finally
+            {
+                MessageBoxs.IsBusy = false;
+            }
         }
 
         #endregion
@@ -281,7 +310,7 @@ namespace Fotootof.Components.Server.Section
         #region Methods : Album
 
         /// <summary>
-        /// Method to load the list of Album from database.
+        /// Method to load the list of <see cref="AlbumEntity"/> from database.
         /// </summary>
         private void LoadAlbums()
         {
@@ -291,13 +320,14 @@ namespace Fotootof.Components.Server.Section
                 log.Warn("Loading Albums list. Please wait...");
 
                 Model.Albums.Items = new AlbumEntityCollection(true, AlbumOptionsListFilters);
-                log.Info($"Loading {Model?.Albums?.Items?.Count()} Albums. Done.");
+
+                log.Warn($"Loading {Model?.Albums?.Items?.Count() ?? 0} Albums. Done.");
             }
 
             catch (Exception ex)
             {
-                log.Error(ex.Output(), ex);
-                MessageBoxs.Fatal(ex, "Loading Albums list. Failed !");
+                log.Fatal(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Loading Albums list. Fail.");
             }
 
             finally
@@ -307,13 +337,32 @@ namespace Fotootof.Components.Server.Section
         }
 
         /// <summary>
-        /// Method to refresh the list of Album from database.
+        /// Method to refresh the list of <see cref="AlbumEntity"/> from database.
         /// </summary>
         private void RefreshAlbums()
         {
-            FindName<ListViewAlbumsLayout>("ListViewAlbumsLayoutName").Visibility = Visibility.Hidden;
-            LoadAlbums();
-            FindName<ListViewAlbumsLayout>("ListViewAlbumsLayoutName").Visibility = Visibility.Visible;
+            try
+            {
+                MessageBoxs.IsBusy = true;
+                log.Warn("Refreshing Albums list. Please wait...");
+
+                FindName<ListViewAlbumsLayout>("ListViewAlbumsLayoutName").Visibility = Visibility.Hidden;
+                Model.LoadAlbums();
+                FindName<ListViewAlbumsLayout>("ListViewAlbumsLayoutName").Visibility = Visibility.Visible;
+
+                log.Warn($"Refreshing {Model?.Albums?.Items?.Count() ?? 0} Albums. Done.");
+            }
+
+            catch (Exception ex)
+            {
+                log.Fatal(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Refreshing Albums list. Fail.");
+            }
+
+            finally
+            {
+                MessageBoxs.IsBusy = false;
+            }
         }
 
         /// <summary>
@@ -323,13 +372,26 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">The entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private void AlbumsListView_OnCancel(object sender, EntityChangesEventArgs e)
         {
-            MessageBoxs.IsBusy = true;
-            log.Warn("Adding or editing Album operation canceled. Please wait...");
+            try
+            {
+                MessageBoxs.IsBusy = true;
+                log.Warn("Canceling Album informations edit. Please wait...");
 
-            LoadAlbums();
+                // LoadAlbums();
 
-            log.Info("Adding or editing Album operation canceled. Done.");
-            MessageBoxs.IsBusy = false;
+                log.Warn("Canceling Album informations edit. Done.");
+            }
+
+            catch (Exception ex)
+            {
+                log.Fatal(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Canceling Album informations edit. Fail.");
+            }
+
+            finally
+            {
+                MessageBoxs.IsBusy = false;
+            }
         }
 
         /// <summary>
@@ -339,15 +401,26 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">The entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
         private void AlbumsListView_OnAdd(object sender, EntityChangesEventArgs e)
         {
-            MessageBoxs.IsBusy = true;
-            log.Warn("Saving new Album informations. Please wait...");
+            try
+            {
+                MessageBoxs.IsBusy = true;
+                log.Warn("Saving Album informations. Please wait...");
 
-            AlbumEntity item = (AlbumEntity)e.NewEntity;
-            Model.Albums.Items.Add(item);
-            AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
+                Model.AddAlbum((AlbumEntity)e.NewEntity);
 
-            log.Info("Saving new Album informations. Done.");
-            MessageBoxs.IsBusy = false;
+                log.Warn("Saving Album informations. Done.");
+            }
+
+            catch (Exception ex)
+            {
+                log.Fatal(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Saving Album informations. Fail.");
+            }
+
+            finally
+            {
+                MessageBoxs.IsBusy = false;
+            }
         }
 
         /// <summary>
@@ -363,17 +436,18 @@ namespace Fotootof.Components.Server.Section
                 log.Warn("Saving Album informations. Please wait...");
 
                 Model.UpdateAlbum((AlbumEntity)e.NewEntity);
+
+                log.Warn("Saving Album informations. Done.");
             }
 
             catch (Exception ex)
             {
-                log.Error(ex.Output(), ex);
+                log.Fatal(ex.Output(), ex);
                 MessageBoxs.Fatal(ex, "Saving Album informations. Fail.");
             }
 
             finally
             {
-                log.Warn("Saving Album informations. Done.");
                 MessageBoxs.IsBusy = false;
             }
         }
@@ -383,21 +457,28 @@ namespace Fotootof.Components.Server.Section
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">The entity changes event arguments <see cref="EntityChangesEventArgs"/>.</param>
-        private async void AlbumsListView_OnDeleteAsync(object sender, EntityChangesEventArgs e)
+        private void AlbumsListView_OnDelete(object sender, EntityChangesEventArgs e)
         {
-            MessageBoxs.IsBusy = true;
-            log.Warn("Deleting Album(s). Please wait...");
-
-            // Remove item from list.
-            AlbumEntity item = (AlbumEntity)e.NewEntity;
-            if(Model.Albums.Items.Remove(item))
+            try
             {
-                // Delete item from database.
-                await AlbumEntityCollection.DbDeleteAsync(new List<AlbumEntity> { item });
+                MessageBoxs.IsBusy = true;
+                log.Warn("Deleting Album informations. Please wait...");
+
+                Model.DeleteAlbum((AlbumEntity)e.NewEntity);
+
+                log.Warn("Deleting Album informations. Done.");
             }
 
-            log.Info("Deleting Album(s). Done.");
-            MessageBoxs.IsBusy = false;
+            catch (Exception ex)
+            {
+                log.Fatal(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Deleting Album informations. Fail.");
+            }
+
+            finally
+            {
+                MessageBoxs.IsBusy = false;
+            }
         }
 
         #endregion
@@ -413,12 +494,26 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">The celection changed event arguments <see cref="SelectionChangedEventArgs"/></param>
         private void FiltersQuality_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ((ComboBox)((ListViewAlbumsLayout)FindName("ListViewAlbumsLayoutName"))
+            try
+            {
+                ((ComboBox)((ListViewAlbumsLayout)FindName("ListViewAlbumsLayoutName"))
                 .FindName("FiltersQualitySelector")).IsEditable = false;
 
-            if (((ComboBox)sender).SelectedItem is InfoEntity info)
+                if (((ComboBox)sender).SelectedItem is InfoEntity info)
+                {
+                    Model.ChangeFiltersQuality(info);
+                }
+            }
+
+            catch (Exception ex)
             {
-                Model.ChangeFiltersQuality(info);
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Filters Quality Selection Changed. Fail.");
+            }
+
+            finally
+            {
+                MessageBoxs.IsBusy = false;
             }
 
             RefreshAlbums();
@@ -431,12 +526,26 @@ namespace Fotootof.Components.Server.Section
         /// <param name="e">The celection changed event arguments <see cref="SelectionChangedEventArgs"/></param>
         private void FiltersColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ((ComboBox)((ListViewAlbumsLayout)FindName("ListViewAlbumsLayoutName"))
-                .FindName("FiltersColorSelector")).IsEditable = false;
-
-            if (((ComboBox)sender).SelectedItem is InfoEntity info)
+            try
             {
-                Model.ChangeFiltersColor(info);
+                ((ComboBox)((ListViewAlbumsLayout)FindName("ListViewAlbumsLayoutName"))
+                    .FindName("FiltersColorSelector")).IsEditable = false;
+
+                if (((ComboBox)sender).SelectedItem is InfoEntity info)
+                {
+                    Model.ChangeFiltersColor(info);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Error(ex);
+            }
+
+            finally
+            {
+                MessageBoxs.IsBusy = false;
             }
 
             RefreshAlbums();
@@ -475,7 +584,8 @@ namespace Fotootof.Components.Server.Section
 
             catch(Exception ex)
             {
-                log.Debug(ex.Output());
+                log.Debug(ex.Output(), ex);
+                MessageBoxs.Error(ex);
             }
         }
 

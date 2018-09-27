@@ -111,7 +111,7 @@ namespace Fotootof.Components.Server.Album.Layouts
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public override async void AddItem_Click(object sender, RoutedEventArgs e)
+        public override void AddItem_Click(object sender, RoutedEventArgs e)
         {
             // Open file dialog box for picture selection.
             Microsoft.Win32.OpenFileDialog pfdb = PictureFileDialogBox.Show(true, Fotootof.Layouts.Dialogs.Properties.Translations.DialogBoxTitle_PictureFileSelector);
@@ -176,7 +176,7 @@ namespace Fotootof.Components.Server.Album.Layouts
             if (updateAlbum)
             {
                 // Updating the Album will create a new DataContext.
-                AlbumEntity = (await AlbumEntityCollection.DbUpdateAsync(AlbumEntity, AlbumEntity))[0];
+                AlbumEntity = AlbumEntityCollection.DbUpdate(AlbumEntity);
             }
             else
             {
@@ -198,7 +198,7 @@ namespace Fotootof.Components.Server.Album.Layouts
         /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e">Routed event arguments.</param>
-        public async override void DeleteItems_Click(object sender, RoutedEventArgs e)
+        public override void DeleteItems_Click(object sender, RoutedEventArgs e)
         {
             // Check if the selected items list is not null. 
             if (SelectedItems == null)
@@ -257,7 +257,7 @@ namespace Fotootof.Components.Server.Album.Layouts
                 }
 
                 // Saving new album informations into the database.
-                AlbumEntity = (await AlbumEntityCollection.DbUpdateAsync(AlbumEntity, AlbumEntity))[0];
+                AlbumEntity = AlbumEntityCollection.DbUpdate(AlbumEntity);
                 
                 // Refresh of the list view items source.
                 log.Warn($"Refreshing list view with {AlbumEntity?.Pictures} Pictures...");

@@ -76,8 +76,8 @@
     <Compile Include="Classes\Components\Browser\Layouts\ListViews\ListViewSystemStorageModel.cs" />
     <Compile Include="Classes\Components\Browser\Layouts\TreeViews\Helpers\TreeViewItemDirectoryInfo.cs" />
     <Compile Include="Classes\Components\Browser\Layouts\TreeViews\Helpers\TreeViewItemDriveInfo.cs" />
-    <Compile Include="Classes\Components\Browser\Layouts\TreeViews\TreeViewSystemStorageControl.xaml.cs">
-      <DependentUpon>TreeViewSystemStorageControl.xaml</DependentUpon>
+    <Compile Include="Classes\Components\Browser\Layouts\TreeViews\TreeViewSystemStorageLayout.xaml.cs">
+      <DependentUpon>TreeViewSystemStorageLayout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Components\Browser\Layouts\TreeViews\TreeViewSystemStorageModel.cs" />
     <Compile Include="Classes\Components\Browser\Views\PageBrowser.xaml.cs">
@@ -176,7 +176,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Classes\Components\Browser\Layouts\TreeViews\TreeViewSystemStorageControl.xaml">
+    <Page Include="Classes\Components\Browser\Layouts\TreeViews\TreeViewSystemStorageLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -250,6 +250,34 @@
       <Project>{f2cc7ece-4623-43f6-bcc7-de4c41005ebe}</Project>
       <Name>Fotootof.Layouts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Components\Fotootof.Libraries.Components.csproj">
+      <Project>{2df84f93-8390-42ee-bd61-a66ca77effb4}</Project>
+      <Name>Fotootof.Libraries.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Controls\Fotootof.Libraries.Controls.csproj">
+      <Project>{6f733674-f83c-4707-bbe6-ea170d6420f2}</Project>
+      <Name>Fotootof.Libraries.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Interfaces\Fotootof.Libraries.Interfaces.csproj">
+      <Project>{3c73fbde-434b-40dd-9e6d-d4cac4220b95}</Project>
+      <Name>Fotootof.Libraries.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj">
+      <Project>{fc62ec35-a6a3-4391-9a01-26c159ce1ffd}</Project>
+      <Name>Fotootof.Libraries.Logs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Models\Fotootof.Libraries.Models.csproj">
+      <Project>{f9adb6b5-f96a-48d7-8a1c-2e37d48854bc}</Project>
+      <Name>Fotootof.Libraries.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Windows\Fotootof.Libraries.Windows.csproj">
+      <Project>{02efc769-e829-44f1-b601-780e7266e8ca}</Project>
+      <Name>Fotootof.Libraries.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries\Fotootof.Libraries.csproj">
+      <Project>{7d666ea6-7f61-4c3c-a112-e707072e9205}</Project>
+      <Name>Fotootof.Libraries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityManager.Base\Fotootof.SQLite.EntityManager.Base.csproj">
       <Project>{DC57DCE2-1975-445D-A7F4-16491C0A72B3}</Project>
       <Name>Fotootof.SQLite.EntityManager.Base</Name>
@@ -278,41 +306,9 @@
       <Project>{c58a30d6-da41-42e1-b979-3f02f5d98345}</Project>
       <Name>Fotootof.Components.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Libraries.Components\Fotootof.Libraries.Components.csproj">
-      <Project>{2df84f93-8390-42ee-bd61-a66ca77effb4}</Project>
-      <Name>Fotootof.Libraries.Components</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Libraries.Controls\Fotootof.Libraries.Controls.csproj">
-      <Project>{6f733674-f83c-4707-bbe6-ea170d6420f2}</Project>
-      <Name>Fotootof.Libraries.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Libraries.Interfaces\Fotootof.Libraries.Interfaces.csproj">
-      <Project>{3c73fbde-434b-40dd-9e6d-d4cac4220b95}</Project>
-      <Name>Fotootof.Libraries.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj">
-      <Project>{FC62EC35-A6A3-4391-9A01-26C159CE1FFD}</Project>
-      <Name>Fotootof.Libraries.Logs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Libraries.Models.Interfaces\Fotootof.Libraries.Models.Interfaces.csproj">
-      <Project>{36ffb593-1a0a-4cd4-b83a-02dbfa33bf08}</Project>
-      <Name>Fotootof.Libraries.Models.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Libraries.Windows\Fotootof.Libraries.Windows.csproj">
-      <Project>{02efc769-e829-44f1-b601-780e7266e8ca}</Project>
-      <Name>Fotootof.Libraries.Windows</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Libraries\Fotootof.Libraries.csproj">
-      <Project>{7d666ea6-7f61-4c3c-a112-e707072e9205}</Project>
-      <Name>Fotootof.Libraries</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fotootof.Local\Fotootof.Local.csproj">
       <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
       <Name>Fotootof.Local</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Models\Fotootof.Libraries.Models.csproj">
-      <Project>{f9adb6b5-f96a-48d7-8a1c-2e37d48854bc}</Project>
-      <Name>Fotootof.Libraries.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fotootof.Navigator\Fotootof.Navigator.csproj">
       <Project>{C8EE1DED-4087-4659-A01E-5BCA9C24E116}</Project>

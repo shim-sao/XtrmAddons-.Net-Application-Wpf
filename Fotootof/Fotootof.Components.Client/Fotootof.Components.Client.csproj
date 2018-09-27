@@ -137,6 +137,34 @@
       <Project>{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}</Project>
       <Name>Fotootof.Layouts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Components\Fotootof.Libraries.Components.csproj">
+      <Project>{2df84f93-8390-42ee-bd61-a66ca77effb4}</Project>
+      <Name>Fotootof.Libraries.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Controls\Fotootof.Libraries.Controls.csproj">
+      <Project>{6f733674-f83c-4707-bbe6-ea170d6420f2}</Project>
+      <Name>Fotootof.Libraries.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Interfaces\Fotootof.Libraries.Interfaces.csproj">
+      <Project>{3c73fbde-434b-40dd-9e6d-d4cac4220b95}</Project>
+      <Name>Fotootof.Libraries.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj">
+      <Project>{fc62ec35-a6a3-4391-9a01-26c159ce1ffd}</Project>
+      <Name>Fotootof.Libraries.Logs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Models\Fotootof.Libraries.Models.csproj">
+      <Project>{f9adb6b5-f96a-48d7-8a1c-2e37d48854bc}</Project>
+      <Name>Fotootof.Libraries.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Windows\Fotootof.Libraries.Windows.csproj">
+      <Project>{02efc769-e829-44f1-b601-780e7266e8ca}</Project>
+      <Name>Fotootof.Libraries.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries\Fotootof.Libraries.csproj">
+      <Project>{7d666ea6-7f61-4c3c-a112-e707072e9205}</Project>
+      <Name>Fotootof.Libraries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityConverters\Fotootof.SQLite.EntityConverters.csproj">
       <Project>{56d75663-cfad-4110-b565-7c7462043351}</Project>
       <Name>Fotootof.SQLite.EntityConverters</Name>
@@ -161,29 +189,9 @@
       <Project>{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}</Project>
       <Name>Fotootof.Collections</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Libraries.Components\Fotootof.Libraries.Components.csproj">
-      <Project>{2DF84F93-8390-42EE-BD61-A66CA77EFFB4}</Project>
-      <Name>Fotootof.Libraries.Components</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Libraries.Controls\Fotootof.Libraries.Controls.csproj">
-      <Project>{6F733674-F83C-4707-BBE6-EA170D6420F2}</Project>
-      <Name>Fotootof.Libraries.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Libraries.Interfaces\Fotootof.Libraries.Interfaces.csproj">
-      <Project>{3c73fbde-434b-40dd-9e6d-d4cac4220b95}</Project>
-      <Name>Fotootof.Libraries.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Libraries\Fotootof.Libraries.csproj">
-      <Project>{7D666EA6-7F61-4C3C-A112-E707072E9205}</Project>
-      <Name>Fotootof.Libraries</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fotootof.Local\Fotootof.Local.csproj">
       <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
       <Name>Fotootof.Local</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fotootof.Models\Fotootof.Libraries.Models.csproj">
-      <Project>{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}</Project>
-      <Name>Fotootof.Libraries.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
