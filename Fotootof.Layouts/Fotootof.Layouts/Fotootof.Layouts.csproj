@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F2CC7ECE-4623-43F6-BCC7-DE4C41005EBE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fotootof.Layouts</RootNamespace>
+    <AssemblyName>Fotootof.Layouts</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Build\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\Build\Debug\Fotootof.Layouts.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Build\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="XtrmAddons.Net.Application">
+      <HintPath>..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Common">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Network">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Picture">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Picture.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.SystemIO">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.SystemIO.dll</HintPath>
+    </Reference>
+    <Reference Include="XtrmAddons.Net.Windows">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Windows.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Controls\DataGrids\AclGroups\DataGridAclGroupsControl.cs" />
+    <Compile Include="Classes\Controls\DataGrids\AclGroups\DataGridAclGroupsModel.cs" />
+    <Compile Include="Classes\Controls\DataGrids\Albums\DataGridAlbumsControl.cs" />
+    <Compile Include="Classes\Controls\DataGrids\Albums\DataGridAlbumsLayout.xaml.cs">
+      <DependentUpon>DataGridAlbumsLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Controls\DataGrids\Albums\DataGridAlbumsWindow.xaml.cs">
+      <DependentUpon>DataGridAlbumsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Controls\DataGrids\Albums\DataGridAlbumsWindowModel.cs" />
+    <Compile Include="Classes\Controls\DataGrids\Sections\DataGridSectionsControl.cs" />
+    <Compile Include="Classes\Controls\DataGrids\Sections\DataGridSectionsModel.cs" />
+    <Compile Include="Classes\Controls\DataGrids\Users\DataGridUsersControl.cs" />
+    <Compile Include="Classes\Controls\DataGrids\Users\DataGridUsersModel.cs" />
+    <Compile Include="Classes\Controls\ListViews\Albums\ListViewAlbumsControl.cs" />
+    <Compile Include="Classes\Controls\ListViews\Albums\ListViewAlbumsControlClient.cs" />
+    <Compile Include="Classes\Controls\ListViews\Albums\ListViewAlbumsModel.cs" />
+    <Compile Include="Classes\Controls\ListViews\Pictures\ListViewPicturesControl..cs" />
+    <Compile Include="Classes\Controls\ListViews\Pictures\ListViewPicturesModel.cs" />
+    <Compile Include="Classes\Windows\Slideshow\WindowSlideshowLayout.xaml.cs">
+      <DependentUpon>WindowSlideshowLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Windows\Slideshow\WindowSlideshowModel.cs" />
+    <Compile Include="Classes\Windows\Slideshow\ZoomBorder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="log4net">
+      <Version>2.0.8</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Dialogs\Fotootof.Layouts.Dialogs.csproj">
+      <Project>{06F82071-D500-4E6D-8734-373D1963C307}</Project>
+      <Name>Fotootof.Layouts.Dialogs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Windows.About\Fotootof.Layouts.Windows.About.csproj">
+      <Project>{44E3916D-C6F1-4A36-B0BA-9C4F8FD7C6E4}</Project>
+      <Name>Fotootof.Layouts.Windows.About</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Controls\Fotootof.Libraries.Controls.csproj">
+      <Project>{6f733674-f83c-4707-bbe6-ea170d6420f2}</Project>
+      <Name>Fotootof.Libraries.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Interfaces\Fotootof.Libraries.Interfaces.csproj">
+      <Project>{3c73fbde-434b-40dd-9e6d-d4cac4220b95}</Project>
+      <Name>Fotootof.Libraries.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj">
+      <Project>{fc62ec35-a6a3-4391-9a01-26c159ce1ffd}</Project>
+      <Name>Fotootof.Libraries.Logs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Models.Interfaces\Fotootof.Libraries.Models.Interfaces.csproj">
+      <Project>{36ffb593-1a0a-4cd4-b83a-02dbfa33bf08}</Project>
+      <Name>Fotootof.Libraries.Models.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Models\Fotootof.Libraries.Models.csproj">
+      <Project>{f9adb6b5-f96a-48d7-8a1c-2e37d48854bc}</Project>
+      <Name>Fotootof.Libraries.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Windows\Fotootof.Libraries.Windows.csproj">
+      <Project>{02efc769-e829-44f1-b601-780e7266e8ca}</Project>
+      <Name>Fotootof.Libraries.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries\Fotootof.Libraries.csproj">
+      <Project>{7d666ea6-7f61-4c3c-a112-e707072e9205}</Project>
+      <Name>Fotootof.Libraries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityConverters\Fotootof.SQLite.EntityConverters.csproj">
+      <Project>{56D75663-CFAD-4110-B565-7C7462043351}</Project>
+      <Name>Fotootof.SQLite.EntityConverters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityManager.Base\Fotootof.SQLite.EntityManager.Base.csproj">
+      <Project>{DC57DCE2-1975-445D-A7F4-16491C0A72B3}</Project>
+      <Name>Fotootof.SQLite.EntityManager.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityManager.Interfaces\Fotootof.SQLite.EntityManager.Interfaces.csproj">
+      <Project>{fa432f87-db16-4e8c-bbc8-1321583f027a}</Project>
+      <Name>Fotootof.SQLite.EntityManager.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.EntityManager\Fotootof.SQLite.EntityManager.csproj">
+      <Project>{0136CD5B-63F9-400C-A881-4EF25699BEEE}</Project>
+      <Name>Fotootof.SQLite.EntityManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.SQLite\Fotootof.SQLite.Services\Fotootof.SQLite.Services.csproj">
+      <Project>{E3958E7E-076C-4865-B586-ECB282748FFF}</Project>
+      <Name>Fotootof.SQLite.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Theme\Fotootof.Theme\Fotootof.Theme.csproj">
+      <Project>{C76E2008-3DA1-4600-A889-BF08AF796F7F}</Project>
+      <Name>Fotootof.Theme</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof\Fotootof.Local\Fotootof.Local.csproj">
+      <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
+      <Name>Fotootof.Local</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof\Fotootof.AddInsContracts.Interfaces\Fotootof.AddInsContracts.Interfaces.csproj">
+      <Project>{FE2397A2-4B52-480E-833F-984F901A1AB6}</Project>
+      <Name>Fotootof.AddInsContracts.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof\Fotootof.AddInsContracts\Fotootof.AddInsContracts.csproj">
+      <Project>{e931b33d-606b-48e6-97a7-213f084c7bd3}</Project>
+      <Name>Fotootof.AddInsContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof\Fotootof.Collections\Fotootof.Collections.csproj">
+      <Project>{60E5A02E-932F-48C9-BBCA-C8A0790E1CDF}</Project>
+      <Name>Fotootof.Collections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof\Fotootof.Settings\Fotootof.Settings.csproj">
+      <Project>{70a4c255-1b1c-498b-8689-ad4504ae8ab9}</Project>
+      <Name>Fotootof.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof\Fotootof.HttpClient\Fotootof.HttpClient.csproj">
+      <Project>{470d1482-f772-483e-a922-fa2ac4e517df}</Project>
+      <Name>Fotootof.HttpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof\Fotootof.HttpServer\Fotootof.HttpServer.csproj">
+      <Project>{8696A839-D73C-4ACC-8A60-ACAA6E742BAF}</Project>
+      <Name>Fotootof.HttpServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Layouts.Forms\Fotootof.Layouts.Forms.csproj">
+      <Project>{f3377391-398a-4449-9a62-2c04c6821d71}</Project>
+      <Name>Fotootof.Layouts.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fotootof.Layouts.Interfaces\Fotootof.Layouts.Interfaces.csproj">
+      <Project>{CB4C3960-2BB1-4567-B1AF-88216AB66A3F}</Project>
+      <Name>Fotootof.Layouts.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Classes\Controls\DataGrids\Albums\DataGridAlbumsLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Controls\DataGrids\Albums\DataGridAlbumsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Classes\Windows\Slideshow\WindowSlideshowLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

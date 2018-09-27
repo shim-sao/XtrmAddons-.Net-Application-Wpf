@@ -1,0 +1,351 @@
+﻿<base:WindowLayoutForm
+    x:Class="Fotootof.Layouts.Settings.WindowSettingsLayout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
+    xmlns:t="clr-namespace:Fotootof.Layouts.Settings.Properties"
+	xmlns:s="clr-namespace:Fotootof.Settings;assembly=Fotootof.Settings"
+    xmlns:base="clr-namespace:Fotootof.Libraries.Windows;assembly=Fotootof.Libraries.Windows"
+	mc:Ignorable="d"
+    Width="680"
+    Height="480"
+	Loaded="Window_Load"
+    ResizeMode="CanResize"
+	Style="{DynamicResource WindowFormStyle}"
+    Title="{x:Static t:Translations.WindowSettingsLayoutTitle}"
+	WindowStartupLocation="CenterScreen">
+
+    <Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <TabControl x:Name="TabControlFormContentName">
+
+            <!-- #region : Tabs General -->
+            <TabItem Header="{x:Static l:Translations.General}">
+                <StackPanel>
+
+                    <!-- #region Base Directory -->
+                    <Border Margin="5">
+                        <StackPanel Style="{StaticResource StackPanelFieldStyle}">
+
+                            <Label Content="{x:Static l:Translations.BaseDirectory}"
+                                   Style="{StaticResource LabelInputLongStyle}"/>
+
+                            <TextBox x:Name="InputDirectoriesBase"
+									Style="{StaticResource TextBoxFieldInputLongTooltipOffStyle}"
+									Text="{Binding Directories.Base, Mode=OneWay}"
+									ToolTipService.ToolTip="{Binding Directories.Base, Mode=OneWay}"
+									Width="320"/>
+
+                            <Button x:Name="Button_BaseDirChange_Name"
+									Content="{x:Static l:Translations.Open}"
+									Click="ChangeUserDirectory_Click"
+									FontSize="{StaticResource FontSizeNormal}"
+									Tag="{Binding Directories.Base, Mode=OneWay}"
+									ToolTipService.ToolTip="Change application user directory location."
+									Width="60"/>
+
+                            <Button x:Name="Button_BaseDirOpenInExplorer_Name"
+									Content="Explorer"
+									Click="OpenDirectoryInExplorer_Click"
+									FontSize="{StaticResource FontSizeNormal}"
+									Tag="{Binding Directories.Base, Mode=OneWay}"
+									ToolTipService.ToolTip="Open directory in Windows Explorer."
+									Width="60"/>
+
+                        </StackPanel>
+                    </Border>
+                    <!-- #endregion Base Directory -->
+
+                </StackPanel>
+            </TabItem>
+            <!-- #endregion : Tabs General -->
+
+
+            <!-- #region : Tabs Options -->
+            <TabItem Header="{x:Static l:Translations.Options}">
+                <StackPanel>
+
+                    <!-- #region : Field Database -->
+                    <StackPanel Style="{StaticResource StackPanelFieldStyle}">
+
+                        <Label Content="{x:Static l:Translations.UserInterface}"
+                               Style="{StaticResource LabelInputLongStyle}"/>
+
+                        <TextBox x:Name="InputDatabaseSource"
+									 Style="{StaticResource TextBoxFieldInputStyle}"
+									 Text="{Binding Database.Source, Mode=OneWay}"
+									 ToolTipService.ToolTip="{Binding Database.Source, Mode=OneWay}"/>
+
+                    </StackPanel>
+                    <!-- #endregion : Field Database -->
+
+                </StackPanel>
+            </TabItem>
+            <!-- #endregion : Tabs Options -->
+
+
+            <!-- #region Tabs Informations -->
+            <TabItem Header="{x:Static l:Translations.Preferences}">
+                <StackPanel>
+
+                <!-- #region Preferences files -->
+                <Expander x:Name="ExpanderInformationsFiles"
+						Background="{DynamicResource ChromeLowBrush}"
+						ExpandDirection="Down"
+						FontSize="{StaticResource FontSizeH3}"
+						Foreground="{StaticResource DarkGrey}"
+						Header="Storage : files"
+						HorizontalAlignment="Stretch"
+						IsExpanded="False"
+						VerticalAlignment="Top">
+
+                        <Grid Margin="1" Background="{DynamicResource ChromeMediumLowBrush}">
+                            
+                        <StackPanel Margin="5">
+
+                            <!-- #region : Field Preferences file -->
+                            <StackPanel Style="{StaticResource StackPanelFieldStyle}">
+
+                                <Label Content="{x:Static l:Translations.Preferences}" Style="{StaticResource LabelInputLongStyle}"/>
+                                <TextBox x:Name="InputFilePreferences"
+										Style="{StaticResource TextBoxFieldInputLongTooltipOffStyle}"
+										Text="{Binding Path=FilePreferencesXml, Mode=OneWay}"
+										ToolTipService.ToolTip="{Binding Path=FilePreferencesXml}"/>
+
+                            </StackPanel>
+                            <!-- #endregion : Field Preferences file -->
+
+                            <!-- #region : Field Options file -->
+                            <StackPanel Style="{StaticResource StackPanelFieldStyle}">
+
+                                <Label Content="{x:Static l:Translations.Options}" Style="{StaticResource LabelInputLongStyle}"/>
+                                <TextBox x:Name="InputFileOptions"
+                                        Style="{StaticResource TextBoxFieldInputLongTooltipOffStyle}"
+                                        Text="{Binding Path=FileOptionsXml, Mode=OneWay}"
+                                        ToolTipService.ToolTip="{Binding Path=FileOptionsXml}"/>
+
+                            </StackPanel>
+                            <!-- #endregion : Field Options file -->
+
+                            <!-- #region : Field UserInterface file -->
+                            <StackPanel Style="{StaticResource StackPanelFieldStyle}">
+
+                                <Label Content="{x:Static l:Translations.UserInterface}" Style="{StaticResource LabelInputLongStyle}"/>
+                                <TextBox x:Name="InputFileUi"
+                                         Style="{StaticResource TextBoxFieldInputLongTooltipOffStyle}"
+                                         Text="{Binding Path=FileUiXml, Mode=OneWay}"
+                                         ToolTipService.ToolTip="{Binding Path=FileUiXml}"/>
+
+                            </StackPanel>
+                            <!-- #endregion : Field UserInterface file -->
+
+                        </StackPanel>
+                    </Grid>
+                </Expander>
+                <!-- #endregion Preferences files -->
+
+
+                <!-- #region Preferences directories -->
+                <Expander x:Name="ExpanderInformationsStorage"
+                          Background="{DynamicResource ChromeLowBrush}"
+                          ExpandDirection="Down"
+                          FontSize="{StaticResource FontSizeH3}"
+                          Foreground="{DynamicResource ChromeMediumBrush}"
+                          Header="Storage : special directories"
+                          HorizontalAlignment="Stretch"
+                          IsExpanded="False"
+                          VerticalAlignment="Top">
+
+                    <Grid Margin="1">
+                        <StackPanel Margin="5">
+
+                            <!-- #region Bin Directory -->
+                            <StackPanel Orientation="Horizontal" Style="{StaticResource Field}">
+
+                                <Label Content="{x:Static t:Translations.InputDirectoryBinName}" Style="{StaticResource LabelInputShortStyle}"/>
+                                <Label Content="{}{Bin}" Style="{StaticResource LabelFieldStyle}"/>
+
+                                <TextBox x:Name="InputDirectoriesBin"
+                                         Style="{StaticResource TextBoxFieldInputStyle}"
+                                         Text="{Binding Directories.Bin, Mode=OneWay}"
+                                         ToolTipService.ToolTip="{Binding Directories.Bin, Mode=OneWay}"
+                                         ToolTipService.IsEnabled="True"
+                                         ToolTipService.ShowOnDisabled="True"
+                                         IsEnabled="false"
+                                         Width="360"/>
+
+                                <!--<Button x:Name="Button_OpenInExplorer_DirectoriesBin"
+											Content="Open"
+											Width="60"
+											Click="OpenDirectoryInExplorer_Click"
+											ToolTip="Open directory in Windows Explorer."
+											Tag="{Binding Directories.Bin, Mode=OneWay}"
+											FontSize="{StaticResource FontSizeNormal}"/>-->
+
+                            </StackPanel>
+                            <!-- #endregion Bin Directory -->
+
+
+                            <!-- #region Cache Directory -->
+                            <StackPanel Orientation="Horizontal" Style="{StaticResource Field}">
+
+                                <Label Content="{x:Static t:Translations.InputDirectoryCacheName}" Style="{StaticResource LabelInputShortStyle}"/>
+                                <Label Content="{}{Cache}" Style="{StaticResource LabelFieldStyle}"/>
+
+                                <TextBox x:Name="InputDirectoriesCache"
+										Style="{StaticResource TextBoxFieldInputStyle}"
+										Text="{Binding Directories.Cache, Mode=OneWay}"
+										ToolTipService.ToolTip="{Binding Directories.Cache, Mode=OneWay}"
+										ToolTipService.IsEnabled="True"
+										ToolTipService.ShowOnDisabled="True"
+										IsEnabled="false"
+										Width="360"/>
+
+                                <!--<Button x:Name="Button_OpenInExplorer_DirectoriesCache"
+											Content="Open"
+											Width="60"
+											Click="OpenDirectoryInExplorer_Click"
+											ToolTip="Open directory in Windows Explorer."
+											Tag="{Binding Directories.Cache, Mode=OneWay}"
+											FontSize="{StaticResource FontSizeNormal}"/>-->
+                            </StackPanel>
+                            <!-- #endregion Cache Directory -->
+
+
+                            <!-- #region Config Directory -->
+                            <StackPanel Style="{StaticResource StackPanelFieldStyle}">
+
+                                <Label Content="{x:Static t:Translations.InputDirectoryConfigName}" Style="{StaticResource LabelInputShortStyle}"/>
+                                <Label Content="{}{Config}" Style="{StaticResource LabelFieldStyle}"/>
+
+                                <TextBox x:Name="InputDirectoriesConfig"
+										Style="{StaticResource TextBoxFieldInputStyle}"
+										Text="{Binding Directories.Config, Mode=OneWay}"
+										ToolTipService.ToolTip="{Binding Directories.Config, Mode=OneWay}"
+										ToolTipService.IsEnabled="True"
+										ToolTipService.ShowOnDisabled="True"
+										IsEnabled="false"
+										Width="360"/>
+
+                                <!--<Button x:Name="Button_OpenInExplorer_DirectoriesConfig"
+											Content="Open"
+											Width="60"
+											Click="OpenDirectoryInExplorer_Click"
+											ToolTip="Open directory in Windows Explorer."
+											Tag="{Binding Directories.Config, Mode=OneWay}"
+											FontSize="{StaticResource FontSizeNormal}"/>-->
+
+                            </StackPanel>
+                            <!-- #endregion Config Directory -->
+
+
+                            <!-- #region Data Directory -->
+                            <StackPanel Style="{StaticResource StackPanelFieldStyle}">
+
+                                <Label Content="{x:Static t:Translations.InputDirectoryDataName}" Style="{StaticResource LabelInputShortStyle}"/>
+                                <Label Content="{}{Data}" Style="{StaticResource LabelFieldStyle}"/>
+
+                                <TextBox x:Name="InputDirectoriesData"
+										Style="{StaticResource TextBoxFieldInputStyle}"
+										Text="{Binding Directories.Data, Mode=OneWay}"
+										ToolTipService.ToolTip="{Binding Directories.Data, Mode=OneWay}"
+										ToolTipService.IsEnabled="True"
+										ToolTipService.ShowOnDisabled="True"
+										IsEnabled="false"
+										Width="360"/>
+
+                                <!--<Button x:Name="Button_OpenInExplorer_DirectoriesData"
+											Content="Open"
+											Width="60"
+											Click="OpenDirectoryInExplorer_Click"
+											ToolTip="Open directory in Windows Explorer."
+											Tag="{Binding Directories.Data, Mode=OneWay}"
+											FontSize="{StaticResource FontSizeNormal}"/>-->
+
+                            </StackPanel>
+                            <!-- #endregion Data Directory -->
+
+
+                            <!-- #region Theme Directory -->
+                            <StackPanel Style="{StaticResource StackPanelFieldStyle}">
+
+                                <Label Content="{x:Static t:Translations.InputDirectoryThemeName}" Style="{StaticResource LabelInputShortStyle}"/>
+                                <Label Content="{}{Theme}" Style="{StaticResource LabelFieldStyle}"/>
+
+                                <TextBox x:Name="InputDirectoriesTheme"
+									    Style="{StaticResource TextBoxFieldInputStyle}"
+									    Text="{Binding Directories.Theme, Mode=OneWay}"
+									    ToolTipService.ToolTip="{Binding Directories.Theme, Mode=OneWay}"
+									    ToolTipService.IsEnabled="True"
+									    ToolTipService.ShowOnDisabled="True"
+									    IsEnabled="false"
+									    Width="360"/>
+
+                                    <!--<Button x:Name="Button_OpenInExplorer_DirectoriesTheme"
+											Content="Open"
+											Width="60"
+											Click="OpenDirectoryInExplorer_Click"
+											ToolTip="Open directory in Windows Explorer."
+											Tag="{Binding Directories.Theme, Mode=OneWay}"
+											FontSize="{StaticResource FontSizeNormal}"/>-->
+
+                            </StackPanel>
+                            <!-- #endregion Theme Directory -->
+
+                        </StackPanel>
+                    </Grid>
+                </Expander>
+                <!-- #rendegion Preferences directories -->
+
+            </StackPanel>
+        </TabItem>
+        <!-- #endregion Tabs Informations -->
+
+
+        <!-- #region : Tabs Sections -->
+        <TabItem Header="{x:Static l:Translations.Sections}">
+            <StackPanel>
+
+                <!-- #region : Field Albums -->
+                <StackPanel Style="{StaticResource StackPanelFieldStyle}">
+
+                        <CheckBox IsChecked="{Binding Source={x:Static s:Controls.Default}, Path=ServerSectionLayoutShowAllAlbums, Mode=TwoWay}" />
+
+                        <Label Content="{x:Static l:Translations.Albums}" Style="{StaticResource LabelInputLongStyle}"/>
+
+                    </StackPanel>
+                <!-- #endregion -->
+
+            </StackPanel>
+        </TabItem>
+        <!-- #endregion -->
+
+        </TabControl>
+
+
+        <!-- #region BLOCK FORM VALIDATOR -->
+        <Grid Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource GridFormValidatorStyle}">
+            <StackPanel Style="{StaticResource StackPanelFormValidatorStyle}">
+                <Button x:Name="ButtonSaveName"
+						Click="DialogSave_Click"
+						Content="{x:Static l:Translations.Save}"
+						IsEnabled="{Binding IsSaveEnabled, UpdateSourceTrigger=Explicit, Mode=TwoWay, IsAsync=True}"
+						Style="{StaticResource ButtonSaveStyle}"/>
+
+                <Button x:Name="ButtonCancelName"
+                        IsDefault="True"
+						Content="{x:Static l:Translations.Cancel}"
+						Style="{StaticResource ButtonCancelStyle}"/>
+
+            </StackPanel>
+        </Grid>
+        <!-- #endregion -->
+
+    </Grid>
+</base:WindowLayoutForm>
