@@ -1,0 +1,229 @@
+﻿<base:DataGridAclGroupsControl
+    x:Class="Fotootof.Components.Server.Users.Layouts.DataGridAclGroupsLayout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:base="clr-namespace:Fotootof.Layouts.Controls.DataGrids;assembly=Fotootof.Layouts"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
+    mc:Ignorable="d"
+    HorizontalAlignment="Stretch"
+	SizeChanged="Layout_SizeChanged">
+
+	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
+		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
+
+			<StackPanel x:Name="StackPanelBlockHeaderName" Style="{StaticResource StackPanelFieldsetHeader}">
+				
+				<Border x:Name="BorderFieldsetTitleName" Style="{StaticResource BorderFieldsetTitleStyle}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="1*"/>
+							<ColumnDefinition Width="auto"/>
+						</Grid.ColumnDefinitions>
+
+						<!-- #region Title -->
+						<Border x:Name="Title_Border">
+							<TextBlock x:Name="Title_Text"
+									   FontSize="{StaticResource FontSizeH4}"
+									   FontWeight="SemiBold"
+									   Foreground="{DynamicResource CustomWindowTextBrush}"
+									   Margin="5"
+									   Text="{x:Static l:Translations.UsersGroups}">
+							</TextBlock>
+						</Border>
+						<!-- #endregion -->
+
+						
+						<!-- #region Counter -->
+						<StackPanel Grid.Column="1" Orientation="Horizontal">
+							<TextBlock
+                                x:Name="Counter_SelectedNumber"
+                                FontWeight="SemiBold"
+                                FontSize="{StaticResource FontSizeH4}"
+								Foreground="{DynamicResource CustomWindowTextBrush}"
+                                Margin="5"
+                                Text="0">
+							</TextBlock>
+
+							<TextBlock
+								x:Name="Counter_Spacer"
+								FontWeight="SemiBold"
+								FontSize="{StaticResource FontSizeH4}"
+								Foreground="{DynamicResource CustomWindowTextBrush}"
+								Margin="0,5"
+								Text="/">
+							</TextBlock>
+
+							<TextBlock
+								x:Name="Counter_Total"
+								FontWeight="SemiBold"
+								FontSize="{StaticResource FontSizeH4}"
+								Foreground="{DynamicResource CustomWindowTextBrush}"
+								Margin="5"
+								Text="{Binding Path=Items.Count}">
+							</TextBlock>
+						</StackPanel>
+						<!-- #endregion Counter -->
+					</Grid>
+				</Border>
+
+
+				<Grid x:Name="GridBlockMenuName" Style="{StaticResource GridFieldsetMenuStyle}">
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="auto" />
+						<ColumnDefinition Width="1*" />
+						<ColumnDefinition Width="auto" />
+					</Grid.ColumnDefinitions>
+
+					<Border x:Name="MenuLeft">
+						<Grid Margin="2">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
+							</Grid.ColumnDefinitions>
+
+							<Button x:Name="ButtonAddName"
+									Style="{DynamicResource ButtonIcon24UsersPlus}"
+									ToolTipService.ToolTip="{x:Static l:Translations.Add}"
+									Click="AddItem_Click" />
+
+							<Button Grid.Column="1"
+									x:Name="ButtonEditName"
+									Style="{DynamicResource ButtonIcon24UsersEdit}"
+									ToolTipService.ToolTip="{x:Static l:Translations.Edit}"
+									Click="EditItem_Click"
+									IsEnabled="False"/>
+
+							<Button Grid.Column="2"
+									x:Name="ButtonDeleteName"
+									Style="{DynamicResource ButtonIcon24UsersMinus}"
+									ToolTipService.ToolTip="{x:Static l:Translations.Delete}"
+									Click="DeleteItems_Click"
+									IsEnabled="False"/>
+						</Grid>
+					</Border>
+				</Grid>
+			</StackPanel>
+
+
+			<Grid x:Name="GridBlockItemsName">
+				
+				<DataGrid x:Name="ItemsLayout"
+						  AutoGenerateColumns="False"
+						  CanUserDeleteRows="True"
+						  CanUserAddRows="False"
+						  ColumnWidth="*"
+						  EnableColumnVirtualization="false"
+						  EnableRowVirtualization="false"
+						  HorizontalAlignment="Stretch"
+						  ItemsSource="{Binding Items, Mode=OneWay, IsAsync=true}"
+						  MouseDoubleClick="EditItem_Click"
+						  RowHeight="22"
+						  SelectionMode="Extended"
+						  SelectionChanged="ItemsCollection_SelectionChanged"
+						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+						  GridLinesVisibility="None">
+
+					<DataGrid.Columns>
+						
+						<!-- #region : Column AclGroupId -->
+						<DataGridTemplateColumn 
+							IsReadOnly="True"
+							Width="30"
+							CanUserSort="True"
+							Header="{x:Static l:Translations.Id}"
+							SortMemberPath="AclGroupId">
+
+
+							<!--<DataGridTemplateColumn.CellStyle>
+								<Style TargetType="{x:Type DataGridCell}">
+									<Style.Resources>
+										<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{DynamicResource CustomTestRedBrush}"/>
+										<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="MistyRose" />
+										<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource CustomDataGridHighlightTextBrush}" />
+										<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{DynamicResource CustomDataGridTextBrush}" />
+									</Style.Resources>
+									<Setter Property="BorderBrush" Value="{DynamicResource CustomDataGridCellBorderBrush}" />
+									<Setter Property="BorderThickness" Value="0" />
+									<Setter Property="Background" Value="{DynamicResource CustomDataGridCellBrush}" />
+								</Style>
+							</DataGridTemplateColumn.CellStyle>-->
+
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+
+									<TextBlock Margin="5,0"
+											   Text="{Binding AclGroupId}"
+											   ToolTip="{Binding AclGroupId}"/>
+
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<!-- #endregion : Column AclGroupId -->
+
+						
+						<!-- #region : Column Is Default -->
+						<DataGridTemplateColumn 
+						CanUserResize="False"
+						IsReadOnly="True"
+						Width="20"
+						CanUserSort="True"
+						Header=""
+						SortMemberPath="IsDefault">
+
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+
+									<CheckBox
+										Tag="{Binding}"
+										IsChecked="{Binding IsDefault, Mode=TwoWay}"
+										Click="CheckBoxDefault_Checked"/>
+
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<!-- #endregion : Column Is Default -->
+
+						
+						<!-- #region : Column Name -->
+						<DataGridTemplateColumn 
+						IsReadOnly="True"
+						MinWidth="160"
+						CanUserSort="True"
+						Header="{x:Static l:Translations.Name}"
+						SortMemberPath="Name">
+
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+
+									<TextBlock Margin="5,0" Text="{Binding Name, Mode=TwoWay}">
+										<TextBlock.ContextMenu>
+											<ContextMenu>
+												<MenuItem Header="{x:Static l:Translations.Add}"
+														  Click="AddItem_Click"/>
+												
+												<MenuItem Header="{x:Static l:Translations.Edit}"
+														  Click="EditItem_Click"/>
+												
+												<MenuItem Header="{x:Static l:Translations.Delete}"
+														  Click="DeleteItems_Click"/>
+											</ContextMenu>
+										</TextBlock.ContextMenu>
+									</TextBlock>
+
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<!-- #endregion : Column Name -->
+
+					</DataGrid.Columns>
+				</DataGrid>
+			
+			</Grid>
+
+		</StackPanel>
+	</Grid>
+</base:DataGridAclGroupsControl>

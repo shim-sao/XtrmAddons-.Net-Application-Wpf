@@ -1,0 +1,45 @@
+﻿<base:ComponentView
+    x:Class="Fotootof.Components.Server.Remote.PageRemoteLayout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ucserver="clr-namespace:Fotootof.Components.Server.Remote.Layouts"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
+    xmlns:base="clr-namespace:Fotootof.Libraries.Components;assembly=Fotootof.Libraries.Components"
+    mc:Ignorable="d"
+    ShowsNavigationUI="False"
+    Style="{StaticResource PageContentStyle}"
+    SizeChanged="Layout_SizeChanged"
+	Loaded="Control_Loaded">
+
+    <Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
+        
+        <!-- #region Main Content -->
+        <Grid VerticalAlignment="Stretch">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+
+                <Grid>
+                    <ucserver:ServerInfosLayout x:Name="UCServer" />
+                </Grid>
+
+                <Grid>
+                    <ucserver:DatagridHttpClientLayout />
+                </Grid>
+
+            </StackPanel>
+
+        </Grid>
+        <!-- #endregion Main Content -->
+        
+    </Grid>
+</base:ComponentView>
