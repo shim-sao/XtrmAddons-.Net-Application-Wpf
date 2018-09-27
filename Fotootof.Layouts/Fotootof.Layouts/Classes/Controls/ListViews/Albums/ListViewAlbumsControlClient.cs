@@ -58,18 +58,18 @@ namespace Fotootof.Layouts.Controls.ListViews
             return;
 
             // Show open file dialog box 
-            WindowFormAlbumLayout dlg = new WindowFormAlbumLayout(new AlbumEntity());
-            bool? result = dlg.ShowDialog();
+            //WindowFormAlbumLayout dlg = new WindowFormAlbumLayout(new AlbumEntity());
+            //bool? result = dlg.ShowDialog();
 
-            // Process open file dialog box results 
-            if (result == true)
-            {
-                NotifyAdded(dlg.NewForm);
-            }
-            else
-            {
-                NotifyCanceled(dlg.NewForm);
-            }
+            //// Process open file dialog box results 
+            //if (result == true)
+            //{
+            //    NotifyAdded(dlg.NewForm);
+            //}
+            //else
+            //{
+            //    NotifyCanceled(dlg.NewForm);
+            //}
         }
 
         /// <summary>
@@ -83,28 +83,28 @@ namespace Fotootof.Layouts.Controls.ListViews
             return;
 
             // Check if an AclGroup is founded. 
-            if (SelectedItem != null)
-            {
-                // Show open file dialog box 
-                WindowFormAlbumLayout dlg = new WindowFormAlbumLayout(SelectedItem.PrimaryKey);
-                bool? result = dlg.ShowDialog();
+            //if (SelectedItem != null)
+            //{
+            //    // Show open file dialog box 
+            //    WindowFormAlbumLayout dlg = new WindowFormAlbumLayout(SelectedItem.PrimaryKey);
+            //    bool? result = dlg.ShowDialog();
 
-                // Process open file dialog box results 
-                if (result == true)
-                {
-                    NotifyChanged(dlg.NewForm);
-                }
-                else
-                {
-                    NotifyCanceled(dlg.NewForm);
-                }
-            }
-            else
-            {
-                string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
-                log.Warn(message);
-                MessageBoxs.Warning(message);
-            }
+            //    // Process open file dialog box results 
+            //    if (result == true)
+            //    {
+            //        NotifyChanged(dlg.NewForm);
+            //    }
+            //    else
+            //    {
+            //        NotifyCanceled(dlg.NewForm);
+            //    }
+            //}
+            //else
+            //{
+            //    string message = string.Format("{0} not found !", typeof(AlbumEntity).Name);
+            //    log.Warn(message);
+            //    MessageBoxs.Warning(message);
+            //}
         }
 
         /// <summary>

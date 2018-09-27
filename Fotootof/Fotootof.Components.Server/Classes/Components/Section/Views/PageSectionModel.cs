@@ -1,5 +1,5 @@
 ﻿using Fotootof.Collections.Entities;
-using Fotootof.Components.Client.Section.Layouts;
+using Fotootof.Components.Server.Section.Layouts;
 using Fotootof.Layouts.Controls.DataGrids;
 using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Components;
@@ -153,15 +153,19 @@ namespace Fotootof.Components.Server.Section
         {
             get
             {
-                SectionEntity a = SectionsLayout.SelectedItem;
+                IEnumerable<SectionEntity> se = SectionsLayout.SelectedItems;
                 AlbumOptionsList op = new AlbumOptionsList
                 {
                     Dependencies = { EnumEntitiesDependencies.AlbumsInSections, EnumEntitiesDependencies.InfosInAlbums }
                 };
-
-                if (a != null)
+                
+                if (se != null)
                 {
-                    op.IncludeSectionKeys = new List<int>() { a.PrimaryKey };
+                    op.IncludeSectionKeys = new List<int>();
+                    foreach (var a in se)
+                    {
+                        op.IncludeSectionKeys.Add(a.PrimaryKey);
+                    }
                 }
 
                 if (filters.Count > 0)
@@ -196,35 +200,35 @@ namespace Fotootof.Components.Server.Section
         /// </summary>
         public void LoadAlbums()
         {
-            MessageBoxs.IsBusy = true;
-            log.Warn("Loading Albums list. Please wait...");
-
             try
             {
-                Albums.Items = new AlbumEntityCollection(true, AlbumOptionsListFilters);
-                log.Info($"Loading {Albums?.Items?.Count()} Albums. Done.");
+                if (SectionsLayout.SelectedItems?.Count > 0)
+                {
+                    Albums.Items = new AlbumEntityCollection(true, AlbumOptionsListFilters);
+                    log.Info($"Loading {Albums?.Items?.Count()} Album(s). Done.");
+                }
+                else
+                {
+                    Albums.Items?.Clear();
+                }
             }
+
             catch (Exception ex)
             {
-                log.Error(ex.Output(), ex);
-                MessageBoxs.Fatal(ex, "Loading Albums list. Failed !");
-            }
-            finally
-            {
-                log.Warn("Loading Albums list. Done.");
-                MessageBoxs.IsBusy = false;
+                log.Error(ex.Output());
             }
         }
 
         /// <summary>
         /// Method to add a <see cref="AlbumEntity"/>.
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="item">An <see cref="AlbumEntity"/> to add.</param>
         public void AddAlbum(AlbumEntity item)
         {
             try
             {
-                
+                Albums.Items.Add(item);
+                AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
             }
 
             catch (Exception ex)
@@ -237,7 +241,7 @@ namespace Fotootof.Components.Server.Section
         /// <summary>
         /// Method to update a <see cref="AlbumEntity"/>.
         /// </summary>
-        /// <param name="newEntity"></param>
+        /// <param name="newEntity">An <see cref="AlbumEntity"/> to update.</param>
         public async void UpdateAlbum(AlbumEntity newEntity)
         {
             try
@@ -246,6 +250,29 @@ namespace Fotootof.Components.Server.Section
                 await AlbumEntityCollection.DbUpdateAsync(new List<AlbumEntity> { newEntity }, new List<AlbumEntity> { oldEntity });
                 oldEntity.Bind(newEntity);
                 //LoadAlbums();
+            }
+
+            catch (Exception ex)
+            {
+                log.Error(ex.Output());
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Method to delete a <see cref="AlbumEntity"/>.
+        /// </summary>
+        /// <param name="item">An <see cref="AlbumEntity"/> to delete.</param>
+        public async void DeleteAlbum(AlbumEntity item)
+        {
+            try
+            {
+                // Remove item from list.
+                if (Albums?.Items?.Remove(item) == true)
+                {
+                    // Delete item from database.
+                    await AlbumEntityCollection.DbDeleteAsync(new List<AlbumEntity> { item });
+                }
             }
 
             catch (Exception ex)
@@ -291,7 +318,7 @@ namespace Fotootof.Components.Server.Section
         /// <summary>
         /// Method to add a <see cref="SectionEntity"/>.
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="item">A <see cref="SectionEntity"/> to add.</param>
         public void AddSection(SectionEntity item)
         {
             try
@@ -310,14 +337,14 @@ namespace Fotootof.Components.Server.Section
         /// <summary>
         /// Method to update a <see cref="SectionEntity"/>.
         /// </summary>
-        /// <param name="newEntity"></param>
-        /// <param name="oldEntity"></param>
-        public void UpdateSection(SectionEntity newEntity, SectionEntity oldEntity)
+        /// <param name="newEntity">A <see cref="SectionEntity"/> to update.</param>
+        public void UpdateSection(SectionEntity newEntity)
         {
             try
             {
+                SectionEntity oldEntity = Sections.Items.Single(x => x.PrimaryKey == newEntity.PrimaryKey);
                 SectionEntityCollection.DbUpdateAsync(new List<SectionEntity> { newEntity }, new List<SectionEntity> { oldEntity });
-                LoadSections();
+                oldEntity.Bind(newEntity);
             }
 
             catch (Exception ex)
@@ -330,19 +357,15 @@ namespace Fotootof.Components.Server.Section
         /// <summary>
         /// Method to delete a <see cref="SectionEntity"/>.
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="item">A <see cref="SectionEntity"/> to delete.</param>
         public void DeleteSection(SectionEntity item)
         {
             try
             {
-                if(item == null)
+                if(Sections?.Items?.Remove(item) == true)
                 {
-                    log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : No item selected.");
-                    return;
+                    SectionEntityCollection.DbDelete(new List<SectionEntity> { item });
                 }
-
-                Sections.Items.Remove(item);
-                SectionEntityCollection.DbDelete(new List<SectionEntity> { item });
             }
 
             catch (Exception ex)
@@ -364,18 +387,27 @@ namespace Fotootof.Components.Server.Section
         /// <param name="info"></param>
         public void ChangeFiltersQuality(InfoEntity info)
         {
-            string alias = "quality";
+            try
+            {
+                string alias = "quality";
 
-            if (info.Alias != "various-quality")
-            {
-                if (filters.Keys.Contains(alias))
-                    filters[alias] = info.PrimaryKey;
-                else
-                    filters.Add(alias, info.PrimaryKey);
+                if (info.Alias != "various-quality")
+                {
+                    if (filters.Keys.Contains(alias))
+                        filters[alias] = info.PrimaryKey;
+                    else
+                        filters.Add(alias, info.PrimaryKey);
+                }
+                else if (filters.Keys.Contains(alias))
+                {
+                    filters.Remove(alias);
+                }
             }
-            else if (filters.Keys.Contains(alias))
+
+            catch (Exception ex)
             {
-                filters.Remove(alias);
+                log.Error(ex.Output());
+                throw;
             }
         }
 
@@ -385,18 +417,27 @@ namespace Fotootof.Components.Server.Section
         /// <param name="info"></param>
         public void ChangeFiltersColor(InfoEntity info)
         {
-            string alias = "color";
+            try
+            {
+                string alias = "color";
 
-            if (info.Alias != "various-color")
-            {
-                if (filters.Keys.Contains(alias))
-                    filters[alias] = info.PrimaryKey;
-                else
-                    filters.Add(alias, info.PrimaryKey);
+                if (info.Alias != "various-color")
+                {
+                    if (filters.Keys.Contains(alias))
+                        filters[alias] = info.PrimaryKey;
+                    else
+                        filters.Add(alias, info.PrimaryKey);
+                }
+                else if (filters.Keys.Contains(alias))
+                {
+                    filters.Remove(alias);
+                }
             }
-            else if (filters.Keys.Contains(alias))
+
+            catch (Exception ex)
             {
-                filters.Remove(alias);
+                log.Error(ex.Output());
+                throw;
             }
         }
 

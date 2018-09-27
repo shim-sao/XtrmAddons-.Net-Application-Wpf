@@ -6,6 +6,7 @@
     xmlns:cvTheme="clr-namespace:Fotootof.Theme.ValueConverters;assembly=Fotootof.Theme"
     xmlns:cvDate="clr-namespace:XtrmAddons.Net.Windows.Converter.Date;assembly=XtrmAddons.Net.Windows"
     xmlns:cvPicture="clr-namespace:XtrmAddons.Net.Windows.Converter.Picture;assembly=XtrmAddons.Net.Windows"
+    xmlns:cvBool="clr-namespace:XtrmAddons.Net.Windows.Converter.Boolean;assembly=XtrmAddons.Net.Windows"
     xmlns:cvSize="clr-namespace:XtrmAddons.Net.Windows.Converter.Size;assembly=XtrmAddons.Net.Windows"
     xmlns:cvString="clr-namespace:XtrmAddons.Net.Windows.Converter.String;assembly=XtrmAddons.Net.Windows">
 
@@ -13,6 +14,7 @@
     <cvDate:ConverterDate x:Key="CvDate" />
     <cvPicture:ConverterExtractLargeIconFromFile x:Key="CvExtractLargeIconFromFile" />
     <cvPicture:ConverterPictureBase x:Key="CvPictureBase" />
+    <cvBool:ConverterIntToBool x:Key="CvIntToBool" />
     <cvSize:ConverterResponsiveFontSize x:Key="CvResponsiveFontSize" />
     <cvSize:ConverterResponsiveListViewItem x:Key="CvResponsiveListViewItem" />
     <cvString:ConverterUCFirst x:Key="CvUCFirst" />

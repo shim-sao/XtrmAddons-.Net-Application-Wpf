@@ -28,14 +28,15 @@
                         <Button x:Name="ButtonAddName"
                                 Grid.Column="0"
                                 Style="{StaticResource Btn}"
-                                Content="{x:Static l:Translations.Add }"
+                                Content="{x:Static l:Translations.Add}"
                                 Click="AddItem_Click"/>
 
                         <Button x:Name="ButtonEditName"
                                 Grid.Column="1"
                                 Style="{StaticResource Btn}"
-                                Content="{x:Static l:Translations.Edit }"
-                                Click="EditItem_Click"/>
+                                Content="{x:Static l:Translations.Edit}"
+                                Click="EditItem_Click"
+                                IsEnabled="{Binding Source={x:Reference DataGridCollectionName}, Path=SelectedItems.Count, Converter={StaticResource CvIntToBool}}"/>
 
                         <Button x:Name="ButtonDeleteName"
                                 Grid.Column="2"

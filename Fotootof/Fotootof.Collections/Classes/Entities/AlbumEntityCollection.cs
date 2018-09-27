@@ -1,6 +1,8 @@
 ﻿using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Logs;
+using Fotootof.Libraries.Models.Systems;
 using Fotootof.Navigator;
+using Fotootof.SQLite.EntityManager.Data.Tables.Dependencies;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Fotootof.SQLite.EntityManager.Data.Tables.Json.Models;
 using Fotootof.SQLite.EntityManager.Enums.EntityHelper;
@@ -16,7 +18,7 @@ using XtrmAddons.Net.Common.Extensions;
 namespace Fotootof.Collections.Entities
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Server Libraries Common Albums Collection.
+    /// Class XtrmAddons Fotootof Albums Entities Collection.
     /// </summary>
     public class AlbumEntityCollection : CollectionBaseEntity<AlbumEntity, AlbumOptionsList>
     {
@@ -72,13 +74,13 @@ namespace Fotootof.Collections.Entities
         {
             if (list == null)
             {
-                ArgumentNullException ex = Exceptions.GetArgumentNull(nameof(list), list);
-                log.Warn(ex.Output(), ex);
+                log.Warn(Exceptions.GetArgumentNull(nameof(list), list).Output());
                 return;
             }
 
             if (list.Count() == 0)
             {
+                log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : empty list.");
                 return;
             }
 
@@ -92,13 +94,13 @@ namespace Fotootof.Collections.Entities
 
 
 
-        #region Methods
+        #region Methods Insert
 
         /// <summary>
         /// Method to insert a list of Album entities into the database.
         /// </summary>
-        /// <param name="newItems">Thee list of items to add.</param>
-        public static IEnumerable<AlbumEntity> DbInsert(List<AlbumEntity> newItems)
+        /// <param name="newItems">The list of items to add.</param>
+        public static IEnumerable<AlbumEntity> DbInsert(IEnumerable<AlbumEntity> newItems)
         {
             if (newItems == null)
             {
@@ -142,6 +144,22 @@ namespace Fotootof.Collections.Entities
 
             return itemsAdded;
         }
+
+        /// <summary>
+        /// Method to insert a list of Album entities into the database.
+        /// </summary>
+        /// <param name="newItem">The <see cref="AlbumEntity"/> to add.</param>
+        public static AlbumEntity DbInsert(AlbumEntity newItem)
+        {
+            return DbInsert(new AlbumEntity[] { newItem }).First();
+        }
+
+        #endregion
+
+
+
+        #region Methods Delete
+
 
         /// <summary>
         /// Method to delete a list of Album entities from the database.
@@ -190,28 +208,52 @@ namespace Fotootof.Collections.Entities
             return itemsDeleted;
         }
 
+        #endregion
+
+
+
+        #region Methods Update
+
+
         /// <summary>
         /// Method to update an Album entity into the database.
         /// </summary>
         /// <param name="newItem">The item to update.</param>
-        /// <param name="oldItem"></param>
-        public static async Task<IList<AlbumEntity>> DbUpdateAsync(AlbumEntity newItem, AlbumEntity oldItem)
+        public static AlbumEntity DbUpdate(AlbumEntity newItem)
         {
-            return await DbUpdateAsync(new AlbumEntity[] { newItem }, new AlbumEntity[] { oldItem });
+            return DbUpdateAsync(new AlbumEntity[] { newItem }).Result.First();
+        }
+
+        /// <summary>
+        /// Method to update an Album entity into the database.
+        /// </summary>
+        /// <param name="newItem">The item to update.</param>
+        /// <param name="oldItem">The item to update before changes</param>
+        public static AlbumEntity DbUpdate(AlbumEntity newItem, AlbumEntity oldItem)
+        {
+            return DbUpdateAsync(new AlbumEntity[] { newItem }, new AlbumEntity[] { oldItem }).Result.First();
         }
 
         /// <summary>
         /// Method to update a list of Album entities into the database.
         /// </summary>
         /// <param name="newItems">The list of items to update.</param>
-        /// <param name="oldItems"></param>
+        public static async Task<IList<AlbumEntity>> DbUpdateAsync(IEnumerable<AlbumEntity> newItems)
+        {
+            return await DbUpdateAsync(newItems, null);
+        }
+
+        /// <summary>
+        /// Method to update a list of Album entities into the database.
+        /// </summary>
+        /// <param name="newItems">The list of items to update.</param>
+        /// <param name="oldItems">The list of items before changes.</param>
         public static async Task<IList<AlbumEntity>> DbUpdateAsync(IEnumerable<AlbumEntity> newItems, IEnumerable<AlbumEntity> oldItems)
         {
             // Log error if the list to update if not null.
             if (newItems == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(newItems), newItems);
-                log.Error(e.Output(), e);
+                log.Error(Exceptions.GetArgumentNull(nameof(newItems), newItems).Output());
                 return null;
             }
 
@@ -251,6 +293,92 @@ namespace Fotootof.Collections.Entities
 
             return itemsUpdated;
         }
+
+        #endregion
+
+
+
+        #region Methods
+
+        /// <summary>
+        /// Method add pictures to albums.
+        /// </summary>
+        public static AlbumEntity AssociateDefaultPicture(int albumPK)
+        {
+            AlbumEntity entity = Db.Albums.SingleOrNull(
+                new AlbumOptionsSelect
+                {
+                    PrimaryKey = albumPK,
+                    Dependencies = { EnumEntitiesDependencies.All }
+                });
+
+            PicturesInAlbums p = entity?.PicturesInAlbums?[0];
+
+            if(p != null)
+            {
+                entity.PreviewPictureId = p.PictureId;
+                entity.ThumbnailPictureId = p.PictureId;
+                entity.BackgroundPictureId = p.PictureId;
+            }
+
+            return DbUpdate(entity);
+        }
+
+        /// <summary>
+        /// Method add pictures to albums.
+        /// </summary>
+        public static void AssociateDefaultPicture(ref AlbumEntity album)
+        {
+            album = AssociateDefaultPicture(album.PrimaryKey);
+        }
+
+        /// <summary>
+        /// Method add pictures to albums.
+        /// </summary>
+        public static void AssociateDefaultPicture(ref IEnumerable<AlbumEntity> albums)
+        {
+            var entities = albums.ToArray();
+
+            if (entities.Length > 0)
+            {
+                int i = 0;
+                foreach (AlbumEntity a in entities)
+                {
+                    entities[i] = AssociateDefaultPicture(a.PrimaryKey);
+                    i++;
+                }
+            }
+
+            albums = entities;
+        }
+
+        /// <summary>
+        /// Method add pictures to albums.
+        /// </summary>
+        public static IEnumerable<PictureEntity> AddPicturesToAlbums(IEnumerable<StorageInfoModel> infos, IEnumerable<AlbumEntity> albums)
+        {
+            // Process adding for each selected storage informations.
+            List<PictureEntity> pictures = new List<PictureEntity>();
+            foreach (StorageInfoModel item in infos)
+            {
+                // Create Picture entity.
+                PictureEntity picture = item.ToPicture();
+
+                // Check if storage information is and return a picture information.
+                if (picture != null)
+                {
+                    // Add Picture to the list for Pictures.
+                    pictures.Add(picture);
+                }
+            }
+
+            // Insert Pictures into the database.
+            PictureEntityCollection.DbInsert(pictures, ref albums);
+            AssociateDefaultPicture(ref albums);
+
+            return pictures;
+        }
+
 
         /// <summary>
         /// Method to format the Alias property of an entity.

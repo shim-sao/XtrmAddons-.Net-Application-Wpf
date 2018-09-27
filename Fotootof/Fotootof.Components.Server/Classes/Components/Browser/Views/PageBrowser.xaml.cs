@@ -9,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Components.Server.Browser
 {
@@ -37,26 +38,9 @@ namespace Fotootof.Components.Server.Browser
         /// </summary>
         internal PageBrowserModel Model { get; private set; }
 
-        /// <summary>
-        /// Property to access to the preview directory system informations.
-        /// </summary>
-        [Obsolete("Use Model.PreviewStack", true)]
-        public Stack<object> PreviewStack => Model.PreviewStack;
-
-        /// <summary>
-        /// Property to access to the preview directory system informations.
-        /// </summary>
-        [Obsolete("Use Model.PreviewStack", true)]
-        public Stack<object> NextStack => Model.PreviewStack;
-
-        /// <summary>
-        /// Property to access to the current drive system informations.
-        /// </summary>
-        [Obsolete("Use Model.CurrentItem", true)]
-        public object CurrentItem => Model.CurrentItem;
-
         private TreeView TreeViewStorage
-            => (FindName("UcTreeViewDirectories") as UserControl).FindName("TreeViewDirectoryInfoName") as TreeView;
+            => (FindName("UcTreeViewDirectories") as UserControl)
+                ?.FindName("TreeViewDirectoryInfoName") as TreeView;
 
 
         #endregion
@@ -132,7 +116,7 @@ namespace Fotootof.Components.Server.Browser
         /// <param name="dirInfo">A directory info.</param>
         private void DisplayHeaderDirectory(object dirInfo)
         {
-            (FindName("TextBox_Breadcrumbs_Name") as TextBox).Text = Model.GetText(dirInfo);
+            FindName<TextBox>("TextBox_Breadcrumbs_Name").Text = Model.GetText(dirInfo);
         }
 
         /// <summary>
@@ -151,12 +135,12 @@ namespace Fotootof.Components.Server.Browser
         /// <param name="e"></param>
         private void TreeViewDirectories_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            (FindName("Button_Forward_Name") as Button).IsEnabled = false;
+            FindName<Button>("Button_Forward_Name").IsEnabled = false;
 
             Model.ChangeCurrentItem(((e.NewValue) as TreeViewItem)?.Tag);
             if (Model.PreviewStack.Count > 1)
             {
-                (FindName("Button_Back_Name") as Button).IsEnabled = true;
+                FindName<Button>("Button_Back_Name").IsEnabled = true;
             }
             
             Refresh_UcListViewStoragesServer();
@@ -170,14 +154,14 @@ namespace Fotootof.Components.Server.Browser
         private void OnBack_Click(object sender, RoutedEventArgs e)
         {
             Model.NextStack.Push(Model.CurrentItem);
-            (FindName("Button_Forward_Name") as Button).IsEnabled = true;
+            FindName<Button>("Button_Forward_Name").IsEnabled = true;
 
             Model.CurrentItem = Model.PreviewStack.Pop();
             Refresh_UcListViewStoragesServer();
 
             if (Model.PreviewStack.Count <= 1)
             {
-                (FindName("Button_Back_Name") as Button).IsEnabled = false;
+                FindName<Button>("Button_Back_Name").IsEnabled = false;
             }
         }
 
@@ -189,14 +173,14 @@ namespace Fotootof.Components.Server.Browser
         private void OnForward_Click(object sender, RoutedEventArgs e)
         {
             Model.PreviewStack.Push(Model.CurrentItem);
-            (FindName("Button_Back_Name") as Button).IsEnabled = true;
+            FindName<Button>("Button_Back_Name").IsEnabled = true;
 
             Model.CurrentItem = Model.NextStack.Pop();
             Refresh_UcListViewStoragesServer();
 
             if (Model.NextStack.Count == 0)
             {
-                (FindName("Button_Forward_Name") as Button).IsEnabled = false;
+                FindName<Button>("Button_Forward_Name").IsEnabled = false;
             }
         }
 
@@ -258,61 +242,20 @@ namespace Fotootof.Components.Server.Browser
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        [Obsolete("use Model.GetCurrentDirectoryInfo()")]
-        private DirectoryInfo GetCurrentDirectoryInfo()
-        {
-            DirectoryInfo di = null;
-
-            if(CurrentItem != null)
-            {
-                if (CurrentItem.GetType().Equals(typeof(DriveInfo)))
-                {
-                    di = new DirectoryInfo(((DriveInfo)CurrentItem).RootDirectory.FullName);
-                }
-                else
-                {
-                    di = (DirectoryInfo)CurrentItem;
-                }
-            }
-
-            return di;
-        }
-
-        /// <summary>
-        /// Method to load files informations.
-        /// </summary>
-        /// <param name="dirInfos">A list of files</param>
-        [Obsolete("use Model.LoadDirectoriesInfos();")]
-        private void LoadDirectoriesInfosToListView(DirectoryInfo[] dirInfos)
-        {
-            Model.LoadDirectoriesInfo(dirInfos);
-
-            //UcListViewStoragesServer.Visibility = Visibility.Visible;
-        }
-
-        /// <summary>
-        /// Method to load files informations.
-        /// </summary>
-        /// <param name="infoFiles">A list of files</param>
-        [Obsolete("use Model.LoadFilesInfo();")]
-        private void LoadInfoFilesToListViewAsync(FileInfo[] infoFiles)
-        {
-            Model.LoadFilesInfo(infoFiles);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="sender">The object sender of the event.</param>
         /// <param name="e"></param>
         private void ImageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int index = ((ComboBox)sender).SelectedIndex;
-            ImageSize dim = ImageSizeExtensions.Index(index);
-
-            Model.ImageSize = dim.ToSize();
-            Refresh_UcListViewStoragesServer();
+            try
+            {
+                Model.ImageSize = ImageSizeExtensions.Index(((ComboBox)sender).SelectedIndex).ToSize();
+                Refresh_UcListViewStoragesServer();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Error(ex);
+            }
         }
 
         /// <summary>
@@ -365,29 +308,38 @@ namespace Fotootof.Components.Server.Browser
         #region Methods Size Changed
 
         /// <summary>
-        /// Method called on page size changed event.
+        /// Method called on <see cref="FrameworkElement"/> size changed event.
         /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">Size changed event arguments.</param>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The size changed event arguments <see cref="SizeChangedEventArgs"/>.</param>
         public override void Layout_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Width = Math.Max(MainBlockContent.ActualWidth, 0);
-            Height = Math.Max(MainBlockContent.ActualHeight, 0);
+            try
+            {
+                Width = Math.Max(MainBlockContent.ActualWidth, 0);
+                Height = Math.Max(MainBlockContent.ActualHeight, 0);
 
-            double TopCtrlHeight = (FindName("Block_TopControls") as FrameworkElement).RenderSize.Height;
+                double TopCtrlHeight = (FindName("Block_TopControls") as FrameworkElement).RenderSize.Height;
 
-            BlockMiddleContentsName.Width = Math.Max(Width, 0);
-            BlockMiddleContentsName.Height = Math.Max(Height - TopCtrlHeight, 0);
+                BlockMiddleContentsName.Width = Math.Max(Width, 0);
+                BlockMiddleContentsName.Height = Math.Max(Height - TopCtrlHeight, 0);
 
-            UcTreeViewDirectories.Height = Math.Max(Height - TopCtrlHeight, 0);
-            UcListViewStoragesServer.Height = Math.Max(Height - TopCtrlHeight, 0);
+                UcTreeViewDirectories.Height = Math.Max(Height - TopCtrlHeight, 0);
+                UcListViewStoragesServer.Height = Math.Max(Height - TopCtrlHeight, 0);
 
-            TraceSize(MainBlockContent);
-            TraceSize(this);
-            TraceSize(Block_TopControls);
-            TraceSize(BlockMiddleContentsName);
-            TraceSize(UcTreeViewDirectories);
-            TraceSize(UcListViewStoragesServer);
+                TraceSize(MainBlockContent);
+                TraceSize(this);
+                TraceSize(Block_TopControls);
+                TraceSize(BlockMiddleContentsName);
+                TraceSize(UcTreeViewDirectories);
+                TraceSize(UcListViewStoragesServer);
+            }
+
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Error(ex);
+            }
         }
 
         #endregion
