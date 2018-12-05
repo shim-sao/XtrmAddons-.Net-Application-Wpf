@@ -1,5 +1,6 @@
 ﻿using Fotootof.Libraries.Enums;
 using Fotootof.Theme;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -40,6 +41,20 @@ namespace Fotootof.Components.Server.Menus
 
 
         #region Methods
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="selected"></param>
+        private void SwitchSelected(Button selected)
+        {
+            foreach (Button b in StackPanelSubMenuName.Children.OfType<Button>())
+            {
+                b.Background = (SolidColorBrush)FindResource("TransparentBrush");
+            }
+
+            selected.Background = (SolidColorBrush)FindResource("CustomHighlightBrush");
+        }
 
         /// <summary>
         /// Method to navigate to the browser page.
@@ -49,6 +64,7 @@ namespace Fotootof.Components.Server.Menus
         private void NavigateToBrowser_Click(object sender, RoutedEventArgs e)
         {
             ComponentNavigator.NavigateToBrowser();
+            SwitchSelected(((Button)sender));
         }
 
         /// <summary>
@@ -59,6 +75,7 @@ namespace Fotootof.Components.Server.Menus
         private void NavigateToRemote_Click(object sender, RoutedEventArgs e)
         {
             ComponentNavigator.NavigateToRemote();
+            SwitchSelected(((Button)sender));
         }
 
         /// <summary>
@@ -69,6 +86,7 @@ namespace Fotootof.Components.Server.Menus
         private void NavigateToSection_Click(object sender, RoutedEventArgs e)
         {
             ComponentNavigator.NavigateToSection();
+            SwitchSelected(((Button)sender));
         }
 
         /// <summary>
@@ -79,6 +97,7 @@ namespace Fotootof.Components.Server.Menus
         private void NavigateToUsers_Click(object sender, RoutedEventArgs e)
         {
             ComponentNavigator.NavigateToUsers();
+            SwitchSelected(((Button)sender));
         }
 
         /// <summary>
@@ -88,7 +107,10 @@ namespace Fotootof.Components.Server.Menus
         /// <param name="e">The mouse event arguments <see cref="MouseEventArgs"/></param>
         private void ItemButton_MouseEnter(object sender, MouseEventArgs e)
         {
-            ((Button)sender).Background = (SolidColorBrush)FindResource("CustomHighlightBrush");
+            if (((Button)sender).Background != (SolidColorBrush)FindResource("CustomHighlightBrush"))
+            {
+                ((Button)sender).Background = (SolidColorBrush)FindResource("CustomOverBrush");
+            }
         }
 
         /// <summary>
@@ -98,7 +120,10 @@ namespace Fotootof.Components.Server.Menus
         /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/></param>
         private void ItemButton_MouseLeave(object sender, MouseEventArgs e)
         {
-            ((Button)sender).Background = (SolidColorBrush)FindResource("TransparentBrush");
+            if(((Button)sender).Background != (SolidColorBrush)FindResource("CustomHighlightBrush"))
+            {
+                ((Button)sender).Background = (SolidColorBrush)FindResource("TransparentBrush");
+            }
         }
 
         #endregion

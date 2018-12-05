@@ -9,38 +9,33 @@
     Height="32">
 
 	<Grid x:Name="GritRootName" Style="{StaticResource FrameworkElementRootStyle}">
-        
-        <StackPanel Background="{DynamicResource ChromeMediumLowBrush}"
+
+        <StackPanel x:Name="StackPanelSubMenuName"
+                    Background="{DynamicResource ChromeMediumLowBrush}"
 					HorizontalAlignment="Stretch"
 					Orientation="Horizontal">
 
-			<Border x:Name="BorderServerName" VerticalAlignment="Stretch">
-				<Button x:Name="ButtonServerName"
-						Click="NavigateToRemote_Click"
-						Content="{x:Static l:Translations.Server}"
-						MouseEnter="ItemButton_MouseEnter"
-						MouseLeave="ItemButton_MouseLeave"
-						Style="{StaticResource ButtonSubMenuStyle}"/>
-			</Border>
+            <Button x:Name="ButtonServerName"
+                    Click="NavigateToRemote_Click"
+                    Content="{x:Static l:Translations.Server}"
+                    MouseEnter="ItemButton_MouseEnter"
+                    MouseLeave="ItemButton_MouseLeave"
+                    Style="{StaticResource ButtonSubMenuStyle}"/>
 
-			<Border x:Name="BorderBrowserName" VerticalAlignment="Stretch">
-				<Button x:Name="ButtonBrowserName"
-						Click="NavigateToBrowser_Click"
-						Content="{x:Static l:Translations.Browser}"
-						MouseEnter="ItemButton_MouseEnter"
-						MouseLeave="ItemButton_MouseLeave"
-						Style="{StaticResource ButtonSubMenuStyle}"/>
-			</Border>
+            <Button x:Name="ButtonBrowserName"
+                    Click="NavigateToBrowser_Click"
+                    Content="{x:Static l:Translations.Browser}"
+                    MouseEnter="ItemButton_MouseEnter"
+                    MouseLeave="ItemButton_MouseLeave"
+                    Style="{StaticResource ButtonSubMenuStyle}"/>
 
-			<Border x:Name="BorderCatalogName" VerticalAlignment="Stretch">
-				<Button x:Name="ButtonCatalogNName"
-						Click="NavigateToSection_Click"
-						Content="{x:Static l:Translations.Catalog}"
-						MouseEnter="ItemButton_MouseEnter"
-						MouseLeave="ItemButton_MouseLeave"
-						Style="{StaticResource ButtonSubMenuStyle}"/>
-			</Border>
-            
+            <Button x:Name="ButtonCatalogNName"
+                    Click="NavigateToSection_Click"
+                    Content="{x:Static l:Translations.Catalog}"
+                    MouseEnter="ItemButton_MouseEnter"
+                    MouseLeave="ItemButton_MouseLeave"
+                    Style="{StaticResource ButtonSubMenuStyle}"/>
+
         </StackPanel>
     </Grid>
 </UserControl>
