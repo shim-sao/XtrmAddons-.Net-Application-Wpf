@@ -18,8 +18,8 @@ namespace Fotootof.Navigator
         /// Variable logger <see cref="log4net"/>.
         /// </summary>
         private static readonly log4net.ILog log =
-        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         #endregion
 
 
@@ -40,6 +40,25 @@ namespace Fotootof.Navigator
         /// Property access to the main application frame.
         /// </summary>
         public static Frame MainFrame => (MainWindow as Window).FindName("Frame_Content") as Frame;
+
+        /// <summary>
+        /// Property access to the main application selected frame.
+        /// </summary>
+        public static Frame SelectedFrame
+        {
+            get
+            {
+                TabControl tabs = ((MainWindow as Window).FindName("BlockContentTabs") as TabControl);
+                int index = tabs.SelectedIndex;
+
+                if (index == -1)
+                {
+                    return null;
+                }
+                var sel = tabs.SelectedContent;
+                return tabs.SelectedContent as Frame;
+            }
+        }
 
         /// <summary>
         /// Property access to the main application text box logs stack.
@@ -93,8 +112,8 @@ namespace Fotootof.Navigator
         public static void Navigate(Page page)
         {
             // Navigate to the page.
-            MainFrame.Navigate(page);
-
+            //MainFrame.Navigate(page);
+            SelectedFrame.Navigate(page);
             // Fix increase memory.
             MemoryManager.fixMemoryLeak();
             //GC.Collect();

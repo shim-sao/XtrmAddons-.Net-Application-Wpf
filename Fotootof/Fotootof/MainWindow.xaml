@@ -60,11 +60,22 @@
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch">
 
-			<Frame x:Name="Frame_Content"
-				   NavigationUIVisibility="Hidden"
-				   HorizontalAlignment="Stretch"
-				   VerticalAlignment="Stretch">
-			</Frame>
+            <TabControl x:Name="BlockContentTabs"
+                        SelectionChanged="BlockContentTabs_SelectionChanged"
+                        SelectedIndex="0">
+
+                <TabItem Header="Tab0">
+
+                    <Frame x:Name="Frame_Content0"
+				           NavigationUIVisibility="Hidden"
+				           HorizontalAlignment="Stretch"
+				           VerticalAlignment="Stretch">
+                    </Frame>
+                </TabItem>
+                
+                <TabItem Header="+">
+                </TabItem>
+            </TabControl>
 		</Border>
 		<!-- #endregion -->
 

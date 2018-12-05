@@ -129,7 +129,7 @@ namespace Fotootof.SQLite.EntityManager.Base
             if (save)
             {
                 log.Debug("Saving database context set to true.");
-                var result = (Connector as DbContext).SaveChanges();
+                
                 return (Connector as DbContext).SaveChanges();
             }
             else
@@ -150,7 +150,7 @@ namespace Fotootof.SQLite.EntityManager.Base
             if (save)
             {
                 log.Debug("Saving database context set to true.");
-                var result = (Connector as DbContext).SaveChanges();
+                
                 return await (Connector as DbContext).SaveChangesAsync();
             }
             else

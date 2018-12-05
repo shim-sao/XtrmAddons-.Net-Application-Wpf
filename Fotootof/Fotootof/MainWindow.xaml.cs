@@ -7,7 +7,9 @@ using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.NotifyIcons;
 
@@ -111,6 +113,63 @@ namespace Fotootof
                 ToggleLogs();
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BlockContentTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TabControl tc = (TabControl)sender;
+            int index = tc.SelectedIndex;
+
+            if (index != -1)
+            {
+                if ((string)((TabItem)tc.SelectedItem).Header == "+")
+                {
+                    TabItem tiplus = (TabItem)tc.SelectedItem;
+                    int newIndex = index + 1;
+
+                    TabItem ti = new TabItem
+                    {
+                        Header = "Tab" + newIndex.ToString(),
+                        Content = new Frame
+                            {
+                                Name = "Frame_Content" + newIndex.ToString(),
+                                NavigationUIVisibility = NavigationUIVisibility.Hidden,
+                                HorizontalAlignment = HorizontalAlignment.Stretch,
+                                VerticalAlignment = VerticalAlignment.Stretch
+                            }
+                    };
+
+                    tc.Items.Remove(tiplus);
+                    tc.Items.Add(ti);
+                    tc.Items.Add(tiplus);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method to initialize application content asynchronously.
+        /// </summary>
+        //private async Task InitializeContentAsync()
+        //{
+        //    await Task.Delay(10);
+
+        //    // Assigned page frames.
+        //    FrameBlockLogsName.Navigate(BlockLogs);
+        //    //Frame_Content.Navigate(new PageBrowser());
+
+        //    // Adjust frame logs content on resize. 
+        //    SizeChanged += BlockLogs.Page_SizeChanged;
+
+        //    // Show frame logs according to the preferences.
+        //    if (Settings.Controls.Default.MainMenuMenuItemDisplayLogsIsChecked)
+        //    {
+        //        ToggleLogs();
+        //    }
+        //}
 
         #endregion
 

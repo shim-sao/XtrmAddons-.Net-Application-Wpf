@@ -3,10 +3,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-
     <!-- UWP Colors Theme -->
     <!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/controls-and-patterns/xaml-theme-resources -->
     <!-- See : https://docs.microsoft.com/fr-fr/windows/uwp/design/style/color -->
+
+    <!-- #region UWP System.Alt -->
+    <Color x:Key="AltHigh">#FFFFFFFF</Color>
+    <Color x:Key="AltMediumHigh">#CCFFFFFF</Color>
+    <Color x:Key="AltMedium">#99FFFFFF</Color>
+    <Color x:Key="AltMediumLow">#66FFFFFF</Color>
+    <Color x:Key="AltLow">#33FFFFFF</Color>
+
+    <SolidColorBrush x:Key="AltHighBrush" Color="{StaticResource AltHigh}" />
+    <SolidColorBrush x:Key="AltMediumHighBrush" Color="{StaticResource AltMediumHigh}" />
+    <SolidColorBrush x:Key="AltMediumBrush" Color="{StaticResource AltMedium}" />
+    <SolidColorBrush x:Key="AltMediumLowBrush" Color="{StaticResource AltMediumLow}" />
+    <SolidColorBrush x:Key="AltLowBrush" Color="{StaticResource AltLow}" />
+    <!-- #endregion UWP System.Alt -->
+    
     
     <!-- #region UWP System.Base -->
     <Color x:Key="BaseHigh">#FF000000</Color>
@@ -23,22 +37,8 @@
     <!-- #endregion UWP System.Base -->
 
 
-    <!-- #region UWP System.Alt -->
-    <Color x:Key="AltHigh">#FFFFFFFF</Color>
-    <Color x:Key="AltMediumHigh">#CCFFFFFF</Color>
-    <Color x:Key="AltMedium">#99FFFFFF</Color>
-    <Color x:Key="AltMediumLow">#66FFFFFF</Color>
-    <Color x:Key="AltLow">#33FFFFFF</Color>
-
-    <SolidColorBrush x:Key="AltHighBrush" Color="{StaticResource AltHigh}" />
-    <SolidColorBrush x:Key="AltMediumHighBrush" Color="{StaticResource AltMediumHigh}" />
-    <SolidColorBrush x:Key="AltMediumBrush" Color="{StaticResource AltMedium}" />
-    <SolidColorBrush x:Key="AltMediumLowBrush" Color="{StaticResource AltMediumLow}" />
-    <SolidColorBrush x:Key="AltLowBrush" Color="{StaticResource AltLow}" />
-    <!-- #endregion UWP System.Alt -->
-
-
     <!-- #region UWP System.Chrome -->
+    
     <Color x:Key="ChromeAltLow">#FF171717</Color>
     <Color x:Key="ChromeHigh">#FFCCCCCC</Color>
     <Color x:Key="ChromeMedium">#FFE6E6E6</Color>
@@ -51,7 +51,6 @@
     <Color x:Key="ChromeWhite">#FFFFFFFF</Color>
     <Color x:Key="ChromeDisabledHigh">#FFCCCCCC</Color>
     <Color x:Key="ChromeDisabledLow">#FF7A7A7A</Color>
-
 
     <SolidColorBrush x:Key="ChromeAltLowBrush" Color="{StaticResource ChromeAltLow}" />
     <SolidColorBrush x:Key="ChromeHighBrush" Color="{StaticResource ChromeHigh}" />
@@ -86,7 +85,7 @@
     <SolidColorBrush x:Key="ListAccentHighBrush" Color="{StaticResource ListAccentHigh}" />
     <!-- #endregion UWP System.List -->
 
-
+    
     <!-- #region UWP System.Color -->
     <!-- ButtonBackground : Button Background color -->
     <Color x:Key="ColorButtonFace">#FFFFFFFF</Color>
@@ -123,42 +122,17 @@
 
 
 
+    
 
     <!-- #region WPF System.Color -->
-    <SolidColorBrush x:Key="CustomTestRedBrush" Color="Red" />
-    <SolidColorBrush x:Key="CustomTestBlueBrush" Color="Blue" />
-
-    <!-- Generic Transparent -->
-    <SolidColorBrush x:Key="TransparentBrush" Color="Transparent" />
-
-    <!-- CustomHighlightColor : Background color of the selected elements. -->
-    <Color x:Key="CustomHighlightColor">#FF21D6DE</Color>
-    <SolidColorBrush x:Key="CustomHighlightBrush" Color="#FF21D6DE" />
-
-    <!-- CustomHighlightTextColor : Text color of the selected elements. -->
-    <Color x:Key="CustomHighlightTextColor">#FF021E27</Color>
-    <SolidColorBrush x:Key="CustomHighlightTextBrush" Color="{StaticResource CustomHighlightTextColor}" />
-
-    <!-- CustomScrollBarColor : Background color of a scroll bar. -->
-    <Color x:Key="CustomScrollBarColor">#FF46494D</Color>
-    <SolidColorBrush x:Key="CustomScrollBarColorBrush" Color="#FF46494D" />
-
-    <!-- CustomWindowColor : Background color in the client area of a window. -->
-    <SolidColorBrush x:Key="CustomWindowBrush" Color="#FFFFFFFF" />
-
-    <!-- CustomWindowTextColor : Text color in the client area of a window. -->
-    <Color x:Key="CustomWindowTextColor">#FF000000</Color>
-    <SolidColorBrush x:Key="CustomWindowTextBrush" Color="{StaticResource CustomWindowTextColor}" />
-
-    <!-- ListView -->
-    <SolidColorBrush x:Key="CustomListViewThumbBrush" Color="#FFF2F2F2" />
-    <SolidColorBrush x:Key="CustomListViewThumbTextBrush" Color="#FF000000" />
-
-    <!-- DataGrid -->
 
     <Color x:Key="CustomDataGridRowColor">#FFF7F7F7</Color>
-
-
+    <Color x:Key="CustomHighlightColor">#FF21D6DE</Color>
+    <Color x:Key="CustomHighlightTextColor">#FF021E27</Color>
+    <Color x:Key="CustomOverColor">#FF21D6DE</Color>
+    <Color x:Key="CustomScrollBarColor">#FF46494D</Color>
+    <Color x:Key="CustomWindowTextColor">#FF000000</Color>
+    
     <SolidColorBrush x:Key="CustomDataGridBrush" Color="Transparent" />
     <SolidColorBrush x:Key="CustomDataGridBorderBrush" Color="#FFBDBDBD" />
     <SolidColorBrush x:Key="CustomDataGridCellBrush" Color="#FF3DD1FC" />
@@ -171,6 +145,22 @@
     <SolidColorBrush x:Key="CustomDataGridRowBorderBrush" Color="#FFBDBDBD" />
     <SolidColorBrush x:Key="CustomDataGridRowTextBrush" Color="#FF131313" />
     <SolidColorBrush x:Key="CustomDataGridTextBrush" Color="#FF131313" />
+    <SolidColorBrush x:Key="CustomHighlightBrush" Color="#FF21D6DE" />
+    <SolidColorBrush x:Key="CustomHighlightTextBrush" Color="{StaticResource CustomHighlightTextColor}" />
+    <SolidColorBrush x:Key="CustomListViewThumbBrush" Color="#FFF2F2F2" />
+    <SolidColorBrush x:Key="CustomListViewThumbTextBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="CustomOverBrush" Color="{StaticResource CustomOverColor}" />
+    <SolidColorBrush x:Key="CustomScrollBarColorBrush" Color="#FF46494D" />
+    <SolidColorBrush x:Key="CustomTestRedBrush" Color="Red" />
+    <SolidColorBrush x:Key="CustomTestBlueBrush" Color="Blue" />
+    <SolidColorBrush x:Key="CustomWindowBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="CustomWindowTextBrush" Color="{StaticResource CustomWindowTextColor}" />
+
+    <SolidColorBrush x:Key="TransparentBrush" Color="Transparent" />
+
+    <!-- DataGrid -->
+
+
 
     <!-- Input -->
     <Color x:Key="CustomInputColor">#FFFFFFFF</Color>
