@@ -97,7 +97,7 @@ namespace Fotootof.Startup
                 database = new Database
                 {
                     Key = "default",
-                    Name = "default.db3",
+                    Name = dbName,
                     Type = DatabaseType.SQLite,
                     Source = Path.Combine(ApplicationBase.Directories.Data, dbName),
                     IsDefault = true,
@@ -130,7 +130,7 @@ namespace Fotootof.Startup
                 SQLiteSvc.Db = new DatabaseCore(database.Source);
 
                 // Add SQLite Service to the main window | application session for dependencies..
-                MainWindow.Database = SQLiteSvc.GetInstance();
+                // MainWindow.Database = SQLiteSvc.GetInstance();
             }
 
             // Catch connection to the database exceptions.

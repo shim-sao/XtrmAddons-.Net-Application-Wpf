@@ -1,5 +1,6 @@
 ﻿using Fotootof.SQLite.EntityManager.Connector;
 using Fotootof.SQLite.EntityManager.Managers;
+using System.Threading.Tasks;
 
 namespace Fotootof.SQLite.Services.QueryManagers
 {
@@ -54,6 +55,30 @@ namespace Fotootof.SQLite.Services.QueryManagers
         /// Property proxy to access to the database Version entities manager.
         /// </summary>
         public static VersionManager VersionManager => Db.Versions;
+
+        #endregion
+
+
+
+        #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public int DbSave()
+        {
+            using (Db.Context) { return Db.Context.SaveChanges(); }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<int> DbSaveAsync()
+        {
+            using (Db.Context) { return await Db.Context.SaveChangesAsync(); }
+        }
 
         #endregion
     }
