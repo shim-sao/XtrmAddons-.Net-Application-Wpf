@@ -3,7 +3,9 @@ using Fotootof.Layouts.Controls.ListViews;
 using Fotootof.Layouts.Dialogs;
 using Fotootof.Libraries.Logs;
 using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
+using Fotootof.Theme;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -90,7 +92,7 @@ namespace Fotootof.Components.Server.Section.Layouts
             // Check if the selected items list is not null. 
             if (SelectedItems == null)
             {
-                NullReferenceException ex = Exceptions.GetReferenceNull(nameof(SelectedItems), SelectedItems);
+                NullReferenceException ex = Exceptions.GetReferenceNull(nameof(SelectedItems), typeof(IEnumerable<AlbumEntity>));
                 log.Warn(ex.Output(), ex);
                 MessageBoxs.Warning(ex.Output());
                 return;

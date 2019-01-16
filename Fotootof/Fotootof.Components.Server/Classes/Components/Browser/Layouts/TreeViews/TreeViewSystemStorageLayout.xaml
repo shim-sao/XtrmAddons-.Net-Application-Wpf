@@ -43,7 +43,12 @@
                             <Button x:Name="ButtonClearSelectionName"
 									Style="{DynamicResource ButtonIcon24Minus}"
 									ToolTipService.ToolTip="{x:Static l:Translations.UnselectAll}"
-									Click="ClearSelection_Click"/>
+									Click="ClearSelection_Click">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-minus-24.png" />
+                                </Button.Content>
+                            </Button>
                         </Grid>
                     </Border>
                 </Grid>

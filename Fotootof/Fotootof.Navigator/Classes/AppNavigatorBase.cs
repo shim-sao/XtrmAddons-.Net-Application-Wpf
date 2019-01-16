@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Fotootof.Layouts.Dialogs;
+using Fotootof.Libraries.Logs;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using XtrmAddons.Net.Common.Extensions;
@@ -42,23 +46,14 @@ namespace Fotootof.Navigator
         public static Frame MainFrame => (MainWindow as Window).FindName("Frame_Content") as Frame;
 
         /// <summary>
+        /// Property access to the main application selected tab.
+        /// </summary>
+        public static TabItem SelectedTabItem => GetSelectedTabItem();
+
+        /// <summary>
         /// Property access to the main application selected frame.
         /// </summary>
-        public static Frame SelectedFrame
-        {
-            get
-            {
-                TabControl tabs = ((MainWindow as Window).FindName("BlockContentTabs") as TabControl);
-                int index = tabs.SelectedIndex;
-
-                if (index == -1)
-                {
-                    return null;
-                }
-                var sel = tabs.SelectedContent;
-                return tabs.SelectedContent as Frame;
-            }
-        }
+        public static Frame SelectedFrame => GetSelectedFrame();
 
         /// <summary>
         /// Property access to the main application text box logs stack.
@@ -79,6 +74,60 @@ namespace Fotootof.Navigator
         {
             Pages.Clear();
             log.Debug("Application pages navigator cleared !");
+        }
+
+        /// <summary>
+        /// Method to get the selected tab in the main window.
+        /// </summary>
+        /// <returns>The selected tab in the main window or null if none is selected.</returns>
+        private static TabItem GetSelectedTabItem()
+        {
+            try
+            {
+                TabControl tabs = ((MainWindow as Window).FindName("BlockContentTabs") as TabControl);
+                int index = tabs.SelectedIndex;
+
+                if (index == -1)
+                {
+                    return null;
+                }
+
+                return tabs.SelectedItem as TabItem;
+            }
+            catch (Exception e)
+            {
+                log.Error(e.Output());
+                MessageBoxs.Warning("Please selected a tab before continue.");
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Method to get the selected tab in the main window.
+        /// </summary>
+        /// <returns>The selected tab content in the main window or null if none is selected.</returns>
+        private static Frame GetSelectedFrame()
+        {
+            try
+            {
+                TabControl tabs = ((MainWindow as Window).FindName("BlockContentTabs") as TabControl);
+                int index = tabs.SelectedIndex;
+
+                if (index == -1)
+                {
+                    return null;
+                }
+
+                return tabs.SelectedContent as Frame;
+            }
+            catch (Exception e)
+            {
+                log.Error(e.Output());
+                MessageBoxs.Warning("Please selected a tab before continue.");
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -111,12 +160,32 @@ namespace Fotootof.Navigator
         /// </summary>
         public static void Navigate(Page page)
         {
-            // Navigate to the page.
-            //MainFrame.Navigate(page);
-            SelectedFrame.Navigate(page);
-            // Fix increase memory.
-            MemoryManager.fixMemoryLeak();
-            //GC.Collect();
+            try
+            {
+                if (SelectedFrame == null)
+                {
+                    throw Exceptions.GetReferenceNull(nameof(page), typeof(Page));
+                }
+
+                // Navigate to the page on the selected tab.
+                ((Label)SelectedTabItem.Header).Content = page.Title;
+
+                if(SelectedFrame == null)
+                {
+                    throw Exceptions.GetReferenceNull(nameof(SelectedFrame), typeof(Frame));
+                }
+
+                SelectedFrame.Navigate(page);
+
+                // Fix increase memory.
+                MemoryManager.fixMemoryLeak();
+                //GC.Collect();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Error(ex);
+            }
         }
 
         #endregion

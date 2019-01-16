@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Application.Helpers;
 using XtrmAddons.Net.Application.Serializable.Elements.Data;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Network;
@@ -82,31 +83,13 @@ namespace Fotootof.Startup
         {
             log.Info(Local.Properties.Logs.DbInitializingConnection);
 
-            // Get the default database in preferences if exists.
-            Database database = ApplicationBase.Options.Data.Databases.FindDefaultFirst();
-
 #if DEBUG
             string dbName = "default.debug.db3";
 #else
             string dbName = "default.db3";
 #endif
 
-            // Create default database parameters if not exists.
-            if (database == null || database.Key == null)
-            {
-                database = new Database
-                {
-                    Key = "default",
-                    Name = dbName,
-                    Type = DatabaseType.SQLite,
-                    Source = Path.Combine(ApplicationBase.Directories.Data, dbName),
-                    IsDefault = true,
-                    Comment = "Default SQLite installed database."
-                };
-
-                log.Info(Local.Properties.Logs.DbAddingDefault);
-                ApplicationBase.Options.Data.Databases.Add(database);
-            }
+            Database database = GetDatabaseSettings(dbName);
 
             // Try to connect to the database.
             try
@@ -124,13 +107,11 @@ namespace Fotootof.Startup
                 else
                 {
                     log.Info(Local.Properties.Logs.DbFileNotFound);
+
                 }
 
                 // Add connection to SQLite Service.
                 SQLiteSvc.Db = new DatabaseCore(database.Source);
-
-                // Add SQLite Service to the main window | application session for dependencies..
-                // MainWindow.Database = SQLiteSvc.GetInstance();
             }
 
             // Catch connection to the database exceptions.
@@ -147,6 +128,70 @@ namespace Fotootof.Startup
 
             // End of database initilization.
             log.Info(Local.Properties.Logs.DbInitializingConnectionDone);
+        }
+
+        /// <summary>
+        /// Method to get the database settings.
+        /// Check if the file exists or create default db3 if t exists.
+        /// </summary>
+        /// <param name="dbName"></param>
+        /// <returns></returns>
+        private static Database GetDatabaseSettings(string dbName)
+        {
+            // Get the default database in preferences if exists.
+            Database database = ApplicationBase.Options.Data.Databases.FindDefaultFirst();
+
+            log.Info($"database.Key = {database?.Key}");
+            log.Info($"database.Source = {database?.Source}");
+
+            string folder = "";
+
+            if (Directory.Exists(ApplicationBase.Directories.Data))
+            {
+                folder = ApplicationBase.Directories.Data;
+            }
+
+            else
+            {
+                folder = Path.Combine(DirectoryHelper.UserMyDocuments, "Data");
+            }
+
+            log.Info($"folder = {folder}");
+
+            // Create default database parameters if not exists.
+            if (database == null || database.Key == null)
+            {
+
+                database = new Database
+                {
+                    Key = "default",
+                    Name = dbName,
+                    Type = DatabaseType.SQLite,
+                    Source = Path.Combine(folder, dbName),
+                    IsDefault = true,
+                    Comment = "Default SQLite installed database."
+                };
+
+                log.Info(Local.Properties.Logs.DbAddingDefault);
+                ApplicationBase.Options.Data.Databases.Add(database);
+            }
+
+            // Decide what to do.
+            else
+            {
+                // Check if database file exists, if not... do nothing
+                if (!File.Exists(database.Source))
+                {
+                    log.Info(Local.Properties.Logs.DbFileNotFound);
+
+                    database.Source = Path.Combine(DirectoryHelper.UserMyDocuments, "Data", dbName);
+                }
+            }
+            var a = database;
+
+            log.Info($"database.Source = {database?.Source}");
+
+            return database;
         }
 
         /// <summary>
@@ -191,30 +236,6 @@ namespace Fotootof.Startup
             }
 
             log.Info("Auto start HTTP server connection. Done !");
-        }
-
-        #endregion
-
-
-
-        #region Obsoletes
-
-        /// <summary>
-        /// Method to add server mapping of DLL. 
-        /// </summary>
-        // Todo : write contract plugin for it.
-        [System.Obsolete("Do not use anymore.")]
-        public void AddServerMap()
-        {
-            log.Info("Adding API mapping to server.");
-
-            // Add API mapping to server.
-            HttpMapping.Load(
-                Path.Combine(
-                    ApplicationBase.Storage.Directories.FindKeyFirst("data.server").AbsolutePath,
-                    "server-mapping.xml"
-                )
-            );
         }
 
         #endregion

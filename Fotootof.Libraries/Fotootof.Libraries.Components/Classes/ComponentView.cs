@@ -40,10 +40,16 @@ namespace Fotootof.Libraries.Components
             => Application.Current.MainWindow;
 
         /// <summary>
-        /// Property to access to the MainWindow content Block.
+        /// Property to access to the MainWindow content Block border.
         /// </summary>
-        public static FrameworkElement MainBlockContent
-            => (AppWindow as Window).FindName("BlockContent") as FrameworkElement;
+        public static Border MainBlockContent
+            => (AppWindow as Window).FindName("BlockContent") as Border;
+
+        /// <summary>
+        /// Property to access to the MainWindow content Block tabs control.
+        /// </summary>
+        public static TabControl MainBlockContentTabs
+            => (AppWindow as Window).FindName("BlockContentTabs") as TabControl;
 
         /// <summary>
         /// Variable page width marging for content adjustement on size changed.

@@ -14,19 +14,19 @@
     Loaded="Window_Loaded"
     Closing="Window_Closing"
     SizeChanged="Window_SizeChanged">
-	<!--Template="{DynamicResource WindowControlTemplate1}">-->
+    <!--Template="{DynamicResource WindowControlTemplate1}">-->
 
-	<Window.InputBindings>
-		<KeyBinding Key="X" Modifiers="Alt" Command="ApplicationCommands.Close" />
-	</Window.InputBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="X" Modifiers="Alt" Command="ApplicationCommands.Close" />
+    </Window.InputBindings>
 
-	<Window.CommandBindings>
-		<CommandBinding Command="ApplicationCommands.Close" Executed="FileExit_Click"></CommandBinding>
-	</Window.CommandBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close" Executed="FileExit_Click"></CommandBinding>
+    </Window.CommandBindings>
 
-	<Grid x:Name="GridBlockRootName"
+    <Grid x:Name="GridBlockRootName"
 		  Style="{StaticResource FrameworkElementRootStyle}">
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
@@ -38,15 +38,15 @@
             <RowDefinition x:Name="RowGridLogs" Height="0"/>
         </Grid.RowDefinitions>
 
-		
+
         <!-- #region BLOCK Main Menu -->
-		<Border x:Name="BlockMainMenu" Grid.Row="0">
+        <Border x:Name="BlockMainMenu" Grid.Row="0">
             <ucmenu:MainMenuHorizontalLayout x:Name="AppMainMenu" />
         </Border>
         <!-- #endregion -->
 
-		
-		
+
+
         <!-- #region BLOCK Main Sub Menu -->
         <Border x:Name="BlockMainSubmenu" Grid.Row="1">
             <ucsubmenu:SubMenuToolbar x:Name="AppMainSubmenu" />
@@ -54,47 +54,59 @@
         <!-- #endregion -->
 
 
-		
-		<!-- #region BLOCK Content -->
-		<Border x:Name="BlockContent" Grid.Row="2"
+
+        <!-- #region BLOCK Content -->
+        <Border x:Name="BlockContent" Grid.Row="2"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch">
-
+                
             <TabControl x:Name="BlockContentTabs"
-                        SelectionChanged="BlockContentTabs_SelectionChanged"
                         SelectedIndex="0">
 
-                <TabItem Header="Tab0">
+                <TabItem x:Name="NewTab">
 
+                    <TabItem.Header>
+                        <Label Content="New Tab"
+                               MouseLeftButtonDown="TabItemHeaderLabel_MouseLeftButtonDown"
+                               MouseLeftButtonUp="TabItemHeaderLabel_MouseLeftButtonUp"
+                               MouseLeave="TabItemHeaderLabel_MouseLeave"
+                               MouseEnter="lTabItemHeaderLabel_MouseEnter"/>
+                    </TabItem.Header>
+                    
                     <Frame x:Name="Frame_Content0"
 				           NavigationUIVisibility="Hidden"
 				           HorizontalAlignment="Stretch"
 				           VerticalAlignment="Stretch">
                     </Frame>
                 </TabItem>
-                
-                <TabItem Header="+">
+
+                <TabItem x:Name="TabPlus" Tag="TabPlus">
+
+                    <TabItem.Header>
+                        <Label Content="+"
+                               PreviewMouseLeftButtonUp="TabPlusLabel_PreviewMouseLeftButtonUp"/>
+                    </TabItem.Header>
                 </TabItem>
             </TabControl>
-		</Border>
-		<!-- #endregion -->
+        </Border>
+        <!-- #endregion -->
 
 
 
-		<!-- #region SPLITTER -->
-		<GridSplitter x:Name="GridSplitterBlockLogsName"
+        <!-- #region SPLITTER -->
+        <GridSplitter x:Name="GridSplitterBlockLogsName"
 					  Grid.Row="3"
 					  Height="6"
 					  ResizeDirection="Rows"
 					  BorderThickness="0,1">
-		</GridSplitter>
-		<!-- #endregion -->
+        </GridSplitter>
+        <!-- #endregion -->
 
 
 
-		<!-- #region BLOCK LOGS -->
-		<Border x:Name="BorderBlockLogsName" Grid.Row="4">
-			<ScrollViewer x:Name="ScrollViewerBlockLogsName">
+        <!-- #region BLOCK LOGS -->
+        <Border x:Name="BorderBlockLogsName" Grid.Row="4">
+            <ScrollViewer x:Name="ScrollViewerBlockLogsName">
                 <WrapPanel>
                     <HeaderedItemsControl Header="Frame">
                         <Grid>
@@ -107,14 +119,14 @@
                     </HeaderedItemsControl>
                 </WrapPanel>
             </ScrollViewer>
-		</Border>
-		<!-- #endregion -->
-		
+        </Border>
+        <!-- #endregion -->
 
 
-		<!-- #region BusyIndicator -->
-		<xctk:BusyIndicator x:Name="XCTKBusyIndicator" Grid.RowSpan="5"	IsBusy="True" />
-		<!-- #endregion -->
-        
-	</Grid>
+
+        <!-- #region BusyIndicator -->
+        <xctk:BusyIndicator x:Name="XCTKBusyIndicator" Grid.RowSpan="3"	IsBusy="True" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <!-- #endregion -->
+
+    </Grid>
 </Window>

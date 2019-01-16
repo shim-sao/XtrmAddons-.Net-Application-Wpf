@@ -1,6 +1,8 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using Fotootof.Layouts.Dialogs;
 using Fotootof.SQLite.EntityManager.Managers;
 using Fotootof.SQLite.Services;
 using XtrmAddons.Net.Application;
@@ -14,8 +16,28 @@ namespace Fotootof.Layouts.Forms.User
     /// </summary>
     internal class StringUniqueEmail : ValidationRule
     {
+        #region Variables
 
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
+        #region Properties
+        
+        /// <summary>
+        /// Property wrapper object dependencies.
+        /// </summary>
         public Wrapper Wrapper { get; set; }
+
+        #endregion
+
+
 
         /// <summary>
         /// Method to validate rule to apply to the object.
@@ -48,16 +70,24 @@ namespace Fotootof.Layouts.Forms.User
         /// <param name="email"></param>
         public bool IsUniqueEmail(int pk, string email)
         {
-            var op = new UserOptionsSelect { Email = email };
-            var u = ((SQLiteSvc)ApplicationSession.Properties.Database).Users.SingleOrNull(op);
+            try
+            {
+                var usr = SQLiteSvc.GetInstance().Users.SingleOrNull(new UserOptionsSelect { Email = email });
 
-            if (u == null)
-            {
-                return true;
+                if (usr == null)
+                {
+                    return true;
+                }
+                else if (usr.PrimaryKey == pk)
+                {
+                    return true;
+                }
+
             }
-            else if(u.PrimaryKey == pk)
+            catch (Exception ex)
             {
-                return true;
+                log.Error(ex.Output());
+                MessageBoxs.Error(ex.Output());
             }
 
             return false;
@@ -70,8 +100,26 @@ namespace Fotootof.Layouts.Forms.User
     /// </summary>
     internal class StringUniqueName : ValidationRule
     {
+        #region Variables
 
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
+        #region Properties
+
+        /// <summary>
+        /// Property wrapper object dependencies.
+        /// </summary>
         public Wrapper Wrapper { get; set; }
+
+        #endregion
 
         /// <summary>
         /// Method to validate rule to apply to the object.
@@ -104,16 +152,24 @@ namespace Fotootof.Layouts.Forms.User
         /// <param name="name"></param>
         public bool IsUniqueName(int pk, string name)
         {
-            var op = new UserOptionsSelect { Name = name };
-            var u = ((SQLiteSvc)ApplicationSession.Properties.Database).Users.SingleOrNull(op);
+            try
+            { 
+                var u = SQLiteSvc.GetInstance().Users.SingleOrNull(new UserOptionsSelect { Name = name });
 
-            if (u == null)
-            {
-                return true;
+                if (u == null)
+                {
+                    return true;
+                }
+                else if (u.PrimaryKey == pk)
+                {
+                    return true;
+                }
+
             }
-            else if (u.PrimaryKey == pk)
+            catch (Exception ex)
             {
-                return true;
+                log.Error(ex.Output());
+                MessageBoxs.Error(ex.Output());
             }
 
             return false;

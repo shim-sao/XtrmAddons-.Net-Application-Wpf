@@ -11,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("www.xtrmaddons.com")]
 [assembly: AssemblyProduct("XtrmAddons Fotootof")]
-[assembly: AssemblyCopyright("Copyright ©  2017+")]
+[assembly: AssemblyCopyright("Copyright ©  2017-2019")]
 [assembly: AssemblyTrademark("XtrmAddons")]
 [assembly: AssemblyCulture("")]
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -32,7 +32,7 @@ using System.Windows;
 //la ligne ci-après pour qu'elle corresponde au paramètre UICulture du fichier projet.
 
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
-[assembly: NeutralResourcesLanguage("")]
+[assembly: NeutralResourcesLanguage("en-GB")]
 
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //où se trouvent les dictionnaires de ressources spécifiques à un thème
@@ -54,5 +54,5 @@ using System.Windows;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.18339.1346")]
-[assembly: AssemblyFileVersion("1.0.18339.1346")]
+[assembly: AssemblyVersion("1.1901.14.1905")]
+[assembly: AssemblyFileVersion("1.1901.14.1905")]

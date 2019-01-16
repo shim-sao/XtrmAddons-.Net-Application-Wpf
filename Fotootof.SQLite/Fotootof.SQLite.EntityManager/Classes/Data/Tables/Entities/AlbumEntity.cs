@@ -21,7 +21,8 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
     /// </summary>
     [Serializable]
     [Table("Albums")]
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptIn, Title = "Albums")]
+    [XmlType(TypeName = "Albums")]
     public partial class AlbumEntity : EntityBase, ITableAlbums
     {
         #region Variables

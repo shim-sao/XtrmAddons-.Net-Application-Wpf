@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Settings", "Fotootof\Fotootof.Settings\Fotootof.Settings.csproj", "{70A4C255-1B1C-498B-8689-AD4504AE8AB9}"
 EndProject
@@ -86,6 +86,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries", "Fotootof.Libraries\Fotootof.Libraries\Fotootof.Libraries.csproj", "{7D666EA6-7F61-4C3C-A112-E707072E9205}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Libraries.Models", "Fotootof.Libraries\Fotootof.Libraries.Models\Fotootof.Libraries.Models.csproj", "{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fotootof.Layouts.Windows.Logs", "Fotootof.Layouts\Fotootof.Layouts.Windows.Logs\Fotootof.Layouts.Windows.Logs.csproj", "{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -541,11 +543,27 @@ Global
 		{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}.Release|x64.Build.0 = Release|Any CPU
 		{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}.Release|x86.ActiveCfg = Release|Any CPU
 		{F9ADB6B5-F96A-48D7-8A1C-2E37D48854BC}.Release|x86.Build.0 = Release|Any CPU
+		{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}.Debug|x64.Build.0 = Debug|Any CPU
+		{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}.Debug|x86.Build.0 = Debug|Any CPU
+		{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}.Release|x64.ActiveCfg = Release|Any CPU
+		{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}.Release|x64.Build.0 = Release|Any CPU
+		{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}.Release|x86.ActiveCfg = Release|Any CPU
+		{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		BuildVersion_UseGlobalSettings = True
+		BuildVersion_StartDate = 2000/1/1
+		BuildVersion_UpdateFileVersion = True
+		BuildVersion_UpdateAssemblyVersion = True
 		SolutionGuid = {DF4300C0-9431-4176-BF81-4BE97BBC1C0F}
 	EndGlobalSection
 EndGlobal

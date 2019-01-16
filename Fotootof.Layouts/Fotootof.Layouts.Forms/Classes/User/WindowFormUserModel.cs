@@ -142,10 +142,7 @@ namespace Fotootof.Layouts.Forms.User
                 return false;
             }
 
-            var op = new UserOptionsSelect { Email = email };
-            var u = Db.Users.SingleOrNull(op);
-
-            if(u != null)
+            if(Db.Users.SingleOrNull(new UserOptionsSelect { Email = email }) != null)
             {
                 return false;
             }
@@ -164,10 +161,7 @@ namespace Fotootof.Layouts.Forms.User
                 return false;
             }
 
-            var op = new UserOptionsSelect { Name = name };
-            var u = Db.Users.SingleOrNull(op);
-
-            if(u != null)
+            if(Db.Users.SingleOrNull(new UserOptionsSelect { Name = name }) != null)
             {
                 return false;
             }

@@ -7,6 +7,7 @@ using Fotootof.SQLite.EntityManager.Managers;
 using System;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Controls;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Components.Server.Album
@@ -193,17 +194,28 @@ namespace Fotootof.Components.Server.Album
         /// <param name="e">Size changed event arguments <see cref="SizeChangedEventArgs"/>.</param>
         public override void Layout_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            this.Width = Math.Max(MainBlockContent.ActualWidth, 0);
-            this.Height = Math.Max(MainBlockContent.ActualHeight, 0);
+            // Initialize some variables
+            var blockContent = FindName<FrameworkElement>("BlockMiddleContentName");
+            var headH = PicturesCollection.FindName<FrameworkElement>("StackPanelBlockHeaderName").RenderSize.Height;
+            var tabContentW = ((Frame)MainBlockContentTabs.SelectedContent).ActualWidth;
+            var tabContentH = ((Frame)MainBlockContentTabs.SelectedContent).ActualHeight;
 
-            BlockMiddleContentsName.Width = Math.Max(this.Width, 0);
-            BlockMiddleContentsName.Height = Math.Max(this.Height, 0);
+            // Arrange this height & width
+            Width = Math.Max(tabContentW, 0);
+            Height = Math.Max(tabContentH, 0);
 
-            PicturesCollection.Height = Math.Max(this.Height, 0);
+            // Arrange BlockMiddleContentName height & width
+            blockContent.Width = Math.Max(Width, 0);
+            blockContent.Height = Math.Max(Height, 0);
 
+            // Arrange PicturesCollection height & width (no need for width)
+            PicturesCollection.Width = Math.Max(Width, 0);
+            PicturesCollection.Height = Math.Max(Height, 0);
+
+            // Trace only on debug mode
             TraceSize(MainBlockContent);
             TraceSize(this);
-            TraceSize(BlockMiddleContentsName);
+            TraceSize(blockContent);
             TraceSize(PicturesCollection);
         }
 

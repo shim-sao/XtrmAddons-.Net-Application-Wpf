@@ -119,7 +119,7 @@ namespace Fotootof.Components.Server.Album.Layouts
             // Check if refence to the album is not null.
             if (AlbumEntity == null)
             {
-                NullReferenceException ex = Exceptions.GetReferenceNull(nameof(AlbumEntity), AlbumEntity);
+                NullReferenceException ex = Exceptions.GetReferenceNull(nameof(AlbumEntity), typeof(AlbumEntity));
                 log.Error(ex.Output(), ex);
                 return;
             }
@@ -203,7 +203,7 @@ namespace Fotootof.Components.Server.Album.Layouts
             // Check if the selected items list is not null. 
             if (SelectedItems == null)
             {
-                NullReferenceException ex = Exceptions.GetReferenceNull(nameof(SelectedItems), SelectedItems);
+                NullReferenceException ex = Exceptions.GetReferenceNull(nameof(SelectedItems), typeof(IEnumerable<AlbumEntity>));
                 log.Warn(ex.Output(), ex);
                 MessageBoxs.Warning(ex.Output());
                 return;
@@ -297,7 +297,7 @@ namespace Fotootof.Components.Server.Album.Layouts
             }
             else
             {
-                NullReferenceException ex = Exceptions.GetReferenceNull(nameof(ItemsCollection.SelectedItem), ItemsCollection.SelectedItem);
+                NullReferenceException ex = Exceptions.GetReferenceNull(nameof(ItemsCollection.SelectedItem), typeof(PictureEntity));
                 log.Debug(ex);
                 MessageBoxs.Error(ex);
             }
@@ -461,7 +461,7 @@ namespace Fotootof.Components.Server.Album.Layouts
             blockRoot.Arrange(new Rect(new Size(ActualWidth, ActualHeight)));
             DebugTraceSize(blockRoot);
         }
-
+         
         /// <summary>
         /// Method to arrange or resize the items block.
         /// </summary>
@@ -469,8 +469,7 @@ namespace Fotootof.Components.Server.Album.Layouts
         {
             var blockHeader = (FrameworkElement)FindName("StackPanelBlockHeaderName");
             var blockItems = (FrameworkElement)FindName("GridBlockItemsName");
-
-            double height = Math.Max(ActualHeight - blockHeader.RenderSize.Height, 0);
+            var height = Math.Max(ActualHeight - blockHeader.RenderSize.Height, 0);
 
             blockItems.Height = height;
             ItemsCollection.Height = height;

@@ -4,13 +4,17 @@ using Fotootof.Libraries.Logs.Log4net;
 using Fotootof.SQLite.Services;
 using Fotootof.Theme;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using XtrmAddons.Net.Application;
+using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.NotifyIcons;
 
 namespace Fotootof
@@ -37,6 +41,12 @@ namespace Fotootof
         /// Variable to store logs page <see cref="PageLogsLayout"/>.
         /// </summary>
         private static readonly PageLogsLayout pageLogs = new PageLogsLayout();
+
+        private bool blnLeftDown = false;
+        Point pStart = new Point();
+
+
+        //private int nextWaiting = 0;
 
         #endregion
 
@@ -98,7 +108,7 @@ namespace Fotootof
         /// </summary>
         private async Task InitializeContentAsync()
         {
-            await Task.Delay(10);
+            await Task.Delay(5000).ConfigureAwait(true);
 
             // Assigned page frames.
             FrameBlockLogsName.Navigate(BlockLogs);
@@ -119,40 +129,100 @@ namespace Fotootof
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BlockContentTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //private void BlockContentTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+
+        private void TabPlusLabel_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            TabControl tc = (TabControl)sender;
-            int index = tc.SelectedIndex;
 
-            if (index != -1)
+            try
             {
-                if ((string)((TabItem)tc.SelectedItem).Header == "+")
+                //TabControl tc = (TabControl)sender;
+                //int index = tc.SelectedIndex;
+
+                //if (index != -1)
+                //{
+                //    if (IsTabPlus(tc.SelectedItem as TabItem) && !blnLeftDown)
+                //    {
+                //        TabItem tiplus = (TabItem)tc.SelectedItem;
+                //        int newIndex = index + 1;
+
+                //        Label lbl = new Label();
+                //        lbl.Content = "New Tab #" + newIndex.ToString();
+
+                //        lbl.MouseLeftButtonDown += TabItemHeaderLabel_MouseLeftButtonDown;
+                //        lbl.MouseLeftButtonUp += TabItemHeaderLabel_MouseLeftButtonUp;
+                //        lbl.MouseLeave += TabItemHeaderLabel_MouseLeave;
+                //        lbl.MouseEnter += lTabItemHeaderLabel_MouseEnter;
+
+                //        TabItem ti = new TabItem
+                //        {
+                //            Name = "NewTab" + newIndex.ToString(),
+                //            Header = lbl,
+                //            Content = new Frame
+                //            {
+                //                Name = "Frame_Content" + newIndex.ToString(),
+                //                NavigationUIVisibility = NavigationUIVisibility.Hidden,
+                //                HorizontalAlignment = HorizontalAlignment.Stretch,
+                //                VerticalAlignment = VerticalAlignment.Stretch
+                //            }
+                //        };
+
+                //        tc.Items.Remove(tiplus);
+                //        tc.Items.Add(ti);
+                //        tc.Items.Add(tiplus);
+                //    }
+                //}
+
+                TabControl tc = (TabControl)FindName("BlockContentTabs");
+                TabItem tiplus = (TabItem)FindName("TabPlus");
+                int newIndex = tc?.Items?.Count - 1 ?? 0;
+
+                Label lbl = new Label();
+                lbl.Content = "New Tab #" + newIndex.ToString();
+
+                lbl.MouseLeftButtonDown += TabItemHeaderLabel_MouseLeftButtonDown;
+                lbl.MouseLeftButtonUp += TabItemHeaderLabel_MouseLeftButtonUp;
+                lbl.MouseLeave += TabItemHeaderLabel_MouseLeave;
+                lbl.MouseEnter += lTabItemHeaderLabel_MouseEnter;
+
+                TabItem ti = new TabItem
                 {
-                    TabItem tiplus = (TabItem)tc.SelectedItem;
-                    int newIndex = index + 1;
-
-                    TabItem ti = new TabItem
+                    Name = "NewTab" + newIndex.ToString(),
+                    Header = lbl,
+                    Content = new Frame
                     {
-                        Header = "Tab" + newIndex.ToString(),
-                        Content = new Frame
-                            {
-                                Name = "Frame_Content" + newIndex.ToString(),
-                                NavigationUIVisibility = NavigationUIVisibility.Hidden,
-                                HorizontalAlignment = HorizontalAlignment.Stretch,
-                                VerticalAlignment = VerticalAlignment.Stretch
-                            }
-                    };
+                        Name = "Frame_Content" + newIndex.ToString(),
+                        NavigationUIVisibility = NavigationUIVisibility.Hidden,
+                        HorizontalAlignment = HorizontalAlignment.Stretch,
+                        VerticalAlignment = VerticalAlignment.Stretch
+                    }
+                };
 
-                    tc.Items.Remove(tiplus);
-                    tc.Items.Add(ti);
-                    tc.Items.Add(tiplus);
-                }
+                tc.Items.Remove(tiplus);
+                tc.Items.Add(ti);
+                tc.Items.Add(tiplus);
+
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Output());
+                MessageBoxs.Error(ex.Output());
             }
         }
 
         /// <summary>
-        /// Method to initialize application content asynchronously.
+        /// 
         /// </summary>
+        /// <param name="ti">A <see cref="TabItem"/> of the main content <see cref="TabControl"/>.</param>
+        private bool IsTabPlus(TabItem ti)
+        {
+            return ti?.Name as string == "TabPlus" && ti?.Tag as string == "TabPlus";
+        }
+
+        ///// <summary>
+        ///// Method to initialize application content asynchronously.
+        ///// </summary>
         //private async Task InitializeContentAsync()
         //{
         //    await Task.Delay(10);
@@ -185,7 +255,7 @@ namespace Fotootof
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MessageBoxs.IsBusy = true;
-            await Task.Delay(10);
+            //await Task.Delay(5000).ConfigureAwait(true); ;
 
             // Add application to system tray.
             NotifyIconManager.AddToTray();
@@ -197,7 +267,7 @@ namespace Fotootof
             logWatcher.Updated += LogWatcher_Updated;
 
             // Initialize window content.
-            await InitializeContentAsync();
+            await InitializeContentAsync().ConfigureAwait(false);
 
             MessageBoxs.IsBusy = false;
         }
@@ -275,5 +345,85 @@ namespace Fotootof
         }
 
         #endregion
+
+
+
+
+
+        private void TabItemHeaderLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            pStart = e.GetPosition((TabControl)FindName("BlockContentTabs"));
+            blnLeftDown = true;
+        }
+
+        void TabItemHeaderLabel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            blnLeftDown = false;
+        }
+
+
+        void lTabItemHeaderLabel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (blnLeftDown)
+            {
+                pStart = e.GetPosition((TabControl)FindName("BlockContentTabs"));
+            }
+        }
+
+        void TabItemHeaderLabel_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var tabControl = (TabControl)FindName("BlockContentTabs");
+
+            Label lbl = (Label)sender;
+            Point pLeave = e.GetPosition(tabControl);
+            var pDelta = pLeave - pStart;
+            // if ".Y" changes less then width of label calculate direction base on ".X"
+
+            int iS = tabControl.SelectedIndex;
+            int iCount = tabControl.Items.Count-1;
+
+            if (blnLeftDown)
+            {
+                if (Math.Abs(pDelta.Y) <= lbl.ActualHeight / 3.0)      // Mouse MUST leave label from left or right side 
+                {
+                    bool blnDirection = false;             // move right  
+                    if (pDelta.X < 0) blnDirection = true; // move left  ; (mosuse moved from left side)
+
+                    if (blnDirection && iS > 0)  // move left
+                    {
+                        var temp = tabControl.SelectedItem;
+                        tabControl.Items.RemoveAt(iS);
+                        tabControl.Items.Insert(iS - 1, temp);
+                        tabControl.SelectedIndex = iS - 1;
+
+                    }
+
+                    if (!blnDirection && iS < iCount - 1)  // move right - if last one do not move also...
+                    {
+                        var temp = tabControl.SelectedItem;
+                        tabControl.Items.RemoveAt(iS);
+                        tabControl.Items.Insert(iS + 1, temp);
+                        tabControl.SelectedIndex = iS + 1;
+
+                    }
+                }
+                else
+                {
+                    // More information about "DragDrop" see below links ...
+
+                    TabItem ti = tabControl.Items[iS] as TabItem;
+                    if (ti != null && e.LeftButton == MouseButtonState.Pressed && !IsTabPlus(ti))
+                    {
+                        DataObject data = new DataObject();
+                        data.SetData(ti.Name, ti);
+
+                        DragDropEffects effect = DragDrop.DoDragDrop(this, data, DragDropEffects.All);
+
+                    }
+
+                    blnLeftDown = false;
+                }
+            }
+        }
     }
 }

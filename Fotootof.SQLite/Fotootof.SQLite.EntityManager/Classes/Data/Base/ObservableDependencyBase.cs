@@ -548,7 +548,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Base
                         catch (Exception ex)
                         {
                             log.Error(ex.Output(), ex);
-                            throw ex;
+                            throw;
                         }
                     }
                     else
@@ -713,7 +713,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Base
                     catch (Exception ex)
                     {
                         log.Error(ex.Output(), ex);
-                        throw ex;
+                        throw;
                     }
                 }
             }

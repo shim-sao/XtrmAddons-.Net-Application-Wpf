@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Build\Release\Plugins\Extensions\</OutputPath>
+    <OutputPath>..\..\Build\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -95,6 +95,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries\Fotootof.Libraries.csproj">
+      <Project>{7D666EA6-7F61-4C3C-A112-E707072E9205}</Project>
+      <Name>Fotootof.Libraries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fotootof\Fotootof.AddInsContracts.Interfaces\Fotootof.AddInsContracts.Interfaces.csproj">
       <Project>{FE2397A2-4B52-480E-833F-984F901A1AB6}</Project>
       <Name>Fotootof.AddInsContracts.Interfaces</Name>
@@ -107,4 +111,9 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_StartDate="2000/1/1" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

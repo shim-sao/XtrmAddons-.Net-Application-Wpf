@@ -2,6 +2,7 @@
 using Fotootof.SQLite.EntityManager.Managers;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.IO;
 using System.Reflection;
 using XtrmAddons.Net.Common.Extensions;
 
@@ -28,7 +29,7 @@ namespace Fotootof.SQLite.EntityManager.Connector
         /// <summary>
         /// Variable to store the SQLite database file name.
         /// </summary>
-        private readonly string dbname = "";
+        private string dbname = "";
 
         /// <summary>
         /// 
@@ -122,7 +123,7 @@ namespace Fotootof.SQLite.EntityManager.Connector
         #region Constructor
 
         /// <summary>
-        /// <para>Class Fotootof.SQLite.EntityManager Core Connector constructor.</para>
+        /// <para>Class Fotootof SQLite Entity Manager Core Connector constructor.</para>
         /// <para>This class provide database connection and data management.</para>
         /// </summary>
         /// <param name="filename">A database filename. Full path of the SQLite database.</param>
@@ -130,9 +131,31 @@ namespace Fotootof.SQLite.EntityManager.Connector
         /// <exception cref="ArgumentException">Exception thrown if database file name is invalid.</exception>
         public DatabaseCore(string filename)
         {
+            Initialize(filename);
+        }
+
+        #endregion
+
+
+
+        #region Methods
+
+        /// <summary>
+        /// Method to initialize the Entity Manager Core Connector.
+        /// </summary>
+        /// <param name="filename">A database filename. Full path of the SQLite database.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown if database file name is null.</exception>
+        /// <exception cref="ArgumentException">Exception thrown if database file name is invalid.</exception>
+        private void Initialize(string filename)
+        {
             if (filename.IsNullOrWhiteSpace())
             {
-                throw Exceptions.GetArgumentNull(nameof(filename), filename);
+                throw Exceptions.GetArgumentNull(nameof(filename), typeof(string));
+            }
+
+            if (!Directory.Exists(Path.GetDirectoryName(filename)))
+            {
+                throw new DirectoryNotFoundException($"Path doesn't exists {Path.GetDirectoryName(filename)}");
             }
 
             // Store the file name of the database.
@@ -141,12 +164,6 @@ namespace Fotootof.SQLite.EntityManager.Connector
             // try to create connection.
             Context.Dispose();
         }
-
-        #endregion
-
-
-
-        #region Methods
 
         /// <summary>
         /// <para>Method to create a connection to the to the database.</para>

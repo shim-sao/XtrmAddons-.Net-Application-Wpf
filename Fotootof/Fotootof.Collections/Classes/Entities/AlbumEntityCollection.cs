@@ -74,7 +74,7 @@ namespace Fotootof.Collections.Entities
         {
             if (list == null)
             {
-                log.Warn(Exceptions.GetArgumentNull(nameof(list), list).Output());
+                log.Warn(Exceptions.GetArgumentNull(nameof(list), typeof(IEnumerable<AlbumJsonModel>)).Output());
                 return;
             }
 
@@ -104,7 +104,7 @@ namespace Fotootof.Collections.Entities
         {
             if (newItems == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(newItems), newItems);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(newItems), typeof(IEnumerable<AlbumEntity>));
                 log.Error(e.Output());
                 return null;
             }
@@ -151,7 +151,18 @@ namespace Fotootof.Collections.Entities
         /// <param name="newItem">The <see cref="AlbumEntity"/> to add.</param>
         public static AlbumEntity DbInsert(AlbumEntity newItem)
         {
-            return DbInsert(new AlbumEntity[] { newItem }).First();
+            try
+            {
+                return DbInsert(new AlbumEntity[] { newItem })?.First();
+            }
+
+            catch (Exception ex)
+            {
+                log.Error(ex.Output(), ex);
+                MessageBoxs.Fatal(ex, "Adding Album to database failed.");
+            }
+
+            return null;
         }
 
         #endregion
@@ -170,7 +181,7 @@ namespace Fotootof.Collections.Entities
             // Log error if the list to update if not null.
             if (oldItems == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(oldItems), oldItems);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(oldItems), typeof(IEnumerable<AlbumEntity>));
                 log.Error(e.Output(), e);
                 return null;
             }
@@ -253,7 +264,7 @@ namespace Fotootof.Collections.Entities
             // Log error if the list to update if not null.
             if (newItems == null)
             {
-                log.Error(Exceptions.GetArgumentNull(nameof(newItems), newItems).Output());
+                log.Error(Exceptions.GetArgumentNull(nameof(newItems), typeof(IEnumerable<AlbumEntity>)).Output());
                 return null;
             }
 

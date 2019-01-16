@@ -62,6 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Controls\FieldCheckbox.xaml.cs">
+      <DependentUpon>FieldCheckbox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\WindowSettingsLayout.xaml.cs">
       <DependentUpon>WindowSettingsLayout.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Classes\Controls\FieldCheckbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="Classes\WindowSettingsLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -182,4 +189,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_StartDate="2000/1/1" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

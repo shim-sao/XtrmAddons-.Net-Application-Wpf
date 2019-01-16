@@ -126,7 +126,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
         /// Variables collection of relationship Albums in Sections. Sections dependencies.
         /// </summary>
         [NotMapped, XmlIgnore, NonSerialized]
-        [System.Obsolete("Use dependency References);")]
+        [System.Obsolete("Use dependency References);", true)]
         private ObservableAlbumsInSections<SectionEntity, AlbumEntity> albumsDependencies =
             new ObservableAlbumsInSections<SectionEntity, AlbumEntity>();
 
@@ -134,7 +134,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
         /// Variable list of AclGroups associated to the Section.
         /// </summary>
         [NotMapped, XmlIgnore]
-        [System.Obsolete("Use dependency References);")]
+        [System.Obsolete("Use dependency References);", true)]
         private IEnumerable<AclGroupEntity> aclGroups;
 
         #endregion
@@ -485,13 +485,13 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
 
 
 
-        #region Methods AclGroup
+        #region Methods AclGroup (Obsolete)
 
         /// <summary>
         /// Method to get the list of associated AclGroups to the Section.
         /// </summary>
         /// <returns>The list of associated AclGroups to the Section.</returns>
-        [System.Obsolete("Use dependency References);")]
+        [System.Obsolete("Use dependency References);", true)]
         private IEnumerable<AclGroupEntity> ListAclGroups()
         {
             if (aclGroups == null)
@@ -511,7 +511,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
         /// Method to associate an AclGroup to the Section.
         /// </summary>
         /// <param name="aclGroupPk">An album id or primary key.</param>
-        [System.Obsolete("Use => AclGroupsPKeys.Add(aclGroupPk);")]
+        [System.Obsolete("Use => AclGroupsPKeys.Add(aclGroupPk);", true)]
         public bool LinkAclGroup(int aclGroupPk)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {aclGroupPk}");
@@ -536,7 +536,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
         /// Method to unlink an AclGroup of the Section.
         /// </summary>
         /// <param name="aclGroupPk">An album id or primary key.</param>
-        [System.Obsolete("Use => AclGroupsPKeys.Remove(aclGroupPk);")]
+        [System.Obsolete("Use => AclGroupsPKeys.Remove(aclGroupPk);", true)]
         public bool UnLinkAclGroup(int aclGroupPk)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {aclGroupPk}");
@@ -561,13 +561,13 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
 
 
 
-        #region Methods Album
+        #region Methods Album (Obsolete)
 
         /// <summary>
         /// Method to associate an Album to the Section.
         /// </summary>
         /// <param name="albumPk">An album id or primary key.</param>
-        [System.Obsolete("Use => AlbumsPKeys.Add(AlbumPk);")]
+        [System.Obsolete("Use => AlbumsPKeys.Add(AlbumPk);", true)]
         public bool LinkAlbum(int albumPk)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {albumPk}");
@@ -592,7 +592,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
         /// Method to unlink an Album of the Section.
         /// </summary>
         /// <param name="albumPk">An album id or primary key.</param>
-        [System.Obsolete("Use => AlbumsPKeys.Remove(AlbumPk);")]
+        [System.Obsolete("Use => AlbumsPKeys.Remove(AlbumPk);", true)]
         public bool UnlinkAlbum(int albumPk)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {albumPk}");

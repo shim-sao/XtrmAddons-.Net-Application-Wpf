@@ -101,8 +101,13 @@
 								Style="{StaticResource ButtonIcon24ImagePlus}"
 								PreviewMouseLeftButtonUp="OnAddPicturesToAlbum_Click"
 								ToolTipService.ToolTip="{x:Static l:Translations.AddPicturesToAlbum}"
-								IsEnabled="False"/>
-					</Border>
+								IsEnabled="False">
+                            <!--Place background here because bug : button disappear on multiple tab-->
+                            <Button.Content>
+                                <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-plus-24.png" />
+                            </Button.Content>
+                        </Button>
+                    </Border>
 
 					<Border x:Name="MenuRight"
                             Grid.Column="2"
@@ -125,19 +130,34 @@
 							<Button x:Name="Button_SelectAll"
 									Style="{StaticResource ButtonIcon24ImageSelect}"
 									PreviewMouseLeftButtonUp="OnSelectAll_Click"
-									ToolTipService.ToolTip="{x:Static l:Translations.SelectAll}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.SelectAll}">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-select-24.png" />
+                                </Button.Content>
+                            </Button>
 
 							<Button Grid.Column="1"
 									x:Name="Button_UnselectAll"
 									PreviewMouseLeftButtonUp="OnUnselectAll_Click"
 									Style="{StaticResource ButtonIcon24ImageUnselect}"
-									ToolTipService.ToolTip="{x:Static l:Translations.UnselectAll}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.UnselectAll}">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-unselect-24.png" />
+                                </Button.Content>
+                            </Button>
 
 							<Button Grid.Column="2"
 									x:Name="Button_Refresh"
 									PreviewMouseLeftButtonUp="OnRefresh_Click"
 									Style="{StaticResource ButtonIcon24ImageRefresh}"
-									ToolTipService.ToolTip="{x:Static l:Translations.Refresh}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.Refresh}">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-refresh-24.png" />
+                                </Button.Content>
+                            </Button>
 
 
 						</StackPanel>

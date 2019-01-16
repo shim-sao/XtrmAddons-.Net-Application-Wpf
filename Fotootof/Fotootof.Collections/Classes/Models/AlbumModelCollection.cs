@@ -60,7 +60,7 @@ namespace Fotootof.Collections.Models
         {
             //if (list == null)
             //{
-            //    ArgumentNullException ex = Exceptions.GetArgumentNull(nameof(list), list);
+            //    ArgumentNullException ex = Exceptions.GetArgumentNull(nameof(list), typeof(IEnumerable<AlbumEntity>));
             //    log.Warn(ex.Output(), ex);
             //    return;
             //}

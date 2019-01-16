@@ -11,7 +11,8 @@
     ShowsNavigationUI="False"
     Style="{StaticResource PageContentStyle}"
     SizeChanged="Layout_SizeChanged"
-	Loaded="Control_Loaded">
+	Loaded="Control_Loaded"
+    Title="{x:Static l:Translations.Servers}">
 
     <Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
         

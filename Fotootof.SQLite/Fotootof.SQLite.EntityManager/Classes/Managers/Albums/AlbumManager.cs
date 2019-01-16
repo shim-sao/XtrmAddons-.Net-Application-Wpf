@@ -345,7 +345,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
 
             if (op == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(op), op);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(op), typeof(AlbumOptionsSelect));
                 log.Error($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {e.Output()}");
                 throw e;
             }

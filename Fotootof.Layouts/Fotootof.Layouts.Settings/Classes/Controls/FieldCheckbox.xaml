@@ -1,0 +1,31 @@
+﻿<FLibrariesControls:ControlLayout x:Class="Fotootof.Layouts.Settings.Controls.FieldCheckBox"
+                                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                  xmlns:FLibrariesControls="clr-namespace:Fotootof.Libraries.Controls;assembly=Fotootof.Libraries.Controls"
+                                  mc:Ignorable="d"
+                                  d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DockPanel>
+            <Label x:Name="FieldLabel"
+                   DockPanel.Dock="Left"
+                   Style="{StaticResource LabelFieldStyle}" />
+
+            <Button DockPanel.Dock="Right"
+                    x:Name="FieldReset"
+                    Click="FieldReset_Click"
+                    Content="Reset"
+                    Style="{DynamicResource ButtonDefault}"/>
+                    <!--Margin="10,0"-->
+
+            <CheckBox DockPanel.Dock="Right"
+                      x:Name="FieldChkBox"
+                      Checked="FieldCheckBox_Checked"
+                      Unchecked="FieldCheckBox_Unchecked"/>
+            <Grid>
+                <ContentPresenter x:Name="FieldContentPresenter" />
+            </Grid>
+        </DockPanel>
+    </Grid>
+</FLibrariesControls:ControlLayout>

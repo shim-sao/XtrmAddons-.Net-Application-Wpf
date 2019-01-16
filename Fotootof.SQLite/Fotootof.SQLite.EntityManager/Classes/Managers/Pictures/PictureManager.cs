@@ -234,13 +234,14 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// <param name="op">Picture entities select options to perform query.</param>
         /// <param name="nullable"></param>
         /// <returns>An Picture entity or null if not found.</returns>
+        /// <exception cref="ArgumentNullException">Occurs if Picture Select Options are null <see cref="PictureOptionsSelect"/></exception>
         public PictureEntity Select(PictureOptionsSelect op, bool nullable = false)
         {
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {op?.GetType()}");
 
             if (op == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(op), op);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(op), typeof(PictureOptionsSelect));
                 log.Error($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {e.Output()}");
                 throw e;
             }

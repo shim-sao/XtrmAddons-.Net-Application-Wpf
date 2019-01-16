@@ -69,7 +69,7 @@ namespace Fotootof.Theme
         {
             if (assemblyComponent == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(assemblyComponent), assemblyComponent);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(assemblyComponent), typeof(string));
                 log.Error(e.Output(), e);
                 throw e;
             }
@@ -86,7 +86,7 @@ namespace Fotootof.Theme
             catch (Exception e)
             {
                 log.Error(e.Output(), e);
-                throw e;
+                throw;
             }
 
             if (rd.Count == 0)
@@ -97,6 +97,7 @@ namespace Fotootof.Theme
             if (!Resources.MergedDictionaries.ToList().Contains(rd))
             {
                 Resources.MergedDictionaries.Add(rd);
+                log.Debug($"{typeof(ThemeLoader).Name}.{MethodBase.GetCurrentMethod().Name} : Resources theme dictionary merged.");
             }
             else
             {
@@ -132,7 +133,7 @@ namespace Fotootof.Theme
         {
             if(resources == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(resources), resources);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(resources), typeof(ResourceDictionary));
                 log.Error(e.Output(), e);
                 throw e;
             }
@@ -160,7 +161,7 @@ namespace Fotootof.Theme
         {
             if (resources == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(resources), resources);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(resources), typeof(ResourceDictionary));
                 log.Error(e.Output(), e);
                 throw e;
             }

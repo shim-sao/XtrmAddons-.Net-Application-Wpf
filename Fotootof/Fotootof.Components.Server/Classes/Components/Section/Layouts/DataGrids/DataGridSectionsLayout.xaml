@@ -46,21 +46,36 @@
 							<Button x:Name="ButtonAddName"
 									Style="{StaticResource ButtonIcon24ListPlus}"
 									ToolTipService.ToolTip="{x:Static l:Translations.Add}"
-									Click="AddItem_Click" />
+									Click="AddItem_Click">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-list-plus-24.png" />
+                                </Button.Content>
+                            </Button>
 
-							<Button Grid.Column="1"
+                            <Button Grid.Column="1"
 									x:Name="ButtonEditName"
 									Style="{StaticResource ButtonIcon24ListEdit}"
 									ToolTipService.ToolTip="{x:Static l:Translations.Edit}"
 									Click="EditItem_Click"
-									IsEnabled="False"/>
+									IsEnabled="False">
+                            <!--Place background here because bug : button disappear on multiple tab-->
+                            <Button.Content>
+                                <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-list-edit-24.png" />
+                            </Button.Content>
+                            </Button>
 
-							<Button Grid.Column="2"
+                            <Button Grid.Column="2"
 									x:Name="ButtonDeleteName"
 									Style="{StaticResource ButtonIcon24ListMinus}"
 									ToolTipService.ToolTip="{x:Static l:Translations.Delete}"
 									Click="DeleteItems_Click"
-									IsEnabled="False"/>
+									IsEnabled="False">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-list-delete-24.png" />
+                                </Button.Content>
+                            </Button>
 						</Grid>
 					</Border>
 				</Grid>

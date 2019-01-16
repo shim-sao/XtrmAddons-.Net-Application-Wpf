@@ -406,7 +406,6 @@ namespace Fotootof.Libraries.Windows
                 if (disposing)
                 {
                     // Dispose managed resources.
-                    Model = null;
                 }
 
                 // Call the appropriate methods to clean up
@@ -417,7 +416,6 @@ namespace Fotootof.Libraries.Windows
 
                 // Note disposing has been done.
                 disposed = true;
-
             }
         }
 

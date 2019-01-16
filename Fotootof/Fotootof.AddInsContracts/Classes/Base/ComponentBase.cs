@@ -1,5 +1,5 @@
 ﻿using Fotootof.AddInsContracts.Interfaces;
-using System.ComponentModel.Composition;
+using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -119,7 +119,24 @@ namespace Fotootof.AddInsContracts.Base
         /// <summary>
         /// Variable is disposed ?
         /// </summary>
-        private bool disposedValue = false;
+        private bool disposed = false;
+
+        /// <summary>
+        /// Implement IDisposable.
+        /// Do not make this method virtual.
+        /// A derived class should not be able to override this method.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+
+            // This object will be cleaned up by the Dispose method.
+            // Therefore, you should call GC.SupressFinalize to
+            // take this object off the finalization queue
+            // and prevent finalization code for this object
+            // from executing a second time.
+            GC.SuppressFinalize(this);
+        }
 
         /// <summary>
         /// Method to dispose the object.
@@ -127,7 +144,7 @@ namespace Fotootof.AddInsContracts.Base
         /// <param name="disposing">Dispose managed objects ?</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!disposed)
             {
                 if (disposing)
                 {
@@ -140,24 +157,23 @@ namespace Fotootof.AddInsContracts.Base
                 // Dispose not managed objects & big size variables = null.
 
                 // Flag disposed value.
-                disposedValue = true;
+                disposed = true;
             }
         }
 
-        // TODO: remplacer un finaliseur seulement si la fonction Dispose(bool disposing) ci-dessus a du code pour libérer les ressources non managées.
-        // ~HttpWebClient()
-        //{
-        //    // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.
-        //    Dispose(false);
-        //}
-
-        // Ce code est ajouté pour implémenter correctement le modèle supprimable.
-        public void Dispose()
+        /// <summary>
+        /// Use C# destructor syntax for finalization code.
+        /// This destructor will run only if the Dispose method
+        /// does not get called.
+        /// It gives your base class the opportunity to finalize.
+        /// Do not provide destructors in types derived from this class.
+        /// </summary>
+        ~ComponentBase()
         {
-            // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.
-            Dispose(true);
-            // TODO: supprimer les marques de commentaire pour la ligne suivante si le finaliseur est remplacé ci-dessus.
-            // GC.SuppressFinalize(this);
+            // Do not re-create Dispose clean-up code here.
+            // Calling Dispose(false) is optimal in terms of
+            // readability and maintainability.
+            Dispose(false);
         }
 
         #endregion

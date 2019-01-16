@@ -76,7 +76,7 @@ namespace Fotootof.Libraries.Windows
         {
             if (fe is null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(fe), fe);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(fe), typeof(object));
                 log.Error(e.Output(), e);
                 throw e;
             }
