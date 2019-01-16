@@ -89,7 +89,7 @@ namespace Fotootof.SQLite.Services
         /// <summary>
         /// Class XtrmAddons Fotootof SQLite Service constructor.
         /// </summary>
-        public SQLiteSvc()
+        protected SQLiteSvc()
         {
             log.Debug($"Initializing SQLite Service version {Assembly.GetAssembly(GetType()).GetName().Version}");
         }

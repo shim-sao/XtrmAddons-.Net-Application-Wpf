@@ -17,7 +17,7 @@
 	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
 		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<Grid x:Name="BlockMiddleContentsName" Style="{StaticResource GridMiddleContentStyle}">
+			<Grid x:Name="BlockMiddleContentName" Style="{StaticResource GridMiddleContentStyle}">
 
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="1*" MinWidth="240" x:Name="ColLeft"/>
@@ -35,7 +35,7 @@
 							  HorizontalAlignment="Stretch"
 							  VerticalAlignment="Stretch" />
 
-				<dgserver:DataGridUsersLayout x:Name="UcDataGridUsers"
+				<dgserver:DataGridUsersLayout x:Name="UcDataGridUsersName"
 											  Grid.Column="2"
 											  DataContext="{Binding Users}"/>
 

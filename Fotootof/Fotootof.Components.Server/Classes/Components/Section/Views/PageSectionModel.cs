@@ -153,21 +153,26 @@ namespace Fotootof.Components.Server.Section
         {
             get
             {
-                IEnumerable<SectionEntity> se = SectionsLayout.SelectedItems;
+                // Get sections selection.
+                IEnumerable<SectionEntity> sel = SectionsLayout.SelectedItems;
+
+                // Initialize options for query.
                 AlbumOptionsList op = new AlbumOptionsList
                 {
                     Dependencies = { EnumEntitiesDependencies.AlbumsInSections, EnumEntitiesDependencies.InfosInAlbums }
                 };
                 
-                if (se != null)
+                // Add sections primary keys filter to query options.
+                if (sel != null)
                 {
                     op.IncludeSectionKeys = new List<int>();
-                    foreach (var a in se)
+                    foreach (var se in sel)
                     {
-                        op.IncludeSectionKeys.Add(a.PrimaryKey);
+                        op.IncludeSectionKeys.Add(se.PrimaryKey);
                     }
                 }
 
+                // Add infos primary keys filter to query options.
                 if (filters.Count > 0)
                 {
                     op.IncludeInfoKeys = filters.Values.ToList();
@@ -202,11 +207,17 @@ namespace Fotootof.Components.Server.Section
         {
             try
             {
-                if (SectionsLayout.SelectedItems?.Count > 0)
+                // Get settings and sections selection.
+                bool showAllAlbums = Settings.Sections.Default.ServerLayout_ShowAllAlbums;
+
+                // Check if Albums should be loaded.
+                if (SectionsLayout.SelectedItems?.Count > 0 || showAllAlbums)
                 {
                     Albums.Items = new AlbumEntityCollection(true, AlbumOptionsListFilters);
                     log.Info($"Loading {Albums?.Items?.Count()} Album(s). Done.");
                 }
+
+                // Clear Album collection if no load action is required.
                 else
                 {
                     Albums.Items?.Clear();
@@ -215,7 +226,7 @@ namespace Fotootof.Components.Server.Section
 
             catch (Exception ex)
             {
-                log.Error(ex.Output());
+                log.Error(ex.Output(), ex);
             }
         }
 
@@ -227,7 +238,13 @@ namespace Fotootof.Components.Server.Section
         {
             try
             {
+                if(Albums.Items == null)
+                {
+                    Albums.Items = new AlbumEntityCollection();
+                }
+
                 Albums.Items.Add(item);
+
                 AlbumEntityCollection.DbInsert(new List<AlbumEntity> { item });
             }
 
@@ -323,6 +340,11 @@ namespace Fotootof.Components.Server.Section
         {
             try
             {
+                if(Sections.Items == null)
+                {
+                    Sections.Items = new SectionEntityCollection();
+                }
+
                 Sections.Items.Add(item);
                 SectionEntityCollection.DbInsert(new List<SectionEntity> { item });
             }

@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32.SafeHandles;
+﻿using Fotootof.HttpClient.WebAuth;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,10 +6,8 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using Fotootof.HttpClient.WebAuth;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.HttpClient.WebClient
@@ -25,7 +23,7 @@ namespace Fotootof.HttpClient.WebClient
         /// Variable logger.
         /// </summary>
         private static readonly log4net.ILog log =
-            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Variable format encoding.
@@ -487,6 +485,7 @@ namespace Fotootof.HttpClient.WebClient
         /// other objects. Only unmanaged resources can be disposed.
         /// </summary>
         /// <param name="disposing">Track whether Dispose has been called.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "<Handler>k__BackingField")]
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
@@ -495,11 +494,11 @@ namespace Fotootof.HttpClient.WebClient
                 {
                     // Dispose managed objects.
                     Client.Dispose();
-                    Handler.Dispose();
+                    Handler.Dispose(); // [supressed warning => <Handler>k__BackingField]
                     Response.Dispose();
                 }
 
-                // Dispose not managed objects & big size variables = null.
+                // Dispose unmanaged objects & big size variables = null.
                 Cookies = null;
                 WebAuth = null;
 
@@ -515,13 +514,13 @@ namespace Fotootof.HttpClient.WebClient
         /// It gives your base class the opportunity to finalize.
         /// Do not provide destructors in types derived from this class.
         /// </summary>
-        //~HttpWebClient()
-        //{
-        //    // Do not re-create Dispose clean-up code here.
-        //    // Calling Dispose(false) is optimal in terms of
-        //    // readability and maintainability.
-        //    Dispose(false);
-        //}
+        ~HttpWebClient()
+        {
+            // Do not re-create Dispose clean-up code here.
+            // Calling Dispose(false) is optimal in terms of
+            // readability and maintainability.
+            Dispose(false);
+        }
 
         #endregion
 

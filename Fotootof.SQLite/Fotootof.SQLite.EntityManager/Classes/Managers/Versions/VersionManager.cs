@@ -4,9 +4,9 @@ using Fotootof.SQLite.EntityManager.Data.Tables.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.SQLite.EntityManager.Managers
@@ -23,6 +23,18 @@ namespace Fotootof.SQLite.EntityManager.Managers
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
+
+
+        #region Properties
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        public static bool IsUpdated { get; private set; } = false;
 
         #endregion
 
@@ -197,42 +209,47 @@ namespace Fotootof.SQLite.EntityManager.Managers
             {
                 log.Error("SQLite Initializing Table `Versions`. Exception.");
                 log.Error(ex.Output(), ex);
-                throw ex;
+                throw;
             }
         }
 
         /// <summary>
         /// Method to inialize content of the table AclGroup after EnsureCreated()
         /// </summary>
+        /// <exception cref="Exception" />
         public async void CheckVersion()
         {
+            if (IsUpdated) return;
+
             try
             {
-                
-
                 // Get the latest update version inserted.
                 var versionId = Connector.Versions.Max(x => x.PrimaryKey);
                 var version = Connector.Versions.Single(x => x.PrimaryKey == versionId);
+
+                Trace.WriteLine($"Get the latest update version inserted : [{versionId}:{version.AssemblyVersionMin}]");
 
                 // Create versions
                 var currentVersion = new Version(version.AssemblyVersionMin);
                 var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
-                log.Info($"Current Assembly Version : {currentVersion}");
+                log.Info($"Application Assembly Version : {assemblyVersion}");
+                log.Info($"Database Assembly Version : {currentVersion}");
 
                 // Create list of update versions.
                 Dictionary<string, string> versions = new Dictionary<string, string>()
-                {
-                    { "1.0.18123.2149", Properties.Database.SrcSQLiteDatabaseUpdate_1_0_18123_2149 },
-                    { "1.0.18134.1044", Properties.Database.SrcSQLiteDatabaseUpdate_1_0_18134_1044 },
-                    { "1.0.18137.1050", Properties.Database.SrcSQLiteDatabaseUpdate_1_0_18137_1050 },
-                    { "1.0.18210.1228", Properties.Database.SrcSQLiteDatabaseUpdate_1_0_18210_1228 }
-                };
+                    {
+                        { "1.0.18123.2149", Properties.Database.SrcSQLiteDatabaseUpdate_1_0_18123_2149 },
+                        { "1.0.18134.1044", Properties.Database.SrcSQLiteDatabaseUpdate_1_0_18134_1044 },
+                        { "1.0.18137.1050", Properties.Database.SrcSQLiteDatabaseUpdate_1_0_18137_1050 },
+                        { "1.0.18210.1228", Properties.Database.SrcSQLiteDatabaseUpdate_1_0_18210_1228 }
+                    };
+
 
                 // Check for the latest version to skeep process
                 // if not required at all connections.
                 Version old = new Version(versions.Keys.Last());
-                if(currentVersion >= old)
+                if (currentVersion >= old)
                 {
                     return;
                 }
@@ -257,6 +274,7 @@ namespace Fotootof.SQLite.EntityManager.Managers
                     }
                 }
 
+                IsUpdated = true;
             }
             catch (Exception ex)
             {

@@ -14,18 +14,19 @@
 	Loaded="Control_Loaded">
 
 	<Grid x:Name="GridBlockRootName"
-		  Style="{StaticResource FrameworkElementRootStyle}">
+          Style="{StaticResource FrameworkElementRootStyle}">
 		
 		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName"
-					Style="{StaticResource StackPanelFieldsetVerticalStyle}">
+                    Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<Grid x:Name="BlockMiddleContentsName"
+			<Grid x:Name="BlockMiddleContentName"
 				  Style="{StaticResource GridMiddleContentStyle}">
 				
 					<pictures:ListViewPicturesLayout x:Name="PicturesCollection"
 													 Grid.Row="0"
 													 Grid.Column="0"
-													 AlbumEntity="{Binding AlbumEntity, Mode=OneWay, IsAsync=True}"/>
+													 AlbumEntity="{Binding AlbumEntity, Mode=OneWay, IsAsync=True}"
+                                                     VerticalAlignment="Top"/>
 			</Grid>
 
 		</StackPanel>

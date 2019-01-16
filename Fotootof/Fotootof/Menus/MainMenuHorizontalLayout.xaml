@@ -185,7 +185,7 @@
 				<MenuItem x:Name="MenuItem_AddSection"
 						  Header="{x:Static p:Translations._AddNewSection}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
-						  Click="AddSection_Click">
+						  Click="CatalogAddSection_Click">
 					<MenuItem.Icon>
 						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ListPlus}}" />
 					</MenuItem.Icon>
@@ -194,7 +194,7 @@
 				<MenuItem Header="{x:Static p:Translations._AddNewAlbum}"
 						  Style="{DynamicResource MenuItemMainLevel1Style}"
 						  x:Name="MenuItem_AddAlbum"
-						  Click="AddAlbum_Click">
+						  Click="CatalogAddAlbum_Click">
 					<MenuItem.Icon>
 						<Image Source="{Binding Mode=OneWay, Source={StaticResource StringIcon24ListPlus}}" />
 					</MenuItem.Icon>

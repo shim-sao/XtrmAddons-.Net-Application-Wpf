@@ -288,8 +288,10 @@ set arrFiles[8]=XtrmAddons*Fotootof.pdb
 set arrFiles[9]=*.CodeAnalysisLog.xml
 set arrFiles[10]=*.lastcodeanalysissucceeded
 set arrFiles[11]=Fotootof.*.pdb
+set arrFiles[12]=Fotootof.pdb
+set arrFiles[13]=Newtonsoft.Json.pdb
 
-for /l %%n in (0,1,11) do (
+for /l %%n in (0,1,13) do (
 	set /a count=0
 	for %%x in (%DestProj%\!arrFiles[%%n]!) do set /a count+=1
 	call:LogFunc "!count! !arrFiles[%%n]! files found."

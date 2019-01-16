@@ -370,21 +370,8 @@ namespace Fotootof.Layouts.Forms.Album
                 disposed = true;
         
             }
-        }
-        
-        /// <summary>
-        /// Use C# destructor syntax for finalization code.
-        /// This destructor will run only if the Dispose method
-        /// does not get called.
-        /// It gives your base class the opportunity to finalize.
-        /// Do not provide destructors in types derived from this class.
-        /// </summary>
-        ~WindowFormAlbumLayout()
-        {
-            // Do not re-create Dispose clean-up code here.
-            // Calling Dispose(false) is optimal in terms of
-            // readability and maintainability.
-            Dispose(false);
+
+            base.Dispose(disposing);
         }
         
         #endregion

@@ -17,7 +17,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ShouldCreateLogs>True</ShouldCreateLogs>
-    <AdvancedSettingsExpanded>False</AdvancedSettingsExpanded>
+    <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
     <UpdateAssemblyVersion>False</UpdateAssemblyVersion>
     <UpdateAssemblyFileVersion>False</UpdateAssemblyFileVersion>
     <UpdateAssemblyInfoVersion>False</UpdateAssemblyInfoVersion>
@@ -28,6 +28,9 @@
     <AssemblyInfoVersionSettings>
     </AssemblyInfoVersionSettings>
     <TargetFrameworkProfile />
+    <UpdatePackageVersion>False</UpdatePackageVersion>
+    <AssemblyInfoVersionType>SettingsVersion</AssemblyInfoVersionType>
+    <InheritWinAppVersionFrom>None</InheritWinAppVersionFrom>
     <PublishUrl>publish\</PublishUrl>
     <Install>false</Install>
     <InstallFrom>Web</InstallFrom>
@@ -47,9 +50,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <UpdatePackageVersion>False</UpdatePackageVersion>
-    <AssemblyInfoVersionType>SettingsVersion</AssemblyInfoVersionType>
-    <InheritWinAppVersionFrom>None</InheritWinAppVersionFrom>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -75,6 +75,8 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Assets\Images\Icons\Favicon.ico</ApplicationIcon>
@@ -145,19 +147,24 @@
     <PackageReference Include="Microsoft-WindowsAPICodePack-Core">
       <Version>1.1.3.3</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.1.0" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.1.1" />
-    <PackageReference Include="Microsoft.NETCore.Platforms" Version="2.1.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
+      <Version>2.6.3</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.2.1" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.2.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.2.0" />
+    <PackageReference Include="Microsoft.NETCore.Platforms" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="Remotion.Linq" Version="2.2.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="SQLite.Net-PCL">
@@ -166,11 +173,11 @@
     <PackageReference Include="SQLite.Net.Async-PCL">
       <Version>3.1.1</Version>
     </PackageReference>
-    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.11" />
-    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.11" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.linux" Version="1.1.11" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.11" />
-    <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.11" />
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.12" />
+    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.12" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.linux" Version="1.1.12" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.12" />
+    <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.12" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
@@ -649,4 +656,9 @@
   <PropertyGroup>
     <PreBuildEvent>call "$(ProjectDir)autoexec.bat"</PreBuildEvent>
   </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_StartDate="2000/1/1" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

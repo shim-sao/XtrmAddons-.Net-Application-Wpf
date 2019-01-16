@@ -15,9 +15,12 @@ namespace Fotootof.Startup
         /// </summary>
         public static void InitializeStorage()
         {
+            // Variable to store directories informations.
+            Directory temp;
+
             #region application data
             // Create path to data server directory. 
-            Directory temp = new Directory
+            temp = new Directory
             {
                 Key = "data.server",
                 RelativePath = "Data\\Server",

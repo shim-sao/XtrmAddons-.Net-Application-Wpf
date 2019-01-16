@@ -65,7 +65,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         {
             if (op == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(op), op);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(op), typeof(PictureOptionsSelect));
                 log.Error(e.Output());
                 throw e;
             }

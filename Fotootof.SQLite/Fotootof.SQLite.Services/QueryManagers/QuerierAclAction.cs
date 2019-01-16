@@ -60,7 +60,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         {
             if (op == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(op), op);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(op), typeof(AclActionOptionsSelect));
                 log.Error(e.Output());
                 throw e;
             }
@@ -116,7 +116,7 @@ namespace Fotootof.SQLite.Services.QueryManagers
         {
             if (item == null)
             {
-                throw Exceptions.GetArgumentNull(nameof(item), item);
+                throw Exceptions.GetArgumentNull(nameof(item), typeof(AclActionEntity));
             }
 
             using (Db.Context) { return AclActionManager.Add(item); }

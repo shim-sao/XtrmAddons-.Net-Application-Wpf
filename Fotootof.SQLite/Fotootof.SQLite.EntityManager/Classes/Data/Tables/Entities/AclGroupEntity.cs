@@ -8,6 +8,7 @@ using Fotootof.SQLite.EntityManager.Data.Base;
 using Fotootof.SQLite.EntityManager.Data.Tables.Dependencies;
 using Fotootof.SQLite.EntityManager.Data.Tables.Dependencies.Observables;
 using XtrmAddons.Net.Common.Extensions;
+using System.Xml.Serialization;
 
 namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
 {
@@ -16,7 +17,8 @@ namespace Fotootof.SQLite.EntityManager.Data.Tables.Entities
     /// </summary>
     [Serializable]
     [Table("AclGroups")]
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptIn, Title = "AclGroups")]
+    [XmlType(TypeName = "AclGroups")]
     public partial class AclGroupEntity : EntityBase
     {
         #region Variables

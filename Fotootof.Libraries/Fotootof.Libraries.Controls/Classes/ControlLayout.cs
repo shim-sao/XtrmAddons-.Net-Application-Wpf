@@ -1,9 +1,12 @@
 ﻿using Fotootof.Layouts.Interfaces;
+using Fotootof.Libraries.System.Messages;
 using Fotootof.Theme;
+using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Libraries.Controls
 {
@@ -32,10 +35,7 @@ namespace Fotootof.Libraries.Controls
         /// </summary>
         public ControlLayout() : base()
         {
-            // Merge application resources.
-            //Resources.MergedDictionaries.Add(XtrmAddons.Fotootof.Culture.Translation.Words);
-            //Resources.MergedDictionaries.Add(XtrmAddons.Fotootof.Culture.Translation.Logs);
-
+            // Merge custom theme resources.
             ThemeLoader.MergeThemeTo(Resources);
         }
 
@@ -53,7 +53,17 @@ namespace Fotootof.Libraries.Controls
         /// <returns></returns>
         public T FindName<T>(string name) where T : class
         {
-            return (T)FindName(name);
+            try
+            {
+                return (T)FindName(name);
+            }
+            catch(Exception e)
+            {
+                log.Error(e.Output(), e);
+                MessageBase.Error(e);
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -63,15 +73,11 @@ namespace Fotootof.Libraries.Controls
         [Conditional("DEBUG")]
         protected void DebugTraceSize(FrameworkElement fe)
         {
-            #if DEBUG_SIZE
-
             Trace.WriteLine(string.Format("----> Class({0}) : Object({1}) : Name({2})", GetType().Name, fe.GetType().Name, fe.Name));
             Trace.WriteLine("ActualSize = [" + fe.ActualWidth + "," + fe.ActualHeight + "]");
             Trace.WriteLine("Size = [" + fe.Width + "," + fe.Height + "]");
             Trace.WriteLine("RenderSize = [" + fe.RenderSize.Width + "," + fe.RenderSize.Height + "]");
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
-
-            #endif
         }
 
         /// <summary>

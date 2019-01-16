@@ -22,7 +22,7 @@ namespace Fotootof.Layouts.Forms.Section
         /// Variable logger.
         /// </summary>
         private static readonly log4net.ILog log =
-            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 

@@ -15,7 +15,6 @@ namespace Fotootof.SQLite.Connector.SQLiteData
         /// <param name="database">The name of the database (full filename).</param>
         /// <param name="createFile">Create file if not exists.</param>
         /// <param name="scheme">Add database scheme on creation.</param>
-        /// </summary>
         public SQLiteManager(string database, bool createFile = false, string scheme = "")
             : base(database, createFile, scheme) { }
 

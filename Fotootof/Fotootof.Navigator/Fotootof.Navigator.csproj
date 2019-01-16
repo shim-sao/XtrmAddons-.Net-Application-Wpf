@@ -55,6 +55,20 @@
       <Version>2.0.8</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Fotootof.Layouts\Fotootof.Layouts.Dialogs\Fotootof.Layouts.Dialogs.csproj">
+      <Project>{06F82071-D500-4E6D-8734-373D1963C307}</Project>
+      <Name>Fotootof.Layouts.Dialogs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Logs\Fotootof.Libraries.Logs.csproj">
+      <Project>{FC62EC35-A6A3-4391-9A01-26C159CE1FFD}</Project>
+      <Name>Fotootof.Libraries.Logs</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_StartDate="2000/1/1" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

@@ -93,7 +93,7 @@ namespace Fotootof.Components.Server.Remote.Layouts
         /// other objects. Only unmanaged resources can be disposed.
         /// </summary>
         /// <param name="disposing">Track whether Dispose has been called.</param>
-        protected new void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called.
             if (!disposed)
@@ -112,10 +112,10 @@ namespace Fotootof.Components.Server.Remote.Layouts
 
                 // Note disposing has been done.
                 disposed = true;
-
-                // Call base class implementation.
-                base.Dispose(disposing);
             }
+
+            // Call base class implementation.
+            base.Dispose(disposing);
         }
 
         #endregion

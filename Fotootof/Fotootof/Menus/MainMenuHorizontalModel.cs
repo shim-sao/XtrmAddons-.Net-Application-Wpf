@@ -63,7 +63,7 @@ namespace Fotootof.Menus
                 {
                     isServerStarted = value;
                     NotifyPropertyChanged();
-                    NotifyPropertyChanged("IsServerStopped");
+                    NotifyPropertyChanged(nameof(IsServerStopped));
                 }
             }
         }

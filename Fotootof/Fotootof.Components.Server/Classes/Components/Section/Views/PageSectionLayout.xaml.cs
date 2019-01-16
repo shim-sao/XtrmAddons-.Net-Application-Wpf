@@ -50,20 +50,24 @@ namespace Fotootof.Components.Server.Section
         /// <summary>
         /// Accessors to page user model.
         /// </summary>
+        [System.Obsolete("use Model instead.", true)]
         public AlbumOptionsList AlbumOptionsListFilters
         {
             get
             {
-                SectionEntity a = (FindName("DataGridSectionsLayoutName") as DataGridSectionsLayout).SelectedItem;
+                bool showAllAlbums = Settings.Sections.Default.ServerLayout_ShowAllAlbums;
+                IEnumerable<SectionEntity> lse = FindName<DataGridSectionsLayout>("DataGridSectionsLayoutName").SelectedItems;
 
                 AlbumOptionsList op = new AlbumOptionsList
                 {
                     Dependencies = { EnumEntitiesDependencies.AlbumsInSections, EnumEntitiesDependencies.InfosInAlbums }
                 };
 
-                if (a != null)
+                if (lse != null && !showAllAlbums)
                 {
-                    op.IncludeSectionKeys = new List<int>() { a.PrimaryKey };
+                    op.IncludeSectionKeys = new List<int>();
+                    foreach (var se in lse)
+                        op.IncludeSectionKeys.Add(se.PrimaryKey);
                 }
 
                 if (filters.Count > 0)
@@ -128,7 +132,7 @@ namespace Fotootof.Components.Server.Section
             
             Model.LoadSections();
 
-            if (Settings.Controls.Default.ServerSectionLayoutShowAllAlbums)
+            if (Settings.Sections.Default.ServerLayout_ShowAllAlbums)
             {
                 Model.LoadAlbums();
             }
@@ -312,6 +316,7 @@ namespace Fotootof.Components.Server.Section
         /// <summary>
         /// Method to load the list of <see cref="AlbumEntity"/> from database.
         /// </summary>
+        [System.Obsolete("use Model instead.", true)]
         private void LoadAlbums()
         {
             try
@@ -555,7 +560,7 @@ namespace Fotootof.Components.Server.Section
 
 
 
-        #region Methods Size Changed
+        #region Methods : Layout Size Changed
 
         /// <summary>
         /// Method called on <see cref="FrameworkElement"/> size changed event.
@@ -566,20 +571,24 @@ namespace Fotootof.Components.Server.Section
         {
             try
             {
+                // Initialize some variables
+                var blockContent = FindName<FrameworkElement>("BlockMiddleContentName");
+                var topContent = FindName<FrameworkElement>("BlockTopControlsName");
+                var tabContentW = ((Frame)MainBlockContentTabs.SelectedContent).ActualWidth;
+                var tabContentH = ((Frame)MainBlockContentTabs.SelectedContent).ActualHeight;
+
                 var UcDataGridSections = FindName<DataGridSectionsLayout>("DataGridSectionsLayoutName");
                 var UcListViewAlbums = FindName<ListViewAlbumsLayout>("ListViewAlbumsLayoutName");
-                var BlockMiddleContents = FindName<Grid>("BlockMiddleContentsName");
-            
-                Width = MainBlockContent.ActualWidth;
-                Height = MainBlockContent.ActualHeight;
 
-                double height = Math.Max(Height - FindName<StackPanel>("BlockTopControlsName").RenderSize.Height, 0);
+                // Arrange this height & width
+                Width = Math.Max(tabContentW, 0);
+                Height = Math.Max(tabContentH, 0);
 
-                BlockMiddleContents.Width = Width;
-                BlockMiddleContents.Height = height;
-
-                UcDataGridSections.Height = height;
-                UcListViewAlbums.Height = height;
+                blockContent.Width = Width;
+                blockContent.Height =
+                    UcDataGridSections.Height =
+                    UcListViewAlbums.Height =
+                Math.Max(Height - topContent.RenderSize.Height, 0);
             }
 
             catch(Exception ex)

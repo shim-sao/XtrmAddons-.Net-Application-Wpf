@@ -106,7 +106,7 @@ namespace Fotootof.Layouts.Controls.DataGrids
             }
             else
             {
-                string message = Exceptions.GetReferenceNull(nameof(SectionEntity), SelectedItem).Message;
+                string message = Exceptions.GetReferenceNull(nameof(SelectedItem), typeof(SectionEntity)).Message;
                 log.Warn(message);
                 MessageBoxs.Warning(message);
             }
@@ -143,7 +143,7 @@ namespace Fotootof.Layouts.Controls.DataGrids
             }
             else
             {
-                string message = Exceptions.GetReferenceNull(nameof(SectionEntity), SelectedItem).Message;
+                string message = Exceptions.GetReferenceNull(nameof(SelectedItem), typeof(SectionEntity)).Message;
                 log.Warn(message);
                 MessageBoxs.Warning(message);
             }

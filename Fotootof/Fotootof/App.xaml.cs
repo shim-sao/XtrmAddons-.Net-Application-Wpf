@@ -203,11 +203,21 @@ namespace Fotootof
         /// <param name="e">Exit event arguments.</param>
         private void App_Exit(object sender, ExitEventArgs e)
         {
+            SaveSettings();
+            Trace.TraceInformation(Local.Properties.Logs.ApplicationClosed);
+        }
+
+        /// <summary>
+        /// Method to save the application settings.
+        /// </summary>
+        public static void SaveSettings()
+        {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
             Trace.TraceInformation(Local.Properties.Logs.WaitingApplicationSave);
             Controls.Default.Save();
+            Sections.Default.Save();
             ApplicationBase.Save();
-            Trace.TraceInformation(Local.Properties.Logs.ApplicationClosed);
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
         }
 
         /// <summary>

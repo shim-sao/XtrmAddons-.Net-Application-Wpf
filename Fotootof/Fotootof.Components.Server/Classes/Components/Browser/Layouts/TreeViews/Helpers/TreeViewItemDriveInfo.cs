@@ -62,9 +62,21 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
             string inf = "NaN";
             try
             {
-                inf = di.RootDirectory.GetFiles().Length.ToString();
-                inf = $"{inf}/{di.RootDirectory.GetDirectories().Length.ToString()}";
-                inf = $"{inf} - {di.AvailableFreeSpace / (1024 * 1024 * 1024)}/{di.TotalSize / (1024 * 1024 * 1024)}Go";
+                int filesCount = 0;
+                int dirCount = 0;
+                long freeSpace = 0;
+                long totalSize = 0;
+                int goUnit = 1024 * 1024 * 1024;
+
+                if (di.IsReady)
+                {
+                    filesCount = di.RootDirectory.GetFiles().Length;
+                    dirCount = di.RootDirectory.GetDirectories().Length;
+                    freeSpace = di.AvailableFreeSpace;
+                    totalSize = di.TotalSize;
+                }
+                
+                inf = $"{filesCount}/{dirCount} - {freeSpace / goUnit}/{totalSize / goUnit}Go";
             }
             catch (Exception e)
             {
@@ -160,6 +172,7 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
 
                 title.Children.Add(volName);
             }
+
             catch (IOException io)
             {
                 log.Debug(io.Output());
@@ -173,8 +186,10 @@ namespace Fotootof.Components.Server.Browser.Layouts.Helpers
                             Foreground = Brushes.Red
                         }
                     );
+
                 title.ToolTip = io.Message;
             }
+
             catch (Exception e)
             {
                 log.Debug(e.Output());

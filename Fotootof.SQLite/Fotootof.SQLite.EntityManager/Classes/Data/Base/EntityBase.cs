@@ -184,7 +184,7 @@ namespace Fotootof.SQLite.EntityManager.Data.Base
             {
                 InvalidOperationException ex = new InvalidOperationException($"List '{typeof(T).Name}' dependency Primary Key failed.", e);
                 log.Error(e.Output(), e);
-                throw e;
+                throw;
             }
 
             log.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} : {nameof(dependency)} => {ids.Count}");

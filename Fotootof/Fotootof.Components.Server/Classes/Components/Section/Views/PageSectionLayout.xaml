@@ -6,11 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:base="clr-namespace:Fotootof.Libraries.Components;assembly=Fotootof.Libraries.Components"
     xmlns:local="clr-namespace:Fotootof.Components.Server.Section.Layouts"
+    xmlns:l="clr-namespace:Fotootof.Local.Properties;assembly=Fotootof.Local"
     mc:Ignorable="d"
 	Loaded="Control_Loaded"
     ShowsNavigationUI="False"
     SizeChanged="Layout_SizeChanged"
-    Style="{StaticResource PageContentStyle}">
+    Style="{StaticResource PageContentStyle}"
+    Title="{x:Static l:Translations.Catalog}">
 
 	<Grid x:Name="GridBlockRootName" Style="{StaticResource FrameworkElementRootStyle}">
 		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
@@ -26,7 +28,7 @@
 			</StackPanel>
 
 
-			<Grid x:Name="BlockMiddleContentsName" Style="{StaticResource GridMiddleContentStyle}">
+			<Grid x:Name="BlockMiddleContentName" Style="{StaticResource GridMiddleContentStyle}">
 
 				<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColSections"/>

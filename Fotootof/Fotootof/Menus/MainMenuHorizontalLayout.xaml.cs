@@ -28,6 +28,7 @@ using XtrmAddons.Net.Application.Serializable.Elements.Remote;
 using XtrmAddons.Net.Common.Extensions;
 using Fotootof.Layouts.Forms.Server;
 using Fotootof.HttpServer;
+using System.Diagnostics;
 
 namespace Fotootof.Menus
 {
@@ -97,6 +98,12 @@ namespace Fotootof.Menus
 
         }
 
+        #endregion
+
+
+
+        #region Methods
+
         /// <summary>
         /// Method called on plugin control menu click event.
         /// </summary>
@@ -119,12 +126,6 @@ namespace Fotootof.Menus
             }
         }
 
-        #endregion
-
-
-
-        #region Methods
-
         /// <summary>
         /// Method to find an child element by its name.
         /// </summary>
@@ -145,11 +146,11 @@ namespace Fotootof.Menus
         /// <returns>The tag value of the <see cref="FrameworkElement"/>.</returns>
         /// <exception cref="ArgumentNullException">Occurs if the <see cref="FrameworkElement"/> fe is null.</exception>
         /// <exception cref="TypeAccessException">Occurs if fe is not a <see cref="FrameworkElement"/>.</exception>
-        public static T GetTag<T>(object fe, T defaut = null) where T : class
+        public static T GetTagAs<T>(object fe, T defaut = null) where T : class
         {
             if (fe is null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(fe), fe);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(fe), typeof(object));
                 log.Error(e.Output(), e);
                 throw e;
             }
@@ -238,39 +239,6 @@ namespace Fotootof.Menus
         }
 
         /// <summary>
-        /// Method called on server start click.
-        /// </summary>
-        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
-        private void ServerStart_Click(object sender, RoutedEventArgs e)
-        {
-            HttpServerBase.Start();
-        }
-
-        /// <summary>
-        /// Method called on server stop click.
-        /// </summary>
-        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
-        private void ServerStop_Click(object sender, RoutedEventArgs e)
-        {
-            HttpServerBase.Stop();
-        }
-
-        /// <summary>
-        /// Method called on server restart click.
-        /// </summary>
-        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
-        private void ServerRestart_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxs.IsBusy = true;
-            ServerStop_Click(sender, e);
-            ServerStart_Click(sender, e);
-            MessageBoxs.IsBusy = false;
-        }
-
-        /// <summary>
         /// Method called on add server to firewall click.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
@@ -301,32 +269,6 @@ namespace Fotootof.Menus
         }
 
         /// <summary>
-        /// Method called on add album click event.
-        /// </summary>
-        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
-        private void AddAlbum_Click(object sender, RoutedEventArgs e)
-        {
-            // Show open file dialog box 
-            using (WindowFormAlbumLayout dlg = new WindowFormAlbumLayout(new AlbumEntity()))
-            {
-                bool? result = dlg.ShowDialog();
-
-                // Process open file dialog box results 
-                if (result == true)
-                {
-
-                    log.Info("Adding or editing Album informations. Please wait...");
-
-                    AlbumEntityCollection.DbInsert(new List<AlbumEntity> { dlg.NewForm });
-
-                    log.Info("Adding or editing Section informations. Done");
-                    MessageBoxs.IsBusy = false;
-                }
-            }
-        }
-
-        /// <summary>
         /// Method called on add new client event.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
@@ -353,31 +295,6 @@ namespace Fotootof.Menus
                     ApplicationBase.SaveOptions();
                     RaiseClientAdded(this, e.RoutedEvent);
 
-                    MessageBoxs.IsBusy = false;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Method called on add section click event.
-        /// </summary>
-        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
-        private void AddSection_Click(object sender, RoutedEventArgs e)
-        {
-            // Show open file dialog box 
-            using (WindowFormSectionLayout dlg = new WindowFormSectionLayout(new SectionEntity()))
-            {
-                bool? result = dlg.ShowDialog();
-
-                // Process open file dialog box results 
-                if (result == true)
-                {
-                    log.Info("Adding or editing Section informations. Please wait...");
-
-                    SectionEntityCollection.DbInsert(new List<SectionEntity> { dlg.NewForm });
-
-                    log.Info("Adding or editing Section informations. Done");
                     MessageBoxs.IsBusy = false;
                 }
             }
@@ -414,23 +331,15 @@ namespace Fotootof.Menus
         }
 
         /// <summary>
-        /// Method called on edition preferences click event <see cref="WindowSettingsLayout"/>.
+        /// Method to save the application settings.
         /// </summary>
-        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
-        private void EditionPreferences_Click(object sender, RoutedEventArgs e)
+        private void SaveSettings()
         {
-            // Show open file dialog box 
-            using (WindowSettingsLayout dlg = new WindowSettingsLayout())
-            {
-                bool? result = dlg.ShowDialog();
-
-                // Process open file dialog box results 
-                if (result == true)
-                {
-
-                }
-            }
+            Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            Trace.TraceInformation(Local.Properties.Logs.WaitingApplicationSave);
+            Settings.Controls.Default.Save();
+            Settings.Sections.Default.Save();
+            ApplicationBase.Save();
         }
 
         /// <summary>
@@ -485,6 +394,128 @@ namespace Fotootof.Menus
         }
 
         /// <summary>
+        /// Method called on theme changed event click.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
+        private void ThemeChanged_Click(object sender, RoutedEventArgs e)
+        {
+            // Ask for user confirmation.
+            var result = MessageBoxs.YesNo(Layouts.Dialogs.Properties.Translations.ApplicationRestartRequired, Local.Properties.Translations.Theme);
+            if(result != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            // Get the Theme name from the event sender.
+            string theme = (string)((FrameworkElement)sender).Tag;
+
+            // Add Theme to Application UI Parmeters.
+            ApplicationBase.UI.AddParameter("ApplicationTheme", theme);
+            ApplicationBase.SaveUi();
+
+            // Restart the application.
+            System.Windows.Forms.Application.Restart();
+            Application.Current.Shutdown();
+        }
+
+        #endregion
+
+
+
+        #region Methods : Catalog
+
+        /// <summary>
+        /// Method called on add album click event.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
+        private void CatalogAddAlbum_Click(object sender, RoutedEventArgs e)
+        {
+            // Show open file dialog box 
+            using (WindowFormAlbumLayout dlg = new WindowFormAlbumLayout(new AlbumEntity()))
+            {
+                bool? result = dlg.ShowDialog();
+
+                // Process open file dialog box results 
+                if (result == true)
+                {
+
+                    log.Info("Adding or editing Album informations. Please wait...");
+
+                    AlbumEntityCollection.DbInsert(new List<AlbumEntity> { dlg.NewForm });
+
+                    log.Info("Adding or editing Section informations. Done");
+                    MessageBoxs.IsBusy = false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method called on add section click event.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
+        private void CatalogAddSection_Click(object sender, RoutedEventArgs e)
+        {
+            // Show open file dialog box 
+            using (WindowFormSectionLayout dlg = new WindowFormSectionLayout(new SectionEntity()))
+            {
+                bool? result = dlg.ShowDialog();
+
+                // Process open file dialog box results 
+                if (result == true)
+                {
+                    log.Info("Adding or editing Section informations. Please wait...");
+
+                    SectionEntityCollection.DbInsert(new List<SectionEntity> { dlg.NewForm });
+
+                    log.Info("Adding or editing Section informations. Done");
+                    MessageBoxs.IsBusy = false;
+                }
+            }
+        }
+
+        #endregion
+
+
+
+        #region Methods : Edition
+
+        /// <summary>
+        /// Method called on edition preferences click event <see cref="WindowSettingsLayout"/>.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
+        private void EditionPreferences_Click(object sender, RoutedEventArgs e)
+        {
+            // Show open file dialog box 
+            using (WindowSettingsLayout dlg = new WindowSettingsLayout())
+            {
+                bool? result = dlg.ShowDialog();
+
+                // Process open file dialog box results 
+                if (result == true)
+                {
+                    App.SaveSettings();
+                }
+            }
+        }
+
+        #endregion
+
+
+
+        #region Methods : File
+
+        #endregion
+
+
+
+        #region Methods : Navigate To
+
+
+        /// <summary>
         /// Method called on navigate to <see cref="Components.Server.Remote.PageRemoteLayout"/> click event.
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
@@ -514,6 +545,45 @@ namespace Fotootof.Menus
             ComponentNavigator.NavigateToUsers();
         }
 
+        #endregion
+
+
+
+        #region Methods : Server
+
+        /// <summary>
+        /// Method called on server start click.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
+        private void ServerStart_Click(object sender, RoutedEventArgs e)
+        {
+            HttpServerBase.Start();
+        }
+
+        /// <summary>
+        /// Method called on server stop click.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
+        private void ServerStop_Click(object sender, RoutedEventArgs e)
+        {
+            HttpServerBase.Stop();
+        }
+
+        /// <summary>
+        /// Method called on server restart click.
+        /// </summary>
+        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
+        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
+        private void ServerRestart_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxs.IsBusy = true;
+            ServerStop_Click(sender, e);
+            ServerStart_Click(sender, e);
+            MessageBoxs.IsBusy = false;
+        }
+
         /// <summary>
         /// Method called on sever edit settings event click.
         /// </summary>
@@ -530,9 +600,9 @@ namespace Fotootof.Menus
                     if (result == true)
                     {
                         dlg.NewFormData.IsDefault = true;
-                        
+
                         var def = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
-                        if(def == null)
+                        if (def == null)
                         {
                             ApplicationBase.Options.Remote.Servers.Add(dlg.NewFormData);
                         }
@@ -545,7 +615,7 @@ namespace Fotootof.Menus
                         var eee = ApplicationBase.Options.Remote.Servers;
 
                         ApplicationBase.SaveOptions();
-                        if(HttpWebServerApplication.IsStarted)
+                        if (HttpWebServerApplication.IsStarted)
                         {
                             ServerRestart_Click(sender, e);
                         }
@@ -563,32 +633,6 @@ namespace Fotootof.Menus
                     MessageBoxs.Error(ex);
                 }
             }
-        }
-
-        /// <summary>
-        /// Method called on theme changed event click.
-        /// </summary>
-        /// <param name="sender">The <see cref="object"/> sender of the event.</param>
-        /// <param name="e">The routed event arguments <see cref="RoutedEventArgs"/>.</param>
-        private void ThemeChanged_Click(object sender, RoutedEventArgs e)
-        {
-            // Ask for user confirmation.
-            var result = MessageBoxs.YesNo(Layouts.Dialogs.Properties.Translations.ApplicationRestartRequired, Local.Properties.Translations.Theme);
-            if(result != MessageBoxResult.Yes)
-            {
-                return;
-            }
-
-            // Get the Theme name from the event sender.
-            string theme = (string)((FrameworkElement)sender).Tag;
-
-            // Add Theme to Application UI Parmeters.
-            ApplicationBase.UI.AddParameter("ApplicationTheme", theme);
-            ApplicationBase.SaveUi();
-
-            // Restart the application.
-            System.Windows.Forms.Application.Restart();
-            Application.Current.Shutdown();
         }
 
         #endregion

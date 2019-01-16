@@ -5,7 +5,7 @@ using System.Reflection;
 namespace Fotootof.Libraries.Controls
 {
     /// <summary>
-    /// Class Fotootof Libraries Base Model.
+    /// Class XtrmAddons Fotootof Libraries Control Layout Model
     /// </summary>
     /// <typeparam name="T">The class Type of the model owner.</typeparam>
     public abstract class ControlLayoutModel<T> : ModelBase, IDisposable where T : class

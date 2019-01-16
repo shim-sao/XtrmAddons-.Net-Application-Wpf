@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace Fotootof.Components.Server.Users
@@ -337,16 +338,24 @@ namespace Fotootof.Components.Server.Users
         /// </summary>
         private void ArrangeSizeMiddleContents()
         {
-            BlockMiddleContentsName.Width = Math.Max(this.Width, 0);
-            BlockMiddleContentsName.Height = Math.Max(this.Height, 0);
+            // Initialize some variables
+            var blockContent = FindName<FrameworkElement>("BlockMiddleContentName");
+            var topContent = FindName<FrameworkElement>("BlockTopControlsName");
+            var tabContentW = ((Frame)MainBlockContentTabs.SelectedContent).ActualWidth;
+            var tabContentH = ((Frame)MainBlockContentTabs.SelectedContent).ActualHeight;
+            var ucDataGridAclGroupsServer = FindName<FrameworkElement>("UcDataGridAclGroupsServerName");
+            var ucDataGridUsers = FindName<FrameworkElement>("UcDataGridUsersName");
 
-            TraceSize(BlockMiddleContentsName);
+            // Arrange this height & width
+            Width = Math.Max(tabContentW, 0);
+            Height = Math.Max(tabContentH, 0);
+            
+            ucDataGridAclGroupsServer.Height = Math.Max(Height, 0);
+            ucDataGridUsers.Height = Math.Max(Height, 0);
 
-            (FindName("UcDataGridAclGroupsServerName") as FrameworkElement).Height = Math.Max(this.Height, 0);
-            UcDataGridUsers.Height = Math.Max(this.Height, 0);
-
-            TraceSize((FindName("UcDataGridAclGroupsServerName") as FrameworkElement));
-            TraceSize(UcDataGridUsers);
+            TraceSize(blockContent);
+            TraceSize(ucDataGridAclGroupsServer);
+            TraceSize(ucDataGridUsers);
         }
 
         #endregion

@@ -98,13 +98,13 @@ namespace Fotootof.Components.Server.Browser
             UcListViewStoragesServer.ImageSize_SelectionChanged += ImageSize_SelectionChanged;
         }
 
-        [Obsolete("Use Model.GetInfoFiles()")]
+        [Obsolete("Use Model.GetInfoFiles()", true)]
         private FileInfo[] GetInfoFiles(DirectoryInfo dirInfo, SearchOption option = SearchOption.TopDirectoryOnly)
         {
             return Model.GetInfoFiles(dirInfo);
         }
 
-        [Obsolete("Use Model.GetInfoDirectories()")]
+        [Obsolete("Use Model.GetInfoDirectories(), true")]
         private DirectoryInfo[] GetDirectoriesInfos(DirectoryInfo dirInfo)
         {
             return Model.GetInfoDirectories(dirInfo);
@@ -122,7 +122,7 @@ namespace Fotootof.Components.Server.Browser
         /// <summary>
         /// Method to clear the <see cref="CollectionStorage"/> of files displayed in the view.
         /// </summary>
-        [Obsolete("use Model.ClearFilesCollection()")]
+        [Obsolete("use Model.ClearFilesCollection(), true")]
         private void ClearFilesCollection()
         {
             Model.ClearFilesCollection();
@@ -305,7 +305,7 @@ namespace Fotootof.Components.Server.Browser
 
 
 
-        #region Methods Size Changed
+        #region Methods : Layout Size Changed
 
         /// <summary>
         /// Method called on <see cref="FrameworkElement"/> size changed event.
@@ -316,21 +316,26 @@ namespace Fotootof.Components.Server.Browser
         {
             try
             {
-                Width = Math.Max(MainBlockContent.ActualWidth, 0);
-                Height = Math.Max(MainBlockContent.ActualHeight, 0);
+                // Initialize some variables
+                var blockContent = FindName<FrameworkElement>("BlockMiddleContentName");
+                var topContent = FindName<FrameworkElement>("BlockTopControlsName");
+                var tabContentW = ((Frame)MainBlockContentTabs.SelectedContent).ActualWidth;
+                var tabContentH = ((Frame)MainBlockContentTabs.SelectedContent).ActualHeight;
 
-                double TopCtrlHeight = (FindName("Block_TopControls") as FrameworkElement).RenderSize.Height;
+                // Arrange this height & width
+                Width = Math.Max(tabContentW, 0);
+                Height = Math.Max(tabContentH, 0);
 
-                BlockMiddleContentsName.Width = Math.Max(Width, 0);
-                BlockMiddleContentsName.Height = Math.Max(Height - TopCtrlHeight, 0);
-
-                UcTreeViewDirectories.Height = Math.Max(Height - TopCtrlHeight, 0);
-                UcListViewStoragesServer.Height = Math.Max(Height - TopCtrlHeight, 0);
+                blockContent.Width = Width;
+                blockContent.Height =
+                    UcTreeViewDirectories.Height =
+                    UcListViewStoragesServer.Height =
+                Math.Max(Height - topContent.RenderSize.Height, 0);
 
                 TraceSize(MainBlockContent);
                 TraceSize(this);
-                TraceSize(Block_TopControls);
-                TraceSize(BlockMiddleContentsName);
+                TraceSize(topContent);
+                TraceSize(blockContent);
                 TraceSize(UcTreeViewDirectories);
                 TraceSize(UcListViewStoragesServer);
             }

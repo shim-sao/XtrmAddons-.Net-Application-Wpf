@@ -16,7 +16,7 @@ namespace Fotootof.Layouts.Windows.About
         /// Variable logger <see cref="log4net.ILog"/>.
         /// </summary>
         private static readonly log4net.ILog log =
-            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 
@@ -50,7 +50,11 @@ namespace Fotootof.Layouts.Windows.About
         {
             get
             {
-                return Assembly.GetEntryAssembly().GetName().Version.ToString();
+#if DEBUG
+                return Assembly.GetEntryAssembly().GetName().Version.ToString() + " - development)";
+#else
+                return Assembly.GetEntryAssembly().GetName().Version.ToString() + " - release";
+#endif
             }
         }
 

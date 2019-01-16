@@ -28,7 +28,7 @@
 								   Text="{x:Static l:Translations.Albums}"
 								   FontSize="{StaticResource FontSizeHeader}"
 								   FontWeight="SemiBold"
-							   Foreground="{DynamicResource CustomWindowTextBrush}"
+							       Foreground="{DynamicResource CustomWindowTextBrush}"
 								   Margin="5"/>
 						<!-- #endregion Title -->
                         
@@ -37,21 +37,21 @@
 							<TextBlock x:Name="Counter_SelectedNumber"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
-							   Foreground="{DynamicResource CustomWindowTextBrush}"
+							           Foreground="{DynamicResource CustomWindowTextBrush}"
 									   Margin="5"
 									   Text="{Binding SelectedItems.Count, ElementName=ListViewCollectionName, IsAsync=True}"/>
 
 							<TextBlock x:Name="Counter_Spacer"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
-							   Foreground="{DynamicResource CustomWindowTextBrush}"
+							           Foreground="{DynamicResource CustomWindowTextBrush}"
 									   Margin="0,5"
 									   Text="/"/>
 
 							<TextBlock x:Name="Counter_Total"
 									   FontWeight="SemiBold"
 									   FontSize="{StaticResource FontSizeHeader}"
-							   Foreground="{DynamicResource CustomWindowTextBrush}"
+							           Foreground="{DynamicResource CustomWindowTextBrush}"
 									   Margin="5"
 									   Text="{Binding Path=Items.Count}"/>
 						</StackPanel>
@@ -78,24 +78,39 @@
 								<ColumnDefinition Width="1*" />
 							</Grid.ColumnDefinitions>
 
-							<Button x:Name="Button_Add"
+                            <Button x:Name="Button_Add"
 									PreviewMouseLeftButtonUp="AddItem_Click"
-									Style="{StaticResource ButtonIcon24FolderPlus}"
-									ToolTipService.ToolTip="{x:Static l:Translations.AddNewAlbum}"/>
+									Style="{DynamicResource ButtonIcon24FolderPlus}"
+									ToolTipService.ToolTip="{x:Static l:Translations.AddNewAlbum}">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-plus-24.png" />
+                                </Button.Content>
+                            </Button>
 
-							<Button x:Name="Button_Edit"
+                            <Button x:Name="Button_Edit"
 									Grid.Column="1"
 									IsEnabled="False"
 									PreviewMouseLeftButtonUp="EditItem_Click"
-									Style="{DynamicResource ButtonIcon24FolderEdit}"
-									ToolTipService.ToolTip="{x:Static l:Translations.Edit}"/>
+									Style="{StaticResource ButtonIcon24FolderEdit}"
+									ToolTipService.ToolTip="{x:Static l:Translations.Edit}">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-edit-24.png" />
+                                </Button.Content>
+                            </Button>
 
 							<Button x:Name="Button_Delete"
 									Grid.Column="2"
 									IsEnabled="False"
 									PreviewMouseLeftButtonUp="DeleteItems_Click"
 									Style="{DynamicResource ButtonIcon24FolderDelete}"
-									ToolTipService.ToolTip="{x:Static l:Translations.Delete}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.Delete}">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-delete-24.png" />
+                                </Button.Content>
+                            </Button>
 						</Grid>
 					</Border>
 
@@ -143,13 +158,23 @@
 									x:Name="Button_SelectAll"
 									Style="{StaticResource ButtonIcon24FolderSelect}"
 									PreviewMouseLeftButtonUp="OnSelectAll_Click"
-									ToolTipService.ToolTip="{x:Static l:Translations.SelectAll}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.SelectAll}">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-select-24.png" />
+                                </Button.Content>
+                            </Button>
 
 							<Button Grid.Column="3"
 									x:Name="Button_ClearSelection"
 									Style="{StaticResource ButtonIcon24FolderUnselect}"
 									PreviewMouseLeftButtonUp="OnUnselectAll_Click"
-									ToolTipService.ToolTip="{x:Static l:Translations.UnselectAll}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.UnselectAll}">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-folder-unselect-24.png" />
+                                </Button.Content>
+                            </Button>
 
 						</Grid>
 					</Border>

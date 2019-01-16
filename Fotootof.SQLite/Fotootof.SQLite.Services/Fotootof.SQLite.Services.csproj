@@ -48,6 +48,7 @@
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -96,7 +97,7 @@
       <Version>2.0.8</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>2.1.4</Version>
+      <Version>2.2.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +129,7 @@
           <AutoStart>True</AutoStart>
         </WcfProjectProperties>
       </FlavorProperties>
+      <UserProperties BuildVersion_StartDate="2000/1/1" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

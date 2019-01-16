@@ -131,14 +131,14 @@ namespace Fotootof.Layouts.Forms.Album
         {
             if(propertyName.IsNullOrWhiteSpace())
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(propertyName), propertyName);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(propertyName), typeof(string));
                 log.Error(e.Output());
                 throw e;
             }
             
             if(filename.IsNullOrWhiteSpace())
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(filename), filename);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(filename), typeof(string));
                 log.Error(e.Output());
                 throw e;
             }

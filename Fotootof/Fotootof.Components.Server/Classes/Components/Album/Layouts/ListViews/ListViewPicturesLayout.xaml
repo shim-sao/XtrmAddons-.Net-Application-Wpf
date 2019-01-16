@@ -79,21 +79,36 @@
 							<Button x:Name="ButtonAddName"
 									Style="{StaticResource ButtonIcon24ImagePlus}"
 									PreviewMouseLeftButtonUp="AddItem_Click"
-									ToolTipService.ToolTip="{x:Static l:Translations.Add}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.Add}">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-plus-24.png" />
+                                </Button.Content>
+                            </Button>
 
 							<Button Grid.Column="1"
 									x:Name="ButtonEditName"
 									Style="{StaticResource ButtonIcon24ImageEdit}"
 									PreviewMouseLeftButtonUp="EditItem_Click"
 									ToolTipService.ToolTip="{x:Static l:Translations.Edit}"
-									IsEnabled="False"/>
+									IsEnabled="False">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-edit-24.png" />
+                                </Button.Content>
+                            </Button>
 
 							<Button Grid.Column="2"
 									x:Name="ButtonDeleteName"
 									Style="{StaticResource ButtonIcon24ImageMinus}"
 									PreviewMouseLeftButtonUp="DeleteItems_Click"
 									ToolTipService.ToolTip="{x:Static l:Translations.Delete}"
-									IsEnabled="False"/>
+									IsEnabled="False">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-minus-24.png" />
+                                </Button.Content>
+                            </Button>
 						</Grid>
 					</Border>
 
@@ -110,19 +125,34 @@
 							<Button x:Name="Button_SelectAll"
 									Style="{StaticResource ButtonIcon24ImageSelect}"
 									PreviewMouseLeftButtonUp="SelectAll_Click"
-									ToolTipService.ToolTip="{x:Static l:Translations.SelectAll}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.SelectAll}">
+                            <!--Place background here because bug : button disappear on multiple tab-->
+                            <Button.Content>
+                                <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-select-24.png" />
+                            </Button.Content>
+                            </Button>
 
-							<Button Grid.Column="1"
+                            <Button Grid.Column="1"
 									x:Name="Button_UnselectAll"
 									Style="{StaticResource ButtonIcon24ImageUnselect}"
 									PreviewMouseLeftButtonUp="UnselectAll_Click"
-									ToolTipService.ToolTip="{x:Static l:Translations.UnselectAll}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.UnselectAll}">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-unselect-24.png" />
+                                </Button.Content>
+                            </Button>
 
 							<Button Grid.Column="2"
 									x:Name="Button_Refresh"
 									Style="{StaticResource ButtonIcon24ImageRefresh}"
 									PreviewMouseLeftButtonUp="OnRefresh_Click"
-									ToolTipService.ToolTip="{x:Static l:Translations.Refresh}"/>
+									ToolTipService.ToolTip="{x:Static l:Translations.Refresh}">
+                                <!--Place background here because bug : button disappear on multiple tab-->
+                                <Button.Content>
+                                    <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-image-refresh-24.png" />
+                                </Button.Content>
+                            </Button>
 
 						</Grid>
 					</Border>
@@ -143,7 +173,7 @@
 						  ScrollViewer.IsDeferredScrollingEnabled="True"
 						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 						  ScrollViewer.VerticalScrollBarVisibility="Auto"
-						  VerticalAlignment="Stretch"
+						  VerticalAlignment="Top"
 						  VirtualizingStackPanel.IsVirtualizing="True"
 						  VirtualizingStackPanel.VirtualizationMode="Recycling">
 

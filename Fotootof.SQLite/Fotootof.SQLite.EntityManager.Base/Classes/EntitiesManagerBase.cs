@@ -126,15 +126,22 @@ namespace Fotootof.SQLite.EntityManager.Base
         /// <returns>The result of the database context saving process.</returns>
         public int Save(bool save = true)
         {
-            if (save)
+            try
             {
-                log.Debug("Saving database context set to true.");
-                
-                return (Connector as DbContext).SaveChanges();
+                if (save)
+                {
+                    log.Debug("Saving database context set to true.");
+
+                    return (Connector as DbContext).SaveChanges();
+                }
+                else
+                {
+                    log.Debug("Saving database context set to false.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                log.Debug("Saving database context set to false.");
+                log.Error(ex.Output(), ex);
             }
 
             return 0;
@@ -147,15 +154,22 @@ namespace Fotootof.SQLite.EntityManager.Base
         /// <returns>The result of the database context saving process.</returns>
         public async Task<int> SaveAsync(bool save = true)
         {
-            if (save)
+            try
             {
-                log.Debug("Saving database context set to true.");
-                
-                return await (Connector as DbContext).SaveChangesAsync();
+                if (save)
+                {
+                    log.Debug("Saving database context set to true.");
+
+                    return await (Connector as DbContext).SaveChangesAsync();
+                }
+                else
+                {
+                    log.Debug("Saving database context set to false.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                log.Debug("Saving database context set to false.");
+                log.Error(ex.Output(), ex);
             }
 
             return 0;

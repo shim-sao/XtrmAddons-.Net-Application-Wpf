@@ -246,6 +246,7 @@ namespace Fotootof.Components.Server.Browser
                 try
                 {
                     info = dirInfo.GetFiles(pattern, SearchOption.TopDirectoryOnly);
+
                 }
                 catch (Exception e)
                 {

@@ -8,7 +8,7 @@ using System.Windows.Controls;
 namespace Fotootof.Libraries.Controls
 {
     /// <summary>
-    /// Class XtrmAddons Fotootof Libraries Control Collection Base.
+    /// Class XtrmAddons Fotootof Libraries Control Layout Collection.
     /// </summary>
     public abstract class ControlLayoutCollection : ControlLayout, ILayoutCollection
     {
@@ -33,27 +33,30 @@ namespace Fotootof.Libraries.Controls
         /// Delegate property deleted event handler.
         /// </summary>
         public event EventHandler<EntityChangesEventArgs> Deleted = delegate { };
-        
+
         #endregion
-        
+
 
 
         #region Properties
-        
+
         /// <summary>
-        /// Property to access to the main add to collection control.
+        /// <para>Property to access to the main add to collection control.</para>
+        /// <para>The value is null if the Control as Button is not founded.</para>
         /// </summary>
         public virtual Control AddCtrl
             => FindName("ButtonAddName") as Button;
 
         /// <summary>
-        /// Property to access to the main edit item control.
+        /// <para>Property to access to the main edit item control.</para>
+        /// <para>The value is null if the Control as Button is not founded.</para>
         /// </summary>
         public virtual Control EditCtrl
             => FindName("ButtonEditName") as Button;
 
         /// <summary>
-        /// Property to access to the main delete items control.
+        /// <para>Property to access to the main delete items control.</para>
+        /// <para>The value is null if the Control as Button is not founded.</para>
         /// </summary>
         public virtual Control DeleteCtrl
             => FindName("ButtonDeleteName") as Button;
@@ -65,7 +68,7 @@ namespace Fotootof.Libraries.Controls
         #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Fotootof Server Component Base Controls Constuctor.
+        /// Class XtrmAddons Fotootof Libraries Control Layout Collection Constuctor.
         /// </summary>
         public ControlLayoutCollection() : base() { }
 

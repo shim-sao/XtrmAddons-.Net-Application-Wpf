@@ -199,7 +199,7 @@ namespace Fotootof.Collections.Entities
 
             if (newItems == null)
             {
-                log.Error(Exceptions.GetArgumentNull(nameof(newItems), newItems).Output());
+                log.Error(Exceptions.GetArgumentNull(nameof(newItems), typeof(IEnumerable<PictureEntity>)).Output());
                 return null;
             }
 
@@ -211,7 +211,7 @@ namespace Fotootof.Collections.Entities
 
             if (albums == null)
             {
-                log.Error(Exceptions.GetArgumentNull(nameof(albums), albums).Output());
+                log.Error(Exceptions.GetArgumentNull(nameof(albums), typeof(IEnumerable<AlbumEntity>)).Output());
                 return null;
             }
 
@@ -304,7 +304,7 @@ namespace Fotootof.Collections.Entities
         {
             if (oldItems == null)
             {
-                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(oldItems), oldItems);
+                ArgumentNullException e = Exceptions.GetArgumentNull(nameof(oldItems), typeof(IEnumerable<PictureEntity>));
                 log.Error(e.Output());
                 return null;
             }

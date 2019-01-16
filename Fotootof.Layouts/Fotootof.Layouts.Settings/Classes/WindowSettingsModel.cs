@@ -1,6 +1,7 @@
 ﻿using Fotootof.Libraries.Windows;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Helpers;
+using XtrmAddons.Net.Application.Serializable.Elements.Data;
 using XtrmAddons.Net.Application.Serializable.Elements.Storage;
 
 namespace Fotootof.Layouts.Settings
@@ -10,18 +11,6 @@ namespace Fotootof.Layouts.Settings
     /// </summary>
     public class WindowSettingsModel : WindowLayoutFormModel<WindowSettingsLayout>
     {
-        #region Constructor
-
-        /// <summary>
-        /// Class XtrmAddons Fotootof Server Window AclGroup Form Model Constructor.
-        /// </summary>
-        /// <param name="window">The page associated to the model.</param>
-        public WindowSettingsModel(WindowSettingsLayout window) : base(window) { }
-
-        #endregion
-
-
-
         #region Properties Files
 
         /// <summary>
@@ -64,13 +53,25 @@ namespace Fotootof.Layouts.Settings
         /// <summary>
         /// 
         /// </summary>
-        public XtrmAddons.Net.Application.Serializable.Elements.Data.Database Database
+        public Database Database
             => ApplicationBase.Options.Data.Databases.FindDefaultFirst();
 
         /// <summary>
         /// 
         /// </summary>
-        public StorageOptions Storage => ApplicationBase.Storage;
+        public StorageOptions Storage
+            => ApplicationBase.Storage;
+
+        #endregion
+
+
+        #region Constructor
+
+        /// <summary>
+        /// Class XtrmAddons Fotootof Server Window AclGroup Form Model Constructor.
+        /// </summary>
+        /// <param name="window">The page associated to the model.</param>
+        public WindowSettingsModel(WindowSettingsLayout window) : base(window) { IsSaveEnabled = true; }
 
         #endregion
 

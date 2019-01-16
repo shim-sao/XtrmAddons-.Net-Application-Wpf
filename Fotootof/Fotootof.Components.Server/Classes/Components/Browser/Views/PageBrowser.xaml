@@ -18,7 +18,7 @@
 		
 		<StackPanel x:Name="StackPanelBlockFieldsetVerticalName" Style="{StaticResource StackPanelFieldsetVerticalStyle}">
 
-			<StackPanel x:Name="Block_TopControls" Style="{StaticResource StackPanelTopControls}">
+            <StackPanel x:Name="BlockTopControlsName" Style="{StaticResource StackPanelTopControls}">
 
 				<Grid>
 					<Grid.ColumnDefinitions>
@@ -34,16 +34,31 @@
 						<Button x:Name="Button_Back_Name"
 								Style="{DynamicResource ButtonIcon24Back}"
 								IsEnabled="False"
-								Click="OnBack_Click"/>
+								Click="OnBack_Click">
+                            <!--Place background here because bug : button disappear on multiple tab-->
+                            <Button.Content>
+                                <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-back-24.png" />
+                            </Button.Content>
+                        </Button>
 
 						<Button x:Name="Button_Forward_Name"
 								Style="{DynamicResource ButtonIcon24Forward}"
 								IsEnabled="False"
-								Click="OnForward_Click"/>
+								Click="OnForward_Click">
+                            <!--Place background here because bug : button disappear on multiple tab-->
+                            <Button.Content>
+                                <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-forward-24.png" />
+                            </Button.Content>
+                        </Button>
 
 						<Button x:Name="Button_Upward_Name"
 								Style="{DynamicResource ButtonIcon24Upward}"
-								Click="OnUpward_Click" />
+								Click="OnUpward_Click">
+                            <!--Place background here because bug : button disappear on multiple tab-->
+                            <Button.Content>
+                                <Image Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-upward-24.png" />
+                            </Button.Content>
+                        </Button>
 						
 					</StackPanel>
 
@@ -69,7 +84,7 @@
 				</Grid>
 			</StackPanel>
 
-			<Grid x:Name="BlockMiddleContentsName" Style="{StaticResource GridMiddleContentStyle}">
+            <Grid x:Name="BlockMiddleContentName" Style="{StaticResource GridMiddleContentStyle}">
 
 				<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="240" x:Name="ColStorages"/>
