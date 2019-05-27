@@ -70,6 +70,7 @@ namespace Fotootof.Startup
             }
 
             server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
+            server.Host = "192.168.1.12";
             Trace.TraceInformation($"{Local.Properties.Logs.ServerAddress} : http://{server.Host}:{server.Host}");
 
             return server;
@@ -121,8 +122,9 @@ namespace Fotootof.Startup
                 MessageBox.Show
                 (
                     Local.Properties.Logs.DbConnectionFail,
-                    Local.Properties.Translations.ApplicationName,
-                    MessageBoxButton.OK, MessageBoxImage.Error
+                    caption: Local.Properties.Translations.ApplicationName,
+                    button: MessageBoxButton.OK,
+                    icon: MessageBoxImage.Error
                 );
             }
 
