@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{147DB53A-BB65-4402-9852-C257E4D051AF}</ProjectGuid>
+    <ProjectGuid>{F93DE59E-81F5-4F4C-9BB8-BD3D8495E351}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fotootof.SQLite.Connector</RootNamespace>
-    <AssemblyName>Fotootof.SQLite.Connector</AssemblyName>
+    <RootNamespace>Fotootof.Layouts.Windows.Logs</RootNamespace>
+    <AssemblyName>Fotootof.Layouts.Windows.Logs</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -21,7 +21,7 @@
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\Build\Debug\Fotootof.SQLite.Connector.xml</DocumentationFile>
+    <DocumentationFile>..\..\Build\Debug\Fotootof.Layouts.Windows.About.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,51 +33,60 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
-    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Presentation" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="XtrmAddons.Net.Application">
-      <HintPath>..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
-    </Reference>
     <Reference Include="XtrmAddons.Net.Common">
       <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
-    <Reference Include="XtrmAddons.Net.SQLiteBundle">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.SQLiteBundle.dll</HintPath>
+    <Reference Include="XtrmAddons.Net.Picture">
+      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Picture.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\SQLiteData\SQLiteManager.cs" />
+    <Compile Include="Layouts\WindowLogLayout.xaml.cs">
+      <DependentUpon>WindowLogLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WindowLogModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EntityFramework">
-      <Version>6.2.0</Version>
-    </PackageReference>
     <PackageReference Include="log4net">
       <Version>2.0.8</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>2.2.4</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Controls\Fotootof.Libraries.Controls.csproj">
+      <Project>{6F733674-F83C-4707-BBE6-EA170D6420F2}</Project>
+      <Name>Fotootof.Libraries.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Libraries\Fotootof.Libraries.Models\Fotootof.Libraries.Models.csproj">
+      <Project>{f9adb6b5-f96a-48d7-8a1c-2e37d48854bc}</Project>
+      <Name>Fotootof.Libraries.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof.Theme\Fotootof.Theme\Fotootof.Theme.csproj">
+      <Project>{C76E2008-3DA1-4600-A889-BF08AF796F7F}</Project>
+      <Name>Fotootof.Theme</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fotootof\Fotootof.Local\Fotootof.Local.csproj">
+      <Project>{e34edcea-b5e7-4bfd-9972-2b1d60f95a30}</Project>
+      <Name>Fotootof.Local</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Layouts\WindowLogLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2000/1/1" />
-    </VisualStudio>
-  </ProjectExtensions>
 </Project>
