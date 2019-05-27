@@ -243,7 +243,7 @@ namespace Fotootof
         /// <summary>
         /// Method to initialize application preferences before startup.
         /// </summary>
-        public void InitializePreferences()
+        public static void InitializePreferences()
         {
             Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
 

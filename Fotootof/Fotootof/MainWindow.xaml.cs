@@ -264,7 +264,7 @@ namespace Fotootof
             // Add application log watcher event handler.
             AppLogger.UpdateLogTextbox(logWatcher.LogContent);
             logWatcher.LogContent = "";
-            logWatcher.Updated += LogWatcher_Updated;
+            logWatcher.Updated += LogWatcherUpdated;
 
             // Initialize window content.
             await InitializeContentAsync().ConfigureAwait(false);
@@ -322,7 +322,7 @@ namespace Fotootof
         /// </summary>
         /// <param name="sender">The <see cref="object"/> sender of the event.</param>
         /// <param name="e">Event arguments <see cref="EventArgs"/>.</param>
-        public void LogWatcher_Updated(object sender, EventArgs e)
+        public void LogWatcherUpdated(object sender, EventArgs e)
         {
             AppLogger.UpdateLogTextbox(logWatcher.LogContent);
             logWatcher.LogContent = "";

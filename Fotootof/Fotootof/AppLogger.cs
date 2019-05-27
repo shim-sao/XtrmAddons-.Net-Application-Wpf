@@ -56,7 +56,7 @@ namespace Fotootof
                 }
                 buffer = null;
             }
-            catch (Exception e)
+            catch (ArgumentException e)
             {
                 Trace.TraceError(e.Output());
             }
