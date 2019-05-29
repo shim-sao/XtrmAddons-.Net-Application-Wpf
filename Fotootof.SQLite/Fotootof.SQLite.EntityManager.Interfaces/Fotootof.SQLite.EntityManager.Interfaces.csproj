@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA432F87-DB16-4E8C-BBC8-1321583F027A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fotootof.SQLite.EntityManager.Interfaces</RootNamespace>
+    <AssemblyName>Fotootof.SQLite.EntityManager.Interfaces</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Build\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\Build\Debug\Fotootof.SQLite.EntityManager.Interfaces.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Build\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces\IColumnSectionId.cs" />
+    <Compile Include="Interfaces\IColumnCaptured.cs" />
+    <Compile Include="Interfaces\IColumnPictureId.cs" />
+    <Compile Include="Interfaces\IColumnAlbumId.cs" />
+    <Compile Include="Interfaces\IColumnBackgroundPictureId.cs" />
+    <Compile Include="Interfaces\IColumnComment.cs" />
+    <Compile Include="Interfaces\IColumnCreated.cs" />
+    <Compile Include="Interfaces\IColumnDateEnd.cs" />
+    <Compile Include="Interfaces\IColumnDateStart.cs" />
+    <Compile Include="Interfaces\IColumnDescription.cs" />
+    <Compile Include="Interfaces\IColumnIsDefault.cs" />
+    <Compile Include="Interfaces\IColumnModified.cs" />
+    <Compile Include="Interfaces\IColumnNameAlias.cs" />
+    <Compile Include="Interfaces\IColumnOrdering.cs" />
+    <Compile Include="Interfaces\IColumnParameters.cs" />
+    <Compile Include="Interfaces\IColumnPreviewPictureId.cs" />
+    <Compile Include="Interfaces\IColumnPrimaryKey.cs" />
+    <Compile Include="Interfaces\IColumnThumbnailPictureId.cs" />
+    <Compile Include="Interfaces\ITableSections.cs" />
+    <Compile Include="Interfaces\ITablePictures.cs" />
+    <Compile Include="Interfaces\ITableAlbums.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_StartDate="2000/1/1" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

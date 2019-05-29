@@ -1,0 +1,38 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+
+
+	<!-- Icons 32 -->
+	<Image x:Key="Icon32LeftArrow" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-left-arrow-32.png" />
+	<Image x:Key="Icon32Minus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-minus-32.png" />
+	<Image x:Key="Icon32Pause" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-pause-32.png" />
+	<Image x:Key="Icon32Play" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-play-32.png" />
+	<Image x:Key="Icon32Plus" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-plus-32.png" />
+	<Image x:Key="Icon32Refresh" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-refresh-32.png" />
+	<Image x:Key="Icon32RightArrow" Source="pack://application:,,,/Assets/Images/Icons/Buttons/button-right-arrow-32.png" />
+
+	
+	
+	<!-- Todo : replace & delete -->
+	<system:String x:Key="IconFolder">Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\folder-5.png</system:String>
+
+
+
+
+
+	<system:String x:Key="IconLink">Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\link.png</system:String>
+	<system:String x:Key="IconInfo">Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\info.png</system:String>
+
+
+
+	<!-- BitmapImage -->
+	<BitmapImage x:Key="BmpIconLink" UriSource="\Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\link.png" />
+	<BitmapImage x:Key="BmpIconInfo" UriSource="\Assets\Images\Vendor\Flaticon\Smashicons\Essential Collection\info.png" />
+
+
+
+
+</ResourceDictionary>
