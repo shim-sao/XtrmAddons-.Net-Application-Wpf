@@ -45,10 +45,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="WindowsBase" />
     <Reference Include="XtrmAddons.Net.Common">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Picture">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Picture.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Picture.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

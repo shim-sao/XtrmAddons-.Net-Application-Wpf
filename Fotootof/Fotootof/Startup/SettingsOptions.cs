@@ -5,6 +5,9 @@ using Fotootof.SQLite.Services;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Text.RegularExpressions;
 using System.Windows;
 using XtrmAddons.Net.Application;
 using XtrmAddons.Net.Application.Helpers;
@@ -27,6 +30,12 @@ namespace Fotootof.Startup
         /// </summary>
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private static readonly Regex _ipAddress = new Regex(@"\b([0-9]{1,3}\.){3}[0-9]{1,3}$",
+                                                           RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
         #endregion
 
@@ -54,24 +63,51 @@ namespace Fotootof.Startup
                 ApplicationBase.Options.Remote.Servers.AddDefaultSingle(server);
             }
 
+            /*NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface adapter in adapters)
+            {
+                IPInterfaceProperties properties = adapter.GetIPProperties();
+                Console.WriteLine(adapter.Description);
+                Console.WriteLine(adapter.Id);
+                Console.WriteLine(adapter.GetPhysicalAddress().ToString());
 
+                // NetworkInformations.ShowIPAddresses(properties);
+
+                Console.WriteLine("  DNS suffix .............................. : {0}",
+                    properties.DnsSuffix);
+                Console.WriteLine("  DNS enabled ............................. : {0}",
+                    properties.IsDnsEnabled);
+                Console.WriteLine("  Dynamically configured DNS .............. : {0}",
+                    properties.IsDynamicDnsEnabled);
+
+                server.Host = UnicastIPAddress(properties);
+
+                if(server.Host != "0.0.0.0")
+                {
+                    break;
+                }
+            }*/
+
+            server.Host = NetworkInformations.GetLocalNetworkIp(false);
+
+            Trace.TraceInformation($"{Local.Properties.Logs.ServerAddress} : http://{server.Host}:{server.Port}");
+            
             // Initialize web server host or ip address.
             if (server.Host.IsNullOrWhiteSpace())
             {
-                server.Host = NetworkInformations.GetLocalHostIp();
+                server.Host = NetworkInformations.GetLocalNetworkIp(false);
                 ApplicationBase.Options.Remote.Servers.AddKeySingle(server);
             }
 
             // Initialize web server port.
             if (server.Port.IsNullOrWhiteSpace())
             {
-                server.Port = NetworkInformations.GetAvailablePort(9293).ToString();
+                server.Port = $"{NetworkInformations.GetAvailablePort(9293)}";
                 ApplicationBase.Options.Remote.Servers.AddKeySingle(server);
             }
 
             server = ApplicationBase.Options.Remote.Servers.FindDefaultFirst();
-            server.Host = "192.168.1.12";
-            Trace.TraceInformation($"{Local.Properties.Logs.ServerAddress} : http://{server.Host}:{server.Host}");
+            Trace.TraceInformation($"{Local.Properties.Logs.ServerAddress} : http://{server.Host}:{server.Port}");
 
             return server;
         }

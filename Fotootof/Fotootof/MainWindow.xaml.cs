@@ -179,7 +179,7 @@ namespace Fotootof
                 int newIndex = tc?.Items?.Count - 1 ?? 0;
 
                 Label lbl = new Label();
-                lbl.Content = "New Tab #" + newIndex.ToString();
+                lbl.Content = FormattableString.Invariant($"New Tab #{newIndex}");
 
                 lbl.MouseLeftButtonDown += TabItemHeaderLabel_MouseLeftButtonDown;
                 lbl.MouseLeftButtonUp += TabItemHeaderLabel_MouseLeftButtonUp;

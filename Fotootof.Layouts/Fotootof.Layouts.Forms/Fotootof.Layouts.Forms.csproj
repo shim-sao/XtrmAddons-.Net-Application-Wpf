@@ -50,25 +50,25 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="XtrmAddons.Net.Application">
-      <HintPath>..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-app\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Common">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Memory">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Memory.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Memory.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Network">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Network.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Network.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Picture">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Picture.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Picture.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.SystemIO">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.SystemIO.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.SystemIO.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Windows">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Windows.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Windows.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -115,9 +115,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Extended.Wpf.Toolkit">
-      <Version>3.5.0</Version>
-    </PackageReference>
     <PackageReference Include="log4net">
       <Version>2.0.8</Version>
     </PackageReference>

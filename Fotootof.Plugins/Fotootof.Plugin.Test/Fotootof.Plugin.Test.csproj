@@ -57,15 +57,12 @@
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
-    <Reference Include="WindowsBase">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="XtrmAddons.Net.Application">
-      <HintPath>..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-app\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="XtrmAddons.Net.Common">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

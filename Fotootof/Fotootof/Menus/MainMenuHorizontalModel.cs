@@ -22,7 +22,7 @@ namespace Fotootof.Menus
         /// <summary>
         /// Variable is Http server started.
         /// </summary>
-        public bool isServerStarted;
+        private bool isServerStarted;
 
         /// <summary>
         /// Variable <see cref="Grid"/> container for the plugin module.

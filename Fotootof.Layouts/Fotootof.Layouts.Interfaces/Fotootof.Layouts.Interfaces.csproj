@@ -41,10 +41,10 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="XtrmAddons.Net.Application">
-      <HintPath>..\..\..\XtrmAddons-.Net-App-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-app\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Application.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Common">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
