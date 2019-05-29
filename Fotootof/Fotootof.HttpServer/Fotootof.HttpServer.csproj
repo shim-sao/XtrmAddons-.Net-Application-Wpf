@@ -72,13 +72,13 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="XtrmAddons.Net.Common">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Common.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.HttpWebServer">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.HttpWebServer.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.HttpWebServer.dll</HintPath>
     </Reference>
     <Reference Include="XtrmAddons.Net.Xml">
-      <HintPath>..\..\..\XtrmAddons-.Net-Libraries-Wpf\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Xml.dll</HintPath>
+      <HintPath>..\..\..\xtrmaddons-wpf-lib\packages\XtrmAddons\$(Configuration)\XtrmAddons.Net.Xml.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
