@@ -112,7 +112,6 @@
     <Compile Include="Classes\Components\Section\Views\PageSectionLayout.xaml.cs">
       <DependentUpon>PageSectionLayout.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Components\Section\Views\PageSectionModelShared.cs" />
     <Compile Include="Classes\Components\Section\Views\PageSectionModel.cs" />
     <Compile Include="Classes\Components\Remote\Layouts\Lists\ServerInfosLayout.xaml.cs">
       <DependentUpon>ServerInfosLayout.xaml</DependentUpon>

@@ -58,14 +58,14 @@ namespace Fotootof.Startup
             // Initialize web server host or ip address.
             if (server.Host.IsNullOrWhiteSpace())
             {
-                server.Host = NetworkInformations.GetLocalHostIp();
+                server.Host = NetworkInformations.GetLocalNetworkIp(false);
                 ApplicationBase.Options.Remote.Servers.AddKeySingle(server);
             }
 
             // Initialize web server port.
             if (server.Port.IsNullOrWhiteSpace())
             {
-                server.Port = NetworkInformations.GetAvailablePort(9293).ToString();
+                server.Port = $"{NetworkInformations.GetAvailablePort(9293)}";
                 ApplicationBase.Options.Remote.Servers.AddKeySingle(server);
             }
 
